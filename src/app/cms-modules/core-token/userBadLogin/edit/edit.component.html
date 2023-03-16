@@ -1,0 +1,110 @@
+<div class="ntk-cms-html-card-header">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+</div>
+<div class="ntk-cms-html-card-body">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+  <!-- UsedUsername Field -->
+  <mat-form-field class="ntk-full-width">
+    <mat-label>UsedUsername</mat-label>
+    <input matInput [(ngModel)]="dataModel.usedUsername" name="dataModel.usedUsername" #UsedUsername type="text"
+      placeholder="UsedUsername" />
+    <mat-icon matSuffix *ngIf="dataModel.usedUsername" matSuffix mat-icon-button aria-label="Clear"
+      (click)="dataModel.usedUsername = null">close</mat-icon>
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+
+  <!-- UsedPwd Field -->
+  <mat-form-field class="ntk-full-width">
+    <mat-label>UsedPwd</mat-label>
+    <input matInput [(ngModel)]="dataModel.usedPwd" name="dataModel.usedPwd" #UsedPwd type="text"
+      placeholder="UsedPwd" />
+    <mat-icon matSuffix *ngIf="dataModel.usedPwd" matSuffix mat-icon-button aria-label="Clear"
+      (click)="dataModel.usedPwd = null">close</mat-icon>
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+
+  <!-- UserAccessAreaType Field -->
+  <mat-form-field class="ntk-full-width">
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType" name="dataModel.userAccessAreaType"
+      #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
+      <mat-option *ngFor="
+                  let item of dataModelEnumManageUserAccessAreaTypesResult.listItems;
+                  index as i
+                " [value]="item.value">{{ item.description }}</mat-option>
+    </mat-select>
+    <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+    <mat-error *ngIf="UserAccessAreaType.errors?.required">
+      UserAccessAreaType is <strong>{{'MESSAGE.required' | translate}}</strong>
+    </mat-error>
+  </mat-form-field>
+  <!-- LinkSiteId Field -->
+  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId" [(loading)]="loading"
+    [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
+
+  <!-- LinkUserId Field -->
+  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId" [(loading)]="loading"
+    [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+  <!-- LinkMemberId Field -->
+  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId" [(loading)]="loading"
+    [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
+  <!-- LinkDeviceId Field -->
+  <mat-form-field class="ntk-full-width">
+    <mat-label>LinkDeviceId</mat-label>
+    <input matInput [(ngModel)]="dataModel.linkDeviceId" name="dataModel.linkDeviceId" #LinkDeviceId type="text"
+      placeholder="LinkDeviceId" />
+    <mat-icon matSuffix *ngIf="dataModel.linkDeviceId" matSuffix mat-icon-button aria-label="Clear"
+      (click)="dataModel.linkDeviceId = null">close</mat-icon>
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+  <!-- LinkApplicationId Field -->
+  <mat-form-field class="ntk-full-width">
+    <mat-label>LinkApplicationId</mat-label>
+    <input matInput [(ngModel)]="dataModel.linkApplicationId" name="dataModel.linkApplicationId" #LinkApplicationId
+      type="text" placeholder="LinkApplicationId" />
+    <mat-icon matSuffix *ngIf="dataModel.linkApplicationId" matSuffix mat-icon-button aria-label="Clear"
+      (click)="dataModel.linkApplicationId = null">close</mat-icon>
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+
+  <!-- DeviceClientMAC Field -->
+  <mat-form-field class="ntk-full-width">
+    <mat-label>DeviceClientMAC</mat-label>
+    <input matInput [(ngModel)]="dataModel.deviceClientMAC" name="dataModel.deviceClientMAC" #DeviceClientMAC
+      type="text" placeholder="DeviceClientMAC" />
+    <mat-icon matSuffix *ngIf="dataModel.deviceClientMAC" matSuffix mat-icon-button aria-label="Clear"
+      (click)="dataModel.deviceClientMAC = null">close</mat-icon>
+    <mat-icon matSuffix>mode_edit</mat-icon>
+  </mat-form-field>
+
+  <!-- prettyjson Field -->
+  <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+    <div [innerHTML]="dataModel | prettyjson"></div>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+<div class="ntk-cms-html-card-message">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
+    </small>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+</div>
+<div class="ntk-cms-html-card-footer">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>

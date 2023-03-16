@@ -1,0 +1,143 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+      {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
+                  let item of dataModelEnumRecordStatusResult.listItems;
+                  index as i
+                " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- SerialNumber Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['serialNumber']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.serialNumber" name="dataModel.serialNumber" #SerialNumber type="text"
+        placeholder="Serial Number" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.serialNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.serialNumber = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ SerialNumber.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="SerialNumber.errors?.required">
+        {{fieldsInfo['serialNumber']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- PwdForUse Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{fieldsInfo['pwdForUse']?.fieldTitle}}</mat-label>
+      <input matInput [(ngModel)]="dataModel.pwdForUse" name="dataModel.pwdForUse" #PwdForUse type="text"
+        placeholder="Serial Number" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.pwdForUse" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.pwdForUse = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ PwdForUse.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="PwdForUse.errors?.required">
+        {{fieldsInfo['pwdForUse']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LinkModuleSaleHeaderId Field -->
+    <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)" [(loading)]="loading"
+      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
+      [optionDisabled]="!fieldsInfo['linkModuleSaleHeaderId']?.accessEditField">
+    </app-core-modulesaleheader-selector>
+    <!-- HasDemo Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.hasDemo" *ngIf="fieldsInfo['hasDemo']?.accessWatchField"
+        [disabled]="!fieldsInfo['hasDemo']?.accessEditField" name="dataModel.hasDemo">
+        {{fieldsInfo['hasDemo']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- HasUsed Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.hasUsed" *ngIf="fieldsInfo['hasUsed']?.accessWatchField"
+        [disabled]="!fieldsInfo['hasUsed']?.accessEditField" name="dataModel.hasUsed">
+        {{fieldsInfo['hasUsed']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- NumberOfMaxUse Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['numberOfMaxUse']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['numberOfMaxUse']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.numberOfMaxUse" [disabled]="!fieldsInfo['numberOfMaxUse']?.accessEditField"
+        name="dataModel.numberOfMaxUse" #NumberOfMaxUse type="number" placeholder="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.numberOfMaxUse && fieldsInfo['numberOfMaxUse']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.numberOfMaxUse = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['numberOfMaxUse']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="NumberOfMaxUse.errors?.required">
+        {{ fieldsInfo['numberOfMaxUse']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- MaxExpireToUse Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['maxExpireToUse']?.accessWatchField">
+      <mat-label>{{fieldsInfo['maxExpireToUse']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="MaxExpireToUse" [(ngModel)]="dataModel.maxExpireToUse"
+        name="dataModel.maxExpireToUse" />
+      <mat-icon matSuffix *ngIf="dataModel.maxExpireToUse && fieldsInfo['maxExpireToUse']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.maxExpireToUse = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="MaxExpireToUse"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #MaxExpireToUse></mat-datepicker>
+    </mat-form-field>
+
+    <!-- NumberOfRegistered Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['numberOfRegistered']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['numberOfRegistered']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.numberOfRegistered"
+        [disabled]="!fieldsInfo['numberOfRegistered']?.accessEditField" name="dataModel.numberOfRegistered"
+        #NumberOfRegistered type="number" placeholder="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.numberOfRegistered && fieldsInfo['numberOfRegistered']?.accessEditField"
+        matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.numberOfRegistered = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['numberOfRegistered']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="NumberOfRegistered.errors?.required">
+        {{ fieldsInfo['numberOfRegistered']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- AllowReuseDay Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['allowReuseDay']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['allowReuseDay']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.allowReuseDay" [disabled]="!fieldsInfo['allowReuseDay']?.accessEditField"
+        name="dataModel.allowReuseDay" #AllowReuseDay type="number" placeholder="0" required />
+      <mat-icon matSuffix *ngIf="dataModel.allowReuseDay && fieldsInfo['allowReuseDay']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.allowReuseDay = null">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['allowReuseDay']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="AllowReuseDay.errors?.required">
+        {{ fieldsInfo['allowReuseDay']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

@@ -1,0 +1,101 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
+                  let item of dataModelEnumRecordStatusResult.listItems;
+                  index as i
+                " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkApiNumberId Field -->
+    <!-- <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"
+      [optionSelectForce]="dataModel.linkApiNumberId" [optionPlaceholder]="'شماره'">
+    </app-sms-api-number-selector> -->
+    <!-- ReceiverDate Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['receiverDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['receiverDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="ReceiverDate" [(ngModel)]="dataModel.receiverDate" name="dataModel.receiverDate"
+        disabled="{{!fieldsInfo['receiverDate']?.accessEditField}}"
+        placeholder="{{fieldsInfo['receiverDate']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.receiverDate && fieldsInfo['receiverDate']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.receiverDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="ReceiverDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #ReceiverDate></mat-datepicker>
+    </mat-form-field>
+    
+    <!-- SenderNumber Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['senderNumber']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['senderNumber']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.senderNumber"
+        [disabled]="!fieldsInfo['senderNumber']?.accessEditField" name="dataModel.senderNumber" #SenderNumber
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.senderNumber && fieldsInfo['senderNumber']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.senderNumber = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['senderNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint  style="text-align: right;">{{ SenderNumber.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!-- ReceiverNumber Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['receiverNumber']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['receiverNumber']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.receiverNumber"
+        [disabled]="!fieldsInfo['receiverNumber']?.accessEditField" name="dataModel.receiverNumber" #ReceiverNumber
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.receiverNumber && fieldsInfo['receiverNumber']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.receiverNumber = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['receiverNumber']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint  style="text-align: right;">{{ ReceiverNumber.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!-- Message Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['message']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['message']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.message"
+        [disabled]="!fieldsInfo['message']?.accessEditField" name="dataModel.message" #Message
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.message && fieldsInfo['message']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.message = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['message']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint  style="text-align: right;">{{ Message.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

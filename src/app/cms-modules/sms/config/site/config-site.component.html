@@ -1,0 +1,280 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="{{'TITLE.Config_Module' | translate}}" state="main">
+        <p>{{'TITLE.Settings_that_the_module_applies_to_the_site' | translate}} </p>
+        <!-- StatusRenderUser Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.statusRenderUser"
+            name="dataConfigSiteValuesModel.statusRenderUser">
+            StatusRenderUser
+          </mat-slide-toggle>
+        </div>
+        <!-- UseDataDefaulteSite -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.useDataDefaulteSite"
+            name="dataConfigSiteValuesModel.useDataDefaulteSite">
+            {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
+          </mat-slide-toggle>
+        </div>
+
+        <hr>
+        <!-- userFreePanelDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>userFreePanelDay</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesModel.userFreePanelDay"
+            name="dataConfigSiteValuesModel.userFreePanelDay" #dataConfigSiteValuesModel_userFreePanelDay type="number"
+            placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.userFreePanelDay" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.userFreePanelDay = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+        <!-- userFreePanelCredit Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>userFreePanelCredit</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesModel.userFreePanelCredit"
+            name="dataConfigSiteValuesModel.userFreePanelCredit" #dataConfigSiteValuesModel_userFreePanelCredit
+            type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.userFreePanelCredit" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.userFreePanelCredit = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+        <hr>
+        <!-- messageTextFilteringCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.messageTextFilteringCheck"
+            name="dataConfigSiteValuesModel.messageTextFilteringCheck">
+            messageTextFilteringCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageTextFiltering Field -->
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageTextFilteringCheck">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageTextFiltering</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageTextFiltering"
+              name="dataConfigSiteValuesModel.messageTextFiltering" #messageTextFiltering type="text" placeholder="..."
+              minlength="1" maxlength="2000" rows=5 ></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.messageTextFiltering" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteValuesModel.messageTextFiltering = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageTextFiltering</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageTextFiltering.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+
+
+        <!-- messageTextForbiddenCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.messageTextForbiddenCheck"
+            name="dataConfigSiteValuesModel.messageTextForbiddenCheck">
+            messageTextForbiddenCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageTextForbidden Field -->
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageTextForbiddenCheck">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageTextForbidden</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageTextForbidden"
+              name="dataConfigSiteValuesModel.messageTextForbidden" #messageTextForbidden type="text" placeholder="..."
+              minlength="1" maxlength="2000" rows=5 ></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.messageTextForbidden" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteValuesModel.messageTextForbidden = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageTextForbidden</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageTextForbidden.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <!-- messageNumberFilteringCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.messageNumberFilteringCheck"
+            name="dataConfigSiteValuesModel.messageNumberFilteringCheck">
+            messageNumberFilteringCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageNumberFiltering Field -->
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageNumberFilteringCheck">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageNumberFiltering</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageNumberFiltering"
+              name="dataConfigSiteValuesModel.messageNumberFiltering" #messageNumberFiltering type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5 ></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.messageNumberFiltering" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteValuesModel.messageNumberFiltering = ''">
+              close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageNumberFiltering</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageNumberFiltering.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+
+        <!-- messageNumberForbiddenCheck Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.messageNumberForbiddenCheck"
+            name="dataConfigSiteValuesModel.messageNumberForbiddenCheck">
+            messageNumberForbiddenCheck
+          </mat-slide-toggle>
+        </div>
+        <!-- messageNumberForbidden Field -->
+        <div class="ntk-full-width" *ngIf="dataConfigSiteValuesModel.messageNumberForbiddenCheck">
+          <mat-form-field class="ntk-full-width">
+            <mat-label>messageNumberForbidden</mat-label>
+            <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.messageNumberForbidden"
+              name="dataConfigSiteValuesModel.messageNumberForbidden" #messageNumberForbidden type="text"
+              placeholder="..." minlength="1" maxlength="2000" rows=5 ></textarea>
+            <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.messageNumberForbidden" matSuffix mat-icon-button
+              aria-label="Clear" (click)="dataConfigSiteValuesModel.messageNumberForbidden = ''">
+              close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+              <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+              <strong class="info-field-text">messageNumberForbidden</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ messageNumberForbidden.value.length }} / 2000</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
+
+        </div>
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step label="{{'TITLE.Saved_Value' | translate}}" state="main">
+        <p>{{'TITLE.Values_saved_by_the_system' | translate}} </p>
+        <!-- RowCount Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.rowCount" name="dataSiteStorageModel.rowCount">
+            RowCount
+          </mat-slide-toggle>
+        </div>
+        <!-- MainDataContentRowCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MainDataContentRowCount</mat-label>
+          <input matInput [(ngModel)]="dataSiteStorageModel.mainDataContentRowCount"
+            name="dataSiteStorageModel.mainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
+            type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.mainDataContentRowCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataSiteStorageModel.mainDataContentRowCount = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+        <!-- UpdatedContent Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>UpdatedContent</mat-label>
+          <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
+            [(ngModel)]="dataSiteStorageModel.updatedContent" name="dataSiteStorageModel.updatedContent" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedContent " matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataSiteStorageModel.updatedContent = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedContent"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #dataSiteStorageModel_UpdatedContent></mat-datepicker>
+        </mat-form-field>
+
+
+
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.Accessibility' | translate}}" state="main">
+        <p>{{'TITLE.This_website_accesses_this_module' | translate}}</p>
+        <!-- MainDataContentRowCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MainDataContentRowCount</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
+            name="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
+            #dataConfigSiteAccessValuesModel_MainDataContentRowCount type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.mainDataContentRowCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.mainDataContentRowCount = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
+            MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- UseDataDefaulteSiteId Field -->
+        <!-- <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.Default_information_site_ID' | translate}}</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
+            name="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
+            #dataConfigSiteAccessValuesModel_UseDataDefaulteSiteId type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId = 0">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field> -->
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

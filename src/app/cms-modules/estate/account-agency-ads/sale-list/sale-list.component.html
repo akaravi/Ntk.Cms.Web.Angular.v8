@@ -1,0 +1,31 @@
+<div class="row">
+  <div Class="col-xl-12">
+    <div class="button-row">
+      {{'MESSAGE.Make_purchases_according_to_your_needs_and_duration' | translate}}
+      <button type="button" (click)="onActionBackToParent()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.BACK' | translate}}
+      </button>
+    </div>
+    <app-progress-spinner [options]="loading">
+    </app-progress-spinner>
+    <div class="row">
+      <div class="col" *ngFor="let item of dataModelResult.listItems">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>{{item.title}}</mat-card-title>
+            <mat-card-subtitle>{{item.salePrice | currency:' '+currency+' '}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{item.linkMainImageIdSrc }}">
+          <mat-card-content>
+            <p>
+              {{item.description }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="onActionbuttonBuy(item)">{{'ACTION.BUY' | translate}}</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,137 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- AppId Field -->
+    <app-application-app-selector (optionChange)="onActionSelectApp($event)" *ngIf="LinkMemberId.length===0"
+      [(loading)]="loading" [optionSelectForce]="this.dataModel.appId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Application')"></app-application-app-selector>
+    <!-- AppId Field -->
+    <app-application-memberinfo-selector (optionChange)="onActionSelectMemberInfo($event)" [(loading)]="loading"
+      [optionSelectForce]="LinkMemberId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-application-memberinfo-selector>
+    <!-- Title Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+        placeholder="{{'TITLE.TITLE' | translate}}" minlength="3" maxlength="100" required />
+      <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.title = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="Title.errors?.required">
+        Title is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- ContentType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{'TITLE.Message_Type' | translate}}" [(ngModel)]="dataModel.contentType"
+        name="dataModel.contentType" #ContentType="ngModel" panelClass="recordStatus-{{ dataModel.contentType }}"
+        required>
+        <mat-option *ngFor="
+                        let item of dataModelEnumContentTypeResult.listItems;
+                        index as i
+                      " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.Select_type_of_content' | translate}}</mat-hint>
+      <mat-error *ngIf="ContentType.errors?.required">
+        ContentType is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Content Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>{{'TITLE.Text' | translate}}</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.content" name="dataModel.content" #Content type="text"
+        placeholder="{{'TITLE.Text' | translate}}" minlength="3" maxlength="500" required></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.content" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.content = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ Content.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="Content.errors?.required">
+        Content is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- ContentJson Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>Json</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.contentJson" name="dataModel.contentJson" #ContentJson type="text"
+        placeholder="Json" minlength="0" maxlength="500"></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.contentJson" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.contentJson = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-hint align="end">{{ ContentJson.value.length }} / 500</mat-hint>
+      <mat-error *ngIf="ContentJson.errors?.required">
+        ContentJson is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- SmallImageId Field -->
+    <div class="mb-3">
+      <img *ngIf="SmallImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{SmallImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <mat-label (click)="fileManagerOpenFormSmallFile = true">{{'TITLE.Small_Photo_File' | translate}}
+        </mat-label>
+        <input matInput [(ngModel)]="dataModel.smallImageId" name="dataModel.smallImageId" #SmallImageId type="text"
+          placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenFormSmallFile = true" />
+        <mat-icon matSuffix *ngIf="dataModel.smallImageId " matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.smallImageId = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormSmallFile = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedSmallImage($event)" [language]="appLanguage"
+        [isPopup]="true" [(openForm)]="fileManagerOpenFormSmallFile" [tree]="fileManagerTree"
+        [openDirectUploadView]="true" [openFilemanagerButtonLabelKey]="'select'"
+        [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!-- BigImageId Field -->
+    <div class="mb-3">
+      <img *ngIf="BigImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
+        src="{{BigImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+    </div>
+    <div class="mb-9">
+      <mat-form-field class="ntk-full-width">
+        <mat-label (click)="fileManagerOpenFormBigFile = true">{{'TITLE.Original_Photo_File' | translate}}
+        </mat-label>
+        <input matInput [(ngModel)]="dataModel.bigImageId" name="dataModel.bigImageId" #BigImageId type="text"
+          placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off"
+          (click)="fileManagerOpenFormBigFile = true" />
+        <mat-icon matSuffix *ngIf="dataModel.bigImageId " matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.bigImageId = null">close</mat-icon>
+        <mat-icon matSuffix (click)="fileManagerOpenFormBigFile = true">mode_edit</mat-icon>
+      </mat-form-field>
+      <cms-file-manager (itemSelected)="onActionFileSelectedBigImage($event)" [language]="appLanguage" [isPopup]="true"
+        [(openForm)]="fileManagerOpenFormBigFile" [tree]="fileManagerTree" [openDirectUploadView]="true"
+        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
+        [openFilemanagerButtonView]="false"></cms-file-manager>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'TITLE.Send' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

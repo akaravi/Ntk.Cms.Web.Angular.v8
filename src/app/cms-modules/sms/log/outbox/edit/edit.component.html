@@ -1,0 +1,89 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+    <!-- RecordStatus Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
+        required>
+        <mat-option *ngFor="
+                  let item of dataModelEnumRecordStatusResult.listItems;
+                  index as i
+                " [value]="item.value">{{ item.description }}</mat-option>
+      </mat-select>
+      <mat-hint style="text-align: left;">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="RecordStatus.errors?.required">
+        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- LinkApiNumberId Field -->
+    <!-- <app-sms-api-number-selector (optionChange)="onActionSelectorSelectLinkApiNumberId($event)"
+      [optionSelectForce]="dataModel.linkApiNumberId" [optionPlaceholder]="'شماره'">
+    </app-sms-api-number-selector> -->
+    <!-- SendDate Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['sendDate']?.accessWatchField">
+      <mat-label>{{fieldsInfo['sendDate']?.fieldTitle}}</mat-label>
+      <input matInput [matDatepicker]="SendDate" [(ngModel)]="dataModel.sendDate" name="dataModel.sendDate"
+        disabled="{{!fieldsInfo['sendDate']?.accessEditField}}"
+        placeholder="{{fieldsInfo['sendDate']?.fieldTitle}}" />
+      <mat-icon matSuffix *ngIf="dataModel.sendDate && fieldsInfo['sendDate']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.sendDate = null">close</mat-icon>
+      <mat-datepicker-toggle matSuffix [for]="SendDate"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #SendDate></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Message Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['message']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['message']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.message"
+        [disabled]="!fieldsInfo['message']?.accessEditField" name="dataModel.message" #Message
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.message && fieldsInfo['message']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.message = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['message']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint  style="text-align: right;">{{ Message.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!-- Memo Field -->
+    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['memo']?.accessWatchField">
+      <mat-label>{{ fieldsInfo['memo']?.fieldTitle }}</mat-label>
+      <input matInput [(ngModel)]="dataModel.memo"
+        [disabled]="!fieldsInfo['memo']?.accessEditField" name="dataModel.memo" #Memo
+        type="text" placeholder="123" />
+      <mat-icon matSuffix *ngIf="dataModel.memo && fieldsInfo['memo']?.accessEditField" matSuffix
+        mat-icon-button aria-label="Clear" (click)="dataModel.memo = ''">close</mat-icon>
+      <mat-icon *ngIf="fieldsInfo['memo']?.accessEditField" matSuffix>mode_edit</mat-icon>
+      <mat-hint  style="text-align: right;">{{ Memo.value.length }} / 100</mat-hint>
+    </mat-form-field>
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>

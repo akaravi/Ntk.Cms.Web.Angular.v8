@@ -1,0 +1,56 @@
+<div class="row">
+ 
+  <div [ngClass]="'col-xl-12'">
+    <!--begin::Header-->
+    <div  class="ntk-cms-html-list-header">
+      <button *ngIf=" tableRowSelected.linkTypeId>0" (click)="onActionbuttonEditRow()" type="button"
+        class="btn btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+        translate}}</button>
+  
+      <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
+        <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      </button>
+      <button (click)="onActionBackToParent()" *ngIf="this.requestLinkUserId>0" type="button"
+        class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
+    </div>
+    <!--end::Header-->
+    
+    <!--begin::Body-->
+    <div>
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <div class="row">
+        <div *ngFor="let item of dataModelResult.listItems" class="col-4">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar
+                style="background-image: url('{{item.typeLinkMainImageIdSrc}}'); background-size: cover;"></div>
+              <mat-card-title><i [ngClass]="item.isApproved | boolclass"></i> {{'ACTION.STATUS' | translate}}</mat-card-title>
+              <mat-card-subtitle>{{item.typeTitle}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{item.linkFileContentIdSrc}}" alt="{{item.typeTitle}}">
+            <mat-card-content>
+              <p *ngIf="item.isApproved && item.approvedExpireDate">
+                {{item.approvedExpireDate}}
+              </p>
+  
+              <p *ngIf="!item.isApproved">
+                {{item.typeDescription}}
+              </p>
+              <p *ngIf="item.approvedResult && item.approvedResult.length>0">
+                {{item.approvedResult}}
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button type="button" class="btn btn-secondary width" *ngIf="!item.isApproved" (click)="onActionbuttonEditRow(item)">{{'ACTION.SEND_DOCUMENTS' | translate}}</button>
+            </mat-card-actions>
+          </mat-card>
+  
+        </div>
+      </div>
+  
+    </div>
+    <!--end::Body-->
+
+  </div>
+</div>
+

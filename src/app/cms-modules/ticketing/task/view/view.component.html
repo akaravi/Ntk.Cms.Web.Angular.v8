@@ -1,0 +1,82 @@
+<p>{{'TITLE.VIEW' | translate}}</p>
+<!-- Grid row -->
+<!--Table-->
+<table class="table table-striped center">
+  <!--Table head-->
+  <thead style="background-color: #81D4FA;">
+    <tr>
+      <th>{{'TITLE.parameter' | translate}}</th>
+      <th>{{'TITLE.Amounts' | translate}}</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+  <!--Table body-->
+  <tbody>
+    <tr>
+      <td>{{fieldsInfo['id']?.fieldTitle}}</td>
+      <td>{{ dataModel.id }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['linkSiteId']?.fieldTitle}}</td>
+      <td>{{ dataModel.linkSiteId }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['ticketStatus']?.fieldTitle}}</td>
+      <td>{{dataModel.ticketStatus | enums : dataModelEnumTicketStatusResult.listItems}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['title']?.fieldTitle}}</td>
+      <td>{{dataModel.title}}</td>
+    </tr>
+    <tr>
+      <td>{{'TITLE.Message_Text' | translate}}</td>
+      <td>{{dataModel.htmlBody}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['fullName']?.fieldTitle}}</td>
+      <td>{{dataModel.fullName}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['phoneNo']?.fieldTitle}}</td>
+      <td>{{dataModel.phoneNo}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['createdDate']?.fieldTitle}}</td>
+      <td>{{ publicHelper.LocaleDate(dataModel.createdDate) }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['updatedDate']?.fieldTitle}}</td>
+      <td>{{ publicHelper.LocaleDate(dataModel.updatedDate) }}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['email']?.fieldTitle}}</td>
+      <td>{{dataModel.email}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['linkCmsUserId']?.fieldTitle}}</td>
+      <td>{{dataModel.linkCmsUserId}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['linkMemberId']?.fieldTitle}}</td>
+      <td>{{dataModel.linkMemberId}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['linkTicketingDepartemenId']?.fieldTitle}}</td>
+      <td>{{dataModel.linkTicketingDepartemenId}}</td>
+    </tr>
+    <tr>
+      <td>{{fieldsInfo['ticketingDepartemenDefaultAnswerBody']?.fieldTitle}}</td>
+      <td>{{dataModel.ticketingDepartemenDefaultAnswerBody}}</td>
+    </tr>
+  </tbody>
+  <!--Table body-->
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
