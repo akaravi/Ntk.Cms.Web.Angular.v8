@@ -1,0 +1,117 @@
+<!--begin::Notice-->
+
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-custom alert-white alert-shadow gutter-b" [ngClass]="classes" role="alert">
+      <ng-container *ngIf="icon || svg">
+        <div class="alert-icon alert-icon-top">
+          <ng-container *ngIf="svg">
+            <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="svg"></span>
+          </ng-container>
+          <ng-container *ngIf="icon">
+            <i [ngClass]="icon"></i>
+          </ng-container>
+        </div>
+      </ng-container>
+      <div class="alert-text">
+        <h4 class="text-center">Access Check (   Module Name:{{access.moduleName}}     Module Entity Name: {{access.moduleEntityName}} )</h4>
+        <div>
+
+          <table class="table table-bordered">
+            <tr>
+              <td class="text-center">{{'TITLE.Watch'  | translate}}</td>
+              <td class="text-center">{{'TITLE.Count'  | translate}}</td>
+              <td class="text-center">{{'TITLE.ADD'  | translate}}</td>
+              <td class="text-center">{{'TITLE.Edit'  | translate}}</td>
+              <td class="text-center">{{'TITLE.Delete'  | translate}}</td>
+            </tr>
+            <tr>
+              <td [ngClass]="detectColor(access.accessWatchRow)" class="grid-row-ltr">{{'TITLE.Access_Watch_Row'  | translate}} :<i
+                  [ngClass]="access.accessWatchRow|boolclass"></i> </td>
+              <td [ngClass]="detectColor(access.accessCountRow)" class="grid-row-ltr">{{'TITLE.Access_Count_Row'  | translate}} : <i
+                  [ngClass]="access.accessCountRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessAddRow)" class="grid-row-ltr">{{'TITLE.Access_Add_Row'  | translate}} : <i
+                  [ngClass]="access.accessAddRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessEditRow)" class="grid-row-ltr">{{'TITLE.Access_Edit_Row'  | translate}} : <i
+                  [ngClass]="access.accessEditRow|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessDeleteRow)" class="grid-row-ltr">{{'TITLE.Access_Delete_Row'  | translate}} : <i
+                  [ngClass]="access.accessDeleteRow|boolclass"></i></td>
+            </tr>
+            <tr>
+              <td [ngClass]="detectColor(access.accessWatchRowOtherCreatedBy)" class="grid-row-ltr">
+                {{'TITLE.Access_Watch_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessWatchRowOtherCreatedBy|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessCountRowOtherCreatedBy)" class="grid-row-ltr">
+                {{'TITLE.Access_Count_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessCountRowOtherCreatedBy|boolclass"></i></td>
+              <td>-</td>
+              <td [ngClass]="detectColor(access.accessEditRowOtherCreatedBy)" class="grid-row-ltr">
+                {{'TITLE.Access_Edit_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessEditRowOtherCreatedBy|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessDeleteRowOtherCreatedBy)" class="grid-row-ltr">
+                {{'TITLE.Access_Delete_Row_Other_Created_By'  | translate}} : <i [ngClass]="access.accessDeleteRowOtherCreatedBy|boolclass"></i></td>
+            </tr>
+            <tr>
+              <td [ngClass]="detectColor(access.accessWatchRowOtherSiteId)" class="grid-row-ltr">
+                {{'TITLE.Access_Watch_Row_Other_Site_Id'  | translate}} : <i [ngClass]="access.accessWatchRowOtherSiteId|boolclass"></i></td>
+              <td [ngClass]="detectColor(access.accessCountRowOtherSiteId)" class="grid-row-ltr">
+                {{'TITLE.Access_Count_Row_Other_Site_Id'  | translate}} : <i [ngClass]="access.accessCountRowOtherSiteId|boolclass"></i></td>
+              <td>-</td>
+              <td [ngClass]="detectColor(access.accessEditRowOtherSiteId)" class="grid-row-ltr">{{'TITLE.Access_Edit_Row_Other_Site_Id'  | translate}}
+                : <i [ngClass]="access.accessEditRowOtherSiteId|boolclass"></i></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td [ngClass]="detectColor(access.accessRowWatchInSharingCategory)" class="grid-row-ltr">
+                {{'TITLE.Access_Row_Watch_In_Sharing_Category'  | translate}} : <i [ngClass]="access.accessRowWatchInSharingCategory|boolclass"></i>
+              </td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+
+          </table>
+
+        </div>
+        <hr>
+          <table class="table table-bordered"  *ngIf="bodyShow">
+            <thead>
+              <tr>
+                <td class="text-center">{{'TITLE.Field_Name'  | translate}}</td>
+                <td class="text-center">{{'TITLE.Watch'  | translate}}</td>
+                <td class="text-center">{{'TITLE.ADD'  | translate}}</td>
+                <td class="text-center">{{'TITLE.Edit'  | translate}}</td>
+                <td class="text-center">{{'TITLE.Search'  | translate}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of access.fieldsInfo">
+                <th class="text-center">{{item.fieldName}}</th>
+                <td [ngClass]="detectColor(item.accessWatchField)" class="grid-row-ltr">{{'TITLE.Access_Watch_Field'  | translate}}: <i [ngClass]="item.accessWatchField|boolclass"></i>
+                </td>
+                <td [ngClass]="detectColor(item.accessAddField)" class="grid-row-ltr">{{'TITLE.Access_Add_Field'  | translate}}:
+                  <i [ngClass]="item.accessAddField|boolclass"></i>
+                </td>
+                <td [ngClass]="detectColor(item.accessEditField)" class="grid-row-ltr">{{'TITLE.Access_Edit_Field'  | translate}}:
+                  <i [ngClass]="item.accessEditField|boolclass"></i>
+                </td>
+                <td [ngClass]="detectColor(item.accessSearchField)" class="grid-row-ltr">{{'TITLE.Access_Search_Field'  | translate}}:
+                  <i [ngClass]="item.accessSearchField|boolclass"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        <div>
+          <button type="button" class="btn btn-outline-primary ms-2" (click)="onActionCloseBottunClick()">
+            {{'TITLE.close' | translate}}
+          </button>
+          <button type="button" *ngIf="!bodyShow" class="btn btn btn-secondary" (click)="onActionMoreBottunClick()">
+            {{'TITLE.More'  | translate}}
+          </button>
+          <button type="button" *ngIf="bodyShow" class="btn btn btn-secondary" (click)="onActionLessBottunClick()">
+            {{'TITLE.inferior'  | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

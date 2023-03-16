@@ -5,8 +5,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "strictPropertyInitialization": false,
+    "strict": false,//default is true
     "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -20,13 +20,44 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+        /*karavi add*/
+        "allowJs": true,
+        "checkJs": false,
+        "strictFunctionTypes": true,
+        /*karavi add*/
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "enableIvy": true
+    "enableIvy": true,
+        /*karavi add*/
+        "fullTemplateTypeCheck": true,
+        "strictAttributeTypes": false,
+        "strictSafeNavigationTypes": false,
+        "strictDomLocalRefTypes": false,
+        "strictOutputEventTypes": false,
+        "strictDomEventTypes": false,
+        "strictLiteralTypes": false,
+        "strictNullChecks":false
+        /*karavi add*/
   }
+    /*karavi add*/
+    ,"include": ["**/*.js", "**/*.ts", "node_modules/@open-wc/**/*.js"],
+    "exclude": [
+      ".git",
+      ".app-cache",
+      ".npm",
+      ".npm-tmp",
+      "dist",
+      "dist*",
+      "node_modules",
+      "subfolder/dist",
+      "subfolder/node_modules",
+      "**/dist/*",
+      "**/node_modules/*"
+    ]
+    /*karavi add*/
 }

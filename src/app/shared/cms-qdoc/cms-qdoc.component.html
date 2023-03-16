@@ -1,0 +1,26 @@
+<div *ngIf="optionUrl && optionUrl.length>0">
+    <!-- username Field -->
+    <div class="col-m-8 col-sm-12">
+        <mat-form-field class="ntk-full-width">
+            <mat-label>{{'TITLE.Code_of_Knowledge' | translate}}</mat-label>
+            <input matInput [(ngModel)]="QDocModel.username" name="QDocModel.username" #QDocCode type="text"
+                placeholder="12345" />
+            <mat-icon matSuffix *ngIf="QDocModel.username" matSuffix mat-icon-button aria-label="Clear"
+                (click)="QDocModel.username = 0">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="col-m-4 col-sm-12">
+        <button type="button" (click)="onActionSendUrlToQDoc()" class="btn btn-success BTN-text"
+            *ngIf="optionUrl && optionUrl.length>0 && QDocModel.username">
+            <i class="fa fa-check-square-o"></i> {{'ACTION.VIEW' | translate}}
+        </button>
+    </div>
+    <h5  style="text-align: right;"	>{{'TITLE.Description' | translate}}:</h5>
+    <p dir="rtl"  style="text-align: right;"	 style="font-size: 15px;">
+        {{'TITLE.To_do_this_it_is_enough_to_enter_the_site_on_the_device_that_you_want_your_content_to_be_displayed_on' | translate}}
+        <a href="https://qdoc.ir" target="_blank"> https://qdoc.ir </a>
+        {{'TITLE.Enter_the_display_code_in_this_section_so_that_your_content_will_be_displayed_on_the_monitor_of_the_device_in_question' | translate}}
+        
+    </p>
+</div>

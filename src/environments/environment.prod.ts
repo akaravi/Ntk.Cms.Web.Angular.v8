@@ -2,9 +2,36 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { EnumDeviceType, EnumOperatingSystemType } from "ntk-cms-api";
+
 export const environment = {
   production: true,
-  appVersion: 'v8.1.7',
+  checkAccess: false,
+  appVersion: '15.1.1224.1',
+  authKey: 'authf649fc9a5f55',
+  loadDemoDashboard: false,
+  ProgressConsoleLog: false,
+  leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  cmsServerConfig: {
+    configApiRetry: 1,
+    configApiServerPath: 'https://apicms.ir/api/v2/',
+    configMvcServerPath: 'https://ntkcms.ir/',
+    configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
+    configFileServerPath: 'https://apifile.ir/api/v2/',
+    configQDocServerPath: 'https://qdoc.ir/api/chat',
+    configCompanyWebSite: 'https://ntk.ir',
+    modules: ['']
+  },
+  cmsTokenConfig: {
+    SecurityKey: '123456789',
+    ClientMACAddress: '',
+    OSType: EnumOperatingSystemType.Windows,
+    DeviceType: EnumDeviceType.WebSite,
+    PackageName: '',
+  },
+
+
+  // appVersion: 'v8.1.7',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'api',

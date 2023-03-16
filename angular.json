@@ -76,6 +76,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "host": "0.0.0.0",
+            "port": 4201
+          },
           "configurations": {
             "production": {
               "browserTarget": "demo6:build:production"
@@ -124,6 +128,7 @@
   },
   "defaultProject": "demo6",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@angular-eslint/schematics",
+    "analytics": "868e044b-5b06-4f74-8ac0-a8b74593b1a5"
   }
 }

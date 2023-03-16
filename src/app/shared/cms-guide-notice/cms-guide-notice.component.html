@@ -1,0 +1,62 @@
+<!--begin::Notice-->
+
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-custom alert-white alert-shadow gutter-b" [ngClass]="classes" role="alert">
+      <ng-container *ngIf="icon || svg">
+        <div class="alert-icon alert-icon-top">
+          <ng-container *ngIf="svg">
+            <span class="svg-icon svg-icon-3x svg-icon-primary" [inlineSVG]="svg"></span>
+          </ng-container>
+          <ng-container *ngIf="icon">
+            <i [ngClass]="icon"></i>
+          </ng-container>
+        </div>
+      </ng-container>
+      <div class="alert-text">
+        <h4 (click)="onActionCopyHeaderKey(keyTemplate,$event)"> {{ title }}</h4>
+        <div [innerHTML]="description"></div>
+        <br>
+        <div *ngIf="bodyShow" [innerHTML]="body"></div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-18">
+            <div class="header" *ngIf="movieSrc && movieSrc?.length>0 && bodyShow">
+              <video class="header-video" controls>
+                <source src="{{movieSrc }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-112">
+            <div *ngIf="podcastSrc && podcastSrc?.length>0 && bodyShow">
+              <audio class="audio" controls>
+                <source src="{{podcastSrc | cmsthumbnail}}" type="audio/mp3">
+                Your browser does not support the audio tag.
+              </audio>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <button type="button" *ngIf="!bodyShow&& (body?.length>0 || podcast>0 || movie>0)"
+          class="btn btn-outline-primary" (click)="onActionBottunClick()">
+          {{'TITLE.More' | translate}}
+        </button>
+        <button type="button" *ngIf="bodyShow" class="btn btn-outline-primary" (click)="onActionCloseBottunClick()">
+          {{'TITLE.guide' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #keyTemplate>
+  <div style="text-align-last: center;">
+    <p>{{this.Key}}</p>
+    <button mat-button (click)="onActionCopied()" [cdkCopyToClipboard]="this.Key">Copy</button>
+  </div>
+</ng-template>
+<!--end::Notice-->

@@ -9,6 +9,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthComponent } from './auth.component';
 import { TranslationModule } from '../i18n/translation.module';
+import { AuthSingInComponent } from './singin/singin.component';
+import { SharedModule } from 'src/app/shared.module';
+import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
 
 @NgModule({
   declarations: [
@@ -17,14 +20,21 @@ import { TranslationModule } from '../i18n/translation.module';
     ForgotPasswordComponent,
     LogoutComponent,
     AuthComponent,
+    AuthSingInComponent
   ],
   imports: [
     CommonModule,
+    SharedModule.forRoot(),
     TranslationModule,
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
+  providers: [
+    CoreModuleService,
+    CoreConfigurationService,
+    CoreAuthService
+  ]
 })
 export class AuthModule {}
