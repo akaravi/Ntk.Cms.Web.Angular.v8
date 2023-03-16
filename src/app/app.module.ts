@@ -13,6 +13,9 @@ import { AuthService } from './modules/auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 // #fake-start#
 import { FakeAPIService } from './_fake/fake-api.service';
+import { ToastrModule } from 'ngx-toastr';
+import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
+import { SharedModule } from './shared.module';
 // #fake-end#
 
 function appInitializer(authService: AuthService) {
@@ -30,6 +33,7 @@ function appInitializer(authService: AuthService) {
     BrowserModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot(),
+    SharedModule.forRoot(),
     HttpClientModule,
     ClipboardModule,
     // #fake-start#
@@ -40,11 +44,25 @@ function appInitializer(authService: AuthService) {
         })
       : [],
     // #fake-end#
+    ToastrModule.forRoot({
+      // timeOut: 0,
+      timeOut: 5000,
+      enableHtml: true,
+      positionClass: 'toast-bottom-right',
+      // positionClass: "toast-bottom-full-width",
+      preventDuplicates: true,
+      closeButton: true,
+      // extendedTimeOut: 0,
+      extendedTimeOut: 1000,
+    }),
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
   ],
   providers: [
+    CoreAuthService,
+    CoreEnumService,
+    CoreModuleService,
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializer,

@@ -4,9 +4,14 @@ import { AuthGuard } from './modules/auth/services/auth.guard';
 
 export const routes: Routes = [
   {
-    path: 'auth',
+    path: 'auth0',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./cms-modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'error',

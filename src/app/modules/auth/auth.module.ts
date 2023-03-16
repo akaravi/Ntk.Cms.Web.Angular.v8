@@ -34,7 +34,8 @@ import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'nt
   providers: [
     CoreModuleService,
     CoreConfigurationService,
-    CoreAuthService
+    CoreAuthService,
+
   ]
 })
 export class AuthModule {}
