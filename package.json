@@ -8,7 +8,11 @@
     "watch": "ng build --watch --configuration development",
     "rtl": "webpack --config=rtl.config.js",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "serve1": "node --max_old_space_size=4048 ./node_modules/@angular/cli/bin/ng serve",
+    "serve2": "node --max_old_space_size=24000 ./node_modules/@angular/cli/bin/ng serve",
+    "build-prod": "node --max_old_space_size=24000 ./node_modules/@angular/cli/bin/ng build --configuration production --build-optimizer",
+    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/ntk-cms-web/stats.json"
   },
   "private": true,
   "dependencies": {

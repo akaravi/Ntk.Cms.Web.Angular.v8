@@ -16,21 +16,17 @@
 // @import "./assets/plugins/flaticon2/flaticon.css";
 // @import "./assets/plugins/keenthemes-icons/font/ki.css";
 
-
-.ntk-full-width {
-  width: 100%;
-}
-.mdc-text-field{
-  padding: 0px !important;
-}
-.mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: transparent!important;
-}
-.mat-mdc-input-element{
-//background-color: red!important;
-padding-top: 10px!important;
-padding-bottom: 10px!important;
-}
+/*
+ karavi import
+*/
+@import "leaflet/dist/leaflet.css";
+@import "ngx-ntk-smart-module/src/assets/ngx-ntk-smart-modal.scss";
+@import "ntk-cms-filemanager/src/assets/file-manager.styles.scss";
+// boostrap 5
+@import 'ngx-toastr/toastr-bs5-alert';
+/*
+ karavi import
+*/
 /*
 karavi tooltip guid
 */
@@ -141,3 +137,276 @@ karavi tooltip guid
   border-style: solid;
   border-color: #555 transparent transparent transparent;
 }
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+/*
+ NTK optimaze
+*/
+.mdc-text-field{
+  padding: 0px !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent!important;
+}
+.mat-mdc-input-element{
+//background-color: red!important;
+padding-top: 10px!important;
+padding-bottom: 10px!important;
+}
+
+.ntk-full-width {
+  width: 100%;
+}
+
+.ntk-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.ntk-button-row {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin: auto;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 10px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-button-row button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.ntk-cms-html-tree-header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-tree-header button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+.ntk-cms-html-tree-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-tree-footer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-list-header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-list-header button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.ntk-cms-html-list-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-list-footer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-card-header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-card-body {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-card-message {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-card-footer {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: auto;
+  border: 1px;
+  padding: 1px;
+  padding-right: 8px;
+  border-radius: 5px;
+  background: white;
+  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+      0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-pull-right {
+  float: right;
+  margin: 3px;
+}
+
+.ntk-hover-zoom:hover {
+  transform: scale(2);
+}
+
+/* karavi popup image */
+.ntk-popup {
+  zoom: 1;
+  position: relative;
+  text-decoration: none;
+}
+
+.ntk-popup span {
+  position: fixed;
+  top: 170px;
+  left: 500px;
+  width: 350px;
+  padding: 10px;
+  border: 10px solid #000;
+  border-radius: 10px;
+  left: -999em;
+  z-index: 1060;
+}
+
+.ntk-hover-big:hover {
+  zoom: 5;
+}
+
+.ntk-popup:hover span {
+  left: 350px;
+}
+
+.ntk-popup span {
+  position: absolute;
+}
+/*
+ NTK optimaze
+*/

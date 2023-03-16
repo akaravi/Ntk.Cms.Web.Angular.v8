@@ -77,7 +77,7 @@ export class AuthSingInBySmsComponent implements OnInit {
           if (res.isSuccess) {
             this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.The_login_code_was_texted_with_you'));
             this.forgetState = 'entrycode';
-            //TimeDown 
+            //TimeDown
             this.prorocess = new processModel();
             this.prorocess.progressBarValue = 0;
             this.prorocess.progressBarMaxValue = 60;
@@ -96,7 +96,7 @@ export class AuthSingInBySmsComponent implements OnInit {
               this.cdr.detectChanges();
 
             }, 1000)
-            //TimeDown 
+            //TimeDown
           }
           else {
             this.cmsToastrService.typeErrorMessage(res.errorMessage);

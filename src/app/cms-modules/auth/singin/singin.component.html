@@ -46,6 +46,7 @@
       </mat-error>
     </mat-form-field>
     <ng-container *ngIf="!firstRun">
+
       <!--captchaText Field-->
       <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
       <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
