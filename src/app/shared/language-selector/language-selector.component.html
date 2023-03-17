@@ -23,17 +23,17 @@
     class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right"
   >
     <ul class="navi navi-hover py-4">
-        <li *ngFor="let language of languages" class="navi-item" [ngClass]="{ active: language.active }">
+        <li *ngFor="let language of languages" class="navi-item" [ngClass]="{ active: language?.active }">
           <a
             href="javascript:;"
-            (click)="setLanguageWithRefresh(language.lang)"
-            [ngClass]="{ active: language.active }"
+            (click)="setLanguageWithRefresh(language?.lang)"
+            [ngClass]="{ active: language?.active }"
             class="navi-link"
           >
             <span class="symbol symbol-20 mr-3">
-              <img src="{{ language.flag }}" />
+              <img src="{{ language?.flag }}" />
             </span>
-            <span class="navi-text">{{ language.name }}</span>
+            <span class="navi-text">{{ language?.name }}</span>
           </a>
         </li>
     </ul>

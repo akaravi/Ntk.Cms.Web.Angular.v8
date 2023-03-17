@@ -66,16 +66,28 @@ const Routing: Routes = [
         loadChildren: () =>
           import('../cms-modules/core-log/coreLog.module').then(m => m.CoreLogModule)
       },
+       // {
+        // path: 'estate',
+        // loadChildren: () =>
+        //   import('../cms-modules/estate/estate.module').then(m => m.EstateModule)
+      // },
+      //{
+        // path: 'member',
+        // loadChildren: () =>
+        //   import('../cms-modules/member/member.module').then(m => m.MemberModule)
+      //},
+
+      // {
+        // path: 'application',
+        // loadChildren: () =>
+        //   import('../cms-modules/application/application.module').then(m => m.ApplicationModule)
+      // },
       {
         path: 'apitelegram',
         loadChildren: () =>
           import('../cms-modules/api-telegram/api-telegram.module').then(m => m.ApiTelegramModule)
       },
-      {
-        path: 'application',
-        loadChildren: () =>
-          import('../cms-modules/application/application.module').then(m => m.ApplicationModule)
-      },
+
       {
         path: 'article',
         loadChildren: () =>
@@ -105,11 +117,6 @@ const Routing: Routes = [
         path: 'linkmanagement',
         loadChildren: () =>
           import('../cms-modules/link-management/link-management.module').then(m => m.LinkManagementModule)
-      },
-      {
-        path: 'member',
-        loadChildren: () =>
-          import('../cms-modules/member/member.module').then(m => m.MemberModule)
       },
 
       {
@@ -163,11 +170,7 @@ const Routing: Routes = [
         loadChildren: () =>
           import('../cms-modules/web-designer-builder/web-designer-builder.module').then(m => m.WebDesignerBuilderModule)
       },
-      {
-        path: 'estate',
-        loadChildren: () =>
-          import('../cms-modules/estate/estate.module').then(m => m.EstateModule)
-      },
+
       {
         path: 'donate',
         loadChildren: () =>

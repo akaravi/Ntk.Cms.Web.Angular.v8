@@ -120,10 +120,10 @@
             end-0
           "
         >
-          {{ language.name }}{{ " " }}
+          {{ language?.name }}{{ " " }}
           <img
             class="w-15px h-15px rounded-1 ms-2"
-            [src]="language.flag"
+            [src]="language?.flag"
             alt="metronic"
           />
         </span>
@@ -138,7 +138,7 @@
       >
         <a
           class="menu-link d-flex px-5"
-          [ngClass]="l.lang === language.lang ? 'active' : ''"
+          [ngClass]="l.lang === language?.lang ? 'active' : ''"
         >
           <span class="symbol symbol-20px me-4">
             <img class="rounded-1" [src]="l.flag" alt="metronic" />
