@@ -44,6 +44,7 @@ export class PublicHelper {
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
     this.innerWidth = + window.innerWidth;
+    this.appClientVersion = environment.appVersion;
   }
   public innerWidth = 0;
 
@@ -174,16 +175,7 @@ export class PublicHelper {
     this.fileManagerTreeConfig.config.baseUploadURL = environment.cmsServerConfig.configFileServerPath;
     return this.fileManagerTreeConfig;
   }
-  // IsAdmin(model: TokenInfoModel):boolean{
-  //   if (model.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-  //     || model.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
-  //     || model.userAccessUserType === EnumManageUserAccessUserTypes.AdminResellerCms
-  //     || model.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-  //     || model.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
-  //     || model.userAccessUserType === EnumManageUserAccessUserTypes.SupportResellerCms)
-  //     return true;
-  //     return false;
-  // }
+
   CheckError(model: any): any {
     if (!model) {
       return 'Error';
