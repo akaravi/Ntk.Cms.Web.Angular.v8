@@ -36,13 +36,11 @@ export class HeaderMenuComponent implements OnInit {
         setTimeout(() => { this.DataGetCpMenu(); }, 1000);
       }
     });
-
-  this.loadDemoDashboard=environment.loadDemoDashboard;
   }
 
 
   ngOnInit(): void {}
-  loadDemoDashboard= false;
+  loadDemoDashboard  = environment.loadDemoDashboard;
   tokenInfo = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();

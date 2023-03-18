@@ -36,10 +36,8 @@ export class AsideMenuComponent implements OnInit {
         setTimeout(() => { this.DataGetCpMenu(); }, 1000);
       }
     });
-
-    this.loadDemoDashboard = environment.loadDemoDashboard;
   }
-  loadDemoDashboard = false;
+  loadDemoDashboard  = environment.loadDemoDashboard;
   tokenInfo = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
