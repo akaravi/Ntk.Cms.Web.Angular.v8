@@ -123,7 +123,7 @@
     data-kt-menu-placement="bottom-end"
     data-kt-menu-flip="bottom"
   >
-    <img src="./assets/media/avatars/300-1.jpg" alt="metronic" />
+    <img [src]="((tokenInfo&&tokenInfo.linkMainImageIdSrc && tokenInfo.linkMainImageIdSrc.length>0) ? tokenInfo.linkMainImageIdSrc : './assets/media/avatars/300-1.jpg')" alt="metronic" />
   </div>
   <!-- end::Toggle  -->
   <app-user-inner></app-user-inner>

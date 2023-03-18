@@ -1,19 +1,19 @@
-<ng-container *ngIf="user$ | async as _user">
+<ng-container *ngIf="tokenInfo && tokenInfo.userId>0">
   <div class="menu-item px-3">
     <div class="menu-content d-flex align-items-center px-3">
       <div class="symbol symbol-50px me-5">
-        <img alt="Logo" [src]="_user.pic" />
+        <img alt="Logo" [src]="((tokenInfo&&tokenInfo.linkMainImageIdSrc && tokenInfo.linkMainImageIdSrc.length>0) ? tokenInfo.linkMainImageIdSrc : './assets/media/avatars/300-1.jpg')" />
       </div>
 
       <div class="d-flex flex-column">
         <div class="fw-bolder d-flex align-items-center fs-5">
-          {{ _user.firstname }} {{ _user.lastname }}
+          {{ tokenInfo.name}} {{ tokenInfo.lastName }}
           <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2"
-            >Pro</span
+            >{{ tokenInfo.userAccessUserTypeTitle }}</span
           >
         </div>
         <a class="fw-bold text-muted text-hover-primary fs-7 cursor-pointer">
-          {{ _user.email }}
+          {{ tokenInfo.mobile }}
         </a>
       </div>
     </div>
@@ -22,16 +22,16 @@
   <div class="separator my-2"></div>
 
   <div class="menu-item px-5">
-    <a routerLink="/crafted/pages/profile" class="menu-link px-5">
-      My Profile
+    <a routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}" class="menu-link px-5">
+      {{'TITLE.User_Profile'| translate}}
     </a>
   </div>
 
-  <div class="menu-item px-5">
-    <a class="menu-link px-5 cursor-pointer" placement="top-start" ngbTooltip="Coming soon">
-      <span class="menu-text">My Projects</span>
+  <div class="menu-item px-5" *ngIf="this.tokenHelper.isAdminSite">
+    <a routerLink="{{'/core/site/edit/' +this.tokenInfo.siteId}}"  class="menu-link px-5 cursor-pointer" placement="top-start" ngbTooltip="Site Info">
+      <span class="menu-text">{{'TITLE.Site_Id'|translate}}</span>
       <span class="menu-badge">
-        <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
+        <span class="badge badge-light-danger badge-circle fw-bolder fs-7">{{this.tokenInfo.siteId}}</span>
       </span>
     </a>
   </div>
@@ -150,12 +150,11 @@
   </div>
 
   <div class="menu-item px-5 my-1">
-    <a routerLink="/crafted/account/settings" class="menu-link px-5">
-      Account Settings
-    </a>
+    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
+    [optionSelectForce]="this.tokenInfo.siteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
   </div>
 
   <div class="menu-item px-5">
-    <a (click)="logout()" class="menu-link px-5 cursor-pointer"> Sign Out </a>
+    <a (click)="logout()" class="menu-link px-5 cursor-pointer"> {{'TITLE.Sing_Out'|translate}} </a>
   </div>
 </ng-container>
