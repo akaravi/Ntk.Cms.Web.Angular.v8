@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { LayoutService } from '../../core/layout.service';
 
 @Component({
@@ -13,9 +18,27 @@ export class TopbarComponent implements OnInit {
   toolbarButtonIconSizeClass = 'svg-icon-1';
   headerLeft: string = 'menu';
 
-  constructor(private layout: LayoutService) {}
-
+  constructor(private layout: LayoutService,
+    private cdr: ChangeDetectorRef,
+    public tokenHelper: TokenHelper,
+    public publicHelper: PublicHelper,
+    ) {
+    this.loading.cdr = this.cdr;
+  }
+  tokenInfo: TokenInfoModel;
+  loading = new ProgressSpinnerModel();
+  cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.headerLeft = this.layout.getProp('header.left') as string;
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
+      this.tokenInfo = value;
+      this.cdr.detectChanges();
+    });
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
 }
