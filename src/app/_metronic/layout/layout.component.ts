@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { LayoutService } from './core/layout.service';
 import { LayoutInitService } from './core/layout-init.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-layout',
@@ -49,7 +50,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ) {
     this.initService.init();
   }
-
+  loadDemoDashboard = environment.loadDemoDashboard;
   ngOnInit(): void {
     // build view by layout config settings
     this.asideDisplay = this.layout.getProp('aside.display') as boolean;
