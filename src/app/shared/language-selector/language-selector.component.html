@@ -1,5 +1,5 @@
 <!--begin::Languages-->
-<div class="dropdown" ngbDropdown placement="bottom-right" [autoClose]="true">
+<div class="dropdown" ngbDropdown placement="auto" [autoClose]="true">
   <!--begin::Toggle-->
   <div
     ngbDropdownToggle
@@ -22,13 +22,20 @@
     ngbDropdownMenu
     class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right"
   >
-    <ul class="navi navi-hover py-4">
-        <li *ngFor="let language of languages" class="navi-item" [ngClass]="{ active: language?.active }">
+  <ul class="nav">
+        <li *ngFor="let language of languages" class="menu-item" [ngClass]="{ active: language?.active }">
           <a
+          class="
+          nav-link
+          btn btn-sm btn-color-muted btn-active btn-active-light-primary
+          fw-bolder
+          px-4
+          me-1
+        "
             href="javascript:;"
             (click)="setLanguageWithRefresh(language?.lang)"
             [ngClass]="{ active: language?.active }"
-            class="navi-link"
+         
           >
             <span class="symbol symbol-20 mr-3">
               <img src="{{ language?.flag }}" />

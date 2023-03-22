@@ -353,7 +353,7 @@ const languages = [
   },
   {
     lang: 'zh',
-    name: 'Mandarin',
+    name:'China',// 'Mandarin',
     flag: './assets/media/flags/china.svg',
   },
   {
@@ -375,5 +375,5 @@ const languages = [
     lang: 'fr',
     name: 'French',
     flag: './assets/media/flags/france.svg',
-  },
+  }
 ];

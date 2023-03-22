@@ -27,48 +27,43 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     {
       lang: 'fa',
       name: 'فارسی',
-      flag: './assets/media/svg/flags/136-iran.svg',
+      flag: './assets/media/flags/iran.svg',
     },
     {
       lang: 'ar',
       name: 'عربی',
-      flag: './assets/media/svg/flags/008-saudi-arabia.svg',
+      flag: './assets/media/flags/united-arab-emirates.svg',
     },
     {
       lang: 'en',
       name: 'English',
-      flag: './assets/media/svg/flags/226-united-states.svg',
-    },
-    {
-      lang: 'tr',
-      name: 'Turkish',
-      flag: './assets/media/svg/flags/006-turkey.svg',
+      flag: './assets/media/flags/united-states.svg',
     },
     {
       lang: 'zh',
-      name: 'China',
-      flag: './assets/media/svg/flags/015-china.svg',
+      name:'China',// 'Mandarin',
+      flag: './assets/media/flags/china.svg',
     },
     {
       lang: 'es',
       name: 'Spanish',
-      flag: './assets/media/svg/flags/128-spain.svg',
+      flag: './assets/media/flags/spain.svg',
     },
     {
       lang: 'ja',
       name: 'Japanese',
-      flag: './assets/media/svg/flags/063-japan.svg',
+      flag: './assets/media/flags/japan.svg',
     },
     {
       lang: 'de',
       name: 'German',
-      flag: './assets/media/svg/flags/162-germany.svg',
+      flag: './assets/media/flags/germany.svg',
     },
     {
       lang: 'fr',
       name: 'French',
-      flag: './assets/media/svg/flags/195-france.svg',
-    },
+      flag: './assets/media/flags/france.svg',
+    }
   ];
   constructor(
     private translationService: TranslationService,
@@ -88,6 +83,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       this.tokenInfo = value;
       this.setLanguage(value.language);
     });
+
   }
   cmsApiStoreSubscribe: Subscription;
   tokenInfo: TokenInfoModel = new TokenInfoModel();
