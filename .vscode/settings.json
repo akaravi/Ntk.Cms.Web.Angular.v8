@@ -1,0 +1,30 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#FFB900",
+    "activityBar.activeBorder": "#925bc4",
+    "activityBar.background": "#FFB900",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#925bc4",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#FFB900",
+    "statusBar.background": "#FFB900",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#359266",
+    "statusBarItem.remoteBackground": "#FFB900",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#FFB900",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#FFB90099",
+    "titleBar.inactiveForeground": "#15202b99",
+    "commandCenter.border": "#15202b99"
+  },
+  "peacock.color": "#FFB900",
+  "cSpell.words": ["coremodule", "Toastr"],
+  "git.ignoreLimitWarning": true,
+  "search.useGlobalIgnoreFiles": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  }
+}
