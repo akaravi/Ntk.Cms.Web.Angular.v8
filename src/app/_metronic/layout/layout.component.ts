@@ -1,13 +1,10 @@
 import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
+  AfterViewInit, Component, ElementRef, OnInit,
+  ViewChild
 } from '@angular/core';
-import { LayoutService } from './core/layout.service';
-import { LayoutInitService } from './core/layout-init.service';
 import { environment } from 'src/environments/environment';
+import { LayoutInitService } from './core/layout-init.service';
+import { LayoutService } from './core/layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -50,7 +47,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ) {
     this.initService.init();
   }
-  loadDemoDashboard = environment.loadDemoDashboard;
+  loadDemoTheme = environment.loadDemoTheme;
   ngOnInit(): void {
     // build view by layout config settings
     this.asideDisplay = this.layout.getProp('aside.display') as boolean;

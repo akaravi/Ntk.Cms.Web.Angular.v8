@@ -1,12 +1,13 @@
 import { ChangeDetectorRef, Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable, Subscription } from 'rxjs';
-import { TranslationService } from '../../../../../../modules/i18n';
-import { AuthService, UserType } from '../../../../../../modules/auth';
-import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { AuthRenewTokenModel, CoreAuthService, CoreSiteModel, TokenInfoModel } from 'ntk-cms-api';
 import { TranslateService } from '@ngx-translate/core';
-import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { AuthRenewTokenModel, CoreAuthService, CoreSiteModel, TokenInfoModel } from 'ntk-cms-api';
+import { map, Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { environment } from 'src/environments/environment';
+import { AuthService } from '../../../../../../modules/auth';
+import { TranslationService } from '../../../../../../modules/i18n';
 
 @Component({
   selector: 'app-user-inner',
@@ -41,6 +42,7 @@ export class UserInnerComponent implements OnInit, OnDestroy {
   inputUserId?: number;
   loadingStatus = false;
   disabledAllow = false;
+  loadDemoTheme = environment.loadDemoTheme;
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -353,7 +355,7 @@ const languages = [
   },
   {
     lang: 'zh',
-    name:'China',// 'Mandarin',
+    name: 'China',// 'Mandarin',
     flag: './assets/media/flags/china.svg',
   },
   {

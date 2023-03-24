@@ -37,7 +37,7 @@ export class AsideMenuComponent implements OnInit {
       }
     });
   }
-  loadDemoDashboard  = environment.loadDemoDashboard;
+  loadDemoTheme = environment.loadDemoTheme;
   tokenInfo = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();

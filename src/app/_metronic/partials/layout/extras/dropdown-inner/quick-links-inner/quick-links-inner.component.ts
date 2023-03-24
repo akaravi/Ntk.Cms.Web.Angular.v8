@@ -26,7 +26,7 @@ export class QuickLinksInnerComponent {
   }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
-  loadDemoDashboard = environment.loadDemoDashboard;
+  loadDemoTheme = environment.loadDemoTheme;
   ngOnDestroy() {
     this.cmsApiStoreSubscribe.unsubscribe();
   }

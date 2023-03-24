@@ -20,24 +20,37 @@
   </div>
 
   <div class="separator my-2"></div>
-
+  <!-- 
   <div class="menu-item px-5">
     <a routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}" class="menu-link px-5">
       {{'TITLE.User_Profile'| translate}}
     </a>
+  </div> -->
+  <div class="menu-item px-5" *ngIf="this.tokenHelper.isAdminSite">
+    <a routerLink="{{'/core/user/edit/' +this.tokenInfo.userId}}" class="menu-link px-5 cursor-pointer"
+      placement="top-start" ngbTooltip="User Info">
+      <span class="menu-text">
+        {{'TITLE.User_Profile'| translate}}</span>
+      <span class="menu-badge" style="padding-right: 5px;padding-left: 13px;">
+        <span class="badge badge-light-danger badge-circle fw-bolder fs-7">{{this.tokenInfo.userId}}</span>
+      </span>
+    </a>
   </div>
-
   <div class="menu-item px-5" *ngIf="this.tokenHelper.isAdminSite">
     <a routerLink="{{'/core/site/edit/' +this.tokenInfo.siteId}}" class="menu-link px-5 cursor-pointer"
-      placement="top-start" ngbTooltip="Site Info">
-      <span class="menu-text">{{'TITLE.Site_Id'|translate}}</span>
+      placement="top-start" ngbTooltip="{{'TITLE.Config_Site_And_Seo'|translate}}">
+      <span class="menu-text">{{'TITLE.Config_Site'|translate}}</span>
       <span class="menu-badge" style="padding-right: 5px;padding-left: 13px;">
         <span class="badge badge-light-danger badge-circle fw-bolder fs-7">{{this.tokenInfo.siteId}}</span>
       </span>
     </a>
   </div>
 
-  <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start"
+  <div class="menu-item px-5">
+    <a routerLink="core/site/selection" class="menu-link px-5 cursor-pointer" placement="top-start"
+      ngbTooltip="Select site">{{'TITLE.Select_Site'|translate}}</a>
+  </div>
+  <div *ngIf="loadDemoTheme" class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start"
     data-kt-menu-flip="bottom">
     <a class="menu-link px-5 cursor-pointer">
       <span class="menu-title">My Subscription</span>
@@ -78,10 +91,6 @@
     </div>
   </div>
 
-  <div class="menu-item px-5">
-    <a routerLink="core/site/selection" class="menu-link px-5 cursor-pointer" placement="top-start"
-      ngbTooltip="Coming soon">{{'TITLE.Select_Site'|translate}}</a>
-  </div>
 
   <div class="separator my-2"></div>
 

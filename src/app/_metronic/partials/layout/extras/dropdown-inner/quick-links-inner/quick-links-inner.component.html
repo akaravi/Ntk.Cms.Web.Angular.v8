@@ -1,7 +1,7 @@
 <div class="d-flex flex-column flex-center bgi-no-repeat rounded-top px-9 py-10"
   [style.background-image]="'url(./assets/media/misc/pattern-1.jpg)'">
   <h3 class="text-white fw-bold mb-3">{{'TITLE.Quick_Actions'| translate}}</h3>
-  <span *ngIf="loadDemoDashboard"  class="badge bg-primary py-2 px-3">25 pending tasks</span>
+  <span *ngIf="loadDemoTheme" class="badge bg-primary py-2 px-3">25 pending tasks</span>
 </div>
 
 <div class="row g-0">
@@ -113,8 +113,7 @@
 </div>
 
 <div class="py-2 text-center border-top">
-  <a *ngIf="loadDemoDashboard" routerLink="/crafted/pages/profile"
-    class="btn btn-color-gray-600 btn-active-color-primary">
+  <a *ngIf="loadDemoTheme" routerLink="/crafted/pages/profile" class="btn btn-color-gray-600 btn-active-color-primary">
     View All
     <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr064.svg'" class="svg-icon svg-icon-5"></span>
   </a>

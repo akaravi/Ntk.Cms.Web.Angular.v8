@@ -21,8 +21,8 @@ export class HeaderMenuComponent implements OnInit {
     private coreCpMainMenuService: CoreCpMainMenuService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    ) {
-      this.loading.cdr = this.cdr;
+  ) {
+    this.loading.cdr = this.cdr;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId > 0) {
@@ -39,8 +39,8 @@ export class HeaderMenuComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {}
-  loadDemoDashboard  = environment.loadDemoDashboard;
+  ngOnInit(): void { }
+  loadDemoTheme = environment.loadDemoTheme;
   tokenInfo = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
   loading = new ProgressSpinnerModel();
