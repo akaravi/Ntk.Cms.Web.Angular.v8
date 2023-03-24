@@ -129,7 +129,7 @@
   </div>
 
   <span class="ml-3" *ngIf="loadingStatus">Loading ...</span>
-  <div>
+  <div class="menu-item px-5">
     <a (click)="onActionbuttonUserAccessAdminAllowToAllData()"
       *ngIf="tokenInfo &&( tokenInfo.userAccessUserType === 1 || tokenInfo.userAccessUserType === 2 || tokenInfo.userAccessUserType === 3)"
       class="btn btn-raised mr-1 shadow-z-2 btn-success " style="width:95% ;margin: 4px;"
@@ -148,7 +148,8 @@
       *ngIf="tokenInfo &&( tokenInfo.userAccessUserType === 1 || tokenInfo.userAccessUserType === 2 || tokenInfo.userAccessUserType === 3)"
       style="direction: rtl;width:95%;margin: 4px;">
       <div class="input-group-prepend">
-        <button (click)="onActionbuttonSelectUser()" class="btn btn-outline-primary" type="button">{{'ACTION.GO'|
+        <button (click)="onActionbuttonSelectUser()" class="btn btn-outline-primary"
+          style="border: 1px solid var(--bs-gray-300);" type="button">{{'ACTION.GO'|
           translate}}</button>
       </div>
       <input [(ngModel)]="inputUserId" type="number" class="form-control" style="text-align: center;"
@@ -158,14 +159,15 @@
       *ngIf="tokenInfo &&( tokenInfo.userAccessUserType === 1 || tokenInfo.userAccessUserType === 2 || tokenInfo.userAccessUserType === 3)"
       style="direction: rtl;width:95%;margin: 4px;">
       <div class="input-group-prepend">
-        <button (click)="onActionbuttonSelectSite()" class="btn btn-outline-primary" type="button">{{'ACTION.GO'|
+        <button (click)="onActionbuttonSelectSite()" class="btn btn-outline-primary"
+          style="border: 1px solid var(--bs-gray-300);" type="button">{{'ACTION.GO'|
           translate}}</button>
       </div>
       <input [(ngModel)]="inputSiteId" type="number" class="form-control" style="text-align: center;"
         placeholder="{{'TITLE.Site_Id'| translate}}">
     </div>
     <!-- LinkCmsSiteId Field -->
-    <div style="margin: 4px;">
+    <div class="menu-item px-5">
       <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
         [optionSelectForce]="this.tokenInfo.siteId"
         [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
@@ -173,6 +175,7 @@
   </div>
 
   <div class="menu-item px-5">
-    <a (click)="logout()" class="menu-link px-5 cursor-pointer"> {{'TITLE.Sing_Out'|translate}} </a>
+    <a (click)="logout()" class="btn btn-raised mr-1 shadow-z-2 btn-success " style="width:95% ;margin: 4px;">
+      {{'TITLE.Sing_Out'|translate}} </a>
   </div>
 </ng-container>
