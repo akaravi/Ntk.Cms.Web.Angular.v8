@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-engages',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class EngagesComponent implements OnInit {
 
   constructor() { }
-
+  loadDemoTheme = environment.loadDemoTheme;
   ngOnInit(): void {
   }
 
