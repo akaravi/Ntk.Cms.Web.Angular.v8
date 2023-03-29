@@ -133,7 +133,7 @@ export class Cms360TourListComponent implements OnInit {
     this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
     this.container.nativeElement.style.display = 'block';
   }
-  onActionPannellumClick(e: any): void {
+  onActionPannellumClick(e): void {
     if (!this.viewer)
       return;
     this.postionView = new PostionViewModel();
@@ -221,6 +221,7 @@ export class Cms360TourListComponent implements OnInit {
   onActionShowView360Add(): void {
     this.dataDetailModel = new File360TourScenesModel();
     this.showAddView360 = !this.showAddView360;
+    this.tableHotSpotdataSource.data = [];
   }
 
   onActionShowHotspotAdd(): void {
