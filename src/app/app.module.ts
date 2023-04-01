@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule, APP_INITIALIZER, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -20,6 +20,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // #fake-end#
 
 function appInitializer(authService: CmsAuthService) {
@@ -74,6 +75,12 @@ export function CreateTranslateLoader(http: HttpClient): any {
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the app is stable
