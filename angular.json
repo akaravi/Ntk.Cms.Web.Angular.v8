@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo6": {
+    "ntk-cms-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,14 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/",
-           
-            "allowedCommonJsDependencies": [
-              "object-path",
-              "apexcharts",
-              "clipboard.js",
-              "prismjs"
-            ],
+            "outputPath": "dist/ntk-cms-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -35,13 +28,41 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+
+              {
+                "glob": "**/*",
+                "input": "./node_modules/leaflet/dist/images",
+                "output": "assets/leaflet/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ntk-cms-filemanager/src/assets/",
+                "output": "assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ngx-ntk-query-builder/src/assets/",
+                "output": "assets/"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/pannellum-next/src/css/pannellum.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "object-path",
+              "apexcharts",
+              "clipboard.js",
+              "prismjs",
+              "jalali-moment"
+            ],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -84,10 +105,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo6:build:production"
+              "browserTarget": "ntk-cms-web:build:production"
             },
             "development": {
-              "browserTarget": "demo6:build:development"
+              "browserTarget": "ntk-cms-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,7 +116,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo6:build"
+            "browserTarget": "ntk-cms-web:build"
           }
         },
         "test": {
@@ -129,7 +150,7 @@
       }
     }
   },
-  "defaultProject": "demo6",
+  "defaultProject": "ntk-cms-web",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics",
     "analytics": "868e044b-5b06-4f74-8ac0-a8b74593b1a5"

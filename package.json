@@ -1,5 +1,5 @@
 {
-  "name": "demo6",
+  "name": "ntk-cms-web",
   "version": "8.1.7",
   "scripts": {
     "ng": "ng",
@@ -15,7 +15,8 @@
     "build-prod": "node --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng build --configuration production --build-optimizer",
     "build-prod2": "node --max_old_space_size=16384 ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer",
     "build-prod3": "ng build --prod",
-    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/ntk-cms-web/stats.json"
+    "analyze": "ng build --stats-json && webpack-bundle-analyzer dist/ntk-cms-web/stats.json",
+    "start-pwa": "ng build --prod && http-server -p 8080 -c-1 dist/ntk-cms-web"
   },
   "private": true,
   "dependencies": {
