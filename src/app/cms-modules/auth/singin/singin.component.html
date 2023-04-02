@@ -1,99 +1,79 @@
 <!--begin::Signin-->
 <div class="login-form login-signin">
-  <!--begin::Form-->
-  <form class="form" #vform="ngForm" novalidate="novalidate" id="kt_login_signin_form" (ngSubmit)="onActionSubmit()">
-    <!--begin::Title-->
-    <div class="pb-13 pt-lg-0 pt-5">
-      <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
-        {{'TRANSLATOR.WELCOME' | translate}}
-      </h3>
-    </div>
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <!--end::Title-->
-    <!--Email Field-->
-    <mat-form-field class="ntk-full-width">
-      <mat-label> {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.email" name="dataModel.email"
-        [disabled]=" !formInfo.buttonSubmittedEnabled" #Email type="text" autocomplete="off"
-        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
-        placeholder="{{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5"
-        maxlength="50" required />
-      <mat-icon *ngIf="dataModel.email" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.email = ''">
-        close</mat-icon>
+    <!--begin::Form-->
+    <form class="form" #vform="ngForm" novalidate="novalidate" id="kt_login_signin_form" (ngSubmit)="onActionSubmit()">
+        <!--begin::Title-->
+        <div class="pb-13 pt-lg-0 pt-5">
+            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
+                {{'TRANSLATOR.WELCOME' | translate}}
+            </h3>
+        </div>
+        <app-progress-spinner [options]="loading"> </app-progress-spinner>
+        <!--end::Title-->
+        <!--Email Field-->
+        <mat-form-field class="ntk-full-width">
+            <mat-label> {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataModel.email" name="dataModel.email" [disabled]=" !formInfo.buttonSubmittedEnabled" #Email type="text" autocomplete="off" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center" placeholder="{{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}" minlength="5" maxlength="50" required />
 
-      <mat-error *ngIf="Email.errors?.required">
-        {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}} <strong>{{'MESSAGE.required' |
+
+            <mat-error *ngIf="Email.errors?.required">
+                {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}} <strong>{{'MESSAGE.required' |
           translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+            </mat-error>
+        </mat-form-field>
 
-    <!--Password Field-->
-    <mat-form-field class="ntk-full-width">
-      <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
-      <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dataModel.password"
-        name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="password"
-        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
-        autocomplete="off" placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
-      <mat-icon *ngIf="dataModel.password" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
-        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-        {{hidePassword ? 'visibility_off' : 'visibility'}}
-      </mat-icon>
-      <mat-icon *ngIf="dataModel.password" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.password = ''">
-        close</mat-icon>
-      <mat-error *ngIf="Password.errors?.required">
-        {{'AUTH.INPUT.PASSWORD' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <ng-container *ngIf="!firstRun">
+        <!--Password Field-->
+        <mat-form-field class="ntk-full-width">
+            <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dataModel.password" name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="password" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off" placeholder=" {{'AUTH.INPUT.PASSWORD' | translate}}" minlength="3" maxlength="50" required />
+            <mat-icon *ngIf="dataModel.password" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                {{hidePassword ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+            <mat-error *ngIf="Password.errors?.required">
+                {{'AUTH.INPUT.PASSWORD' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <ng-container *ngIf="!firstRun">
 
-      <!--captchaText Field-->
-      <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
-      <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
-      <mat-form-field class="ntk-full-width">
-        <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-        <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
-          [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
-          class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
-          autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-        <mat-icon *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear"
-          (click)="dataModel.captchaText = ''">
-          close</mat-icon>
-        <mat-error *ngIf="captchaText.errors?.required">
-          {{'AUTH.INPUT.CAPTCHACODE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
-        </mat-error>
-      </mat-form-field>
-    </ng-container>
-    <!--begin::Action-->
-    <div class="pb-lg-0 pb-0">
-      <button type="submit" [disabled]="vform.invalid || !formInfo.buttonSubmittedEnabled"
-        class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
-        {{'AUTH.LOGIN.BUTTON' | translate}}
-      </button>
-      <div class="pb-lg-0 pb-0">
-        <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.buttonSubmittedEnabled"
-          class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
-          {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
-          <br>
-        </button>
-      </div>
-      <div class="row">
-        <div class="col-12 col-lg-6">
-          <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.buttonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
-            {{'AUTH.LOGIN.SMS' | translate}}
-          </button>
+            <!--captchaText Field-->
+            <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
+            <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
+            <mat-form-field class="ntk-full-width">
+                <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+                <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText" [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center" autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+                <mat-icon *ngIf="dataModel.captchaText" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.captchaText = ''">
+                    close</mat-icon>
+                <mat-error *ngIf="captchaText.errors?.required">
+                    {{'AUTH.INPUT.CAPTCHACODE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </ng-container>
+        <!--begin::Action-->
+        <div class="pb-lg-0 pb-0">
+            <button type="submit" [disabled]="vform.invalid || !formInfo.buttonSubmittedEnabled" class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
+                {{'AUTH.LOGIN.BUTTON' | translate}}
+            </button>
+            <div class="pb-lg-0 pb-0">
+                <button type="button" [routerLink]="['/auth/singup']" [disabled]=" !formInfo.buttonSubmittedEnabled" class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
+                    {{ 'AUTH.GENERAL.SIGNUP_BUTTON' | translate }}
+                    <br>
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <button type="button" [routerLink]="['/auth/singinbysms']" [disabled]=" !formInfo.buttonSubmittedEnabled" class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
+                        {{'AUTH.LOGIN.SMS' | translate}}
+                    </button>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <button type="button" [routerLink]="['/auth/forgot-password']" [disabled]=" !formInfo.buttonSubmittedEnabled" class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
+                        {{'AUTH.FORGOT.TITLE' | translate}}
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-lg-6">
-          <button type="button" [routerLink]="['/auth/forgot-password']" [disabled]=" !formInfo.buttonSubmittedEnabled"
-            class="btn btn-primary font-weight-bolder font-size-h5 col-12" style="margin: 1px;">
-            {{'AUTH.FORGOT.TITLE' | translate}}
-          </button>
-        </div>
-      </div>
-    </div>
-    <!--end::Action-->
-  </form>
-  <!--end::Form-->
+        <!--end::Action-->
+    </form>
+    <!--end::Form-->
 </div>
 <!--end::Signin-->

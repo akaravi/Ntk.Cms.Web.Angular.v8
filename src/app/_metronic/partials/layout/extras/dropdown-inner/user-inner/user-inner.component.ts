@@ -105,8 +105,6 @@ export class UserInnerComponent implements OnInit, OnDestroy {
           next: (ret) => {
             // this.loadingStatus = false;
             if (ret.isSuccess) {
-
-              this.cdr.detectChanges();
               if (ret.item.language === lang) {
                 this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed'), title);
                 // if (lang == 'fa' || lang == 'ar') {
@@ -116,13 +114,15 @@ export class UserInnerComponent implements OnInit, OnDestroy {
                 //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
                 // }
                 // window.location.reload();
+                this.translate.use(ret.item.language);
+                this.tokenHelper.setDirectionThemeBylanguage(ret.item);
               } else {
                 this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
               }
             } else {
               this.cmsToastrService.typeErrorAccessChange(ret.errorMessage);
             }
-
+            this.cdr.detectChanges();
           },
           error: (err) => {
             this.cmsToastrService.typeErrorAccessChange(err);

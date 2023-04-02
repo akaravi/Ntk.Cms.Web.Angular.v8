@@ -44,6 +44,7 @@ export class TokenHelper implements OnDestroy {
     const storeSnapshot = this.cmsApiStore.getStateSnapshot();
     if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
       this.tokenInfo = storeSnapshot.ntkCmsAPiState.tokenInfo;
+      this.setDirectionThemeBylanguage(this.tokenInfo);
       this.CheckIsAdmin();
       return storeSnapshot.ntkCmsAPiState.tokenInfo;
     }
@@ -51,6 +52,7 @@ export class TokenHelper implements OnDestroy {
       .pipe(map(ret => {
         this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: ret.item });
         this.tokenInfo = ret.item;
+        this.setDirectionThemeBylanguage(ret.item);
         this.CheckIsAdmin();
         return ret.item;
       })).toPromise();
@@ -62,6 +64,19 @@ export class TokenHelper implements OnDestroy {
       this.CheckIsAdmin();
       return state.ntkCmsAPiState.tokenInfo;
     });
+  }
+  setDirectionThemeBylanguage(item :TokenInfoModel){
+
+    if (item.language !== 'ar' && item.language !== 'fa') {
+      document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
+      document.getElementsByTagName('html')[0].setAttribute('direction', 'rtl');
+      document.getElementsByTagName('html')[0].setAttribute('style', 'direction: rtl');
+    } else {
+      document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
+      document.getElementsByTagName('html')[0].setAttribute('direction', 'ltr');
+      document.getElementsByTagName('html')[0].setAttribute('style', 'direction: ltr');
+    }
+    document.getElementsByTagName('html')[0].setAttribute('lang', item.language);
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();

@@ -41,7 +41,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     },
     {
       lang: 'zh',
-      name:'China',// 'Mandarin',
+      name: 'China',// 'Mandarin',
       flag: './assets/media/flags/china.svg',
     },
     {
@@ -130,6 +130,8 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
                 //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
                 // }
                 // window.location.reload();
+                this.translate.use(ret.item.language);
+                this.tokenHelper.setDirectionThemeBylanguage(ret.item);
               } else {
                 this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
               }

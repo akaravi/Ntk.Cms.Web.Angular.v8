@@ -9,7 +9,7 @@ export const environment = {
   checkAccess: false,
   appVersion: '15.1.1224.1',
   authKey: 'authf649fc9a5f55',
-  loadDemoTheme: true,
+  loadDemoTheme: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
