@@ -107,13 +107,7 @@ export class UserInnerComponent implements OnInit, OnDestroy {
             if (ret.isSuccess) {
               if (ret.item.language === lang) {
                 this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed'), title);
-                // if (lang == 'fa' || lang == 'ar') {
-                //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
-                // }
-                // else {
-                //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
-                // }
-                // window.location.reload();
+
                 this.translate.use(ret.item.language);
                 this.tokenHelper.setDirectionThemeBylanguage(ret.item);
               } else {

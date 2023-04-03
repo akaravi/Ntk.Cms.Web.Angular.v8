@@ -65,16 +65,17 @@ export class TokenHelper implements OnDestroy {
       return state.ntkCmsAPiState.tokenInfo;
     });
   }
-  setDirectionThemeBylanguage(item :TokenInfoModel){
-
+  setDirectionThemeBylanguage(item: TokenInfoModel) {
     if (item.language !== 'ar' && item.language !== 'fa') {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('style', 'direction: rtl');
+      //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
     } else {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'ltr');
       document.getElementsByTagName('html')[0].setAttribute('style', 'direction: ltr');
+      //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
     }
     document.getElementsByTagName('html')[0].setAttribute('lang', item.language);
   }
