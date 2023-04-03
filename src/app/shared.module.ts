@@ -8,9 +8,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter, MatNativeDateModule,
-  MatRippleModule, MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  MatRippleModule
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -39,7 +41,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TreeModule } from '@circlon/angular-tree-component';
@@ -93,6 +95,7 @@ import { IntComponent } from './core/dynamic-input-builder/int/int.component';
 import { StringComponent } from './core/dynamic-input-builder/string/string.component';
 import { TextAreaComponent } from './core/dynamic-input-builder/text-area/text-area.component';
 import { HttpConfigInterceptor } from './core/interceptor/httpConfigInterceptor';
+import { PersianDateFull } from './core/pipe/PersianDatePipe/persian-date-full.pipe';
 import { BoolStatusClassPipe } from './core/pipe/boolStatusClass.pipe';
 import { CmsImageThumbnailPipe } from './core/pipe/cms-image-thumbnail.pipe';
 import { CmsTitlePipe } from './core/pipe/cms-title.pipe';
@@ -102,7 +105,6 @@ import { CmsUserInfoPipe } from './core/pipe/core/cms-user-info.pipe';
 import { EnumsPipe } from './core/pipe/enums.pipe';
 import { FirstLetterPipe } from './core/pipe/first-letter.pipe';
 import { KeysPipe } from './core/pipe/keys.pipe';
-import { PersianDateFull } from './core/pipe/PersianDatePipe/persian-date-full.pipe';
 import { PrettyjsonPipe } from './core/pipe/prettyjson.pipe';
 import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
 import { SafePipe } from './core/pipe/safe.pipe';
@@ -139,6 +141,8 @@ import { CmsSiteCategorySelectorComponent } from './shared/cms-site-category-sel
 import { CmsSiteCreditViewComponent } from './shared/cms-site-credit-view/cms-site-credit-view.component';
 import { CmsSiteSelectorComponent } from './shared/cms-site-selector/cmsSiteSelector.component';
 import { CmsSiteUserCreditViewComponent } from './shared/cms-site-user-credit-view/cms-site-user-credit-view.component';
+import { CmsSmsMainApiNumberSelectorComponent } from './shared/cms-sms-api-number-selector/cms-sms-api-number-selector.component';
+import { CmsSmsMainApiPathSelectorComponent } from './shared/cms-sms-apipath-selector/cms-sms-apipath-selector.component';
 import { CmsTagAutocompleteComponent } from './shared/cms-tag-autocomplete/cms-tag-autocomplete.component';
 import { CmsTokenAccessComponent } from './shared/cms-token-access/cmsTokenAccess.component';
 import { CmsUserGroupSelectorComponent } from './shared/cms-user-group-selector/cmsUserGroupSelector.component';
@@ -150,8 +154,6 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './shared/mater
 import { OverlayService } from './shared/overlay/overlay.service';
 import { PasswordStrengthComponent } from './shared/password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spinner.component';
-import { CmsSmsMainApiNumberSelectorComponent } from './shared/cms-sms-api-number-selector/cms-sms-api-number-selector.component';
-import { CmsSmsMainApiPathSelectorComponent } from './shared/cms-sms-apipath-selector/cms-sms-apipath-selector.component';
 
 @NgModule({
   imports: [
@@ -207,6 +209,7 @@ import { CmsSmsMainApiPathSelectorComponent } from './shared/cms-sms-apipath-sel
     InlineSVGModule,
     //PerfectScrollbarModule,
     NgbNavModule,
+
 
   ],
   declarations: [
@@ -296,6 +299,7 @@ import { CmsSmsMainApiPathSelectorComponent } from './shared/cms-sms-apipath-sel
     MatInputCommifiedDirective,
     SelfSaveDirective,
     CmsRecordStatusSelfSaveDirective,
+
 
   ],
   exports: [
@@ -428,7 +432,8 @@ import { CmsSmsMainApiPathSelectorComponent } from './shared/cms-sms-apipath-sel
     CmsHtmlTreeFooterDirective,
     MatInputCommifiedDirective,
     SelfSaveDirective,
-    CmsRecordStatusSelfSaveDirective
+    CmsRecordStatusSelfSaveDirective,
+
   ],
   providers: [
     OverlayService,

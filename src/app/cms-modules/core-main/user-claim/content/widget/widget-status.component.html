@@ -1,31 +1,43 @@
-<!--begin::Tiles Widget 11-->
-<div class="card card-custom bg- height background" [ngClass]="cssClass">
-  <div class="card-body">
-    <div class="ntk-cms-html-widget-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/General/Smile.svg'"
-        class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-widget-body">
-      <app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      <div *ngFor="let row of dataModelResult.listItems ; index as i" [ngClass]="textInverseCSSClass"
-        class="row font-weight-bolder font-size-h5 mt-3">
-        <div class="col-8 text-white"> {{row.typeTitle}} </div>
-        <div class="col-2 pointer"><i [ngClass]="row.isApproved | boolclass"></i></div>
-        <div class="col-2 pointer"><i *ngIf="!row.isApproved" ngClass="fa fa-edit" (click)="onActionbuttonEditRow(row)"></i>
-        </div>
-      </div>
-      <hr>
-      <!--end::cms-body-->
-    </div>
-    <div class="ntk-cms-html-widget-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
-        class="font-weight-bold font-size-lg mt-1 color">{{widgetInfoModel.title}}</a>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </div>
+<!-- begin::Header -->
+<div class="card-header border-0">
+  <h3 class="card-title fw-bolder text-dark">{{widgetInfoModel.title}}</h3>
+  <div class="card-toolbar">
+    <!-- begin::Menu -->
+    <button type="button" routerLink="{{widgetInfoModel.link}}"
+      class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click"
+      data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
+      <span [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'" class="svg-icon svg-icon-2"></span>
+    </button>
+    <!-- <app-dropdown-menu1></app-dropdown-menu1> -->
+    <!-- end::Menu -->
   </div>
 </div>
-<!--end::Tiles Widget 11-->
+<!-- end::Header -->
+<!-- begin::Body -->
+<div class="card-body pt-0">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!-- begin::Item -->
+  <div *ngFor="let row of dataModelResult.listItems ; index as i" class="d-flex align-items-center  rounded p-5 mb-7"
+    [ngClass]="row.isApproved ? 'bg-light-success' :'bg-light-warning'">
+    <!-- begin::Icon -->
+    <span class="svg-icon  me-5" [ngClass]="row.isApproved ? 'svg-icon-success' :'svg-icon-warning'">
+      <i [ngClass]="row.isApproved | boolclass"></i>
+    </span>
+    <!-- end::Icon -->
+    <!-- begin::Title -->
+    <div class="flex-grow-1 me-2">
+      <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">
+        {{row.typeTitle}}
+      </a>
+      <span *ngIf="!row.isApproved" class="text-muted fw-bold d-block">{{row.typeDescription}}</span>
+    </div>
+    <!-- end::Title -->
+    <!-- begin::Lable -->
+    <span class="fw-bolder text-danger py-1"><i *ngIf="!row.isApproved" class="fa fa-edit"
+        (click)="onActionbuttonEditRow(row)"></i></span>
+    <!-- end::Lable -->
+  </div>
+  <!-- end::Item -->
+
+</div>
+<!-- end::Body -->
