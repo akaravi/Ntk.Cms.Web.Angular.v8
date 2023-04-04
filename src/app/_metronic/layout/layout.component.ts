@@ -60,14 +60,16 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      document.body.classList.replace('aside-fixed', 'aside-fixed-' + this.tokenInfo.direction);
+      document.body.classList.replace('aside-fixed-ltr', 'aside-fixed-' + this.tokenInfo.direction);
+      document.body.classList.replace('aside-fixed-rtl', 'aside-fixed-' + this.tokenInfo.direction);
       this.cdr.detectChanges();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper
       .getCurrentTokenOnChange()
       .subscribe((next) => {
         this.tokenInfo = next;
-        document.body.classList.replace('aside-fixed', 'aside-fixed-' + this.tokenInfo.direction);
+        document.body.classList.replace('aside-fixed-ltr', 'aside-fixed-' + this.tokenInfo.direction);
+        document.body.classList.replace('aside-fixed-rtl', 'aside-fixed-' + this.tokenInfo.direction);
         this.cdr.detectChanges();
       });
     // build view by layout config settings

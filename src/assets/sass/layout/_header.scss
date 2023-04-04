@@ -29,9 +29,13 @@
 		}
 
 		// Aside default enabled, aside fixed & header sticky modes
-		.aside-enabled.aside-fixed.header-fixed & {
+		.aside-enabled.aside-fixed-ltr.header-fixed & {
 			left: get($aside-config, width, desktop);
 		}
+    .aside-enabled.aside-fixed-rtl.header-fixed & {
+			right: get($aside-config, width, desktop);
+		}
+
 
 		// Header menu
 		.header-menu {
@@ -40,14 +44,14 @@
 			.menu {
 				// Menu root item
 				> .menu-item {
-					@include menu-link-here-state( 
-						$title-color: var(--#{$prefix}primary), 
-						$icon-color: var(--#{$prefix}primary), 
-						$bullet-color: var(--#{$prefix}primary), 
-						$arrow-color: var(--#{$prefix}primary), 
+					@include menu-link-here-state(
+						$title-color: var(--#{$prefix}primary),
+						$icon-color: var(--#{$prefix}primary),
+						$bullet-color: var(--#{$prefix}primary),
+						$arrow-color: var(--#{$prefix}primary),
 						$bg-color: var(--#{$prefix}menu-link-bg-color-active)
 					);
-				}	
+				}
 			}
 		}
 	}

@@ -28,8 +28,11 @@ body {
 	// Wrapper
 	.wrapper {
 		// Aside default enabled and aside fixed modes
-		.aside-enabled.aside-fixed & {
+		.aside-enabled.aside-fixed-ltr & {
 			padding-left: get($aside-config, width, desktop);
+		}
+    .aside-enabled.aside-fixed-rtl & {
+			padding-right: get($aside-config, width, desktop);
 		}
 
 		// Fixed header mode

@@ -20,7 +20,7 @@
 			top: 0;
 			right: 0;
 			left: 0;
-			z-index: get($toolbar-config, z-index);			
+			z-index: get($toolbar-config, z-index);
             box-shadow: var(--#{$prefix}toolbar-box-shadow);
         }
 
@@ -37,9 +37,13 @@
         }
 
         // Aside default enabled, aside fixed & header sticky modes
-		.aside-enabled.aside-fixed.toolbar-fixed & {
+		.aside-enabled.aside-fixed-ltr.toolbar-fixed & {
 			left: get($aside-config, width, desktop);
 			transition: left get($aside-config, transition-speed) ease;
+		}
+    .aside-enabled.aside-fixed-rtl.toolbar-fixed & {
+			right: get($aside-config, width, desktop);
+			transition: right get($aside-config, transition-speed) ease;
 		}
     }
 }

@@ -182,7 +182,7 @@ export class LayoutInitService {
     this.layout.setCSSClass('aside', `aside-${theme}`);
     const fixed = this.layout.getProp('aside.fixed') as boolean;
     if (fixed) {
-      document.body.classList.add('aside-fixed');
+      document.body.classList.add('aside-fixed-ltr');
     }
 
     const minimized = this.layout.getProp('aside.minimized') as boolean;
