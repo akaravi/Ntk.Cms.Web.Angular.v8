@@ -14,7 +14,7 @@ import { locale as frLang } from './modules/i18n/vocabs/fr';
 import { locale as jpLang } from './modules/i18n/vocabs/jp';
 import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { TranslationService } from './core/i18n/translation.service';
-
+import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
     private modeService: ThemeModeService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
+    private splashScreenService: SplashScreenService,
   ) {
     if (environment.cmsServerConfig.configApiServerPath && environment.cmsServerConfig.configApiServerPath.length > 0) {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
