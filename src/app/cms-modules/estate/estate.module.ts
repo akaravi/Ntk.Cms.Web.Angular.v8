@@ -112,7 +112,7 @@ import { estateAccountUserInfoPipe } from 'src/app/core/pipe/esate/estate-accoun
 import { estateCustomerOrderInfoPipe } from 'src/app/core/pipe/esate/estate-customer-order-info.pipe';
 import { estatePropertyCompanyInfoPipe } from 'src/app/core/pipe/esate/estate-property-company-info.pipe';
 import { estatePropertyInfoPipe } from 'src/app/core/pipe/esate/estate-property-info.pipe';
-import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-project-info.pipe';
+
 import { estatePropertySupplierInfoPipe } from 'src/app/core/pipe/esate/estate-property-supplier-info.pipe';
 import { EstateAccountAgencyAdsAddComponent } from './account-agency-ads/add/add.component';
 import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/edit.component';
@@ -167,6 +167,7 @@ import { EstatePropertySupplierCategoryAddComponent } from './property-supplier-
 import { EstatePropertySupplierCategoryEditComponent } from './property-supplier-category/edit/edit.component';
 import { EstatePropertySupplierCategorySelectorComponent } from './property-supplier-category/selector/selector.component';
 import { EstatePropertySupplierCategoryTreeComponent } from './property-supplier-category/tree/tree.component';
+import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-Project-info.pipe';
 
 @NgModule({
   declarations: [
