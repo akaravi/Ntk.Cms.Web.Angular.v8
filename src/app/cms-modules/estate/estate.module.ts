@@ -167,7 +167,7 @@ import { EstatePropertySupplierCategoryAddComponent } from './property-supplier-
 import { EstatePropertySupplierCategoryEditComponent } from './property-supplier-category/edit/edit.component';
 import { EstatePropertySupplierCategorySelectorComponent } from './property-supplier-category/selector/selector.component';
 import { EstatePropertySupplierCategoryTreeComponent } from './property-supplier-category/tree/tree.component';
-import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-Project-info.pipe';
+import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-project-info.pipe';
 
 @NgModule({
   declarations: [
