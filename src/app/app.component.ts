@@ -6,12 +6,12 @@ import { CoreAuthService } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
-import { locale as chLang } from './modules/i18n/vocabs/ch';
-import { locale as deLang } from './modules/i18n/vocabs/de';
-import { locale as enLang } from './modules/i18n/vocabs/en';
-import { locale as esLang } from './modules/i18n/vocabs/es';
-import { locale as frLang } from './modules/i18n/vocabs/fr';
-import { locale as jpLang } from './modules/i18n/vocabs/jp';
+// import { locale as chLang } from './modules/i18n/vocabs/ch';
+// import { locale as deLang } from './modules/i18n/vocabs/de';
+// import { locale as enLang } from './modules/i18n/vocabs/en';
+// import { locale as esLang } from './modules/i18n/vocabs/es';
+// import { locale as frLang } from './modules/i18n/vocabs/fr';
+// import { locale as jpLang } from './modules/i18n/vocabs/jp';
 import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { TranslationService } from './core/i18n/translation.service';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
@@ -26,7 +26,7 @@ import { SplashScreenService } from './shared/splash-screen/splash-screen.servic
 export class AppComponent implements OnInit {
   constructor(
     private coreAuthService: CoreAuthService,
-    private translationService: TranslationService,
+    //private translationService: TranslationService,
     private modeService: ThemeModeService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
@@ -36,14 +36,14 @@ export class AppComponent implements OnInit {
       this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
     }
     // register translations
-    this.translationService.loadTranslations(
-      enLang,
-      chLang,
-      esLang,
-      jpLang,
-      deLang,
-      frLang
-    );
+    // this.translationService.loadTranslations(
+    //   enLang,
+    //   chLang,
+    //   esLang,
+    //   jpLang,
+    //   deLang,
+    //   frLang
+    // );
   }
 
   ngOnInit() {
