@@ -34,6 +34,7 @@ function appInitializer(authService: CmsAuthService) {
 export function CreateTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

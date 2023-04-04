@@ -1,6 +1,10 @@
-﻿import { PlatformModule } from '@angular/cdk/platform';
+﻿import { ClipboardModule } from '@angular/cdk/clipboard';
+import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -8,11 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-  MatNativeDateModule,
-  MatRippleModule
+  DateAdapter, MatNativeDateModule,
+  MatRippleModule, MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -39,24 +41,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-
-import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { TreeModule } from '@circlon/angular-tree-component';
-import { NgxNtkQueryBuilderModule } from 'ngx-ntk-query-builder';
-import { PersianDate } from './core/pipe/persianDatePipe/persian-date.pipe';
-import { TruncatePipe } from './core/pipe/truncate.pipe';
-import { CmsExportListComponent } from './shared/cms-export-list/cmsExportList.component';
-import { CmsMapComponent } from './shared/cms-map/cms-map.component';
-import { CmsSearchListComponent } from './shared/cms-search-list/cmsSearchList.component';
-import { CmsStatistListComponent } from './shared/cms-statist-list/cmsStatistList.component';
-
-import { ClipboardModule } from '@angular/cdk/clipboard';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { NgxNtkQueryBuilderModule } from 'ngx-ntk-query-builder';
 import {
   ApplicationAppService,
   BankPaymentEnumService,
@@ -78,6 +68,12 @@ import {
   SmsMainApiPathService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { PersianDate } from './core/pipe/persianDatePipe/persian-date.pipe';
+import { TruncatePipe } from './core/pipe/truncate.pipe';
+import { CmsExportListComponent } from './shared/cms-export-list/cmsExportList.component';
+import { CmsMapComponent } from './shared/cms-map/cms-map.component';
+import { CmsSearchListComponent } from './shared/cms-search-list/cmsSearchList.component';
+import { CmsStatistListComponent } from './shared/cms-statist-list/cmsStatistList.component';
 
 
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from './core/directive/cms-html-tree.directive';
@@ -299,8 +295,6 @@ import { ProgressSpinnerComponent } from './shared/progress-spinner/progress-spi
     MatInputCommifiedDirective,
     SelfSaveDirective,
     CmsRecordStatusSelfSaveDirective,
-
-
   ],
   exports: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
