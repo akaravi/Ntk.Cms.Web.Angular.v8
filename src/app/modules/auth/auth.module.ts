@@ -1,17 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { LogoutComponent } from './components/logout/logout.component';
-import { AuthComponent } from './auth.component';
-import { TranslationModule } from '../i18n/translation.module';
-import { AuthSingInComponent } from './singin/singin.component';
-import { SharedModule } from 'src/app/shared.module';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
+import { SharedModule } from 'src/app/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
+import { AuthComponent } from './auth.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { AuthSingInComponent } from './singin/singin.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'nt
   imports: [
     CommonModule,
     SharedModule.forRoot(),
-    TranslationModule,
+
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,4 +37,4 @@ import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'nt
 
   ]
 })
-export class AuthModule {}
+export class AuthModule { }

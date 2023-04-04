@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { InlineSVGModule } from 'ng-inline-svg-2';
+import { SharedModule } from 'src/app/shared.module';
 import { ThemeModeSwitcherComponent } from './theme-mode-switcher.component';
-import { TranslationModule } from 'src/app/modules/i18n';
 
 @NgModule({
   declarations: [ThemeModeSwitcherComponent],
-  imports: [CommonModule, InlineSVGModule,TranslationModule,],
+  imports: [CommonModule, InlineSVGModule, SharedModule.forRoot(),],
   exports: [ThemeModeSwitcherComponent],
 })
-export class ThemeModeModule {}
+export class ThemeModeModule { }
