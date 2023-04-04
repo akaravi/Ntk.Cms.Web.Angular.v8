@@ -1,18 +1,19 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
-import { TranslationService } from './modules/i18n';
+//import { TranslationService } from './modules/i18n';
 // language list
-import { locale as enLang } from './modules/i18n/vocabs/en';
-import { locale as chLang } from './modules/i18n/vocabs/ch';
-import { locale as esLang } from './modules/i18n/vocabs/es';
-import { locale as jpLang } from './modules/i18n/vocabs/jp';
-import { locale as deLang } from './modules/i18n/vocabs/de';
-import { locale as frLang } from './modules/i18n/vocabs/fr';
-import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
-import { environment } from 'src/environments/environment';
-import { CoreAuthService } from 'ntk-cms-api';
 import { HttpParams } from '@angular/common/http';
+import { CoreAuthService } from 'ntk-cms-api';
+import { environment } from 'src/environments/environment';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
+import { locale as chLang } from './modules/i18n/vocabs/ch';
+import { locale as deLang } from './modules/i18n/vocabs/de';
+import { locale as enLang } from './modules/i18n/vocabs/en';
+import { locale as esLang } from './modules/i18n/vocabs/es';
+import { locale as frLang } from './modules/i18n/vocabs/fr';
+import { locale as jpLang } from './modules/i18n/vocabs/jp';
+import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
+import { TranslationService } from './core/i18n/translation.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
