@@ -1,7 +1,10 @@
 import {
-  AfterViewInit, Component, ElementRef, OnInit,
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit,
   ViewChild
 } from '@angular/core';
+import { TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { environment } from 'src/environments/environment';
 import { LayoutInitService } from './core/layout-init.service';
 import { LayoutService } from './core/layout.service';
@@ -43,12 +46,30 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   constructor(
     private initService: LayoutInitService,
-    private layout: LayoutService
+    private layout: LayoutService,
+    public tokenHelper: TokenHelper,
+    private cdr: ChangeDetectorRef,
   ) {
+
     this.initService.init();
   }
+  tokenInfo = new TokenInfoModel();
+  cmsApiStoreSubscribe: Subscription;
+
   loadDemoTheme = environment.loadDemoTheme;
   ngOnInit(): void {
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+      document.body.classList.replace('aside-fixed', 'aside-fixed-' + this.tokenInfo.direction);
+      this.cdr.detectChanges();
+    });
+    this.cmsApiStoreSubscribe = this.tokenHelper
+      .getCurrentTokenOnChange()
+      .subscribe((next) => {
+        this.tokenInfo = next;
+        document.body.classList.replace('aside-fixed', 'aside-fixed-' + this.tokenInfo.direction);
+        this.cdr.detectChanges();
+      });
     // build view by layout config settings
     this.asideDisplay = this.layout.getProp('aside.display') as boolean;
     this.toolbarDisplay = this.layout.getProp('toolbar.display') as boolean;
@@ -67,5 +88,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
 }

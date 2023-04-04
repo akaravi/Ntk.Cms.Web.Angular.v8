@@ -1,20 +1,18 @@
 import {
   Component,
   ElementRef,
+  Input,
   OnDestroy,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { NavigationCancel, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import {
+  DrawerComponent, MenuComponent, ScrollComponent, ToggleComponent
+} from '../../../kt/components';
 import { LayoutService } from '../../core/layout.service';
 import { environment } from './../../../../../environments/environment';
-import {
-  MenuComponent,
-  DrawerComponent,
-  ToggleComponent,
-  ScrollComponent,
-} from '../../../kt/components';
 
 @Component({
   selector: 'app-aside',
@@ -28,8 +26,8 @@ export class AsideComponent implements OnInit, OnDestroy {
   appPreviewDocsUrl: string = environment.appPreviewDocsUrl;
   @ViewChild('ktAsideScroll', { static: true }) ktAsideScroll: ElementRef;
   private unsubscribe: Subscription[] = [];
-
-  constructor(private layout: LayoutService, private router: Router) {}
+  @Input() optionDirection = '';
+  constructor(private layout: LayoutService, private router: Router) { }
 
   ngOnInit(): void {
     this.asideTheme = this.layout.getProp('aside.theme') as string;

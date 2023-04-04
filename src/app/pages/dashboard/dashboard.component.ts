@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
     public translate: TranslateService,
     public tokenHelper: TokenHelper,
   ) {
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   tokenInfo = new TokenInfoModel();
   cmsApiStoreSubscribe: Subscription;
@@ -49,5 +50,7 @@ export class DashboardComponent implements OnInit {
     if (this.dataCoreModuleModelResult && this.dataCoreModuleModelResult.listItems)
       this.dataCoreModuleModelResult.listItems.forEach((el) => this.checkModuleExist[el.className.toLowerCase()] = el);
   }
-
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
+  }
 }

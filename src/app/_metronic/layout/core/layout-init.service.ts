@@ -6,7 +6,7 @@ import { LayoutService } from './layout.service';
   providedIn: 'root',
 })
 export class LayoutInitService {
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService) { }
 
   init() {
     this.layout.initConfig();

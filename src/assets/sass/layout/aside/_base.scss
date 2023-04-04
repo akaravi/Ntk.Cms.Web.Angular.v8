@@ -8,7 +8,7 @@
 	flex-direction: column;
 	box-shadow: var(--#{$prefix}aside-box-shadow);
 	background-color: var(--#{$prefix}aside-bg-color);
-	padding: 0;	
+	padding: 0;
 }
 
 // Desktop mode
@@ -33,9 +33,23 @@
 			justify-content: center;
 			align-items: center;
 		}
-		
+
 		// Fixed aside mode
-		.aside-fixed & {
+		.aside-fixed-rtl & {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			z-index: get($aside-config, z-index);
+		}
+    .aside-fixed-ltr & {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			z-index: get($aside-config, z-index);
+		}
+    .aside-fixed & {
 			position: fixed;
 			top: 0;
 			bottom: 0;

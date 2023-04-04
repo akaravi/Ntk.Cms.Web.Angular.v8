@@ -1,9 +1,4 @@
 <div class="row">
-  <div *ngIf="optionTreeDisplay" [ngClass]="optionClassTree">
-    <!--begin::tree-->
-    <ng-content select="[cms-tree]"></ng-content>
-    <!--end::tree-->
-  </div>
   <div [ngClass]="optionTreeDisplay?optionClassList:'col-xl-12'">
     <!--begin::Header-->
     <div *ngIf="optionHeaderDisplay ||optionActionDisplay" class="ntk-cms-html-list-header">
@@ -13,9 +8,9 @@
     <!--end::Header-->
     <ng-content select="[cms-action-area]"></ng-content>
     <!--begin::Body-->
-    <div [ngClass]="optionClassBody" >
+    <div [ngClass]="optionClassBody">
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <ng-content  select="[cms-body]"></ng-content>
+      <ng-content select="[cms-body]"></ng-content>
     </div>
     <!--end::Body-->
     <!--begin::Footer-->
@@ -24,5 +19,10 @@
       <ng-content *ngIf="optionFooterDisplay && !loading.display" select="[cms-footer]"></ng-content>
     </div>
     <!--end::Footer-->
+  </div>
+  <div *ngIf="optionTreeDisplay" [ngClass]="optionClassTree">
+    <!--begin::tree-->
+    <ng-content select="[cms-tree]"></ng-content>
+    <!--end::tree-->
   </div>
 </div>
