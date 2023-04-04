@@ -3,15 +3,15 @@
 //
 
 // General mode
-.app-toolbar { 
+.app-toolbar {
     display: flex;
     align-items: stretch;
-    background-color: var(--#{$prefix}app-toolbar-base-bg-color); 
-    box-shadow: var(--#{$prefix}app-toolbar-base-box-shadow); 
-    border-top: var(--#{$prefix}app-toolbar-base-border-top); 
-    border-bottom: var(--#{$prefix}app-toolbar-base-border-bottom); 
-    
-    &.app-toolbar-minimize {        
+    background-color: var(--#{$prefix}app-toolbar-base-bg-color);
+    box-shadow: var(--#{$prefix}app-toolbar-base-box-shadow);
+    border-top: var(--#{$prefix}app-toolbar-base-border-top);
+    border-bottom: var(--#{$prefix}app-toolbar-base-border-bottom);
+
+    &.app-toolbar-minimize {
         transition: $app-toolbar-base-transition;
     }
 }
@@ -30,18 +30,18 @@
 
     [data-kt-app-toolbar-minimize="on"] {
         --#{$prefix}app-toolbar-height: #{$app-toolbar-minimize-height};
-    } 
+    }
 
     // States
     .app-toolbar {
         height: var(--#{$prefix}app-toolbar-height);
 
-        [data-kt-app-header-fixed="true"][data-kt-app-toolbar-fixed="true"] & {            
+        [data-kt-app-header-fixed="true"][data-kt-app-toolbar-fixed="true"] & {
             @include property( z-index, $app-toolbar-base-z-index);
             position: fixed;
             left: 0;
             right: 0;
-            top: 0; 
+            top: 0;
         }
 
         [data-kt-app-toolbar-sticky="on"] & {
@@ -60,7 +60,7 @@
         }
 
         [data-kt-app-toolbar-minimize="on"] & {
-            transition: $app-toolbar-base-transition;            
+            transition: $app-toolbar-base-transition;
 
             box-shadow: var(--#{$prefix}app-toolbar-minimize-box-shadow);
             background-color: var(--#{$prefix}app-toolbar-minimize-bg-color);
@@ -83,35 +83,43 @@
         [data-kt-app-toolbar-sticky="on"][data-kt-app-sidebar-fixed="true"][data-kt-app-sidebar-push-toolbar="true"] &,
         [data-kt-app-toolbar-fixed="true"][data-kt-app-sidebar-fixed="true"][data-kt-app-sidebar-push-toolbar="true"] & {
             left: calc(
-                var(--#{$prefix}app-sidebar-width) + 
-                var(--#{$prefix}app-sidebar-gap-start, 0px) + 
+                var(--#{$prefix}app-sidebar-width) +
+                var(--#{$prefix}app-sidebar-gap-start, 0px) +
                 var(--#{$prefix}app-sidebar-gap-end, 0px)
             );
-        } 
+        }
 
         // Sidebar panel
         [data-kt-app-toolbar-sticky="on"][data-kt-app-sidebar-panel-fixed="true"][data-kt-app-sidebar-panel-push-toolbar="true"] &,
         [data-kt-app-toolbar-fixed="true"][data-kt-app-sidebar-panel-fixed="true"][data-kt-app-sidebar-panel-push-toolbar="true"] & {
             left: calc(
-                var(--#{$prefix}app-sidebar-width) + 
-                var(--#{$prefix}app-sidebar-gap-start, 0px) + 
+                var(--#{$prefix}app-sidebar-width) +
+                var(--#{$prefix}app-sidebar-gap-start, 0px) +
                 var(--#{$prefix}app-sidebar-gap-end, 0px) +
-                var(--#{$prefix}app-sidebar-panel-width) + 
-                var(--#{$prefix}app-sidebar-panel-gap-start, 0px) + 
+                var(--#{$prefix}app-sidebar-panel-width) +
+                var(--#{$prefix}app-sidebar-panel-gap-start, 0px) +
                 var(--#{$prefix}app-sidebar-panel-gap-end, 0px)
             );
         }
 
         // Aside
-        [data-kt-app-toolbar-sticky="on"][data-kt-app-aside-fixed="true"][data-kt-app-aside-push-toolbar="true"] &,
-        [data-kt-app-toolbar-fixed="true"][data-kt-app-aside-fixed="true"][data-kt-app-aside-push-toolbar="true"] & {
+        [data-kt-app-toolbar-sticky="on"][data-kt-app-aside-fixed-ltr="true"][data-kt-app-aside-push-toolbar="true"] &,
+        [data-kt-app-toolbar-fixed="true"][data-kt-app-aside-fixed-ltr="true"][data-kt-app-aside-push-toolbar="true"] & {
             right: calc(
-                var(--#{$prefix}app-aside-width) + 
-                var(--#{$prefix}app-aside-gap-start, 0px) + 
+                var(--#{$prefix}app-aside-width) +
+                var(--#{$prefix}app-aside-gap-start, 0px) +
                 var(--#{$prefix}app-aside-gap-end, 0px)
             );
-        } 
-    } 
+        }
+        [data-kt-app-toolbar-sticky="on"][data-kt-app-aside-fixed-rtl="true"][data-kt-app-aside-push-toolbar="true"] &,
+        [data-kt-app-toolbar-fixed="true"][data-kt-app-aside-fixed-rtl="true"][data-kt-app-aside-push-toolbar="true"] & {
+            right: calc(
+                var(--#{$prefix}app-aside-width) +
+                var(--#{$prefix}app-aside-gap-start, 0px) +
+                var(--#{$prefix}app-aside-gap-end, 0px)
+            );
+        }
+    }
 }
 
 // Tablet & mobile modes
@@ -127,7 +135,7 @@
 
     [data-kt-app-toolbar-minimize="on"] {
         --#{$prefix}app-toolbar-height: #{$app-toolbar-minimize-height-mobile};
-    } 
+    }
 
     // States
     .app-toolbar {
@@ -135,8 +143,8 @@
 
         [data-kt-app-header-fixed-mobile="true"][data-kt-app-toolbar-fixed-mobile="true"] & {
             @include property( z-index, $app-toolbar-base-z-index-mobile);
-            position: fixed;            
-            top: calc(var(--#{$prefix}app-header-height, 0px) + var(--#{$prefix}app-header-mobile-height, 0px));          
+            position: fixed;
+            top: calc(var(--#{$prefix}app-header-height, 0px) + var(--#{$prefix}app-header-mobile-height, 0px));
             left: 0;
             right: 0;
         }

@@ -42,7 +42,7 @@ export class TranslationService {
   }
 
   setLanguage(lang: string): void {
-    if (lang && lang !== 'None') {
+    if (lang && lang.length > 0) {
       this.translate.use(this.translate.getDefaultLang());
       this.translate.use(lang);
       localStorage.setItem(LOCALIZATION_LOCAL_STORAGE_KEY, lang);

@@ -1,26 +1,26 @@
-import { NgModule, APP_INITIALIZER, isDevMode } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ClipboardModule } from 'ngx-clipboard';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { InlineSVGModule } from 'ng-inline-svg-2';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+import { ClipboardModule } from 'ngx-clipboard';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { environment } from 'src/environments/environment';
 // #fake-start#
-import { FakeAPIService } from './_fake/fake-api.service';
-import { ToastrModule } from 'ngx-toastr';
-import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
-import { SharedModule } from './shared.module';
-import { CmsAuthService } from './core/services/cmsAuth.service';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastrModule } from 'ngx-toastr';
+import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
+import { CmsStoreModule } from './core/reducers/cmsStore.module';
+import { CmsAuthService } from './core/services/cmsAuth.service';
+import { SharedModule } from './shared.module';
+import { FakeAPIService } from './_fake/fake-api.service';
 // #fake-end#
 
 function appInitializer(authService: CmsAuthService) {
@@ -39,7 +39,6 @@ export function CreateTranslateLoader(http: HttpClient): any {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    TranslateModule.forRoot(),
     SharedModule.forRoot(),
     ToastrModule.forRoot({
       // timeOut: 0,
@@ -66,9 +65,9 @@ export function CreateTranslateLoader(http: HttpClient): any {
     // #fake-start#
     environment.isMockEnabled
       ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-          passThruUnknownUrl: true,
-          dataEncapsulation: false,
-        })
+        passThruUnknownUrl: true,
+        dataEncapsulation: false,
+      })
       : [],
     // #fake-end#
 
@@ -108,4 +107,4 @@ export function CreateTranslateLoader(http: HttpClient): any {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

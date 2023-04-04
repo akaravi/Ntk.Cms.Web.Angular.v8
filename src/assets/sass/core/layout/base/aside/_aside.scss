@@ -3,7 +3,7 @@
 //
 
 // General mode
-.app-aside {    
+.app-aside {
     transition: $app-aside-base-transition;
     background-color: var(--#{$prefix}app-aside-base-bg-color);
     box-shadow: var(--#{$prefix}app-aside-base-box-shadow);
@@ -17,22 +17,22 @@
 .app-aside-collapse-d-flex,
 .app-aside-minimize-mobile-d-flex,
 .app-aside-collapse-mobile-d-flex {
-    display: none;    
+    display: none;
 }
 
 // Desktop mode
 @include media-breakpoint-up(lg) {
     // Base
-    .app-aside {        
-        display: flex;    
+    .app-aside {
+        display: flex;
         flex-shrink: 0;
-        width: var(--#{$prefix}app-aside-width); 
+        width: var(--#{$prefix}app-aside-width);
         @include property( z-index, $app-aside-base-z-index);
         @include property( margin-left, $app-aside-base-gap-start);
         @include property( margin-right, $app-aside-base-gap-end);
         @include property( margin-top, $app-aside-base-gap-top);
-        @include property( margin-bottom, $app-aside-base-gap-bottom);        
-    }    
+        @include property( margin-bottom, $app-aside-base-gap-bottom);
+    }
 
     // Vars
     :root {
@@ -62,10 +62,10 @@
         --#{$prefix}app-aside-gap-end: #{$app-aside-sticky-gap-end};
         --#{$prefix}app-aside-gap-top: #{$app-aside-sticky-gap-top};
         --#{$prefix}app-aside-gap-bottom: #{$app-aside-sticky-gap-bottom};
-    }    
+    }
 
     [data-kt-app-aside-collapse="on"] {
-        --#{$prefix}app-aside-width: 0px;  
+        --#{$prefix}app-aside-width: 0px;
     }
 
     // States
@@ -78,16 +78,23 @@
             display: none;
         }
 
-        [data-kt-app-aside-fixed="true"] & {
+        [data-kt-app-aside-fixed-ltr="true"] & {
             position: fixed;
             @include property( z-index, $app-aside-fixed-z-index);
             @include property( top, $app-aside-fixed-top);
             @include property( bottom, $app-aside-fixed-bottom);
             @include property( right, $app-aside-fixed-right);
-        }  
+        }
+        [data-kt-app-aside-fixed-rtl="true"] & {
+          position: fixed;
+          @include property( z-index, $app-aside-fixed-z-index);
+          @include property( top, $app-aside-fixed-top);
+          @include property( bottom, $app-aside-fixed-bottom);
+          @include property( right, $app-aside-fixed-right);
+      }
 
         [data-kt-app-aside-stacked="true"] & {
-            align-items: stretch; 
+            align-items: stretch;
         }
 
         [data-kt-app-aside-sticky="on"] & {
@@ -124,7 +131,7 @@
 
         [data-kt-app-aside-hoverable="true"] & {
             .app-aside-wrapper {
-                width: var(--#{$prefix}app-aside-width-actual); 
+                width: var(--#{$prefix}app-aside-width-actual);
             }
         }
 
@@ -144,45 +151,51 @@
     // Utilities
     [data-kt-app-aside-minimize="on"] {
         .app-aside-minimize-d-none {
-            display: none !important;    
+            display: none !important;
         }
 
         .app-aside-minimize-d-flex {
-            display: flex !important;    
+            display: flex !important;
         }
     }
 
     [data-kt-app-aside-sticky="on"] {
         .app-aside-sticky-d-none {
-            display: none !important;    
+            display: none !important;
         }
 
         .app-aside-sticky-d-flex {
-            display: flex !important;    
+            display: flex !important;
         }
-    } 
+    }
 
     [data-kt-app-aside-collapse="on"] {
         .app-aside-collapse-d-none {
-            display: none !important;    
+            display: none !important;
         }
 
         .app-aside-collapse-d-flex {
-            display: flex !important;    
+            display: flex !important;
         }
     }
 
     // Integration
     .app-aside {
         // Header
-        [data-kt-app-aside-fixed="true"][data-kt-app-header-fixed="true"]:not([data-kt-app-aside-push-header="true"]) & {
+        [data-kt-app-aside-fixed-ltr="true"][data-kt-app-header-fixed="true"]:not([data-kt-app-aside-push-header="true"]) & {
             top: var(--#{$prefix}app-header-height);
         }
+        [data-kt-app-aside-fixed-rtl="true"][data-kt-app-header-fixed="true"]:not([data-kt-app-aside-push-header="true"]) & {
+          top: var(--#{$prefix}app-header-height);
+      }
 
         // Toolbar
-        [data-kt-app-aside-fixed="true"][data-kt-app-header-fixed="true"][data-kt-app-toolbar-fixed="true"]:not([data-kt-app-aside-push-toolbar="true"]) & {
+        [data-kt-app-aside-fixed-ltr="true"][data-kt-app-header-fixed="true"][data-kt-app-toolbar-fixed="true"]:not([data-kt-app-aside-push-toolbar="true"]) & {
             top: calc(var(--#{$prefix}app-header-height) + var(--#{$prefix}app-toolbar-height, 0px));
         }
+        [data-kt-app-aside-fixed-rtl="true"][data-kt-app-header-fixed="true"][data-kt-app-toolbar-fixed="true"]:not([data-kt-app-aside-push-toolbar="true"]) & {
+          top: calc(var(--#{$prefix}app-header-height) + var(--#{$prefix}app-toolbar-height, 0px));
+      }
     }
 }
 
@@ -224,11 +237,11 @@
     // States
     .app-aside {
         [data-kt-app-aside-stacked="true"] & {
-            align-items: stretch; 
+            align-items: stretch;
         }
-            
+
         [data-kt-app-aside-minimize-mobile="on"] & {
-            transition: $app-aside-base-transition;        
+            transition: $app-aside-base-transition;
             @include property( margin-left, $app-aside-minimize-gap-start-mobile);
             @include property( margin-right, $app-aside-minimize-gap-end-mobile);
             @include property( margin-top, $app-aside-minimize-gap-top-mobile);
@@ -237,7 +250,7 @@
 
         [data-kt-app-aside-hoverable-mobile="true"] & {
             .app-aside-wrapper {
-                width: var(--#{$prefix}app-aside-width-actual); 
+                width: var(--#{$prefix}app-aside-width-actual);
             }
         }
 
@@ -257,21 +270,21 @@
     // Utilities
     [data-kt-app-aside-minimize-mobile="on"] {
         .app-aside-minimize-mobile-d-none {
-            display: none !important;    
+            display: none !important;
         }
 
         .app-aside-minimize-mobile-d-flex {
-            display: flex !important;    
+            display: flex !important;
         }
     }
 
     [data-kt-app-aside-collapse-mobile="on"] {
         .app-aside-collapse-mobile-d-none {
-            display: none !important;    
+            display: none !important;
         }
 
         .app-aside-collapse-mobile-d-flex {
-            display: flex !important;    
+            display: flex !important;
         }
     }
 }

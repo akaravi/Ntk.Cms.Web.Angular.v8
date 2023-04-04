@@ -61,13 +61,20 @@
         }
 
         // Aside
-        [data-kt-app-aside-fixed="true"][data-kt-app-aside-push-footer="true"] & {
+        [data-kt-app-aside-fixed-ltr="true"][data-kt-app-aside-push-footer="true"] & {
             right: calc(
                 var(--#{$prefix}app-aside-width) +
                 var(--#{$prefix}app-aside-gap-start, 0px) +
                 var(--#{$prefix}app-aside-gap-end, 0px)
             );
         }
+        [data-kt-app-aside-fixed-rtl="true"][data-kt-app-aside-push-footer="true"] & {
+          right: calc(
+              var(--#{$prefix}app-aside-width) +
+              var(--#{$prefix}app-aside-gap-start, 0px) +
+              var(--#{$prefix}app-aside-gap-end, 0px)
+          );
+      }
 
     }
 }

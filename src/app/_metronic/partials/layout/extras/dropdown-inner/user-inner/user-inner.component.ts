@@ -50,21 +50,20 @@ export class UserInnerComponent implements OnInit, OnDestroy {
       /** Action */
       this.translationService.setLanguage(this.tokenInfo.language);
       this.setLanguage(this.tokenInfo.language);
-      // document.location.reload();
       /** Action */
+      this.cdr.detectChanges();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
       /** Action */
       this.translationService.setLanguage(this.tokenInfo.language);
       this.setLanguage(this.tokenInfo.language);
-      // document.location.reload();
       /** Action */
       this.cdr.detectChanges();
     });
 
     //this.user$ = this.auth.currentUserSubject.asObservable();
-    this.setLanguage(this.translationService.getSelectedLanguage());
+    //this.setLanguage(this.translationService.getSelectedLanguage());
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
