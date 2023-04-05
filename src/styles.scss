@@ -6,18 +6,18 @@
 // @import "./assets/css/style.rtl.css";
 @import "./assets/sass/style.angular.scss";
 // => Material
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-@import 'font-awesome/scss/font-awesome.scss';
+
+
 // Global fonts
+@import 'font-awesome/scss/font-awesome.scss';
 @import "socicon/css/socicon.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
-//@import "./assets/plugins/flaticon/flaticon.css";
-// @import "./assets/plugins/flaticon2/flaticon.css";
-// @import "./assets/plugins/keenthemes-icons/font/ki.css";
+@import url("./assets/fonts/fontiran.css");
 /*
  karavi import
 */
+
 @import "leaflet/dist/leaflet.css";
 @import "ngx-ntk-smart-module/loader";
 @import "ngx-ntk-smart-module/modal";
@@ -32,384 +32,421 @@ karavi tooltip guid
 */
 
 .tooltip-example {
-  text-align: center;
-  padding: 0 50px;
+    text-align: center;
+    padding: 0 50px;
 }
 
 .tooltip-example [cmsTooltip] {
-  display: inline-block;
-  margin: 50px 20px;
-  width: 180px;
-  height: 50px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  line-height: 50px;
-  text-align: center;
+    display: inline-block;
+    margin: 50px 20px;
+    width: 180px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    line-height: 50px;
+    text-align: center;
 }
 
 .ng-tooltip {
-  position: absolute;
-  max-width: 150px;
-  font-size: 14px;
-  text-align: center;
-  color: #f8f8f2;
-  padding: 3px 8px;
-  background: #282a36;
-  border-radius: 4px;
-  z-index: 1060;
-  opacity: 0;
+    position: absolute;
+    max-width: 150px;
+    font-size: 14px;
+    text-align: center;
+    color: #f8f8f2;
+    padding: 3px 8px;
+    background: #282a36;
+    border-radius: 4px;
+    z-index: 1060;
+    opacity: 0;
 }
 
 .ng-tooltip:after {
-  content: "";
-  position: absolute;
-  border-style: solid;
+    content: "";
+    position: absolute;
+    border-style: solid;
 }
 
 .ng-tooltip-top:after {
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-color: black transparent transparent transparent;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: black transparent transparent transparent;
 }
 
 .ng-tooltip-bottom:after {
-  bottom: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-color: transparent transparent black transparent;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-color: transparent transparent black transparent;
 }
 
 .ng-tooltip-left:after {
-  top: 50%;
-  left: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-color: transparent transparent transparent black;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent transparent transparent black;
 }
 
 .ng-tooltip-right:after {
-  top: 50%;
-  right: 100%;
-  margin-top: -5px;
-  border-width: 5px;
-  border-color: transparent black transparent transparent;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-color: transparent black transparent transparent;
 }
 
 .ng-tooltip-show {
-  opacity: 1;
+    opacity: 1;
 }
 
 
 /* Popup container */
 .popup {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 
 /* The actual popup (appears on top) */
 .popup .popuptext {
-  visibility: hidden;
-  width: 100px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 110%;
-  margin-left: -80px;
+    visibility: hidden;
+    width: 100px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 110%;
+    margin-left: -80px;
 }
 
 /* Popup arrow */
 .popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
 }
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
 }
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:1 ;}
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /*
  NTK optimaze
 */
-.mdc-text-field{
-  padding: 0px !important;
+.mdc-text-field {
+    padding: 0px !important;
 }
+
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: transparent!important;
+    background-color: transparent !important;
 }
-.mat-mdc-input-element{
-//background-color: red!important;
-padding-top: 10px!important;
-padding-bottom: 10px!important;
+
+.mat-mdc-input-element {
+    //background-color: red!important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
 
 .ntk-full-width {
-  width: 100%;
+    width: 100%;
 }
 
 .ntk-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
 }
 
 .ntk-button-row {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin: auto;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 10px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 10px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-button-row button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .ntk-cms-html-tree-header {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-tree-header button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 1px;
-  margin-left: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 1px;
+    margin-left: 1px;
 }
 
 .ntk-cms-html-tree-body {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-tree-footer {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-list-header {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-list-header button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .ntk-cms-html-list-body {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-list-footer {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-header {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-body {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-message {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-footer {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 100%;
-  height: auto;
-  border: 1px;
-  padding: 1px;
-  padding-right: 8px;
-  border-radius: 5px;
-  background: white;
-  /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-      0 3px 14px 2px color(0 0 0 0.12);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: auto;
+    border: 1px;
+    padding: 1px;
+    padding-right: 8px;
+    border-radius: 5px;
+    background: white;
+    /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
+        0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-pull-right {
-  float: right;
-  margin: 3px;
+    float: right;
+    margin: 3px;
 }
 
 .ntk-hover-zoom:hover {
-  transform: scale(2);
+    transform: scale(2);
 }
 
 /* karavi popup image */
 .ntk-popup {
-  zoom: 1;
-  position: relative;
-  text-decoration: none;
+    zoom: 1;
+    position: relative;
+    text-decoration: none;
 }
 
 .ntk-popup span {
-  position: fixed;
-  top: 170px;
-  left: 500px;
-  width: 350px;
-  padding: 10px;
-  border: 10px solid #000;
-  border-radius: 10px;
-  left: -999em;
-  z-index: 1060;
+    position: fixed;
+    top: 170px;
+    left: 500px;
+    width: 350px;
+    padding: 10px;
+    border: 10px solid #000;
+    border-radius: 10px;
+    left: -999em;
+    z-index: 1060;
 }
 
 .ntk-hover-big:hover {
-  zoom: 5;
+    zoom: 5;
 }
 
 .ntk-popup:hover span {
-  left: 350px;
+    left: 350px;
 }
 
 .ntk-popup span {
-  position: absolute;
+    position: absolute;
 }
+
 /*
  NTK optimaze
 */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: IRANSans, Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+.mat-tree {
+    font-family: IRANSans, Roboto, sans-serif !important;
+}
+
+mat-tree {
+    font-family: IRANSans !important;
+}
+
+table {
+    font-family: IRANSans !important;
+}
+
+::ng-deep .mat-slide-toggle-content {
+    font-family: "IRANSans" !important;
+}
+
+* {
+    font-family: IRANSans;
+}
