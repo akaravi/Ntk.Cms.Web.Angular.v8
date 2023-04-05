@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { environment } from 'src/environments/environment';
 import { LayoutService } from '../../core/layout.service';
 
 @Component({
@@ -28,6 +29,8 @@ export class TopbarComponent implements OnInit {
   tokenInfo: TokenInfoModel;
   loading = new ProgressSpinnerModel();
   cmsApiStoreSubscribe: Subscription;
+  loadDemoTheme = environment.loadDemoTheme;
+
   ngOnInit(): void {
     this.headerLeft = this.layout.getProp('header.left') as string;
     this.tokenHelper.getCurrentToken().then((value) => {

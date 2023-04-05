@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cms-guide-notice',
@@ -28,18 +29,19 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
   @Input() svg: string;
 
   constructor(
-    // private activeModal: NgbActiveModal,
+    private pageInfo: PageInfoService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     private coreGuideService: CoreGuideService,
     private cmsToastrService: CmsToastrService,
     public dialog: MatDialog,
-  ) { }
+  ) {
+
+  }
   closeResult = '';
   cmsApiStoreSubscribe: Subscription;
   lang = '';
   ngOnInit(): void {
-
     this.tokenHelper.getCurrentToken().then((value) => {
       this.lang = value.language;
       this.onGetOne();
@@ -60,7 +62,6 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
         map(
           (next) => {
             if (next.isSuccess) {
-
               switch (this.lang) {
                 case 'fa': {
                   this.title = next.item.titleFa;
@@ -112,7 +113,10 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                   this.movieSrc = next.item.linkFileMovieIdFaSrc;
                   break;
                 }
+
               }
+              this.pageInfo.setTitle(this.title);
+              this.pageInfo.setDescription(this.description);
             } else if (!environment.production) {
               // console.log(next.errorMessage, this.Key);
               this.cmsToastrService.typeWarningMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');
@@ -180,7 +184,8 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
                   break;
                 }
               }
-
+              this.pageInfo.setTitle(this.title);
+              this.pageInfo.setDescription(this.description);
             } else if (!environment.production) {
               // console.log(next.errorMessage, this.Key);
               this.cmsToastrService.typeWarningMessage(next.errorMessage, this.Key + ' راهنما یافت نشد ');

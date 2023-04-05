@@ -1,18 +1,12 @@
 <div class="card mb-10">
   <div class="card-body d-flex align-items-center py-8">
     <!-- begin::Icon -->
-    <div
-      class="d-flex h-80px w-80px flex-shrink-0 flex-center position-relative"
-    >
-      <span
-        class="svg-icon svg-icon-primary position-absolute opacity-15"
+    <div class="d-flex h-80px w-80px flex-shrink-0 flex-center position-relative">
+      <span class="svg-icon svg-icon-primary position-absolute opacity-15"
         [inlineSVG]="'./assets/media/icons/duotune/abstract/abs051.svg'"
-        [setSVGAttributes]="{ class: 'h-80px w-80px' }"
-      ></span>
-      <span
-        [inlineSVG]="'./assets/media/icons/duotune/coding/cod009.svg'"
-        class="svg-icon svg-icon-3x svg-icon-primary position-absolute"
-      ></span>
+        [setSVGAttributes]="{ class: 'h-80px w-80px' }"></span>
+      <span [inlineSVG]="'./assets/media/icons/duotune/coding/cod009.svg'"
+        class="svg-icon svg-icon-3x svg-icon-primary position-absolute"></span>
     </div>
     <!-- end::Icon  -->
 
@@ -34,62 +28,39 @@
 <div class="card card-custom">
   <!-- begin::Header -->
   <div class="card-header card-header-stretch overflow-auto">
-    <ul
-      class="
+    <ul class="
         nav nav-stretch nav-line-tabs
         fw-bold
         border-transparent
         flex-nowrap
-      "
-      role="tablist"
-    >
+      " role="tablist">
       <li class="nav-item">
-        <a
-          class="nav-link cursor-pointer"
-          [ngClass]="{ active: activeTab === 'Header' }"
-          (click)="setActiveTab('Header')"
-          role="tab"
-        >
+        <a class="nav-link cursor-pointer" [ngClass]="{ active: activeTab === 'Header' }"
+          (click)="setActiveTab('Header')" role="tab">
           Header
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link cursor-pointer"
-          [ngClass]="{ active: activeTab === 'PageTitle' }"
-          (click)="setActiveTab('PageTitle')"
-          role="tab"
-        >
+        <a class="nav-link cursor-pointer" [ngClass]="{ active: activeTab === 'PageTitle' }"
+          (click)="setActiveTab('PageTitle')" role="tab">
           Page Title
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link cursor-pointer"
-          [ngClass]="{ active: activeTab === 'Aside' }"
-          (click)="setActiveTab('Aside')"
-          role="tab"
-        >
+        <a class="nav-link cursor-pointer" [ngClass]="{ active: activeTab === 'Aside' }" (click)="setActiveTab('Aside')"
+          role="tab">
           Aside
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link cursor-pointer"
-          [ngClass]="{ active: activeTab === 'Content' }"
-          (click)="setActiveTab('Content')"
-          role="tab"
-        >
+        <a class="nav-link cursor-pointer" [ngClass]="{ active: activeTab === 'Content' }"
+          (click)="setActiveTab('Content')" role="tab">
           Content
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link cursor-pointer"
-          [ngClass]="{ active: activeTab === 'Footer' }"
-          (click)="setActiveTab('Footer')"
-          role="tab"
-        >
+        <a class="nav-link cursor-pointer" [ngClass]="{ active: activeTab === 'Footer' }"
+          (click)="setActiveTab('Footer')" role="tab">
           Footer
         </a>
       </li>
@@ -104,36 +75,22 @@
         <!-- begin::Header -->
         <div class="tab-pane" [ngClass]="{ active: activeTab === 'Header' }">
           <div class="row mb-10">
-            <label class="col-lg-3 col-form-label text-lg-end"
-              >Fixed Header:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-end">Fixed Header:</label>
             <div class="col-lg-9 col-xl-4">
-              <label
-                class="
+              <label class="
                   form-check form-check-custom form-check-solid form-switch
                   mb-5
-                "
-              >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="model.header.fixed.desktop"
-                  [(ngModel)]="model.header.fixed.desktop"
-                />
+                ">
+                <input class="form-check-input" type="checkbox" name="model.header.fixed.desktop"
+                  [(ngModel)]="model.header.fixed.desktop" />
                 <span class="form-check-label text-muted">Desktop</span>
               </label>
-              <label
-                class="
+              <label class="
                   form-check form-check-custom form-check-solid form-switch
                   mb-3
-                "
-              >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="model.header.fixed.tabletAndMobile"
-                  [(ngModel)]="model.header.fixed.tabletAndMobile"
-                />
+                ">
+                <input class="form-check-input" type="checkbox" name="model.header.fixed.tabletAndMobile"
+                  [(ngModel)]="model.header.fixed.tabletAndMobile" />
                 <span class="form-check-label text-muted">Tablet & Mobile</span>
               </label>
               <div class="form-text text-muted">Enable fixed header</div>
@@ -143,11 +100,7 @@
           <div class="row mb-10">
             <label class="col-lg-3 col-form-label text-lg-end">Width:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-select form-select-solid"
-                name="model.header.width"
-                [(ngModel)]="model.header.width"
-              >
+              <select class="form-select form-select-solid" name="model.header.width" [(ngModel)]="model.header.width">
                 <option value="fluid">Fluid</option>
                 <option value="fixed">Fixed</option>
               </select>
@@ -162,39 +115,25 @@
           <div class="row mb-10">
             <label class="col-lg-3 col-form-label text-lg-end">Display:</label>
             <div class="col-lg-9 col-xl-4">
-              <div
-                class="
+              <div class="
                   form-check form-check-custom form-check-solid form-switch
                   mb-2
-                "
-              >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="model.pageTitle.display"
-                  [(ngModel)]="model.pageTitle.display"
-                />
+                ">
+                <input class="form-check-input" type="checkbox" name="model.pageTitle.display"
+                  [(ngModel)]="model.pageTitle.display" />
               </div>
               <div class="form-text text-muted">Display page title</div>
             </div>
           </div>
           <div class="row mb-10">
-            <label class="col-lg-3 col-form-label text-lg-end"
-              >Breadcrumb:</label
-            >
+            <label class="col-lg-3 col-form-label text-lg-end">Breadcrumb:</label>
             <div class="col-lg-9 col-xl-4">
-              <div
-                class="
+              <div class="
                   form-check form-check-custom form-check-solid form-switch
                   mb-2
-                "
-              >
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="model.pageTitle.breadCrumbs"
-                  [(ngModel)]="model.pageTitle.breadCrumbs"
-                />
+                ">
+                <input class="form-check-input" type="checkbox" name="model.pageTitle.breadCrumbs"
+                  [(ngModel)]="model.pageTitle.breadCrumbs" />
               </div>
               <div class="form-text text-muted">Display page title</div>
             </div>
@@ -207,11 +146,8 @@
           <div class="row mb-10">
             <label class="col-lg-3 col-form-label text-lg-end">Width:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-select form-select-solid"
-                name="model.content.width"
-                [(ngModel)]="model.content.width"
-              >
+              <select class="form-select form-select-solid" name="model.content.width"
+                [(ngModel)]="model.content.width">
                 <option value="fluid">Fluid</option>
                 <option value="fixed">Fixed</option>
               </select>
@@ -227,18 +163,12 @@
             <label class="col-lg-3 col-form-label text-lg-end">Fixed:</label>
             <div class="col-lg-9 col-xl-4">
               <div class="switch switch-icon">
-                <div
-                  class="
+                <div class="
                     form-check form-check-custom form-check-solid form-switch
                     mb-2
-                  "
-                >
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    name="model.aside.fixed"
-                    [(ngModel)]="model.aside.fixed"
-                  />
+                  ">
+                  <input class="form-check-input" type="checkbox" name="model.aside.fixed"
+                    [(ngModel)]="model.aside.fixed" />
                 </div>
               </div>
               <div class="form-text text-muted">Enable fixed aside</div>
@@ -252,11 +182,7 @@
           <div class="row mb-10">
             <label class="col-lg-3 col-form-label text-lg-end">Width:</label>
             <div class="col-lg-9 col-xl-4">
-              <select
-                class="form-select form-select-solid"
-                name="model.footer.width"
-                [(ngModel)]="model.footer.width"
-              >
+              <select class="form-select form-select-solid" name="model.footer.width" [(ngModel)]="model.footer.width">
                 <option value="fluid">Fluid</option>
                 <option value="fixed">Fixed</option>
               </select>
@@ -274,12 +200,8 @@
       <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-9">
-          <button
-            type="button"
-            (click)="submitPreview()"
-            class="btn btn-primary me-2"
-            [disabled]="configLoading || resetLoading"
-          >
+          <button type="button" (click)="submitPreview()" class="btn btn-primary me-2"
+            [disabled]="configLoading || resetLoading">
             <ng-container *ngIf="!configLoading">
               <span class="indicator-label">Preview</span>
             </ng-container>
@@ -287,20 +209,13 @@
             <ng-container *ngIf="configLoading">
               <span class="indicator-progress" [style.display]="'block'">
                 Please wait...{{ " " }}
-                <span
-                  class="spinner-border spinner-border-sm align-middle ms-2"
-                ></span>
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
               </span>
             </ng-container>
           </button>
 
-          <button
-            type="button"
-            id="kt_layout_builder_reset"
-            class="btn btn-active-light btn-color-muted"
-            (click)="resetPreview()"
-            [disabled]="configLoading || resetLoading"
-          >
+          <button type="button" id="kt_layout_builder_reset" class="btn btn-active-light btn-color-muted"
+            (click)="resetPreview()" [disabled]="configLoading || resetLoading">
             <ng-container *ngIf="!resetLoading">
               <span class="indicator-label">Reset</span>
             </ng-container>
@@ -308,9 +223,7 @@
             <ng-container *ngIf="resetLoading">
               <span class="indicator-progress" [style.display]="'block'">
                 Please wait...{{ " " }}
-                <span
-                  class="spinner-border spinner-border-sm align-middle ms-2"
-                ></span>
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
               </span>
             </ng-container>
           </button>
