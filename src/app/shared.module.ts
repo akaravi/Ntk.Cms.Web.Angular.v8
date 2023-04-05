@@ -68,7 +68,7 @@ import {
   SmsMainApiPathService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { PersianDate } from './core/pipe/persianDatePipe/persian-date.pipe';
+import { PersianDate } from './core/pipe/persian-date/persian-date.pipe';
 import { TruncatePipe } from './core/pipe/truncate.pipe';
 import { CmsExportListComponent } from './shared/cms-export-list/cmsExportList.component';
 import { CmsMapComponent } from './shared/cms-map/cms-map.component';
@@ -100,7 +100,7 @@ import { CmsUserInfoPipe } from './core/pipe/core/cms-user-info.pipe';
 import { EnumsPipe } from './core/pipe/enums.pipe';
 import { FirstLetterPipe } from './core/pipe/first-letter.pipe';
 import { KeysPipe } from './core/pipe/keys.pipe';
-import { PersianDateFull } from './core/pipe/persianDatePipe/persian-date-full.pipe';
+import { PersianDateFull } from './core/pipe/persian-date/persian-date-full.pipe';
 import { PrettyjsonPipe } from './core/pipe/prettyjson.pipe';
 import { RecordStatusClassPipe } from './core/pipe/recordStatusClass.pipe';
 import { SafePipe } from './core/pipe/safe.pipe';
