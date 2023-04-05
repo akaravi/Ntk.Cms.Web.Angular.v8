@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { LayoutService } from '../../core/layout.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   pageTitleCssClasses: string = '';
 
   constructor(private layout: LayoutService) {}
-
+  loadDemoTheme = environment.loadDemoTheme;
   ngOnInit(): void {
     this.toolbarContainerCssClasses =
       this.layout.getStringCSSClasses('toolbarContainer');

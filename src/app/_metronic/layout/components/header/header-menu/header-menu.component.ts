@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreCpMainMenuModel, CoreCpMainMenuService, ErrorExceptionResult, TokenInfoModel } from 'ntk-cms-api';
@@ -21,23 +21,76 @@ export class HeaderMenuComponent implements OnInit {
     private coreCpMainMenuService: CoreCpMainMenuService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private elRef: ElementRef
   ) {
     this.loading.cdr = this.cdr;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+
+      if (this.menuMainElement) {
+        if (this.tokenInfo.direction === 'rtl')
+          this.menuMainElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'bottom-end');
+          });
+        else
+          this.menuMainElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'bottom-start');
+          });
+      }
+      if (this.menuChildElement) {
+        if (this.tokenInfo.direction === 'rtl')
+          this.menuChildElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'left-strt');
+          });
+        else
+          this.menuChildElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'right-start');
+          });
+      }
+
       if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId > 0) {
         setTimeout(() => { this.DataGetCpMenu(); }, 1000);
       }
+
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((value) => {
       this.tokenInfo = value;
 
+      if (this.menuMainElement) {
+        if (this.tokenInfo.direction === 'rtl')
+          this.menuMainElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'bottom-end');
+          });
+        else
+          this.menuMainElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'bottom-start');
+          });
+      }
+      if (this.menuChildElement) {
+        if (this.tokenInfo.direction === 'rtl')
+          this.menuChildElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'left-strt');
+          });
+        else
+          this.menuChildElement.forEach(element => {
+            element.nativeElement.setAttribute('data-kt-menu-placement', 'right-start');
+          });
+      }
+
       if (this.tokenInfo && this.tokenInfo.userId > 0 && this.tokenInfo.siteId > 0) {
         setTimeout(() => { this.DataGetCpMenu(); }, 1000);
       }
     });
-  }
 
+  }
+  menuMainElement: ElementRef[];
+  menuChildElement: ElementRef[];
+
+  ngAfterViewInit() {
+    this.menuMainElement = this.elRef.nativeElement.querySelector('.menuMainElement');
+    this.menuChildElement = this.elRef.nativeElement.querySelector('.menuChildElement');
+
+  }
 
   ngOnInit(): void { }
   loadDemoTheme = environment.loadDemoTheme;

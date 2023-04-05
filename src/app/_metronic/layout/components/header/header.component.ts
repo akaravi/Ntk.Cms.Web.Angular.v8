@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild,} from '@angular/core';
-import {NavigationCancel, NavigationEnd, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {LayoutService} from '../../core/layout.service';
-import {MenuComponent} from '../../../kt/components';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { NavigationCancel, NavigationEnd, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { MenuComponent } from '../../../kt/components';
+import { LayoutService } from '../../core/layout.service';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   pageTitleAttributes: {
     [attrName: string]: string | boolean;
   };
-  @ViewChild('ktPageTitle', {static: true}) ktPageTitle: ElementRef;
+  @ViewChild('ktPageTitle', { static: true }) ktPageTitle: ElementRef;
 
   private unsubscribe: Subscription[] = [];
 

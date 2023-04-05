@@ -9,7 +9,7 @@
       <span *ngIf="(svg && svg.length>0)" class="svg-icon svg-icon-primary position-absolute opacity-15"
         [inlineSVG]="svg" [setSVGAttributes]="{ class: 'h-80px w-80px' }"></span>
       <i *ngIf="icon && icon.length>0" [ngClass]="icon"></i>
-      <span *ngif="icon?.length===0 && svg?.length===0" [inlineSVG]="'./assets/media/icons/duotune/coding/cod009.svg'"
+      <span *ngIf="icon?.length===0 && svg?.length===0" [inlineSVG]="'./assets/media/icons/duotune/coding/cod009.svg'"
         class="svg-icon svg-icon-3x svg-icon-primary position-absolute"></span>
     </div>
     <!-- end::Icon  -->

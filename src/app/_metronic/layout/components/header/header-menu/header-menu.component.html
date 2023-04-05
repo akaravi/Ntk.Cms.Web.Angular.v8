@@ -11,7 +11,7 @@
 
   <!-- Cms Menu -->
   <div *ngIf="dataModelResult.isSuccess&& dataModelResult.listItems && dataModelResult.listItems.length>0"
-    class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown" data-kt-menu-trigger="click"
+    class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown" data-kt-menu-trigger="click" class="menuMainElement"
     data-kt-menu-placement="bottom-start">
     <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted')">
       <span class="menu-title">{{'MENU.MENU'|translate}}</span>
@@ -23,10 +23,11 @@
       w-lg-225px
     " data-kt-menu-dismiss="true" data-popper-placement="bottom-start">
       <div *ngFor="let childLeve0 of dataModelResult.listItems" class="menu-item menu-lg-down-accordion me-lg-1"
-        data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start">
+        data-kt-menu-trigger="{default:'click', lg: 'hover'}" class="menuChildElement"
+        data-kt-menu-placement="right-start">
         <!--No Child-->
         <span *ngIf="!childLeve0.children || childLeve0.children.length===0" class="menu-link py-3"
-          [ngClass]="calculateMenuItemCssClass('/crafted/pages')">
+          [ngClass]="calculateMenuItemCssClass(childLeve0.routeAddressLink)">
           <span class="menu-icon">
             <a routerLink="{{childLeve0.routeAddressLink}}">
               <i class="{{childLeve0.icon}} " [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''"></i>
@@ -42,7 +43,8 @@
         <!--No Child-->
         <!--By Child-->
         <span *ngIf="childLeve0.children && childLeve0.children.length>0" class="menu-link py-3"
-          [ngClass]="calculateMenuItemCssClass('/crafted/pages')"><span class="menu-icon"><i class="{{childLeve0.icon}}"
+          [ngClass]="calculateMenuItemCssClass(childLeve0.routeAddressLink)"><span class="menu-icon"><i
+              class="{{childLeve0.icon}}"
               [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''"></i></span><span class="menu-title">
             {{childLeve0.titleML}}
           </span><span class="menu-arrow"></span></span>
@@ -57,10 +59,11 @@
           w-lg-225px
         " data-kt-menu-dismiss="true">
           <div *ngFor="let childLeve1 of childLeve0.children" class="menu-item menu-lg-down-accordion me-lg-1"
-            data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-placement="right-start">
+            data-kt-menu-trigger="{default:'click', lg: 'hover'}" class="menuChildElement"
+            data-kt-menu-placement="right-start">
             <!--No Child-->
             <span *ngIf="!childLeve1.children || childLeve1.children.length===0" class="menu-link py-3"
-              [ngClass]="calculateMenuItemCssClass('/crafted/pages/profile')">
+              [ngClass]="calculateMenuItemCssClass(childLeve1.routeAddressLink)">
               <span class="menu-bullet">
                 <a routerLink="{{childLeve1.routeAddressLink}}"><span class="{{childLeve1.icon}}"
                     [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span>
@@ -75,7 +78,7 @@
             <!--No Child-->
             <!--By Child-->
             <span *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-link py-3"
-              [ngClass]="calculateMenuItemCssClass('/crafted/pages/profile')"><span class="menu-bullet"><span
+              [ngClass]="calculateMenuItemCssClass(childLeve1.routeAddressLink)"><span class="menu-bullet"><span
                   class="{{childLeve1.icon}}"
                   [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span></span><span
                 class="menu-title" data-link="/crafted/pages/profile">{{childLeve1.titleML}}</span><span
@@ -114,7 +117,7 @@
 
   <!-- Crafted -->
   <div *ngIf="loadDemoTheme" class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown" data-kt-menu-trigger="click"
-    data-kt-menu-placement="bottom-start">
+    class="menuMainElement" data-kt-menu-placement="bottom-start">
     <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted')">
       <span class="menu-title">Crafted</span>
       <span class="menu-arrow d-lg-none"></span>
@@ -125,7 +128,7 @@
         w-lg-225px
       " data-kt-menu-dismiss="true" data-popper-placement="bottom-start">
       <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        data-kt-menu-placement="right-start">
+        class="menuChildElement" data-kt-menu-placement="right-start">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/pages')"><span class="menu-icon"><i
               class="bi fs-3 bi-archive"></i></span><span class="menu-title">Pages</span><span
             class="menu-arrow"></span></span>
@@ -138,7 +141,7 @@
             w-lg-225px
           " data-kt-menu-dismiss="true">
           <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-            data-kt-menu-placement="right-start">
+            class="menuChildElement" data-kt-menu-placement="right-start">
             <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/pages/profile')"><span
                 class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title"
                 data-link="/crafted/pages/profile">Profile</span><span class="menu-arrow"></span></span>
@@ -181,7 +184,7 @@
             </div>
           </div>
           <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-            data-kt-menu-placement="right-start">
+            class="menuChildElement" data-kt-menu-placement="right-start">
             <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/pages/wizards')"><span
                 class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title"
                 data-link="/crafted/pages/wizards">Wizards</span><span class="menu-arrow"></span></span>
@@ -208,7 +211,7 @@
         </div>
       </div>
       <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        data-kt-menu-placement="right-start">
+        class="menuChildElement" data-kt-menu-placement="right-start">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/account')"><span
             class="menu-icon"><i class="bi fs-3 bi-person"></i></span><span class="menu-title"
             data-link="/crafted/account">Accounts</span><span class="menu-arrow"></span></span>
@@ -233,7 +236,7 @@
         </div>
       </div>
       <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        data-kt-menu-placement="right-start">
+        class="menuChildElement" data-kt-menu-placement="right-start">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/error')"><span class="menu-icon"><i
               class="bi fs-3 bi-sticky"></i></span><span class="menu-title" data-link="/error">Errors</span><span
             class="menu-arrow"></span></span>
@@ -256,7 +259,7 @@
         </div>
       </div>
       <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        data-kt-menu-placement="right-start">
+        class="menuChildElement" data-kt-menu-placement="right-start">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/widgets')"><span
             class="menu-icon"><i class="bi fs-3 bi-layers"></i></span><span class="menu-title"
             data-link="/crafted/widgets">Widgets</span><span class="menu-arrow"></span></span>
@@ -304,7 +307,7 @@
   </div>
   <!-- MegaMenu -->
   <div *ngIf="loadDemoTheme" class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="click"
-    data-kt-menu-placement="bottom-start">
+    class="menuMainElement" data-kt-menu-placement="bottom-start">
     <span class="menu-link py-3">
       <span class="menu-title">Mega menu</span>
       <span class="menu-arrow d-lg-none"></span>
