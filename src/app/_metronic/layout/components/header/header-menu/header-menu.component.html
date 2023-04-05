@@ -1,5 +1,5 @@
 <div
-  class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-600 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold fs-6 my-5 my-lg-0 align-items-stretch"
+  class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-600 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-{{this.tokenInfo.direction}}-gray-400 fw-bold fs-6 my-5 my-lg-0 align-items-stretch"
   id="#kt_header_menu" data-kt-menu="true">
 
   <!-- Dashboard -->
@@ -11,20 +11,20 @@
 
   <!-- Cms Menu -->
   <div *ngIf="dataModelResult.isSuccess&& dataModelResult.listItems && dataModelResult.listItems.length>0"
-    class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown" data-kt-menu-trigger="click" class="menuMainElement"
-    data-kt-menu-placement="bottom-start">
+    class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown " data-kt-menu-trigger="click"
+    [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'bottom-end':'bottom-start'">
     <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted')">
       <span class="menu-title">{{'MENU.MENU'|translate}}</span>
-      <span class="menu-arrow d-lg-none"></span>
+      <span class="menu-arrow-{{this.tokenInfo.direction}} d-lg-none"></span>
     </span>
     <div class="
       menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
       py-lg-4
       w-lg-225px
     " data-kt-menu-dismiss="true" data-popper-placement="bottom-start">
-      <div *ngFor="let childLeve0 of dataModelResult.listItems" class="menu-item menu-lg-down-accordion me-lg-1"
-        data-kt-menu-trigger="{default:'click', lg: 'hover'}" class="menuChildElement"
-        data-kt-menu-placement="right-start">
+      <div *ngFor="let childLeve0 of dataModelResult.listItems" class="menu-item menu-lg-down-accordion me-lg-1 "
+        data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+        [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
         <!--No Child-->
         <span *ngIf="!childLeve0.children || childLeve0.children.length===0" class="menu-link py-3"
           [ngClass]="calculateMenuItemCssClass(childLeve0.routeAddressLink)">
@@ -47,7 +47,7 @@
               class="{{childLeve0.icon}}"
               [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''"></i></span><span class="menu-title">
             {{childLeve0.titleML}}
-          </span><span class="menu-arrow"></span></span>
+          </span><span class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
         <!--By Child-->
         <!--Child-->
         <div *ngIf="childLeve0.children && childLeve0.children.length>0" class="
@@ -58,9 +58,9 @@
           py-lg-4
           w-lg-225px
         " data-kt-menu-dismiss="true">
-          <div *ngFor="let childLeve1 of childLeve0.children" class="menu-item menu-lg-down-accordion me-lg-1"
-            data-kt-menu-trigger="{default:'click', lg: 'hover'}" class="menuChildElement"
-            data-kt-menu-placement="right-start">
+          <div *ngFor="let childLeve1 of childLeve0.children" class="menu-item menu-lg-down-accordion me-lg-1 "
+            data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+            [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
             <!--No Child-->
             <span *ngIf="!childLeve1.children || childLeve1.children.length===0" class="menu-link py-3"
               [ngClass]="calculateMenuItemCssClass(childLeve1.routeAddressLink)">
@@ -82,7 +82,7 @@
                   class="{{childLeve1.icon}}"
                   [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span></span><span
                 class="menu-title" data-link="/crafted/pages/profile">{{childLeve1.titleML}}</span><span
-                class="menu-arrow"></span></span>
+                class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
             <!--By Child-->
             <!--Child-->
             <div *ngIf="childLeve1.children && childLeve1.children.length>0" class="
@@ -116,22 +116,23 @@
   </div>
 
   <!-- Crafted -->
-  <div *ngIf="loadDemoTheme" class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown" data-kt-menu-trigger="click"
-    class="menuMainElement" data-kt-menu-placement="bottom-start">
+  <div *ngIf="loadDemoTheme" class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown "
+    data-kt-menu-trigger="click"
+    [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'bottom-end':'bottom-start'">
     <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted')">
       <span class="menu-title">Crafted</span>
-      <span class="menu-arrow d-lg-none"></span>
+      <span class="menu-arrow-{{this.tokenInfo.direction}} d-lg-none"></span>
     </span>
     <div class="
         menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
         py-lg-4
         w-lg-225px
       " data-kt-menu-dismiss="true" data-popper-placement="bottom-start">
-      <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        class="menuChildElement" data-kt-menu-placement="right-start">
+      <div class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+        [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/pages')"><span class="menu-icon"><i
               class="bi fs-3 bi-archive"></i></span><span class="menu-title">Pages</span><span
-            class="menu-arrow"></span></span>
+            class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
         <div class="
             menu-sub
             menu-sub-lg-down-accordion
@@ -140,11 +141,12 @@
             py-lg-4
             w-lg-225px
           " data-kt-menu-dismiss="true">
-          <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-            class="menuChildElement" data-kt-menu-placement="right-start">
+          <div class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+            [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
             <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/pages/profile')"><span
                 class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title"
-                data-link="/crafted/pages/profile">Profile</span><span class="menu-arrow"></span></span>
+                data-link="/crafted/pages/profile">Profile</span><span
+                class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
             <div class="
                 menu-sub
                 menu-sub-lg-down-accordion
@@ -183,11 +185,12 @@
               </div>
             </div>
           </div>
-          <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-            class="menuChildElement" data-kt-menu-placement="right-start">
+          <div class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+            [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
             <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/pages/wizards')"><span
                 class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title"
-                data-link="/crafted/pages/wizards">Wizards</span><span class="menu-arrow"></span></span>
+                data-link="/crafted/pages/wizards">Wizards</span><span
+                class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
             <div class="
                 menu-sub
                 menu-sub-lg-down-accordion
@@ -210,11 +213,12 @@
           </div>
         </div>
       </div>
-      <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        class="menuChildElement" data-kt-menu-placement="right-start">
+      <div class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+        [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/account')"><span
             class="menu-icon"><i class="bi fs-3 bi-person"></i></span><span class="menu-title"
-            data-link="/crafted/account">Accounts</span><span class="menu-arrow"></span></span>
+            data-link="/crafted/account">Accounts</span><span
+            class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
         <div class="
             menu-sub
             menu-sub-lg-down-accordion
@@ -235,11 +239,11 @@
           </div>
         </div>
       </div>
-      <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        class="menuChildElement" data-kt-menu-placement="right-start">
+      <div class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+        [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/error')"><span class="menu-icon"><i
               class="bi fs-3 bi-sticky"></i></span><span class="menu-title" data-link="/error">Errors</span><span
-            class="menu-arrow"></span></span>
+            class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
         <div class="
             menu-sub
             menu-sub-lg-down-accordion
@@ -258,11 +262,12 @@
           </div>
         </div>
       </div>
-      <div class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-        class="menuChildElement" data-kt-menu-placement="right-start">
+      <div class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+        [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'left-start':'right-start'">
         <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/crafted/widgets')"><span
             class="menu-icon"><i class="bi fs-3 bi-layers"></i></span><span class="menu-title"
-            data-link="/crafted/widgets">Widgets</span><span class="menu-arrow"></span></span>
+            data-link="/crafted/widgets">Widgets</span><span
+            class="menu-arrow-{{this.tokenInfo.direction}}"></span></span>
         <div class="
             menu-sub
             menu-sub-lg-down-accordion
@@ -306,11 +311,11 @@
     </div>
   </div>
   <!-- MegaMenu -->
-  <div *ngIf="loadDemoTheme" class="menu-item menu-lg-down-accordion me-lg-1" data-kt-menu-trigger="click"
-    class="menuMainElement" data-kt-menu-placement="bottom-start">
+  <div *ngIf="loadDemoTheme" class="menu-item menu-lg-down-accordion me-lg-1 " data-kt-menu-trigger="click"
+    [attr.data-kt-menu-placement]="this.tokenInfo.direction === 'rtl' ?'bottom-end':'bottom-start'">
     <span class="menu-link py-3">
       <span class="menu-title">Mega menu</span>
-      <span class="menu-arrow d-lg-none"></span>
+      <span class="menu-arrow-{{this.tokenInfo.direction}} d-lg-none"></span>
     </span>
     <div class="
       menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown
