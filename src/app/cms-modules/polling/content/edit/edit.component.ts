@@ -57,7 +57,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   optionDataModel = new Array<PollingOptionModel>();
   optionTabledataSource = new MatTableDataSource<PollingOptionModel>();
   dataOptionModelResult: ErrorExceptionResult<PollingOptionModel> = new ErrorExceptionResult<PollingOptionModel>();
-  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = '';
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 

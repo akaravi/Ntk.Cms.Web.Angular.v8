@@ -30,13 +30,15 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -11px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkBotConfigId>0" type="button"
       class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
@@ -47,7 +49,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
@@ -69,8 +71,8 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+        </mat-cell>
       </ng-container>
       <!-- LinkBotConfigId Column -->
       <ng-container matColumnDef="LinkBotConfigId">
@@ -98,7 +100,8 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"  [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.createdDate) }} {{ publicHelper.getTime(row.createdDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDate(row.createdDate) }}
+          {{ publicHelper.getTime(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">

@@ -44,6 +44,7 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
     this.loadingOption.cdr = this.cdr;
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -54,7 +55,7 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = '';
   optionActionButtomEnable = true;
   dataProfessional = false;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];

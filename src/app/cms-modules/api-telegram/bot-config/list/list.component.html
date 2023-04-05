@@ -29,18 +29,20 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -11px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button *ngIf="tableRowSelected.id>0" (click)="onActionbuttonSendMessage()" type="button"
       class="btn btn-outline-primary">{{'ACTION.SEND_MESSAGE' | translate}}</button>
-      <button *ngIf="tableRowSelected.id>0" (click)="onActionbuttonGetMeAsync()" type="button"
-        class="btn btn-outline-primary">{{'ACTION.GetMeAsync' | translate}}</button>
+    <button *ngIf="tableRowSelected.id>0" (click)="onActionbuttonGetMeAsync()" type="button"
+      class="btn btn-outline-primary">{{'ACTION.GetMeAsync' | translate}}</button>
     <button (click)="onActionbuttonSetAllWebhookUpdate()" type="button"
       class="btn btn-outline-primary">{{'ACTION.SetAllWebhookUpdate' | translate}}</button>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
@@ -70,8 +72,9 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass" ></i>
-           <select matNativeControl  cmsRecordStatusSelfSave  [contentService]="contentService" [row]="row" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
       <!-- Title Column -->
@@ -151,9 +154,9 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-icon-button  (click)="onActionbuttonLinkTo(row)">
-          <mat-icon>&#8599;</mat-icon>
-        </button>
+          <button mat-icon-button (click)="onActionbuttonLinkTo(row)">
+            <mat-icon>&#8599;</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 

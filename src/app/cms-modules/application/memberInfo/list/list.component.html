@@ -29,13 +29,15 @@
       </mat-slide-toggle>
     </a>
     <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -11px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
-    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
-      <mat-icon style="font-size: 20px;margin: -1px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkApplicationId>0" type="button"
       class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
@@ -44,7 +46,7 @@
   <ng-container cms-action-area>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-    
+
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
   </ng-container>
@@ -161,10 +163,10 @@
                 <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
                     class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
                     width="80" /></th>
-                <th>        <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
-                  <i class="flaticon2-copy"></i></span>
+                <th> <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span>
                   {{row.id}}
-          
+
                 </th>
               </tr>
               <tr *ngIf="row.updatedDate">
@@ -173,12 +175,12 @@
               </tr>
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['linkLocationIdTitle']?.fieldTitle}}  {{row.linkLocationIdTitle}} </td>
+                <td> {{fieldsInfo['linkLocationIdTitle']?.fieldTitle}} {{row.linkLocationIdTitle}} </td>
               </tr>
 
               <tr>
                 <td></td>
-                <td> {{fieldsInfo['linkLocationIdParentTitle']?.fieldTitle}}  {{row.linkLocationIdParentTitle}} </td>
+                <td> {{fieldsInfo['linkLocationIdParentTitle']?.fieldTitle}} {{row.linkLocationIdParentTitle}} </td>
               </tr>
               <tr>
                 <td></td>

@@ -44,6 +44,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
     this.loadingOption.cdr = this.cdr;
 
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
+    this.optionActionTitle = this.translate.instant('ACTION.Add_To_List');
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -52,7 +53,8 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   dataAccessModel: AccessModel;
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardModel> = new ErrorExceptionResult<LinkManagementBillboardModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  optionActionTitle = this.translate.instant('ACTION.Add_To_List');
+  optionActionTitle = '';
+
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
   dataContentCategoryModel: number[] = [];
