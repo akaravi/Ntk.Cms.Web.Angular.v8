@@ -1,48 +1,31 @@
 <!--begin::Languages-->
 <div class="dropdown" ngbDropdown placement="auto" [autoClose]="true">
   <!--begin::Toggle-->
-  <div
-    ngbDropdownToggle
-    class="topbar-item"
-    data-toggle="dropdown"
-    data-offset="10px,0px"
-  >
+  <div ngbDropdownToggle class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
     <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
-      <img
-        class="h-25px w-25px rounded"
-        src="{{ language?.flag }}"
-        alt="language"
-      />
+      <img class="h-25px w-25px rounded" src="{{ language?.flag }}" alt="language" />
     </div>
   </div>
   <!--end::Toggle-->
 
   <!--begin::Dropdown-->
-  <div
-    ngbDropdownMenu
-    class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right"
-  >
-  <ul class="nav">
-        <li *ngFor="let language of languages" class="menu-item" [ngClass]="{ active: language?.active }">
-          <a
-          class="
+  <div ngbDropdownMenu class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
+    <ul class="nav">
+      <li *ngFor="let language of languages" class="menu-item" [ngClass]="{ active: language?.active }">
+        <a class="
           nav-link
           btn btn-sm btn-color-muted btn-active btn-active-light-primary
           fw-bolder
           px-4
           me-1
-        "
-            href="javascript:;"
-            (click)="setLanguageWithRefresh(language?.lang)"
-            [ngClass]="{ active: language?.active }"
-         
-          >
-            <span class="symbol symbol-20 mr-3">
-              <img src="{{ language?.flag }}" />
-            </span>
-            <span class="navi-text">{{ language?.name }}</span>
-          </a>
-        </li>
+        " href="javascript:;" (click)="setLanguageWithRefresh(language?.lang)"
+          [ngClass]="{ active: language?.active }">
+          <span class="symbol symbol-20 mr-3">
+            <img style="width: 35px;" src="{{ language?.flag }}" />
+          </span>
+          <span class="navi-text">{{ language?.name }}</span>
+        </a>
+      </li>
     </ul>
   </div>
   <!--end::Dropdown-->

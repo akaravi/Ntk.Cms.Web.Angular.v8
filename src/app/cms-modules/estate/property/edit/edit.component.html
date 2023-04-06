@@ -2,12 +2,12 @@
 </app-cms-guide-notice>
 
 <app-cms-html-notice>
-  {{'TITLE.Edit' | translate}} "{{ formInfo.formTitle }}"
-  <a routerLink="{{'/core/user/edit/' +this.dataModel.createdBy}}" target="_blank"
-    class="link-primary pointer float-right">
+  <div style="color: black;">{{'TITLE.Edit' | translate}} "{{ formInfo.formTitle }}"</div>
+  <br>
+  <a routerLink="{{'/core/user/edit/' +this.dataModel.createdBy}}" target="_blank" class="link-primary pointer ">
     {{'ACTION.VIEW_USER' | translate}} </a>
 
-  <div *ngIf="dataModel.linkSiteId!==tokenHelper.tokenInfo.siteId" class="float-right">
+  <div *ngIf="dataModel.linkSiteId!==tokenHelper.tokenInfo.siteId" style="float:right;">
     <a routerLink="{{'/core/site/edit/'+dataModel.linkSiteId}}" target="_blank" class="link-primary pointer">
       {{'ACTION.VIEW_SITE' | translate}} </a>
     |&nbsp;

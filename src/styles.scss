@@ -102,6 +102,11 @@ karavi tooltip guid
     opacity: 1;
 }
 
+.input-ltr-center {
+    direction: ltr !important;
+    text-align: center !important;
+}
+
 
 /* Popup container */
 .popup {

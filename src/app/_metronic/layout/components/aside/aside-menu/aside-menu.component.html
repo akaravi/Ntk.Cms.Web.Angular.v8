@@ -9,7 +9,8 @@
     <div class="menu-item py-3" routerLinkActive="here show">
       <a class="menu-link menu-center" routerLink="/dashboard" routerLinkActive="show">
         <span class="menu-icon me-0">
-          <span [inlineSVG]="'./assets/media/icons/duotune/art/art002.svg'" class="svg-icon svg-icon-2"></span>
+          <span [inlineSVG]="'./assets/media/icons/duotune/art/art002.svg'" style="scale: 1.5;"
+            class="svg-icon svg-icon-2"></span>
         </span>
         <span class="menu-title">{{'MENU.DASHBOARD'|translate}}</span>
       </a>
@@ -21,7 +22,7 @@
       <span *ngIf="!childLeve0.children || childLeve0.children.length===0" class="menu-link menu-center">
         <span class="menu-icon me-0">
           <a routerLink="{{childLeve0.routeAddressLink}}">
-            <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}"
+            <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}" style="scale: 1.5;"
               [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''">
             </span>
           </a>
@@ -37,7 +38,7 @@
       <!--By Child-->
       <span *ngIf="childLeve0.children && childLeve0.children.length>0" class="menu-link menu-center">
         <span class="menu-icon me-0">
-          <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}"
+          <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}" style="scale: 1.5;"
             [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''">
           </span>
         </span>
@@ -53,11 +54,12 @@
           <span *ngIf="!childLeve1.children || childLeve1.children.length===0" class="menu-link">
             <span class="menu-bullet">
               <a routerLink="{{childLeve1.routeAddressLink}}">
-                <span class="{{childLeve1.icon}}"
+                <span class="{{childLeve1.icon}}" style="scale: 1.5;"
                   [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span>
               </a>
             </span>
-            <span class="menu-title" data-link="/crafted/pages/profile">
+            <!-- &nbsp; &nbsp; -->
+            <span class="menu-title me-2" data-link="/crafted/pages/profile">
               <a routerLink="{{childLeve1.routeAddressLink}}">
                 {{childLeve1.titleML}}
               </a>
@@ -66,7 +68,7 @@
           <!--No Child-->
           <!--By Child-->
           <span *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-link">
-            <span class="menu-bullet"><span class="{{childLeve1.icon}}"
+            <span class="menu-bullet"><span class="{{childLeve1.icon}}" style="scale: 1.5;"
                 [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span></span>
             <span class="menu-title" data-link="/crafted/pages/profile">{{childLeve1.titleML}}</span>
             <span class="menu-arrow"></span>
@@ -77,7 +79,7 @@
             routerLinkActive="menu-active-bg show">
             <div *ngFor="let childLeve2 of childLeve1.children" class="menu-item">
               <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/overview"><span
-                  class="menu-bullet"><span class="{{childLeve2.icon}}"
+                  class="menu-bullet"><span class="{{childLeve2.icon}}" style="scale: 1.5;"
                     [style.color]="childLeve2.color?.length>0 ? childLeve2.color:''"></span></span><span
                   class="menu-title">{{childLeve2.titleML}}</span></a>
             </div>
