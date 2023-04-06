@@ -44,7 +44,8 @@ export class TokenHelper implements OnDestroy {
     const storeSnapshot = this.cmsApiStore.getStateSnapshot();
     if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
       this.tokenInfo = storeSnapshot.ntkCmsAPiState.tokenInfo;
-      this.setDirectionThemeBylanguage(this.tokenInfo);
+      if (this.tokenInfo)
+        this.setDirectionThemeBylanguage(this.tokenInfo.language);
       this.CheckIsAdmin();
       return storeSnapshot.ntkCmsAPiState.tokenInfo;
     }
@@ -52,7 +53,8 @@ export class TokenHelper implements OnDestroy {
       .pipe(map(ret => {
         this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: ret.item });
         this.tokenInfo = ret.item;
-        this.setDirectionThemeBylanguage(ret.item);
+        if (this.tokenInfo)
+          this.setDirectionThemeBylanguage(this.tokenInfo.language);
         this.CheckIsAdmin();
         return ret.item;
       })).toPromise();
@@ -61,12 +63,13 @@ export class TokenHelper implements OnDestroy {
     return this.cmsApiStore.getState((state) => {
       this.cmsStoreService.setState({ EnumRecordStatusResultStore: null });
       this.tokenInfo = state.ntkCmsAPiState.tokenInfo;
+      this.setDirectionThemeBylanguage(this.tokenInfo.language);
       this.CheckIsAdmin();
       return state.ntkCmsAPiState.tokenInfo;
     });
   }
-  setDirectionThemeBylanguage(item: TokenInfoModel) {
-    if (item.language === 'ar' || item.language === 'fa') {
+  setDirectionThemeBylanguage(language) {
+    if (language === 'ar' || language === 'fa') {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('style', 'direction: rtl');
@@ -77,7 +80,7 @@ export class TokenHelper implements OnDestroy {
       document.getElementsByTagName('html')[0].setAttribute('style', 'direction: ltr');
       //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
     }
-    document.getElementsByTagName('html')[0].setAttribute('lang', item.language);
+    document.getElementsByTagName('html')[0].setAttribute('lang', language);
   }
   CurrentTokenInfoRenew(): void {
     this.coreAuthService.CurrentTokenInfoRenew();

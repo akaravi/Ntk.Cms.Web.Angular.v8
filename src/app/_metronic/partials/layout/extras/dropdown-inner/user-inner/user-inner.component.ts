@@ -109,7 +109,9 @@ export class UserInnerComponent implements OnInit, OnDestroy {
                 this.cmsToastrService.toastr.success(this.translate.instant('MESSAGE.New_language_acess_confirmed'), title);
 
                 this.translate.use(ret.item.language);
-                this.tokenHelper.setDirectionThemeBylanguage(ret.item);
+                this.tokenInfo = ret.item;
+                // if (this.tokenInfo)
+                //   this.tokenHelper.setDirectionThemeBylanguage(this.tokenInfo.language);
               } else {
                 this.cmsToastrService.toastr.warning(this.translate.instant('ERRORMESSAGE.MESSAGE.New_language_acess_denied'), title);
               }
