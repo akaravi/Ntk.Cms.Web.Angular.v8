@@ -1,14 +1,17 @@
 <!-- begin::Row -->
 <div class="row gy-5 g-xl-8">
     <div class="col-xxl-4">
-        <app-mixed-widget2 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-xl-8" chartColor="danger" chartHeight="200px" strokeColor="#cb1e46"></app-mixed-widget2>
+        <app-mixed-widget2 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-xl-4" chartColor="danger"
+            chartHeight="200px" strokeColor="#cb1e46"></app-mixed-widget2>
     </div>
     <div class="col-xxl-4">
         <app-lists-widget5 *ngIf="loadDemoTheme" class="card card-xxl-stretch"></app-lists-widget5>
     </div>
     <div class="col-xxl-4">
-        <app-mixed-widget10 *ngIf="loadDemoTheme" class="card card-xxl-stretch-50 mb-5 mb-xl-8" chartColor="primary" chartHeight="150px"></app-mixed-widget10>
-        <app-mixed-widget11 *ngIf="loadDemoTheme" class="card card-xxl-stretch-50 mb-5 mb-xl-8" chartColor="primary" chartHeight="175px"></app-mixed-widget11>
+        <app-mixed-widget10 *ngIf="loadDemoTheme" class="card card-xxl-stretch-50 mb-5 mb-xl-4" chartColor="primary"
+            chartHeight="150px"></app-mixed-widget10>
+        <app-mixed-widget11 *ngIf="loadDemoTheme" class="card card-xxl-stretch-50 mb-5 mb-xl-4" chartColor="primary"
+            chartHeight="175px"></app-mixed-widget11>
     </div>
 </div>
 <!-- end::Row -->
@@ -19,7 +22,7 @@
         <app-lists-widget3 *ngIf="loadDemoTheme" class="card card-xxl-stretch mb-xl-3"></app-lists-widget3>
     </div>
     <div class="col-xl-8">
-        <app-tables-widget10 *ngIf="loadDemoTheme" class="card card-xxl-stretch mb-5 mb-xl-8"></app-tables-widget10>
+        <app-tables-widget10 *ngIf="loadDemoTheme" class="card card-xxl-stretch mb-5 mb-xl-4"></app-tables-widget10>
     </div>
 </div>
 <!-- end::Row -->
@@ -27,104 +30,88 @@
 <!-- begin::Row -->
 <div class="row gy-5 g-xl-8">
     <div class="col-xl-4">
-        <app-lists-widget2 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-xl-8"></app-lists-widget2>
+        <app-lists-widget2 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-xl-4"></app-lists-widget2>
     </div>
     <div class="col-xl-4">
-        <app-lists-widget6 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-xl-8"></app-lists-widget6>
+        <app-lists-widget6 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-xl-4"></app-lists-widget6>
     </div>
     <div class="col-xl-4">
-        <app-lists-widget4 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-5 mb-xl-8"></app-lists-widget4>
+        <app-lists-widget4 *ngIf="loadDemoTheme" class="card card-xl-stretch mb-5 mb-xl-4"></app-lists-widget4>
     </div>
 </div>
 <!-- end::Row -->
 
 <div class="row g-5 gx-xxl-8">
     <div class="col-xxl-4">
-        <app-mixed-widget8 *ngIf="loadDemoTheme" class="card card-xxl-stretch mb-xl-3" chartColor="success" chartHeight="150px"></app-mixed-widget8>
+        <app-mixed-widget8 *ngIf="loadDemoTheme" class="card card-xxl-stretch mb-xl-3" chartColor="success"
+            chartHeight="150px"></app-mixed-widget8>
     </div>
     <div class="col-xxl-8">
         <app-tables-widget5 *ngIf="loadDemoTheme" class="card card-xxl-stretch mb-5 mb-xxl-8"></app-tables-widget5>
     </div>
 </div>
 <!-- begin::Row -->
-<div class="row gy-5 g-xl-8">
+<div class="row gy-5 g-xl-10">
     <div class="col-xl-4">
-        <!-- <app-lists-widget2 class="card card-xl-stretch mb-xl-8"></app-lists-widget2> -->
-        <app-core-site-widget-count2 [(loading)]="loading" class="card card-xl-stretch mb-xl-8"></app-core-site-widget-count2>
-        <app-coremodule-site-credit-widget-price [(loading)]="loading" class="card card-xl-stretch mb-xl-8" style="cursor: pointer;" [routerLink]="'/coremodule/site-credit'" *ngIf="this.tokenHelper.isAdminSite" [baseColor]="'primary'">
+        <!-- <app-lists-widget2 class="card card-xl-stretch mb-xl-4"></app-lists-widget2> -->
+        <app-coremodule-site-credit-widget-price [(loading)]="loading" class="card mb-xl-4 mb-sm-4"
+            style="cursor: pointer;" [routerLink]="'/coremodule/site-credit'" *ngIf="this.tokenHelper.isAdminSite"
+            [baseColor]="'primary'">
         </app-coremodule-site-credit-widget-price>
-        <app-coremodule-site-user-credit-widget-price [(loading)]="loading" class="card card-xl-stretch mb-xl-8" style="cursor: pointer;" [routerLink]="'/coremodule/site-user-credit'">
+        <app-coremodule-site-user-credit-widget-price [(loading)]="loading" class="card mb-xl-4 mb-sm-4"
+            style="cursor: pointer;" [routerLink]="'/coremodule/site-user-credit'">
         </app-coremodule-site-user-credit-widget-price>
     </div>
     <div class="col-xl-4">
-        <!-- <app-lists-widget6 class="card card-xl-stretch mb-xl-8"></app-lists-widget6> -->
-        <app-core-userclaimcontent-widget-status [(loading)]="loading" class="card card-xl-stretch mb-xl-8">
+        <!-- <app-lists-widget6 class="card card-xl-stretch mb-xl-4"></app-lists-widget6> -->
+        <app-core-userclaimcontent-widget-status [(loading)]="loading" class="card mb-xl-4 mb-sm-4">
         </app-core-userclaimcontent-widget-status>
     </div>
     <div class="col-xl-4">
-        <!-- <app-lists-widget4 class="card card-xl-stretch mb-5 mb-xl-8"></app-lists-widget4> -->
-        <app-ticketing-task-widget2 [(loading)]="loading" cssClass="gutter-b card-stretch" class="card card-xl-stretch mb-5 mb-xl-8">
+        <!-- <app-lists-widget4 class="card card-xl-stretch mb-5 mb-xl-4"></app-lists-widget4> -->
+        <app-ticketing-task-widget2 [(loading)]="loading" cssClass="gutter-b" class="card mb-5 mb-xl-4 mb-sm-4">
         </app-ticketing-task-widget2>
+        <app-core-site-widget-count2 [(loading)]="loading" class="card mb-xl-4 mb-sm-4"></app-core-site-widget-count2>
+        <div class="card mb-5 mb-xl-4 mb-sm-4" *ngIf="checkModuleExist['application']">
+            <app-application-memberinfo-widget2 [(loading)]="loading">
+            </app-application-memberinfo-widget2>
+        </div>
     </div>
 </div>
 <!-- end::Row -->
 <div class="row">
-    <div class="col-xl-4">
+    <div class="col-xl-12">
         <div class="row">
-            <div class="col-xl-12">
-
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xl-12">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-12">
-
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xl-12">
-
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xl-12" *ngIf="checkModuleExist['application']">
-                <app-application-memberinfo-widget2 [(loading)]="loading">
-                </app-application-memberinfo-widget2>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-8">
-        <div class="row">
-            <div class="col-xl-4" *ngIf="checkModuleExist['core']">
-                <app-ReportAbuse-widget2 [(loading)]="loading" *ngIf="this.tokenHelper.isAdminSite" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'success'">
+            <div class="col-xl-4 mb-xl-4 mb-sm-4" *ngIf="checkModuleExist['core']">
+                <app-ReportAbuse-widget2 [(loading)]="loading" *ngIf="this.tokenHelper.isAdminSite" cssClass="gutter-b"
+                    [widgetHeight]="'200px'" [baseColor]="'success'">
                 </app-ReportAbuse-widget2>
             </div>
-            <div class="col-xl-4" *ngIf="checkModuleExist['chart']">
-                <app-chart-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'primary'"></app-chart-content-widget2>
+            <div class="col-xl-4 mb-xl-4 mb-sm-4" *ngIf="checkModuleExist['chart']">
+                <app-chart-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'"
+                    [baseColor]="'primary'"></app-chart-content-widget2>
             </div>
-            <div class="col-xl-4" *ngIf="checkModuleExist['article']">
-                <app-article-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'" [iconColor]="'success'"></app-article-content-widget2>
+            <div class="col-xl-4 mb-xl-4 mb-sm-4" *ngIf="checkModuleExist['article']">
+                <app-article-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'"
+                    [iconColor]="'success'"></app-article-content-widget2>
             </div>
-            <div class="col-xl-4" *ngIf="checkModuleExist['blog']">
-                <app-blog-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'primary'"></app-blog-content-widget2>
+            <div class="col-xl-4 mb-xl-4 mb-sm-4" *ngIf="checkModuleExist['blog']">
+                <app-blog-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'"
+                    [baseColor]="'primary'"></app-blog-content-widget2>
             </div>
         </div>
         <div class="row">
             <div class="col-xl-6" *ngIf="checkModuleExist['biography']">
-                <app-biography-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'primary'"></app-biography-content-widget2>
+                <app-biography-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'"
+                    [baseColor]="'primary'"></app-biography-content-widget2>
                 <div class="row">
                     <div class="col-xl-6" *ngIf="checkModuleExist['news']">
-                        <app-news-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'" [iconColor]="'success'"></app-news-content-widget2>
+                        <app-news-content-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'"
+                            [iconColor]="'success'"></app-news-content-widget2>
                     </div>
                     <div class="col-xl-6" *ngIf="checkModuleExist['application']">
-                        <app-application-app-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'" [baseColor]="'success'">
+                        <app-application-app-widget2 [(loading)]="loading" cssClass="gutter-b" [widgetHeight]="'200px'"
+                            [baseColor]="'success'">
                         </app-application-app-widget2>
                     </div>
                 </div>
@@ -133,10 +120,7 @@
                 <app-estate-property-widget-add [(loading)]="loading" cssClass="gutter-b card-stretch">
                 </app-estate-property-widget-add>
             </div>
-            <div class="col-xl-6" *ngIf="checkModuleExist['ticketing']">
-
-            </div>
-            <div class="col-xl-12" *ngIf="checkModuleExist['application']">
+            <div class="col-xl-6" *ngIf="checkModuleExist['application']">
                 <app-application-app-widget-create [(loading)]="loading" cssClass="gutter-b card-stretch">
                 </app-application-app-widget-create>
             </div>

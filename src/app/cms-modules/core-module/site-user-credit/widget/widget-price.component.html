@@ -4,7 +4,7 @@
     <div class="ntk-cms-html-widget-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/Shopping/Dollar.svg'"
-        class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
+        style="filter: invert(1);" class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-widget-body">
@@ -18,7 +18,6 @@
         <div class="col-6">{{ item.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}} :</div>
         <div class="col-4">{{ item.credit }}</div>
       </div>
-      <hr>
       <!--end::cms-body-->
     </div>
     <div class="ntk-cms-html-widget-footer">
