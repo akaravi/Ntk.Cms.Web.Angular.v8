@@ -113,6 +113,7 @@ import { estateCustomerOrderInfoPipe } from 'src/app/core/pipe/esate/estate-cust
 import { estatePropertyCompanyInfoPipe } from 'src/app/core/pipe/esate/estate-property-company-info.pipe';
 import { estatePropertyInfoPipe } from 'src/app/core/pipe/esate/estate-property-info.pipe';
 
+import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-project-info.pipe';
 import { estatePropertySupplierInfoPipe } from 'src/app/core/pipe/esate/estate-property-supplier-info.pipe';
 import { EstateAccountAgencyAdsAddComponent } from './account-agency-ads/add/add.component';
 import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/edit.component';
@@ -152,6 +153,11 @@ import { EstatePropertyProjectHeaderComponent } from './property-project/header/
 import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
 import { EstatePropertyProjectSelectorComponent } from './property-project/selector/selector.component';
 import { EstatePropertyProjectTreeComponent } from './property-project/tree/tree.component';
+import { EstatePropertySupplierCategoryAddComponent } from './property-supplier-category/add/add.component';
+import { EstatePropertySupplierCategoryEditComponent } from './property-supplier-category/edit/edit.component';
+import { EstatePropertySupplierCategorySelectorComponent } from './property-supplier-category/selector/selector.component';
+import { EstatePropertySupplierCategoryTreeSelectorComponent } from './property-supplier-category/tree-selector/tree-selector.component';
+import { EstatePropertySupplierCategoryTreeComponent } from './property-supplier-category/tree/tree.component';
 import { EstatePropertySupplierAddComponent } from './property-supplier/add/add.component';
 import { EstatePropertySupplierDeleteComponent } from './property-supplier/delete/delete.component';
 import { EstatePropertySupplierEditComponent } from './property-supplier/edit/edit.component';
@@ -163,11 +169,6 @@ import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/he
 import { EstatePropertyActionComponent } from './property/action/action.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
-import { EstatePropertySupplierCategoryAddComponent } from './property-supplier-category/add/add.component';
-import { EstatePropertySupplierCategoryEditComponent } from './property-supplier-category/edit/edit.component';
-import { EstatePropertySupplierCategorySelectorComponent } from './property-supplier-category/selector/selector.component';
-import { EstatePropertySupplierCategoryTreeComponent } from './property-supplier-category/tree/tree.component';
-import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-project-info.pipe';
 
 @NgModule({
   declarations: [
@@ -221,6 +222,7 @@ import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-pr
     EstatePropertySupplierSelectorComponent,
     EstatePropertySupplierDeleteComponent,
     EstatePropertySupplierTreeComponent,
+    EstatePropertySupplierCategoryTreeSelectorComponent,
     EstatePropertySupplierHeaderComponent,
     /* */
     EstatePropertySupplierCategoryAddComponent,
