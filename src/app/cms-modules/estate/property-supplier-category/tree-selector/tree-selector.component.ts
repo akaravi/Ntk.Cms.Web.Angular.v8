@@ -69,7 +69,7 @@ export class EstatePropertySupplierCategoryTreeSelectorComponent implements OnIn
   dataModelSelect: string[] = [];
   dataModelResult: ErrorExceptionResult<EstatePropertySupplierCategoryModel> = new ErrorExceptionResult<EstatePropertySupplierCategoryModel>();
   filterModel = new FilterModel();
-  loading = new ProgressSpinnerModel();
+  @Input() loading = new ProgressSpinnerModel();
   treeControl = new NestedTreeControl<EstatePropertySupplierCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<EstatePropertySupplierCategoryModel>();
   runComplate = false;

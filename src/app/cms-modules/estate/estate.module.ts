@@ -18,7 +18,7 @@ import {
   EstateAccountUserService, EstateActivityTypeService, EstateAdsTypeService, EstateBillboardService, EstateConfigurationService, EstateContractService, EstateContractTypeService, EstateCustomerCategoryService, EstateCustomerOrderResultService, EstateCustomerOrderService, EstateEnumService,
   EstatePropertyAccountTypeUserService, EstatePropertyAdsService, EstatePropertyCompanyService, EstatePropertyDetailGroupService, EstatePropertyDetailService, EstatePropertyExpertPriceService, EstatePropertyHistoryService, EstatePropertyProjectService, EstatePropertyService, EstatePropertyShareAgencyService,
   EstatePropertyShareAgentService,
-  EstatePropertyShareSiteService, EstatePropertySupplierService, EstatePropertyTypeLanduseService, EstatePropertyTypeService, EstatePropertyTypeUsageService, FileCategoryService
+  EstatePropertyShareSiteService, EstatePropertySupplierCategoryService, EstatePropertySupplierService, EstatePropertyTypeLanduseService, EstatePropertyTypeService, EstatePropertyTypeUsageService, FileCategoryService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
@@ -390,6 +390,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyProjectService,
     EstatePropertyCompanyService,
     EstatePropertySupplierService,
+    EstatePropertySupplierCategoryService,
     EstatePropertyTypeLanduseService,
     EstateActivityTypeService,
     EstatePropertyTypeUsageService,

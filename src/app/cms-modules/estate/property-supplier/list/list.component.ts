@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstatePropertySupplierModel,
+  ErrorExceptionResult, EstatePropertySupplierCategoryModel, EstatePropertySupplierModel,
   EstatePropertySupplierService, FilterDataModel,
   FilterModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -61,7 +61,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
   tableRowsSelected: Array<EstatePropertySupplierModel> = [];
   tableRowSelected: EstatePropertySupplierModel = new EstatePropertySupplierModel();
   tableSource: MatTableDataSource<EstatePropertySupplierModel> = new MatTableDataSource<EstatePropertySupplierModel>();
-  categoryModelSelected: EstatePropertySupplierModel;
+  categoryModelSelected: EstatePropertySupplierCategoryModel;
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'LinkMainImageIdSrc',
@@ -102,7 +102,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
       const filterChild = new FilterDataModel();
-      filterChild.propertyName = 'linkEstateSupplierCategoryId';
+      filterChild.propertyName = 'linkEstatePropertySupplierCategoryIds';
       filterChild.value = this.categoryModelSelected.id;
       filterModel.filters.push(filterChild);
     }
@@ -305,7 +305,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
@@ -341,7 +341,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     this.GetAllWithHierarchyCategoryId = !this.GetAllWithHierarchyCategoryId;
     this.DataGetAll();
   }
-  onActionSelectorSelect(model: EstatePropertySupplierModel | null): void {
+  onActionSelectorSelect(model: EstatePropertySupplierCategoryModel | null): void {
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
