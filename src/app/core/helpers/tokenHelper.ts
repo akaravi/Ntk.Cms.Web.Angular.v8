@@ -69,6 +69,8 @@ export class TokenHelper implements OnDestroy {
     });
   }
   setDirectionThemeBylanguage(language) {
+    if (!language || language.length === 0)
+      language = this.translationService.getSelectedLanguage()
     if (language === 'ar' || language === 'fa') {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'rtl');

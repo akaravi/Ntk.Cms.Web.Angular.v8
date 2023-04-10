@@ -19,7 +19,8 @@ export const environment = {
     //configApiServerPath: 'https://localhost:7130/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:44342/api/v2/', // Test Api Docer
     configMvcServerPath: 'https://ntkcms.ir/',
-    configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
+    //configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
+    configHtmlBuilderServerPath: 'http://localhost:5000/',
     configFileServerPath: 'https://apifile.ir/api/v2/',
     configQDocServerPath: 'https://qdoc.ir/api/chat',
     configCompanyWebSite: 'https://ntk.ir',
