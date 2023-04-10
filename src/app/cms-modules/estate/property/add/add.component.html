@@ -514,7 +514,7 @@
 
 
                 <button (click)="onActionOptionAddToList()" type="button" mat-button *ngIf="contractTypeSelected && contractTypeSelected.id.length>0" class="btn btn-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px;">
-                    {{optionActionTitle}}
+                    {{'ACTION.Add_To_List' | translate}} ...
                 </button>
                 <hr>
                 <p> {{'TITLE.List_Of_Transaction_Details_Of_This_Property' | translate}} </p>
@@ -590,8 +590,8 @@
                         <ng-container matColumnDef="Action">
                             <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
                             <mat-cell *matCellDef="let row; let i = index" class='Action'>
-                                <button mat-icon-button>
-                                    <small (click)="onActionOptionRemoveFromList(i)">
+                                <button type="button" mat-icon-button (click)="onActionOptionRemoveFromList(i)">
+                                    <small>
                                         <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon>
                                     </small>
                                 </button>
