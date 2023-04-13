@@ -26,6 +26,12 @@ export class CmsSiteSelectorComponent implements OnInit {
     public categoryService: CoreSiteService) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+
+    if (localStorage.getItem(this.SELECT_SITE_LOCAL_STORAGE_KEY)) {
+      this.lastselectSiteId = localStorage.getItem(this.SELECT_SITE_LOCAL_STORAGE_KEY).split(',').map(function (item) {
+        return parseInt(item, 10);
+      });
+    }
   }
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   dataModelSelect: CoreSiteModel = new CoreSiteModel();
@@ -40,7 +46,8 @@ export class CmsSiteSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: number | CoreSiteModel) {
     this.onActionSelectForce(x);
   }
-
+  SELECT_SITE_LOCAL_STORAGE_KEY = 'lastselectSiteId';
+  lastselectSiteId: number[] = [];
   ngOnInit(): void {
     this.loadOptions();
   }
@@ -115,6 +122,16 @@ export class CmsSiteSelectorComponent implements OnInit {
       .pipe(
         map(response => {
           this.dataModelResult = response;
+          if (this.lastselectSiteId && this.lastselectSiteId.length > 0) {
+            this.lastselectSiteId.forEach(element => {
+              const indexId = this.dataModelResult.listItems.findIndex(x => x.id == element);
+              if (indexId > 0) {
+                const to = 0;
+                this.dataModelResult.listItems.splice(to, 0, this.dataModelResult.listItems.splice(indexId, 1)[0]);
+              }
+            });
+
+          }
           /*select First Item */
           if (this.optionSelectFirstItem &&
             (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id <= 0) &&
@@ -136,6 +153,15 @@ export class CmsSiteSelectorComponent implements OnInit {
     }
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
+    /**Select Site */
+    if (!this.lastselectSiteId)
+      this.lastselectSiteId = [];
+    const indexId = this.lastselectSiteId.findIndex(x => x == model.id);
+    if (indexId >= 0)
+      this.lastselectSiteId.splice(indexId, 1);
+    this.lastselectSiteId.push(model.id);
+    localStorage.setItem(this.SELECT_SITE_LOCAL_STORAGE_KEY, this.lastselectSiteId + '');
+    /**Select Site */
   }
   onActionSelectClear(): void {
     if (this.optionDisabled) {

@@ -35,6 +35,11 @@ export class CoreSiteSelectionComponent implements OnInit {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.loading.cdr = cdr;
+    if (localStorage.getItem(this.SELECT_SITE_LOCAL_STORAGE_KEY)) {
+      this.lastselectSiteId = localStorage.getItem(this.SELECT_SITE_LOCAL_STORAGE_KEY).split(',').map(function (item) {
+        return parseInt(item, 10);
+      });
+    }
   }
   @Input() loading = new ProgressSpinnerModel();
 
@@ -44,6 +49,8 @@ export class CoreSiteSelectionComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   statusCheckExistWebSite = true;
   selectSiteId = 0;
+  SELECT_SITE_LOCAL_STORAGE_KEY = 'lastselectSiteId';
+  lastselectSiteId: number[] = [];
   ngOnInit(): void {
     // this.dataModel = this.activatedRoute.snapshot.data.list;
     this.DataGetAll();
@@ -61,6 +68,16 @@ export class CoreSiteSelectionComponent implements OnInit {
             setTimeout(() => {
               this.onActionClickSelectSite(this.dataModelResult.listItems[0].linkSiteId);
             }, 1000);
+          }
+          else if (this.lastselectSiteId && this.lastselectSiteId.length > 0) {
+            this.lastselectSiteId.forEach(element => {
+              const indexId = this.dataModelResult.listItems.findIndex(x => x.linkSiteId == element);
+              if (indexId > 0) {
+                const to = 0;
+                this.dataModelResult.listItems.splice(to, 0, this.dataModelResult.listItems.splice(indexId, 1)[0]);
+              }
+            });
+
           }
         }
         else {
@@ -97,6 +114,15 @@ export class CoreSiteSelectionComponent implements OnInit {
           this.cmsToastrService.typeSuccessSelected();
           this.loading.Stop(pName);
           setTimeout(() => this.router.navigate(['/']), 5000);
+          /**Select Site */
+          if (!this.lastselectSiteId)
+            this.lastselectSiteId = [];
+          const indexId = this.lastselectSiteId.findIndex(x => x == res.item.siteId);
+          if (indexId >= 0)
+            this.lastselectSiteId.splice(indexId, 1);
+          this.lastselectSiteId.push(res.item.siteId);
+          localStorage.setItem(this.SELECT_SITE_LOCAL_STORAGE_KEY, this.lastselectSiteId + '');
+          /**Select Site */
         }
         else {
           this.cmsToastrService.typeErrorSelected();
