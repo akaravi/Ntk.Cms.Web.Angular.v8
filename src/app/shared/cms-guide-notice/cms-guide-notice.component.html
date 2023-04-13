@@ -42,11 +42,12 @@
       </div>
     </div>
     <div class="col-1">
-      <button type="button" *ngIf="!bodyShow&& (body?.length>0 || podcast>0 || movie>0)" class="btn btn-outline-primary"
-        (click)="onActionBottunClick()">
+      <button type="button" *ngIf="!bodyShow&& (body?.length>0 || podcast>0 || movie>0)"
+        class="btn btn-outline-primary box-shadow-button" (click)="onActionBottunClick()">
         {{'TITLE.More' | translate}}
       </button>
-      <button type="button" *ngIf="bodyShow" class="btn btn-outline-primary" (click)="onActionCloseBottunClick()">
+      <button type="button" *ngIf="bodyShow" class="btn btn-outline-primary box-shadow-button"
+        (click)="onActionCloseBottunClick()">
         {{'TITLE.guide' | translate}}
       </button>
     </div>

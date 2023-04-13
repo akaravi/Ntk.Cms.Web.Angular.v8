@@ -43,58 +43,66 @@
   <ng-container cms-action>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow($event)"
-      type="button" class="btn btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
-      data-target="#categoryModal">{{'ACTION.ADD' |
+      type="button" class="btn box-shadow-button btn-outline-primary BTN-text box-shadow-button" id="openModalButton"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessEditRow && (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
-      (click)="onActionbuttonEditRow(tableRowSelected,$event)" type="button" class="btn btn-outline-warning BTN-text"
-      data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+      (click)="onActionbuttonEditRow(tableRowSelected,$event)" type="button"
+      class="btn box-shadow-button btn-outline-warning BTN-text box-shadow-button" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
     <button
       *ngIf="dataModelResult.access.accessDeleteRow && optionloadByRoute&& (tableRowSelected?.id?.length>0 || requestLinkPropertyTypeLanduseId?.length>0)"
-      (click)="onActionbuttonDeleteRow()" type="button" class="btn btn-outline-danger BTN-text">{{'ACTION.DELETE' |
+      (click)="onActionbuttonDeleteRow()" type="button"
+      class="btn box-shadow-button btn-outline-danger BTN-text box-shadow-button">{{'ACTION.DELETE' |
       translate}}</button>
     <button *ngIf="this.tokenHelper.isAdminSite && optionloadByRoute&& tableRowSelected?.id?.length>0 "
       (click)="onActionbuttonActionSendSmsToCustomerOrder()" type="button"
-      class="btn btn-outline-danger BTN-text">{{'ACTION.ActionSendSmsToCustomerOrder' | translate}}</button>
-    <a class="btn btn-outline-primary btn-sm BTN-text">
+      class="btn box-shadow-button btn-outline-danger BTN-text box-shadow-button">{{'ACTION.ActionSendSmsToCustomerOrder'
+      |
+      translate}}</button>
+    <a class="btn box-shadow-button btn-outline-primary btn-sm BTN-text box-shadow-button">
       <mat-slide-toggle [(ngModel)]="optionsSearch.data.show ">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
     </a>
 
-    <a class="btn btn-outline-info btn-sm BTN-text">
+    <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text box-shadow-button">
       <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
       </mat-slide-toggle>
     </a>
 
-    <button (click)="onActionbuttonExport()" type="button" class="btn btn-outline-secondary BTN-icon"
-      *ngIf="this.actionbuttonExportOn">
+    <button (click)="onActionbuttonExport()" type="button"
+      class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button" *ngIf="this.actionbuttonExportOn">
       <mat-icon style="font-size: 20px;margin: -11px;"
         title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
     </button>
     <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
-      class="btn btn-outline-secondary BTN-icon">
+      class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <button (click)="onActionbuttonMemo()" *ngIf="tableRowSelected?.id?.length>0" type="button"
-      class="btn btn-outline-secondary BTN-icon">
+      class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.MEMO' | translate}}">description</mat-icon>
     </button>
 
-    <a class="btn btn-outline-info btn-sm BTN-text">
+    <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text box-shadow-button">
       <mat-slide-toggle (click)="onActionbuttonInChecking(!searchInChecking)" [checked]="searchInCheckingChecked">
         {{'ACTION.INCHECKING' | translate}}
       </mat-slide-toggle>
     </a>
-    <button (click)="onActionbuttonReload()" type="button" class="btn btn-outline-secondary BTN-icon">
+    <button (click)="onActionbuttonReload()" type="button"
+      class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>
     <button (click)="onActionBackToParent()" *ngIf="requestLinkPropertyTypeLanduseId?.length>0" type="button"
-      class="btn btn-outline-success BTN-text">{{'ACTION.BACK' | translate}}</button>
-    <button (click)="onActionGridExpandRows(true)" class="btn BTN-text btn-outline-success BTN-icon">
+      class="btn box-shadow-button btn-outline-success BTN-text box-shadow-button">{{'ACTION.BACK' |
+      translate}}</button>
+    <button (click)="onActionGridExpandRows(true)"
+      class="btn BTN-text box-shadow-button btn-outline-success BTN-icon box-shadow-button">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
       </mat-icon>
     </button>
-    <button (click)="onActionGridExpandRows(false)" class="btn BTN-text btn-outline-success BTN-icon">
+    <button (click)="onActionGridExpandRows(false)"
+      class="btn BTN-text box-shadow-button btn-outline-success BTN-icon box-shadow-button">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.COLLPASE_ALL' |translate}}">
         unfold_less_double</mat-icon>
     </button>
@@ -376,21 +384,21 @@
           <mat-menu #actionMenu="matMenu">
             <button mat-menu-item (click)="onActionbuttonAdsRow(row,$event)"
               *ngIf="dataModelResult.access.accessEditRow">
-              <mat-icon>ads_click</mat-icon>
               <span>{{'ACTION.ADS' | translate}}</span>
+              <mat-icon>ads_click</mat-icon>
             </button>
             <button mat-menu-item (click)="onActionbuttonEditRow(row,$event)"
               *ngIf="dataModelResult.access.accessEditRow">
-              <mat-icon>mode_edit</mat-icon>
               <span>{{'ACTION.EDIT' | translate}}</span>
+              <mat-icon>mode_edit</mat-icon>
             </button>
             <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
-              <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
+              <mat-icon>delete_forever</mat-icon>
             </button>
             <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
-              <mat-icon>history</mat-icon>
               <span>{{'ACTION.HISTORY' | translate}}</span>
+              <mat-icon>history</mat-icon>
             </button>
           </mat-menu>
         </mat-cell>
