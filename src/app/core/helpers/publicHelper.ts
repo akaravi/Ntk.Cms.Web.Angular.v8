@@ -480,7 +480,7 @@ export class PublicHelper {
       cloumnAdminAccessDispaly = [];
     }
     var cloumn: string[] = [];
-    if (this.innerWidth < 1000 && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
+    if (this.innerWidth < 860 && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
       cloumn = JSON.parse(JSON.stringify(cloumnMobileDispalySource));
     } else if (cloumnDesktopSource && cloumnDesktopSource.length > 0) {
       cloumn = JSON.parse(JSON.stringify(cloumnDesktopSource));
