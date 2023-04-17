@@ -104,8 +104,11 @@ export class Cms360ImageListComponent implements OnInit {
   }
   actionPrivateDataModelOptimaze() {
     const hotSpots: File360TourHotSpotModel[] = [];
+    if (!this.privateDataModel)
+      this.privateDataModel = []
     this.privateDataModel.forEach(element => {
-
+      if (!element.hotSpots)
+        element.hotSpots = [];
       element.hotSpots.forEach(elementHotspot => {
         if (elementHotspot.type && elementHotspot.type.length > 0)
           hotSpots.push(elementHotspot);
@@ -195,9 +198,9 @@ export class Cms360ImageListComponent implements OnInit {
     hotspot.guid = this.getGuid();
     this.dataDetailModel.hotSpots.push(hotspot);
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.onActionPannellumClickLastPoint();
   }
   onActionOptionRemoveView360(index: number): void {
-
     if (index < 0) {
       return;
     }

@@ -59,7 +59,7 @@
         <p>در ورود این تنظیمات با مدیریت سامانه هماهنگ باشید</p>
         <div style="background-color: bisque;padding:5px">
             <div class="form-actions" style="direction:ltr">
-                <button (click)="onActionShowHotspotAdd()" type="button" class="btn btn-success">
+                <button *ngIf="postionView" (click)="onActionShowHotspotAdd()" type="button" class="btn btn-success">
                     {{'ACTION.ADD' | translate}}
                 </button>
             </div>
@@ -177,12 +177,12 @@
                     <mat-cell *matCellDef="let row">
                         <span class="m-1" style="text-align: center;">
                             <ng-container *ngIf="!editHotspot.guid || !row.guid || row.guid!==editHotspot.guid">
-                                <mat-icon matTooltip="ویرایش" (click)="editROw(row)">edit</mat-icon>
-                                <mat-icon matTooltip="حذف" (click)="removeROw(row)">delete</mat-icon>
+                                <mat-icon (click)="editROw(row)">edit</mat-icon>
+                                <mat-icon (click)="removeROw(row)">delete</mat-icon>
                             </ng-container>
                             <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
-                                <button type="button" mat-raised-button color="accent" matTooltip="Update" class="mb-2" [disabled]="editdisabled" (click)="updateEdit()">Update</button>
-                                <button type="button" mat-raised-button color="warn" matTooltip="Cancel" [disabled]="editdisabled" (click)="cancelEdit()">Cancel</button>
+                                <button type="button" mat-raised-button color="accent" class="mb-2" [disabled]="editdisabled" (click)="updateEdit()">Update</button>
+                                <button type="button" mat-raised-button color="warn" [disabled]="editdisabled" (click)="cancelEdit()">Cancel</button>
 
                                 <button type="button" *ngIf="postionView" mat-raised-button color="warn" matTooltip="ثبت آخرین نقطه کلیک شده" [disabled]="editdisabled" (click)="onActionPannellumClickLastPoint()">ثبت نقطه</button>
 
@@ -264,13 +264,13 @@
 
         <!-- Action Column -->
         <ng-container matColumnDef="Action">
-            <mat-header-cell *matHeaderCellDef> {{'TITLE.Delete' | translate}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> {{'TITLE.Edit' | translate}} | {{'TITLE.Delete' | translate}} </mat-header-cell>
             <mat-cell *matCellDef="let row; let i = renderIndex;" class='Action'>
-                <small (click)="onActionOptionEditView360(i)">
-                    <mat-icon matTooltip="{{'ACTION.EDIT' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: blue;">edit</mat-icon>
+                <small>
+                    <mat-icon (click)="onActionOptionEditView360(i)" matTooltipPosition="before" aria-hidden="false" style="color: blue;">edit</mat-icon>
                 </small>|
-                <small (click)="onActionOptionRemoveView360(i)">
-                    <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon>
+                <small>
+                    <mat-icon (click)="onActionOptionRemoveView360(i)" matTooltipPosition="before" aria-hidden="false" style="color: red;">delete</mat-icon>
                 </small>
             </mat-cell>
         </ng-container>

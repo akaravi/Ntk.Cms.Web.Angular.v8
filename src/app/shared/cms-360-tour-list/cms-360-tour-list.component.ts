@@ -195,9 +195,13 @@ export class Cms360TourListComponent implements OnInit {
     if (!this.privateDataModel.Default)
       this.privateDataModel.Default = new File360TourDefaultModel();
     this.privateDataModel.scenes = new Map<string, File360TourScenesModel>;
+    if (!this.scenesList)
+      this.scenesList = [];
     this.scenesList.forEach(element => {
       if (element.title && element.title.length > 0) {
         const hotSpots: File360TourHotSpotModel[] = [];
+        if (!element.hotSpots)
+          element.hotSpots = [];
         element.hotSpots.forEach(elementHotspot => {
           if (elementHotspot.type && elementHotspot.type.length > 0)
             hotSpots.push(elementHotspot);
@@ -237,9 +241,9 @@ export class Cms360TourListComponent implements OnInit {
 
     this.dataDetailModel.hotSpots.push(hotspot);
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.onActionPannellumClickLastPoint();
   }
   onActionOptionRemoveView360(index: number): void {
-
     if (index < 0) {
       return;
     }
@@ -247,8 +251,8 @@ export class Cms360TourListComponent implements OnInit {
       return;
     }
     this.scenesList.splice(index, 1);
-
     this.actionPrivateDataModelOptimaze();
+    this.dataModel = this.privateDataModel;
     this.dataModelChange.emit(this.privateDataModel);
     this.onActionPannellumDestroy();
   }
