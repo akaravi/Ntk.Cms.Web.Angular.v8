@@ -198,6 +198,7 @@ export class Cms360ImageListComponent implements OnInit {
     hotspot.guid = this.getGuid();
     this.dataDetailModel.hotSpots.push(hotspot);
     this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.editROw(hotspot);
     this.onActionPannellumClickLastPoint();
   }
   onActionOptionRemoveView360(index: number): void {
