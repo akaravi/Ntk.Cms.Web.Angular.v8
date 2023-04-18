@@ -167,6 +167,9 @@ export class PublicHelper {
       showFilesInsideTree: false,
       showSelectFile: true,
       showSelectFolder: false,
+      fileUplodExtensions: [],
+      fileUplodTypeAccept: '',
+      fileUplodMaxCount: 20
     }
   };
   fileManagerTreeConfig: TreeModel;
