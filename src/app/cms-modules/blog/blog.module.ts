@@ -24,7 +24,7 @@ import { BlogCategoryEditComponent } from './category/edit/edit.component';
 import { BlogContentAddComponent } from './content/add/add.component';
 import { BlogContentEditComponent } from './content/edit/edit.component';
 
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { InlineSVGModule } from 'ng-inline-svg-2';

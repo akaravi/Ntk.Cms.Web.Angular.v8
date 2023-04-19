@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreGuideService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreGuideAddComponent } from './add/add.component';
 import { CoreGuideComponent } from './coreGuide.component';
 import { CoreGuideRouting } from './coreGuide.routing';

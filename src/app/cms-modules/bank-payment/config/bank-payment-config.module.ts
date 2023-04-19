@@ -5,7 +5,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   BankPaymentConfigurationService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { BankPaymentConfigRouting } from './bank-payment-config.routing';
 import { BankPaymentConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BankPaymentConfigCheckUserComponent } from './check-user/check-user.component';

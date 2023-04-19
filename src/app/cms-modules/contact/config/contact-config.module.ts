@@ -6,7 +6,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   ContactConfigurationService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ContactConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ContactConfigCheckUserComponent } from './check-user/check-user.component';
 import { ContactConfigRouting } from './contact-config.routing';

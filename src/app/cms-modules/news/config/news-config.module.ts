@@ -6,7 +6,7 @@ import {
   CoreModuleService,
   NewsConfigurationService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { NewsConfigCheckSiteComponent } from './check-site/check-site.component';
 import { NewsConfigCheckUserComponent } from './check-user/check-user.component';
 import { NewsConfigMainAdminComponent } from './main-admin/config-main-admin.component';

@@ -6,7 +6,7 @@ import {
   CoreModuleService,
   CoreSiteCategoryCmsModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreSiteCategoryCmsModuleListComponent } from './list/list.component';
 import { CoreSiteCategoryCmsModuleSelectorComponent } from './selector/selector.component';
 import { CoreSiteCategoryCmsModuleTreeComponent } from './tree/tree.component';

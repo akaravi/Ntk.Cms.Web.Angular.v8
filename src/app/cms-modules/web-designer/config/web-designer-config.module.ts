@@ -6,7 +6,7 @@ import {
   CoreModuleService,
   WebDesignerConfigurationService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { WebDesignerConfigCheckSiteComponent } from './check-site/check-site.component';
 import { WebDesignerConfigCheckUserComponent } from './check-user/check-user.component';
 import { WebDesignerConfigMainAdminComponent } from './main-admin/config-main-admin.component';

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, EnumRecordStatus, EnumSortType,
@@ -38,17 +38,25 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     private router: Router,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    private activatedRoute: ActivatedRoute,
     public dialog: MatDialog) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-
+    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
+    if (this.recordStatus) {
+      this.optionsSearch.data.show = true;
+      this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';
+      this.recordStatus = null;
+    }
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
+
   }
+  recordStatus: EnumRecordStatus;
   link: string;
   comment: string;
   author: string;
@@ -103,6 +111,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+
     this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new EstateCustomerOrderModel();

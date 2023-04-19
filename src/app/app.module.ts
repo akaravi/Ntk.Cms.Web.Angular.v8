@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -8,8 +8,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClipboardModule } from 'ngx-clipboard';
 import { environment } from 'src/environments/environment';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
 // #fake-start#
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
@@ -17,10 +17,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
+import { FakeAPIService } from './_fake/fake-api.service';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
-import { SharedModule } from './shared.module';
-import { FakeAPIService } from './_fake/fake-api.service';
+import { SharedModule } from './shared/shared.module';
 // #fake-end#
 
 function appInitializer(authService: CmsAuthService) {

@@ -26,7 +26,7 @@ import { ChartCategoryEditComponent } from './category/edit/edit.component';
 import { ChartContentAddComponent } from './content/add/add.component';
 import { ChartContentEditComponent } from './content/edit/edit.component';
 
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';

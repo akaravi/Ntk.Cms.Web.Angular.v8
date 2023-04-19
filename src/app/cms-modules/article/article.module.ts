@@ -21,8 +21,8 @@ import {
   ArticleShareServerCategoryService, CoreEnumService, CoreModuleService, CoreModuleTagService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ArticleCategoryAddComponent } from './category/add/add.component';
 import { ArticleCategoryDeleteComponent } from './category/delete/delete.component';
 import { ArticleCategoryEditComponent } from './category/edit/edit.component';

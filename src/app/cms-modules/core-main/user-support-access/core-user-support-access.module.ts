@@ -5,7 +5,7 @@ import {
   CoreModuleService,
   CoreUserSupportAccessService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModuleEntityModule } from '../module-entity/core-module-entity.module';
 import { CoreUserSupportAccessAddComponent } from './add/add.component';
 import { CoreUserSupportAccessComponent } from './core-user-support-access.component';

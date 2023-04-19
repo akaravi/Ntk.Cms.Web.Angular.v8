@@ -5,7 +5,7 @@ import {
   CoreModuleService,
   CoreUserGroupService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreUserGroupAddComponent } from './add/add.component';
 import { CoreUserGroupComponent } from './coreUserGroup.component';
 import { CoreUserGroupRouting } from './coreUserGroup.routing';

@@ -11,7 +11,7 @@ import { ApplicationSourceListComponent } from './source/list/list.component';
 import { ApplicationThemeConfigListComponent } from './themeConfig/list/list.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';

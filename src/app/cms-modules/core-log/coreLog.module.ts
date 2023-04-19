@@ -6,7 +6,7 @@ import { CoreLogRoutes } from './coreLog.routing';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import {
   CoreLogAvoidDuplicateDataEntryService, CoreLogCurrencyService,

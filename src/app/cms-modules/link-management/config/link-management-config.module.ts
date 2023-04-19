@@ -7,7 +7,7 @@ import {
   CoreModuleService,
   LinkManagementConfigurationService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { LinkManagementConfigCheckSiteComponent } from './check-site/check-site.component';
 import { LinkManagementConfigCheckUserComponent } from './check-user/check-user.component';
 import { LinkManagementConfigRouting } from './link-management-config.routing';

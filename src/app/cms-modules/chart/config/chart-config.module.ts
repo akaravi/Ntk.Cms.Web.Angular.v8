@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   ChartConfigurationService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ChartConfigRouting } from './chart-config.routing';

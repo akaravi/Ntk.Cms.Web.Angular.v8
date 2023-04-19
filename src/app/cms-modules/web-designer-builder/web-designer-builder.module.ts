@@ -25,7 +25,7 @@ import {
   WebDesignerMainPageTemplateSiteCategoryService
 } from 'ntk-cms-api';
 
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModuleModule } from '../core-main/module/coreModule.module';
 import { WebDesignerBuilderHtmlBodyComponent } from './html/body/body.component';
 import { WebDesignerBuilderHtmlContainerComponent } from './html/container/container.component';

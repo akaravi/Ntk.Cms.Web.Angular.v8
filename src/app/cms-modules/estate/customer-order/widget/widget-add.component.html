@@ -1,0 +1,61 @@
+<!--begin::Mixed Widget 14-->
+<div class="card card-custom bgi-no-repeat bgi-size-cover" [ngClass]="cssClass" style="background-image: url('./assets/media/stock-600x600/img-2.jpg')">
+    <!--begin::Body-->
+    <div class="card-body d-flex flex-column align-items-start justify-content-start">
+
+        <div class="ntk-cms-html-widget-header">
+            <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+            <div class="p-1 flex-grow-1">
+                <a routerLink="/estate/customer-order/add" routerLinkActive="active">
+                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                        {{widgetInfoModel.title}}
+                    </h3>
+                </a>
+                <a routerLink="/estate/customer-order" routerLinkActive="active" *ngIf="rowExist">
+                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                        {{widgetInfoModel.description}}
+                    </h3>
+                </a>
+                <a routerLink="/estate/customer-order/recordstatus/Pending" routerLinkActive="active" *ngIf="this.modelData.get('Pending') && this.modelData.get('Pending')>0">
+                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                        {{'TITLE.Number_of_rows_in_the_recordstatus_pending' | translate}} : {{this.modelData.get('Pending')}}
+                    </h3>
+                </a>
+                <a routerLink="/estate/customer-order/recordstatus/Available" routerLinkActive="active" *ngIf="this.modelData.get('Available') && this.modelData.get('Available')>0">
+                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                        {{'TITLE.Number_of_rows_in_the_recordstatus_available' | translate}} : {{this.modelData.get('Available')}}
+                    </h3>
+                </a>
+                <a routerLink="/estate/customer-order/recordstatus/Archive" routerLinkActive="active" *ngIf="this.modelData.get('Archive') && this.modelData.get('Archive')>0">
+                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                        {{'TITLE.Number_of_rows_in_the_recordstatus_archive' | translate}} : {{this.modelData.get('Archive')}}
+                    </h3>
+                </a>
+                <a routerLink="/estate/customer-order/recordstatus/Disable" routerLinkActive="active" *ngIf="this.modelData.get('Disable') && this.modelData.get('Disable')>0">
+                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                        {{'TITLE.Number_of_rows_in_the_recordstatus_disable' | translate}} : {{this.modelData.get('Disable')}}
+                    </h3>
+                </a>
+            </div>
+            <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        </div>
+        <div class="ntk-cms-html-widget-body">
+            <app-progress-spinner [options]="loading"> </app-progress-spinner>
+            <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+            <a routerLink="/estate/customer-order/add" routerLinkActive="active" class="btn btn-link btn-link-light font-weight-bold">
+                {{widgetInfoModel.title}}
+                <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'" class="svg-icon ssvg-icon-lg svg-icon-secondary"></span>
+            </a>
+
+            <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+        </div>
+        <div class="ntk-cms-html-widget-footer">
+            <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+
+            <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+        </div>
+    </div>
+    <!--end::Body-->
+</div>
+<!--end::Mixed Widget 14-->

@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreUserRouting } from './coreUser.routing';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoreEnumService, CoreModuleService, CoreSiteUserService, CoreUserGroupService, CoreUserService } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';

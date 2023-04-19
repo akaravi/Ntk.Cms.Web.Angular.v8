@@ -11,7 +11,7 @@ import {
   CoreSiteUserService,
   CoreUserService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreSiteAddComponent } from './add/add.component';
 import { CoreSiteAddFirstComponent } from './addFirst/addFirst.component';
 import { CoreSiteComponent } from './coreSite.component';

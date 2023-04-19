@@ -9,7 +9,13 @@ import {
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModuleSaleItemAddComponent } from './Item/add/add.component';
+import { CoreModuleSaleItemEditComponent } from './Item/edit/edit.component';
+import { CoreModuleSaleItemListComponent } from './Item/list/list.component';
+import { CoreModuleSaleItemListViewComponent } from './Item/listview/listview.component';
+import { CoreModuleSaleItemSelectorComponent } from './Item/selector/selector.component';
+import { CoreModuleSaleItemTreeComponent } from './Item/tree/tree.component';
 import { CoreModuleSaleComponent } from './core-module-sale.component';
 import { CoreModuleSaleRouting } from './core-module-sale.routing';
 import { CoreModuleSaleHeaderGroupAddComponent } from './header-group/add/add.component';
@@ -30,12 +36,6 @@ import { CoreModuleSaleInvoiceDetailListComponent } from './invoice-detail/list/
 import { CoreModuleSaleInvoiceDetailViewComponent } from './invoice-detail/view/view.component';
 import { CoreModuleSaleInvoiceListComponent } from './invoice/list/list.component';
 import { CoreModuleSaleInvoiceViewComponent } from './invoice/view/view.component';
-import { CoreModuleSaleItemAddComponent } from './Item/add/add.component';
-import { CoreModuleSaleItemEditComponent } from './Item/edit/edit.component';
-import { CoreModuleSaleItemListComponent } from './Item/list/list.component';
-import { CoreModuleSaleItemListViewComponent } from './Item/listview/listview.component';
-import { CoreModuleSaleItemSelectorComponent } from './Item/selector/selector.component';
-import { CoreModuleSaleItemTreeComponent } from './Item/tree/tree.component';
 import { CoreModuleSaleSerialAddComponent } from './serial/add/add.component';
 import { CoreModuleSaleSerialCheckListComponent } from './serial/check-list/check-list.component';
 import { CoreModuleSaleSerialEditComponent } from './serial/edit/edit.component';

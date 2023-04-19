@@ -5,7 +5,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   CoreModuleEntityReportFileService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreSharedModule } from '../core.shared.module';
 import { CoreModuleEntityModule } from '../module-entity/core-module-entity.module';
 import { CoreModuleEntityReportFileAddComponent } from './add/add.component';

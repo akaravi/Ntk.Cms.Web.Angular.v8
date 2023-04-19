@@ -257,6 +257,10 @@ const routes: Routes = [
         component: EstateCustomerOrderListComponent
       },
       {
+        path: 'customer-order/recordstatus/:RecordStatus',
+        component: EstateCustomerOrderListComponent
+      },
+      {
         path: 'customer-order/add',
         component: EstateCustomerOrderAddComponent
       },

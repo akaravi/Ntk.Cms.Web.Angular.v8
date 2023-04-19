@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreCpMainMenuRouting } from './coreCpMainMenu.routing';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColorPickerModule } from 'ngx-color-picker';

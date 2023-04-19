@@ -17,8 +17,8 @@ import {
   SmsMainApiPathService, SmsMainCustomerCreditService, SmsMainMessageCategoryService, SmsMainMessageContentService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { SmsMainApiPathCompanyAddComponent } from './api-path-company/add/add.component';
 import { SmsMainApiPathCompanyEditComponent } from './api-path-company/edit/edit.component';
 import { SmsMainApiPathCompanyListComponent } from './api-path-company/list/list.component';

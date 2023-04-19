@@ -20,8 +20,8 @@ import {
   BiographyShareServerCategoryService, CoreEnumService, CoreModuleService, CoreModuleTagService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { BiographyCategoryAddComponent } from './category/add/add.component';
 import { BiographyCategoryDeleteComponent } from './category/delete/delete.component';
 import { BiographyCategoryEditComponent } from './category/edit/edit.component';

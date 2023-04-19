@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { ApplicationAppService, ApplicationMemberInfoService, ArticleContentService, BiographyContentService, BlogContentService, ChartContentService, CoreModuleLogReportAbuseService, CoreModuleSiteCreditService, CoreSiteService, CoreUserClaimContentService, CoreUserClaimTypeService, CoreUserService, EstatePropertyService, NewsContentService, TicketingTaskService, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
+import { ApplicationAppService, ApplicationMemberInfoService, ArticleContentService, BiographyContentService, BlogContentService, ChartContentService, CoreModuleLogReportAbuseService, CoreModuleSiteCreditService, CoreSiteService, CoreUserClaimContentService, CoreUserClaimTypeService, CoreUserService, EstateCustomerOrderService, EstatePropertyService, NewsContentService, TicketingTaskService, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
 import { ApplicationAppWidgetCreateComponent } from 'src/app/cms-modules/application/content/widget/create/widget-create.component';
 import { ApplicationAppWidgetComponent } from 'src/app/cms-modules/application/content/widget/widget.component';
 import { ApplicationAppWidget2Component } from 'src/app/cms-modules/application/content/widget/widget2.component';
@@ -26,6 +26,9 @@ import { CoreUserWidgetComponent } from 'src/app/cms-modules/core-main/user/widg
 import { CoreModuleLogReportAbuseWidget2Component } from 'src/app/cms-modules/core-module-log/report-abuse/widget/widget2.component';
 import { CoreModuleSiteCreditWidgetPriceComponent } from 'src/app/cms-modules/core-module/site-credit/widget/widget-price.component';
 import { CoreModuleSiteUserCreditWidgetPriceComponent } from 'src/app/cms-modules/core-module/site-user-credit/widget/widget-price.component';
+import { EstateCustomerOrderWidgetAddComponent } from 'src/app/cms-modules/estate/customer-order/widget/widget-add.component';
+import { EstateCustomerOrderWidgetComponent } from 'src/app/cms-modules/estate/customer-order/widget/widget.component';
+import { EstateCustomerOrderWidget2Component } from 'src/app/cms-modules/estate/customer-order/widget/widget2.component';
 import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/property/widget/widget-add.component';
 import { EstatePropertyWidgetComponent } from 'src/app/cms-modules/estate/property/widget/widget.component';
 import { EstatePropertyWidget2Component } from 'src/app/cms-modules/estate/property/widget/widget2.component';
@@ -36,8 +39,8 @@ import { TicketingTaskWidget2Component } from 'src/app/cms-modules/ticketing/tas
 import { WebDesignerLogMemberInfoWidgetComponent } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget.component';
 import { WebDesignerLogMemberInfoWidget2Component } from 'src/app/cms-modules/web-designer/log-member-info/widget/widget2.component';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsHtmlWidgetComponent } from 'src/app/shared/cms-html-widget/cms-html-widget.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { WidgetsModule } from '../../_metronic/partials';
 import { DashboardComponent } from './dashboard.component';
 
@@ -71,6 +74,9 @@ import { DashboardComponent } from './dashboard.component';
     EstatePropertyWidgetComponent,
     EstatePropertyWidget2Component,
     EstatePropertyWidgetAddComponent,
+    EstateCustomerOrderWidgetComponent,
+    EstateCustomerOrderWidget2Component,
+    EstateCustomerOrderWidgetAddComponent,
     TicketingTaskWidgetComponent,
     TicketingTaskWidget2Component,
     CoreModuleLogReportAbuseWidget2Component,
@@ -100,6 +106,7 @@ import { DashboardComponent } from './dashboard.component';
     BiographyContentService,
     BlogContentService,
     EstatePropertyService,
+    EstateCustomerOrderService,
     TicketingTaskService,
     ChartContentService,
     ArticleContentService,

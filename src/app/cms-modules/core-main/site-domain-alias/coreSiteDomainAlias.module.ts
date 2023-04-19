@@ -5,7 +5,7 @@ import {
   CoreModuleService,
   CoreSiteDomainAliasService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreSiteDomainAliasAddComponent } from './add/add.component';
 import { CoreSiteDomainAliasComponent } from './coreSiteDomainAlias.component';
 import { CoreSiteDomainAliasRouting } from './coreSiteDomainAlias.routing';

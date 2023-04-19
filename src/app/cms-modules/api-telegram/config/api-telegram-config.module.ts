@@ -5,7 +5,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   ApiTelegramConfigurationService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ApiTelegramConfigRouting } from './api-telegram-config.routing';
 import { ApiTelegramConfigCheckSiteComponent } from './check-site/check-site.component';
 import { ApiTelegramConfigCheckUserComponent } from './check-user/check-user.component';

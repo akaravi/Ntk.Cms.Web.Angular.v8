@@ -18,7 +18,7 @@ import {
 import { PollingCategoryDeleteComponent } from './category/delete/delete.component';
 import { PollingCategoryEditComponent } from './category/edit/edit.component';
 
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';

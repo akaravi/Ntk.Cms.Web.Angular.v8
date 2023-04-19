@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModuleAddComponent } from './add/add.component';
 import { CoreModuleComponent } from './coreModule.component';
 import { CoreModuleRouting } from './coreModule.routing';

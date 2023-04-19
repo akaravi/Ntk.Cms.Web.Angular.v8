@@ -7,7 +7,7 @@ import {
   CoreModuleService,
   PollingConfigurationService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { PollingConfigCheckSiteComponent } from './check-site/check-site.component';
 import { PollingConfigCheckUserComponent } from './check-user/check-user.component';
 import { PollingConfigMainAdminComponent } from './main-admin/config-main-admin.component';

@@ -12,8 +12,8 @@ import {
   CoreTokenUserService,
   CoreUserService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreTokenActivationEditComponent } from './activation/edit/edit.component';
 import { CoreTokenActivationListComponent } from './activation/list/list.component';
 import { CoreTokenActivationViewComponent } from './activation/view/view.component';

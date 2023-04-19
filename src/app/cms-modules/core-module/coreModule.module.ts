@@ -6,7 +6,7 @@ import { CoreModuleRoutes } from './coreModule.routing';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 import { CoreModuleSiteCreditChargePaymentComponent } from './site-credit/charge-payment/charge-payment.component';

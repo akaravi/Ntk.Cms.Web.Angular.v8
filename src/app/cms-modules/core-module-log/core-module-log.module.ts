@@ -6,7 +6,7 @@ import { CoreModuleRoutes } from './core-module-log.routing';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
 import { CoreModuleLogContentCountEditComponent } from './content-count/edit/edit.component';

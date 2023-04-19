@@ -26,8 +26,8 @@ import {
   NewsShareServerCategoryService
 } from 'ntk-cms-api';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
-import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { NewsCategoryAddComponent } from './category/add/add.component';
 import { NewsCategoryDeleteComponent } from './category/delete/delete.component';
 import { NewsCategoryEditComponent } from './category/edit/edit.component';

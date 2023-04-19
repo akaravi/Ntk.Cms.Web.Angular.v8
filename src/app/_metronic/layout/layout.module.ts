@@ -8,7 +8,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CoreConfigurationService, CoreCpMainMenuService } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { Routing } from '../../pages/routing';
 import { DrawersModule, DropdownMenusModule, EngagesModule, ModalsModule } from '../partials';
 import { EngagesComponent } from "../partials/layout/engages/engages.component";

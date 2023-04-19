@@ -5,7 +5,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   BiographyConfigurationService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { BiographyConfigRouting } from './biography-config.routing';
 import { BiographyConfigCheckSiteComponent } from './check-site/check-site.component';
 import { BiographyConfigCheckUserComponent } from './check-user/check-user.component';

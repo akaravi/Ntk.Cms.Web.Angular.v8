@@ -23,8 +23,8 @@ export class CmsSearchListComponent implements OnInit {
       setAccess: (x: AccessModel) => this.setAccess(x),
     };
     this.optionsChange.emit(model);
-
     this.checkLoadSearch(false);
+
   }
   get options(): ComponentOptionSearchModel {
     return this.optionsData;
@@ -46,6 +46,7 @@ export class CmsSearchListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.submited = false;
+
   }
   setAccess(model: AccessModel): void {
     this.optionsData.data.access = model;
@@ -53,6 +54,7 @@ export class CmsSearchListComponent implements OnInit {
       this.setFields();
     }
     this.checkLoadSearch(false);
+    this.checkLoadDefaultQuery();
   }
   setFields(): void {
     if (
@@ -88,6 +90,19 @@ export class CmsSearchListComponent implements OnInit {
             options: [
               { name: 'بله', value: true },
               { name: 'خیر', value: false },
+            ],
+          };
+        } else if (column.fieldTypeString.indexOf('.EnumRecordStatus') > 0) {
+          this.fieldMap[column.fieldName] = {
+            name: column.fieldTitle,
+            type: 'select',
+            options: [
+              { name: 'Available', value: 1 },
+              { name: 'Disable', value: 2 },
+              { name: 'Deleted', value: 3 },
+              { name: 'Pending', value: 4 },
+              { name: 'DeniedConfirmed', value: 5 },
+              { name: 'Archive', value: 6 },
             ],
           };
         } else if (column.fieldTypeString === 'System.DateTime') {
@@ -183,10 +198,11 @@ export class CmsSearchListComponent implements OnInit {
     this.cmsToastrService.typeSuccessCopedToClipboard();
   }
   onActionLoadRules(): void {
-
     this.checkLoadSearch(true);
-
-
+  }
+  onActionRemoveRules(): void {
+    localStorage.removeItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName);
+    this.allowLoadSearch = false;
   }
   onActionSaveRules(): void {
     localStorage.setItem(this.optionsData.data.access.moduleName + "_" + this.optionsData.data.access.moduleEntityName, JSON.stringify(this.query));
@@ -242,5 +258,21 @@ export class CmsSearchListComponent implements OnInit {
     }
     return false;
   }
-
+  checkLoadDefaultQuery(): boolean {
+    if (this.optionsData && this.optionsData.data && this.optionsData.data.defaultQuery) {
+      const storeVal = this.optionsData.data.defaultQuery;
+      if (storeVal) {
+        try {
+          this.query = JSON.parse(storeVal);
+          this.getRules()
+          setTimeout(() => { this.onSubmit(); }, 1000);
+          this.optionsData.data.defaultQuery = '';
+          return true;
+        } catch (error) {
+          //console.log(error);
+        }
+      }
+    }
+    return false;
+  }
 }

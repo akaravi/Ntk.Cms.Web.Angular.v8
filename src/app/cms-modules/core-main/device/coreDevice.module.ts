@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CoreDeviceService, CoreModuleService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreDeviceAddComponent } from './add/add.component';
 import { CoreDeviceComponent } from './coreDevice.component';
 import { CoreDeviceRouting } from './coreDevice.routing';

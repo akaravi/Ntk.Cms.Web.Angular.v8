@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreAuthService, CoreConfigurationService, CoreModuleService } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth.routing';
 import { AuthForgotPasswordComponent } from './forgot-password/forgot-password.component';

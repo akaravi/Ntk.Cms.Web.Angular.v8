@@ -8,8 +8,8 @@ import {
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
-import { SharedModule } from 'src/app/shared.module';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreUserClaimContentAddComponent } from './content/add/add.component';
 import { CoreUserClaimContentCheckListComponent } from './content/check-list/check-list.component';
 import { CoreUserClaimContentEditComponent } from './content/edit/edit.component';

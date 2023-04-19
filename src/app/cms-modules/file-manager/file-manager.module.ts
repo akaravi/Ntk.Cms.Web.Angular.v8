@@ -13,7 +13,7 @@ import {
   FileCategoryService,
   FileContentService
 } from 'ntk-cms-api';
-import { SharedModule } from 'src/app/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { FileCategoryDeleteComponent } from './category/delete/delete.component';
 import { FileCategoryEditComponent } from './category/edit/edit.component';
 import { FileCategorySelectorComponent } from './category/selector/selector.component';
