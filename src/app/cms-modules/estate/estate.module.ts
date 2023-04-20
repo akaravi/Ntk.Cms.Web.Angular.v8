@@ -146,6 +146,7 @@ import { EstatePropertyExpertPriceHeaderComponent } from './property-expert-pric
 import { EstatePropertyExpertPriceInquiryCalculateComponent } from './property-expert-price/inquiry-calculate/inquiry-calculate.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from './property-expert-price/inquiry-list/inquiry-list.component';
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';
+import { EstatePropertyHistoryQuickViewComponent } from './property-history/quick-view/quick-view.component';
 import { EstatePropertyProjectAddComponent } from './property-project/add/add.component';
 import { EstatePropertyProjectDeleteComponent } from './property-project/delete/delete.component';
 import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
@@ -252,6 +253,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyHistoryAddComponent,
     EstatePropertyHistoryEditComponent,
     EstatePropertyHistoryListComponent,
+    EstatePropertyHistoryQuickViewComponent,
     /* */
     EstatePropertyAdsAddComponent,
     EstatePropertyAdsEditComponent,
