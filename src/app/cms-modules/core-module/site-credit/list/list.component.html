@@ -60,6 +60,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            style="background: none; border: none;"
             [ngStyle]="{'display': row.linkSiteId === tableRowSelected.linkSiteId && row.linkModuleId === tableRowSelected.linkModuleId ? '' : 'none' }">
           </select> </mat-cell>
       </ng-container>
