@@ -46,6 +46,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
     this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
+    this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
+
     if (this.recordStatus) {
       this.optionsSearch.data.show = true;
       this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';
@@ -57,6 +59,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
   }
   recordStatus: EnumRecordStatus;
+  responsibleUserId = 0;
   link: string;
   comment: string;
   author: string;
@@ -129,27 +132,56 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       filterModel.filters.push(filterChild);
     }
     /** filter Category */
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
-      next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        if (ret.isSuccess) {
-          this.dataModelResult = ret;
-          this.tableSource.data = ret.listItems;
 
-          if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.access);
+    if (this.responsibleUserId > 0) {
+      /** ResponsibleUserId  */
+      this.contentService.ServiceGetAllWithResponsibleUserId(this.responsibleUserId, filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
       }
+      );
+      /** ResponsibleUserId  */
+    } else {
+      /** GetAllEditor  */
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+      /** GetAllEditor  */
     }
-    );
   }
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
