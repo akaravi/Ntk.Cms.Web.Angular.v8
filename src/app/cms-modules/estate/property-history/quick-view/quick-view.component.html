@@ -1,0 +1,68 @@
+<div class="ntk-cms-html-card-header">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  {{ formInfo.formTitle }}
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+</div>
+<div class="ntk-cms-html-card-body" dir="rtl">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td><b> {{fieldsInfo['linkActivityTypeId']?.fieldTitle}}:</b></td>
+        <td><b>{{dataModel.linkActivityTypeId}}</b></td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['linkEstateUserId']?.fieldTitle}}:</td>
+        <td>{{dataModel.linkEstateUserId}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['title']?.fieldTitle}}:</td>
+        <td>{{dataModel.title}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['appointmentDateFrom']?.fieldTitle}}:</td>
+        <td>{{ publicHelper.LocaleDateTime(dataModel.appointmentDateFrom)}}</td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['appointmentDateTo']?.fieldTitle}}:</td>
+        <td>{{ publicHelper.LocaleDateTime(dataModel.appointmentDateTo)}}</td>
+      </tr>
+      <!-- <tr *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
+        <td>{{fieldsInfo['createdDate']?.fieldTitle}}:</td>
+        <td>{{ publicHelper.LocaleDateTime(dataModel.updatedDate)}}</td>
+      </tr> -->
+      <tr>
+        <td>{{'TITLE.General_Description' | translate}}:</td>
+        <td>{{dataModel.description}}</td>
+      </tr>
+      <tr *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
+        <td>{{'TITLE.Description_Hidden' | translate}}:</td>
+        <td>{{dataModel.descriptionHidden}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+<div class="ntk-cms-html-card-message">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
+    </small>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+</div>
+<div class="ntk-cms-html-card-footer">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>

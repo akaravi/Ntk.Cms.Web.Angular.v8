@@ -1,7 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FilterModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum, TokenInfoModel } from 'ntk-cms-api';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -18,7 +19,8 @@ export class CmsExportListComponent implements OnInit {
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsExportListComponent>,
-    public translate: TranslateService,) {
+    public translate: TranslateService,
+    public tokenHelper: TokenHelper,) {
 
     if (data) {
       if (data.service)
@@ -70,8 +72,14 @@ export class CmsExportListComponent implements OnInit {
     eum.key = 'FileManager';
     eum.description = 'FileManager';
     this.recieveMethodListItems.push(eum);
+
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
+
   }
   formInfo: FormInfoModel = new FormInfoModel();
+  tokenInfo = new TokenInfoModel();
   dataModelReportFileResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
