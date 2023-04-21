@@ -94,7 +94,13 @@ export class EstatePropertyListComponent
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-
+    this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
+    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
+    if (this.recordStatus) {
+      this.optionsSearch.data.show = true;
+      this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';
+      this.recordStatus = null;
+    }
     /*filter Sort*/
     this.filteModelContent.sortColumn = "CreatedDate";
     this.filteModelContent.sortType = EnumSortType.Descending;
@@ -173,6 +179,8 @@ export class EstatePropertyListComponent
     }
   }
   // SubjectTitle : string
+  recordStatus: EnumRecordStatus;
+  responsibleUserId = 0;
   link: string;
   comment: string;
   author: string;
@@ -181,6 +189,8 @@ export class EstatePropertyListComponent
   tablePropertySelected = [];
   searchInChecking = false;
   searchInCheckingChecked = false;
+  searchInResponsible = false;
+  searchInResponsibleChecked = false;
   filteModelContent = new EstatePropertySerachDtoModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> =
     new ErrorExceptionResult<EstatePropertyModel>();
@@ -259,7 +269,12 @@ export class EstatePropertyListComponent
     if (!this.optionloadComponent) {
       return;
     }
-
+    var setResponsibleUserId = 0;
+    if (this.searchInResponsible) {
+      setResponsibleUserId = this.tokenInfo.userId;
+    } else if (this.responsibleUserId > 0) {
+      setResponsibleUserId = this.responsibleUserId;
+    }
     if (this.optionsortType && this.optionsortType.length > 0) {
       if (this.optionsortType == 'asc') {
         this.filteModelContent.sortType = EnumSortType.Ascending;
@@ -299,7 +314,31 @@ export class EstatePropertyListComponent
       filterModel.filters.push(filter2);
     }
 
-    if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
+    if (setResponsibleUserId > 0) {
+      /** ResponsibleUserId  */
+      this.contentService.ServiceGetAllWithResponsibleUserId(setResponsibleUserId, filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+      /** ResponsibleUserId  */
+    } else if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
       this.actionbuttonExportOn = false;
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
@@ -819,6 +858,11 @@ export class EstatePropertyListComponent
 
   onActionbuttonInChecking(model: boolean): void {
     this.searchInChecking = model;
+    this.DataGetAll();
+  }
+
+  onActionbuttonInResponsible(model: boolean): void {
+    this.searchInResponsible = model;
     this.DataGetAll();
   }
 

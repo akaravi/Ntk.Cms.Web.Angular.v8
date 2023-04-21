@@ -49,6 +49,11 @@
       class="btn box-shadow-button btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
+    <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text box-shadow-button">
+      <mat-slide-toggle (click)="onActionbuttonInResponsible(!searchInResponsible)" [checked]="searchInResponsibleChecked">
+        {{'ACTION.InResponsible' | translate}}
+      </mat-slide-toggle>
+    </a>
     <button (click)="onActionbuttonReload()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
     </button>

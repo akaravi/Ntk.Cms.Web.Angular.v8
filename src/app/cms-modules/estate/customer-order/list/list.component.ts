@@ -60,6 +60,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   }
   recordStatus: EnumRecordStatus;
   responsibleUserId = 0;
+  searchInResponsible = false;
+  searchInResponsibleChecked = false;
   link: string;
   comment: string;
   author: string;
@@ -132,10 +134,15 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       filterModel.filters.push(filterChild);
     }
     /** filter Category */
-
-    if (this.responsibleUserId > 0) {
+    var setResponsibleUserId = 0;
+    if (this.searchInResponsible) {
+      setResponsibleUserId = this.tokenInfo.userId;
+    } else if (this.responsibleUserId > 0) {
+      setResponsibleUserId = this.responsibleUserId;
+    }
+    if (setResponsibleUserId > 0) {
       /** ResponsibleUserId  */
-      this.contentService.ServiceGetAllWithResponsibleUserId(this.responsibleUserId, filterModel).subscribe({
+      this.contentService.ServiceGetAllWithResponsibleUserId(setResponsibleUserId, filterModel).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           if (ret.isSuccess) {
@@ -435,6 +442,11 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     //open popup
 
   }
+  onActionbuttonInResponsible(model: boolean): void {
+    this.searchInResponsible = model;
+    this.DataGetAll();
+  }
+
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
