@@ -9,6 +9,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreModuleLogContentCountEditComponent } from './content-count/edit/edit.component';
 import { CoreModuleLogContentCountListComponent } from './content-count/list/list.component';
 import { CoreModuleLogContentCountViewComponent } from './content-count/view/view.component';
@@ -135,6 +136,7 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleLogScoreService,
     CoreModuleLogSiteCreditBlockedService,
     CoreModuleLogSiteUserCreditBlockedService,
+    CmsConfirmationDialogService
   ]
 })
 export class CoreModuleLogModule { }

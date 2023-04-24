@@ -12,6 +12,7 @@ import {
   CoreLogAvoidDuplicateDataEntryService, CoreLogCurrencyService,
   CoreLogErrorService, CoreLogMemberService, CoreLogReportDataService, CoreLogSmsService, CoreModuleService
 } from 'ntk-cms-api';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/edit/edit.component';
 import { CoreLogAvoidDuplicateDataEntryListComponent } from './avoid-duplicate/list/list.component';
 import { CoreLogCurrencyListComponent } from './currency/list/list.component';
@@ -98,6 +99,7 @@ import { CoreLogSmsViewComponent } from './sms/view/view.component';
     CoreLogCurrencyService,
     CoreLogAvoidDuplicateDataEntryService,
     CoreLogReportDataService,
+    CmsConfirmationDialogService
   ]
 })
 export class CoreLogModule { }
