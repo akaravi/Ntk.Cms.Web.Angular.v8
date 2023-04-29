@@ -63,6 +63,7 @@ export class AuthSingInBySmsComponent implements OnInit {
         this.cmsToastrService.typeWarningMessage(this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSetCpatcha'));
         return;
       }
+      this.dataModelAuthUserSignInBySms.code='';
     }
     this.formInfo.buttonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
@@ -102,6 +103,10 @@ export class AuthSingInBySmsComponent implements OnInit {
             this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
+          //toto: کپچا خود کار را بررسی کن اگر نیاز بود کار کند
+          // if (this.captchaModel && this.captchaModel.expire){
+
+          // }
           this.onCaptchaOrder();
           this.loading.Stop(pName);
         },

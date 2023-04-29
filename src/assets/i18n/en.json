@@ -274,6 +274,7 @@
   "AUTH.REGISTER.TITLE": "Sign Up",
   "AUTH.SINGINBYSMS.DESCENTRYCODE": "Enter the received code",
   "AUTH.SINGINBYSMS.DESCSMS": "Enter your mobile number to receive a disposable password code",
+  "AUTH.SINGINBYSMS.DESCSMSEntryCode": "Enter Code of received on Mobile number $MOBILE$",
   "AUTH.SINGINBYSMS.EMAIL": "Email address",
   "AUTH.SINGINBYSMS.LOGIN": "Login to the account",
   "AUTH.SINGINBYSMS.MOBILE": "Mobile number",
@@ -618,7 +619,6 @@
   "MESSAGE.customer_order_list_active": "Active Customer order list",
   "MESSAGE.customer_order_list_close": "Close Customer order list",
   "MESSAGE.customer_order_list_disable": "Disable Customer order list",
-
   "MESSAGE.specific_property_list": "Specific property list",
   "MESSAGE.sending_information_to_the_server": "Sending information to the server",
   "MESSAGE.get_module_setting": "Get module setting",

@@ -32,7 +32,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
   Roulaccespt = '';
   isLoading$: Observable<boolean>;
   captchaModel: CaptchaModel = new CaptchaModel();
-  expireDate: string;
+  expireDate: Date;
   aoutoCaptchaOrder = 1;
   passwordIsValid = false;
   dataModel: AuthUserSignUpModel = new AuthUserSignUpModel();
@@ -192,7 +192,7 @@ export class AuthSingUpComponent implements OnInit, OnDestroy {
       (next) => {
         if (next.isSuccess) {
           this.captchaModel = next.item;
-          this.expireDate = next.item.expire.split('+')[1];
+          this.expireDate = next.item.expire;//.split('+')[1];
           const startDate = new Date();
           const endDate = new Date(next.item.expire);
           const seconds = (endDate.getTime() - startDate.getTime());

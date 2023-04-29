@@ -152,6 +152,7 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './material/mat
 import { OverlayService } from './overlay/overlay.service';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
+import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
 
 @NgModule({
   imports: [
@@ -225,6 +226,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CmsImageThumbnailPipe,
     PrettyjsonPipe,
     RecordStatusClassPipe,
+    ReplaceTextPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
     FirstLetterPipe,
@@ -360,6 +362,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CmsImageThumbnailPipe,
     PrettyjsonPipe,
     RecordStatusClassPipe,
+    ReplaceTextPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
     /** Component */

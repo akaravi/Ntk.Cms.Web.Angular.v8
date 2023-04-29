@@ -274,6 +274,7 @@
   "AUTH.REGISTER.TITLE": "ساخت حساب",
   "AUTH.SINGINBYSMS.DESCENTRYCODE": "کددریافت شده را وارد کنید",
   "AUTH.SINGINBYSMS.DESCSMS": "شماره موبایل تان را وارد کنید تا رمز یکبار مصرف برای شما پیامک شود",
+  "AUTH.SINGINBYSMS.DESCSMSEntryCode": "عبارت پیامک شده به شماره همراه $MOBILE$ وارد کنید.",
   "AUTH.SINGINBYSMS.EMAIL": "آدرس ایمیل",
   "AUTH.SINGINBYSMS.LOGIN": "ورود به حساب",
   "AUTH.SINGINBYSMS.MOBILE": "شماره همراه",

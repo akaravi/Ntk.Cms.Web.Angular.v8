@@ -71,7 +71,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
   mapMarker: any;
   mapOptonCenter = new PoinModel();
   captchaModel: CaptchaModel = new CaptchaModel();
-  expireDate: string;
+  expireDate: Date;
   aoutoCaptchaOrder = 1;
   enumFormSubmitedStatus = EnumFormSubmitedStatus;
   onCaptchaOrderInProcess = false;
@@ -185,7 +185,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
       (next) => {
         if (next.isSuccess) {
           this.captchaModel = next.item;
-          this.expireDate = next.item.expire.split('+')[1];
+          this.expireDate = next.item.expire;//.split('+')[1];
           const startDate = new Date();
           const endDate = new Date(next.item.expire);
           const seconds = (endDate.getTime() - startDate.getTime());

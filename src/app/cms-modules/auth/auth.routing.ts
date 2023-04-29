@@ -31,8 +31,8 @@ const routes: Routes = [
         path: 'forgot-password',
         component: AuthForgotPasswordComponent
       },
-      { path: '', redirectTo: 'singin', pathMatch: 'full' },
-      { path: '**', redirectTo: 'singin', pathMatch: 'full' },
+      { path: '', redirectTo: 'singinbysms', pathMatch: 'full' },
+      { path: '**', redirectTo: 'singinbysms', pathMatch: 'full' },
     ]
   }
 ];
