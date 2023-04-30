@@ -63,6 +63,8 @@ export class EstatePropertyTypeLanduseAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
     this.estatePropertyTypeLanduseService
       .ServiceViewModel()
       .subscribe({
@@ -72,9 +74,11 @@ export class EstatePropertyTypeLanduseAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

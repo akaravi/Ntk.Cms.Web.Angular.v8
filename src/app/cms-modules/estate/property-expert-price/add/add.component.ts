@@ -81,6 +81,9 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.estatePropertyExpertPriceService
       .ServiceViewModel()
       .subscribe({
@@ -90,9 +93,11 @@ export class EstatePropertyExpertPriceAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

@@ -50,6 +50,9 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
     this.DataGetAccess();
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.webDesignerMainPageTemplateService
       .ServiceViewModel()
       .subscribe(
@@ -60,9 +63,11 @@ export class WebDesignerMainPageTemplateAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(pName);
         }
       );
   }

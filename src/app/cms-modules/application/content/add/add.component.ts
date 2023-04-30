@@ -92,6 +92,8 @@ export class ApplicationAppAddComponent implements OnInit {
     this.DataAddContent();
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
     this.applicationAppService
       .ServiceViewModel()
       .subscribe({
@@ -102,9 +104,11 @@ export class ApplicationAppAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

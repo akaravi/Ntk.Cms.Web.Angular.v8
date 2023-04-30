@@ -64,6 +64,9 @@ export class TicketingTemplateAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.ticketingTemplateService
       .ServiceViewModel()
       .subscribe(
@@ -74,9 +77,11 @@ export class TicketingTemplateAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(pName);
         }
       );
   }

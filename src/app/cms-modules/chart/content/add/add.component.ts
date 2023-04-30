@@ -103,6 +103,9 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
     this.contentService
       .ServiceViewModel()
       .subscribe({
@@ -113,9 +116,11 @@ export class ChartContentAddComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

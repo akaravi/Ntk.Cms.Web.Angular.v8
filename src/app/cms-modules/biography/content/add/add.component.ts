@@ -90,6 +90,9 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
     this.biographyContentService
       .ServiceViewModel()
       .subscribe({
@@ -100,9 +103,11 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

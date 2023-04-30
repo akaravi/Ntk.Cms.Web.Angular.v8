@@ -1,5 +1,6 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -140,12 +141,12 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.dataModelActivityTypeResult = next;
     });
   }
-
+  checkingOnDayRange = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
-
-
-
     if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkPropertyId';
@@ -192,11 +193,17 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
 
     if (this.searchInCheckingOnDay) {
-      const CheckingOnDay = new Date();
+      debugger
+      // const CheckingOnDay = new Date();
       let filterModelOnDay = new EstatePropertyHistorySerachDtoModel();
       filterModelOnDay = filterModel;
-      filterModelOnDay.onDateTimeFrom = CheckingOnDay;
-      filterModelOnDay.onDateTimeTo = CheckingOnDay;
+      if (!this.checkingOnDayRange.controls.start?.value)
+        this.checkingOnDayRange.controls.start.setValue(new Date());
+      if (!this.checkingOnDayRange.controls.end?.value)
+        this.checkingOnDayRange.controls.end.setValue(new Date());
+      filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
+      filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+
       /** Search On Select Day */
       this.contentService.ServiceGetAllWithFilterOnDate(filterModelOnDay).subscribe({
         next: (ret) => {

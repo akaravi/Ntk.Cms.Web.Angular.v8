@@ -122,6 +122,8 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
     this.linkManagementBillboardService
       .ServiceViewModel()
       .subscribe({
@@ -132,9 +134,11 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );
