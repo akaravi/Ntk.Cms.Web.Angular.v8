@@ -94,6 +94,7 @@ const routes: Routes = [
         path: 'property/InChecking/:InChecking',
         component: EstatePropertyListComponent
       },
+
       {
         path: 'property/add',
         component: EstatePropertyAddComponent
@@ -172,6 +173,10 @@ const routes: Routes = [
       /**/
       {
         path: 'property-history',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
         component: EstatePropertyHistoryListComponent
       },
       {

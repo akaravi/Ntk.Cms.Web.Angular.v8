@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateActivityTypeModel, EstateActivityTypeService, EstateEnumService, EstatePropertyHistoryModel,
+  EstatePropertyHistorySerachDtoModel,
   EstatePropertyHistoryService, FilterDataModel, FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -57,9 +58,11 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-
+    if (this.activatedRoute.snapshot.paramMap.get("InCheckingOnDay")) {
+      this.searchInCheckingOnDay = this.activatedRoute.snapshot.paramMap.get("InCheckingOnDay") === "true";
+    }
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
@@ -81,12 +84,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   tableRowSelected: EstatePropertyHistoryModel = new EstatePropertyHistoryModel();
   tableSource: MatTableDataSource<EstatePropertyHistoryModel> = new MatTableDataSource<EstatePropertyHistoryModel>();
   categoryModelSelected: EstateActivityTypeModel;
-
+  searchInCheckingOnDay = false;
+  searchInCheckingOnDayChecked = false;
 
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'Title',
+    'CreatedDate',
     'AppointmentDateFrom',
     'AppointmentDateTo',
     'LinkActivityTypeId',
@@ -102,7 +107,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -117,6 +122,11 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
+  }
+  ngAfterViewInit(): void {
+    if (this.searchInCheckingOnDay) {
+      this.searchInCheckingOnDayChecked = true;
+    }
   }
   getEstateActivityStatusEnum(): void {
     this.estateEnumService.ServiceEstateActivityStatusEnum().subscribe((next) => {
@@ -178,27 +188,61 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       filterModel.filters.push(filterChild);
     }
     /** filter Category */
-    this.contentService.ServiceGetAll(filterModel).subscribe({
-      next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        if (ret.isSuccess) {
-          this.dataModelResult = ret;
-          this.tableSource.data = ret.listItems;
 
-          if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.access);
+
+
+    if (this.searchInCheckingOnDay) {
+      const CheckingOnDay = new Date();
+      let filterModelOnDay = new EstatePropertyHistorySerachDtoModel();
+      filterModelOnDay = filterModel;
+      filterModelOnDay.onDateTimeFrom = CheckingOnDay;
+      filterModelOnDay.onDateTimeTo = CheckingOnDay;
+      /** Search On Select Day */
+      this.contentService.ServiceGetAllWithFilterOnDate(filterModelOnDay).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
       }
+      );
+      /** Search On Select Day */
+    } else {
+      this.contentService.ServiceGetAll(filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
     }
-    );
   }
 
 
@@ -404,7 +448,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
@@ -490,6 +534,10 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowMouseLeave(row: EstatePropertyHistoryModel): void {
     row["expanded"] = false;
+  }
+  onActionbuttonInCheckingOnDat(model: boolean): void {
+    this.searchInCheckingOnDay = model;
+    this.DataGetAll();
   }
 
 }
