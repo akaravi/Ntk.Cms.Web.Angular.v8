@@ -562,6 +562,8 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
         this.checkingOnDayRange.controls.start.setValue(new Date());
       if (!this.checkingOnDayRange.controls.end?.value)
         this.checkingOnDayRange.controls.end.setValue(new Date());
+    } else {
+      this.DataGetAll();
     }
   }
   onActionbuttonInCheckingOnDateSearch() {
