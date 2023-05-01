@@ -45,9 +45,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
-    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
-    this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
 
+    this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
+    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
     if (this.recordStatus) {
       this.optionsSearch.data.show = true;
       this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';

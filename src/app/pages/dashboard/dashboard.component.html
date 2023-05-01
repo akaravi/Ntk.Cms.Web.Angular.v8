@@ -18,6 +18,10 @@
         <app-estate-customer-order-widget-add [(loading)]="loading" cssClass="gutter-b card-stretch">
         </app-estate-customer-order-widget-add>
     </div>
+    <div class="col-xl-4" *ngIf="checkModuleExist['estate']">
+        <app-estate-property-history-widget-add [(loading)]="loading" cssClass="gutter-b card-stretch">
+        </app-estate-property-history-widget-add>
+    </div>
     <div class="col-xxl-4" *ngIf="loadDemoTheme">
         <app-lists-widget3 class="card card-xxl-stretch mb-xl-3"></app-lists-widget3>
     </div>

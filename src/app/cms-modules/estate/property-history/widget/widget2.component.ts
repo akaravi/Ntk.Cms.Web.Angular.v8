@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes, EnumRecordStatus, EstatePropertyService, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes, EnumRecordStatus, EstatePropertyHistoryService, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -9,12 +9,12 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-estate-property-widget2',
+  selector: 'app-estate-property-history-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })
 
-export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
+export class EstatePropertyHistoryWidget2Component implements OnInit, OnDestroy {
   @Input() cssClass = '';
   @Input() widgetHeight = '200px';
   @Input() baseColor = 'success';
@@ -22,7 +22,7 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
   textInverseCSSClass;
   svgCSSClass;
   constructor(
-    private service: EstatePropertyService,
+    private service: EstatePropertyHistoryService,
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
@@ -37,9 +37,9 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
   @Input()
   loading = new ProgressSpinnerModel();
   ngOnInit() {
-    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_property');
+    this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_customer_order');
     this.widgetInfoModel.description = '';
-    this.widgetInfoModel.link = '/estate/property';
+    this.widgetInfoModel.link = '/estate/customer-order';
 
     this.onActionStatist();
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
@@ -106,11 +106,11 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           if (ret.totalRowCount > 0) {
             this.modelData.set('InChecking', ret.totalRowCount);
-            this.widgetInfoModel.link = '/estate/property/InChecking/true';
+            this.widgetInfoModel.link = '/estate/customer-order/InChecking/true';
           }
           else {
             this.modelData.delete('InChecking');
-            this.widgetInfoModel.link = '/estate/property';
+            this.widgetInfoModel.link = '/estate/customer-order';
           }
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);

@@ -26,7 +26,7 @@
         <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()" type="button" class="btn box-shadow-button btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
         <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text box-shadow-button">
-            <mat-slide-toggle (click)="onActionbuttonInCheckingOnDat(!searchInCheckingOnDay)" [checked]="searchInCheckingOnDayChecked">
+            <mat-slide-toggle (click)="onActionbuttonInCheckingOnDate(!searchInCheckingOnDay)" [checked]="searchInCheckingOnDayChecked">
                 {{'ACTION.SearchOnDay' | translate}}
             </mat-slide-toggle>
         </a>
@@ -49,30 +49,30 @@
         <button (click)="onActionbuttonReload()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
             <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
         </button>
-        <div *ngIf="searchInCheckingOnDay">
-            <mat-form-field appearance="fill">
-                <mat-label>Enter a date range</mat-label>
-                <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
-                    <input matStartDate formControlName="start" placeholder="Start date">
-                    <input matEndDate formControlName="end" placeholder="End date">
-                </mat-date-range-input>
-                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
 
-                <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-                <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-            </mat-form-field>
-            <p>Selected range: {{checkingOnDayRange.value | json}}</p>
-        </div>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
     </ng-container>
     <ng-container cms-action-area>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+        <div *ngIf="searchInCheckingOnDay" class="alert alert-info">
+            <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
+            <mat-form-field appearance="fill">
+                <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
+                <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
+                    <input matStartDate formControlName="start" placeholder="{{'TITLE.Start_Date'| translate}}">
+                    <input matEndDate formControlName="end" placeholder="{{'TITLE.Start_Date'| translate}}">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+
+                <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">{{'MESSAGE.InvalidStartDate' | translate}}</mat-error>
+                <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' | translate}}</mat-error>
+            </mat-form-field>
+            <br>
+            <a href="javascript:void(0)" (click)="onActionbuttonInCheckingOnDateSearch()" class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
+        </div>
         <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
-
         <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
-
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
     </ng-container>
     <ng-container cms-body>

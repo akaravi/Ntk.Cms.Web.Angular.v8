@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { ApplicationAppService, ApplicationMemberInfoService, ArticleContentService, BiographyContentService, BlogContentService, ChartContentService, CoreModuleLogReportAbuseService, CoreModuleSiteCreditService, CoreSiteService, CoreUserClaimContentService, CoreUserClaimTypeService, CoreUserService, EstateCustomerOrderService, EstatePropertyService, NewsContentService, TicketingTaskService, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
+import { ApplicationAppService, ApplicationMemberInfoService, ArticleContentService, BiographyContentService, BlogContentService, ChartContentService, CoreModuleLogReportAbuseService, CoreModuleSiteCreditService, CoreSiteService, CoreUserClaimContentService, CoreUserClaimTypeService, CoreUserService, EstateCustomerOrderService, EstatePropertyHistoryService, EstatePropertyService, NewsContentService, TicketingTaskService, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
 import { ApplicationAppWidgetCreateComponent } from 'src/app/cms-modules/application/content/widget/create/widget-create.component';
 import { ApplicationAppWidgetComponent } from 'src/app/cms-modules/application/content/widget/widget.component';
 import { ApplicationAppWidget2Component } from 'src/app/cms-modules/application/content/widget/widget2.component';
@@ -43,6 +43,9 @@ import { CmsHtmlWidgetComponent } from 'src/app/shared/cms-html-widget/cms-html-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { WidgetsModule } from '../../_metronic/partials';
 import { DashboardComponent } from './dashboard.component';
+import { EstatePropertyHistoryWidgetComponent } from 'src/app/cms-modules/estate/property-history/widget/widget.component';
+import { EstatePropertyHistoryWidget2Component } from 'src/app/cms-modules/estate/property-history/widget/widget2.component';
+import { EstatePropertyHistoryWidgetAddComponent } from 'src/app/cms-modules/estate/property-history/widget/widget-add.component';
 
 @NgModule({
   declarations: [DashboardComponent
@@ -77,6 +80,9 @@ import { DashboardComponent } from './dashboard.component';
     EstateCustomerOrderWidgetComponent,
     EstateCustomerOrderWidget2Component,
     EstateCustomerOrderWidgetAddComponent,
+    EstatePropertyHistoryWidgetComponent,
+    EstatePropertyHistoryWidget2Component,
+    EstatePropertyHistoryWidgetAddComponent,
     TicketingTaskWidgetComponent,
     TicketingTaskWidget2Component,
     CoreModuleLogReportAbuseWidget2Component,
@@ -116,6 +122,7 @@ import { DashboardComponent } from './dashboard.component';
     CoreUserClaimTypeService,
     CoreModuleLogReportAbuseService,
     CoreModuleSiteCreditService,
+    EstatePropertyHistoryService,
   ]
 })
 export class DashboardModule { }

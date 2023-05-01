@@ -9,7 +9,7 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-estate-content-widget2',
+  selector: 'app-estate-customer-order-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })

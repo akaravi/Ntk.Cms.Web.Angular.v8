@@ -195,6 +195,14 @@ const routes: Routes = [
         path: 'property-history/LinkEstateAgencyId/:LinkEstateAgencyId',
         component: EstatePropertyHistoryListComponent
       },
+      {
+        path: 'property-history/recordstatus/:RecordStatus',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/action/:Action',
+        component: EstatePropertyHistoryListComponent
+      },
       /**/
       {
         path: 'expert-price',

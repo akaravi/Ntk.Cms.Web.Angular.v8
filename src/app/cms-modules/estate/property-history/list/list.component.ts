@@ -55,7 +55,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.requestLinkEstateUserId = this.activatedRoute.snapshot.paramMap.get('LinkEstateUserId');
     this.requestLinkCustomerOrderId = this.activatedRoute.snapshot.paramMap.get('LinkCustomerOrderId');
     this.requestLinkEstateAgencyId = this.activatedRoute.snapshot.paramMap.get('LinkEstateAgencyId');
+    this.popupAdd = this.activatedRoute.snapshot.paramMap.get('Action')?.toLowerCase() === 'add';
 
+    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
+    if (this.recordStatus) {
+      this.optionsSearch.data.show = true;
+      this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';
+      this.recordStatus = null;
+    }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
@@ -67,6 +74,8 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortType = EnumSortType.Descending;
 
   }
+  recordStatus: EnumRecordStatus;
+  popupAdd = false;
   comment: string;
   author: string;
   dataSource: any;
@@ -120,6 +129,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     });
     this.getEstateActivityStatusEnum();
     this.getActivityTypeList();
+
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -193,7 +203,6 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
 
     if (this.searchInCheckingOnDay) {
-      debugger
       // const CheckingOnDay = new Date();
       let filterModelOnDay = new EstatePropertyHistorySerachDtoModel();
       filterModelOnDay = filterModel;
@@ -219,6 +228,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
+          if (this.popupAdd) {
+            this.onActionbuttonNewRow();
+          }
         },
         error: (er) => {
           this.cmsToastrService.typeError(er);
@@ -242,6 +254,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
+          if (this.popupAdd) {
+            this.onActionbuttonNewRow();
+          }
         },
         error: (er) => {
           this.cmsToastrService.typeError(er);
@@ -282,14 +297,12 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
 
   onActionbuttonNewRow(): void {
-    if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.id.length === 0
-    ) {
+    if (!this.popupAdd && (this.categoryModelSelected == null || this.categoryModelSelected.id.length === 0)) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    this.popupAdd = false;
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -301,7 +314,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
       data: {
-        linkActivityTypeId: this.categoryModelSelected.id,
+        linkActivityTypeId: this.categoryModelSelected?.id,
         linkPropertyId: this.requestLinkPropertyId,
         linkEstateUserId: this.requestLinkEstateUserId,
         linkCustomerOrderId: this.requestLinkCustomerOrderId,
@@ -542,9 +555,17 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   onActionTableRowMouseLeave(row: EstatePropertyHistoryModel): void {
     row["expanded"] = false;
   }
-  onActionbuttonInCheckingOnDat(model: boolean): void {
+  onActionbuttonInCheckingOnDate(model: boolean): void {
     this.searchInCheckingOnDay = model;
-    this.DataGetAll();
+    if (this.searchInCheckingOnDay) {
+      if (!this.checkingOnDayRange.controls.start?.value)
+        this.checkingOnDayRange.controls.start.setValue(new Date());
+      if (!this.checkingOnDayRange.controls.end?.value)
+        this.checkingOnDayRange.controls.end.setValue(new Date());
+    }
   }
-
+  onActionbuttonInCheckingOnDateSearch() {
+    if (this.searchInCheckingOnDay)
+      this.DataGetAll();
+  }
 }
