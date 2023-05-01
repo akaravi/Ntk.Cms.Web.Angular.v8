@@ -157,30 +157,6 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   });
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
-    if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'LinkPropertyId';
-      filter.value = this.requestLinkPropertyId;
-      this.filteModelContent.filters.push(filter);
-    }
-    if (this.requestLinkEstateUserId && this.requestLinkEstateUserId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'linkEstateUserId';
-      filter.value = this.requestLinkEstateUserId;
-      this.filteModelContent.filters.push(filter);
-    }
-    if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'linkCustomerOrderId';
-      filter.value = this.requestLinkCustomerOrderId;
-      this.filteModelContent.filters.push(filter);
-    }
-    if (this.requestLinkEstateAgencyId && this.requestLinkEstateAgencyId.length > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'linkEstateAgencyId';
-      filter.value = this.requestLinkEstateAgencyId;
-      this.filteModelContent.filters.push(filter);
-    }
 
 
     this.tableRowsSelected = [];
@@ -191,6 +167,33 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
+
+
+    if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkPropertyId';
+      filter.value = this.requestLinkPropertyId;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestLinkEstateUserId && this.requestLinkEstateUserId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkEstateUserId';
+      filter.value = this.requestLinkEstateUserId;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestLinkCustomerOrderId && this.requestLinkCustomerOrderId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkCustomerOrderId';
+      filter.value = this.requestLinkCustomerOrderId;
+      filterModel.filters.push(filter);
+    }
+    if (this.requestLinkEstateAgencyId && this.requestLinkEstateAgencyId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkEstateAgencyId';
+      filter.value = this.requestLinkEstateAgencyId;
+      filterModel.filters.push(filter);
+    }
+
     /** filter Category */
     if (this.categoryModelSelected && this.categoryModelSelected.id.length > 0) {
       const filterChild = new FilterDataModel();
