@@ -30,8 +30,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
   errorMessage = '';
   @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   dataModelSelect: BankPaymentPrivateSiteConfigModel = new BankPaymentPrivateSiteConfigModel();
+  @Input()
+  public set optionloading(v: ProgressSpinnerModel) {
+    if (v)
+      this.loading = v;
+  }
+  loading = new ProgressSpinnerModel();
 
-  @Input() loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModel: BlogCategoryModel = new BlogCategoryModel();
 
@@ -50,11 +55,13 @@ export class CmsBankpaymentGridComponent implements OnInit {
       const pName = this.constructor.name + 'main';
       this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayCoreList().subscribe({
-        next(ret) {
+        next: (ret) => {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
-            if (this.dataModelResult.listItems && this.dataModelResult.listItems.length == 1) {
-              this.onActionSelect(this.dataModelResult.listItems[0]);
+            if (!this.dataModelResult.listItems || this.dataModelResult.listItems.length == 0) {
+              this.errorMessage = this.translate.instant('MESSAGE.Payment_portal_is_not_active');
+            } else if (this.dataModelResult.listItems && this.dataModelResult.listItems.length == 1) {
+              this.onActionSelectBank(this.dataModelResult.listItems[0]);
             }
           }
           else {
@@ -63,11 +70,9 @@ export class CmsBankpaymentGridComponent implements OnInit {
           this.loading.Stop(pName);
 
         },
-        error(er) {
+        error: (er) => {
           this.errorMessage = er;
-
           this.loading.Stop(pName);
-
         }
       }
       );
@@ -76,18 +81,20 @@ export class CmsBankpaymentGridComponent implements OnInit {
       const pName = this.constructor.name + 'main';
       this.loading.Start(pName);
       this.bankPaymentPrivateSiteConfigService.ServicePaymentGatewayList().subscribe({
-        next(ret) {
+        next: (ret) => {
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             if (!this.dataModelResult.listItems || this.dataModelResult.listItems.length == 0) {
               this.errorMessage = this.translate.instant('MESSAGE.Payment_portal_is_not_active');
+            } else if (this.dataModelResult.listItems && this.dataModelResult.listItems.length == 1) {
+              this.onActionSelectBank(this.dataModelResult.listItems[0]);
             }
           }
           else {
             this.errorMessage = ret.errorMessage;
           }
           this.loading.Stop(pName);
-        }, error(er) {
+        }, error: (er) => {
           this.errorMessage = er;
           this.loading.Stop(pName);
         }
@@ -97,7 +104,7 @@ export class CmsBankpaymentGridComponent implements OnInit {
     }
   }
 
-  onActionSelect(model: BankPaymentPrivateSiteConfigModel): void {
+  onActionSelectBank(model: BankPaymentPrivateSiteConfigModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
