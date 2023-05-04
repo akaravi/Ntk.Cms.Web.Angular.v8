@@ -86,6 +86,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     'BankStatus',
     'Amount',
     'AmountPure',
+    'CreatedDate',
     'UpdatedDate',
     'Action'
   ];
@@ -394,7 +395,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
