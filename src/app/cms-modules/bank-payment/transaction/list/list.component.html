@@ -127,7 +127,7 @@
                             <mat-icon>delete_forever</mat-icon>
                             <span>{{'ACTION.DELETE' | translate}}</span>
                         </button>
-                        <button mat-menu-item (click)="onActionbuttonGotoBank(row)">
+                        <button mat-menu-item (click)="onActionbuttonGotoBank(row)" *ngIf="row.paymentTransactionUrl?.length>0">
                             <mat-icon>account_balance</mat-icon>
                             <span>{{'ACTION.TRANSFER_TO_PORT' | translate}}</span>
                         </button>
