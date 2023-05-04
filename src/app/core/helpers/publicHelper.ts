@@ -508,4 +508,11 @@ export class PublicHelper {
     }
     return cloumn;
   }
+  OpenNewTabByClick(event: MouseEvent, linkOfRoute: String): void {
+    if (event?.ctrlKey) {
+      window.open("/#" + linkOfRoute, "_blank");
+    } else {
+      this.router.navigate([linkOfRoute]);
+    }
+  }
 }

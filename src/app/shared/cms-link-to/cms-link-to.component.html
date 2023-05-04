@@ -1,4 +1,4 @@
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm" [ngStyle]="{'direction' : tokenInfo.direction }">
     <mat-tab-group>
         <mat-tab label="{{'TITLE.LINKTO' | translate}}">
             <div style="padding: 5px;" class="row">

@@ -1,4 +1,4 @@
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm" [ngStyle]="{'direction' : tokenInfo.direction }">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     {{ formInfo.formTitle }}
@@ -185,7 +185,7 @@
               *ngIf="this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId && this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId.length>0"
               type="button" class="btn btn-success">&#x2b;</button>
           </div>
-          
+
         </div>
         <app-progress-spinner [options]="loadingOption">
         </app-progress-spinner>
