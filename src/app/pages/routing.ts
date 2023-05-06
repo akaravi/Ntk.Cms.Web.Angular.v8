@@ -109,6 +109,11 @@ const Routing: Routes = [
       import('../cms-modules/blog/blog.module').then(m => m.BlogModule)
   },
   {
+    path: 'catalog',
+    loadChildren: () =>
+      import('../cms-modules/catalog/catalog.module').then(m => m.CatalogModule)
+  },
+  {
     path: 'hypershop',
     loadChildren: () =>
       import('../cms-modules/hyper-shop/hyper-shop.module').then(m => m.HyperShopModule)
