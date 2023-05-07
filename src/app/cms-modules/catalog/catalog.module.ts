@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   CatalogCategoryService,
   CatalogConfigurationService,
-  CatalogContentOtherInfoService,
   CatalogContentService,
   CoreEnumService, CoreModuleService, CoreModuleTagService
 } from 'ntk-cms-api';
@@ -72,7 +71,6 @@ import { CatalogContentSelectorComponent } from './content/selector/selector.com
     CatalogCategoryService,
     CatalogConfigurationService,
     CatalogContentService,
-    CatalogContentOtherInfoService,
   ]
 })
 export class CatalogModule { }

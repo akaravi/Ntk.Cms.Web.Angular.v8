@@ -9,6 +9,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreModuleSiteCreditChargePaymentComponent } from './site-credit/charge-payment/charge-payment.component';
 import { CoreModuleSiteCreditChargeComponent } from './site-credit/charge/charge.component';
 import { CoreModuleSiteCreditEditComponent } from './site-credit/edit/edit.component';
@@ -84,7 +85,7 @@ import { CoreModuleTagCategoryTreeComponent } from './tagCategory/tree/tree.comp
     CoreModuleTagCategoryService,
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
-
+    CmsConfirmationDialogService
   ]
 })
 export class CoreModuleModule { }

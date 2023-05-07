@@ -13,7 +13,7 @@ import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel,
 
-  CatalogContentModel, CatalogContentOtherInfoModel, CatalogContentOtherInfoService, CatalogContentService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
+  CatalogContentModel, CatalogContentOtherInfoModel,  CatalogContentService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
   EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
   FormInfoModel
 } from 'ntk-cms-api';
@@ -36,7 +36,6 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
     public coreEnumService: CoreEnumService,
     public publicHelper: PublicHelper,
     public contentService: CatalogContentService,
-    private contentOtherInfoService: CatalogContentOtherInfoService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -172,9 +171,6 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
             }
             this.dataModel.keyword = this.dataModel.keyword + '';
             this.keywordDataModel = this.dataModel.keyword.split(',');
-            this.DataTagGetAll();
-            this.DataOtherInfoGetAll();
-            this.DataSimilarGetAllIds();
             this.loading.Stop(pName);
           } else {
             this.cmsToastrService.typeErrorGetOne(ret.errorMessage);
@@ -188,87 +184,8 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
       }
       );
   }
-  DataTagGetAll(): void {
-    this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.Receiving_tag_information_from_the_server'));
 
 
-
-    const filterModel = new FilterModel();
-
-    const aaa3 = {
-      PropertyName: 'LinkContentId',
-      Value: this.requestId,
-    };
-    filterModel.filters.push(aaa3 as unknown as FilterDataModel);
-
-  }
-  DataOtherInfoGetAll(): void {
-    this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
-
-    const filterModel = new FilterModel();
-
-    const aaa3 = {
-      PropertyName: 'LinkContentId',
-      Value: this.requestId,
-    };
-    filterModel.filters.push(aaa3 as unknown as FilterDataModel);
-    this.contentOtherInfoService
-      .ServiceGetAll(filterModel)
-      .subscribe({
-        next: (ret) => {
-          this.loading.Stop(pName);
-          this.formInfo.formSubmitAllow = true;
-          this.dataContentOtherInfoModelResult = ret;
-          if (ret.isSuccess) {
-            this.otherInfoDataModel = ret.listItems;
-            this.otherInfoTabledataSource.data = ret.listItems;
-          } else {
-            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
-          }
-        },
-        error: (er) => {
-          this.loading.Stop(pName);
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorGetAll(er);
-        }
-      }
-      );
-  }
-  DataSimilarGetAllIds(): void {
-    this.formInfo.formSubmitAllow = false;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.get_other_information_from_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-
-
-
-    const filterModel = new FilterModel();
-
-    const aaa1 = {
-      PropertyName: 'LinkSourceId',
-      Value: this.requestId,
-      ClauseType: 1
-    };
-    const aaa2 = {
-      PropertyName: 'LinkDestinationId',
-      Value: this.requestId,
-      ClauseType: 1
-    };
-    filterModel.filters.push(aaa1 as unknown as FilterDataModel);
-    filterModel.filters.push(aaa2 as unknown as FilterDataModel);
-
-  }
 
   DataEditContent(): void {
     this.formInfo.formSubmitAllow = false;

@@ -12,7 +12,7 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel,
-  CatalogContentModel, CatalogContentOtherInfoModel, CatalogContentOtherInfoService, CatalogContentService,
+  CatalogContentModel, CatalogContentOtherInfoModel,  CatalogContentService,
   CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel
@@ -38,7 +38,6 @@ export class CatalogContentAddComponent implements OnInit, AfterViewInit {
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     public contentService: CatalogContentService,
-    private contentOtherInfoService: CatalogContentOtherInfoService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -214,7 +213,7 @@ export class CatalogContentAddComponent implements OnInit, AfterViewInit {
           if (next.isSuccess) {
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
-            await this.DataActionAfterAddContentSuccessfulOtherInfo(this.dataModelResult.item);
+          
 
             setTimeout(() => this.router.navigate(['/catalog/content/']), 1000);
           } else {
@@ -231,34 +230,6 @@ export class CatalogContentAddComponent implements OnInit, AfterViewInit {
         }
       );
   }
-
-  DataActionAfterAddContentSuccessfulOtherInfo(model: CatalogContentModel): Promise<any> {
-    if (!this.otherInfoDataModel || this.otherInfoDataModel.length === 0) {
-      return;
-    }
-    this.otherInfoDataModel.forEach(x => {
-      x.linkContentId = model.id;
-    });
-    const pName = this.constructor.name + 'contentOtherInfoService.ServiceAddBatch';
-    this.loading.Start(pName);
-    return this.contentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
-      map(response => {
-        if (response.isSuccess) {
-          this.cmsToastrService.typeSuccessAddOtherInfo();
-        } else {
-          this.cmsToastrService.typeErrorAddOtherInfo();
-        }
-        return of(response);
-      },
-        (error) => {
-          this.loading.Stop(pName);
-
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
-        }
-      )).toPromise();
-  }
-
 
 
   onActionContentOtherInfoAddToLIst(): void {
