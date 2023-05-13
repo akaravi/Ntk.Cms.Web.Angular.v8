@@ -448,7 +448,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.router.navigate(['/bankpayment/privatesiteconfig/LinkPublicConfigId', this.tableRowSelected.id]);
+    this.router.navigate(['/sms/main/api-number/LinkApiPathId', this.tableRowSelected.id]);
   }
   onActionbuttonPermitionList(model: SmsMainApiPathModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -546,7 +546,7 @@ export class SmsMainApiPathListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {

@@ -71,7 +71,7 @@
                     <!-- LinkPrivateSiteConfigId Field -->
                     <app-cms-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [(loading)]="loading" [optionSelectForce]="dataModel?.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')" [optionSelectFirstItem]="true">
                     </app-cms-sms-apipath-selector>
-                    <app-cms-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [(loading)]="loading" (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="dataModel.linkFromNumber" [optionDefaultNumbers]="apiDefaultNumbers" [optionLinkApiPathId]="dataModel?.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.sender_number')" [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true">
+                    <app-cms-sms-api-number-selector *ngIf="dataModel.linkApiPathId?.length>0" [(loading)]="loading" (optionChange)="onActionSelectApiNumber($event)" [optionSelectForce]="" [optionLinkApiPathId]="dataModel?.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.sender_number')" [optionSelectFirstItem]="true" [optionSelectFirstItemOnChangeApi]="true">
                     </app-cms-sms-api-number-selector>
 
                 </div>

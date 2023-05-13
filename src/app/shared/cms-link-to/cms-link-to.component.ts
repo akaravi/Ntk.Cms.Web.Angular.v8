@@ -85,7 +85,7 @@ export class CmsLinkToComponent implements OnInit {
   }
   sendByShow = false;
   dataModelParentSelected: SmsMainApiPathModel;
-  apiDefaultNumbers = [];
+
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
     this.dataModelParentSelected = model;
     // if (model && model.id.length > 0) {
@@ -94,10 +94,6 @@ export class CmsLinkToComponent implements OnInit {
     // }
     if (model && model.id.length > 0) {
       this.dataModel.linkApiPathId = model.id;
-      this.apiDefaultNumbers = this.publicHelper.SplitAllChar(model.apiDefaultNumber);
-      if (this.apiDefaultNumbers && this.apiDefaultNumbers.length > 0) {
-        this.dataModel.linkFromNumber = this.apiDefaultNumbers[0];
-      }
       this.sendByShow = false;
       if (model.apiAbilitySendByDirect)
         this.dataModel.sendByQeue = false;

@@ -69,10 +69,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
     this.dataModelParentSelected = model;
     if (model && model.id.length > 0) {
       this.dataModel.linkApiPathId = model.id;
-      const nums = this.publicHelper.SplitAllChar(model.apiDefaultNumber);
-      if (nums && nums.length > 0) {
-        this.dataModel.fromNumber = nums[0];
-      }
+
       this.sendByShow = false;
       if (model.apiAbilitySendByDirect)
         this.dataModel.sendByQueue = false;

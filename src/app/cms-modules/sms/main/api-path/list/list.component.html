@@ -1,5 +1,5 @@
 <app-cms-html-list [optionLoading]="loading"
-  [optionTreeDisplay]="!requestLinkCompanyId || requestLinkCompanyId.length==0">
+  [optionTreeDisplay]="!requestLinkCompanyId || requestLinkCompanyId.length===0">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
     <app-sms-apipathcompany-tree (optionChange)="onActionSelectorSelect($event)"></app-sms-apipathcompany-tree>
