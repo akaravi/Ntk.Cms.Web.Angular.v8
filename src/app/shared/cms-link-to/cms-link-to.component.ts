@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FormInfoModel, SmsApiSendMessageDtoModel, SmsMainApiNumberModel, SmsMainApiPathModel, SmsMainApiPathService, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -28,6 +29,7 @@ export class CmsLinkToComponent implements OnInit {
     private router: Router,
     public translate: TranslateService,
     private tokenHelper: TokenHelper,
+    private publicHelper: PublicHelper,
   ) {
     if (data) {
       this.optionTitle = data.title;
@@ -64,9 +66,13 @@ export class CmsLinkToComponent implements OnInit {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionSelectApiNumber(model: SmsMainApiNumberModel): void {
-    if (model && model.id.length > 0) {
+    if (model && model.id?.length > 0) {
       this.dataModel.linkFromNumber = model.id;
     }
+    else if (model && model.numberChar?.length > 0) {
+      this.dataModel.linkFromNumber = model.numberChar;
+    }
+
   }
   onActionMessageLTR() {
     this.message.nativeElement.style.direction = "ltr";
@@ -77,12 +83,28 @@ export class CmsLinkToComponent implements OnInit {
     this.message.nativeElement.style.direction = "rtl";
     this.message.nativeElement.style.textAlign = "right";
   }
-
+  sendByShow = false;
+  dataModelParentSelected: SmsMainApiPathModel;
+  apiDefaultNumbers = [];
   onActionSelectPrivateSiteConfig(model: SmsMainApiPathModel): void {
-    // this.dataModelParentSelected = model;
+    this.dataModelParentSelected = model;
+    // if (model && model.id.length > 0) {
+    //   this.dataModel.linkApiPathId = model.id;
+    //   this.dataModel.linkFromNumber = null;
+    // }
     if (model && model.id.length > 0) {
       this.dataModel.linkApiPathId = model.id;
-      this.dataModel.linkFromNumber = null;
+      this.apiDefaultNumbers = this.publicHelper.SplitAllChar(model.apiDefaultNumber);
+      if (this.apiDefaultNumbers && this.apiDefaultNumbers.length > 0) {
+        this.dataModel.linkFromNumber = this.apiDefaultNumbers[0];
+      }
+      this.sendByShow = false;
+      if (model.apiAbilitySendByDirect)
+        this.dataModel.sendByQeue = false;
+      if (model.apiAbilitySendByQueue)
+        this.dataModel.sendByQeue = true;
+      if (model.apiAbilitySendByQueue && model.apiAbilitySendByDirect)
+        this.sendByShow = true;
     }
   }
 

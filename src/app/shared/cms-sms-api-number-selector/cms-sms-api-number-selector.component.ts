@@ -46,7 +46,17 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
   @Input() set optionSelectForce(x: string | SmsMainApiNumberModel) {
     this.onActionSelectForce(x);
   }
-
+  _optionDefaultNumbers: string[];
+  @Input() set optionDefaultNumbers(x: string[]) {
+    this._optionDefaultNumbers = x;
+    if (this.dataModelResult.listItems)
+      this._optionDefaultNumbers.forEach(element => {
+        let number = new SmsMainApiNumberModel();
+        number.numberChar = element;
+        this.dataModelResult.listItems.push(number)
+      });
+  }
+  MainNumber
   _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get loading(): ProgressSpinnerModel {
     return this._loading;
@@ -117,6 +127,13 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
       .pipe(
         map(response => {
           this.dataModelResult = response;
+
+          this._optionDefaultNumbers.forEach(element => {
+            let number = new SmsMainApiNumberModel();
+            number.numberChar = element;
+            this.dataModelResult.listItems.push(number)
+          });
+
           /*select First Item */
           if (this.optionSelectFirstItem && (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) && this.dataModelResult.listItems.length > 0) {
             this.optionSelectFirstItem = false;
@@ -158,6 +175,7 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
 
   }
   onActionSelectForce(id: string | SmsMainApiNumberModel): void {
+
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
@@ -181,7 +199,7 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
             this.dataModelSelect = ret.item;
             this.formControl.setValue(ret.item);
             this.optionChange.emit(ret.item);
-          } else {
+          } else if (!this.dataModelResult.listItems || this.dataModelResult.listItems.length === 0) {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         }
