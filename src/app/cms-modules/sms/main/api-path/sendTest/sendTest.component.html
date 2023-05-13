@@ -5,9 +5,9 @@
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-card-body">
-      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+        <app-progress-spinner [options]="loading"> </app-progress-spinner>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <div >
+        <div>
             <!-- LinkPrivateSiteConfigId Field -->
             <app-sms-apipath-selector (optionChange)="onActionSelectPrivateSiteConfig($event)" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Direction')">
             </app-sms-apipath-selector>
@@ -55,8 +55,8 @@
                 </mat-slide-toggle>
             </div>
             <!-- SendByQeue Field -->
-            <div class="ntk-full-width">
-                <mat-slide-toggle [(ngModel)]="dataModel.sendByQeue" name="dataModel.sendByQeue">
+            <div class="ntk-full-width" *ngIf="sendByShow">
+                <mat-slide-toggle [(ngModel)]="dataModel.sendByQueue" name="dataModel.sendByQeue">
                     {{'TITLE.Send_in_queue' | translate}}
                 </mat-slide-toggle>
             </div>

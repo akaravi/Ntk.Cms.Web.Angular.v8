@@ -51,7 +51,7 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
   dataModel: SmsApiSendMessageTestDtoModel = new SmsApiSendMessageTestDtoModel();
   dataModelResult: ErrorExceptionResult<SmsApiSendResultModel> = new ErrorExceptionResult<SmsApiSendResultModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-
+  sendByShow = false;
 
   ngOnInit(): void {
     if (this.requestLinkApiPathId.length <= 0) {
@@ -73,6 +73,13 @@ export class SmsMainApiPathSendTestComponent implements OnInit {
       if (nums && nums.length > 0) {
         this.dataModel.fromNumber = nums[0];
       }
+      this.sendByShow = false;
+      if (model.apiAbilitySendByDirect)
+        this.dataModel.sendByQueue = false;
+      if (model.apiAbilitySendByQueue)
+        this.dataModel.sendByQueue = true;
+      if (model.apiAbilitySendByQueue && model.apiAbilitySendByDirect)
+        this.sendByShow = true;
     }
   }
 
