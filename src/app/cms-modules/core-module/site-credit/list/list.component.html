@@ -105,9 +105,13 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
-            <button mat-menu-item (click)="onActionbuttonSiteCreditAccountRow(row)">
+            <button mat-menu-item (click)="onActionbuttonSiteCreditBuyAccountRow(row)">
               <mat-icon>shopping_cart</mat-icon>
               <span>{{'ACTION.SITE_CHARGE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonSiteCreditDirectAccountRow(row)">
+              <mat-icon>toc</mat-icon>
+              <span>{{'ACTION.CREDIT_CHARGE' | translate}}</span>
             </button>
           </mat-menu>
         </mat-cell>

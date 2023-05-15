@@ -7,8 +7,9 @@ import { CoreModuleLogMemoListComponent } from './memo/list/list.component';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogScoreListComponent } from './score/list/list.component';
 import { CoreModuleLogSiteCreditBlockedListComponent } from './site-credit-blocked/list/list.component';
+import { CoreModuleLogSiteCreditListComponent } from './site-credit/list/list.component';
 import { CoreModuleLogSiteUserCreditBlockedListComponent } from './site-user-credit-blocked/list/list.component';
-
+import { CoreModuleLogSiteUserCreditListComponent } from './site-user-credit/list/list.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,14 @@ const routes: Routes = [
       {
         path: 'score',
         component: CoreModuleLogScoreListComponent
+      },
+      {
+        path: 'site-credit',
+        component: CoreModuleLogSiteCreditListComponent
+      },
+      {
+        path: 'site-user-credit',
+        component: CoreModuleLogSiteUserCreditListComponent
       },
       {
         path: 'site-credit-blocked',

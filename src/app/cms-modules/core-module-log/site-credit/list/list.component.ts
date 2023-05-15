@@ -1,85 +1,120 @@
 
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreModuleModel,
-  CoreModuleService, CoreModuleSiteUserCreditModel, CoreModuleSiteUserCreditService, DataFieldInfoModel, EnumRecordStatus, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, TokenInfoModel
+  CoreEnumService, CoreModuleLogSiteCreditModel, CoreModuleLogSiteCreditService, CoreSiteModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, FilterDataModel, FilterModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { PublicHelper } from '../../../../core/helpers/publicHelper';
-import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
-import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
-import { CoreModuleSiteUserCreditChargeDirectComponent } from '../charge-direct/charge-direct.component';
-import { CoreModuleSiteUserCreditEditComponent } from '../edit/edit.component';
+import { CoreModuleLogSiteCreditEditComponent } from '../edit/edit.component';
+import { CoreModuleLogSiteCreditViewComponent } from '../view/view.component';
+
 @Component({
-  selector: 'app-coremodule-site-user-credit-list',
+  selector: 'app-coremodulelog-site-credit--list',
   templateUrl: './list.component.html',
 
 })
-export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy {
-
+export class CoreModuleLogSiteCreditListComponent implements OnInit, OnDestroy {
+  requestLinkSiteId = 0;
+  requestLinkUserId = 0;
+  requestlinkMemberUserId = 0;
   constructor(
+    private coreEnumService: CoreEnumService,
+    public contentService: CoreModuleLogSiteCreditService,
     public publicHelper: PublicHelper,
-    public contentService: CoreModuleSiteUserCreditService,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
+    public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    private coreModuleService: CoreModuleService,
-    public dialog: MatDialog,
-    public router: Router,
+    private router: Router,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
+    this.requestLinkUserId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkUserId'));
+    this.requestlinkMemberUserId = + Number(this.activatedRoute.snapshot.paramMap.get('linkMemberUserId'));
 
+    if (this.requestLinkSiteId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkCmsSiteId';
+      filter.value = this.requestLinkSiteId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestLinkUserId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'LinkUserId';
+      filter.value = this.requestLinkUserId;
+      this.filteModelContent.filters.push(filter);
+    }
+    if (this.requestlinkMemberUserId > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'linkMemberUserId';
+      filter.value = this.requestlinkMemberUserId;
+      this.filteModelContent.filters.push(filter);
+    }
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
 
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
-
   }
-  filteModelContent = new FilterModel();
+  comment: string;
+  author: string;
+  dataSource: any;
+  flag = false;
+  tableContentSelected = [];
 
-  dataModelResult: ErrorExceptionResult<CoreModuleSiteUserCreditModel> = new ErrorExceptionResult<CoreModuleSiteUserCreditModel>();
-  dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
+  filteModelContent = new FilterModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleLogSiteCreditModel> = new ErrorExceptionResult<CoreModuleLogSiteCreditModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
 
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreModuleSiteUserCreditModel> = [];
-  tableRowSelected: CoreModuleSiteUserCreditModel = new CoreModuleSiteUserCreditModel();
-  tableSource: MatTableDataSource<CoreModuleSiteUserCreditModel> = new MatTableDataSource<CoreModuleSiteUserCreditModel>();
+  tableRowsSelected: Array<CoreModuleLogSiteCreditModel> = [];
+  tableRowSelected: CoreModuleLogSiteCreditModel = new CoreModuleLogSiteCreditModel();
+  tableSource: MatTableDataSource<CoreModuleLogSiteCreditModel> = new MatTableDataSource<CoreModuleLogSiteCreditModel>();
+
+
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
-    'RecordStatus',
+    'Id',
     'LinkSiteId',
-    'LinkUserId',
-    'LinkModuleId',
-    'Credit',
-    'SumCreditBlocked',
+
+    'CreatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
+
+
+  expandedElement: CoreSiteModel | null;
   cmsApiStoreSubscribe: Subscription;
+
   ngOnInit(): void {
+    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortType = EnumSortType.Descending;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -89,36 +124,29 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.tokenInfo = next;
       this.DataGetAll();
     });
-    this.getModuleList();
   }
-  getModuleList(): void {
-    const filter = new FilterModel();
-    filter.rowPerPage = 100;
-    this.coreModuleService.ServiceGetAllModuleName(filter).subscribe((next) => {
-      this.dataModelCoreModuleResult = next;
-    });
-  }
+
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSiteUserCreditModel();
+    this.tableRowSelected = new CoreModuleLogSiteCreditModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
         if (ret.isSuccess) {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
           this.dataModelResult = ret;
           this.tableSource.data = ret.listItems;
+
 
           if (this.optionsSearch.childMethods) {
             this.optionsSearch.childMethods.setAccess(ret.access);
@@ -137,6 +165,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     }
     );
   }
+
 
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
@@ -166,8 +195,35 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
   }
 
 
-  onActionbuttonEditRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+
+  onActionbuttonViewRow(model: CoreModuleLogSiteCreditModel = this.tableRowSelected): void {
+
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(CoreModuleLogSiteCreditViewComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+  }
+  onActionbuttonEditRow(model: CoreModuleLogSiteCreditModel = this.tableRowSelected): void {
+
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
@@ -180,21 +236,18 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = { id: this.tableRowSelected.id };
-    const dialogRef = this.dialog.open(CoreModuleSiteUserCreditEditComponent, dialogConfig);
+    const dialogRef = this.dialog.open(CoreModuleLogSiteCreditEditComponent, {
+      height: '90%',
+      data: { id: this.tableRowSelected.id }
+    });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
     });
   }
-  onActionbuttonDeleteRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id === 0) {
+  onActionbuttonDeleteRow(model: CoreModuleLogSiteCreditModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
@@ -210,12 +263,14 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       return;
     }
 
+
     const title = this.translate.instant('MESSAGE.Please_Confirm');
-    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' + '<br> ( ' + this.tableRowSelected.linkUserId + ' ) ';
+    const message = this.translate.instant('MESSAGE.Do_you_want_to_delete_this_content') + '?' +
+      '<br> ( ' + this.tableRowSelected.id + ' ) ';
     this.cmsConfirmationDialogService.confirm(title, message)
       .then((confirmed) => {
         if (confirmed) {
-          const pName = this.constructor.name + 'ServiceDelete';
+          const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
 
           this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
@@ -242,7 +297,12 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
         // console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)')
       }
       );
+
   }
+
+
+
+
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;
     if (!this.optionsStatist.data.show) {
@@ -293,6 +353,22 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     );
 
   }
+
+
+  onActionbuttonViewSiteRow(model: CoreModuleLogSiteCreditModel = this.tableRowSelected): void {
+
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.tableRowSelected = model;
+    if (!this.tableRowSelected.linkSiteId || this.tableRowSelected.linkSiteId === 0) {
+      this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_site_information'));
+      return;
+    }
+    this.router.navigate(['/core/site/edit', this.tableRowSelected.linkSiteId]);
+  }
+
   onActionbuttonExport(): void {
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
@@ -348,42 +424,10 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionbuttonSiteUserCreditBuyAccountRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
-    if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    this.router.navigate(['/coremodule/site-user-credit-charge/', model.linkModuleId]);
-  }
-  onActionbuttonSiteUserCreditDirectAccountRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
-    if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
-      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
-      this.cmsToastrService.typeErrorSelected(emessage);
-      return;
-    }
-    this.tableRowSelected = model;
-
-    //open popup
-    const dialogRef = this.dialog.open(CoreModuleSiteUserCreditChargeDirectComponent, {
-      height: "50%",
-      width: "50%",
-      data: {
-        model: model
-      },
-    }
-    );
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-        this.DataGetAll();
-      }
-    });
-    //open popup
-  }
-  onActionTableRowSelect(row: CoreModuleSiteUserCreditModel): void {
+  onActionTableRowSelect(row: CoreModuleLogSiteCreditModel): void {
     this.tableRowSelected = row;
   }
-
+  onActionBackToParent(): void {
+    this.router.navigate(['/core/site/']);
+  }
 }
