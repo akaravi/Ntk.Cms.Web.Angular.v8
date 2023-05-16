@@ -50,7 +50,13 @@ export class FileCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: FileCategoryModel = new FileCategoryModel();
   dataModelResult: ErrorExceptionResult<FileCategoryModel> = new ErrorExceptionResult<FileCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<FileCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FileCategoryModel>();
   @Output() optionChange = new EventEmitter<FileCategoryModel>();

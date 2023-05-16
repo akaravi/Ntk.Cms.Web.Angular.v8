@@ -82,7 +82,13 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
 
   tokenInfo = new TokenInfoModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   tableRowsSelected: Array<CoreModuleSiteModel> = [];
   tableRowSelected: CoreModuleSiteModel = new CoreModuleSiteModel();
   tableSource: MatTableDataSource<CoreModuleSiteModel> = new MatTableDataSource<CoreModuleSiteModel>();

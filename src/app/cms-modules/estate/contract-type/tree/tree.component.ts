@@ -50,7 +50,13 @@ export class EstateContractTypeTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateContractTypeModel = new EstateContractTypeModel();
   dataModelResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<EstateContractTypeModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateContractTypeModel>();
   @Output() optionChange = new EventEmitter<EstateContractTypeModel>();

@@ -50,7 +50,13 @@ export class EstatePropertyTypeLanduseTreeComponent implements OnInit, OnDestroy
   dataModelSelect: EstatePropertyTypeLanduseModel = new EstatePropertyTypeLanduseModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<EstatePropertyTypeLanduseModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyTypeLanduseModel>();
   @Output() optionChange = new EventEmitter<EstatePropertyTypeLanduseModel>();

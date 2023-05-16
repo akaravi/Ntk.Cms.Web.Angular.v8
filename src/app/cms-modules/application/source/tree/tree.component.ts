@@ -47,7 +47,13 @@ export class ApplicationSourceTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: ApplicationSourceModel = new ApplicationSourceModel();
   dataModelResult: ErrorExceptionResult<ApplicationSourceModel> = new ErrorExceptionResult<ApplicationSourceModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<ApplicationSourceModel>(node => null);
   dataSource = new MatTreeNestedDataSource<ApplicationSourceModel>();
   @Output() optionChange = new EventEmitter<ApplicationSourceModel>();

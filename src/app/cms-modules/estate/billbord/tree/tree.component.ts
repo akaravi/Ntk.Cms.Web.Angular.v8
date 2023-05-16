@@ -50,7 +50,13 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateBillboardModel = new EstateBillboardModel();
   dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<EstateBillboardModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateBillboardModel>();
   @Output() optionChange = new EventEmitter<EstateBillboardModel>();

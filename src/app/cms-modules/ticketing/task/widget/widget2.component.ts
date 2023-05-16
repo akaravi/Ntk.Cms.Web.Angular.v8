@@ -30,8 +30,13 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
   // modelData = new WidgetContentInfoModel[];
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_tickets');
     this.widgetInfoModel.description = '';

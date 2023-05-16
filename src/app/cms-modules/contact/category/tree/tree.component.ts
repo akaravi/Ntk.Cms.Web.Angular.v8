@@ -54,7 +54,13 @@ export class ContactCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: ContactCategoryModel = new ContactCategoryModel();
   dataModelResult: ErrorExceptionResult<ContactCategoryModel> = new ErrorExceptionResult<ContactCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<ContactCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<ContactCategoryModel>();
   @Output() optionChange = new EventEmitter<ContactCategoryModel>();

@@ -54,7 +54,13 @@ export class SmsMainMessageCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
   dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<SmsMainMessageCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<SmsMainMessageCategoryModel>();
   @Output() optionChange = new EventEmitter<SmsMainMessageCategoryModel>();

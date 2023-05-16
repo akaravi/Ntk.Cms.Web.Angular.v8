@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum, TokenInfoModel } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
@@ -83,12 +83,12 @@ export class CmsExportEntityComponent implements OnInit {
   fileTypeListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
   recieveMethodListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
 
-  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
-  get loading(): ProgressSpinnerModel {
-    return this._loading;
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input() set loading(value: ProgressSpinnerModel) {
-    this._loading = value;
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
   }
 
 

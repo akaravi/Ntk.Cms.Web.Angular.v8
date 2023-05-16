@@ -23,8 +23,8 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleSaleHeaderGroupId Field -->
-    <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)" [(loading)]="loading"
-      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId"
+    <app-core-modulesaleheadergroup-selector (optionChange)="onActionSelectHeaderGroup($event)"
+      [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkModuleSaleHeaderGroupId"
       [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkModuleSaleHeaderGroupId']?.accessEditField">
     </app-core-modulesaleheadergroup-selector>

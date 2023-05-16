@@ -8,31 +8,32 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <!-- LinkCategoryId Field -->
-    <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
+    <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-estate-activity-type-selector>
 
     <!-- LinkEstateUserId Field -->
-    <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)" [(loading)]="loading"
+    <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)" [(optionLoading)]="loading"
       *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField" [optionSelectForce]="dataModel.linkEstateUserId"
       [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-estate-account-user-selector>
 
     <!-- linkEstateAgencyId Field -->
     <app-estate-account-agency-selector *ngIf="fieldsInfo['linkEstateAgencyId']?.accessWatchField"
-      (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
+      (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
     </app-estate-account-agency-selector>
 
     <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(loading)]="loading"
+    <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(optionLoading)]="loading"
       *ngIf="fieldsInfo['linkPropertyId']?.accessWatchField" [optionSelectForce]="dataModel.linkPropertyId"
       [optionPlaceholder]="this.translate.instant('TITLE.Property')"></app-estate-property-selector>
 
     <!-- linkCustomerOrderId Field -->
-    <app-estate-customer-order-selector (optionChange)="onActionSelectorCustomerOrderId($event)" [(loading)]="loading"
-      *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField" [optionSelectForce]="dataModel.linkCustomerOrderId"
+    <app-estate-customer-order-selector (optionChange)="onActionSelectorCustomerOrderId($event)"
+      [(optionLoading)]="loading" *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField"
+      [optionSelectForce]="dataModel.linkCustomerOrderId"
       [optionPlaceholder]="this.translate.instant('TITLE.Customer')"></app-estate-customer-order-selector>
 
 

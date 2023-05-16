@@ -32,8 +32,8 @@
 
 
     <!-- LinkPropertyDetailGroupId Field -->
-    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)" [(loading)]="loading"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
+    <app-member-propertydetailgroup-selector (optionChange)="onActionSelectorDetailGroup($event)"
+      [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPropertyDetailGroupId"
       [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkPropertyDetailGroupId']?.accessEditField">
     </app-member-propertydetailgroup-selector>
@@ -133,7 +133,7 @@
         </mat-chip>
         <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
-          (matChipInputTokenEnd)="addTag($event)"/>
+          (matChipInputTokenEnd)="addTag($event)" />
       </mat-chip-grid>
     </mat-form-field>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

@@ -23,8 +23,9 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPlanCategoryId Field -->
-    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
-      [optionSelectForce]="dataModel.linkPlanCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+    <app-data-provider-plan-category-selector (optionChange)="onActionSelectorSelect($event)"
+      [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPlanCategoryId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-data-provider-plan-category-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">

@@ -51,7 +51,13 @@ export class MemberPropertyAliasTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: MemberPropertyAliasModel = new MemberPropertyAliasModel();
   dataModelResult: ErrorExceptionResult<MemberPropertyAliasModel> = new ErrorExceptionResult<MemberPropertyAliasModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<MemberPropertyAliasModel>(node => null);
   dataSource = new MatTreeNestedDataSource<MemberPropertyAliasModel>();
   @Output() optionChange = new EventEmitter<MemberPropertyAliasModel>();

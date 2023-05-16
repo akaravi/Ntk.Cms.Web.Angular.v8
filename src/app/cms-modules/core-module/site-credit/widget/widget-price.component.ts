@@ -53,8 +53,13 @@ export class CoreModuleSiteCreditWidgetPriceComponent implements OnInit, OnDestr
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
     this.widgetInfoModel.description = '';

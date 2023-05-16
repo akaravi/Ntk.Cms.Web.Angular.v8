@@ -52,7 +52,13 @@ export class SmsMainApiPathCompanyTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: SmsMainApiPathCompanyModel = new SmsMainApiPathCompanyModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathCompanyModel> = new ErrorExceptionResult<SmsMainApiPathCompanyModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<SmsMainApiPathCompanyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<SmsMainApiPathCompanyModel>();
   @Output() optionChange = new EventEmitter<SmsMainApiPathCompanyModel>();

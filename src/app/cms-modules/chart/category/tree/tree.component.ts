@@ -52,7 +52,13 @@ export class ChartCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: ChartCategoryModel = new ChartCategoryModel();
   dataModelResult: ErrorExceptionResult<ChartCategoryModel> = new ErrorExceptionResult<ChartCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<ChartCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<ChartCategoryModel>();
   @Output() optionChange = new EventEmitter<ChartCategoryModel>();

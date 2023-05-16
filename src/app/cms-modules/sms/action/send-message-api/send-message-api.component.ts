@@ -37,7 +37,13 @@ export class SmsActionSendMessageApiComponent implements OnInit {
   dataNumberModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
   dataPathModelSelect: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataNumberModelSelect: SmsMainApiNumberModel = new SmsMainApiNumberModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formPathControl = new FormControl();
   formNumberControl = new FormControl();
   filteredPathOptions: Observable<SmsMainApiPathModel[]>;

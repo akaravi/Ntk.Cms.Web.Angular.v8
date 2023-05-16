@@ -48,7 +48,13 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
   dataModelSelect: WebDesignerMainPageTemplateModel = new WebDesignerMainPageTemplateModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel> = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<WebDesignerMainPageTemplateModel>(node => null);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainPageTemplateModel>();
   @Output() optionChange = new EventEmitter<WebDesignerMainPageTemplateModel>();

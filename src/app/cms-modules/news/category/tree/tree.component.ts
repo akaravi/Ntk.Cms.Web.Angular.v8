@@ -52,7 +52,13 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: NewsCategoryModel = new NewsCategoryModel();
   dataModelResult: ErrorExceptionResult<NewsCategoryModel> = new ErrorExceptionResult<NewsCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<NewsCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<NewsCategoryModel>();
   @Output() optionChange = new EventEmitter<NewsCategoryModel>();

@@ -55,12 +55,15 @@
         </mat-form-field>
         <!-- LinkSourceId Field -->
         <app-application-source-selector (optionChange)="onActionSelectSource($event)"
-          [optionSelectForce]="this.dataModel.linkSourceId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
+          [optionSelectForce]="this.dataModel.linkSourceId" [(optionLoading)]="loading"
+          [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
           [optionDisabled]="!fieldsInfo['linkSourceId']?.accessEditField"></app-application-source-selector>
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
-          [optionSelectForce]="this.dataModel.linkThemeConfigId" [(loading)]="loading" [optionSelectParentForce]="this.dataModel.linkSourceId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Application_Template')" [optionDisabled]="!fieldsInfo['linkThemeConfigId']?.accessEditField">
+          [optionSelectForce]="this.dataModel.linkThemeConfigId" [(optionLoading)]="loading"
+          [optionSelectParentForce]="this.dataModel.linkSourceId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Application_Template')"
+          [optionDisabled]="!fieldsInfo['linkThemeConfigId']?.accessEditField">
         </app-application-themeconfig-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
@@ -131,8 +134,8 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['aboutUsTitle']?.accessWatchField">
           <mat-label>{{ fieldsInfo['aboutUsTitle']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutUsTitle" [disabled]="!fieldsInfo['aboutUsTitle']?.accessEditField"
-            name="dataModel.aboutUsTitle" #AboutUsTitle type="text" placeholder="{{'TITLE.Text_About_Us' | translate}}" minlength="0"
-            maxlength="100" />
+            name="dataModel.aboutUsTitle" #AboutUsTitle type="text" placeholder="{{'TITLE.Text_About_Us' | translate}}"
+            minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsTitle && fieldsInfo['aboutUsTitle']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsTitle = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['aboutUsTitle']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -161,9 +164,9 @@
         <!-- AboutUsTel Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['aboutUsTel']?.accessWatchField">
           <mat-label>{{ fieldsInfo['aboutUsTel']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['aboutUsTel']?.accessEditField" class="input-Mobile"
-            name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444" minlength="0"
-            maxlength="100" />
+          <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['aboutUsTel']?.accessEditField"
+            class="input-Mobile" name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444"
+            minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsTel && fieldsInfo['aboutUsTel']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsTel = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['aboutUsTel']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -208,7 +211,8 @@
           <mat-label>{{ fieldsInfo['aboutUsAddress']?.fieldTitle }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.aboutUsAddress"
             [disabled]="!fieldsInfo['aboutUsAddress']?.accessEditField" name="dataModel.aboutUsAddress" #AboutUsAddress
-            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0" maxlength="100"></textarea>
+            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0"
+            maxlength="100"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.aboutUsAddress && fieldsInfo['aboutUsAddress']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsAddress = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['aboutUsAddress']?.accessEditField" matSuffix>mode_edit</mat-icon>
@@ -410,8 +414,9 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull"
-            id="main" *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')"
+            [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
             [disabled]="!fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessEditField"
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
           </angular-editor>
@@ -464,8 +469,8 @@
           <mat-label>{{fieldsInfo['downloadLinkSrcCustomize']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.downloadLinkSrcCustomize"
             [disabled]="!fieldsInfo['downloadLinkSrcCustomize']?.accessEditField"
-            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text" placeholder="{{'TITLE.download_link' | translate}}"
-            minlength="0" maxlength="1000" />
+            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text"
+            placeholder="{{'TITLE.download_link' | translate}}" minlength="0" maxlength="1000" />
           <mat-icon matSuffix
             *ngIf="dataModel.downloadLinkSrcCustomize && fieldsInfo['downloadLinkSrcCustomize']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.downloadLinkSrcCustomize = ''">close
@@ -619,8 +624,8 @@
           <mat-label>{{fieldsInfo['configBuilderAdminJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configBuilderAdminJsonValues"
             [disabled]="!fieldsInfo['configBuilderAdminJsonValues']?.accessEditField"
-            name="dataModel.configBuilderAdminJsonValues" #ConfigBuilderAdminJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
-            rows="5"></textarea>
+            name="dataModel.configBuilderAdminJsonValues" #ConfigBuilderAdminJsonValues type="text"
+            placeholder="{{'TITLE.Values' | translate}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configBuilderAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.configBuilderAdminJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -629,8 +634,8 @@
           <mat-label>{{fieldsInfo['configRuntimeAdminJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configRuntimeAdminJsonValues"
             [disabled]="!fieldsInfo['configRuntimeAdminJsonValues']?.accessEditField"
-            name="dataModel.configRuntimeAdminJsonValues" #ConfigRuntimeAdminJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
-            rows="5"></textarea>
+            name="dataModel.configRuntimeAdminJsonValues" #ConfigRuntimeAdminJsonValues type="text"
+            placeholder="{{'TITLE.Values' | translate}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configRuntimeAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.configRuntimeAdminJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -691,7 +696,7 @@
                 <mat-label>{{fieldsInfo['buildKey2String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey2String"
                   [disabled]="!fieldsInfo['buildKey2String']?.accessEditField" name="dataModel.buildKey2String"
-                  #BuildKey2String type="text" placeholder="KEY" minlength="0"/>
+                  #BuildKey2String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey2String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -729,7 +734,7 @@
                 <mat-label>{{fieldsInfo['buildKey3Files']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3Files"
                   [disabled]="!fieldsInfo['buildKey3Files']?.accessEditField" name="dataModel.buildKey3Files"
-                  #BuildKey3Files type="text" placeholder="Files" minlength="0"  />
+                  #BuildKey3Files type="text" placeholder="Files" minlength="0" />
                 <mat-hint align="end">{{ BuildKey3Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -738,7 +743,7 @@
                 <mat-label>{{fieldsInfo['buildKey3Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3Value"
                   [disabled]="!fieldsInfo['buildKey3Value']?.accessEditField" name="dataModel.buildKey3Value"
-                  #BuildKey3Value type="text" placeholder="Value" minlength="0"  />
+                  #BuildKey3Value type="text" placeholder="Value" minlength="0" />
                 <mat-hint align="end">{{ BuildKey3Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -749,7 +754,7 @@
                 <mat-label>{{fieldsInfo['buildKey4String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey4String"
                   [disabled]="!fieldsInfo['buildKey4String']?.accessEditField" name="dataModel.buildKey4String"
-                  #BuildKey4String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey4String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey4String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -778,7 +783,7 @@
                 <mat-label>{{fieldsInfo['buildKey5String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5String"
                   [disabled]="!fieldsInfo['buildKey5String']?.accessEditField" name="dataModel.buildKey5String"
-                  #BuildKey5String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey5String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -787,7 +792,7 @@
                 <mat-label>{{fieldsInfo['buildKey5Files']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5Files"
                   [disabled]="!fieldsInfo['buildKey5Files']?.accessEditField" name="dataModel.buildKey5Files"
-                  #BuildKey5Files type="text" placeholder="Files" minlength="0"  />
+                  #BuildKey5Files type="text" placeholder="Files" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -796,7 +801,7 @@
                 <mat-label>{{fieldsInfo['buildKey5Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5Value"
                   [disabled]="!fieldsInfo['buildKey5Value']?.accessEditField" name="dataModel.buildKey5Value"
-                  #BuildKey5Value type="text" placeholder="Value" minlength="0"  />
+                  #BuildKey5Value type="text" placeholder="Value" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>

@@ -50,7 +50,7 @@
         </mat-form-field>
         <!-- LinkCmsUserId Field -->
         <app-cms-user-selector (optionChange)="onActionSelectorUser($event)"
-          [optionSelectForce]="dataModel.linkCmsUserId" [(loading)]="loading"
+          [optionSelectForce]="dataModel.linkCmsUserId" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.USER')"
           [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessEditField">
         </app-cms-user-selector>
@@ -161,7 +161,7 @@
           <div class="col-11">
             <div class="ntk-full-width">
               <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)"
-                [(loading)]="loading" [optionDisabled]="!this.tokenHelper.isAdminSite"
+                [(optionLoading)]="loading" [optionDisabled]="!this.tokenHelper.isAdminSite"
                 [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
               </app-estate-account-user-selector>
             </div>

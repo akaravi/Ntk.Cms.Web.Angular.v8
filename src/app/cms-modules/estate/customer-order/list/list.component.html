@@ -4,7 +4,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-estate-customer-category-tree [(loading)]="loading" (optionChange)="onActionSelectorSelect($event)">
+    <app-estate-customer-category-tree [(optionLoading)]="loading" (optionChange)="onActionSelectorSelect($event)">
     </app-estate-customer-category-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
@@ -50,7 +50,8 @@
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
     </button>
     <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text box-shadow-button">
-      <mat-slide-toggle (click)="onActionbuttonInResponsible(!searchInResponsible)" [checked]="searchInResponsibleChecked">
+      <mat-slide-toggle (click)="onActionbuttonInResponsible(!searchInResponsible)"
+        [checked]="searchInResponsibleChecked">
         {{'ACTION.InResponsible' | translate}}
       </mat-slide-toggle>
     </a>

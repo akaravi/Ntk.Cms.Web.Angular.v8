@@ -10,15 +10,23 @@
 
 
         <!-- LinkUserId Field -->
-        <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
+        <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
+            [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
         <!-- LinkUserId Field -->
-        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId"
+            [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
 
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['description']?.accessWatchField">
             <mat-label>{{ fieldsInfo['description']?.FieldDescription }}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.description" [disabled]="!fieldsInfo['description']?.accessEditField" name="dataModel.description" #Description type="text" placeholder="{{fieldsInfo['description']?.fieldTitle}}" row="10" minlength="0" maxlength="500" required></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['description']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.description"
+                [disabled]="!fieldsInfo['description']?.accessEditField" name="dataModel.description" #Description
+                type="text" placeholder="{{fieldsInfo['description']?.fieldTitle}}" row="10" minlength="0"
+                maxlength="500" required></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['description']?.accessEditField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['description']?.accessEditField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">
                 <mat-icon matSuffix class="info-field-icon">info</mat-icon>

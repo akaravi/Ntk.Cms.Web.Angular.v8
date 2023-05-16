@@ -35,7 +35,13 @@ export class CmsSiteSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   dataModelSelect: CoreSiteModel = new CoreSiteModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formControl = new FormControl();
   filteredOptions: Observable<CoreSiteModel[]>;
   @Input() optionDisabled = false;

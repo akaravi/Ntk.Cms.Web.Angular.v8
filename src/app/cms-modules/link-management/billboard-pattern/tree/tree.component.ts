@@ -52,7 +52,13 @@ export class LinkManagementBillboardPatternTreeComponent implements OnInit, OnDe
   dataModelSelect: LinkManagementBillboardPatternModel = new LinkManagementBillboardPatternModel();
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardPatternModel> = new ErrorExceptionResult<LinkManagementBillboardPatternModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<LinkManagementBillboardPatternModel>(node => null);
   dataSource = new MatTreeNestedDataSource<LinkManagementBillboardPatternModel>();
   @Output() optionChange = new EventEmitter<LinkManagementBillboardPatternModel>();

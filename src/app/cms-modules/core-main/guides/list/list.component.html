@@ -1,7 +1,8 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="true">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <app-core-guide-tree [(loading)]="loading" (optionChange)="onActionSelectorSelect($event)"></app-core-guide-tree>
+    <app-core-guide-tree [(optionLoading)]="loading"
+      (optionChange)="onActionSelectorSelect($event)"></app-core-guide-tree>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>

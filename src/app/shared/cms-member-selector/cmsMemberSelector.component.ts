@@ -7,7 +7,7 @@ import {
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
@@ -28,7 +28,13 @@ export class CmsMemberSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreLogMemberModel> = new ErrorExceptionResult<CoreLogMemberModel>();
   dataModelSelect: CoreLogMemberModel = new CoreLogMemberModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formControl = new FormControl();
   filteredOptions: Observable<CoreLogMemberModel[]>;
   @Input() optionDisabled = false;
@@ -117,15 +123,14 @@ export class CmsMemberSelectorComponent implements OnInit {
     const pName = this.constructor.name + 'categoryService.ServiceGetAll';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           this.loading.Stop(pName);
 
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: CoreLogMemberModel): void {
     if (this.optionDisabled) {

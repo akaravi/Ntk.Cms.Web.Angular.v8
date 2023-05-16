@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
+  {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -24,8 +24,8 @@
   </mat-form-field>
 
   <!-- LinkUserId Field -->
-  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId" [(loading)]="loading"
-    [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
+  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
+    [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
 
 
   <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">

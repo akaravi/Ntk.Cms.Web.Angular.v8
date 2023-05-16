@@ -10,8 +10,7 @@ import {
   TokenDeviceClientInfoDtoModel,
   TokenInfoModel
 } from 'ntk-cms-api';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { firstValueFrom, Observable, Subscription } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
@@ -49,15 +48,15 @@ export class TokenHelper implements OnDestroy {
       this.CheckIsAdmin();
       return storeSnapshot.ntkCmsAPiState.tokenInfo;
     }
-    return await this.coreAuthService.ServiceCurrentToken()
-      .pipe(map(ret => {
+    return await firstValueFrom(this.coreAuthService.ServiceCurrentToken())
+      .then((ret) => {
         this.cmsApiStore.setState({ type: SET_TOKEN_INFO, payload: ret.item });
         this.tokenInfo = ret.item;
         if (this.tokenInfo)
           this.setDirectionThemeBylanguage(this.tokenInfo.language);
         this.CheckIsAdmin();
         return ret.item;
-      })).toPromise();
+      });
   }
   getCurrentTokenOnChange(): Observable<TokenInfoModel> {
     return this.cmsApiStore.getState((state) => {
