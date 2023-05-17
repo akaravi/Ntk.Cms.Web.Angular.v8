@@ -10,7 +10,7 @@ import {
   EstateActivityTypeService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, firstValueFrom } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -128,9 +128,9 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
@@ -144,8 +144,7 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
           this.loading.Stop(pName);
 
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: EstateActivityTypeModel): void {
     if (this.optionDisabled) {

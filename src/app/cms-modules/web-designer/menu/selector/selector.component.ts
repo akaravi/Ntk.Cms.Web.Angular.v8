@@ -8,7 +8,7 @@ import {
   WebDesignerMainMenuModel,
   WebDesignerMainMenuService
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 @Component({
@@ -88,9 +88,9 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
     }
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
@@ -103,8 +103,7 @@ export class WebDesignerMainMenuSelectorComponent implements OnInit {
           /*select First Item */
           this.loading.Stop(pName);
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: WebDesignerMainMenuModel): void {
     this.dataModelSelect = model;
