@@ -13,8 +13,7 @@ import {
   TokenInfoModel, WebDesignerMainPageDependencyModel,
   WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -214,11 +213,11 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     });
   }
   onActionbuttonNewRowAutoDependency(): any {
-    return this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
+    return firstValueFrom(this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
       headers: this.contentService.getHeaders(),
-    })
-      .pipe(
-        map((ret: any) => {
+    }))
+      .then(
+        (ret: any) => {
           // tslint:disable-next-line: max-line-length
           const retOut = this.contentService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
           if (retOut.isSuccess) {
@@ -229,8 +228,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
             this.cmsToastrService.typeErrorAccessAdd();
           }
           return retOut;
-        }),
-      ).toPromise();
+        });
   }
   onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {

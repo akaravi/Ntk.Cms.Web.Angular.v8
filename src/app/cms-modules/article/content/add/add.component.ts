@@ -15,8 +15,7 @@ import {
   FormInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { firstValueFrom, of } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -226,15 +225,15 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
       row.linkTagId = x.id;
       dataListAdd.push(row);
     });
-    return this.contentTagService.ServiceAddBatch(dataListAdd).pipe(
-      map(response => {
+    return firstValueFrom(this.contentTagService.ServiceAddBatch(dataListAdd)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddTag();
         } else {
           this.cmsToastrService.typeErrorAddTag();
         }
         return of(response);
-      })).toPromise();
+      });
   }
   DataActionAfterAddContentSuccessfulOtherInfo(model: ArticleContentModel): Promise<any> {
     if (!this.otherInfoDataModel || this.otherInfoDataModel.length === 0) {
@@ -245,8 +244,8 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     });
     const pName = this.constructor.name + 'contentOtherInfoService.ServiceAddBatch';
     this.loading.Start(pName);
-    return this.contentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
-      map(response => {
+    return firstValueFrom(this.contentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddOtherInfo();
         } else {
@@ -254,13 +253,13 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
         }
         return of(response);
       },
-        (error) => {
+      (error) => {
 
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop(pName);
-        }
-      )).toPromise();
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeErrorAdd(error);
+        this.loading.Stop(pName);
+      }
+    );
   }
   DataActionAfterAddContentSuccessfulSimilar(model: ArticleContentModel): Promise<any> {
     if (!this.similarDataModel || this.similarDataModel.length === 0) {
@@ -275,8 +274,8 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
     });
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    return this.contentSimilarService.ServiceAddBatch(dataList).pipe(
-      map(response => {
+    return firstValueFrom(this.contentSimilarService.ServiceAddBatch(dataList)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddSimilar();
         } else {
@@ -284,13 +283,13 @@ export class ArticleContentAddComponent implements OnInit, AfterViewInit {
         }
         return of(response);
       },
-        (error) => {
+      (error) => {
 
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
-          this.loading.Stop(pName);
-        }
-      )).toPromise();
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeErrorAdd(error);
+        this.loading.Stop(pName);
+      }
+    );
   }
   onActionSelectorSelect(model: ArticleCategoryModel | null): void {
     if (!model || model.id <= 0) {
