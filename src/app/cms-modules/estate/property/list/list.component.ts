@@ -1015,6 +1015,7 @@ export class EstatePropertyListComponent
   dataModelCorCurrencySelector = new CoreCurrencyModel();
 
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
+    this.dataModelPropertyDetailGroups = [];
     this.PropertyTypeSelected = null;
     this.filteModelContent.linkPropertyTypeLanduseId = null;
     if (!model || !model.id || model.id.length <= 0) {
@@ -1067,5 +1068,12 @@ export class EstatePropertyListComponent
 
   prevStep(): void {
     this.step--;
+  }
+  onSearchCaseCodeChange(caseCode: string) {
+    if (caseCode && caseCode.length > 0) {
+      this.filteModelContent = new EstatePropertySearchDtoModel();
+      this.filteModelContent.caseCode = caseCode;
+      this.dataModelPropertyDetailGroups = [];
+    }
   }
 }
