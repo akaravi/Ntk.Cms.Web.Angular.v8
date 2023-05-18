@@ -1,4 +1,4 @@
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm" [ngStyle]="{'direction' : tokenInfo.direction }">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     {{ formInfo.formTitle }}
@@ -77,8 +77,10 @@
     </mat-form-field>
     <div class="ntk-full-width">
       <!-- allowPriceInquiryCalculate Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.allowPriceInquiryCalculate" *ngIf="fieldsInfo['allowPriceInquiryCalculate']?.accessWatchField"
-        [disabled]="!fieldsInfo['allowPriceInquiryCalculate']?.accessEditField" name="dataModel.allowPriceInquiryCalculate">
+      <mat-slide-toggle [(ngModel)]="dataModel.allowPriceInquiryCalculate"
+        *ngIf="fieldsInfo['allowPriceInquiryCalculate']?.accessWatchField"
+        [disabled]="!fieldsInfo['allowPriceInquiryCalculate']?.accessEditField"
+        name="dataModel.allowPriceInquiryCalculate">
         {{fieldsInfo['allowPriceInquiryCalculate']?.fieldTitle}}
       </mat-slide-toggle>
     </div>

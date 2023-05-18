@@ -44,8 +44,13 @@ export class ApiTelegramBotConfigAddComponent implements OnInit {
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
   dataModel: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -63,6 +68,8 @@ export class ApiTelegramBotConfigAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
     this.apiTelegramBotConfigService
       .ServiceViewModel()
       .subscribe({
@@ -72,9 +79,11 @@ export class ApiTelegramBotConfigAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

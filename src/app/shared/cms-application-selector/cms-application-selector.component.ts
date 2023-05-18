@@ -29,7 +29,13 @@ export class CmsApplicationSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formControl = new FormControl();
   filteredOptions: Observable<ApplicationAppModel[]>;
   @Input() optionDisabled = false;

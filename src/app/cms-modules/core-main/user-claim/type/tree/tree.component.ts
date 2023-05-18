@@ -51,7 +51,13 @@ export class CoreUserClaimTypeTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreUserClaimTypeModel = new CoreUserClaimTypeModel();
   dataModelResult: ErrorExceptionResult<CoreUserClaimTypeModel> = new ErrorExceptionResult<CoreUserClaimTypeModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<CoreUserClaimTypeModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreUserClaimTypeModel>();
   @Output() optionChange = new EventEmitter<CoreUserClaimTypeModel>();

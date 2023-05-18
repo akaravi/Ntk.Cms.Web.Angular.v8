@@ -50,7 +50,13 @@ export class BiographyCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: BiographyCategoryModel = new BiographyCategoryModel();
   dataModelResult: ErrorExceptionResult<BiographyCategoryModel> = new ErrorExceptionResult<BiographyCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<BiographyCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<BiographyCategoryModel>();
   @Output() optionChange = new EventEmitter<BiographyCategoryModel>();

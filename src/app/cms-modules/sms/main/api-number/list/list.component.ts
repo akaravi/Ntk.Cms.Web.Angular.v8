@@ -204,10 +204,15 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    let linkApiPathId = this.requestLinkApiPathId;
+    if (this.categoryModelSelected && this.categoryModelSelected.id && this.categoryModelSelected.id.length > 0)
+      linkApiPathId = this.categoryModelSelected.id;
     const dialogRef = this.dialog.open(SmsMainApiNumberAddComponent, {
       height: '90%',
       width: '60%',
-      data: {}
+      data: {
+        linkApiPathId: linkApiPathId
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -401,7 +406,7 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { ApplicationAppService, ApplicationMemberInfoService, ArticleContentService, BiographyContentService, BlogContentService, ChartContentService, CoreModuleLogReportAbuseService, CoreModuleSiteCreditService, CoreSiteService, CoreUserClaimContentService, CoreUserClaimTypeService, CoreUserService, EstateCustomerOrderService, EstatePropertyService, NewsContentService, TicketingTaskService, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
+import { ApplicationAppService, ApplicationMemberInfoService, ArticleContentService, BiographyContentService, BlogContentService, CatalogContentService, ChartContentService, CoreModuleLogReportAbuseService, CoreModuleSiteCreditService, CoreSiteService, CoreUserClaimContentService, CoreUserClaimTypeService, CoreUserService, EstateCustomerOrderService, EstatePropertyHistoryService, EstatePropertyService, NewsContentService, TicketingTaskService, WebDesignerLogMemberInfoService } from 'ntk-cms-api';
 import { ApplicationAppWidgetCreateComponent } from 'src/app/cms-modules/application/content/widget/create/widget-create.component';
 import { ApplicationAppWidgetComponent } from 'src/app/cms-modules/application/content/widget/widget.component';
 import { ApplicationAppWidget2Component } from 'src/app/cms-modules/application/content/widget/widget2.component';
@@ -15,6 +15,8 @@ import { BiographyContentWidgetComponent } from 'src/app/cms-modules/biography/c
 import { BiographyContentWidget2Component } from 'src/app/cms-modules/biography/content/widget/widget2.component';
 import { BlogContentWidgetComponent } from 'src/app/cms-modules/blog/content/widget/widget.component';
 import { BlogContentWidget2Component } from 'src/app/cms-modules/blog/content/widget/widget2.component';
+import { CatalogContentWidgetComponent } from 'src/app/cms-modules/catalog/content/widget/widget.component';
+import { CatalogContentWidget2Component } from 'src/app/cms-modules/catalog/content/widget/widget2.component';
 import { ChartContentWidgetComponent } from 'src/app/cms-modules/chart/content/widget/widget.component';
 import { ChartContentWidget2Component } from 'src/app/cms-modules/chart/content/widget/widget2.component';
 import { CoreSiteWidgetCountComponent } from 'src/app/cms-modules/core-main/site/widget/count/widget.component';
@@ -29,6 +31,9 @@ import { CoreModuleSiteUserCreditWidgetPriceComponent } from 'src/app/cms-module
 import { EstateCustomerOrderWidgetAddComponent } from 'src/app/cms-modules/estate/customer-order/widget/widget-add.component';
 import { EstateCustomerOrderWidgetComponent } from 'src/app/cms-modules/estate/customer-order/widget/widget.component';
 import { EstateCustomerOrderWidget2Component } from 'src/app/cms-modules/estate/customer-order/widget/widget2.component';
+import { EstatePropertyHistoryWidgetAddComponent } from 'src/app/cms-modules/estate/property-history/widget/widget-add.component';
+import { EstatePropertyHistoryWidgetComponent } from 'src/app/cms-modules/estate/property-history/widget/widget.component';
+import { EstatePropertyHistoryWidget2Component } from 'src/app/cms-modules/estate/property-history/widget/widget2.component';
 import { EstatePropertyWidgetAddComponent } from 'src/app/cms-modules/estate/property/widget/widget-add.component';
 import { EstatePropertyWidgetComponent } from 'src/app/cms-modules/estate/property/widget/widget.component';
 import { EstatePropertyWidget2Component } from 'src/app/cms-modules/estate/property/widget/widget2.component';
@@ -64,6 +69,8 @@ import { DashboardComponent } from './dashboard.component';
     BiographyContentWidget2Component,
     BlogContentWidgetComponent,
     BlogContentWidget2Component,
+    CatalogContentWidgetComponent,
+    CatalogContentWidget2Component,
     CoreSiteWidgetCountComponent,
     CoreSiteWidgetCount2Component,
     CoreSiteWidgetStatusComponent,
@@ -77,6 +84,9 @@ import { DashboardComponent } from './dashboard.component';
     EstateCustomerOrderWidgetComponent,
     EstateCustomerOrderWidget2Component,
     EstateCustomerOrderWidgetAddComponent,
+    EstatePropertyHistoryWidgetComponent,
+    EstatePropertyHistoryWidget2Component,
+    EstatePropertyHistoryWidgetAddComponent,
     TicketingTaskWidgetComponent,
     TicketingTaskWidget2Component,
     CoreModuleLogReportAbuseWidget2Component,
@@ -105,6 +115,7 @@ import { DashboardComponent } from './dashboard.component';
     NewsContentService,
     BiographyContentService,
     BlogContentService,
+    CatalogContentService,
     EstatePropertyService,
     EstateCustomerOrderService,
     TicketingTaskService,
@@ -116,6 +127,7 @@ import { DashboardComponent } from './dashboard.component';
     CoreUserClaimTypeService,
     CoreModuleLogReportAbuseService,
     CoreModuleSiteCreditService,
+    EstatePropertyHistoryService,
   ]
 })
 export class DashboardModule { }

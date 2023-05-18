@@ -86,6 +86,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     'BankStatus',
     'Amount',
     'AmountPure',
+    'CreatedDate',
     'UpdatedDate',
     'Action'
   ];
@@ -303,8 +304,11 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
+    if (!model.paymentTransactionUrl || model.paymentTransactionUrl.length === 0) {
+      return;
+    }
     this.cmsToastrService.typeSuccessMessage(this.translate.instant('MESSAGE.Transferring_to_the_payment_gateway'));
-    this.document.location.href = this.contentService.ServiceGoToBank(model.id);
+    this.document.location.href = model.paymentTransactionUrl;
   }
   onActionbuttonNotifictionActionSend(model: BankPaymentTransactionModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id <= 0) {
@@ -394,7 +398,7 @@ export class BankPaymentTransactionListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {

@@ -15,6 +15,7 @@ import { CoreModuleTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreSharedModule } from '../core.shared.module';
 import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.component';
 
@@ -51,6 +52,7 @@ import { CoreModuleSelectionlistComponent } from './selectionlist/selectionlist.
   ],
   providers: [
     CoreModuleService,
+    CmsConfirmationDialogService
   ]
 })
 export class CoreModuleModule {

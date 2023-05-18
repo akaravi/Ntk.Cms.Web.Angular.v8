@@ -23,8 +23,9 @@
       </mat-error>
     </mat-form-field>
     <!-- Title Field -->
-    <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading" [optionDisabled]="false"
-      [optionSelectForce]="dataModel.linkParentId" [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
+    <app-core-guide-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
+      [optionDisabled]="false" [optionSelectForce]="dataModel.linkParentId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
     </app-core-guide-selector>
     <!-- Key Field -->
     <mat-form-field class="ntk-full-width">
@@ -60,8 +61,9 @@
       <br>
       <!-- BodyFa Field -->
       <p> Body Fa </p>
-      <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text_Body')" [config]="publicHelper.editorConfig"
-        id="BodyFa" [(ngModel)]="dataModel.bodyFa" name="dataModel.bodyFa"></angular-editor>
+      <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text_Body')"
+        [config]="publicHelper.editorConfig" id="BodyFa" [(ngModel)]="dataModel.bodyFa"
+        name="dataModel.bodyFa"></angular-editor>
       <br>
       <!--  class="audio"IdFa Field -->
       <div class="mb-3">
@@ -194,8 +196,9 @@
       <br>
       <!-- BodyAr Field -->
       <p> Body Ar </p>
-      <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text_Body')" [config]="publicHelper.editorConfig"
-        id="BodyAr" [(ngModel)]="dataModel.bodyAr" name="dataModel.bodyAr"></angular-editor>
+      <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_Text_Body')"
+        [config]="publicHelper.editorConfig" id="BodyAr" [(ngModel)]="dataModel.bodyAr"
+        name="dataModel.bodyAr"></angular-editor>
       <br>
       <!-- LinkFilePodcastIdAr Field -->
       <div class="mb-3">

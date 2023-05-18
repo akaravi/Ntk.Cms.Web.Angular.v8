@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { UserModel } from '../../../models/user.model';
 import { AuthModel } from '../../../models/auth.model';
-import { UsersTable } from '../../../../../_fake/users.table';
+import { UserModel } from '../../../models/user.model';
+//import { UsersTable } from '../../../../../_fake/users.table';
 import { environment } from '../../../../../../environments/environment';
 
 const API_USERS_URL = `${environment.apiUrl}/users`;
@@ -14,7 +14,7 @@ const API_USERS_URL = `${environment.apiUrl}/users`;
   providedIn: 'root',
 })
 export class AuthHTTPService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // public methods
   login(email: string, password: string): Observable<any> {
@@ -70,15 +70,16 @@ export class AuthHTTPService {
   }
 
   getUserByToken(token: string): Observable<UserModel | undefined> {
-    const user = UsersTable.users.find((u: UserModel) => {
-      return u.authToken === token;
-    });
+    return of(undefined);
+    // const user = UsersTable.users.find((u: UserModel) => {
+    //   return u.authToken === token;
+    // });
 
-    if (!user) {
-      return of(undefined);
-    }
+    // if (!user) {
+    //   return of(undefined);
+    // }
 
-    return of(user);
+    // return of(user);
   }
 
   getAllUsers(): Observable<UserModel[]> {

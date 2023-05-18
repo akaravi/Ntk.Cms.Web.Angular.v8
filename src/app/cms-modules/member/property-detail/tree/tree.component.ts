@@ -52,7 +52,13 @@ export class MemberPropertyDetailTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: MemberPropertyDetailModel = new MemberPropertyDetailModel();
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailModel> = new ErrorExceptionResult<MemberPropertyDetailModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<MemberPropertyDetailModel>(node => null);
   dataSource = new MatTreeNestedDataSource<MemberPropertyDetailModel>();
   @Output() optionChange = new EventEmitter<MemberPropertyDetailModel>();

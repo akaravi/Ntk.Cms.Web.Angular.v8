@@ -52,7 +52,13 @@ export class TicketingDepartemenTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: TicketingDepartemenModel = new TicketingDepartemenModel();
   dataModelResult: ErrorExceptionResult<TicketingDepartemenModel> = new ErrorExceptionResult<TicketingDepartemenModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<TicketingDepartemenModel>(node => null);
   dataSource = new MatTreeNestedDataSource<TicketingDepartemenModel>();
   @Output() optionChange = new EventEmitter<TicketingDepartemenModel>();

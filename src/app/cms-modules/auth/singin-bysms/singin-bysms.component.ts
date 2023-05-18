@@ -63,6 +63,7 @@ export class AuthSingInBySmsComponent implements OnInit {
         this.cmsToastrService.typeWarningMessage(this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSetCpatcha'));
         return;
       }
+      this.dataModelAuthUserSignInBySms.code = '';
     }
     this.formInfo.buttonSubmittedEnabled = false;
     this.errorState = ErrorStates.NotSubmitted;
@@ -102,7 +103,10 @@ export class AuthSingInBySmsComponent implements OnInit {
             this.cmsToastrService.typeErrorMessage(res.errorMessage);
           }
           this.formInfo.buttonSubmittedEnabled = true;
-          this.onCaptchaOrder();
+          if (!this.captchaModel || (new Date(this.captchaModel.expire).getTime() - new Date().getTime()) < 2) {
+            this.onCaptchaOrder();
+          }
+
           this.loading.Stop(pName);
         },
         error: (er) => {

@@ -1,11 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
-import { map, catchError, switchMap, finalize } from 'rxjs/operators';
-import { UserModel } from '../models/user.model';
+import { BehaviorSubject, Observable, Subscription, of } from 'rxjs';
+import { catchError, finalize, map, switchMap } from 'rxjs/operators';
 import { AuthModel } from '../models/auth.model';
-import { AuthHTTPService } from './auth-http';
-import { environment } from 'src/environments/environment';
+import { UserModel } from '../models/user.model';
+//import { AuthHTTPService } from './auth-http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { AuthHTTPService } from './auth-http/auth-http.service';
 
 export type UserType = UserModel | undefined;
 

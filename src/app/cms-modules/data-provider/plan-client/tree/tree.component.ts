@@ -49,7 +49,13 @@ export class DataProviderPlanClientTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DataProviderPlanClientModel = new DataProviderPlanClientModel();
   dataModelResult: ErrorExceptionResult<DataProviderPlanClientModel> = new ErrorExceptionResult<DataProviderPlanClientModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<DataProviderPlanClientModel>(node => null);
   dataSource = new MatTreeNestedDataSource<DataProviderPlanClientModel>();
   @Output() optionChange = new EventEmitter<DataProviderPlanClientModel>();

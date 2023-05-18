@@ -79,7 +79,7 @@
           </mat-error>
         </mat-form-field>
         <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
           [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"
           [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
@@ -127,7 +127,7 @@
             </mat-chip>
             <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
-              (matChipInputTokenEnd)="addTag($event)"/>
+              (matChipInputTokenEnd)="addTag($event)" />
           </mat-chip-grid>
         </mat-form-field>
 

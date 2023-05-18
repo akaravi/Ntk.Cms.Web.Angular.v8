@@ -28,8 +28,13 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
   indexTheme = ['symbol-light-success', 'symbol-light-warning', 'symbol-light-danger', 'symbol-light-info', 'symbol-light-info', 'symbol-light-info'];
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   constructor(
     private service: CoreSiteService,
     public translate: TranslateService,

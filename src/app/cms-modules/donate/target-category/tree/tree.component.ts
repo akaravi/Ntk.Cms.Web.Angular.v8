@@ -50,7 +50,13 @@ export class DonateTargetCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: DonateTargetCategoryModel = new DonateTargetCategoryModel();
   dataModelResult: ErrorExceptionResult<DonateTargetCategoryModel> = new ErrorExceptionResult<DonateTargetCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<DonateTargetCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<DonateTargetCategoryModel>();
   @Output() optionChange = new EventEmitter<DonateTargetCategoryModel>();

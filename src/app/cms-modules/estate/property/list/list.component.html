@@ -89,6 +89,12 @@
         {{'ACTION.INCHECKING' | translate}}
       </mat-slide-toggle>
     </a>
+    <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text box-shadow-button">
+      <mat-slide-toggle (click)="onActionbuttonInResponsible(!searchInResponsible)"
+        [checked]="searchInResponsibleChecked">
+        {{'ACTION.InResponsible' | translate}}
+      </mat-slide-toggle>
+    </a>
     <button (click)="onActionbuttonReload()" type="button"
       class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
       <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
@@ -116,13 +122,13 @@
       <p>{{'MESSAGE.Content_of_your_choice_to_display' | translate}}</p>
       <P>{{'MESSAGE.Selecting_any_of_the_following_will_make_the_search_results_range_smaller' | translate}}</P>
       <!-- LinkLocationIds Field -->
-      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
+      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
         [optionPlaceholder]="this.translate.instant('TITLE.Region')">
       </app-cms-location-autocomplete>
       <hr>
       <!-- LinkPropertyTypeUsageId Field -->
       <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)" [optionTypeView]="2"
-        [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+        [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
         <mat-icon matSuffix
           *ngIf="filteModelContent.linkPropertyTypeUsageId && filteModelContent.linkPropertyTypeUsageId?.length>0"
           matSuffix mat-icon-button aria-label="Clear" (click)="filteModelContent.linkPropertyTypeUsageId = null;">
@@ -134,7 +140,8 @@
       <br>
       <!-- LinkPropertyTypeLanduseId Field -->
       <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
-        [optionTypeView]="2" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
+        [optionTypeView]="2" [(optionLoading)]="loading"
+        [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
         <mat-icon matSuffix
           *ngIf="filteModelContent.linkPropertyTypeLanduseId && filteModelContent.linkPropertyTypeLanduseId?.length>0"
@@ -147,7 +154,7 @@
       <br>
       <!-- LinkContractTypeIds Field -->
       <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
-        [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
+        [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
         <mat-icon matSuffix
           *ngIf="filteModelContent.linkContractTypeId && filteModelContent.linkContractTypeId?.length>0" matSuffix
           mat-icon-button aria-label="Clear" (click)="filteModelContent.linkContractTypeId = null;"> close
@@ -195,7 +202,8 @@
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true"
         [optionSelectForce]="filteModelContent.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)"
-        [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+        [(optionLoading)]="loading"
+        [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
       <div class="row" style="direction: rtl;">
         <div class="col-md-6 col-sm-6 col-xs-9">

@@ -5,10 +5,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreModuleLogReportAbuseModel, CoreModuleLogReportAbuseService, DataFieldInfoModel, EnumInfoModel,
+  EnumManageUserAccessDataTypes,
   ErrorExceptionResult,
   FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -89,7 +90,7 @@ export class CoreModuleLogReportAbuseViewComponent implements OnInit, OnDestroy 
 
     /*َAccess Field*/
     this.coreModuleLogReportAbuseService.setAccessLoad();
-
+    this.coreModuleLogReportAbuseService.setAccessDataType(EnumManageUserAccessDataTypes.Editor)
     this.coreModuleLogReportAbuseService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

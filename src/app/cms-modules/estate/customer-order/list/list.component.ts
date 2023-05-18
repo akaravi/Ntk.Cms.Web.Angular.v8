@@ -45,6 +45,8 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
+
+    this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
     this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
     if (this.recordStatus) {
       this.optionsSearch.data.show = true;
@@ -57,6 +59,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
 
   }
   recordStatus: EnumRecordStatus;
+  responsibleUserId = 0;
+  searchInResponsible = false;
+  searchInResponsibleChecked = false;
   link: string;
   comment: string;
   author: string;
@@ -129,27 +134,61 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       filterModel.filters.push(filterChild);
     }
     /** filter Category */
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
-      next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        if (ret.isSuccess) {
-          this.dataModelResult = ret;
-          this.tableSource.data = ret.listItems;
-
-          if (this.optionsSearch.childMethods) {
-            this.optionsSearch.childMethods.setAccess(ret.access);
-          }
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
+    var setResponsibleUserId = 0;
+    if (this.searchInResponsible) {
+      setResponsibleUserId = this.tokenInfo.userId;
+    } else if (this.responsibleUserId > 0) {
+      setResponsibleUserId = this.responsibleUserId;
     }
-    );
+    if (setResponsibleUserId > 0) {
+      /** ResponsibleUserId  */
+      this.contentService.ServiceGetAllWithResponsibleUserId(setResponsibleUserId, filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+      /** ResponsibleUserId  */
+    } else {
+      /** GetAllEditor  */
+      this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+      /** GetAllEditor  */
+    }
   }
   onTableSortData(sort: MatSort): void {
     if (this.tableSource && this.tableSource.sort && this.tableSource.sort.active === sort.active) {
@@ -403,6 +442,11 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     //open popup
 
   }
+  onActionbuttonInResponsible(model: boolean): void {
+    this.searchInResponsible = model;
+    this.DataGetAll();
+  }
+
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();

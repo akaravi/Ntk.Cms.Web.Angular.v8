@@ -68,6 +68,9 @@ export class EstateBillboardAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.estateBillboardService
       .ServiceViewModel()
       .subscribe({
@@ -78,9 +81,11 @@ export class EstateBillboardAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

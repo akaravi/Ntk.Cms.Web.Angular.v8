@@ -94,6 +94,7 @@ const routes: Routes = [
         path: 'property/InChecking/:InChecking',
         component: EstatePropertyListComponent
       },
+
       {
         path: 'property/add',
         component: EstatePropertyAddComponent
@@ -175,6 +176,10 @@ const routes: Routes = [
         component: EstatePropertyHistoryListComponent
       },
       {
+        path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
         path: 'property-history/LinkPropertyId/:LinkPropertyId',
         component: EstatePropertyHistoryListComponent
       },
@@ -188,6 +193,14 @@ const routes: Routes = [
       },
       {
         path: 'property-history/LinkEstateAgencyId/:LinkEstateAgencyId',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/recordstatus/:RecordStatus',
+        component: EstatePropertyHistoryListComponent
+      },
+      {
+        path: 'property-history/action/:Action',
         component: EstatePropertyHistoryListComponent
       },
       /**/
@@ -258,6 +271,14 @@ const routes: Routes = [
       },
       {
         path: 'customer-order/recordstatus/:RecordStatus',
+        component: EstateCustomerOrderListComponent
+      },
+      {
+        path: 'customer-order/recordstatus/:RecordStatus/:ResponsibleUserId',
+        component: EstateCustomerOrderListComponent
+      },
+      {
+        path: 'customer-order/responsibleUserId/:ResponsibleUserId',
         component: EstateCustomerOrderListComponent
       },
       {

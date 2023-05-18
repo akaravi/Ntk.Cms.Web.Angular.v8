@@ -10,7 +10,7 @@ import {
   EstateContractTypeService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable, Subscription } from 'rxjs';
+import { firstValueFrom, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -54,12 +54,12 @@ export class EstateContractTypeSelectorComponent implements OnInit, OnDestroy {
   @Input() optionReload = () => this.onActionReload();
   cmsApiStoreSubscribe: Subscription;
 
-  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
-  get loading(): ProgressSpinnerModel {
-    return this._loading;
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input() set loading(value: ProgressSpinnerModel) {
-    this._loading = value;
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();
@@ -128,25 +128,25 @@ export class EstateContractTypeSelectorComponent implements OnInit, OnDestroy {
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
+    //return await
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then((ret) => {
+        this.dataModelResult = ret;
+        /*select First Item */
+        if (this.optionSelectFirstItem &&
+          (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length === 0) &&
+          this.dataModelResult.listItems.length > 0) {
+          this.optionSelectFirstItem = false;
+          setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
+          this.onActionSelect(this.dataModelResult.listItems[0]);
+        }
+        /*select First Item */
+        this.loading.Stop(pName);
 
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
-          this.dataModelResult = response;
-          /*select First Item */
-          if (this.optionSelectFirstItem &&
-            (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length === 0) &&
-            this.dataModelResult.listItems.length > 0) {
-            this.optionSelectFirstItem = false;
-            setTimeout(() => { this.formControl.setValue(this.dataModelResult.listItems[0]); }, 1000);
-            this.onActionSelect(this.dataModelResult.listItems[0]);
-          }
-          /*select First Item */
-          this.loading.Stop(pName);
+        return ret.listItems;
+      });
 
-          return response.listItems;
-        })
-      ).toPromise();
+
   }
   onActionSelect(model: EstateContractTypeModel): void {
     if (this.optionDisabled) {

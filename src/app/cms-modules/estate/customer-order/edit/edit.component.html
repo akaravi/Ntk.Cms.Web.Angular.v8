@@ -8,7 +8,7 @@
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <div class="row alert alert-custom alert-white alert-shadow gutter-b">
+  <div class="row alert alert-custom alert-shadow gutter-b">
     <div class="col-md-6 col-sm-6 col-xs-9">
       <!-- RecordStatus Field -->
       <mat-form-field class="ntk-full-width">
@@ -27,7 +27,7 @@
       </mat-form-field>
       <!-- LinkCategoryId Field -->
       <app-estate-customer-category-selector (optionChange)="onActionSelectorSelect($event)"
-        [optionSelectForce]="dataModel.linkEstateCustomerCategoryId" [(loading)]="loading"
+        [optionSelectForce]="dataModel.linkEstateCustomerCategoryId" [(optionLoading)]="loading"
         [optionPlaceholder]="this.translate.instant('TITLE.Category')">
       </app-estate-customer-category-selector>
       <!-- Title Field -->
@@ -87,7 +87,7 @@
       <hr>
       <!-- linkEstateAgencyId Field -->
       <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
-        (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading"
+        (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading"
         [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessEditField"
         [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
         [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
@@ -95,7 +95,7 @@
       <!-- LinkEstateUserId Field -->
       <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
         [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessEditField"
-        [optionSelectForce]="dataModel.linkEstateUserId" [(loading)]="loading"
+        [optionSelectForce]="dataModel.linkEstateUserId" [(optionLoading)]="loading"
         [optionPlaceholder]="this.translate.instant('TITLE.Real_estate_customer_personnel')">
       </app-estate-account-user-selector>
       <!-- ContactMobiles Field -->
@@ -152,7 +152,7 @@
         <!-- LinkPropertyTypeUsageId Field -->
         <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
           [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(loading)]="loading"
+          [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
           <mat-icon matSuffix *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId?.length>0"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkPropertyTypeUsageId = null;"> close
@@ -167,7 +167,7 @@
         <!-- LinkPropertyTypeLanduseId Field -->
         <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
           [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
-          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(loading)]="loading"
+          [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
           <mat-icon matSuffix
@@ -184,7 +184,7 @@
         <!-- LinkContractTypeIds Field -->
         <app-estate-contract-type-selector (optionChange)="onActionSelectorContarctType($event)" [optionTypeView]="2"
           [optionDisabled]="!fieldsInfo['linkContractTypeId']?.accessEditField"
-          [optionSelectForce]="dataModel.linkContractTypeId" [(loading)]="loading"
+          [optionSelectForce]="dataModel.linkContractTypeId" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Transaction_type')">
           <mat-icon matSuffix *ngIf="dataModel.linkContractTypeId && dataModel.linkContractTypeId?.length>0" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.linkContractTypeId = null;"> close
@@ -196,7 +196,7 @@
 
         <!-- linkCoreCurrencyId Field -->
         <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-          (optionChange)="onActionSelectCurrency($event)" [(loading)]="loading"
+          (optionChange)="onActionSelectCurrency($event)" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
         </app-cms-currency-selector>
         <!-- SalePriceMin Field -->
@@ -329,7 +329,7 @@
         {{'TITLE.Geographical_Areas' | translate}} :
         <!-- LinkLocationIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
-          [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(loading)]="loading"
+          [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(optionLoading)]="loading"
           [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-autocomplete>
         <mat-accordion class="example-headers-align">

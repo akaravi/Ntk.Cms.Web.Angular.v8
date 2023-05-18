@@ -47,12 +47,12 @@ export class CoreModuleTagSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
-  get loading(): ProgressSpinnerModel {
-    return this._loading;
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input() set loading(value: ProgressSpinnerModel) {
-    this._loading = value;
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
   }
   ngOnInit(): void {
     this.loadOptions();

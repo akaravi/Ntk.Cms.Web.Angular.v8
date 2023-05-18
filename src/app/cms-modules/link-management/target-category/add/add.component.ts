@@ -81,6 +81,9 @@ export class LinkManagementTargetCategoryAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.categoryService
       .ServiceViewModel()
       .subscribe({
@@ -91,9 +94,11 @@ export class LinkManagementTargetCategoryAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

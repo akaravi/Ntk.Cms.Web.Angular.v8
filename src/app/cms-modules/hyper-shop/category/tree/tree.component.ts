@@ -51,7 +51,13 @@ export class HyperShopCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: HyperShopCategoryModel = new HyperShopCategoryModel();
   dataModelResult: ErrorExceptionResult<HyperShopCategoryModel> = new ErrorExceptionResult<HyperShopCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<HyperShopCategoryModel>(node => null);
   dataSource = new MatTreeNestedDataSource<HyperShopCategoryModel>();
   @Output() optionChange = new EventEmitter<HyperShopCategoryModel>();

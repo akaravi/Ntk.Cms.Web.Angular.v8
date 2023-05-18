@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -52,7 +52,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkModuleId Field -->
-    <app-cms-module-selector (optionChange)="onActionSelectModule($event)" [(loading)]="loading"
+    <app-cms-module-selector (optionChange)="onActionSelectModule($event)" [(optionLoading)]="loading"
       [optionSelectForce]="this.dataModel.linkModuleId" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')"
       [optionDisabled]="!fieldsInfo['linkModuleId']?.accessAddField">
     </app-cms-module-selector>

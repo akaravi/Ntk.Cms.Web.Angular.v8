@@ -54,8 +54,13 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
 
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
     this.widgetInfoModel.description = '';

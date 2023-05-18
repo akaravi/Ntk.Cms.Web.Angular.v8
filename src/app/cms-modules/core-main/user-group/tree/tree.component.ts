@@ -51,7 +51,13 @@ export class CoreUserGroupTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreUserGroupModel = new CoreUserGroupModel();
   dataModelResult: ErrorExceptionResult<CoreUserGroupModel> = new ErrorExceptionResult<CoreUserGroupModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<CoreUserGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreUserGroupModel>();
   @Output() optionChange = new EventEmitter<CoreUserGroupModel>();

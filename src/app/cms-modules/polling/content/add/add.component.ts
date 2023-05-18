@@ -131,6 +131,9 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
 
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.pollingContentService
       .ServiceViewModel()
       .subscribe({
@@ -141,9 +144,11 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

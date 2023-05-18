@@ -8,13 +8,14 @@
     <app-progress-spinner [options]="loading"> </app-progress-spinner>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <app-api-telegram-bot-config-selector (optionChange)="onActionSelectorSelect($event)"
-      [optionSelectForce]="dataModel.botId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Telegram_Bot')">
+      [optionSelectForce]="dataModel.botId" [(optionLoading)]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Telegram_Bot')">
     </app-api-telegram-bot-config-selector>
     <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.title' | translate}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text" placeholder="{{'TITLE.Message_Title' | translate}}"
-        minlength="3" maxlength="100" required />
+      <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text"
+        placeholder="{{'TITLE.Message_Title' | translate}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.title = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -27,8 +28,8 @@
     <!-- text Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.Message_Text' | translate}}</mat-label>
-      <textarea matInput [(ngModel)]="dataModel.text" name="dataModel.text" #text type="text" placeholder="{{'MESSAGE.Message_Text' | translate}}"
-        row="10" required></textarea>
+      <textarea matInput [(ngModel)]="dataModel.text" name="dataModel.text" #text type="text"
+        placeholder="{{'MESSAGE.Message_Text' | translate}}" row="10" required></textarea>
       <mat-icon matSuffix *ngIf="dataModel.text" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.text = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -41,8 +42,8 @@
     <!-- chatId Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{'TITLE.Receivers' | translate}}</mat-label>
-      <textarea matInput [(ngModel)]="compModel.ChatIds" name="compModel.ChatIds"   #ChatIds type="text" placeholder="{{'TITLE.Chat_ID' | translate}}"
-        row="10" required></textarea>
+      <textarea matInput [(ngModel)]="compModel.ChatIds" name="compModel.ChatIds" #ChatIds type="text"
+        placeholder="{{'TITLE.Chat_ID' | translate}}" row="10" required></textarea>
       <mat-icon matSuffix *ngIf="compModel.ChatIds" matSuffix mat-icon-button aria-label="Clear"
         (click)="compModel.ChatIds = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -50,7 +51,7 @@
       <mat-error *ngIf="ChatIds.errors?.required">
         ChatIds is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
-    </mat-form-field> 
+    </mat-form-field>
 
 
 

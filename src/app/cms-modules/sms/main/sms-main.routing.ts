@@ -71,6 +71,10 @@ const routes: Routes = [
         component: SmsMainApiNumberListComponent
       },
       {
+        path: 'api-number/LinkApiPathId/:LinkApiPathId',
+        component: SmsMainApiNumberListComponent
+      },
+      {
         path: 'api-number-permission',
         component: SmsMainApiNumberPermissionListComponent
       },

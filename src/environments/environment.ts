@@ -7,15 +7,15 @@ import { EnumDeviceType, EnumOperatingSystemType } from "ntk-cms-api";
 export const environment = {
   production: false,
   checkAccess: false,
-  appVersion: '15.1.1224.2',
+  appVersion: '15.1.0000.0',
   authKey: 'authf649fc9a5f55',
   loadDemoTheme: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   cmsServerConfig: {
     configApiRetry: 1,
-    configApiServerPath: 'https://apicms.ir/api/v2/',
-    //configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
+    //configApiServerPath: 'https://apicms.ir/api/v2/',
+    configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:7130/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:44342/api/v2/', // Test Api Docer
     configMvcServerPath: 'https://ntkcms.ir/',

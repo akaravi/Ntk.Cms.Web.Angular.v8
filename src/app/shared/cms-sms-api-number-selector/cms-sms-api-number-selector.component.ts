@@ -9,7 +9,7 @@ import {
   SmsMainApiNumberModel,
   SmsMainApiNumberService
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -47,12 +47,12 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
     this.onActionSelectForce(x);
   }
 
-  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
-  get loading(): ProgressSpinnerModel {
-    return this._loading;
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input() set loading(value: ProgressSpinnerModel) {
-    this._loading = value;
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
   }
 
   @Input() set optionLinkApiPathId(x: string) {
@@ -113,9 +113,9 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
       filterModel.filters.push(filter);
     }
     this.loading.Start('DataGetAll');
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem && (!this.dataModelSelect || !this.dataModelSelect.id || this.dataModelSelect.id.length <= 0) && this.dataModelResult.listItems.length > 0) {
@@ -128,8 +128,7 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
           /*select First Item */
           this.loading.Stop('DataGetAll');
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: SmsMainApiNumberModel): void {
     if (this.optionDisabled) {
@@ -158,6 +157,7 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
 
   }
   onActionSelectForce(id: string | SmsMainApiNumberModel): void {
+
     if (typeof id === 'string' && id.length > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
@@ -181,7 +181,7 @@ export class CmsSmsMainApiNumberSelectorComponent implements OnInit {
             this.dataModelSelect = ret.item;
             this.formControl.setValue(ret.item);
             this.optionChange.emit(ret.item);
-          } else {
+          } else if (!this.dataModelResult.listItems || this.dataModelResult.listItems.length === 0) {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
         }

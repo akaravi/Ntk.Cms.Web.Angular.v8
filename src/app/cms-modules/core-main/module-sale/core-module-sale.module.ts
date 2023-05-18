@@ -43,6 +43,7 @@ import { CoreModuleSaleSerialHeaderComponent } from './serial/header/header.comp
 import { CoreModuleSaleSerialListComponent } from './serial/list/list.component';
 import { CoreModuleSaleSerialSelectorComponent } from './serial/selector/selector.component';
 import { CoreModuleSaleSerialTreeComponent } from './serial/tree/tree.component';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { CoreModuleSaleSerialTreeComponent } from './serial/tree/tree.component'
     CoreModuleSaleHeaderGroupService,
     CoreModuleSaleHeaderService,
     BankPaymentTransactionService,
+    CmsConfirmationDialogService,
   ]
 })
 export class CoreModuleSaleModule {

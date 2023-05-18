@@ -53,7 +53,13 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
   dataModelSelect: LinkManagementTargetCategoryModel = new LinkManagementTargetCategoryModel();
   dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<LinkManagementTargetCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<LinkManagementTargetCategoryModel>();
   @Output() optionChange = new EventEmitter<LinkManagementTargetCategoryModel>();

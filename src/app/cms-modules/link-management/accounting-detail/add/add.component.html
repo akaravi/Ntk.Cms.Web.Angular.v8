@@ -23,9 +23,10 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkManagementAccountingId Field -->
-    <app-linkmanagement-accounting-selector (optionChange)="onActionSelectorAccount($event)" [(loading)]="loading"
+    <app-linkmanagement-accounting-selector (optionChange)="onActionSelectorAccount($event)" [(optionLoading)]="loading"
       [optionDisabled]="!fieldsInfo['linkManagementAccountingId']?.accessAddField"
-      [optionSelectForce]="dataModel.linkManagementAccountingId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
+      [optionSelectForce]="dataModel.linkManagementAccountingId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Account')">
     </app-linkmanagement-accounting-selector>
     <!-- AccountingType Field -->
     <mat-form-field class="ntk-full-width">

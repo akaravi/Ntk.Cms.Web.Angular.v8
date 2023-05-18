@@ -3,7 +3,7 @@
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
   <ng-container cms-tree>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    <!-- <app-estate-property-project-tree [(loading)]="loading" (optionChange)="onActionSelectorSelect($event)">
+    <!-- <app-estate-property-project-tree [(optionLoading)]="loading" (optionChange)="onActionSelectorSelect($event)">
     </app-estate-property-project-tree> -->
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
@@ -92,6 +92,7 @@
         <mat-cell *matCellDef="let row">
           <i [ngClass]="row.recordStatus|statusClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+            style="background: none; border: none;"
             [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
         </mat-cell>

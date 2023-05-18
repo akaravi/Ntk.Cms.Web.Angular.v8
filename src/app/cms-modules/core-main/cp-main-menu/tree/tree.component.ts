@@ -52,7 +52,13 @@ export class CoreCpMainMenuTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: CoreCpMainMenuModel = new CoreCpMainMenuModel();
   dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<CoreCpMainMenuModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<CoreCpMainMenuModel>();
   @Output() optionChange = new EventEmitter<CoreCpMainMenuModel>();

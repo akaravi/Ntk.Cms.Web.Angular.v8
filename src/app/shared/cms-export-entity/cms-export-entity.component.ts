@@ -2,8 +2,9 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum, TokenInfoModel } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -21,6 +22,7 @@ export class CmsExportEntityComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CmsExportEntityComponent>,
     public translate: TranslateService,
+    public tokenHelper: TokenHelper,
   ) {
     if (data) {
       if (data.service)
@@ -71,22 +73,27 @@ export class CmsExportEntityComponent implements OnInit {
     eum.key = 'FileManager';
     eum.description = 'FileManager';
     this.recieveMethodListItems.push(eum);
+
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   dataModelReportFileResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
   fileTypeListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
   recieveMethodListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
 
-  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
-  get loading(): ProgressSpinnerModel {
-    return this._loading;
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input() set loading(value: ProgressSpinnerModel) {
-    this._loading = value;
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
   }
 
 
   formControl = new FormControl();
+  tokenInfo = new TokenInfoModel();
   filteredOptions: Observable<CoreModuleEntityReportFileModel[]>;
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
   dataModel: ExportFileModel = new ExportFileModel();

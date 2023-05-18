@@ -20,6 +20,7 @@ import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExport
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
+import { CoreModuleSiteUserCreditChargeDirectComponent } from '../charge-direct/charge-direct.component';
 import { CoreModuleSiteUserCreditEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-coremodule-site-user-credit-list',
@@ -33,7 +34,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     public contentService: CoreModuleSiteUserCreditService,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
-    private tokenHelper: TokenHelper,
+    public tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     private coreModuleService: CoreModuleService,
@@ -306,7 +307,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
@@ -347,7 +348,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionbuttonSiteUserCreditAccountRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
+  onActionbuttonSiteUserCreditBuyAccountRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
     if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -356,6 +357,30 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
     this.tableRowSelected = model;
 
     this.router.navigate(['/coremodule/site-user-credit-charge/', model.linkModuleId]);
+  }
+  onActionbuttonSiteUserCreditDirectAccountRow(model: CoreModuleSiteUserCreditModel = this.tableRowSelected): void {
+    if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+
+    //open popup
+    const dialogRef = this.dialog.open(CoreModuleSiteUserCreditChargeDirectComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        model: model
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+    //open popup
   }
   onActionTableRowSelect(row: CoreModuleSiteUserCreditModel): void {
     this.tableRowSelected = row;

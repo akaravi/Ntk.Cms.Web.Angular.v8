@@ -20,6 +20,7 @@ import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExport
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
+import { CoreModuleSiteCreditChargeDirectComponent } from '../charge-direct/charge-direct.component';
 import { CoreModuleSiteCreditEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-coremodule-site-credit-list',
@@ -303,7 +304,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
@@ -336,7 +337,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     //open popup
   }
 
-  onActionbuttonSiteCreditAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
+  onActionbuttonSiteCreditBuyAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
     if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -345,6 +346,29 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     this.tableRowSelected = model;
 
     this.router.navigate(['/coremodule/site-credit-charge/', model.linkModuleId]);
+  }
+  onActionbuttonSiteCreditDirectAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
+    if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.tableRowSelected = model;
+    //open popup
+    const dialogRef = this.dialog.open(CoreModuleSiteCreditChargeDirectComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        model: model
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+    //open popup
   }
   onActionbuttonReload(): void {
     this.DataGetAll();

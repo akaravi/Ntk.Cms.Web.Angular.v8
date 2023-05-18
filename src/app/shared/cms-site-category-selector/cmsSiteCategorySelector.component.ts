@@ -29,7 +29,13 @@ export class CmsSiteCategorySelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryModel> = new ErrorExceptionResult<CoreSiteCategoryModel>();
   dataModelSelect: CoreSiteCategoryModel = new CoreSiteCategoryModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formControl = new FormControl();
   filteredOptions: Observable<CoreSiteCategoryModel[]>;
   @Input() optionDisabled = false;

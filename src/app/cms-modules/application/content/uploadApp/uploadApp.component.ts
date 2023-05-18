@@ -42,6 +42,7 @@ export class ApplicationAppUploadAppComponent implements OnInit {
     this.DataGetAccess();
   }
   DataGetAccess(): void {
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.applicationAppService

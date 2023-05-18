@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthRenewTokenModel, CoreAuthService, CoreSiteModel, TokenInfoModel } from 'ntk-cms-api';
-import { map, Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -35,8 +35,13 @@ export class UserInnerComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
   }
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   tokenInfo: TokenInfoModel;
   cmsApiStoreSubscribe: Subscription;
   inputSiteId?: number;
@@ -74,7 +79,7 @@ export class UserInnerComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.Sign_out_of_user_account'));
     this.cmsToastrService.typeOrderActionLogout();
-    const retOut = await this.coreAuthService.ServiceLogout().pipe(map(next => {
+    const retOut = await firstValueFrom(this.coreAuthService.ServiceLogout()).then((next) => {
       this.loading.Stop(pName);
       if (next.isSuccess) {
         this.cmsToastrService.typeSuccessLogout();
@@ -82,7 +87,7 @@ export class UserInnerComponent implements OnInit, OnDestroy {
         this.cmsToastrService.typeErrorLogout();
       }
       return;
-    })).toPromise();
+    });
     document.location.reload();
   }
 

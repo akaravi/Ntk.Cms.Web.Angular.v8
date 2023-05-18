@@ -4,10 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { ClipboardModule } from 'ngx-clipboard';
-import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 // #fake-start#
@@ -17,7 +15,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
-import { FakeAPIService } from './_fake/fake-api.service';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
@@ -64,12 +61,12 @@ export function CreateTranslateLoader(http: HttpClient): any {
     InlineSVGModule.forRoot(),
     CmsStoreModule.forRoot(),
     // #fake-start#
-    environment.isMockEnabled
-      ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-        passThruUnknownUrl: true,
-        dataEncapsulation: false,
-      })
-      : [],
+    // environment.isMockEnabled
+    //   ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
+    //     passThruUnknownUrl: true,
+    //     dataEncapsulation: false,
+    //   })
+    //   : [],
     // #fake-end#
 
     AppRoutingModule,

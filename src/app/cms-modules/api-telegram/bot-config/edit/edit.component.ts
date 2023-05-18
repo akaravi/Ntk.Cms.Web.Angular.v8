@@ -49,8 +49,13 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
 
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
   dataModel: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
 

@@ -71,6 +71,9 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
     this.DataAddContent();
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.webDesignerMainIntroService
       .ServiceViewModel()
       .subscribe(
@@ -81,9 +84,11 @@ export class WebDesignerMainIntroAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(pName);
         }
       );
   }
