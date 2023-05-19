@@ -50,7 +50,7 @@ jobs:
         #destination-repository-username :
         commit-message: See $GITHUB_REF
         target-branch: main
-        pre_build_commands: git config --global http.version HTTP/1.1; pacman -S --noconfirm git-lfs libvips lcms2 openjpeg2 libpng libwebp libheif imagemagick openslide libjxl poppler-glib
+        pre_build_commands: git config --global http.version HTTP/1.1;git config --global http.postBuffer 15728640;
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master
       with:
