@@ -50,6 +50,7 @@ jobs:
         #destination-repository-username :
         commit-message: See $GITHUB_REF
         target-branch: main
+        pre_build_commands: git config --global http.version HTTP/1.1;
 
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master
