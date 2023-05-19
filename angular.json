@@ -54,6 +54,7 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
+              "leaflet",
               "lodash",
               "object-path",
               "apexcharts",
