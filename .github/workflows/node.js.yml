@@ -17,13 +17,13 @@ jobs:
     strategy:
       matrix:
         #node-version: [12.x, 14.x, 16.x]
-        node-version: [ 16.x]
+        node-version: [ 20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -41,16 +41,16 @@ jobs:
       uses: cpina/github-action-push-to-another-repository@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        
+
       with:
         source-directory: 'dist/ntk-cms-web'
         destination-github-username: 'akaravi'
         destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
         user-email: karavi.alireza@gmail.com
-        #destination-repository-username : 
+        #destination-repository-username :
         commit-message: See $GITHUB_REF
         target-branch: main
-    
+
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master
       with:
@@ -60,10 +60,10 @@ jobs:
     - name: Webhook Plesk
       uses: joelwmale/webhook-action@master
       with:
-        url: 'https://s12.ntkhost.com:8443/modules/git/public/web-hook.php?uuid=47f7837e-b1f8-7b19-e512-f0b454bf5a66'    
-  
+        url: 'https://s12.ntkhost.com:8443/modules/git/public/web-hook.php?uuid=47f7837e-b1f8-7b19-e512-f0b454bf5a66'
+
     - name: Test get variable exported by push-to-another-repository
-      run: echo $DESTINATION_CLONED_DIRECTORY    
+      run: echo $DESTINATION_CLONED_DIRECTORY
 
 
-            
+

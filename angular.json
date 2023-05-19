@@ -60,7 +60,9 @@
               "apexcharts",
               "clipboard.js",
               "prismjs",
-              "jalali-moment"
+              "jalali-moment",
+              "luxon",
+              "mobx"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
