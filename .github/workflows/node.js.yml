@@ -13,17 +13,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: pandoc/latex
+
     strategy:
       matrix:
         #node-version: [12.x, 14.x, 16.x]
-        node-version: [ 20.x]
+        node-version: [ 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -33,12 +33,15 @@ jobs:
 
     - name: Build
       run: npm run build-prod
+      #run: npm run build --if-present
+    #- run: npm test
 
     - name: Push Publish To Other Git repo
       if: success()
       uses: cpina/github-action-push-to-another-repository@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+
       with:
         source-directory: 'dist/ntk-cms-web'
         destination-github-username: 'akaravi'
@@ -51,7 +54,7 @@ jobs:
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master
       with:
-        url: 'http://smsban.ir/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}'
+        url: 'https://smsban.com/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}'
         #headers: '{"repository": "joelwmale/webhook-action"}'
         #body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
     - name: Webhook Plesk
