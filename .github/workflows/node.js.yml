@@ -54,13 +54,13 @@ jobs:
     - name: Webhook Sms
       uses: joelwmale/webhook-action@master
       with:
-        url: 'https://smsban.com/api/?action=SMS_SEND&username=${{ secrets.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ secrets.SMS_API }}&from=${{ secrets.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ secrets.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}'
+        url: 'https://smsban.com/api/?action=SMS_SEND&username=${{ vars.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ vars.SMS_API }}&from=${{ vars.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ vars.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}'
         #headers: '{"repository": "joelwmale/webhook-action"}'
         #body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
     - name: Webhook Plesk
       uses: joelwmale/webhook-action@master
       with:
-        url: 'https://s12.ntkhost.com:8443/modules/git/public/web-hook.php?uuid=47f7837e-b1f8-7b19-e512-f0b454bf5a66'
+        url: '${{vars.PLESK_WEBHOOK_ADMINPANEL_IR}}'
 
     - name: Test get variable exported by push-to-another-repository
       run: echo $DESTINATION_CLONED_DIRECTORY
