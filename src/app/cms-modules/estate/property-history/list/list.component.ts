@@ -27,6 +27,7 @@ import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExport
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 import { EstatePropertyHistoryAddComponent } from '../add/add.component';
 import { EstatePropertyHistoryEditComponent } from '../edit/edit.component';
+import { EstatePropertyHistoryQuickViewComponent } from '../quick-view/quick-view.component';
 @Component({
   selector: 'app-estate-property-history-list',
   templateUrl: './list.component.html',
@@ -504,7 +505,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     //open popup
   }
 
-  onActionbuttonQuickViewRow(id: any): void {
+  onActionbuttonPropertyQuickViewRow(id: any): void {
     if (!id || id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
@@ -518,6 +519,28 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       return;
     }
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
+      height: '90%',
+      data: { id: id }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+  }
+  onActionbuttonQuickViewRow(id: any): void {
+    if (!id || id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessWatchRow
+    ) {
+      this.cmsToastrService.typeErrorAccessWatch();
+      return;
+    }
+    const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
       data: { id: id }
     });
