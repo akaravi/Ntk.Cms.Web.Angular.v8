@@ -11,8 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel, DataFieldInfoModel,
   EnumFilterDataModelSearchTypes,
+  EnumInputDataType,
   EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateContractTypeModel, EstatePropertyModel, EstatePropertySerachDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, TokenInfoModel
+  ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
@@ -53,6 +54,7 @@ export class EstatePropertyListComponent
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     public tokenHelper: TokenHelper,
     private router: Router,
     private cdr: ChangeDetectorRef,
@@ -191,13 +193,13 @@ export class EstatePropertyListComponent
   searchInCheckingChecked = false;
   searchInResponsible = false;
   searchInResponsibleChecked = false;
-  filteModelContent = new EstatePropertySerachDtoModel();
+  filteModelContent = new EstatePropertySearchDtoModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> =
     new ErrorExceptionResult<EstatePropertyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel =
     new ComponentOptionStatistModel();
-
+  dataModelPropertyDetailGroups: EstatePropertyDetailGroupModel[] = [];
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyModel> = [];
@@ -236,6 +238,10 @@ export class EstatePropertyListComponent
     string,
     DataFieldInfoModel
   >();
+  propertyDetails: Map<string, string> = new Map<string, string>();
+  enumInputDataType = EnumInputDataType;
+  // ** Accardon */
+  step = 0;
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
@@ -400,6 +406,19 @@ export class EstatePropertyListComponent
       // ** */
     } else {
       // ** */
+      // ** Save Value */
+      var propertyDetailValues = [];
+      if (this.dataModelPropertyDetailGroups)
+        this.dataModelPropertyDetailGroups.forEach(itemGroup => {
+          itemGroup.propertyDetails.forEach(element => {
+            const value = new EstatePropertyDetailValueModel();
+            value.linkPropertyDetailId = element.id;
+            value.value = this.propertyDetails[element.id];
+            propertyDetailValues.push(value);
+          });
+        });
+      filterModel.propertyDetailValues = propertyDetailValues;
+      // ** Save Value */
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
       this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
         next: (ret) => {
@@ -432,7 +451,41 @@ export class EstatePropertyListComponent
       //** */
     }
   }
+  DataGetPropertyDetailGroup(id: string): void {
+    const filteModelProperty = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.propertyName = 'LinkPropertyTypeLanduseId';
+    filter.value = id;
+    filteModelProperty.filters.push(filter);
+    this.dataModelPropertyDetailGroups = [];
+    const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
+    this.estatePropertyDetailGroupService.ServiceGetAllFastSearch(filteModelProperty)
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.dataModelPropertyDetailGroups = ret.listItems;
+            /** load Value */
+            if (this.dataModelPropertyDetailGroups)
+              this.dataModelPropertyDetailGroups.forEach(itemGroup => {
+                itemGroup.propertyDetails.forEach(element => {
+                  this.propertyDetails[element.id] = 0;
 
+                });
+              });
+            /** load Value */
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+  }
   onTableSortData(sort: MatSort): void {
     if (
       this.tableSource &&
@@ -517,7 +570,7 @@ export class EstatePropertyListComponent
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new EstatePropertySerachDtoModel();
+    this.filteModelContent = new EstatePropertySearchDtoModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -962,6 +1015,7 @@ export class EstatePropertyListComponent
   dataModelCorCurrencySelector = new CoreCurrencyModel();
 
   onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
+    this.dataModelPropertyDetailGroups = [];
     this.PropertyTypeSelected = null;
     this.filteModelContent.linkPropertyTypeLanduseId = null;
     if (!model || !model.id || model.id.length <= 0) {
@@ -969,6 +1023,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
+    this.DataGetPropertyDetailGroup(model.id);
     this.PropertyTypeSelected = model;
     this.filteModelContent.linkPropertyTypeLanduseId = model.id;
   }
@@ -1002,5 +1057,23 @@ export class EstatePropertyListComponent
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })
+  }
+  setStep(index: number): void {
+    this.step = index;
+  }
+
+  nextStep(): void {
+    this.step++;
+  }
+
+  prevStep(): void {
+    this.step--;
+  }
+  onSearchCaseCodeChange(caseCode: string) {
+    if (caseCode && caseCode.length > 0) {
+      this.filteModelContent = new EstatePropertySearchDtoModel();
+      this.filteModelContent.caseCode = caseCode;
+      this.dataModelPropertyDetailGroups = [];
+    }
   }
 }

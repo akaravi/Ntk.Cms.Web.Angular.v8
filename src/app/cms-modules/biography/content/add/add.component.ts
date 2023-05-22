@@ -16,7 +16,7 @@ import {
   FormInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { of } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
@@ -224,8 +224,8 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
       row.linkTagId = x.id;
       dataListAdd.push(row);
     });
-    return this.biographyContentTagService.ServiceAddBatch(dataListAdd).pipe(
-      map(response => {
+    return firstValueFrom(this.biographyContentTagService.ServiceAddBatch(dataListAdd)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddTag();
         } else {
@@ -233,7 +233,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         }
         console.log(response.listItems);
         return of(response);
-      })).toPromise();
+      });
   }
   DataActionAfterAddContentSuccessfulOtherInfo(model: BiographyContentModel): Promise<any> {
     if (!this.otherInfoDataModel || this.otherInfoDataModel.length === 0) {
@@ -245,8 +245,8 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
     const pName = this.constructor.name + 'biographyContentOtherInfoService.ServiceAddBatch';
     this.loading.Start(pName);
 
-    return this.biographyContentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
-      map(response => {
+    return firstValueFrom(this.biographyContentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddOtherInfo();
         } else {
@@ -254,13 +254,13 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
         }
         return of(response);
       },
-        (error) => {
-          this.loading.Stop(pName);
+      (error) => {
+        this.loading.Stop(pName);
 
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
-        }
-      )).toPromise();
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeErrorAdd(error);
+      }
+    );
   }
   DataActionAfterAddContentSuccessfulSimilar(model: BiographyContentModel): Promise<any> {
     if (!this.similarDataModel || this.similarDataModel.length === 0) {
