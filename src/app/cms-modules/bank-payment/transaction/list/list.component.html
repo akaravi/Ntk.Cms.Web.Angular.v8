@@ -61,7 +61,7 @@
             <ng-container matColumnDef="RecordStatus">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+                <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i [ngClass]="row.recordStatus|statusIconClass"></i>
                 </mat-cell>
             </ng-container>
             <!-- TransactionStatus Column -->

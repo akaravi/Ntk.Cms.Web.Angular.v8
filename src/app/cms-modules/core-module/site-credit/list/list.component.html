@@ -50,7 +50,7 @@
             <ng-container matColumnDef="RecordStatus">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+                <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i [ngClass]="row.recordStatus|statusIconClass"></i>
                     <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row" style="background: none; border: none;" [ngStyle]="{'display': row.linkSiteId === tableRowSelected.linkSiteId && row.linkModuleId === tableRowSelected.linkModuleId ? '' : 'none' }">
                     </select> </mat-cell>
             </ng-container>

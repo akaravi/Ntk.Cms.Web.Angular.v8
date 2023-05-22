@@ -104,7 +104,9 @@ import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
 import { KeysPipe } from '../core/pipe/keys.pipe';
 import { PersianDateFull } from '../core/pipe/persian-date/persian-date-full.pipe';
 import { PrettyjsonPipe } from '../core/pipe/prettyjson.pipe';
-import { RecordStatusClassPipe } from '../core/pipe/recordStatusClass.pipe';
+import { RecordStatusCellClassPipe } from '../core/pipe/recordStatusCellClass.pipe';
+import { RecordStatusIconClassPipe } from '../core/pipe/recordStatusIconClass.pipe';
+import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
 import { SafePipe } from '../core/pipe/safe.pipe';
 import { ValueArrayPipe } from '../core/pipe/valueArray.pipe';
 import { Cms360ImageListComponent } from './cms-360-image-list/cms-360-image-list.component';
@@ -152,7 +154,6 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './material/mat
 import { OverlayService } from './overlay/overlay.service';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
-import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
 
 @NgModule({
   imports: [
@@ -225,7 +226,8 @@ import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
     CmsModuleInfoPipe,
     CmsImageThumbnailPipe,
     PrettyjsonPipe,
-    RecordStatusClassPipe,
+    RecordStatusIconClassPipe,
+    RecordStatusCellClassPipe,
     ReplaceTextPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
@@ -361,7 +363,8 @@ import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
     CmsModuleInfoPipe,
     CmsImageThumbnailPipe,
     PrettyjsonPipe,
-    RecordStatusClassPipe,
+    RecordStatusIconClassPipe,
+    RecordStatusCellClassPipe,
     ReplaceTextPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,

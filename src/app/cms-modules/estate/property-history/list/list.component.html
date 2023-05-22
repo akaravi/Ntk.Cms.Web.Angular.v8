@@ -86,6 +86,15 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
             </ng-container>
+            <!-- RecordStatus Column -->
+            <ng-container matColumnDef="RecordStatus">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i [ngClass]="row.recordStatus|statusIconClass"></i>
+                    <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row" style="background: none; border: none;" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+                    </select>
+                </mat-cell>
+            </ng-container>
             <!-- Title Column -->
             <ng-container matColumnDef="Title">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}

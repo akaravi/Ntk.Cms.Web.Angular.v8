@@ -77,7 +77,7 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <i [ngClass]="row.recordStatus|statusClass"></i>
+                    <i [ngClass]="row.recordStatus|statusIconClass"></i>
                     <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row" style="background: none; border: none;" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
                     </select>
                 </mat-cell>

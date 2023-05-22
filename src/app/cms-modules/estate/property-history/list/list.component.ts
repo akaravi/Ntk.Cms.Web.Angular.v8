@@ -40,7 +40,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   requestLinkEstateAgencyId = '';
 
   constructor(
-    private contentService: EstatePropertyHistoryService,
+    public contentService: EstatePropertyHistoryService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
@@ -101,6 +101,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
+    'RecordStatus',
     'Title',
     'CreatedDate',
     'AppointmentDateFrom',

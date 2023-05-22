@@ -3,9 +3,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { EnumRecordStatus } from 'ntk-cms-api';
 
 @Pipe({
-  name: 'statusClass'
+  name: 'statusIconClass'
 })
-export class RecordStatusClassPipe implements PipeTransform {
+export class RecordStatusIconClassPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) { }
 
   transform(value: EnumRecordStatus, editable = false): SafeHtml {
