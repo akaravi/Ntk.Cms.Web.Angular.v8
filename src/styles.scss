@@ -30,7 +30,36 @@
 /*
 karavi tooltip guid
 */
-
+.cms-EnumRecordStatus-cell-1 {
+  background-color: white !important;
+  font-weight: bold!important;
+color: #000!important;
+}
+.cms-EnumRecordStatus-cell-2 {
+  background-color: rgb(50, 50, 50) !important;
+  font-weight: bold!important;
+color: white!important;
+}
+.cms-EnumRecordStatus-cell-3 {
+  background-color: rgb(146, 0, 24) !important;
+  font-weight: bold!important;
+  color: #000!important;
+}
+.cms-EnumRecordStatus-cell-4 {
+  background-color: greenyellow !important;
+  font-weight: bold!important;
+  color: #000!important;
+}
+.cms-EnumRecordStatus-cell-5 {
+  background-color: rgb(47, 255, 75) !important;
+  font-weight: bold!important;
+  color: #000!important;
+}
+.cms-EnumRecordStatus-cell-6 {
+  background-color: rgb(138, 160, 255) !important;
+  font-weight: bold!important;
+  color: #000!important;
+}
 .tooltip-example {
   text-align: center;
   padding: 0 50px;
