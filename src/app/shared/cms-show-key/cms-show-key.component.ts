@@ -3,26 +3,26 @@ import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angula
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { CoreModuleLogShowKeyModel, CoreModuleShowKeyDtoModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-cms-memo',
-  templateUrl: './cms-memo.component.html',
-  styleUrls: ['./cms-memo.component.scss']
+  selector: 'app-cms-show-key',
+  templateUrl: './cms-show-key.component.html',
+  styleUrls: ['./cms-show-key.component.scss']
 })
-export class CmsMemoComponent implements OnInit {
+export class CmsShowKeyComponent implements OnInit {
   static nextId = 0;
-  id = ++CmsMemoComponent.nextId;
+  id = ++CmsShowKeyComponent.nextId;
 
   requestTitle = '';
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CmsMemoComponent>,
+    private dialogRef: MatDialogRef<CmsShowKeyComponent>,
     public http: HttpClient,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
@@ -44,12 +44,9 @@ export class CmsMemoComponent implements OnInit {
   showAdd = true;
 
   loading = new ProgressSpinnerModel();
-
-  dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleLogShowKeyModel> = new ErrorExceptionResult<CoreModuleLogShowKeyModel>();
   dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
-  dataModel: CoreModuleMemoDtoModel = new CoreModuleMemoDtoModel();
-
-
+  dataModel: CoreModuleShowKeyDtoModel = new CoreModuleShowKeyDtoModel();
 
   ngOnInit(): void {
     this.DataGetAll();
@@ -61,7 +58,7 @@ export class CmsMemoComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     /*filter CLone*/
-    this.requestService.ServiceMemoGetAll(this.dataModel.moduleEntityId).subscribe({
+    this.requestService.ServiceShowKeyGetAll(this.dataModel.moduleEntityId).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
         if (ret.isSuccess) {
@@ -86,7 +83,7 @@ export class CmsMemoComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
+    this.requestService.ServiceShowKeyAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         // this.dataModelResultBase = ret;

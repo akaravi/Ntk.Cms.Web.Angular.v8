@@ -49,7 +49,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleName']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleName.errors?.required">
@@ -70,7 +70,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleEntityName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleEntityName.errors?.required">

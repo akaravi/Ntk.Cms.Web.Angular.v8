@@ -52,7 +52,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['htmlBody']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['htmlBody']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ HtmlBody.value.length }} / 2000</mat-hint>
       <mat-error *ngIf="HtmlBody.errors?.required">
