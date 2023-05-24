@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnInit,
+} from '@angular/core';
+//start change title when route happened
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs';
+//end change title when route happened
+
 //import { TranslationService } from './modules/i18n';
 // language list
 import { HttpParams } from '@angular/common/http';
@@ -12,9 +23,9 @@ import { TokenHelper } from './core/helpers/tokenHelper';
 // import { locale as esLang } from './modules/i18n/vocabs/es';
 // import { locale as frLang } from './modules/i18n/vocabs/fr';
 // import { locale as jpLang } from './modules/i18n/vocabs/jp';
-import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
-import { TranslationService } from './core/i18n/translation.service';
+import { TranslateService } from '@ngx-translate/core';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
+import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -25,15 +36,47 @@ import { SplashScreenService } from './shared/splash-screen/splash-screen.servic
 })
 export class AppComponent implements OnInit {
   constructor(
+    private router: Router,
+    private titleService: Title,
+    private translate: TranslateService,
     private coreAuthService: CoreAuthService,
     //private translationService: TranslationService,
     private modeService: ThemeModeService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
-    private splashScreenService: SplashScreenService,
+    private splashScreenService: SplashScreenService
   ) {
-    if (environment.cmsServerConfig.configApiServerPath && environment.cmsServerConfig.configApiServerPath.length > 0) {
-      this.coreAuthService.setConfig(environment.cmsServerConfig.configApiServerPath);
+    //start change title when route happened
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => {
+          let route: ActivatedRoute = this.router.routerState.root;
+          let routeTitle = '';
+          while (route!.firstChild) {
+            route = route.firstChild;
+          }
+          if (route.snapshot.data['title']) {
+            routeTitle = route!.snapshot.data['title'];
+          }
+          return routeTitle;
+        })
+      )
+      .subscribe((title: string) => {
+        if (title) {
+          this.titleService.setTitle(`${this.translate.instant(title)}`);
+        } //set title that defines in routing's files
+      });
+
+    //end change title when route happened
+
+    if (
+      environment.cmsServerConfig.configApiServerPath &&
+      environment.cmsServerConfig.configApiServerPath.length > 0
+    ) {
+      this.coreAuthService.setConfig(
+        environment.cmsServerConfig.configApiServerPath
+      );
     }
     // register translations
     // this.translationService.loadTranslations(
@@ -78,11 +121,10 @@ export class AppComponent implements OnInit {
   }
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event?.key === "F9") {
+    if (event?.key === 'F9') {
       if (localStorage.getItem('KeyboardEventF9'))
-        localStorage.removeItem('KeyboardEventF9')
-      else
-        localStorage.setItem('KeyboardEventF9', "F9");
+        localStorage.removeItem('KeyboardEventF9');
+      else localStorage.setItem('KeyboardEventF9', 'F9');
     }
   }
 }

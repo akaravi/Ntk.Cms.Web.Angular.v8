@@ -21,104 +21,101 @@ const routes: Routes = [
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/ticketing-config.module').then((m) => m.TicketingConfigModule),
+          import('./config/ticketing-config.module').then(
+            (m) => m.TicketingConfigModule
+          ),
       },
       /* Config */
       {
         path: 'departemen',
-        component: TicketingDepartemenListComponent
+        component: TicketingDepartemenListComponent,
+        data: { title: 'Route.Ticketing' },
       },
       {
         path: 'departemen/add/',
-        component: TicketingDepartemenEditComponent
+        component: TicketingDepartemenEditComponent,
+        data: { title: 'Route.Ticketing' },
       },
       {
         path: 'departemen/edit/:Id',
-        component: TicketingDepartemenEditComponent
+        component: TicketingDepartemenEditComponent,
       },
       {
         path: 'departemenlog/DepartemenId/:DepartemenId',
-        component: TicketingDepartemenLogListComponent
+        component: TicketingDepartemenLogListComponent,
       },
       {
         path: 'departemenlog/OperatorId/:OperatorId',
-        component: TicketingDepartemenLogListComponent
+        component: TicketingDepartemenLogListComponent,
       },
       {
         path: 'faq',
-        component: TicketingFaqOriginListComponent
+        component: TicketingFaqOriginListComponent,
       },
       {
         path: 'faq/:DepartemenId',
-        component: TicketingFaqListComponent
-      }
-      ,
+        component: TicketingFaqListComponent,
+      },
       {
         path: 'faq/list',
-        component: TicketingFaqListComponent
-      }
-      ,
+        component: TicketingFaqListComponent,
+      },
       {
         path: 'template',
-        component: TicketingTemplateListComponent
+        component: TicketingTemplateListComponent,
       },
       {
         path: 'template/:DepartemenId',
-        component: TicketingTemplateListComponent
-      }
-      ,
+        component: TicketingTemplateListComponent,
+      },
       {
         path: 'contactus',
-        component: TicketingTaskContactUsAddComponent
-      }
-      ,
+        component: TicketingTaskContactUsAddComponent,
+        data: { title: 'Route.Ticketing' },
+      },
       {
         path: 'task',
-        component: TicketingTaskListComponent
-      }
-      ,
+        component: TicketingTaskListComponent,
+      },
       {
         path: 'task/listTicketStatus/:TicketStatus',
-        component: TicketingTaskListComponent
-      }
-      ,
+        component: TicketingTaskListComponent,
+      },
       {
         path: 'task/contactus-list',
-        component: TicketingTaskContactUsListComponent
+        component: TicketingTaskContactUsListComponent,
       },
       {
         path: 'task/contactus-list/LinkCmsUserId/:LinkCmsUserId',
-        component: TicketingTaskContactUsListComponent
+        component: TicketingTaskContactUsListComponent,
       },
       {
         path: 'task/:DepartemenId',
-        component: TicketingTaskListComponent
+        component: TicketingTaskListComponent,
       },
       {
         path: 'task/LinkCmsUserId/:LinkCmsUserId',
-        component: TicketingTaskListComponent
-      }
+        component: TicketingTaskListComponent,
+      },
       // ,
       // {
       //   path: 'task/edit/:id',
       //   component: TicketingTaskEditComponent
       // }
-      ,
       {
         path: 'answer',
-        component: TicketingAnswerListComponent
+        component: TicketingAnswerListComponent,
       },
       {
         path: 'answer/LinkTaskId/:LinkTaskId',
-        component: TicketingAnswerListComponent
-      }
-    ]
+        component: TicketingAnswerListComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TicketingRouting {
-}
+export class TicketingRouting {}

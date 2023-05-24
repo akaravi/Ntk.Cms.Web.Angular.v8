@@ -19,7 +19,6 @@ import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
 // #fake-end#
-
 function appInitializer(authService: CmsAuthService) {
   return () => {
     return new Promise((resolve) => {
