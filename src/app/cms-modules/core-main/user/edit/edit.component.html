@@ -29,7 +29,7 @@
           </mat-select>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['email']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['email']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
@@ -49,7 +49,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['username']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['username']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Username.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Username.errors?.required">
@@ -69,7 +69,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['email']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['email']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Email.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Email.errors?.required">
@@ -96,7 +96,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['mobile']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['mobile']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Mobile.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Mobile.errors?.required">
@@ -121,7 +121,7 @@
             mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['expireDate']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['expireDate']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
@@ -157,7 +157,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['name']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['name']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Name.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Name.errors?.required">
@@ -177,7 +177,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['lastName']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['lastName']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ LastName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="LastName.errors?.required">
@@ -195,7 +195,7 @@
             mat-icon-button aria-label="Clear" (click)="dataModel.birthDay = null">close</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['birthDay']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['birthDay']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-datepicker-toggle matSuffix [for]="BirthDay"></mat-datepicker-toggle>
           <mat-datepicker touchUi #BirthDay></mat-datepicker>
@@ -211,7 +211,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['companyName']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['companyName']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ CompanyName.value.length }} / 100</mat-hint>
           <mat-error *ngIf="CompanyName.errors?.required">
@@ -230,7 +230,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['tell']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['tell']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Tell.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Tell.errors?.required">
@@ -248,7 +248,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['postalCode']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['postalCode']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ PostalCode.value.length }} / 100</mat-hint>
           <mat-error *ngIf="PostalCode.errors?.required">
@@ -266,7 +266,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['address']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['address']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Address.value.length }} / 1000</mat-hint>
         </mat-form-field>

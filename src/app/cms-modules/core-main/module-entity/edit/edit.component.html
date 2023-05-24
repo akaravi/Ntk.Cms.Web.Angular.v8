@@ -21,7 +21,7 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    
+
     <!-- moduleName Field -->
     <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleName']?.accessWatchField">
       <mat-label>{{fieldsInfo['moduleName']?.fieldTitle}}</mat-label>
@@ -33,7 +33,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleName']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleName.errors?.required">
@@ -54,7 +54,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleEntityName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleEntityName.errors?.required">
@@ -74,7 +74,7 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-   
+
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
