@@ -12,6 +12,7 @@ export const environment = {
   loadDemoTheme: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  mainTitle:'سامانه مدیریتی محتوا',
   cmsServerConfig: {
     configApiRetry: 1,
     configApiServerPath: 'https://apicms.ir/api/v2/',
