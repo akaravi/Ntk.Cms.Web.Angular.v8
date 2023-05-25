@@ -1506,6 +1506,7 @@
   "ROUTE.Article": "Article ",
   "ROUTE.BANKPAYMENT":"Internet Payment",
   "ROUTE.BIOGRAPHY":"Biography",
+  "ROUTE.CATALOG":"Catalog",
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

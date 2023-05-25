@@ -1515,6 +1515,7 @@
   "ROUTE.Article": "مقاله ",
   "ROUTE.BANKPAYMENT":"پرداخت اینترنتی",
   "ROUTE.BIOGRAPHY":"بیوگرافی",
+  "ROUTE.CATALOG":"کاتالوگ",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {
