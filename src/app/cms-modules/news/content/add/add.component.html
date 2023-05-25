@@ -355,7 +355,7 @@
                         <!-- LinkSiteId Column -->
                         <ng-container matColumnDef="LinkSiteId">
                             <mat-header-cell *matHeaderCellDef> {{'TITLE.Site_Id' | translate}} </mat-header-cell>
-                            <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+                            <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
                         </ng-container>
                         <!-- RecordStatus Column -->
                         <ng-container matColumnDef="RecordStatus">

@@ -1,4 +1,5 @@
-<app-cms-guide-notice [Key]="'estate.propertyexpertprice.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
+<app-cms-guide-notice [Key]="'estate.propertyexpertprice.list'"
+    [svg]="'assets/media/svg/icons/General/Notifications1.svg'">
 </app-cms-guide-notice>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
     <ng-container cms-tree>
@@ -13,13 +14,21 @@
     </ng-container>
     <ng-container cms-action>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-        <button *ngIf="dataModelResult.access.accessAddRow" (click)="onActionbuttonNewRow()" type="button" class="btn box-shadow-button btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
-        <button *ngIf="tableRowSelected?.id?.length>0" (click)="onActionPriceInquiryCalculate()" type="button" class="btn box-shadow-button btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.PriceInquiryCalculate' | translate}}</button>
+        <button *ngIf="dataModelResult.access.accessAddRow" (click)="onActionbuttonNewRow()" type="button"
+            class="btn box-shadow-button btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
+            data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
+        <button *ngIf="tableRowSelected?.id?.length>0" (click)="onActionPriceInquiryCalculate()" type="button"
+            class="btn box-shadow-button btn-outline-primary BTN-text" id="openModalButton" data-toggle="modal"
+            data-target="#categoryModal">{{'ACTION.PriceInquiryCalculate' | translate}}</button>
 
-        <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()" type="button" class="btn box-shadow-button btn-outline-warning BTN-text" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
-      translate}}</button>
-        <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()" type="button" class="btn box-shadow-button btn-outline-danger BTN-text">{{'ACTION.DELETE' |
-      translate}}</button>
+        <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected?.id?.length>0"
+            (click)="onActionbuttonEditRow()" type="button" class="btn box-shadow-button btn-outline-warning BTN-text"
+            data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' |
+            translate}}</button>
+        <button *ngIf="dataModelResult.access.accessDeleteRow && tableRowSelected?.id?.length>0"
+            (click)="onActionbuttonDeleteRow()" type="button"
+            class="btn box-shadow-button btn-outline-danger BTN-text">{{'ACTION.DELETE' |
+            translate}}</button>
         <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text">
             <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
         </a>
@@ -27,17 +36,22 @@
             <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
             </mat-slide-toggle>
         </a>
-        <button (click)="onActionbuttonExport()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
-            <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+        <button (click)="onActionbuttonExport()" type="button"
+            class="btn box-shadow-button btn-outline-secondary BTN-icon">
+            <mat-icon style="font-size: 20px;margin: -11px;"
+                title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
         </button>
-        <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
+        <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+            class="btn box-shadow-button btn-outline-secondary BTN-icon">
             <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
         </button>
-        <button (click)="onActionbuttonReload()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
+        <button (click)="onActionbuttonReload()" type="button"
+            class="btn box-shadow-button btn-outline-secondary BTN-icon">
             <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
         </button>
         <button (click)="onActionGridExpandRows(true)" class="btn box-shadow-button btn-outline-success BTN-icon">
-            <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
+            <mat-icon style="font-size: 20px;margin: -11px;"
+                title="{{'ACTION.EXPAND_ALL' | translate}}">unfold_more_double
             </mat-icon>
         </button>
         <button (click)="onActionGridExpandRows(false)" class="btn box-shadow-button btn-outline-success BTN-icon">
@@ -56,12 +70,14 @@
     </ng-container>
     <ng-container cms-body>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)" multiTemplateDataRows>
+        <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+            multiTemplateDataRows>
             <!-- LinkMainImageIdSrc Column -->
             <ng-container matColumnDef="LinkMainImageIdSrc">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+                    <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+                        aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
                 </mat-cell>
             </ng-container>
             <!-- ID Column -->
@@ -71,8 +87,9 @@
             </ng-container>
             <!-- LinkSiteId Column -->
             <ng-container matColumnDef="LinkSiteId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
             </ng-container>
             <!-- RecordStatus Column -->
             <ng-container matColumnDef="RecordStatus">
@@ -80,7 +97,9 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
                     <i [ngClass]="row.recordStatus|statusIconClass"></i>
-                    <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row" style="background: none; border: none;" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+                    <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+                        style="background: none; border: none;"
+                        [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
                     </select>
                 </mat-cell>
             </ng-container>
@@ -89,11 +108,12 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expertPriceType']?.fieldTitle}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.expertPriceType | enums :
-          dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}} </mat-cell>
+                    dataModelEstatePropertyExpertPriceTypeEnumResult.listItems}} </mat-cell>
             </ng-container>
             <!-- CreatedYaer Column -->
             <ng-container matColumnDef="CreatedYaer">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdYaer']?.fieldTitle}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdYaer']?.fieldTitle}}
+                </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.createdYaer}} </mat-cell>
             </ng-container>
 
@@ -102,43 +122,50 @@
             <ng-container matColumnDef="LinkLocationId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkLocationId']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkLocationIdTitle}} / {{row.linkLocationIdParentTitle}}</mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.linkLocationIdTitle}} /
+                    {{row.linkLocationIdParentTitle}}</mat-cell>
             </ng-container>
 
 
             <!-- LinkPropertyTypeUsageId Column -->
             <ng-container matColumnDef="LinkPropertyTypeUsageId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyTypeUsageId']?.fieldTitle}}
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{fieldsInfo['linkPropertyTypeUsageId']?.fieldTitle}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.linkPropertyTypeUsageId
-          |cmstitle:dataModelEstatePropertyTypeUsageResult.listItems}} </mat-cell>
+                    |cmstitle:dataModelEstatePropertyTypeUsageResult.listItems}} </mat-cell>
             </ng-container>
 
             <!-- LinkPropertyTypeLanduseId Column -->
             <ng-container matColumnDef="LinkPropertyTypeLanduseId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkPropertyTypeLanduseId']?.fieldTitle}}
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    {{fieldsInfo['linkPropertyTypeLanduseId']?.fieldTitle}}
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    {{row.linkPropertyTypeLanduseId|cmstitle:dataModelEstatePropertyTypeLanduseResult.listItems}} </mat-cell>
+                    {{row.linkPropertyTypeLanduseId|cmstitle:dataModelEstatePropertyTypeLanduseResult.listItems}}
+                </mat-cell>
             </ng-container>
             <!-- LinkContractTypeId Column -->
             <ng-container matColumnDef="LinkContractTypeId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkContractTypeId']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkContractTypeId|cmstitle:dataModelEstateContractTypeResult.listItems}}
+                <mat-cell *matCellDef="let row">
+                    {{row.linkContractTypeId|cmstitle:dataModelEstateContractTypeResult.listItems}}
                 </mat-cell>
             </ng-container>
             <!-- LinkCoreCurrencyId Column -->
             <ng-container matColumnDef="LinkCoreCurrencyId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCoreCurrencyId']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkCoreCurrencyId|cmstitle:dataModelCoreCurrencyResult.listItems}}
+                <mat-cell *matCellDef="let row">
+                    {{row.linkCoreCurrencyId|cmstitle:dataModelCoreCurrencyResult.listItems}}
                 </mat-cell>
             </ng-container>
 
             <!-- CreatedDate Column -->
             <ng-container matColumnDef="CreatedDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
+                </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
             </ng-container>
 
@@ -151,11 +178,13 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #actionMenu="matMenu">
-                        <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
+                        <button mat-menu-item (click)="onActionbuttonEditRow(row)"
+                            *ngIf="dataModelResult.access.accessEditRow">
                             <mat-icon>mode_edit</mat-icon>
                             <span>{{'ACTION.EDIT' | translate}}</span>
                         </button>
-                        <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+                        <button mat-menu-item (click)="onActionbuttonDeleteRow(row)"
+                            *ngIf="dataModelResult.access.accessDeleteRow">
                             <mat-icon>delete_forever</mat-icon>
                             <span>{{'ACTION.DELETE' | translate}}</span>
                         </button>
@@ -182,19 +211,25 @@
                                         {{row.salePriceMin | number}} </div>
                                     <div *ngIf="row.rentPriceMin&& row.rentPriceMin>0">{{'TITLE.RentPrice'|translate}} :
                                         {{row.rentPriceMin | number}} </div>
-                                    <div *ngIf="row.depositPriceMin&& row.depositPriceMin>0">{{'TITLE.DepositPrice'|translate}} :
+                                    <div *ngIf="row.depositPriceMin&& row.depositPriceMin>0">
+                                        {{'TITLE.DepositPrice'|translate}} :
                                         {{row.depositPriceMin | number}} </div>
-                                    <div *ngIf="row.periodPriceMin&& row.periodPriceMin>0">{{'TITLE.PeriodPrice'|translate}}:
+                                    <div *ngIf="row.periodPriceMin&& row.periodPriceMin>0">
+                                        {{'TITLE.PeriodPrice'|translate}}:
                                         {{row.periodPriceMin | number}} </div>
                                 </td>
                                 <td>
-                                    <div *ngIf="row.salePriceAverage&& row.salePriceAverage>0">{{'TITLE.SalePrice'|translate}} :
+                                    <div *ngIf="row.salePriceAverage&& row.salePriceAverage>0">
+                                        {{'TITLE.SalePrice'|translate}} :
                                         {{row.salePriceAverage | number}} </div>
-                                    <div *ngIf="row.rentPriceAverage&& row.rentPriceAverage>0">{{'TITLE.RentPrice'|translate}} :
+                                    <div *ngIf="row.rentPriceAverage&& row.rentPriceAverage>0">
+                                        {{'TITLE.RentPrice'|translate}} :
                                         {{row.rentPriceAverage | number}} </div>
-                                    <div *ngIf="row.depositPriceAverage&& row.depositPriceAverage>0">{{'TITLE.DepositPrice'|translate}} :
+                                    <div *ngIf="row.depositPriceAverage&& row.depositPriceAverage>0">
+                                        {{'TITLE.DepositPrice'|translate}} :
                                         {{row.depositPriceAverage | number}} </div>
-                                    <div *ngIf="row.periodPriceAverage&& row.periodPriceAverage>0">{{'TITLE.PeriodPrice'|translate}}:
+                                    <div *ngIf="row.periodPriceAverage&& row.periodPriceAverage>0">
+                                        {{'TITLE.PeriodPrice'|translate}}:
                                         {{row.periodPriceAverage | number}} </div>
                                 </td>
                                 <td>
@@ -202,18 +237,23 @@
                                         {{row.salePriceMax | number}} </div>
                                     <div *ngIf="row.rentPriceMax&& row.rentPriceMax>0">{{'TITLE.RentPrice'|translate}} :
                                         {{row.rentPriceMax | number}} </div>
-                                    <div *ngIf="row.depositPriceMax&& row.depositPriceMax>0">{{'TITLE.DepositPrice'|translate}} :
+                                    <div *ngIf="row.depositPriceMax&& row.depositPriceMax>0">
+                                        {{'TITLE.DepositPrice'|translate}} :
                                         {{row.depositPriceMax | number}} </div>
-                                    <div *ngIf="row.periodPriceMax&& row.periodPriceMax>0">{{'TITLE.PeriodPrice'|translate}}:
+                                    <div *ngIf="row.periodPriceMax&& row.periodPriceMax>0">
+                                        {{'TITLE.PeriodPrice'|translate}}:
                                         {{row.periodPriceMax | number}} </div>
                                 </td>
                             </tr>
                         </table>
                         <table>
                             <tr>
-                                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80" width="80" /></th>
+                                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                                        class="ntk-hover-zoom" aria-hidden
+                                        src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80" width="80" /></th>
                                 <th>
-                                    <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                                    <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id"
+                                        (click)="onActionCopied()">
                                         <i class="flaticon2-copy"></i></span> {{row.id}}
 
                                 </th>
@@ -227,10 +267,13 @@
                                 <td>
 
                                     <ng-container *ngIf="dataModelResult.access.accessEditRow">
-                                        <a (click)="onActionbuttonEditRow(row)" class="link-primary pointer"> {{'ACTION.EDIT' | translate}}
+                                        <a (click)="onActionbuttonEditRow(row)" class="link-primary pointer">
+                                            {{'ACTION.EDIT' | translate}}
                                         </a>|
                                     </ng-container>
-                                    <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow" class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>
+                                    <a (click)="onActionbuttonDeleteRow(row)"
+                                        *ngIf="dataModelResult.access.accessDeleteRow" class="link-primary pointer">
+                                        {{'ACTION.DELETE' | translate}} </a>
                                 </td>
                             </tr>
 
@@ -239,9 +282,13 @@
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)" (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)" [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+            <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+                (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+                [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
             </mat-row>
-            <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)" (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)" [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
+            <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+                (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+                [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
             </mat-row>
         </mat-table>
 
@@ -250,7 +297,9 @@
     </ng-container>
     <ng-container cms-footer>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)" [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage" [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+        <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+            [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+            [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>

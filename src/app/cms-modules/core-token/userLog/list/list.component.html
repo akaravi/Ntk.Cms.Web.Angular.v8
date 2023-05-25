@@ -75,13 +75,13 @@
       <ng-container matColumnDef="LinkSiteId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
       </ng-container>
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkUserId | cmsuserinfo |async}} </mat-cell>
       </ng-container>
       <!-- LinkMemberUserId Column -->
       <ng-container matColumnDef="LinkMemberUserId">
