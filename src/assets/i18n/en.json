@@ -1504,6 +1504,7 @@
   "ROUTE.CUSTOMER.ORDER": "Customer Order",
   "ROUTE.ESTATE.PROPERTY": "Estate Manager",
   "ROUTE.Article": "Article ",
+  "ROUTE.BANKPAYMENT":"Internet Payment",
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

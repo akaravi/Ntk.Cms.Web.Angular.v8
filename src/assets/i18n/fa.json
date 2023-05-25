@@ -1513,6 +1513,7 @@
   "ROUTE.CUSTOMER.ORDER": "سفارش مشتری  ",
   "ROUTE.ESTATE.PROPERTY": "مدیریت املاک",
   "ROUTE.Article": "مقاله ",
+  "ROUTE.BANKPAYMENT":"پرداخت اینترنتی",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {
