@@ -11,9 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, CoreCpMainMenuCmsUserGroupModel,
   CoreCpMainMenuCmsUserGroupService, CoreCpMainMenuModel, CoreCpMainMenuService, CoreEnumService, CoreModuleModel,
-  CoreUserGroupModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel
+  CoreUserGroupModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -34,12 +35,16 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     private publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    public tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = +data.id || 0;
     }
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -62,7 +67,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
   dataCoreCpMainMenuModel: CoreUserGroupModel[];
   dataCoreCpMainMenuIds: number[] = [];
   dataCoreCpMainMenuCmsUserGroupModel: CoreCpMainMenuCmsUserGroupModel[];
-
+  tokenInfo = new TokenInfoModel();
   ngOnInit(): void {
     if (this.requestId > 0) {
       this.formInfo.formTitle = this.translate.instant('TITLE.Edit');

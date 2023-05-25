@@ -9,26 +9,31 @@ import { ContactContentListComponent } from './content/list/list.component';
 const routes: Routes = [
   {
     path: '',
-    component: ContactComponent,
+    component: ContactComponent,    data: { title: 'ROUTE.CONTACT' },
+
     children: [
       /* Config */
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/contact-config.module').then((m) => m.ContactConfigModule),
+          import('./config/contact-config.module').then((m) => m.ContactConfigModule),    data: { title: 'Route.CONTACT' },
+
       },
       /* Config */
       {
         path: 'content',
-        component: ContactContentListComponent
+        component: ContactContentListComponent,    data: { title: 'Route.CONTACT' },
+
       },
       {
         path: 'content/add/:CategoryId',
-        component: ContactContentAddComponent
+        component: ContactContentAddComponent,    data: { title: 'Route.CONTACT' },
+
       },
       {
         path: 'content/edit/:Id',
-        component: ContactContentEditComponent
+        component: ContactContentEditComponent,    data: { title: 'Route.CONTACT' },
+
       },
     ]
   },

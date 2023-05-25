@@ -11,6 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: BlogComponent,
+        data:{ title: 'ROUTE.BIOGRAPHY' },
     children: [
       /* Config */
       {
