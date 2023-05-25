@@ -36,7 +36,7 @@ const routes: Routes = [
       {
         path: 'forgot-password',
         component: AuthForgotPasswordComponent,
-        data: { title: 'AUTH.REGISTER.FORGETPASSWORD' },
+        data: { title: 'ROUTE.REGISTER.FORGETPASSWORD' },
       },
       { path: '', redirectTo: 'singinbysms', pathMatch: 'full' },
       { path: '**', redirectTo: 'singinbysms', pathMatch: 'full' },
