@@ -1505,6 +1505,7 @@
   "ROUTE.ESTATE.PROPERTY": "Estate Manager",
   "ROUTE.Article": "Article ",
   "ROUTE.BANKPAYMENT":"Internet Payment",
+  "ROUTE.BIOGRAPHY":"Biography",
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {
