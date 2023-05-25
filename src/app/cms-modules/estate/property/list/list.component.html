@@ -437,7 +437,7 @@
             <ng-container matColumnDef="LinkSiteId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
             </ng-container>
             <!-- RecordStatus Column -->
             <ng-container matColumnDef="RecordStatus">

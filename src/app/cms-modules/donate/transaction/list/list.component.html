@@ -20,13 +20,17 @@
             <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
             </mat-slide-toggle>
         </a>
-        <button (click)="onActionbuttonExport()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
-            <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+        <button (click)="onActionbuttonExport()" type="button"
+            class="btn box-shadow-button btn-outline-secondary BTN-icon">
+            <mat-icon style="font-size: 20px;margin: -11px;"
+                title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
         </button>
-        <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
+        <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+            class="btn box-shadow-button btn-outline-secondary BTN-icon">
             <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
         </button>
-        <button (click)="onActionbuttonReload()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
+        <button (click)="onActionbuttonReload()" type="button"
+            class="btn box-shadow-button btn-outline-secondary BTN-icon">
             <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
         </button>
 
@@ -47,7 +51,8 @@
             <ng-container matColumnDef="LinkMainImageIdSrc">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+                    <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+                        aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
                 </mat-cell>
             </ng-container>
             <!-- ID Column -->
@@ -57,8 +62,9 @@
             </ng-container>
             <!-- LinkSiteId Column -->
             <ng-container matColumnDef="LinkSiteId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}} </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
             </ng-container>
             <!-- RecordStatus Column -->
             <ng-container matColumnDef="RecordStatus">
@@ -66,18 +72,22 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
                     <i [ngClass]="row.recordStatus|statusIconClass"></i>
-                    <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row" style="background: none; border: none;" [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
+                    <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
+                        style="background: none; border: none;"
+                        [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
                     </select>
                 </mat-cell>
             </ng-container>
             <!-- Title Column -->
             <ng-container matColumnDef="Title">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
+                </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
             </ng-container>
             <!-- Sponsor Column -->
             <ng-container matColumnDef="Sponsor">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['sponsor']?.fieldTitle}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['sponsor']?.fieldTitle}}
+                </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.donateTargetId) }} </mat-cell>
             </ng-container>
             <!-- TargetPeriod Column -->
@@ -88,12 +98,14 @@
             </ng-container>
             <!-- Amount Column -->
             <ng-container matColumnDef="Amount">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['amount']?.fieldTitle}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['amount']?.fieldTitle}}
+                </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.amount) }} </mat-cell>
             </ng-container>
             <!-- AmountPure Column -->
             <ng-container matColumnDef="AmountPure">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['amountPure']?.fieldTitle}} </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['amountPure']?.fieldTitle}}
+                </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.amountPure) }} </mat-cell>
             </ng-container>
             <!-- Action Column -->
@@ -105,7 +117,8 @@
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #actionMenu="matMenu">
-                        <button mat-menu-item (click)="onActionbuttonViewRow(row)" *ngIf="dataModelResult.access.accessWatchRow">
+                        <button mat-menu-item (click)="onActionbuttonViewRow(row)"
+                            *ngIf="dataModelResult.access.accessWatchRow">
                             <mat-icon>visibility</mat-icon>
                             <span>{{'ACTION.VIEW' | translate}}</span>
                         </button>
@@ -113,7 +126,8 @@
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)" [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+            <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+                [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
             </mat-row>
         </mat-table>
 
@@ -122,7 +136,9 @@
     </ng-container>
     <ng-container cms-footer>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)" [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage" [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+        <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+            [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+            [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </ng-container>
