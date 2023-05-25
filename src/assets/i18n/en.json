@@ -1503,6 +1503,7 @@
   "ROUTE.EXPERT.PRICE": " Expert Price ",
   "ROUTE.CUSTOMER.ORDER": "Customer Order",
   "ROUTE.ESTATE.PROPERTY": "Estate Manager",
+  "ROUTE.Article": "Article ",
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

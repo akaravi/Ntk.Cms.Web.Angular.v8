@@ -1512,6 +1512,7 @@
   "ROUTE.EXPERT.PRICE": "استعلام قیمت کارشناسی",
   "ROUTE.CUSTOMER.ORDER": "سفارش مشتری  ",
   "ROUTE.ESTATE.PROPERTY": "مدیریت املاک",
+  "ROUTE.Article": "مقاله ",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

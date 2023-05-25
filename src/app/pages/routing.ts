@@ -89,7 +89,7 @@ const Routing: Routes = [
     path: 'member',
     loadChildren: () =>
       import('../cms-modules/member/member.module').then((m) => m.MemberModule),
-      data:{ title: 'Route.Member' },
+      data:{ title: 'ROUTE.Member' },
   },
 
   {
@@ -97,7 +97,7 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../cms-modules/application/application.module').then(
         (m) => m.ApplicationModule
-      ),data:{ title: 'Route.Estate' },
+      ),data:{ title: 'ROUTE.APPLICATION' },
   },
   {
     path: 'apitelegram',
@@ -112,7 +112,7 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../cms-modules/article/article.module').then(
         (m) => m.ArticleModule
-      ),
+      ),data:{ title: 'ROUTE.Article' },
   },
   {
     path: 'bankpayment',
