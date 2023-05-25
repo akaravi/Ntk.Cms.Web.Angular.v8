@@ -40,9 +40,9 @@ export class CmsShowKeyComponent implements OnInit {
       this.dialogRef.close({ dialogChangedDate: true });
 
   }
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  showAdd = true;
-
+  @ViewChild('vform', { static: true }) formGroup: FormGroup;
+  showFormAdd = true;
+  numbers: number[] = [5, 15, 30, 60, 120, 180, 600, 1200]
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreModuleLogShowKeyModel> = new ErrorExceptionResult<CoreModuleLogShowKeyModel>();
   dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
@@ -50,6 +50,7 @@ export class CmsShowKeyComponent implements OnInit {
 
   ngOnInit(): void {
     this.DataGetAll();
+    this.dataModel.minLive = 15;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -61,6 +62,8 @@ export class CmsShowKeyComponent implements OnInit {
     this.requestService.ServiceShowKeyGetAll(this.dataModel.moduleEntityId).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
+        if (ret.listItems?.length > 0)
+          this.showFormAdd = false;
         if (ret.isSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         } else {
@@ -118,7 +121,7 @@ export class CmsShowKeyComponent implements OnInit {
   }
 
   onActionAdd() {
-    this.showAdd = !this.showAdd
+    this.showFormAdd = !this.showFormAdd
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

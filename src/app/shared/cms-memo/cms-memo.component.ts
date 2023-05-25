@@ -40,8 +40,8 @@ export class CmsMemoComponent implements OnInit {
       this.dialogRef.close({ dialogChangedDate: true });
 
   }
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  showAdd = true;
+  @ViewChild('vform', { static: true }) formGroup: FormGroup;
+  showFormAdd = true;
 
   loading = new ProgressSpinnerModel();
 
@@ -64,6 +64,8 @@ export class CmsMemoComponent implements OnInit {
     this.requestService.ServiceMemoGetAll(this.dataModel.moduleEntityId).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
+        if (ret.listItems?.length > 0)
+          this.showFormAdd = false;
         if (ret.isSuccess) {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         } else {
@@ -121,7 +123,7 @@ export class CmsMemoComponent implements OnInit {
   }
 
   onActionAdd() {
-    this.showAdd = !this.showAdd
+    this.showFormAdd = !this.showFormAdd
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

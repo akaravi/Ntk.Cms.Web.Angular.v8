@@ -7,12 +7,12 @@ import { EnumDeviceType, EnumOperatingSystemType } from "ntk-cms-api";
 export const environment = {
   production: true,
   checkAccess: false,
-  appVersion: '15.2.0304.1',
+  appVersion: '15.2.0304.3',
   authKey: 'authf649fc9a5f55',
   loadDemoTheme: false,
   ProgressConsoleLog: false,
   leafletUrl: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  mainTitle:'سامانه مدیریتی محتوا',
+  mainTitle: 'سامانه مدیریتی محتوا',
   cmsServerConfig: {
     configApiRetry: 1,
     configApiServerPath: 'https://apicms.ir/api/v2/',
