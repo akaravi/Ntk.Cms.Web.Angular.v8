@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
@@ -17,8 +17,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class CmsMemoComponent implements OnInit {
   static nextId = 0;
   id = ++CmsMemoComponent.nextId;
-
-  requestTitle = '';
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,20 +25,22 @@ export class CmsMemoComponent implements OnInit {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private fb: FormBuilder,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestService = data.service;
       this.dataModel.moduleEntityId = data.id;
-      this.requestTitle = data.title;
+      this.dataModel.subjectTitle = data.title;
     }
 
-    if (!this.dataModel.moduleEntityId || this.dataModel.moduleEntityId.length == 0)
+    if (!this.requestService)
       this.dialogRef.close({ dialogChangedDate: true });
 
   }
-  @ViewChild('vform', { static: true }) formGroup: FormGroup;
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+
   showFormAdd = true;
 
   loading = new ProgressSpinnerModel();
@@ -48,14 +48,15 @@ export class CmsMemoComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
   dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleMemoDtoModel = new CoreModuleMemoDtoModel();
-
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  formInfo: FormInfoModel = new FormInfoModel();
 
 
   ngOnInit(): void {
+
     this.DataGetAll();
   }
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  formInfo: FormInfoModel = new FormInfoModel();
+
   DataGetAll(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));

@@ -17,8 +17,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class CmsShowKeyComponent implements OnInit {
   static nextId = 0;
   id = ++CmsShowKeyComponent.nextId;
-
-  requestTitle = '';
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,14 +31,14 @@ export class CmsShowKeyComponent implements OnInit {
     if (data) {
       this.requestService = data.service;
       this.dataModel.moduleEntityId = data.id;
-      this.requestTitle = data.title;
+      this.dataModel.subjectTitle = data.title;
     }
 
-    if (!this.dataModel.moduleEntityId || this.dataModel.moduleEntityId.length == 0)
+    if (!this.requestService || !this.dataModel.moduleEntityId || this.dataModel.moduleEntityId.length == 0)
       this.dialogRef.close({ dialogChangedDate: true });
 
   }
-  @ViewChild('vform', { static: true }) formGroup: FormGroup;
+  @ViewChild('vform', { static: false }) formGroup: FormGroup;
   showFormAdd = true;
   numbers: number[] = [5, 15, 30, 60, 120, 180, 600, 1200]
   loading = new ProgressSpinnerModel();

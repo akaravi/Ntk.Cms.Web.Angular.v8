@@ -854,19 +854,6 @@ export class EstatePropertyListComponent
     //open popup
   }
   onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
-      return;
-    }
     const pName = this.constructor.name + "memo";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
     //open popup
@@ -875,8 +862,8 @@ export class EstatePropertyListComponent
       width: "50%",
       data: {
         service: this.contentService,
-        id: this.tableRowSelected.id,
-        title: this.tableRowSelected.title
+        id: this.tableRowSelected?.id,
+        title: this.tableRowSelected?.title
       },
     }
     );
