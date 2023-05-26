@@ -112,9 +112,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
         // this.dataAccessModel = next.access;
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         this.dataModel = ret.item;
-        this.propertyTypeLanduse = this.dataModel.propertyTypeLanduse.titleML;
-        // this.contractType = this.dataModel.contracts[0].contractType.titleML;
-
+        this.propertyTypeLanduse = this.dataModel.propertyTypeLanduse?.titleML;
         if (ret.isSuccess) {
           this.optionTabledataSource.data = this.dataModel.contracts;
 
