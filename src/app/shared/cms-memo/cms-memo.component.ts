@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angula
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -48,7 +48,6 @@ export class CmsMemoComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
   dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleMemoDtoModel = new CoreModuleMemoDtoModel();
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
@@ -68,9 +67,7 @@ export class CmsMemoComponent implements OnInit {
           this.dataModelResult = ret;
           if (ret.listItems?.length > 0)
             this.showFormAdd = false;
-          if (ret.isSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-          } else {
+          if (!ret.isSuccess) {
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
           }
           this.loading.Stop(pName);
@@ -89,13 +86,11 @@ export class CmsMemoComponent implements OnInit {
           this.dataModelResult = ret;
           if (ret.listItems?.length > 0)
             this.showFormAdd = false;
-          if (ret.isSuccess) {
-            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-          } else {
+          if (!ret.isSuccess)
             this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-          }
+
           this.loading.Stop(pName);
-        },
+      },
         error: (er) => {
           this.cmsToastrService.typeError(er);
 
@@ -103,87 +98,87 @@ export class CmsMemoComponent implements OnInit {
         }
       }
       );
-    }
   }
+}
 
-  DataAddContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+DataAddContent(): void {
+  this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  this.formInfo.formError = '';
+  const pName = this.constructor.name + 'main';
+  this.loading.Start(pName);
 
-    this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
-      next: (ret) => {
-        this.formInfo.formSubmitAllow = true;
-        // this.dataModelResultBase = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
+  this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
+    next: (ret) => {
+      this.formInfo.formSubmitAllow = true;
+      // this.dataModelResultBase = ret;
+      if (ret.isSuccess) {
+        this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        this.cmsToastrService.typeSuccessAdd();
+        this.dialogRef.close({ dialogChangedDate: true });
 
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
+      } else {
+        this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+        this.formInfo.formError = ret.errorMessage;
+        this.cmsToastrService.typeErrorMessage(ret.errorMessage);
       }
+      this.loading.Stop(pName);
+
+    },
+    error: (er) => {
+      this.formInfo.formSubmitAllow = true;
+      this.cmsToastrService.typeError(er);
+      this.loading.Stop(pName);
     }
-    );
   }
-  DataDeleteContent(id: string): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+  );
+}
+DataDeleteContent(id: string): void {
+  this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  this.formInfo.formError = '';
+  const pName = this.constructor.name + 'main';
+  this.loading.Start(pName);
 
-    this.requestService.ServiceMemoDelete(id).subscribe({
-      next: (ret) => {
-        this.formInfo.formSubmitAllow = true;
-        // this.dataModelResultBase = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessRemove();
-          this.DataGetAll();
-          //this.dialogRef.close({ dialogChangedDate: true });
+  this.requestService.ServiceMemoDelete(id).subscribe({
+    next: (ret) => {
+      this.formInfo.formSubmitAllow = true;
+      // this.dataModelResultBase = ret;
+      if (ret.isSuccess) {
+        this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        this.cmsToastrService.typeSuccessRemove();
+        this.DataGetAll();
+        //this.dialogRef.close({ dialogChangedDate: true });
 
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
+      } else {
+        this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+        this.formInfo.formError = ret.errorMessage;
+        this.cmsToastrService.typeErrorMessage(ret.errorMessage);
       }
+      this.loading.Stop(pName);
+
+    },
+    error: (er) => {
+      this.formInfo.formSubmitAllow = true;
+      this.cmsToastrService.typeError(er);
+      this.loading.Stop(pName);
     }
-    );
+  }
+  );
+}
+
+onFormSubmit(): void {
+  if(!this.formGroup.valid) {
+  return;
+}
+this.formInfo.formSubmitAllow = false;
+this.DataAddContent();
   }
 
-  onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      return;
-    }
-    this.formInfo.formSubmitAllow = false;
-    this.DataAddContent();
-  }
+onActionAdd() {
+  this.showFormAdd = !this.showFormAdd
+}
+onFormCancel(): void {
+  this.dialogRef.close({ dialogChangedDate: false });
 
-  onActionAdd() {
-    this.showFormAdd = !this.showFormAdd
-  }
-  onFormCancel(): void {
-    this.dialogRef.close({ dialogChangedDate: false });
-
-  }
+}
 
 }

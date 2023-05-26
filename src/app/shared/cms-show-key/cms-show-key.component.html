@@ -8,10 +8,11 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">{{fieldsInfo['createdBy']?.fieldTitle}}</th>
-        <th scope="col">{{fieldsInfo['createdDate']?.fieldTitle}}</th>
-        <th scope="col">{{fieldsInfo['expireDateTime']?.fieldTitle}}</th>
-        <th scope="col">{{fieldsInfo['showKey']?.fieldTitle}}</th>
+        <th scope="col">{{'TITLE.createdBy'|translate}}</th>
+        <th scope="col">{{'TITLE.createdDate'|translate}}</th>
+        <th scope="col">{{'TITLE.expireDateTime'|translate}}</th>
+        <th scope="col">{{'TITLE.showKey'|translate}}</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -19,9 +20,10 @@
         <tr class="myDIV">
           <th scope="row">{{ i+1 }}</th>
           <td>{{ item.createdBy }}</td>
-          <td>{{ publicHelper.LocaleDate(item.createdDate) }}</td>
-          <td>{{ publicHelper.LocaleDate(item.expireDateTime) }}</td>
+          <td>{{ publicHelper.LocaleDateTime(item.createdDate) }}</td>
+          <td>{{ publicHelper.LocaleDateTime(item.expireDateTime) }}</td>
           <td>{{item.showKey}}</td>
+          <td>{{this.requestContentUrl+'/'+ item.showKey}}</td>
         </tr>
         <tr class="hide">
           <td></td>
@@ -88,7 +90,7 @@
       <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
     </button>
     <button type="button" *ngIf="!showFormAdd" class="btn btn-success btn-lg btn-block"
-      (click)="onActionAdd()">{{'ACTION.ADD'
+      (click)="onActionAdd()">{{'ACTION.SHOW_KEY'
       |translate}}</button>
     <button type="button" (click)="onFormCancel()" class="btn btn-light btn-lg btn-block">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}

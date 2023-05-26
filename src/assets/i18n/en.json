@@ -47,6 +47,7 @@
   "ACTION.DASHBOARDWIDGETS": "Dashboart Widgets",
   "ACTION.DELETE": "Delete",
   "ACTION.MEMO": "Memo",
+  "ACTION.SHOW_KEY": "ُCreate Show Key",
   "ACTION.COPY": "Copy",
   "ACTION.DETAIL": "Detail",
   "ACTION.DISPLAYSUBHEADER": "Display subheader",
@@ -1509,7 +1510,6 @@
   "ROUTE.CATALOG": "Catalog",
   "ROUTE.CHART": "Chart",
   "ROUTE.CONTACT": "Contact",
-
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

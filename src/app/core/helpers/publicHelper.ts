@@ -490,12 +490,12 @@ export class PublicHelper {
     }
 
 
-
-    if (cloumn.indexOf('Id') >= 0)
-      cloumnAdminAccessDispaly.push('Id');
-    if (cloumn.indexOf('LinkSiteId') >= 0)
-      cloumnAdminAccessDispaly.push('LinkSiteId');
-
+    if (cloumnAdminAccessDispaly.length == 0) {
+      if (cloumn.indexOf('Id') >= 0)
+        cloumnAdminAccessDispaly.push('Id');
+      if (cloumn.indexOf('LinkSiteId') >= 0)
+        cloumnAdminAccessDispaly.push('LinkSiteId');
+    }
     if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
       var i = 0;
       cloumnAdminAccessDispaly.forEach(element => {

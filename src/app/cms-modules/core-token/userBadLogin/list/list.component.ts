@@ -27,7 +27,7 @@ import { CoreTokenUserBadLoginViewComponent } from '../view/view.component';
 @Component({
   selector: 'app-coretoken-user-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+
 })
 export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
@@ -114,7 +114,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -138,7 +138,7 @@ export class CoreTokenUserBadLoginListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['Id'], this.tokenInfo);
     this.tableRowsSelected = [];
     this.tableRowSelected = new CoreTokenUserBadLoginModel();
     const pName = this.constructor.name + 'main';

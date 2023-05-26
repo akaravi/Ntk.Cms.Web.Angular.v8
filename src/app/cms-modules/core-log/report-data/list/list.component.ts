@@ -127,7 +127,7 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Id';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
