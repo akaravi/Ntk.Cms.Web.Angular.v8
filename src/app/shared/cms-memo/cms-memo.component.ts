@@ -62,25 +62,48 @@ export class CmsMemoComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     /*filter CLone*/
-    this.requestService.ServiceMemoGetAll(this.dataModel.moduleEntityId).subscribe({
-      next: (ret) => {
-        this.dataModelResult = ret;
-        if (ret.listItems?.length > 0)
-          this.showFormAdd = false;
-        if (ret.isSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
+    if (this.dataModel.moduleEntityId && this.dataModel.moduleEntityId.length > 0) {
+      this.requestService.ServiceMemoGetAllEntity(this.dataModel.moduleEntityId).subscribe({
+        next: (ret) => {
+          this.dataModelResult = ret;
+          if (ret.listItems?.length > 0)
+            this.showFormAdd = false;
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
 
-        this.loading.Stop(pName);
+          this.loading.Stop(pName);
+        }
       }
+      );
     }
-    );
+    else {
+      this.requestService.ServiceMemoGetAll().subscribe({
+        next: (ret) => {
+          this.dataModelResult = ret;
+          if (ret.listItems?.length > 0)
+            this.showFormAdd = false;
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+
+          this.loading.Stop(pName);
+        }
+      }
+      );
+    }
   }
 
   DataAddContent(): void {
@@ -97,6 +120,38 @@ export class CmsMemoComponent implements OnInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
           this.dialogRef.close({ dialogChangedDate: true });
+
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+  DataDeleteContent(id: string): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
+    this.requestService.ServiceMemoDelete(id).subscribe({
+      next: (ret) => {
+        this.formInfo.formSubmitAllow = true;
+        // this.dataModelResultBase = ret;
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessRemove();
+          this.DataGetAll();
+          //this.dialogRef.close({ dialogChangedDate: true });
 
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');

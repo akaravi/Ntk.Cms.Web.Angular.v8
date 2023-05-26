@@ -11,6 +11,7 @@
         <th scope="col">{{fieldsInfo['createdBy']?.fieldTitle}}</th>
         <th scope="col">{{fieldsInfo['createdDate']?.fieldTitle}}</th>
         <th scope="col">{{fieldsInfo['subjectTitle']?.fieldTitle}}</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,14 @@
           <td>{{ item.createdBy }}</td>
           <td>{{ publicHelper.LocaleDate(item.createdDate) }}</td>
           <td>{{ item.subjectTitle }}</td>
+          <td>
+            <button type="button" mat-icon-button (click)="DataDeleteContent(item.id)">
+              <small>
+                <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false"
+                  style="color: red;">delete</mat-icon>
+              </small>
+            </button>
+          </td>
         </tr>
         <tr class="hide">
           <td></td>

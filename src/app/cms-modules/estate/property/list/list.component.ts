@@ -16,8 +16,9 @@ import {
   ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
-import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
-import { ComponentOptionStatistModel } from "src/app/core/cmsComponentModels/base/componentOptionStatistModel";
+import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
+import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/componentOptionStatistModel";
+import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
 import { PublicHelper } from "src/app/core/helpers/publicHelper";
 import { TokenHelper } from "src/app/core/helpers/tokenHelper";
 import { ProgressSpinnerModel } from "src/app/core/models/progressSpinnerModel";
@@ -35,7 +36,7 @@ import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.compo
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
-export class EstatePropertyListComponent
+export class EstatePropertyListComponent extends ListBaseComponent
   implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = "";
   requestLinkPropertyTypeUsageId = "";
@@ -61,6 +62,7 @@ export class EstatePropertyListComponent
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
+    super();
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyTypeLanduseId =
