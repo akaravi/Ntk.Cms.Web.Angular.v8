@@ -3,6 +3,7 @@
   "ACTION.ADD": "Add",
   "ACTION.ADS": "Ads",
   "ACTION.QUICK_VIEW": "Quick View",
+  "ACTION.QUICK_ADD": "Quick Add",
   "ACTION.AUTOADD": "Auto Add",
   "ACTION.BACK": "Back",
   "ACTION.BACK_TO_PROPERTY_LIST": "Back to property list",
@@ -201,6 +202,7 @@
   "ACTION.LIST_THEMES": "List of themes",
   "ACTION.LIST_APPS": "List of apps",
   "ACTION.LIST_SITES": "List of sites",
+
   "ACTION.CATEGORY_LIST_SITES": "Category list of sites",
   "ACTION.DOWNLOAD": "Download",
   "ACTION.REPORTS": "Reports",

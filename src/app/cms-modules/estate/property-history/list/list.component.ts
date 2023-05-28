@@ -15,10 +15,12 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
@@ -50,7 +52,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private pageInfo: PageInfoService) {
+    pageInfo.updateContentService(contentService);
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyId = this.activatedRoute.snapshot.paramMap.get('LinkPropertyId');
     this.requestLinkEstateUserId = this.activatedRoute.snapshot.paramMap.get('LinkEstateUserId');
@@ -162,7 +166,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstatePropertyHistoryModel();
+    this.onActionTableRowSelect(new EstatePropertyHistoryModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -339,7 +343,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -364,7 +368,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -481,7 +485,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -573,10 +577,11 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: EstatePropertyHistoryModel): void {
+    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', ''));
     this.tableRowSelected = row;
   }
   onActionTableRowMouseEnter(row: EstatePropertyHistoryModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyHistoryModel): void {

@@ -114,7 +114,7 @@ DataAddContent(): void {
       if (ret.isSuccess) {
         this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
         this.cmsToastrService.typeSuccessAdd();
-        this.dialogRef.close({ dialogChangedDate: true });
+        this.DataGetAll();
 
       } else {
         this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
