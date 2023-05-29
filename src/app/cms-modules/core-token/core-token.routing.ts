@@ -18,68 +18,83 @@ const routes: Routes = [
       /** */
       {
         path: 'user',
-        component: CoreTokenUserListComponent
+        component: CoreTokenUserListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USER' },
       },
       {
         path: 'user/LinkSiteId/:LinkSiteId',
-        component: CoreTokenUserListComponent
+        component: CoreTokenUserListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USER' },
       },
       {
         path: 'user/LinkUserId/:LinkUserId',
-        component: CoreTokenUserListComponent
+        component: CoreTokenUserListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USER' },
       },
       {
         path: 'user/LinkDeviceId/:LinkDeviceId',
-        component: CoreTokenUserListComponent
+        component: CoreTokenUserListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USER' },
       },
       /** */
       {
         path: 'userlog',
-        component: CoreTokenUserLogListComponent
+        component: CoreTokenUserLogListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERLOG' },
       },
       {
         path: 'userlog/LinkSiteId/:LinkSiteId',
-        component: CoreTokenUserLogListComponent
+        component: CoreTokenUserLogListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERLOG' },
       },
       {
         path: 'userlog/LinkUserId/:LinkUserId',
-        component: CoreTokenUserLogListComponent
+        component: CoreTokenUserLogListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERLOG' },
       },
       {
         path: 'userlog/LinkDeviceId/:LinkDeviceId',
-        component: CoreTokenUserLogListComponent
+        component: CoreTokenUserLogListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERLOG' },
       },
       /** */
       {
         path: 'userbadlogin',
-        component: CoreTokenUserBadLoginListComponent
+        component: CoreTokenUserBadLoginListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERBADLOGIN' },
       },
       {
         path: 'userbadlogin/LinkSiteId/:LinkSiteId',
-        component: CoreTokenUserBadLoginListComponent
+        component: CoreTokenUserBadLoginListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERBADLOGIN' },
       },
       {
         path: 'userbadlogin/LinkUserId/:LinkUserId',
-        component: CoreTokenUserBadLoginListComponent
+        component: CoreTokenUserBadLoginListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERBADLOGIN' },
       },
       {
         path: 'userbadlogin/LinkDeviceId/:LinkDeviceId',
-        component: CoreTokenUserBadLoginListComponent
+        component: CoreTokenUserBadLoginListComponent,
+        data: { title: 'ROUTE.CORETOKEN.USERBADLOGIN' },
       },
       /** */
       {
         path: 'activation',
-        component: CoreTokenActivationListComponent
+        component: CoreTokenActivationListComponent,
+        data: { title: 'ROUTE.CORETOKEN.ACTIVATION' },
       },
       /** */
       {
         path: 'microservice',
-        component: CoreTokenMicroServiceListComponent
+        component: CoreTokenMicroServiceListComponent,
+        data: { title: 'ROUTE.CORETOKEN.MICROSERVICE' },
       },
       /** */
       {
         path: 'microservicelog',
-        component: CoreTokenMicroServiceLogListComponent
+        component: CoreTokenMicroServiceLogListComponent,
+        data: { title: 'ROUTE.CORETOKEN.MICROSERVICELOG' },
       },
     ]
   },
