@@ -1,28 +1,22 @@
-<div class="hover-scroll-overlay-y my-2 my-lg-5 pe-lg-n1" id="kt_aside_menu_wrapper" data-kt-scroll="true"
-    data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer"
-    data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu" data-kt-scroll-offset="5px">
+<div class="hover-scroll-overlay-y my-2 my-lg-5 pe-lg-n1" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside, #kt_aside_menu" data-kt-scroll-offset="5px">
 
-    <div class="menu menu-column menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold"
-        id="kt_aside_menu" data-kt-menu="true">
+    <div class="menu menu-column menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold" id="kt_aside_menu" data-kt-menu="true">
         <!-- Dashboard -->
         <div class="menu-item py-1" routerLinkActive="here show">
             <a class="menu-link menu-center" routerLink="/dashboard" routerLinkActive="show">
                 <span class="menu-icon me-0">
-                    <span [inlineSVG]="'./assets/media/icons/duotune/art/art002.svg'" style="scale: 1.5;"
-                        class="svg-icon svg-icon-2"></span>
+                    <span [inlineSVG]="'./assets/media/icons/duotune/art/art002.svg'" style="scale: 1.5;" class="svg-icon svg-icon-2"></span>
                 </span>
                 <span class="menu-title">{{'MENU.DASHBOARD'|translate}}</span>
             </a>
         </div>
         <!-- Cms Menu -->
-        <div *ngFor="let childLeve0 of dataModelResult.listItems" class="menu-item py-1" data-kt-menu-trigger="click"
-            data-kt-menu-placement="right-start" routerLinkActive="here show">
+        <div *ngFor="let childLeve0 of dataModelResult.listItems" class="menu-item py-1" data-kt-menu-trigger="click" data-kt-menu-placement="right-start" routerLinkActive="here show">
             <!--No Child-->
             <span *ngIf="!childLeve0.children || childLeve0.children.length===0" class="menu-link menu-center">
                 <span class="menu-icon me-0">
                     <a routerLink="{{childLeve0.routeAddressLink}}">
-                        <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}" style="scale: 1.5;"
-                            [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''">
+                        <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}" style="scale: 1.5;" [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''">
                         </span>
                     </a>
                 </span>
@@ -37,30 +31,25 @@
             <!--By Child-->
             <span *ngIf="childLeve0.children && childLeve0.children.length>0" class="menu-link menu-center">
                 <span class="menu-icon me-0">
-                    <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}" style="scale: 1.5;"
-                        [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''">
+                    <span class="svg-icon svg-icon-2" class="{{childLeve0.icon}}" style="scale: 1.5;" [style.color]="childLeve0.color?.length>0 ? childLeve0.color:''">
                     </span>
                 </span>
                 <span class="menu-title">{{childLeve0.titleML}}</span>
             </span>
             <!--By Child-->
             <!--Child-->
-            <div *ngIf="childLeve0.children && childLeve0.children.length>0"
-                class="menu-sub menu-sub-dropdown w-225px w-lg-275px px-1 py-4" routerLinkActive="menu-active-bg show">
-                <div *ngFor="let childLeve1 of childLeve0.children" class="menu-item" routerLinkActive="here show"
-                    data-kt-menu-trigger="click">
+            <div *ngIf="childLeve0.children && childLeve0.children.length>0" class="menu-sub menu-sub-dropdown w-225px w-lg-275px px-1 py-4" routerLinkActive="menu-active-bg show">
+                <div *ngFor="let childLeve1 of childLeve0.children" class="menu-item" routerLinkActive="here show" data-kt-menu-trigger="click">
                     <!--No Child-->
                     <span *ngIf="!childLeve1.children || childLeve1.children.length===0" class="menu-link">
                         <span class="menu-bullet">
                             <a routerLink="{{childLeve1.routeAddressLink}}">
-                                <span class="{{childLeve1.icon}}" style="scale: 1.5;"
-                                    [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span>
+                                <span class="{{childLeve1.icon}}" style="scale: 1.5;" [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span>
                             </a>
                         </span>
                         <!-- &nbsp; &nbsp; -->
-                        <span class="menu-title me-2" data-link="/crafted/pages/profile">
-                            <a routerLink="{{childLeve1.routeAddressLink}}"
-                                (click)="publicHelper.OpenNewTabByClick($event,childLeve1.routeAddressLink)">
+                        <span class="menu-title me-2" data-link="childLeve1.routeAddressLink">
+                            <a routerLink="{{childLeve1.routeAddressLink}}" (click)="publicHelper.OpenNewTabByClick($event,childLeve1.routeAddressLink)">
                                 {{childLeve1.titleML}}
                             </a>
                         </span>
@@ -68,21 +57,15 @@
                     <!--No Child-->
                     <!--By Child-->
                     <span *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-link">
-                        <span class="menu-bullet"><span class="{{childLeve1.icon}}" style="scale: 1.5;"
-                                [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span></span>
-                        <span class="menu-title" data-link="/crafted/pages/profile">{{childLeve1.titleML}}</span>
+                        <span class="menu-bullet"><span class="{{childLeve1.icon}}" style="scale: 1.5;" [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span></span>
+                        <span class="menu-title" data-link="childLeve1.routeAddressLink">{{childLeve1.titleML}}</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <!--By Child-->
                     <!--Child-->
-                    <div *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-sub menu-sub-accordion"
-                        routerLinkActive="menu-active-bg show">
+                    <div *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg show">
                         <div *ngFor="let childLeve2 of childLeve1.children" class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/profile/overview"><span class="menu-bullet"><span
-                                        class="{{childLeve2.icon}}" style="scale: 1.5;"
-                                        [style.color]="childLeve2.color?.length>0 ? childLeve2.color:''"></span></span><span
-                                    class="menu-title">{{childLeve2.titleML}}</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="{{childLeve2.routeAddressLink}}"><span class="menu-bullet"><span class="{{childLeve2.icon}}" style="scale: 1.5;" [style.color]="childLeve2.color?.length>0 ? childLeve2.color:''"></span></span><span class="menu-title">{{childLeve2.titleML}}</span></a>
                         </div>
                     </div>
                     <!--Child-->
@@ -92,20 +75,17 @@
         </div>
 
         <!-- Layout builder -->
-        <div *ngIf="tokenHelper.isAdminSite || tokenHelper.isSupportSite" class="menu-item py-1"
-            routerLinkActive="here show">
+        <div *ngIf="tokenHelper.isAdminSite || tokenHelper.isSupportSite" class="menu-item py-1" routerLinkActive="here show">
             <a class="menu-link menu-center" routerLink="/builder" routerLinkActive="show">
                 <span class="menu-icon me-0">
-                    <span [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
-                        class="svg-icon svg-icon-2"></span>
+                    <span [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'" class="svg-icon svg-icon-2"></span>
                 </span>
                 <span class="menu-title">Builder</span>
             </a>
         </div>
 
         <!-- Pages -->
-        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click"
-            data-kt-menu-placement="right-start" routerLinkActive="here show">
+        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click" data-kt-menu-placement="right-start" routerLinkActive="here show">
             <span class="menu-link menu-center">
                 <span class="menu-icon me-0">
                     <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'">
@@ -122,34 +102,19 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg show">
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/profile/overview"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Overview</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/overview"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Overview</span></a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/profile/projects"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Projects</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/projects"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Projects</span></a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/profile/campaigns"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Campaigns</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/campaigns"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Campaigns</span></a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/profile/documents"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Documents</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/documents"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Documents</span></a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/profile/connections"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Connections</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/connections"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Connections</span></a>
                         </div>
                     </div>
                 </div>
@@ -161,16 +126,10 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg show">
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/wizards/horizontal"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Horizontal</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/wizards/horizontal"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Horizontal</span></a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" routerLinkActive="active"
-                                routerLink="/crafted/pages/wizards/vertical"><span class="menu-bullet"><span
-                                        class="bullet bullet-dot"></span></span><span
-                                    class="menu-title">Vertical</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/wizards/vertical"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Vertical</span></a>
                         </div>
                     </div>
                 </div>
@@ -178,12 +137,10 @@
         </div>
 
         <!-- Accounts -->
-        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click"
-            data-kt-menu-placement="right-start" routerLinkActive="here show">
+        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click" data-kt-menu-placement="right-start" routerLinkActive="here show">
             <span class="menu-link menu-center">
                 <span class="menu-icon me-0">
-                    <span class="svg-icon svg-icon-2"
-                        [inlineSVG]="'./assets/media/icons/duotune/communication/com006.svg'">
+                    <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/communication/com006.svg'">
                     </span>
                 </span>
                 <span class="menu-title">Accounts</span>
@@ -207,12 +164,10 @@
         </div>
 
         <!-- Errors -->
-        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click"
-            data-kt-menu-placement="right-start" routerLinkActive="here show">
+        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click" data-kt-menu-placement="right-start" routerLinkActive="here show">
             <span class="menu-link menu-center">
                 <span class="menu-icon me-0">
-                    <span class="svg-icon svg-icon-2"
-                        [inlineSVG]="'./assets/media/icons/duotune/general/gen040.svg'"></span>
+                    <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/general/gen040.svg'"></span>
                 </span>
                 <span class="menu-title">Errors</span>
             </span>
@@ -235,8 +190,7 @@
         </div>
 
         <!-- Widgets -->
-        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click"
-            data-kt-menu-placement="right-start" routerLinkActive="here show">
+        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click" data-kt-menu-placement="right-start" routerLinkActive="here show">
             <span class="menu-link menu-center">
                 <span class="menu-icon me-0">
                     <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/general/gen025.svg'">
@@ -291,12 +245,10 @@
         </div>
 
         <!-- Chat -->
-        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click"
-            data-kt-menu-placement="right-start" routerLinkActive="here show">
+        <div *ngIf="loadDemoTheme" class="menu-item py-1" data-kt-menu-trigger="click" data-kt-menu-placement="right-start" routerLinkActive="here show">
             <span class="menu-link menu-center">
                 <span class="menu-icon me-0">
-                    <span class="svg-icon svg-icon-2"
-                        [inlineSVG]="'./assets/media/icons/duotune/communication/com012.svg'">
+                    <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/communication/com012.svg'">
                     </span>
                 </span>
                 <span class="menu-title">Chat</span>
@@ -330,8 +282,7 @@
         <div *ngIf="loadDemoTheme" class="menu-item py-1">
             <a target="_blank" class="menu-link menu-center" [href]="appPreviewChangelogUrl">
                 <span class="menu-icon me-0">
-                    <span class="svg-icon svg-icon-2"
-                        [inlineSVG]="'./assets/media/icons/duotune/general/gen005.svg'"></span>
+                    <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/general/gen005.svg'"></span>
                 </span>
                 <span class="menu-title">Changelog</span>
             </a>

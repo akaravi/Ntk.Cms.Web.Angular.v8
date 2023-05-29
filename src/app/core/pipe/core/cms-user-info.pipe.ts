@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { CoreUserService } from 'ntk-cms-api';
-import { map, Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Pipe({ name: 'cmsuserinfo' })
 export class CmsUserInfoPipe implements PipeTransform {
@@ -43,10 +43,12 @@ export class CmsUserInfoPipe implements PipeTransform {
               retOut = retOut + ret.item.mobile
             }
           }
+          if (retOut.length === 0)
+            retOut = value.toString();
           return retOut;
         },
           (er) => {
-            return '';
+            return value.toString();
           })  // needed only if you need projection
       );
 
