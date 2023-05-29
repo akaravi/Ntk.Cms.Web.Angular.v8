@@ -9,6 +9,8 @@ const routes: Routes = [
   {
     path: '',
     component: MemberComponent,
+    data: { title: 'ROUTE.MEMBER' },
+
     children: [
       {
         path: 'group',
