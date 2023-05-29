@@ -1495,7 +1495,7 @@
   "Route.Dashboard": "داشبورد",
   "Route.Builder": "سازنده",
   "Route.Estate": "املاک",
-  "Route.Ticketing": "تیکتینگ",
+  "ROUTE.TICKETING": "تیکتینگ",
   "Route.Core": "مدارک",
   "Route.CoreModule": "ماژول ها",
   "Route.FileManager": "مدیریت پرونده",
@@ -1596,6 +1596,14 @@
   "ROUTE.SMS.MAIN": "",
   "ROUTE.SMS.ACTION": "",
   "ROUTE.SMS.LOG": "",
+  "ROUTE.TICKETING.DEPARTMENT": "",
+  "ROUTE.TICKETING.DEPARTMENTLOG": "",
+  "ROUTE.TICKETING.FAQ": "",
+  "ROUTE.TICKETING.LIST": "",
+  "ROUTE.TICKETING.TEMPLATE": "",
+  "ROUTE.TICKETING.CONTACTUS": "",
+  "ROUTE.TICKETING.TASK": "",
+  "ROUTE.TICKETING.ANSWER": "",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

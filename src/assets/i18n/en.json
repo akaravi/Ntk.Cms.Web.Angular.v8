@@ -1486,7 +1486,7 @@
   "Route.Dashboard": "Dashboard",
   "Route.Builder": "Builder",
   "Route.Estate": "Estates",
-  "Route.Ticketing": "Ticketing",
+  "ROUTE.TICKETING": "Ticketing",
   "Route.Core": "Documents",
   "Route.CoreModule": " Modules",
   "Route.FileManager": "File Manager",
@@ -1587,6 +1587,14 @@
   "ROUTE.SMS.MAIN": "",
   "ROUTE.SMS.ACTION": "",
   "ROUTE.SMS.LOG": "",
+  "ROUTE.TICKETING.DEPARTMENT": "",
+  "ROUTE.TICKETING.DEPARTMENTLOG": "",
+  "ROUTE.TICKETING.FAQ": "",
+  "ROUTE.TICKETING.LIST": "",
+  "ROUTE.TICKETING.TEMPLATE": "",
+  "ROUTE.TICKETING.CONTACTUS": "",
+  "ROUTE.TICKETING.TASK": "",
+  "ROUTE.TICKETING.ANSWER": "",
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {
