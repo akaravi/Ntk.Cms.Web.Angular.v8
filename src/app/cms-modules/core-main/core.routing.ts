@@ -6,6 +6,8 @@ const routes: Routes = [
   {
     path: '',
     component: CoreComponent,
+    data: { title: 'ROUTE.CORE' },
+
     children: [
       /* Config */
       {
@@ -43,13 +45,12 @@ const routes: Routes = [
           import('./currency/coreCurrency.module').then(
             (m) => m.CoreCurrencyCmsModule
           ),
-        data: { title: 'ROUTE.CORE' },
       },
       {
         path: 'site',
         loadChildren: () =>
           import('./site/coreSite.module').then((m) => m.CoreSiteModule),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.SITE' },
       },
       {
         path: 'sitecategory',
@@ -57,7 +58,7 @@ const routes: Routes = [
           import('./site-category/coreSiteCategory.module').then(
             (m) => m.CoreSiteCategoryCmsModule
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.SITECATEGORY' },
       },
       {
         path: 'sitecategorymodule',
@@ -65,7 +66,7 @@ const routes: Routes = [
           import(
             './site-category-module/coreSiteCategoryCmsModule.module'
           ).then((m) => m.CoreSiteCategoryCmsModuleModule),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.SITECATEGORYMODULE' },
       },
       {
         path: 'sitedomainalias',
@@ -73,7 +74,7 @@ const routes: Routes = [
           import('./site-domain-alias/coreSiteDomainAlias.module').then(
             (m) => m.CoreSiteDomainAliasModule
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.SITEDOMAINALIAS' },
       },
       {
         path: 'cpmainmenu',
@@ -81,13 +82,13 @@ const routes: Routes = [
           import('./cp-main-menu/coreCpMainMenu.module').then(
             (m) => m.CoreCpMainMenu
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.CPMAINMENU' },
       },
       {
         path: 'module',
         loadChildren: () =>
           import('./module/coreModule.module').then((m) => m.CoreModuleModule),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.MODULE' },
       },
       {
         path: 'module-entity',
@@ -95,7 +96,7 @@ const routes: Routes = [
           import('./module-entity/core-module-entity.module').then(
             (m) => m.CoreModuleEntityModule
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.MODULEENTITY' },
       },
       {
         path: 'module-entity-report-file',
@@ -103,7 +104,7 @@ const routes: Routes = [
           import(
             './module-entity-report-file/core-module-entity-report-file.module'
           ).then((m) => m.CoreModuleEntityReportFileModule),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.ENTITYREPORTFILE' },
       },
       {
         path: 'modulesale',
@@ -111,7 +112,7 @@ const routes: Routes = [
           import('./module-sale/core-module-sale.module').then(
             (m) => m.CoreModuleSaleModule
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.MODULESALE' },
       },
       {
         path: 'userclaim',
@@ -119,7 +120,7 @@ const routes: Routes = [
           import('./user-claim/core-user-claim.module').then(
             (m) => m.CoreUserClaimModule
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.USERCLAIM' },
       },
       {
         path: 'location',
@@ -127,19 +128,19 @@ const routes: Routes = [
           import('./location/coreLocation.module').then(
             (m) => m.CoreLocationCmsModule
           ),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.LOCATION' },
       },
       {
         path: 'device',
         loadChildren: () =>
           import('./device/coreDevice.module').then((m) => m.CoreDeviceModule),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.DEVICE' },
       },
       {
         path: 'guide',
         loadChildren: () =>
           import('./guides/coreGuide.module').then((m) => m.CoreGuideCmsModule),
-        data: { title: 'ROUTE.CORE' },
+        data: { title: 'ROUTE.CORE.GUIDE' },
       },
     ],
   },
