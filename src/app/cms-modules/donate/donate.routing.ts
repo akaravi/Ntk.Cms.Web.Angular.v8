@@ -17,6 +17,8 @@ const routes: Routes = [
   {
     path: '',
     component: DonateComponent,
+    data: { title: 'ROUTE.DONATE' },
+
     children: [
       /* Config */
       {
