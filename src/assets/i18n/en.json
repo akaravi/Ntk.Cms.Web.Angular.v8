@@ -1509,6 +1509,8 @@
   "ROUTE.CATALOG": "Catalog",
   "ROUTE.CHART": "Chart",
   "ROUTE.CONTACT": "Contact",
+  "ROUTE.CORELOG": "",
+  "ROUTE.CORELOG.ERROR": "",
 
   "lang": "en",
   "ngx-ntk-cron-editor": {

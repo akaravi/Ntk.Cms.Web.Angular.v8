@@ -1518,6 +1518,8 @@
   "ROUTE.CATALOG":"کاتالوگ",
   "ROUTE.CHART":"چارت",
   "ROUTE.CONTACT":"مخاطب",
+  "ROUTE.CORELOG":"",
+  "ROUTE.CORELOG.ERROR":"",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

@@ -15,59 +15,70 @@ const routes: Routes = [
     children: [
       {
         path: 'error',
-        component: CoreLogErrorListComponent
+        component: CoreLogErrorListComponent,
+        data: { title: 'ROUTE.CORELOG.ERROR' },
       },
       {
         path: 'avoid-duplicate',
-        component: CoreLogAvoidDuplicateDataEntryListComponent
+        component: CoreLogAvoidDuplicateDataEntryListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'avoid-duplicate/:LinkUserId',
-        component: CoreLogAvoidDuplicateDataEntryListComponent
+        component: CoreLogAvoidDuplicateDataEntryListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'sms',
-        component: CoreLogSmsListComponent
+        component: CoreLogSmsListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'report-data',
-        component: CoreLogReportDataListComponent
+        component: CoreLogReportDataListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'report-data/LinkSiteId/:LinkSiteId',
-        component: CoreLogReportDataListComponent
+        component: CoreLogReportDataListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'report-data/LinkUserId/:LinkUserId',
-        component: CoreLogReportDataListComponent
+        component: CoreLogReportDataListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'report-data/LinkModuleEntityId/:LinkModuleEntityId',
-        component: CoreLogReportDataListComponent
+        component: CoreLogReportDataListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'report-data/LinkModuleEntityReportFileId/:LinkModuleEntityReportFileId',
-        component: CoreLogReportDataListComponent
+        component: CoreLogReportDataListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'member',
-        component: CoreLogMemberListComponent
+        component: CoreLogMemberListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'currency',
-        component: CoreLogCurrencyListComponent
+        component: CoreLogCurrencyListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
       {
         path: 'currency/:LinkCurrencyId',
-        component: CoreLogCurrencyListComponent
+        component: CoreLogCurrencyListComponent,
+        data: { title: 'ROUTE.CORELOG' },
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CoreLogRoutes {
-}
+export class CoreLogRoutes {}
