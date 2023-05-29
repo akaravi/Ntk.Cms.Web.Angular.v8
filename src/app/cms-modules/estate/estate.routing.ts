@@ -38,6 +38,7 @@ const routes: Routes = [
   {
     path: '',
     component: EstateComponent,
+    data: { title: 'ROUTE.ESTATE' },
     children: [
       /* Config */
       {
