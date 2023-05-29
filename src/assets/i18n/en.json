@@ -1514,7 +1514,8 @@
   "ROUTE.CORE": "",
   "ROUTE.CORE.USER": "",
   "ROUTE.CORE.USERGROUP": "",
-  "ROUTE.CORE.USERSUPPORT":"",
+  "ROUTE.CORE.USERSUPPORT": "",
+  "ROUTE.COREMODULE": "",
 
   "lang": "en",
   "ngx-ntk-cron-editor": {
