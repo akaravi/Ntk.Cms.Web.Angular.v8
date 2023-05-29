@@ -1520,6 +1520,10 @@
   "ROUTE.CONTACT":"مخاطب",
   "ROUTE.CORELOG":"",
   "ROUTE.CORELOG.ERROR":"",
+  "ROUTE.CORE":"",
+  "ROUTE.CORE.USER":"",
+  "ROUTE.CORE.USERGROUP":"",
+  "ROUTE.CORE.USERSUPPORT":"",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

@@ -1511,6 +1511,10 @@
   "ROUTE.CONTACT": "Contact",
   "ROUTE.CORELOG": "",
   "ROUTE.CORELOG.ERROR": "",
+  "ROUTE.CORE": "",
+  "ROUTE.CORE.USER": "",
+  "ROUTE.CORE.USERGROUP": "",
+  "ROUTE.CORE.USERSUPPORT":"",
 
   "lang": "en",
   "ngx-ntk-cron-editor": {
