@@ -9,6 +9,8 @@ const routes: Routes = [
   {
     path: '',
     component: NewsComponent,
+    data: { title: 'ROUTE.NEWS' },
+
     children: [
       /* Config */
       {
