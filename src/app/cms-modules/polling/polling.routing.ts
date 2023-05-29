@@ -10,6 +10,8 @@ const routes: Routes = [
   {
     path: '',
     component: PollingComponent,
+    data: { title: 'ROUTE.POLLING' },
+
     children: [
       /* Config */
       {
