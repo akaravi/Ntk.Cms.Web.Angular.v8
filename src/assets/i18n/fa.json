@@ -1592,6 +1592,10 @@
   "ROUTE.POLLING": "",
   "ROUTE.POLLING.CONTENT": "",
   "ROUTE.POLLING.VOTE": "",
+  "ROUTE.SMS": "",
+  "ROUTE.SMS.MAIN": "",
+  "ROUTE.SMS.ACTION": "",
+  "ROUTE.SMS.LOG": "",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {
