@@ -1586,6 +1586,9 @@
   "ROUTE.MEMBER.PROPERTYALIAS": "",
   "ROUTE.MEMBER.PROPERTYDETAILGROUP": "",
   "ROUTE.MEMBER.PROPERTYDETAIL": "",
+  "ROUTE.NEWS": "",
+  "ROUTE.NEWS.CONTENT": "",
+  "ROUTE.NEWS.COMMENT": "",
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

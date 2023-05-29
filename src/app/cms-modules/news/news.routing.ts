@@ -15,36 +15,41 @@ const routes: Routes = [
         path: 'config',
         loadChildren: () =>
           import('./config/news-config.module').then((m) => m.NewsConfigModule),
+        data: { title: 'ROUTE.NEWS' },
       },
       /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},
         // loadChildren: () =>    import('./content/content.module').then(m => m.ContentModule)
-        component: NewsContentListComponent
+        component: NewsContentListComponent,
+        data: { title: 'ROUTE.NEWS.CONTENT' },
       },
       {
         path: 'content/add/:CategoryId',
-        component: NewsContentAddComponent
+        component: NewsContentAddComponent,
+        data: { title: 'ROUTE.NEWS.CONTENT' },
       },
       {
         path: 'content/edit/:Id',
-        component: NewsContentEditComponent
+        component: NewsContentEditComponent,
+        data: { title: 'ROUTE.NEWS.CONTENT' },
       },
       {
         path: 'comment',
-        component: NewsCommentListComponent
+        component: NewsCommentListComponent,
+        data: { title: 'ROUTE.NEWS.COMMENT' },
       },
       {
         path: 'comment/:ContentId',
-        component: NewsCommentListComponent
+        component: NewsCommentListComponent,
+        data: { title: 'ROUTE.NEWS.COMMENT' },
       },
-    ]
+    ],
   },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class NewsRouting {
-}
+export class NewsRouting {}
