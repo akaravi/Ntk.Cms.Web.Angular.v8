@@ -12,23 +12,28 @@ const routes: Routes = [
     children: [
       {
         path: 'group',
-        component: MemberGroupListComponent
+        component: MemberGroupListComponent,
+        data: { title: 'ROUTE.MEMBER.GROUP' },
       },
       {
         path: 'property-alias',
-        component: MemberPropertyAliasListComponent
+        component: MemberPropertyAliasListComponent,
+        data: { title: 'ROUTE.MEMBER.PROPERTYALIAS' },
       },
       {
         path: 'property-detail-group',
-        component: MemberPropertyDetailGroupListComponent
+        component: MemberPropertyDetailGroupListComponent,
+        data: { title: 'ROUTE.MEMBER.PROPERTYDETAILGROUP' },
       },
       {
         path: 'property-detail',
-        component: MemberPropertyDetailListComponent
+        component: MemberPropertyDetailListComponent,
+        data: { title: 'ROUTE.MEMBER.PROPERTYDETAIL' },
       },
       {
         path: 'property-detail/LinkPropertyId/:LinkPropertyId',
-        component: MemberPropertyDetailListComponent
+        component: MemberPropertyDetailListComponent,
+        data: { title: 'ROUTE.MEMBER.PROPERTYDETAIL' },
       },
       //   {
       //     path: 'app',
@@ -70,12 +75,11 @@ const routes: Routes = [
       //     path: 'themeconfig',
       //     component: ApplicationThemeConfigListComponent
       //   },
-    ]
+    ],
   },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class MemberRoutes {
-}
+export class MemberRoutes {}
