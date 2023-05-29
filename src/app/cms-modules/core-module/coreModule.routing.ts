@@ -11,6 +11,8 @@ const routes: Routes = [
   {
     path: '',
     component: CoreModuleComponent,
+    data: { title: 'ROUTE.COREMODULE' },
+
     children: [
       {
         path: 'tag',
