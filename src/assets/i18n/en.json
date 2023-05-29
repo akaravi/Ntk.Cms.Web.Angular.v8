@@ -1580,6 +1580,9 @@
   "ROUTE.NEWS": "",
   "ROUTE.NEWS.CONTENT": "",
   "ROUTE.NEWS.COMMENT": "",
+  "ROUTE.POLLING": "",
+  "ROUTE.POLLING.CONTENT": "",
+  "ROUTE.POLLING.VOTE": "",
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

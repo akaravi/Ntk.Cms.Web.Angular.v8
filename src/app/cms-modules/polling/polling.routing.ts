@@ -6,8 +6,6 @@ import { PollingContentListComponent } from './content/list/list.component';
 import { PollingComponent } from './polling.component';
 import { PollingVoteListComponent } from './vote/list/list.component';
 
-
-
 const routes: Routes = [
   {
     path: '',
@@ -17,42 +15,50 @@ const routes: Routes = [
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/polling-config.module').then((m) => m.PollingConfigModule),
+          import('./config/polling-config.module').then(
+            (m) => m.PollingConfigModule
+          ),
+        data: { title: 'ROUTE.POLLING' },
       },
       /* Config */
       {
         path: 'content',
         // resolve: {categoryList: CategoryResolver},
         // loadChildren: () =>    import('./content/content.module').then(m => m.ContentModule)
-        component: PollingContentListComponent
+        component: PollingContentListComponent,
+        data: { title: 'ROUTE.POLLING.CONTENT' },
       },
       {
         path: 'content/add/:CategoryId',
-        component: PollingContentAddComponent
+        component: PollingContentAddComponent,
+        data: { title: 'ROUTE.POLLING.CONTENT' },
       },
       {
         path: 'content/edit/:Id',
-        component: PollingContentEditComponent
+        component: PollingContentEditComponent,
+        data: { title: 'ROUTE.POLLING.CONTENT' },
       },
       {
         path: 'vote',
-        component: PollingVoteListComponent
+        component: PollingVoteListComponent,
+        data: { title: 'ROUTE.POLLING.VOTE' },
       },
       {
         path: 'vote/ContentId/:ContentId',
-        component: PollingVoteListComponent
+        component: PollingVoteListComponent,
+        data: { title: 'ROUTE.POLLING.VOTE' },
       },
       {
         path: 'vote/OptionId/:OptionId',
-        component: PollingVoteListComponent
+        component: PollingVoteListComponent,
+        data: { title: 'ROUTE.POLLING.VOTE' },
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PollingRouting {
-}
+export class PollingRouting {}
