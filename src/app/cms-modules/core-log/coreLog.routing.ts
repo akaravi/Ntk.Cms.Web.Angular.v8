@@ -12,6 +12,8 @@ const routes: Routes = [
   {
     path: '',
     component: CoreLogComponent,
+    data: { title: 'ROUTE.CORELOG' },
+
     children: [
       {
         path: 'error',
