@@ -13,30 +13,35 @@ const routes: Routes = [
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/hyper-shop-config.module').then((m) => m.HyperShopConfigModule),
+          import('./config/hyper-shop-config.module').then(
+            (m) => m.HyperShopConfigModule
+          ),
+        data: { title: 'ROUTE.HYPERSHOP' },
       },
       /* Config */
       {
         path: 'category',
-        component: HyperShopCategoryListComponent
+        component: HyperShopCategoryListComponent,
+        data: { title: 'ROUTE.HYPERSHOP.CATEGORY' },
       },
       /**/
       {
         path: 'content',
-        component: HyperShopContentListComponent
+        component: HyperShopContentListComponent,
+        data: { title: 'ROUTE.HYPERSHOP.CONTENT' },
       },
       {
         path: 'content/PareintId/:PareintId',
-        component: HyperShopContentListComponent
+        component: HyperShopContentListComponent,
+        data: { title: 'ROUTE.HYPERSHOP.CONTENT' },
       },
       /**/
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class HyperShopRoutes {
-}
+export class HyperShopRoutes {}
