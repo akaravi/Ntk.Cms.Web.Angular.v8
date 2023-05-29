@@ -17,6 +17,8 @@ const routes: Routes = [
   {
     path: '',
     component: LinkManagementComponent,
+    data: { title: 'ROUTE.LINKMANAGMENT' },
+
     children: [
       /* Config */
       {
