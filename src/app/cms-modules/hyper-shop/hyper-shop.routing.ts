@@ -8,6 +8,8 @@ const routes: Routes = [
   {
     path: '',
     component: HyperShopComponent,
+    data: { title: 'ROUTE.HYPERSHOP' },
+
     children: [
       /* Config */
       {
