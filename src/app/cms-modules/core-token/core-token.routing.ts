@@ -8,12 +8,11 @@ import { CoreTokenUserListComponent } from './user/list/list.component';
 import { CoreTokenUserBadLoginListComponent } from './userBadLogin/list/list.component';
 import { CoreTokenUserLogListComponent } from './userLog/list/list.component';
 
-
-
 const routes: Routes = [
   {
     path: '',
     component: CoreTokenComponent,
+    data: { title: 'ROUTE.CORETOKEN' },
     children: [
       /** */
       {
@@ -96,13 +95,12 @@ const routes: Routes = [
         component: CoreTokenMicroServiceLogListComponent,
         data: { title: 'ROUTE.CORETOKEN.MICROSERVICELOG' },
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CoreTokenRoutes {
-}
+export class CoreTokenRoutes {}
