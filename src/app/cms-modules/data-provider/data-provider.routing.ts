@@ -13,19 +13,21 @@ import { DataProviderPlanListComponent } from './plan/list/list.component';
 import { DataProviderSourceListComponent } from './source/list/list.component';
 import { DataProviderTransactionListComponent } from './transaction/list/list.component';
 
-
 const routes: Routes = [
   {
     path: '',
     component: DataProviderComponent,
+    data: { title: 'ROUTE.DATAPROVIDER' },
+
     children: [
       /* Config */
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/data-provider-config.module').then((m) => m.DataProviderConfigModule),
-          data: { title: 'ROUTE.DATAPROVIDER' },
-
+          import('./config/data-provider-config.module').then(
+            (m) => m.DataProviderConfigModule
+          ),
+        data: { title: 'ROUTE.DATAPROVIDER' },
       },
       /* Config */
       {
@@ -140,13 +142,12 @@ const routes: Routes = [
         path: 'transaction',
         component: DataProviderTransactionListComponent,
         data: { title: 'ROUTE.DATAPROVIDER.TRANSACTION' },
-      }
-      , {
+      },
+      {
         path: 'transaction/LinkPlanId/:LinkPlanId',
         component: DataProviderTransactionListComponent,
         data: { title: 'ROUTE.DATAPROVIDER.TRANSACTION' },
-      }
-      ,
+      },
       {
         path: 'transaction/LinkCmsUserId/:LinkCmsUserId',
         component: DataProviderTransactionListComponent,
@@ -161,23 +162,19 @@ const routes: Routes = [
         path: 'transaction/LinkSponsorId/:LinkSponsorId',
         component: DataProviderTransactionListComponent,
         data: { title: 'ROUTE.DATAPROVIDER.TRANSACTION' },
-      }
-      ,
+      },
       {
         path: 'transaction/LinkPlanPriceId/:LinkPlanPriceId',
         component: DataProviderTransactionListComponent,
         data: { title: 'ROUTE.DATAPROVIDER.TRANSACTION' },
-      }
+      },
       /** */
-
-
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DataProviderRoutes {
-}
+export class DataProviderRoutes {}
