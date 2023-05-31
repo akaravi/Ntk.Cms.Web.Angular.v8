@@ -53,6 +53,10 @@ const routes: Routes = [
 
       },
       {
+        path: 'property/Action/:Action',
+        component: EstatePropertyListComponent
+      },
+      {
         path: 'property/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
         component: EstatePropertyListComponent
       },
@@ -178,7 +182,7 @@ const routes: Routes = [
       {
         path: 'property-history',
         component: EstatePropertyHistoryListComponent,
-        data:{title:'ROUTE.ESTATE.HISTORY'}
+        data: { title: 'ROUTE.ESTATE.HISTORY' }
       },
       {
         path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
@@ -212,7 +216,7 @@ const routes: Routes = [
       {
         path: 'expert-price',
         component: EstatePropertyExpertPriceListComponent,
-        data:{title:'ROUTE.EXPERT.PRICE'}
+        data: { title: 'ROUTE.EXPERT.PRICE' }
       },
       /**/
       {
@@ -274,7 +278,7 @@ const routes: Routes = [
       {
         path: 'customer-order',
         component: EstateCustomerOrderListComponent,
-        data:{title:'ROUTE.CUSTOMER.ORDER'}
+        data: { title: 'ROUTE.CUSTOMER.ORDER' }
       },
       {
         path: 'customer-order/recordstatus/:RecordStatus',
