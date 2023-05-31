@@ -62,7 +62,7 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     //open popup
     const dialogRef = this.dialog.open(CmsMemoComponent, {
       height: "70%",
-      width: "50%",
+      width: "90%",
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,

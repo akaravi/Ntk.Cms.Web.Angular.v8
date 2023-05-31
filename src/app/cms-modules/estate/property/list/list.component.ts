@@ -52,6 +52,7 @@ export class EstatePropertyListComponent extends ListBaseComponent
   requestLinkEstateAgencyId = "";
   requestLinkUserId = 0;
   requestInChecking = false;
+  requestAction = '';
   constructor(
     public contentService: EstatePropertyService,
     private activatedRoute: ActivatedRoute,
@@ -96,6 +97,7 @@ export class EstatePropertyListComponent extends ListBaseComponent
     this.requestLinkUserId = +this.activatedRoute.snapshot.paramMap.get(
       "LinkUserId"
     ) | 0;
+    this.requestAction = this.activatedRoute.snapshot.paramMap.get("Action");
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
@@ -436,7 +438,10 @@ export class EstatePropertyListComponent extends ListBaseComponent
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-
+            if (this.requestAction?.length > 0 && this.requestAction === "quick-add") {
+              this.requestAction = '';
+              this.onActionbuttonQuickAddRow();
+            }
             if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
               this.optionsStatist.data.show = !this.optionsStatist.data.show
               this.onActionbuttonStatist();
