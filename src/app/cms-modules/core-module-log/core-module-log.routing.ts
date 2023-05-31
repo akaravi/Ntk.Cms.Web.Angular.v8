@@ -6,6 +6,7 @@ import { CoreModuleLogLikeListComponent } from './like/list/list.component';
 import { CoreModuleLogMemoListComponent } from './memo/list/list.component';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogScoreListComponent } from './score/list/list.component';
+import { CoreModuleLogShowKeyListComponent } from './show-key/list/list.component';
 import { CoreModuleLogSiteCreditBlockedListComponent } from './site-credit-blocked/list/list.component';
 import { CoreModuleLogSiteCreditListComponent } from './site-credit/list/list.component';
 import { CoreModuleLogSiteUserCreditBlockedListComponent } from './site-user-credit-blocked/list/list.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
         path: 'memo',
         component: CoreModuleLogMemoListComponent,
         data: { title: 'ROUTE.COREMODULELOG.MEMO' },
+      },
+      {
+        path: 'show-key',
+        component: CoreModuleLogShowKeyListComponent
       },
       {
         path: 'favorite',

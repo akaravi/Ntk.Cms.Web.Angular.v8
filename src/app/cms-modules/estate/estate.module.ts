@@ -168,6 +168,7 @@ import { EstatePropertySupplierSelectorComponent } from './property-supplier/sel
 import { EstatePropertySupplierTreeComponent } from './property-supplier/tree/tree.component';
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
 import { EstatePropertyActionComponent } from './property/action/action.component';
+import { EstatePropertyQuickAddComponent } from './property/quick-add/quick-add.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
 
@@ -241,6 +242,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyTypeUsageHeaderComponent,
     /* */
     EstatePropertyAddComponent,
+    EstatePropertyQuickAddComponent,
     EstatePropertyEditComponent,
     EstatePropertyListComponent,
     EstatePropertySelectorComponent,

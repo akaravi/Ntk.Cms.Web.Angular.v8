@@ -21,6 +21,7 @@ import {
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -41,6 +42,7 @@ export class PublicHelper {
     private coreModuleService: CoreModuleService,
     private cmsStoreService: CmsStoreService,
     public dialog: MatDialog,
+    private pageInfo: PageInfoService
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
     this.innerWidth = + window.innerWidth;
@@ -490,12 +492,12 @@ export class PublicHelper {
     }
 
 
-
-    if (cloumn.indexOf('Id') >= 0)
-      cloumnAdminAccessDispaly.push('Id');
-    if (cloumn.indexOf('LinkSiteId') >= 0)
-      cloumnAdminAccessDispaly.push('LinkSiteId');
-
+    if (cloumnAdminAccessDispaly.length == 0) {
+      if (cloumn.indexOf('Id') >= 0)
+        cloumnAdminAccessDispaly.push('Id');
+      if (cloumn.indexOf('LinkSiteId') >= 0)
+        cloumnAdminAccessDispaly.push('LinkSiteId');
+    }
     if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
       var i = 0;
       cloumnAdminAccessDispaly.forEach(element => {
@@ -511,7 +513,10 @@ export class PublicHelper {
   OpenNewTabByClick(event: MouseEvent, linkOfRoute: String): void {
     if (event?.ctrlKey) {
       window.open("/#" + linkOfRoute, "_blank");
+    } else if (this.router.url === linkOfRoute) {
+      this.router.navigate([linkOfRoute]);
     } else {
+      this.pageInfo.updateContentService(null);
       this.router.navigate([linkOfRoute]);
     }
   }

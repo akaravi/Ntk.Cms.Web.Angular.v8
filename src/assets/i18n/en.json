@@ -3,6 +3,7 @@
   "ACTION.ADD": "Add",
   "ACTION.ADS": "Ads",
   "ACTION.QUICK_VIEW": "Quick View",
+  "ACTION.QUICK_ADD": "Quick Add",
   "ACTION.AUTOADD": "Auto Add",
   "ACTION.BACK": "Back",
   "ACTION.BACK_TO_PROPERTY_LIST": "Back to property list",
@@ -47,6 +48,7 @@
   "ACTION.DASHBOARDWIDGETS": "Dashboart Widgets",
   "ACTION.DELETE": "Delete",
   "ACTION.MEMO": "Memo",
+  "ACTION.SHOW_KEY": "ُCreate Show Key",
   "ACTION.COPY": "Copy",
   "ACTION.DETAIL": "Detail",
   "ACTION.DISPLAYSUBHEADER": "Display subheader",
@@ -200,6 +202,7 @@
   "ACTION.LIST_THEMES": "List of themes",
   "ACTION.LIST_APPS": "List of apps",
   "ACTION.LIST_SITES": "List of sites",
+
   "ACTION.CATEGORY_LIST_SITES": "Category list of sites",
   "ACTION.DOWNLOAD": "Download",
   "ACTION.REPORTS": "Reports",
@@ -1523,6 +1526,7 @@
   "ROUTE.CATALOG": "Catalog",
   "ROUTE.CHART": "Chart",
   "ROUTE.CONTACT": "Contact",
+<<<<<<< HEAD
   "ROUTE.CORELOG": "Main page",
   "ROUTE.CORELOG.ERROR": "Modules",
   "ROUTE.CORE": "Main page",
@@ -1628,6 +1632,8 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "Member info",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "Notification",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "Application",
+=======
+>>>>>>> main
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

@@ -16,10 +16,13 @@ import {
   ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
-import { ComponentOptionSearchModel } from "src/app/core/cmsComponentModels/base/componentOptionSearchModel";
-import { ComponentOptionStatistModel } from "src/app/core/cmsComponentModels/base/componentOptionStatistModel";
+import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
+import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
+import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/componentOptionStatistModel";
+import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
 import { PublicHelper } from "src/app/core/helpers/publicHelper";
 import { TokenHelper } from "src/app/core/helpers/tokenHelper";
+import { ContentInfoModel } from "src/app/core/models/contentInfoModel";
 import { ProgressSpinnerModel } from "src/app/core/models/progressSpinnerModel";
 import { CmsToastrService } from "src/app/core/services/cmsToastr.service";
 import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service";
@@ -27,6 +30,7 @@ import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
+import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
 
@@ -35,7 +39,7 @@ import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.compo
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
-export class EstatePropertyListComponent
+export class EstatePropertyListComponent extends ListBaseComponent
   implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = "";
   requestLinkPropertyTypeUsageId = "";
@@ -48,6 +52,7 @@ export class EstatePropertyListComponent
   requestLinkEstateAgencyId = "";
   requestLinkUserId = 0;
   requestInChecking = false;
+  requestAction = '';
   constructor(
     public contentService: EstatePropertyService,
     private activatedRoute: ActivatedRoute,
@@ -60,7 +65,10 @@ export class EstatePropertyListComponent
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public translate: TranslateService,
+    private pageInfo: PageInfoService,
   ) {
+    super();
+    pageInfo.updateContentService(contentService);
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyTypeLanduseId =
@@ -89,6 +97,7 @@ export class EstatePropertyListComponent
     this.requestLinkUserId = +this.activatedRoute.snapshot.paramMap.get(
       "LinkUserId"
     ) | 0;
+    this.requestAction = this.activatedRoute.snapshot.paramMap.get("Action");
     if (this.activatedRoute.snapshot.paramMap.get("InChecking")) {
       this.searchInChecking =
         this.activatedRoute.snapshot.paramMap.get("InChecking") === "true";
@@ -290,7 +299,8 @@ export class EstatePropertyListComponent
     }
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstatePropertyModel();
+
+    this.onActionTableRowSelect(new EstatePropertyModel());
     const pName = this.constructor.name + "main";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -428,7 +438,10 @@ export class EstatePropertyListComponent
           if (ret.isSuccess) {
             this.dataModelResult = ret;
             this.tableSource.data = ret.listItems;
-
+            if (this.requestAction?.length > 0 && this.requestAction === "quick-add") {
+              this.requestAction = '';
+              this.onActionbuttonQuickAddRow();
+            }
             if (this.optionsSearch.data.show && this.optionsStatist.data.show) {
               this.optionsStatist.data.show = !this.optionsStatist.data.show
               this.onActionbuttonStatist();
@@ -575,7 +588,6 @@ export class EstatePropertyListComponent
     this.filteModelContent.sortType = sortType;
     /*filter */
     this.categoryModelSelected = model;
-
     this.DataGetAll();
   }
 
@@ -586,7 +598,8 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = mode;
+
+    this.onActionTableRowSelect(mode);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -608,7 +621,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -626,7 +639,31 @@ export class EstatePropertyListComponent
       }
     });
   }
+  onActionbuttonQuickAddRow(event?: MouseEvent): void {
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    if (event?.ctrlKey) {
+      this.link = "/#/estate/property/add/";
+      window.open(this.link, "_blank");
+    }
+    const dialogRef = this.dialog.open(EstatePropertyQuickAddComponent, {
+      height: '90%',
+      data: {
 
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+  }
 
 
   onActionbuttonAdsRow(
@@ -829,7 +866,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -854,29 +891,14 @@ export class EstatePropertyListComponent
     //open popup
   }
   onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
-    if (!model || !model.id || model.id.length === 0) {
-      this.cmsToastrService.typeErrorSelectedRow();
-      return;
-    }
-    this.tableRowSelected = model;
-    if (
-      this.dataModelResult == null ||
-      this.dataModelResult.access == null ||
-      !this.dataModelResult.access.accessEditRow
-    ) {
-      this.cmsToastrService.typeErrorAccessEdit();
-      return;
-    }
-    const pName = this.constructor.name + "memo";
-    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
     //open popup
     const dialogRef = this.dialog.open(CmsMemoComponent, {
       height: "70%",
       width: "50%",
       data: {
         service: this.contentService,
-        id: this.tableRowSelected.id,
-        title: this.tableRowSelected.title
+        id: this.tableRowSelected?.id,
+        title: this.tableRowSelected?.title
       },
     }
     );
@@ -886,7 +908,6 @@ export class EstatePropertyListComponent
       }
     });
     //open popup
-    this.loading.Stop(pName);
   }
 
 
@@ -933,13 +954,13 @@ export class EstatePropertyListComponent
   }
   onActionTableRowSelect(row: EstatePropertyModel): void {
     this.tableRowSelected = row;
-
+    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, row.viewContentHidden, '', row.urlViewContent));
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstatePropertyModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {
@@ -959,7 +980,7 @@ export class EstatePropertyListComponent
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
 
     const pName = this.constructor.name + "ServiceGetOneById";

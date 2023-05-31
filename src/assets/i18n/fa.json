@@ -46,6 +46,7 @@
   "ACTION.DASHBOARDWIDGETS": "ابزارهای داشبورد",
   "ACTION.DELETE": "حذف",
   "ACTION.MEMO": "یادداشت ها",
+  "ACTION.SHOW_KEY": "کلید های تماشا",
   "ACTION.COPY": "کپی",
   "ACTION.DETAIL": "جزییات",
   "ACTION.DISPLAYSUBHEADER": "نمایش سرتیترفرعی",
@@ -198,6 +199,7 @@
   "ACTION.LIST_THEMES": "لیست تم ها",
   "ACTION.LIST_APPS": "لیست اپ ها",
   "ACTION.LIST_SITES": "لیست سایت ها",
+  "ACTION.QUICK_ADD": "اضافه کردن سریع",
   "ACTION.CATEGORY_LIST_SITES": "لیست دسته بندی سایت ها",
   "ACTION.DOWNLOAD": "دانلود",
   "ACTION.REPORTS": "گزارشات",
@@ -919,6 +921,7 @@
   "TITLE.VIEW": "مشاهده",
   "TITLE.ROOM": "اتاق",
   "TITLE.QUICK_VIEW": "مشاهده سریع",
+  "TITLE.QUICK_ADD": "اضافه کردن سریع",
   "TITLE.VIEW_STATISTICS": "مشاهده امار",
   "TITLE.VIEW_RESULT": "مشاهده نتیجه",
   "TITLE.Amount_pure": "هزینه خالص",
@@ -1526,12 +1529,17 @@
   "ROUTE.EXPERT.PRICE": "استعلام قیمت کارشناسی",
   "ROUTE.ESTATE.CUSTOMER.ORDER": "سفارش مشتری  ",
   "ROUTE.ESTATE.PROPERTY": "مدیریت املاک",
+<<<<<<< HEAD
   "ROUTE.ARTICLE": "مقاله ",
+=======
+  "ROUTE.Article": "مقاله ",
+>>>>>>> main
   "ROUTE.BANKPAYMENT": "پرداخت اینترنتی",
   "ROUTE.BIOGRAPHY": "بیوگرافی",
   "ROUTE.CATALOG": "کاتالوگ",
   "ROUTE.CHART": "چارت",
   "ROUTE.CONTACT": "مخاطب",
+<<<<<<< HEAD
   "ROUTE.CORELOG": "صفحه اصلی",
   "ROUTE.CORELOG.ERROR": "ماژول ها",
   "ROUTE.CORE": "صفحه اصلی",
@@ -1637,6 +1645,8 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "اطلاعات اعضا",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "نوتیفیکیشن",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "برنامه",
+=======
+>>>>>>> main
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

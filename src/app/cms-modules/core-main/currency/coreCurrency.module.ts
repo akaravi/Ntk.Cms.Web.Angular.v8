@@ -15,6 +15,7 @@ import { CoreCurrencySelectorComponent } from './selector/selector.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
   providers: [
     CoreCurrencyService,
     CoreModuleService,
+    CmsConfirmationDialogService
   ]
 })
 export class CoreCurrencyCmsModule {

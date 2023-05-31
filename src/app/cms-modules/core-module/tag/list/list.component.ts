@@ -10,8 +10,8 @@ import {
   CoreModuleTagService, DataFieldInfoModel, EnumRecordStatus, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
+import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
@@ -368,7 +368,7 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {

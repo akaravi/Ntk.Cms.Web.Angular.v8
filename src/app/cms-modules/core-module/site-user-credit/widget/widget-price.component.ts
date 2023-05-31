@@ -99,7 +99,7 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.service.ServiceGetAll(filterModel).subscribe({
+    this.service.ServiceGetAllCredit().subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 

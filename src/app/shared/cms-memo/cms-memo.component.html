@@ -1,88 +1,97 @@
-<div class="relative" [hidden]="!showAdd">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">{{fieldsInfo['createdBy']?.fieldTitle}}</th>
-                <th scope="col">{{fieldsInfo['createdDate']?.fieldTitle}}</th>
-                <th scope="col">{{fieldsInfo['subjectTitle']?.fieldTitle}}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let item of dataModelResult.listItems ; let i = index">
-                <tr class="myDIV">
-                    <th scope="row">{{ i+1 }}</th>
-                    <td>{{ item.createdBy }}</td>
-                    <td>{{ publicHelper.LocaleDate(item.createdDate) }}</td>
-                    <td>{{ item.subjectTitle }}</td>
-                </tr>
-                <tr class="hide">
-                    <td></td>
-                    <td colspan="3">
-                        {{ item.subjectBody }}
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
-
-    <br>
-    <br>
-    <button class="btn btn-success btn-lg btn-block absolute" (click)="onActionAdd()">{{'ACTION.ADD'
-        |translate}}</button>
+<div class="ntk-cms-html-card-header">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  {{ formInfo.formTitle }}
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
-<!-- add memo -->
-<form [hidden]="showAdd" (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-        <app-progress-spinner [options]="loading"> </app-progress-spinner>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <!-- SubjectTitle Field -->
-        <mat-form-field class="ntk-full-width">
-            <mat-label>SubjectTitle</mat-label>
-            <input matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle type="text"
-                placeholder="SubjectTitle" required>
-            <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear"
-                (click)="dataModel.subjectTitle = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
+<div class="ntk-cms-html-card-body">
+  <table class="table table-hover" *ngIf="!showFormAdd">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">{{'TITLE.createdBy'|translate}}</th>
+        <th scope="col">{{'TITLE.createdDate'|translate}}</th>
+        <th scope="col">{{'TITLE.subjectTitle'|translate}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of dataModelResult.listItems ; let i = index">
+        <tr class="myDIV">
+          <th scope="row">{{ i+1 }}</th>
+          <td>{{ item.createdBy }}</td>
+          <td>{{ publicHelper.LocaleDate(item.createdDate) }}</td>
+          <td>{{ item.subjectTitle }}</td>
+          <td>
+            <button type="button" mat-icon-button (click)="DataDeleteContent(item.id)">
+              <small>
+                <mat-icon matTooltip="{{'ACTION.DELETE' | translate}}" matTooltipPosition="before" aria-hidden="false"
+                  style="color: red;">delete</mat-icon>
+              </small>
+            </button>
+          </td>
+        </tr>
+        <tr class="hide">
+          <td></td>
+          <td colspan="3">
+            {{ item.subjectBody }}
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <form *ngIf="showFormAdd" (ngSubmit)="onFormSubmit()" #vform="ngForm">
 
-        <!-- SubjectBody Field -->
-        <mat-form-field class="ntk-full-width">
-            <mat-label>SubjectBody</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.subjectBody" name="dataModel.subjectBody" #SubjectBody type="text"
-                placeholder="SubjectBody" rows="9" required></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.subjectBody" matSuffix mat-icon-button aria-label="Clear"
-                (click)="dataModel.subjectBody = null">close</mat-icon>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <div class="ntk-cms-html-card-body">
+      <app-progress-spinner [options]="loading"> </app-progress-spinner>
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      <!-- SubjectTitle Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>SubjectTitle</mat-label>
+        <input matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle type="text"
+          placeholder="SubjectTitle" required>
+        <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.subjectTitle = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+
+      <!-- SubjectBody Field -->
+      <mat-form-field class="ntk-full-width">
+        <mat-label>SubjectBody</mat-label>
+        <textarea matInput [(ngModel)]="dataModel.subjectBody" name="dataModel.subjectBody" #SubjectBody type="text"
+          placeholder="SubjectBody" rows="9" required></textarea>
+        <mat-icon matSuffix *ngIf="dataModel.subjectBody" matSuffix mat-icon-button aria-label="Clear"
+          (click)="dataModel.subjectBody = null">close</mat-icon>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </mat-form-field>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-card-message">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-        <div class="form-actions">
-            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-            <small class="form-text text-muted danger">{{ formInfo.formError }}
-            </small>
-        </div>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </div>
-    <div class="ntk-cms-html-card-footer">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success btn-lg btn-block"
-                [disabled]="!vform.form.valid">
-                <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-            </button>
-            <button type="button" (click)="onFormCancel()" class="btn btn-light btn-lg btn-block">
-                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-            </button>
-        </div>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
+        </small>
+      </div>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </div>
 
-</form>
+
+  </form>
+</div>
+<div class="ntk-cms-html-card-footer">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  <br>
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <button type="submit" *ngIf="showFormAdd" (click)="onFormSubmit()" class="btn btn-success btn-lg btn-block"
+      [disabled]="!formGroup?.valid">
+      <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+    </button>
+    <button type="button" *ngIf="!showFormAdd" class="btn btn-success btn-lg btn-block"
+      (click)="onActionAdd()">{{'ACTION.ADD'
+      |translate}}</button>
+    <button type="button" (click)="onFormCancel()" class="btn btn-light btn-lg btn-block">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>

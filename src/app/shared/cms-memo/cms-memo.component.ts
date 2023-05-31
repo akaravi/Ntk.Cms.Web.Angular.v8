@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -17,8 +17,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 export class CmsMemoComponent implements OnInit {
   static nextId = 0;
   id = ++CmsMemoComponent.nextId;
-
-  requestTitle = '';
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,105 +25,160 @@ export class CmsMemoComponent implements OnInit {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private fb: FormBuilder,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestService = data.service;
       this.dataModel.moduleEntityId = data.id;
-      this.requestTitle = data.title;
+      this.dataModel.subjectTitle = data.title;
     }
 
-    if (!this.dataModel.moduleEntityId || this.dataModel.moduleEntityId.length == 0)
+    if (!this.requestService)
       this.dialogRef.close({ dialogChangedDate: true });
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  showAdd = true;
+
+  showFormAdd = true;
 
   loading = new ProgressSpinnerModel();
 
   dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
   dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleMemoDtoModel = new CoreModuleMemoDtoModel();
-
+  formInfo: FormInfoModel = new FormInfoModel();
 
 
   ngOnInit(): void {
+
     this.DataGetAll();
   }
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  formInfo: FormInfoModel = new FormInfoModel();
+
   DataGetAll(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
 
     /*filter CLone*/
-    this.requestService.ServiceMemoGetAll(this.dataModel.moduleEntityId).subscribe({
-      next: (ret) => {
-        this.dataModelResult = ret;
-        if (ret.isSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        } else {
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+    if (this.dataModel.moduleEntityId && this.dataModel.moduleEntityId.length > 0) {
+      this.requestService.ServiceMemoGetAllEntity(this.dataModel.moduleEntityId).subscribe({
+        next: (ret) => {
+          this.dataModelResult = ret;
+          if (ret.listItems?.length > 0)
+            this.showFormAdd = false;
+          if (!ret.isSuccess) {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-
-        this.loading.Stop(pName);
       }
+      );
     }
-    );
-  }
+    else {
+      this.requestService.ServiceMemoGetAll().subscribe({
+        next: (ret) => {
+          this.dataModelResult = ret;
+          if (ret.listItems?.length > 0)
+            this.showFormAdd = false;
+          if (!ret.isSuccess)
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
 
-  DataAddContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+          this.loading.Stop(pName);
+      },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
 
-    this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
-      next: (ret) => {
-        this.formInfo.formSubmitAllow = true;
-        // this.dataModelResultBase = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessAdd();
-          this.dialogRef.close({ dialogChangedDate: true });
-
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
-
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
       }
+      );
+  }
+}
+
+DataAddContent(): void {
+  this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  this.formInfo.formError = '';
+  const pName = this.constructor.name + 'main';
+  this.loading.Start(pName);
+
+  this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
+    next: (ret) => {
+      this.formInfo.formSubmitAllow = true;
+      // this.dataModelResultBase = ret;
+      if (ret.isSuccess) {
+        this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        this.cmsToastrService.typeSuccessAdd();
+        this.DataGetAll();
+
+      } else {
+        this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+        this.formInfo.formError = ret.errorMessage;
+        this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+      }
+      this.loading.Stop(pName);
+
+    },
+    error: (er) => {
+      this.formInfo.formSubmitAllow = true;
+      this.cmsToastrService.typeError(er);
+      this.loading.Stop(pName);
     }
-    );
   }
+  );
+}
+DataDeleteContent(id: string): void {
+  this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  this.formInfo.formError = '';
+  const pName = this.constructor.name + 'main';
+  this.loading.Start(pName);
 
-  onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      return;
+  this.requestService.ServiceMemoDelete(id).subscribe({
+    next: (ret) => {
+      this.formInfo.formSubmitAllow = true;
+      // this.dataModelResultBase = ret;
+      if (ret.isSuccess) {
+        this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+        this.cmsToastrService.typeSuccessRemove();
+        this.DataGetAll();
+        //this.dialogRef.close({ dialogChangedDate: true });
+
+      } else {
+        this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+        this.formInfo.formError = ret.errorMessage;
+        this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+      }
+      this.loading.Stop(pName);
+
+    },
+    error: (er) => {
+      this.formInfo.formSubmitAllow = true;
+      this.cmsToastrService.typeError(er);
+      this.loading.Stop(pName);
     }
-    this.formInfo.formSubmitAllow = false;
-    this.DataAddContent();
+  }
+  );
+}
+
+onFormSubmit(): void {
+  if(!this.formGroup.valid) {
+  return;
+}
+this.formInfo.formSubmitAllow = false;
+this.DataAddContent();
   }
 
-  onActionAdd() {
-    this.showAdd = !this.showAdd
-  }
-  onFormCancel(): void {
-    this.dialogRef.close({ dialogChangedDate: false });
+onActionAdd() {
+  this.showFormAdd = !this.showFormAdd
+}
+onFormCancel(): void {
+  this.dialogRef.close({ dialogChangedDate: false });
 
-  }
+}
 
 }

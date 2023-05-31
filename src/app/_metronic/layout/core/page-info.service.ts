@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { IApiCmsServerBase } from 'ntk-cms-api';
 import { BehaviorSubject } from 'rxjs';
+import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
 
 export interface PageLink {
   title: string;
@@ -24,16 +26,37 @@ export class PageInfoService {
   public breadcrumbs: BehaviorSubject<Array<PageLink>> = new BehaviorSubject<
     Array<PageLink>
   >([]);
+  public contentService: BehaviorSubject<IApiCmsServerBase> = new BehaviorSubject<IApiCmsServerBase>(null);
+  public contentInfo: BehaviorSubject<ContentInfoModel> = new BehaviorSubject<ContentInfoModel>(new ContentInfoModel('', '', false, '',''));
 
-  constructor() {}
+
+  constructor() { }
 
   public setTitle(_title: string) {
     this.title.next(_title);
   }
-
   public updateTitle(_title: string) {
     setTimeout(() => {
       this.setTitle(_title);
+    }, 1);
+  }
+
+
+
+  public setContentService(model: IApiCmsServerBase) {
+    this.contentService.next(model);
+  }
+  public updateContentService(model: IApiCmsServerBase) {
+    setTimeout(() => {
+      this.setContentService(model);
+    }, 1);
+  }
+  public setContentInfo(model: ContentInfoModel) {
+    this.contentInfo.next(model);
+  }
+  public updateContentInfo(model: ContentInfoModel) {
+    setTimeout(() => {
+      this.setContentInfo(model);
     }, 1);
   }
 

@@ -10,7 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import {
   CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService,
-  CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteCreditService,
+  CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogShowKeyService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteCreditService,
   CoreModuleLogSiteUserCreditBlockedService, CoreModuleLogSiteUserCreditService, CoreModuleService, CoreModuleSiteCreditService,
   CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService
 } from 'ntk-cms-api';
@@ -34,6 +34,10 @@ import { CoreModuleLogReportAbuseViewComponent } from './report-abuse/view/view.
 import { CoreModuleLogScoreEditComponent } from './score/edit/edit.component';
 import { CoreModuleLogScoreListComponent } from './score/list/list.component';
 import { CoreModuleLogScoreViewComponent } from './score/view/view.component';
+import { CoreModuleLogShowKeyAddComponent } from './show-key/add/add.component';
+import { CoreModuleLogShowKeyEditComponent } from './show-key/edit/edit.component';
+import { CoreModuleLogShowKeyListComponent } from './show-key/list/list.component';
+import { CoreModuleLogShowKeyViewComponent } from './show-key/view/view.component';
 import { CoreModuleLogSiteCreditBlockedEditComponent } from './site-credit-blocked/edit/edit.component';
 import { CoreModuleLogSiteCreditBlockedListComponent } from './site-credit-blocked/list/list.component';
 import { CoreModuleLogSiteCreditBlockedViewComponent } from './site-credit-blocked/view/view.component';
@@ -67,6 +71,11 @@ import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/vie
     CoreModuleLogMemoEditComponent,
     CoreModuleLogMemoAddComponent,
     CoreModuleLogMemoViewComponent,
+    /**ShowKey */
+    CoreModuleLogShowKeyListComponent,
+    CoreModuleLogShowKeyEditComponent,
+    CoreModuleLogShowKeyAddComponent,
+    CoreModuleLogShowKeyViewComponent,
     /**ReportAbuse */
     CoreModuleLogReportAbuseListComponent,
     CoreModuleLogReportAbuseEditComponent,
@@ -158,6 +167,7 @@ import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/vie
     CoreModuleLogContentCountService,
     CoreModuleLogLikeService,
     CoreModuleLogMemoService,
+    CoreModuleLogShowKeyService,
     CoreModuleLogReportAbuseService,
     CoreModuleLogScoreService,
     CoreModuleLogSiteCreditBlockedService,
