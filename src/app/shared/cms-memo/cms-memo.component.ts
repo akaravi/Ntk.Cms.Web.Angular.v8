@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleLogMemoModel, CoreModuleMemoDtoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -25,7 +26,7 @@ export class CmsMemoComponent implements OnInit {
     public publicHelper: PublicHelper,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
-    private fb: FormBuilder,
+    public tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -52,6 +53,9 @@ export class CmsMemoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.tokenHelper.getCurrentToken().then((value) => {
+
+    });
 
     this.DataGetAll();
   }

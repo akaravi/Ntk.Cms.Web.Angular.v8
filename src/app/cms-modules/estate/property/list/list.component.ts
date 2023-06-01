@@ -258,7 +258,7 @@ export class EstatePropertyListComponent extends ListBaseComponent
       this.DataGetAll();
       this.tokenHelper.CheckIsAdmin();
     });
-
+    this.tokenInfo.direction
     this.cmsApiStoreSubscribe = this.tokenHelper
       .getCurrentTokenOnChange()
       .subscribe((next) => {

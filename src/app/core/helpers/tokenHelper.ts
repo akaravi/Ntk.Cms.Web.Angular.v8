@@ -10,7 +10,7 @@ import {
   TokenDeviceClientInfoDtoModel,
   TokenInfoModel
 } from 'ntk-cms-api';
-import { firstValueFrom, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, firstValueFrom } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
@@ -67,6 +67,7 @@ export class TokenHelper implements OnDestroy {
       return state.ntkCmsAPiState.tokenInfo;
     });
   }
+  directionTheme = '';
   setDirectionThemeBylanguage(language) {
     if (!language || language.length === 0)
       language = this.translationService.getSelectedLanguage()
@@ -74,11 +75,13 @@ export class TokenHelper implements OnDestroy {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'rtl');
       document.getElementsByTagName('html')[0].setAttribute('style', 'direction: rtl');
+      this.directionTheme = 'rtl';
       //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.rtl.css');
     } else {
       document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
       document.getElementsByTagName('html')[0].setAttribute('direction', 'ltr');
       document.getElementsByTagName('html')[0].setAttribute('style', 'direction: ltr');
+      this.directionTheme = 'ltr';
       //   this.document.getElementById('cssdir').setAttribute('href', './assets/sass/style.angular.css');
     }
     document.getElementsByTagName('html')[0].setAttribute('lang', language);
