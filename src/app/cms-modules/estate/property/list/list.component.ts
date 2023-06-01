@@ -964,6 +964,8 @@ export class EstatePropertyListComponent extends ListBaseComponent
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {
+    this.onActionTableRowSelect(new EstatePropertyModel);
+
     row["expanded"] = false;
   }
   onActionBackToParent(): void {
