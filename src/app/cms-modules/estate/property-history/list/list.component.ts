@@ -306,11 +306,11 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
 
   onActionbuttonNewRow(): void {
-    if (!this.popupAdd && (this.categoryModelSelected == null || this.categoryModelSelected.id.length === 0)) {
-      const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
+    // if (!this.popupAdd && (this.categoryModelSelected == null || this.categoryModelSelected.id.length === 0)) {
+    //   const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
+    //   this.cmsToastrService.typeErrorSelected(message);
+    //   return;
+    // }
     this.popupAdd = false;
     if (
       this.dataModelResult == null ||

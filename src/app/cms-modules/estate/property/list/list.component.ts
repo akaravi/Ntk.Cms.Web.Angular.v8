@@ -964,9 +964,13 @@ export class EstatePropertyListComponent extends ListBaseComponent
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {
-    this.onActionTableRowSelect(new EstatePropertyModel);
+    //this.onActionTableRowSelect(new EstatePropertyModel);
+    setTimeout(() => {
+      row["expanded"] = false;
+      this.cdr.detectChanges();
+    }, 1000);
 
-    row["expanded"] = false;
+
   }
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);
