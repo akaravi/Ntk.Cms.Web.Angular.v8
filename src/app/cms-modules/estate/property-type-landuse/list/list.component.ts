@@ -188,7 +188,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -213,7 +213,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -264,7 +264,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/estate/property-detail/LinkPropertyTypeLanduseId/', this.tableRowSelected.id]);
   }
@@ -274,7 +274,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/estate/property/LinkPropertyTypeLanduseId/', this.tableRowSelected.id]);
   }
@@ -350,7 +350,7 @@ export class EstatePropertyTypeLanduseListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

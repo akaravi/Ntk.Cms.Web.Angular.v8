@@ -171,7 +171,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -199,7 +199,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -315,7 +315,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -354,7 +354,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/coremodule/site-user-credit-charge/', model.linkModuleId]);
   }
@@ -364,7 +364,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     //open popup
     const dialogRef = this.dialog.open(CoreModuleSiteUserCreditChargeDirectComponent, {

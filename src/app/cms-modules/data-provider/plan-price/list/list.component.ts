@@ -200,7 +200,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -230,7 +230,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -253,7 +253,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/data-provider/transaction/LinkPlanPriceId/' + model.id]);
 
@@ -330,7 +330,7 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

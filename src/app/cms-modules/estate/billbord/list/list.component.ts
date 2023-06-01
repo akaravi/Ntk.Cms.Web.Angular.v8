@@ -200,7 +200,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -224,7 +224,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -275,7 +275,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
 
     if (event?.ctrlKey) {
@@ -342,7 +342,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     window.open(this.tableRowSelected.urlViewContent, '_blank');
   }
   onActionbuttonExport(): void {
@@ -367,7 +367,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -397,7 +397,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/estate/billboard/add-copy/" + this.tableRowSelected.id;
@@ -441,7 +441,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
 
     const pName = this.constructor.name + "ServiceGetOneById";

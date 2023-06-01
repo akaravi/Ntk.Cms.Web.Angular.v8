@@ -168,7 +168,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -193,7 +193,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -282,7 +282,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -315,7 +315,7 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

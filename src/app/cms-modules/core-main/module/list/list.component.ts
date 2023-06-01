@@ -217,7 +217,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -242,7 +242,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -293,7 +293,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/core/siteModule/', this.tableRowSelected.id]);
   }
@@ -378,7 +378,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate([model.className + '/config/mainadmin/']);
   }
   onActionbuttonSiteList(model: CoreModuleModel = this.tableRowSelected): void {
@@ -387,7 +387,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['core/site/modulelist/LinkModuleId/', model.id]);
   }
   onActionbuttonSiteCategoryList(model: CoreModuleModel = this.tableRowSelected): void {
@@ -396,7 +396,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.id]);
   }
   onActionbuttonModuleEntityList(model: CoreModuleModel = this.tableRowSelected): void {
@@ -405,7 +405,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['core/module-entity/LinkModuleId/', model.id]);
   }
   onActionbuttonExport(): void {
@@ -430,7 +430,7 @@ export class CoreModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

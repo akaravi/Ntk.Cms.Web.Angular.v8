@@ -212,7 +212,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -237,7 +237,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -338,7 +338,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['corelog/report-data/LinkModuleEntityReportFileId/', model.id]);
   }
   onActionbuttonExport(): void {
@@ -363,7 +363,7 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

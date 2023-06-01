@@ -194,7 +194,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -221,7 +221,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -275,7 +275,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/core/siteModuleSaleInvoiceDetail/', this.tableRowSelected.id]);
   }
@@ -336,7 +336,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -357,7 +357,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -393,7 +393,7 @@ export class CoreModuleSaleInvoiceDetailListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

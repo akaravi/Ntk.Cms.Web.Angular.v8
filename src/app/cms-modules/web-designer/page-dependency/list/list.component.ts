@@ -13,7 +13,7 @@ import {
   TokenInfoModel, WebDesignerMainPageDependencyModel,
   WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -235,7 +235,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -260,7 +260,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -307,7 +307,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (this.tokenInfo.userAccessAdminAllowToAllData) {
       this.router.navigate(['/webdesigner/page/list-grid/LinkPageDependencyGuId', this.tableRowSelected.id]);
     }
@@ -364,7 +364,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -399,7 +399,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

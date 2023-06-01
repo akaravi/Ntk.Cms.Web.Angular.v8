@@ -206,7 +206,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -231,7 +231,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -253,7 +253,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/linkmanagement/billboard/edit/" + this.tableRowSelected.linkManagementBillboardId;
@@ -267,7 +267,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/linkmanagement/target/edit/" + this.tableRowSelected.linkManagementTargetId;
@@ -348,7 +348,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

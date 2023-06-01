@@ -217,7 +217,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -243,7 +243,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['core/module-entity-report-file/LinkModuleEntityReportFileId/', model.id]);
   }
   onActionbuttonDeleteRow(model: CoreModuleEntityModel = this.tableRowSelected): void {
@@ -252,7 +252,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -303,7 +303,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['corelog/report-data/LinkModuleEntityId/', model.id]);
   }
   onActionSelectorSelect(model: CoreModuleModel | null): void {
@@ -389,7 +389,7 @@ export class CoreModuleEntityListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

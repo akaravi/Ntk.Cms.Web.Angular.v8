@@ -192,7 +192,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (model.linkContentId && model.linkContentId > 0) {
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
         height: '90%',

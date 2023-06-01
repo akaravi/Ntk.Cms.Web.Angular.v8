@@ -193,7 +193,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -218,7 +218,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -322,7 +322,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -358,7 +358,7 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

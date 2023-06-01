@@ -208,7 +208,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -235,7 +235,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -286,7 +286,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -374,7 +374,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -393,7 +393,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -412,7 +412,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -431,7 +431,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -450,7 +450,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -485,7 +485,7 @@ export class SmsLogOutBoxTaskSchedulerListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

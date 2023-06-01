@@ -2,7 +2,7 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit
 } from "@angular/core";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -503,7 +503,7 @@ export class EstatePropertyQuickListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -731,7 +731,7 @@ export class EstatePropertyQuickListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -800,7 +800,7 @@ export class EstatePropertyQuickListComponent
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
 
     const pName = this.constructor.name + "ServiceGetOneById";

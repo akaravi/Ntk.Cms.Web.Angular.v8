@@ -249,7 +249,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -265,7 +265,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -355,7 +355,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -426,7 +426,7 @@ export class ChartContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
 
     const pName = this.constructor.name + "ServiceGetOneById";

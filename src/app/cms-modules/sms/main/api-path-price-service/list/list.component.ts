@@ -244,7 +244,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -269,7 +269,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -390,7 +390,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
