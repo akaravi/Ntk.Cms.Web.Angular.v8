@@ -24,6 +24,7 @@ import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.compo
 @Component({
   selector: 'app-estate-property-quick-add',
   templateUrl: './quick-add.component.html',
+  styleUrls: ["./quick-add.component.scss"],
 })
 export class EstatePropertyQuickAddComponent implements OnInit {
   constructor(
