@@ -127,7 +127,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApplicationMemberInfoModel();
+    this.onActionTableRowSelect(new ApplicationMemberInfoModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -194,7 +194,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -218,7 +218,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -234,7 +234,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -281,7 +281,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -301,7 +301,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.Selected_row_does_not_have_ID_notification'));
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -401,7 +401,7 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -437,14 +437,14 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationMemberInfoModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
 
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: ApplicationMemberInfoModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: ApplicationMemberInfoModel): void {

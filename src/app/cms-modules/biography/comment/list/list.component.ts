@@ -123,7 +123,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BiographyCommentModel();
+    this.onActionTableRowSelect(new BiographyCommentModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -224,7 +224,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -249,7 +249,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -362,7 +362,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -395,7 +395,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: BiographyCommentModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
   onActionBackToParent(): void {
     this.router.navigate(['/biography/content/']);
@@ -405,7 +405,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -453,7 +453,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -475,7 +475,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.Get_biographical_information'));

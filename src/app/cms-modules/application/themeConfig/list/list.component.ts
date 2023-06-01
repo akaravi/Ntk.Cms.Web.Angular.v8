@@ -114,7 +114,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApplicationThemeConfigModel();
+    this.onActionTableRowSelect(new ApplicationThemeConfigModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -232,7 +232,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -258,7 +258,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -325,7 +325,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/application/app/LinkThemeConfigId', this.tableRowSelected.id]);
   }
@@ -351,7 +351,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -385,7 +385,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationThemeConfigModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);

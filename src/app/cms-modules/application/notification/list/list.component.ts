@@ -125,7 +125,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApplicationLogNotificationModel();
+    this.onActionTableRowSelect(new ApplicationLogNotificationModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -233,7 +233,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -249,7 +249,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -264,7 +264,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -363,7 +363,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -396,7 +396,7 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationLogNotificationModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);

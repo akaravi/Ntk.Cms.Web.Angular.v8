@@ -102,7 +102,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApiTelegramUploadedFileModel();
+    this.onActionTableRowSelect(new ApiTelegramUploadedFileModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -179,7 +179,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -230,7 +230,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/core/siteModule/', this.tableRowSelected.id]);
   }
@@ -291,7 +291,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['core/site/modulelist/LinkModuleId/', model.id]);
   }
   onActionbuttonSiteCategoryList(model: ApiTelegramUploadedFileModel = this.tableRowSelected): void {
@@ -300,7 +300,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['core/sitecategorymodule/LinkCmsModuleId/', model.id]);
   }
   onActionbuttonExport(): void {
@@ -325,7 +325,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -359,7 +359,7 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApiTelegramUploadedFileModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
 
 }

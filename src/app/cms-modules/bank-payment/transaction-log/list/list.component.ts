@@ -115,7 +115,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BankPaymentTransactionLogModel();
+    this.onActionTableRowSelect(new BankPaymentTransactionLogModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -201,7 +201,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -216,7 +216,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -307,7 +307,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -340,7 +340,7 @@ export class BankPaymentTransactionLogListComponent implements OnInit, OnDestroy
     this.DataGetAll();
   }
   onActionTableRowSelect(row: BankPaymentTransactionLogModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
   onActionBackToParent(): void {
     this.router.navigate(['/bankpayment/transaction/']);
