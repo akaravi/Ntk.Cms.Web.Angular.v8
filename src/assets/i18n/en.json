@@ -1526,7 +1526,6 @@
   "ROUTE.CATALOG": "Catalog",
   "ROUTE.CHART": "Chart",
   "ROUTE.CONTACT": "Contact",
-<<<<<<< HEAD
   "ROUTE.CORELOG": "Main page",
   "ROUTE.CORELOG.ERROR": "Modules",
   "ROUTE.CORE": "Main page",
@@ -1632,8 +1631,6 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "Member info",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "Notification",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "Application",
-=======
->>>>>>> main
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

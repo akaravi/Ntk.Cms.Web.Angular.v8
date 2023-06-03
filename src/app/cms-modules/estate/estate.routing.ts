@@ -211,11 +211,7 @@ const routes: Routes = [
       {
         path: 'property-history',
         component: EstatePropertyHistoryListComponent,
-<<<<<<< HEAD
         data: { title: 'ROUTE.ESTATE.HISTORY' },
-=======
-        data: { title: 'ROUTE.ESTATE.HISTORY' }
->>>>>>> main
       },
       {
         path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
@@ -256,11 +252,7 @@ const routes: Routes = [
       {
         path: 'expert-price',
         component: EstatePropertyExpertPriceListComponent,
-<<<<<<< HEAD
         data: { title: 'ROUTE.EXPERT.PRICE' },
-=======
-        data: { title: 'ROUTE.EXPERT.PRICE' }
->>>>>>> main
       },
       /**/
       {
@@ -335,11 +327,7 @@ const routes: Routes = [
       {
         path: 'customer-order',
         component: EstateCustomerOrderListComponent,
-<<<<<<< HEAD
         data: { title: 'ROUTE.ESTATE.CUSTOMER.ORDER' },
-=======
-        data: { title: 'ROUTE.CUSTOMER.ORDER' }
->>>>>>> main
       },
       {
         path: 'customer-order/recordstatus/:RecordStatus',

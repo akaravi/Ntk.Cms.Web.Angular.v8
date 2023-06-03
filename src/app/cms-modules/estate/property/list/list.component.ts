@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel, DataFieldInfoModel,
-  EnumFilterDataModelSearchTypes,
   EnumInputDataType,
   EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
@@ -30,6 +29,7 @@ import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
+import { environment } from "src/environments/environment";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
@@ -320,14 +320,14 @@ export class EstatePropertyListComponent extends ListBaseComponent
     if (this.searchInChecking) {
       const filter1 = new FilterDataModel();
       filter1.propertyName = "RecordStatus";
-      filter1.value = EnumRecordStatus.Available;
-      filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filter1.value = EnumRecordStatus.Pending;
+      //filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.filters.push(filter1);
-      const filter2 = new FilterDataModel();
-      filter2.propertyName = "RecordStatus";
-      filter2.value = EnumRecordStatus.DeniedConfirmed;
-      filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
-      filterModel.filters.push(filter2);
+      // const filter2 = new FilterDataModel();
+      // filter2.propertyName = "RecordStatus";
+      // filter2.value = EnumRecordStatus.DeniedConfirmed;
+      // filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      // filterModel.filters.push(filter2);
     }
 
     if (setResponsibleUserId > 0) {
@@ -952,7 +952,20 @@ export class EstatePropertyListComponent extends ListBaseComponent
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
+  isSingleClick: Boolean = true;
   onActionTableRowSelect(row: EstatePropertyModel): void {
+    /**isSingleClick */
+    this.isSingleClick = true;
+    if (this.tableRowSelected.id === row.id)
+      setTimeout(() => {
+        if (this.isSingleClick) {
+          this.isSingleClick = false;
+          this.tableRowSelected = new EstatePropertyModel();
+          this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
+          this.cdr.detectChanges();
+        }
+      }, 250)
+    /**isSingleClick */
     this.tableRowSelected = row;
     this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, row.viewContentHidden, '', row.urlViewContent));
     if (!row["expanded"])
@@ -960,15 +973,20 @@ export class EstatePropertyListComponent extends ListBaseComponent
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstatePropertyModel): void {
-    this.onActionTableRowSelect(row);
     row["expanded"] = true;
+    if (!environment.cmsViewConfig.tableRowMouseEnter)
+      return;
+    this.onActionTableRowSelect(row);
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {
+    if (row.id !== this.tableRowSelected.id)
+      setTimeout(() => {
+        row["expanded"] = false;
+        this.cdr.detectChanges();
+      }, 500);
+    if (!environment.cmsViewConfig.tableRowMouseEnter)
+      return;
     //this.onActionTableRowSelect(new EstatePropertyModel);
-    setTimeout(() => {
-      row["expanded"] = false;
-      this.cdr.detectChanges();
-    }, 1000);
 
 
   }

@@ -34,7 +34,9 @@ export const environment = {
     DeviceType: EnumDeviceType.WebSite,
     PackageName: '',
   },
-
+  cmsViewConfig: {
+    tableRowMouseEnter: false
+  },
   // appVersion: 'v8.1.7',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,

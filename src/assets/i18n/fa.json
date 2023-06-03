@@ -1529,17 +1529,12 @@
   "ROUTE.EXPERT.PRICE": "استعلام قیمت کارشناسی",
   "ROUTE.ESTATE.CUSTOMER.ORDER": "سفارش مشتری  ",
   "ROUTE.ESTATE.PROPERTY": "مدیریت املاک",
-<<<<<<< HEAD
   "ROUTE.ARTICLE": "مقاله ",
-=======
-  "ROUTE.Article": "مقاله ",
->>>>>>> main
   "ROUTE.BANKPAYMENT": "پرداخت اینترنتی",
   "ROUTE.BIOGRAPHY": "بیوگرافی",
   "ROUTE.CATALOG": "کاتالوگ",
   "ROUTE.CHART": "چارت",
   "ROUTE.CONTACT": "مخاطب",
-<<<<<<< HEAD
   "ROUTE.CORELOG": "صفحه اصلی",
   "ROUTE.CORELOG.ERROR": "ماژول ها",
   "ROUTE.CORE": "صفحه اصلی",
@@ -1645,8 +1640,6 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "اطلاعات اعضا",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "نوتیفیکیشن",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "برنامه",
-=======
->>>>>>> main
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

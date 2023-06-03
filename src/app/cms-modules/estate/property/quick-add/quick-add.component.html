@@ -145,35 +145,60 @@
                 </div>
             </mat-step>
             <mat-step label="{{'TITLE.Admin_Config' | translate}}" state="main" *ngIf="tokenHelper.isAdminSite">
+              <!-- LinkSiteId Field -->
+              <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['linkSiteId']?.accessWatchField && this.tokenHelper.isAdminSite">
+                  <mat-label>{{fieldsInfo['linkSiteId']?.fieldTitle}}</mat-label>
+                  <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text" disabled="{{!fieldsInfo['linkSiteId']?.accessAddField}}" placeholder="{{fieldsInfo['linkSiteId']?.fieldTitle}}" minlength="3" maxlength="100" required />
 
-                <!-- MainAdminRecordStatus Field -->
-                <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['mainAdminRecordStatus']?.accessWatchField">
-                    <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField" [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus" #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}" required>
-                        <mat-option *ngFor="
-  let item of dataModelEnumRecordStatusResult.listItems;
-  index as i
+
+                  <!-- viewContentHidden Field -->
+                  <div class="ntk-full-width">
+                      <mat-slide-toggle [(ngModel)]="dataModel.viewContentHidden" *ngIf="fieldsInfo['viewContentHidden']?.accessWatchField" [disabled]="!fieldsInfo['viewContentHidden']?.accessAddField" name="dataModel.viewContentHidden">
+                          {{fieldsInfo['viewContentHidden']?.fieldTitle}}
+                      </mat-slide-toggle>
+                  </div>
+                  <!-- siteAdminViewContentHidden Field -->
+                  <div class="ntk-full-width">
+                      <mat-slide-toggle [(ngModel)]="dataModel.siteAdminViewContentHidden" *ngIf="fieldsInfo['siteAdminViewContentHidden']?.accessWatchField" [disabled]="!fieldsInfo['siteAdminViewContentHidden']?.accessAddField" name="dataModel.siteAdminViewContentHidden">
+                          {{fieldsInfo['siteAdminViewContentHidden']?.fieldTitle}}
+                      </mat-slide-toggle>
+                  </div>
+                  <mat-hint align="start">
+                      <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                      <strong class="info-field-text">{{fieldsInfo['linkSiteId']?.fieldDescription}}</strong>
+                  </mat-hint>
+                  <mat-hint align="end">{{ LinkSiteId.value.length }} / 100</mat-hint>
+                  <mat-error *ngIf="LinkSiteId.errors?.required">
+                      {{fieldsInfo['linkSiteId']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                  </mat-error>
+              </mat-form-field>
+              <!-- MainAdminRecordStatus Field -->
+              <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['mainAdminRecordStatus']?.accessWatchField">
+                  <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField" [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus" #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}" required>
+                      <mat-option *ngFor="
+let item of dataModelEnumRecordStatusResult.listItems;
+index as i
 " [value]="item.value">{{ item.description }}</mat-option>
-                    </mat-select>
-                    <mat-hint align="start">
-                        <!-- <mat-icon matSuffix class="info-field-icon">info</mat-icon> -->
-                        <!-- <strong
-                            class="info-field-text">{{fieldsInfo['mainAdminRecordStatus']?.fieldDescription}}</strong> -->
-                    </mat-hint>
-                    <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-                    <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
-                        {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' |
-                            translate}}</strong>
-                    </mat-error>
-                </mat-form-field>
-                <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-                    <button type="button" mat-raised-button color="accent" matStepperPrevious>
-                        {{'ACTION.BEFOR' | translate}}
-                    </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
-                        {{'ACTION.NEXT' | translate}}
-                    </button>
-                </div>
-            </mat-step>
+                  </mat-select>
+                  <mat-hint align="start">
+                      <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                      <strong class="info-field-text">{{fieldsInfo['mainAdminRecordStatus']?.fieldDescription}}</strong>
+                  </mat-hint>
+                  <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+                  <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
+                      {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' |
+            translate}}</strong>
+                  </mat-error>
+              </mat-form-field>
+              <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+                  <button type="button" mat-raised-button color="accent" matStepperPrevious>
+                      {{'ACTION.BEFOR' | translate}}
+                  </button>
+                  <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
+                      {{'ACTION.NEXT' | translate}}
+                  </button>
+              </div>
+          </mat-step>
 
             <mat-step label="{{'TITLE.SECRET_INFORMATION' | translate}}" state="main">
 

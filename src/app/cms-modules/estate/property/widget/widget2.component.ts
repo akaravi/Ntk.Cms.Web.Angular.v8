@@ -102,8 +102,8 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
-    fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    fastfilter.value = EnumRecordStatus.Pending;
+    //fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
     filterStatist2.filters.push(fastfilter);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({

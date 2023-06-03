@@ -535,34 +535,9 @@ export class EstatePropertyQuickAddComponent implements OnInit {
     this.dataModelCorCurrencySelector = model;
     this.contractDataModel.linkCoreCurrencyId = model.id;
 
-    //
-    if (this.tokenHelper.CheckIsAdmin() && this.contractTypeSelected.allowPriceInquiryCalculate) {
-      this.onActionPriceInquiryList()
-    }
+
   }
-  onActionPriceInquiryList(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.height = '90%';
-    dialogConfig.data = {
-      linkLocationId: this.dataModel.linkLocationId,
-      linkCoreCurrencyId: this.contractDataModel.linkCoreCurrencyId,
-      createdYaer: this.dataModel.createdYaer,
-      linkPropertyTypeUsageId: this.dataModel.linkPropertyTypeUsageId,
-      linkPropertyTypeLanduseId: this.dataModel.linkPropertyTypeLanduseId,
-      linkContractTypeId: this.contractDataModel.linkEstateContractTypeId,
-    };
 
-
-    const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-      if (result && result.dialogChangedDate) {
-
-      }
-    });
-  }
   onActionbuttonQuickListSearchTitle(): void {
     if (!this.dataModel || !this.dataModel.title || this.dataModel.title.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
