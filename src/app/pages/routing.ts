@@ -5,18 +5,19 @@ const Routing: Routes = [
     path: 'dashboard',
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    data: { title: 'Route.Dashboard' },
+    data: { title: 'ROUTE.DASHBOARD' },
   },
   {
     path: 'builder',
     loadChildren: () =>
       import('./builder/builder.module').then((m) => m.BuilderModule),
-    data: { title: 'Route.Builder' },
+    data: { title: 'ROUTE.BUILDER' },
   },
   {
     path: 'crafted/pages/profile',
     loadChildren: () =>
       import('../modules/profile/profile.module').then((m) => m.ProfileModule),
+    data: { title: 'ROUTE.CRAFTED' },
   },
   {
     path: 'crafted/account',
@@ -47,7 +48,7 @@ const Routing: Routes = [
     path: 'core',
     loadChildren: () =>
       import('../cms-modules/core-main/core.module').then((m) => m.CoreModule),
-    data: { title: 'Route.Core' },
+    data: { title: 'ROUTE.CORE' },
   },
   {
     path: 'coremodule',
@@ -55,7 +56,7 @@ const Routing: Routes = [
       import('../cms-modules/core-module/coreModule.module').then(
         (m) => m.CoreModuleModule
       ),
-    data: { title: 'Route.CoreModule' },
+    data: { title: 'ROUTE.COREMODULELOG' },
   },
   {
     path: 'coremodulelog',
@@ -82,14 +83,14 @@ const Routing: Routes = [
     path: 'estate',
     loadChildren: () =>
       import('../cms-modules/estate/estate.module').then((m) => m.EstateModule),
-    data: { title: 'Route.Estate' },
+    data: { title: 'ROUTE.ESTATE' },
   },
 
   {
     path: 'member',
     loadChildren: () =>
       import('../cms-modules/member/member.module').then((m) => m.MemberModule),
-      data:{ title: 'ROUTE.Member' },
+    data: { title: 'ROUTE.MEMBER' },
   },
 
   {
@@ -97,7 +98,8 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../cms-modules/application/application.module').then(
         (m) => m.ApplicationModule
-      ),data:{ title: 'ROUTE.APPLICATION' },
+      ),
+    data: { title: 'ROUTE.APPLICATION' },
   },
   {
     path: 'apitelegram',
@@ -112,7 +114,8 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../cms-modules/article/article.module').then(
         (m) => m.ArticleModule
-      ),data:{ title: 'ROUTE.Article' },
+      ),
+    data: { title: 'ROUTE.ARTICLE' },
   },
   {
     path: 'bankpayment',
@@ -172,7 +175,7 @@ const Routing: Routes = [
       import('../cms-modules/file-manager/file-manager.module').then(
         (m) => m.FileManagerModule
       ),
-    data: { title: 'filemanager' },
+    data: { title: 'ROUTE.FILEMANAGER' },
   },
   {
     path: 'polling',
@@ -199,7 +202,7 @@ const Routing: Routes = [
       import('../cms-modules/ticketing/ticketing.module').then(
         (m) => m.TicketingModule
       ),
-    data: { title: 'ACTION.TICKETS' },
+    data: { title: 'ROUTE.TICKETING' },
   },
   {
     path: 'universalmenu',

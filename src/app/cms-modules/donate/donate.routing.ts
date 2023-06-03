@@ -17,93 +17,112 @@ const routes: Routes = [
   {
     path: '',
     component: DonateComponent,
+    data: { title: 'ROUTE.DONATE' },
+
     children: [
       /* Config */
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/donate-config.module').then((m) => m.DonateConfigModule),
+          import('./config/donate-config.module').then(
+            (m) => m.DonateConfigModule
+          ),
+        data: { title: 'ROUTE.DONATE' },
       },
       /* Config */
       {
         path: 'target',
-        component: DonateTargetListComponent
+        component: DonateTargetListComponent,
+        data: { title: 'ROUTE.DONATE.TARGET' },
       },
       {
         path: 'target/add/:CategoryId',
-        component: DonateTargetAddComponent
+        component: DonateTargetAddComponent,
+        data: { title: 'ROUTE.DONATE.TARGET' },
       },
       {
         path: 'target/edit/:Id',
-        component: DonateTargetEditComponent
+        component: DonateTargetEditComponent,
+        data: { title: 'ROUTE.DONATE.TARGET' },
       },
       {
         path: 'target/Delete/:Id',
-        component: DonateTargetDeleteComponent
+        component: DonateTargetDeleteComponent,
+        data: { title: 'ROUTE.DONATE.TARGET' },
       },
       {
         path: 'log-view',
-        component: DonateLogViewListComponent
+        component: DonateLogViewListComponent,
+        data: { title: 'ROUTE.DONATE.LOGVIEW' },
       },
       {
         path: 'log-view/:Id',
-        component: DonateLogViewListComponent
+        component: DonateLogViewListComponent,
+        data: { title: 'ROUTE.DONATE.LOGVIEW' },
       },
       {
         path: 'sponser',
-        component: DonateSponserListComponent
+        component: DonateSponserListComponent,
+        data: { title: 'ROUTE.DONATE.SPONSER' },
       },
       {
         path: 'target-period',
-        component: DonateTargetPeriodListComponent
+        component: DonateTargetPeriodListComponent,
+        data: { title: 'ROUTE.DONATE.TARGETPERIOD' },
       },
       {
         path: 'target-period/LinkTargeId/:LinkTargeId',
-        component: DonateTargetPeriodListComponent
+        component: DonateTargetPeriodListComponent,
+        data: { title: 'ROUTE.DONATE.TARGETPERIOD' },
       },
       {
         path: 'target-period-charge/:LinkTargetPeriodId',
-        component: DonateTargetPeriodChargeComponent
+        component: DonateTargetPeriodChargeComponent,
+        data: { title: 'ROUTE.DONATE.TARGETPERIODSPONSER' },
       },
       {
         path: 'target-period-sponser',
-        component: DonateTargetPeriodSponserListComponent
+        component: DonateTargetPeriodSponserListComponent,
+        data: { title: 'ROUTE.DONATE.TARGETPERIODSPONSER' },
       },
       {
         path: 'target-period-sponser/LinkTargetPeriodId/:LinkTargetPeriodId',
-        component: DonateTargetPeriodSponserListComponent
+        component: DonateTargetPeriodSponserListComponent,
+        data: { title: 'ROUTE.DONATE.TARGETPERIODSPONSER' },
       },
       {
         path: 'target-period-sponser/LinkSponserId/:LinkSponserId',
-        component: DonateTargetPeriodSponserListComponent
+        component: DonateTargetPeriodSponserListComponent,
+        data: { title: 'ROUTE.DONATE.TARGETPERIODSPONSER' },
       },
       /** */
       {
         path: 'transaction',
-        component: DonateTransactionListComponent
-      }
-      ,
+        component: DonateTransactionListComponent,
+        data: { title: 'ROUTE.DONATE.TRANSACTION' },
+      },
       {
         path: 'transaction/LinkCmsUserId/:LinkCmsUserId',
-        component: DonateTransactionListComponent
-      }
-      , {
+        component: DonateTransactionListComponent,
+        data: { title: 'ROUTE.DONATE.TRANSACTION' },
+      },
+      {
         path: 'transaction/LinkSponsorId/:LinkSponsorId',
-        component: DonateTransactionListComponent
-      }
-      ,
+        component: DonateTransactionListComponent,
+        data: { title: 'ROUTE.DONATE.TRANSACTION' },
+      },
       {
         path: 'transaction/LinkTargetPeriodId/:LinkTargetPeriodId',
-        component: DonateTransactionListComponent
-      }
+        component: DonateTransactionListComponent,
+        data: { title: 'ROUTE.DONATE.TRANSACTION' },
+      },
       /** */
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DonateRoutes {
-}
+export class DonateRoutes {}

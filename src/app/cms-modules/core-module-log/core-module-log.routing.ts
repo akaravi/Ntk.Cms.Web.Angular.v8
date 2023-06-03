@@ -19,11 +19,13 @@ const routes: Routes = [
     children: [
       {
         path: 'report-abuse',
-        component: CoreModuleLogReportAbuseListComponent
+        component: CoreModuleLogReportAbuseListComponent,
+        data: { title: 'ROUTE.COREMODULELOG' },
       },
       {
         path: 'memo',
-        component: CoreModuleLogMemoListComponent
+        component: CoreModuleLogMemoListComponent,
+        data: { title: 'ROUTE.COREMODULELOG.MEMO' },
       },
       {
         path: 'show-key',
@@ -31,39 +33,45 @@ const routes: Routes = [
       },
       {
         path: 'favorite',
-        component: CoreModuleLogFavoriteListComponent
+        component: CoreModuleLogFavoriteListComponent,
+        data: { title: 'ROUTE.COREMODULELOG.FAVORITE' },
       },
       {
         path: 'like',
-        component: CoreModuleLogLikeListComponent
+        component: CoreModuleLogLikeListComponent,
+        data: { title: 'ROUTE.COREMODULELOG.LIKE' },
       },
       {
         path: 'score',
-        component: CoreModuleLogScoreListComponent
+        component: CoreModuleLogScoreListComponent,
+        data: { title: 'ROUTE.COREMODULELOG.SCORE' },
       },
       {
         path: 'site-credit',
-        component: CoreModuleLogSiteCreditListComponent
+        component: CoreModuleLogSiteCreditListComponent,
+        data: { title: 'ROUTE.COREMODULELOG' },
       },
       {
         path: 'site-user-credit',
-        component: CoreModuleLogSiteUserCreditListComponent
+        component: CoreModuleLogSiteUserCreditListComponent,
+        data: { title: 'ROUTE.COREMODULELOG' },
       },
       {
         path: 'site-credit-blocked',
-        component: CoreModuleLogSiteCreditBlockedListComponent
+        component: CoreModuleLogSiteCreditBlockedListComponent,
+        data: { title: 'ROUTE.COREMODULELOG' },
       },
       {
         path: 'site-user-credit-blocked',
-        component: CoreModuleLogSiteUserCreditBlockedListComponent
+        component: CoreModuleLogSiteUserCreditBlockedListComponent,
+        data: { title: 'ROUTE.COREMODULELOG' },
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CoreModuleRoutes {
-}
+export class CoreModuleRoutes {}

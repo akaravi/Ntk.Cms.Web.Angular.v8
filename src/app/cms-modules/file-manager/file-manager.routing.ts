@@ -8,16 +8,17 @@ const routes: Routes = [
   {
     path: '',
     component: FileManagerComponent,
+    data: { title: 'ROUTE.FILEMANAGER' },
     children: [
       {
         path: 'content',
         component: FileContentListComponent,
-        data: { title: 'Route.FileManager' },
+        data: { title: 'ROUTE.FILEMANAGER' },
       },
       {
         path: 'explorer',
         component: FileContentExplorerComponent,
-        data: { title: 'Route.FileManager' },
+        data: { title: 'ROUTE.FILEMANAGER' },
       },
       {
         path: '',

@@ -7,39 +7,44 @@ import { CoreModuleSiteUserCreditChargeComponent } from './site-user-credit/char
 import { CoreModuleSiteUserCreditListComponent } from './site-user-credit/list/list.component';
 import { CoreModuleTagListComponent } from './tag/list/list.component';
 
-
 const routes: Routes = [
   {
     path: '',
     component: CoreModuleComponent,
+    data: { title: 'ROUTE.COREMODULE' },
+
     children: [
       {
         path: 'tag',
-        component: CoreModuleTagListComponent
+        component: CoreModuleTagListComponent,
+        data: { title: 'ROUTE.COREMODULE' },
       },
       {
         path: 'site-credit',
-        component: CoreModuleSiteCreditListComponent
+        component: CoreModuleSiteCreditListComponent,
+        data: { title: 'ROUTE.COREMODULE' },
       },
       {
         path: 'site-credit-charge/:LinkModuleId',
-        component: CoreModuleSiteCreditChargeComponent
+        component: CoreModuleSiteCreditChargeComponent,
+        data: { title: 'ROUTE.COREMODULE' },
       },
       {
         path: 'site-user-credit',
-        component: CoreModuleSiteUserCreditListComponent
+        component: CoreModuleSiteUserCreditListComponent,
+        data: { title: 'ROUTE.COREMODULE' },
       },
       {
         path: 'site-user-credit-charge/:LinkModuleId',
-        component: CoreModuleSiteUserCreditChargeComponent
+        component: CoreModuleSiteUserCreditChargeComponent,
+        data: { title: 'ROUTE.COREMODULE' },
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CoreModuleRoutes {
-}
+export class CoreModuleRoutes {}

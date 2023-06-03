@@ -12,45 +12,58 @@ const routes: Routes = [
   {
     path: '',
     component: ApiTelegramComponent,
+    data: { title: 'ROUTE.APITELEGRAM' },
+
     children: [
       /*Config*/
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/api-telegram-config.module').then((m) => m.ApiTelegramConfigModule),
+          import('./config/api-telegram-config.module').then(
+            (m) => m.ApiTelegramConfigModule
+          ),
+        data: { title: 'ROUTE.APITELEGRAM' },
       },
       /*Config*/
       {
         path: 'bot-config',
-        component: ApiTelegramBotConfigListComponent
+        component: ApiTelegramBotConfigListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.BOTCONFIG' },
       },
       {
         path: 'log-input',
-        component: ApiTelegramLogInputListComponent
+        component: ApiTelegramLogInputListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.LOGINPUT' },
       },
       {
         path: 'log-input/LinkBotConfigId/:LinkBotConfigId',
-        component: ApiTelegramLogInputListComponent
+        component: ApiTelegramLogInputListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.LOGINPUT' },
       },
       {
         path: 'log-output',
-        component: ApiTelegramLogOutputListComponent
+        component: ApiTelegramLogOutputListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.LOGOUTPUT' },
       },
       {
         path: 'log-output/LinkBotConfigId/:LinkBotConfigId',
-        component: ApiTelegramLogOutputListComponent
+        component: ApiTelegramLogOutputListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.LOGOUTPUT' },
       },
       {
         path: 'member-info',
-        component: ApiTelegramMemberInfoListComponent
+        component: ApiTelegramMemberInfoListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.MEMBERINFO' },
       },
       {
         path: 'received-file',
-        component: ApiTelegramReceivedFileListComponent
+        component: ApiTelegramReceivedFileListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.RECEIVEDFILE' },
       },
       {
         path: 'uploaded-file',
-        component: ApiTelegramUploadedFileListComponent
+        component: ApiTelegramUploadedFileListComponent,
+        data: { title: 'ROUTE.APITELEGRAM.UPLOADEDFILE' },
       },
       //   {
       //     path: 'app',
@@ -93,13 +106,12 @@ const routes: Routes = [
       //     path: 'themeconfig',
       //     component: ApiTelegramThemeConfigListComponent
       //   },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ApiTelegramRoutes {
-}
+export class ApiTelegramRoutes {}
