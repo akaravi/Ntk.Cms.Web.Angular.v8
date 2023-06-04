@@ -1,135 +1,131 @@
 <mat-dialog-content>
-  <div class="card">
-      <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster"
-        (optionChange)="onActionSelectCalculate($event)">
-      </app-cms-bankpayment-grid>
-      <div *ngIf="viewCalculate">
-        <br>
-        <tr>
-          <td>
-            {{'TITLE.FEETAX' | translate}}:
-          </td>
-          <td>
-            {{dataModelCalculateResult.item.feeTax|currency:' '+dataModelCalculateResult.item.currency+' '}}
-          </td>
-        </tr>
-        <br>
-        <tr>
-          <td>
-            {{'TITLE.Amount_pure' | translate}}:
-          </td>
-          <td>
-            {{dataModelCalculateResult.item.amountPure|currency:' '+dataModelCalculateResult.item.currency+' '}}
-          </td>
-        </tr>
-        <br>
-        <tr>
-          <td>
-            {{'TITLE.Fee_transport' | translate}}:
-          </td>
-          <td>
-            {{dataModelCalculateResult.item.feeTransport|currency:' '+dataModelCalculateResult.item.currency+' '}}
-          </td>
-        </tr>
-        <hr>
-        <tr>
-          <td>
-            {{'TITLE.Final_Amount' | translate}}:
-          </td>
-          <td>
-            {{dataModelCalculateResult.item.amount|currency:' '+dataModelCalculateResult.item.currency+' '}}
-          </td>
-        </tr>
-      </div>
-  </div>
+    <div class="card">
+        <app-cms-bankpayment-grid [optionloading]="loading" [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
+        </app-cms-bankpayment-grid>
+        <div *ngIf="viewCalculate">
+            <br>
+            <tr>
+                <td>
+                    {{'TITLE.FEETAX' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.feeTax|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    {{'TITLE.Amount_pure' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.amountPure|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    {{'TITLE.Fee_transport' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.feeTransport|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+            <hr>
+            <tr>
+                <td>
+                    {{'TITLE.Final_Amount' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.amount|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+        </div>
+    </div>
 
 </mat-dialog-content>
-<mat-dialog-actions  style="text-align: right;">
-  <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.formError }}
-    </small>
-  </div>
-  <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
-    <button mat-button mat-dialog-close type="button" (click)="onFormCancel()" class="btn btn-light">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
+<mat-dialog-actions style="text-align: right;">
+    <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
+        </small>
+    </div>
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
+        <button mat-button mat-dialog-close type="button" (click)="onFormCancel()" class="btn btn-light">
+            <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
 
-    <button mat-button [mat-dialog-close]="true" type="submit" (click)="onActionSelectBankPayment()"
-      class="btn btn-raised btn-primary" [disabled]="!viewCalculate">
-      <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
-    </button>
-  </div>
+        <button mat-button [mat-dialog-close]="true" type="submit" (click)="onActionSelectBankPayment()" class="btn btn-raised btn-primary" [disabled]="!viewCalculate">
+            <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
+        </button>
+    </div>
 </mat-dialog-actions>
 
- -->
+-->
 
 
 
 
 
 <mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>{{ formInfo.formTitle }} </mat-card-title>
-  </mat-card-header>
-  <app-cms-bankpayment-grid mat-card-md-image [optionMasterItem]="requestBankPrivateMaster"
-    (optionChange)="onActionSelectCalculate($event)">
-  </app-cms-bankpayment-grid>
-  <mat-card-content>
-    <div *ngIf="viewCalculate">
-      <br>
-      <tr>
-        <td>
-          {{'TITLE.FEETAX' | translate}}:
-        </td>
-        <td>
-          {{dataModelCalculateResult.item.feeTax|currency:' '+dataModelCalculateResult.item.currency+' '}}
-        </td>
-      </tr>
-      <br>
-      <tr>
-        <td>
-          {{'TITLE.Amount_pure' | translate}}:
-        </td>
-        <td>
-          {{dataModelCalculateResult.item.amountPure|currency:' '+dataModelCalculateResult.item.currency+' '}}
-        </td>
-      </tr>
-      <br>
-      <tr>
-        <td>
-          {{'TITLE.Fee_transport' | translate}}:
-        </td>
-        <td>
-          {{dataModelCalculateResult.item.feeTransport|currency:' '+dataModelCalculateResult.item.currency+' '}}
-        </td>
-      </tr>
-      <hr>
-      <tr>
-        <td>
-          {{'TITLE.Final_Amount' | translate}}: 
-        </td>
-        <td>
-          {{dataModelCalculateResult.item.amount|currency:' '+dataModelCalculateResult.item.currency+' '}}
-        </td>
-      </tr>
-    </div>
-  </mat-card-content>
-  <mat-card-actions>
-    <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.formError }}
-      </small>
-    </div>
-    <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
-      <button mat-button mat-dialog-close type="button" (click)="onFormCancel()" class="btn btn-light">
-        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-      </button>
+    <mat-card-header>
+        <mat-card-title>{{ formInfo.formTitle }} </mat-card-title>
+    </mat-card-header>
+    <app-cms-bankpayment-grid [optionloading]="loading" mat-card-md-image [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
+    </app-cms-bankpayment-grid>
+    <mat-card-content>
+        <div *ngIf="viewCalculate">
+            <br>
+            <tr>
+                <td>
+                    {{'TITLE.FEETAX' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.feeTax|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    {{'TITLE.Amount_pure' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.amountPure|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+            <br>
+            <tr>
+                <td>
+                    {{'TITLE.Fee_transport' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.feeTransport|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+            <hr>
+            <tr>
+                <td>
+                    {{'TITLE.Final_Amount' | translate}}:
+                </td>
+                <td>
+                    {{dataModelCalculateResult.item.amount|currency:' '+dataModelCalculateResult.item.currency+' '}}
+                </td>
+            </tr>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="form-actions">
+            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+            <small class="form-text text-muted danger">{{ formInfo.formError }}
+            </small>
+        </div>
+        <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
+            <button mat-button mat-dialog-close type="button" (click)="onFormCancel()" class="btn btn-light">
+                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+            </button>
 
-      <button mat-button [mat-dialog-close]="true" type="submit" (click)="onActionSelectBankPayment()"
-        class="btn btn-raised btn-primary" [disabled]="!viewCalculate">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
-      </button>
-    </div>
-  </mat-card-actions>
+            <button mat-button [mat-dialog-close]="true" type="submit" (click)="onActionSelectBankPayment()" class="btn btn-raised btn-primary" [disabled]="!viewCalculate">
+                <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
+            </button>
+        </div>
+    </mat-card-actions>
 </mat-card>

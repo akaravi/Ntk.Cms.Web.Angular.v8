@@ -26,7 +26,7 @@
               " [value]="item.value">{{ item.description }}</mat-option>
           </mat-select>
           <mat-hint align="start"><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['recordStatus']?.FieldDescription}}</strong> </mat-hint>
+            <strong class="info-field-text">{{fieldsInfo['recordStatus']?.fieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
             {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -34,8 +34,7 @@
         </mat-form-field>
         <!-- LinkApplicationId Field -->
         <app-application-app-selector (optionChange)="onActionSelectApplication($event)"
-          [optionSelectForce]="this.dataModel.linkApplicationId"
-          [(loading)]="loading"
+          [optionSelectForce]="this.dataModel.linkApplicationId" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.Application')"
           [optionDisabled]="!fieldsInfo['linkApplicationId']?.accessEditField"></app-application-app-selector>
         <!-- Title Field -->
@@ -48,7 +47,7 @@
             aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['title']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start"><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['title']?.FieldDescription}}</strong> </mat-hint>
+            <strong class="info-field-text">{{fieldsInfo['title']?.fieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
             {{ fieldsInfo['title']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -56,7 +55,7 @@
         </mat-form-field>
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['description']?.accessWatchField">
-          <mat-label>{{ fieldsInfo['description']?.FieldDescription }}</mat-label>
+          <mat-label>{{ fieldsInfo['description']?.fieldDescription }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.description"
             [disabled]="!fieldsInfo['description']?.accessEditField" name="dataModel.description" #Description
             type="text" placeholder="{{fieldsInfo['description']?.fieldTitle}}" row="10" minlength="3" maxlength="100"
@@ -65,10 +64,10 @@
             mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['description']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start"><mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['description']?.FieldDescription}}</strong> </mat-hint>
+            <strong class="info-field-text">{{fieldsInfo['description']?.fieldDescription}}</strong> </mat-hint>
           <mat-hint align="end">{{ Description.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
-            {{ fieldsInfo['description']?.FieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+            {{ fieldsInfo['description']?.fieldDescription }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">

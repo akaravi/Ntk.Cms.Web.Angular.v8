@@ -14,31 +14,37 @@ const routes: Routes = [
       {
         path: 'singin',
         component: AuthSingInComponent,
+        data: { title: 'ROUTE.REGISTER.SIGNIN' },
       },
       {
         path: 'singinbysms',
         component: AuthSingInBySmsComponent,
+        data: { title: 'ROUTE.REGISTER.SIGNINBYSMS' },
       },
       {
         path: 'singout',
         component: AuthSingoutComponent,
+        data: { title: 'ROUTE.REGISTER.SIGNOUT' },
       },
       {
         path: 'singup',
-        component: AuthSingUpComponent
+        component: AuthSingUpComponent,
+        data: {
+          title: 'ROUTE.REGISTER.SIGNUP',
+        },
       },
       {
         path: 'forgot-password',
-        component: AuthForgotPasswordComponent
+        component: AuthForgotPasswordComponent,
+        data: { title: 'ROUTE.REGISTER.FORGETPASSWORD' },
       },
-      { path: '', redirectTo: 'singin', pathMatch: 'full' },
-      { path: '**', redirectTo: 'singin', pathMatch: 'full' },
-    ]
-  }
+      { path: '', redirectTo: 'singinbysms', pathMatch: 'full' },
+      { path: '**', redirectTo: 'singinbysms', pathMatch: 'full' },
+    ],
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule {
-}
+export class AuthRoutingModule {}

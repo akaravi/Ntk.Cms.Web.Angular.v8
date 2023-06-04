@@ -23,14 +23,14 @@
     </mat-form-field>
 
     <!-- LinkAdsTypeId Field -->
-    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)" [(loading)]="loading"
-      [optionDisabled]="!fieldsInfo['linkAdsTypeId']?.accessAddField"
+    <app-estate-ads-type-selector (optionChange)="onActionSelectorSelectLinkAdsTypeId($event)"
+      [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkAdsTypeId']?.accessAddField"
       [optionSelectForce]="dataModel.linkAdsTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Ad_type_ID')">
     </app-estate-ads-type-selector>
     <!-- LinkPropertyId Field -->
-    <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)" [(loading)]="loading"
-      [optionDisabled]="!fieldsInfo['linkPropertyId']?.accessAddField" [optionSelectForce]="dataModel.linkPropertyId"
-      [optionPlaceholder]="this.translate.instant('TITLE.Property_ID')">
+    <app-estate-property-selector (optionChange)="onActionSelectorSelectLinkPropertyId($event)"
+      [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPropertyId']?.accessAddField"
+      [optionSelectForce]="dataModel.linkPropertyId" [optionPlaceholder]="this.translate.instant('TITLE.Property_ID')">
     </app-estate-property-selector>
     <!-- StationLevel Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['stationLevel']?.accessWatchField">
@@ -57,7 +57,7 @@
     <!-- FromDate Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate"/>
+      <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
       <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
         mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
       <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>

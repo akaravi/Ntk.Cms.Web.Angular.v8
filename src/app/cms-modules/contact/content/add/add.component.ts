@@ -4,7 +4,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ContactCategoryModel, ContactContentModel, ContactContentService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
@@ -74,6 +74,9 @@ export class ContactContentAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.ContactContentService
       .ServiceViewModel()
       .subscribe({
@@ -84,10 +87,15 @@ export class ContactContentAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+
+          this.loading.Stop(pName);
         }
+
       }
       );
   }

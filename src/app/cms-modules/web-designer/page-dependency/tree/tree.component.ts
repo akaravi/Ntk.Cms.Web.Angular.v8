@@ -49,7 +49,13 @@ export class WebDesignerMainPageDependencyTreeComponent implements OnInit, OnDes
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageDependencyModel>
     = new ErrorExceptionResult<WebDesignerMainPageDependencyModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<WebDesignerMainPageDependencyModel>(node => null);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainPageDependencyModel>();
   @Output() optionChange = new EventEmitter<WebDesignerMainPageDependencyModel>();

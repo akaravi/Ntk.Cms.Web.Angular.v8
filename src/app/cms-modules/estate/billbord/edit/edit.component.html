@@ -8,7 +8,7 @@
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  <div class="row alert alert-custom alert-white alert-shadow gutter-b">
+  <div class="row alert alert-custom alert-shadow gutter-b">
     <div class="col-md-6 col-sm-6 col-xs-9">
       <!-- Title Field -->
       <mat-form-field class="ntk-full-width">
@@ -118,12 +118,12 @@
       </app-estate-contract-type-autocomplete>
       <!-- linkCoreCurrencyId Field -->
       <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-        *ngIf="!LinkPropertyIdsInUse" (optionChange)="onActionSelectCurrency($event)" [(loading)]="loading"
+        *ngIf="!LinkPropertyIdsInUse" (optionChange)="onActionSelectCurrency($event)" [(optionLoading)]="loading"
         [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
       </app-cms-currency-selector>
       <!-- LinkLocationIds Field -->
       <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" *ngIf="!LinkPropertyIdsInUse"
-        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(loading)]="loading"
+        [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(optionLoading)]="loading"
         [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
       </app-cms-location-autocomplete>
       <br>

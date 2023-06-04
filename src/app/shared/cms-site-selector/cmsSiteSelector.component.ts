@@ -7,7 +7,7 @@ import {
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
@@ -35,7 +35,13 @@ export class CmsSiteSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   dataModelSelect: CoreSiteModel = new CoreSiteModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formControl = new FormControl();
   filteredOptions: Observable<CoreSiteModel[]>;
   @Input() optionDisabled = false;
@@ -118,9 +124,9 @@ export class CmsSiteSelectorComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.List_of_authorized_sites'));
 
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           if (this.lastselectSiteId && this.lastselectSiteId.length > 0) {
             this.lastselectSiteId.forEach(element => {
@@ -144,8 +150,7 @@ export class CmsSiteSelectorComponent implements OnInit {
           this.loading.Stop(pName);
 
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: CoreSiteModel): void {
     if (this.optionDisabled) {

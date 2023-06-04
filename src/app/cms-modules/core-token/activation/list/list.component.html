@@ -70,13 +70,13 @@
       <ng-container matColumnDef="LinkSiteId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
       </ng-container>
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkUserId | cmsuserinfo |async}} </mat-cell>
       </ng-container>
       <!-- LinkMemberUserId Column -->
       <ng-container matColumnDef="LinkMemberUserId">
@@ -88,7 +88,8 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+        <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i
+            [ngClass]="row.recordStatus|statusIconClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
             style="background: none; border: none;"
             [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -103,7 +104,8 @@
       </ng-container>
       <!-- UserType Column -->
       <ng-container matColumnDef="UserType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['userType']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['userType']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.userType | enums :
           dataModelEnumManageUserAccessUserTypesResult.listItems}} </mat-cell>
       </ng-container>
@@ -111,7 +113,8 @@
       <ng-container matColumnDef="UserAccessAdminAllowToAllData">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
           {{fieldsInfo['userAccessAdminAllowToAllData']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.userAccessAdminAllowToAllData|boolclass"></i> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.userAccessAdminAllowToAllData|boolclass"></i>
+        </mat-cell>
       </ng-container>
 
       <!-- UserAccessAdminAllowToProfessionalData Column -->
@@ -132,13 +135,13 @@
       <ng-container matColumnDef="CreatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.createdDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.createdDate) }} </mat-cell>
       </ng-container>
       <!-- ExpireDate Column -->
       <ng-container matColumnDef="ExpireDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expireDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDate(row.expireDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.expireDate) }} </mat-cell>
       </ng-container>
 
       <!-- Action Column -->

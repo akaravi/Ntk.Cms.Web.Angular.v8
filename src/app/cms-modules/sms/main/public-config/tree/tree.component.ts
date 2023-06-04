@@ -52,7 +52,13 @@ export class SmsMainApiPathPublicConfigTreeComponent implements OnInit, OnDestro
   dataModelSelect: SmsMainApiPathPublicConfigModel = new SmsMainApiPathPublicConfigModel();
   dataModelResult: ErrorExceptionResult<SmsMainApiPathPublicConfigModel> = new ErrorExceptionResult<SmsMainApiPathPublicConfigModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<SmsMainApiPathPublicConfigModel>(node => null);
   dataSource = new MatTreeNestedDataSource<SmsMainApiPathPublicConfigModel>();
   @Output() optionChange = new EventEmitter<SmsMainApiPathPublicConfigModel>();

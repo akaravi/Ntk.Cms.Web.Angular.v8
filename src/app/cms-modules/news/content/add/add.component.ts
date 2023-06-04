@@ -16,8 +16,7 @@ import {
   FormInfoModel, NewsCategoryModel, NewsContentModel, NewsContentOtherInfoModel, NewsContentOtherInfoService, NewsContentService, NewsContentSimilarModel, NewsContentSimilarService, NewsContentTagModel, NewsContentTagService
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { firstValueFrom, of } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -88,6 +87,9 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.contentService
       .ServiceViewModel()
       .subscribe({
@@ -97,9 +99,11 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );
@@ -215,8 +219,8 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
       row.linkTagId = x.id;
       dataListAdd.push(row);
     });
-    return this.contentTagService.ServiceAddBatch(dataListAdd).pipe(
-      map(response => {
+    return firstValueFrom(this.contentTagService.ServiceAddBatch(dataListAdd)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddTag();
         } else {
@@ -224,7 +228,7 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         }
         console.log(response.listItems);
         return of(response);
-      })).toPromise();
+      });
   }
   DataActionAfterAddContentSuccessfulOtherInfo(model: NewsContentModel): Promise<any> {
     if (!this.otherInfoDataModel || this.otherInfoDataModel.length === 0) {
@@ -235,8 +239,8 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     });
     const pName = this.constructor.name + 'contentOtherInfoService.ServiceAddBatch';
     this.loading.Start(pName);
-    return this.contentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel).pipe(
-      map(response => {
+    return firstValueFrom(this.contentOtherInfoService.ServiceAddBatch(this.otherInfoDataModel)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddOtherInfo();
         } else {
@@ -244,13 +248,13 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         }
         return of(response);
       },
-        (error) => {
-          this.loading.Stop(pName);
+      (error) => {
+        this.loading.Stop(pName);
 
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
-        }
-      )).toPromise();
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeErrorAdd(error);
+      }
+    );
   }
   DataActionAfterAddContentSuccessfulSimilar(model: NewsContentModel): Promise<any> {
     if (!this.similarDataModel || this.similarDataModel.length === 0) {
@@ -265,8 +269,8 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
     });
     const pName = this.constructor.name + 'contentSimilarService.ServiceAddBatch';
     this.loading.Start(pName);
-    return this.contentSimilarService.ServiceAddBatch(dataList).pipe(
-      map(response => {
+    return firstValueFrom(this.contentSimilarService.ServiceAddBatch(dataList)).then(
+      (response) => {
         if (response.isSuccess) {
           this.cmsToastrService.typeSuccessAddSimilar();
         } else {
@@ -274,12 +278,12 @@ export class NewsContentAddComponent implements OnInit, AfterViewInit {
         }
         return of(response);
       },
-        (error) => {
-          this.loading.Stop(pName);
-          this.formInfo.formSubmitAllow = true;
-          this.cmsToastrService.typeErrorAdd(error);
-        }
-      )).toPromise();
+      (error) => {
+        this.loading.Stop(pName);
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeErrorAdd(error);
+      }
+    );
   }
   onActionSelectorSelect(model: NewsCategoryModel | null): void {
     if (!model || model.id <= 0) {

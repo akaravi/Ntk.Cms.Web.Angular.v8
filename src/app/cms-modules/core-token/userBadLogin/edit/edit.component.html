@@ -1,6 +1,6 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
+  {{ formInfo.formTitle }}
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body">
@@ -31,8 +31,9 @@
 
   <!-- UserAccessAreaType Field -->
   <mat-form-field class="ntk-full-width">
-    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType" name="dataModel.userAccessAreaType"
-      #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
+    <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType"
+      name="dataModel.userAccessAreaType" #UserAccessAreaType="ngModel"
+      panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
       <mat-option *ngFor="
                   let item of dataModelEnumManageUserAccessAreaTypesResult.listItems;
                   index as i
@@ -44,15 +45,15 @@
     </mat-error>
   </mat-form-field>
   <!-- LinkSiteId Field -->
-  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId" [(loading)]="loading"
-    [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
+  <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
+    [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 
   <!-- LinkUserId Field -->
-  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId" [(loading)]="loading"
-    [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+  <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId"
+    [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
   <!-- LinkMemberId Field -->
-  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId" [(loading)]="loading"
-    [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
+  <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId"
+    [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
   <!-- LinkDeviceId Field -->
   <mat-form-field class="ntk-full-width">
     <mat-label>LinkDeviceId</mat-label>

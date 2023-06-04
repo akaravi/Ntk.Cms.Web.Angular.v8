@@ -53,7 +53,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSourceId Field -->
-    <app-application-source-selector (optionChange)="onActionSelectSource($event)" [(loading)]="loading"
+    <app-application-source-selector (optionChange)="onActionSelectSource($event)" [(optionLoading)]="loading"
       [optionDisabled]="!fieldsInfo['linkSourceId']?.accessAddField" [optionSelectForce]="dataModel.linkSourceId"
       [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')">
     </app-application-source-selector>
@@ -71,7 +71,7 @@
     </mat-form-field>
     <!-- ThemeConfigBuilderJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['themeConfigBuilderJsonValues']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['themeConfigBuilderJsonValues']?.FieldThemeConfigBuilderJsonValues }}</mat-label>
+      <mat-label>{{ fieldsInfo['themeConfigBuilderJsonValues']?.fieldTitle }}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.themeConfigBuilderJsonValues"
         [disabled]="!fieldsInfo['themeConfigBuilderJsonValues']?.accessAddField"
         name="dataModel.themeConfigBuilderJsonValues" #ThemeConfigBuilderJsonValues type="text"
@@ -85,7 +85,7 @@
     </mat-form-field>
     <!-- ThemeConfigRuntimeJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['themeConfigRuntimeJsonValues']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['themeConfigRuntimeJsonValues']?.FieldThemeConfigRuntimeJsonValues }}</mat-label>
+      <mat-label>{{ fieldsInfo['themeConfigRuntimeJsonValues']?.fieldTitle }}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.themeConfigRuntimeJsonValues"
         [disabled]="!fieldsInfo['themeConfigRuntimeJsonValues']?.accessAddField"
         name="dataModel.themeConfigRuntimeJsonValues" #ThemeConfigRuntimeJsonValues type="text"
@@ -99,7 +99,7 @@
     </mat-form-field>
     <!-- ThemeConfigLayoutJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['themeConfigLayoutJsonValues']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['themeConfigLayoutJsonValues']?.FieldThemeConfigLayoutJsonValues }}</mat-label>
+      <mat-label>{{ fieldsInfo['themeConfigLayoutJsonValues']?.fieldTitle }}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.themeConfigLayoutJsonValues"
         [disabled]="!fieldsInfo['themeConfigLayoutJsonValues']?.accessAddField"
         name="dataModel.themeConfigLayoutJsonValues" #ThemeConfigLayoutJsonValues type="text"
@@ -113,7 +113,7 @@
     </mat-form-field>
     <!-- ThemeConfigJsonValues Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['themeConfigJsonValues']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['themeConfigJsonValues']?.FieldThemeConfigJsonValues }}</mat-label>
+      <mat-label>{{ fieldsInfo['themeConfigJsonValues']?.fieldTitle }}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.themeConfigJsonValues"
         [disabled]="!fieldsInfo['themeConfigJsonValues']?.accessAddField" name="dataModel.themeConfigJsonValues"
         #ThemeConfigJsonValues type="text" placeholder="ThemeConfigJsonValues" row="6" minlength="0"

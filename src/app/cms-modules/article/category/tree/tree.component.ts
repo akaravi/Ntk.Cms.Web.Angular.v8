@@ -50,7 +50,13 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: ArticleCategoryModel = new ArticleCategoryModel();
   dataModelResult: ErrorExceptionResult<ArticleCategoryModel> = new ErrorExceptionResult<ArticleCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<ArticleCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<ArticleCategoryModel>();
   @Output() optionChange = new EventEmitter<ArticleCategoryModel>();

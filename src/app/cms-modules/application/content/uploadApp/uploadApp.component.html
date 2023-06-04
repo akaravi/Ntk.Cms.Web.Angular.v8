@@ -11,18 +11,18 @@
   <form (ngSubmit)="onFormSubmit()" #vform="ngForm" class="form form-horizontal">
     <mat-card-content>
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['appVersion']?.accessWatchField">
-        <mat-label>{{ fieldsInfo['appVersion']?.FieldAppVersion }}</mat-label>
+        <mat-label>{{ fieldsInfo['appVersion']?.fieldTitle }}</mat-label>
         <input matInput [(ngModel)]="dataModel.appVersion" [disabled]="!fieldsInfo['appVersion']?.accessEditField"
           name="dataModel.appVersion" #AppVersion type="number" placeholder="{{'TITLE.version' | translate}}" min="0" max="1000" required />
         <mat-icon matSuffix *ngIf="dataModel.appVersion && fieldsInfo['appVersion']?.accessEditField" matSuffix
           mat-icon-button aria-label="Clear" (click)="dataModel.appVersion = 0">close</mat-icon>
         <mat-icon *ngIf="fieldsInfo['appVersion']?.accessEditField" matSuffix>mode_edit</mat-icon>
         <mat-error *ngIf="AppVersion.errors?.required">
-          {{ fieldsInfo['appVersion']?.FieldAppVersion }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{ fieldsInfo['appVersion']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['lastBuildAppKey']?.accessWatchField">
-        <mat-label>{{ fieldsInfo['lastBuildAppKey']?.FieldLastBuildAppKey }}</mat-label>
+        <mat-label>{{ fieldsInfo['lastBuildAppKey']?.fieldTitle }}</mat-label>
         <input matInput [(ngModel)]="dataModel.lastBuildAppKey"
           [disabled]="!fieldsInfo['lastBuildAppKey']?.accessEditField" name="dataModel.lastBuildAppKey" #LastBuildAppKey
           type="text" placeholder="{{'TITLE.Key_To_making_app' | translate}}" minlength="0" maxlength="100" required />
@@ -32,7 +32,7 @@
         <mat-hint align="end">{{ 'Application.source.LastBuildAppKey_hint' | translate }}</mat-hint>
         <mat-hint align="start">{{ LastBuildAppKey.value.length }} / 100</mat-hint>
         <mat-error *ngIf="LastBuildAppKey.errors?.required">
-          {{ fieldsInfo['lastBuildAppKey']?.FieldLastBuildAppKey }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          {{ fieldsInfo['lastBuildAppKey']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
         </mat-error>
       </mat-form-field>
     </mat-card-content>

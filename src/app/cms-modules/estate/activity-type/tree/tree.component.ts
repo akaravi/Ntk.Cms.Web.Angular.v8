@@ -50,7 +50,13 @@ export class EstateActivityTypeTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstateActivityTypeModel = new EstateActivityTypeModel();
   dataModelResult: ErrorExceptionResult<EstateActivityTypeModel> = new ErrorExceptionResult<EstateActivityTypeModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<EstateActivityTypeModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstateActivityTypeModel>();
   @Output() optionChange = new EventEmitter<EstateActivityTypeModel>();

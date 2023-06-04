@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCategoryId Field -->
-    <app-ticketing-departemen-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
+    <app-ticketing-departemen-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkTicketingDepartemenId"
       [optionPlaceholder]="this.translate.instant('TITLE.Department')">
     </app-ticketing-departemen-selector>
@@ -52,7 +52,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['htmlBody']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['htmlBody']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ HtmlBody.value.length }} / 2000</mat-hint>
       <mat-error *ngIf="HtmlBody.errors?.required">

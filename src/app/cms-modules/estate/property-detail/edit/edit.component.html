@@ -22,15 +22,15 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkPropertyTypeLanduseId Field -->
-    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
-      [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
+    <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelect($event)"
+      [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.user')"
       [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField">
       <br>
     </app-estate-property-type-landuse-selector>
     <!-- LinkPropertyDetailGroupId Field -->
     <app-estate-property-detail-group-selector (optionChange)="onActionSelectorDetailGroup($event)"
-      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [(loading)]="loading"
+      [optionSelectForce]="dataModel.linkPropertyDetailGroupId" [(optionLoading)]="loading"
       [optionSelectParentForce]="dataModel.linkPropertyTypeLanduseId"
       [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkPropertyDetailGroupId']?.accessEditField">
@@ -94,7 +94,7 @@
     </mat-form-field>
 
     <!-- ConfigValueIntValueMin Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="dataModel.inputDataType==1 ||dataModel.inputDataType==3">
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.inputDataType===1 ||dataModel.inputDataType===3">
       <mat-label>{{fieldsInfo['configValueIntValueMin']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.configValueIntValueMin" name="dataModel.configValueIntValueMin"
         #ConfigValueIntValueMin type="number" placeholder="{{fieldsInfo['configValueIntValueMin']?.fieldTitle}}" />
@@ -103,7 +103,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- ConfigValueIntValueMax Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="dataModel.inputDataType==1 ||dataModel.inputDataType==3">
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.inputDataType===1 ||dataModel.inputDataType===3">
       <mat-label>{{fieldsInfo['configValueIntValueMax']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.configValueIntValueMax" name="dataModel.configValueIntValueMax"
         #ConfigValueIntValueMax type="number" placeholder="{{fieldsInfo['configValueIntValueMax']?.fieldTitle}}" />
@@ -141,7 +141,14 @@
         {{fieldsInfo['isHistoryable']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
-
+    <!-- showInFastSearch Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.showInFastSearch"
+        *ngIf="fieldsInfo['showInFastSearch']?.accessWatchField"
+        [disabled]="!fieldsInfo['showInFastSearch']?.accessEditField" name="dataModel.showInFastSearch">
+        {{fieldsInfo['showInFastSearch']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
     <!-- ConfigValueForceUseDefaultValue Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.configValueForceUseDefaultValue"
@@ -173,7 +180,7 @@
         </mat-chip>
         <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
-          (matChipInputTokenEnd)="addTag($event)"/>
+          (matChipInputTokenEnd)="addTag($event)" />
       </mat-chip-grid>
     </mat-form-field>
 

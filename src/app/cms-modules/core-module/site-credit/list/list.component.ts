@@ -11,8 +11,8 @@ import {
   CoreModuleService, CoreModuleSiteCreditModel, CoreModuleSiteCreditService, DataFieldInfoModel, EnumRecordStatus, EnumSortType, ErrorExceptionResult, FilterDataModel, FilterModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
+import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
@@ -20,6 +20,7 @@ import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExport
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
+import { CoreModuleSiteCreditChargeDirectComponent } from '../charge-direct/charge-direct.component';
 import { CoreModuleSiteCreditEditComponent } from '../edit/edit.component';
 @Component({
   selector: 'app-coremodule-site-credit-list',
@@ -167,7 +168,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -195,7 +196,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -303,7 +304,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     );
     dialogRef.afterClosed().subscribe((result) => {
     });
-    //open popup 
+    //open popup
 
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
@@ -311,7 +312,7 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -336,15 +337,38 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
     //open popup
   }
 
-  onActionbuttonSiteCreditAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
+  onActionbuttonSiteCreditBuyAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
     if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/coremodule/site-credit-charge/', model.linkModuleId]);
+  }
+  onActionbuttonSiteCreditDirectAccountRow(model: CoreModuleSiteCreditModel = this.tableRowSelected): void {
+    if (!model || !model.linkModuleId || model.linkModuleId === 0 || !model.linkSiteId || model.linkSiteId === 0) {
+      const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
+      this.cmsToastrService.typeErrorSelected(emessage);
+      return;
+    }
+    this.onActionTableRowSelect(model);
+    //open popup
+    const dialogRef = this.dialog.open(CoreModuleSiteCreditChargeDirectComponent, {
+      height: "50%",
+      width: "50%",
+      data: {
+        model: model
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        this.DataGetAll();
+      }
+    });
+    //open popup
   }
   onActionbuttonReload(): void {
     this.DataGetAll();

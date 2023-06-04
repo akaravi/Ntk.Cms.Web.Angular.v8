@@ -50,7 +50,13 @@ export class EstatePropertySupplierCategoryTreeComponent implements OnInit, OnDe
   dataModelSelect: EstatePropertySupplierCategoryModel = new EstatePropertySupplierCategoryModel();
   dataModelResult: ErrorExceptionResult<EstatePropertySupplierCategoryModel> = new ErrorExceptionResult<EstatePropertySupplierCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<EstatePropertySupplierCategoryModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertySupplierCategoryModel>();
   @Output() optionChange = new EventEmitter<EstatePropertySupplierCategoryModel>();

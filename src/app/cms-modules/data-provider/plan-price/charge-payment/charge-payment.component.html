@@ -1,20 +1,28 @@
 <h2 mat-dialog-title>{{ formInfo.formTitle }}</h2>
 <mat-dialog-content>
 
-  <app-cms-bankpayment-grid [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
+  <app-cms-bankpayment-grid [optionloading]="loading" [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
   </app-cms-bankpayment-grid>
   <div *ngIf="viewCalculate">
-    {{ 'FeeTax' }}:
-     {{dataModelCalculateResult.item.feeTax|currency:' '+dataModelCalculateResult.item.currency+' '}}
-    <br>
-    {{ 'AmountPure' }}:
-     {{dataModelCalculateResult.item.amountPure|currency:' '+dataModelCalculateResult.item.currency+' '}}
-    <br>
-    {{ 'FeeTransport' }}:
-    {{dataModelCalculateResult.item.feeTransport|currency:' '+dataModelCalculateResult.item.currency+' '}}
-    <hr>
-    {{ 'Amount' }}:
-    {{dataModelCalculateResult.item.amount|currency:' '+dataModelCalculateResult.item.currency+' '}}
+    <div *ngIf="dataModelCalculateResult.item?.feeTax>0">
+      {{ 'TITLE.FEETAX'|translate }}:
+      {{dataModelCalculateResult.item?.feeTax|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+  </div>
+  <br>
+  <div *ngIf="dataModelCalculateResult.item?.amountPure>0">
+      {{ 'TITLE.Amount_pure'|translate }}:
+      {{dataModelCalculateResult.item?.amountPure|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+  </div>
+  <br>
+  <div *ngIf="dataModelCalculateResult.item?.feeTransport>0">
+      {{ 'TITLE.Fee_transport'|translate }}:
+      {{dataModelCalculateResult.item?.feeTransport|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+  </div>
+  <hr>
+  <div *ngIf="dataModelCalculateResult.item?.amount>0">
+      {{ 'TITLE.Final_Amount'|translate }}:
+      {{dataModelCalculateResult.item?.amount|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+  </div>
   </div>
 
 </mat-dialog-content>

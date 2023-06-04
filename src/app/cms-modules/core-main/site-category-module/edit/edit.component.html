@@ -23,19 +23,19 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCmsSiteId Field -->
-    <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)" [(loading)]="loading"
+    <app-core-sitecategory-selector (optionChange)="onActionSiteCategorySelect($event)" [(optionLoading)]="loading"
       [optionDisabled]="!fieldsInfo['linkCmsSiteCategoryId']?.accessEditField"
       [optionSelectForce]="dataModel.linkCmsSiteCategoryId"
       [optionPlaceholder]="this.translate.instant('TITLE.SITE_CATEGORY')">
     </app-core-sitecategory-selector>
     <!-- LinkModuleId Field -->
-    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [(loading)]="loading"
+    <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [(optionLoading)]="loading"
       [optionDisabled]="!fieldsInfo['linkCmsModuleId']?.accessEditField" [optionSelectForce]="dataModel.linkCmsModuleId"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-selector>
     <!-- ConfigValuesJson Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['configValuesJson']?.accessWatchField">
-      <mat-label>{{ fieldsInfo['configValuesJson']?.FieldConfigValuesJson }}</mat-label>
+      <mat-label>{{ fieldsInfo['configValuesJson']?.fieldTitle }}</mat-label>
       <textarea matInput [(ngModel)]="dataModel.configValuesJson"
         [disabled]="!fieldsInfo['configValuesJson']?.accessAddField" name="dataModel.configValuesJson" #ConfigValuesJson
         type="text" placeholder="ConfigValuesJson" row="6" minlength="0" maxlength="10000"></textarea>

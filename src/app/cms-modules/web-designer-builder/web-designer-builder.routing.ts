@@ -6,17 +6,15 @@ const routes: Routes = [
   {
     path: '',
     component: WebDesignerBuilderComponent,
+    data: { title: 'ROUTE.WEBDESIGNERBUILDER' },
     children: [
-
       /** */
-
       /** */
-    ]
+    ],
   },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class WebDesignerBuilderRoutes {
-}
+export class WebDesignerBuilderRoutes {}

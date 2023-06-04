@@ -64,7 +64,7 @@
       <ng-container matColumnDef="LinkSiteId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkSiteId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
       </ng-container>
       <!-- LinkApplicationId Column -->
       <ng-container matColumnDef="LinkApplicationId">
@@ -76,7 +76,8 @@
       <ng-container matColumnDef="RecordStatus">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [ngClass]="row.recordStatus|statusClass"></i>
+        <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i
+            [ngClass]="row.recordStatus|statusIconClass"></i>
           <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
             style="background: none; border: none;"
             [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
@@ -86,7 +87,7 @@
       <!-- LinkUserId Column -->
       <ng-container matColumnDef="LinkUserId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkUserId']?.fieldTitle}} </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.linkUserId}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkUserId | cmsuserinfo |async}} </mat-cell>
       </ng-container>
       <!-- LinkMemberId Column -->
       <ng-container matColumnDef="LinkMemberId">

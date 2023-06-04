@@ -4,32 +4,33 @@ import { FileContentExplorerComponent } from './content/explorer/explorer.compon
 import { FileContentListComponent } from './content/list/list.component';
 import { FileManagerComponent } from './file-manager.component';
 
-
 const routes: Routes = [
   {
     path: '',
     component: FileManagerComponent,
+    data: { title: 'ROUTE.FILEMANAGER' },
     children: [
       {
         path: 'content',
-        component: FileContentListComponent
+        component: FileContentListComponent,
+        data: { title: 'ROUTE.FILEMANAGER' },
       },
       {
         path: 'explorer',
-        component: FileContentExplorerComponent
+        component: FileContentExplorerComponent,
+        data: { title: 'ROUTE.FILEMANAGER' },
       },
       {
         path: '',
         redirectTo: 'explorer',
         pathMatch: 'full',
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FileManagerRouting {
-}
+export class FileManagerRouting {}

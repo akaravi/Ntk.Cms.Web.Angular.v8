@@ -85,6 +85,9 @@ export class CoreGuideAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.coreGuideService
       .ServiceViewModel()
       .subscribe({
@@ -97,6 +100,7 @@ export class CoreGuideAddComponent implements OnInit {
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

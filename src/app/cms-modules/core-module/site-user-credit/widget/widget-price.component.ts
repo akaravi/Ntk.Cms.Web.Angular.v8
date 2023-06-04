@@ -54,8 +54,13 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
 
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Evidence_Identity');
     this.widgetInfoModel.description = '';
@@ -94,7 +99,7 @@ export class CoreModuleSiteUserCreditWidgetPriceComponent implements OnInit, OnD
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
 
-    this.service.ServiceGetAll(filterModel).subscribe({
+    this.service.ServiceGetAllCredit().subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 

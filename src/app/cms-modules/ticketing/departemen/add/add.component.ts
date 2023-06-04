@@ -63,6 +63,9 @@ export class TicketingDepartemenAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.ticketingDepartemenService
       .ServiceViewModel()
       .subscribe(
@@ -72,10 +75,13 @@ export class TicketingDepartemenAddComponent implements OnInit {
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
+
           }
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(pName);
         }
       );
   }

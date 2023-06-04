@@ -27,7 +27,7 @@
           </mat-select>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['recordStatus']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['recordStatus']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
           <mat-error *ngIf="RecordStatus.errors?.required">
@@ -47,7 +47,7 @@
           </mat-select>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['lang']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['lang']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-error *ngIf="Lang.errors?.required">
             {{ fieldsInfo['lang']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -55,12 +55,15 @@
         </mat-form-field>
         <!-- LinkSourceId Field -->
         <app-application-source-selector (optionChange)="onActionSelectSource($event)"
-          [optionSelectForce]="this.dataModel.linkSourceId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
+          [optionSelectForce]="this.dataModel.linkSourceId" [(optionLoading)]="loading"
+          [optionPlaceholder]="this.translate.instant('TITLE.Application_Source')"
           [optionDisabled]="!fieldsInfo['linkSourceId']?.accessEditField"></app-application-source-selector>
         <!-- LinkThemeConfigId Field -->
         <app-application-themeconfig-selector (optionChange)="onActionSelectTheme($event)"
-          [optionSelectForce]="this.dataModel.linkThemeConfigId" [(loading)]="loading" [optionSelectParentForce]="this.dataModel.linkSourceId"
-          [optionPlaceholder]="this.translate.instant('TITLE.Application_Template')" [optionDisabled]="!fieldsInfo['linkThemeConfigId']?.accessEditField">
+          [optionSelectForce]="this.dataModel.linkThemeConfigId" [(optionLoading)]="loading"
+          [optionSelectParentForce]="this.dataModel.linkSourceId"
+          [optionPlaceholder]="this.translate.instant('TITLE.Application_Template')"
+          [optionDisabled]="!fieldsInfo['linkThemeConfigId']?.accessEditField">
         </app-application-themeconfig-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
@@ -73,7 +76,7 @@
           <mat-icon *ngIf="fieldsInfo['title']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['title']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['title']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
           <mat-error *ngIf="Title.errors?.required">
@@ -91,7 +94,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['description']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['description']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
           <mat-error *ngIf="Description.errors?.required">
@@ -108,7 +111,7 @@
             mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['expireDate']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['expireDate']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
           <mat-datepicker touchUi #ExpireDate></mat-datepicker>
@@ -131,14 +134,14 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['aboutUsTitle']?.accessWatchField">
           <mat-label>{{ fieldsInfo['aboutUsTitle']?.fieldTitle }}</mat-label>
           <input matInput [(ngModel)]="dataModel.aboutUsTitle" [disabled]="!fieldsInfo['aboutUsTitle']?.accessEditField"
-            name="dataModel.aboutUsTitle" #AboutUsTitle type="text" placeholder="{{'TITLE.Text_About_Us' | translate}}" minlength="0"
-            maxlength="100" />
+            name="dataModel.aboutUsTitle" #AboutUsTitle type="text" placeholder="{{'TITLE.Text_About_Us' | translate}}"
+            minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsTitle && fieldsInfo['aboutUsTitle']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsTitle = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['aboutUsTitle']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsTitle']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsTitle']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ AboutUsTitle.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -154,22 +157,22 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsDescription']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsDescription']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsDescription']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ AboutUsDescription.value.length }} / 1000</mat-hint>
         </mat-form-field>
         <!-- AboutUsTel Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['aboutUsTel']?.accessWatchField">
           <mat-label>{{ fieldsInfo['aboutUsTel']?.fieldTitle }}</mat-label>
-          <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['aboutUsTel']?.accessEditField" class="input-Mobile"
-            name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444" minlength="0"
-            maxlength="100" />
+          <input matInput [(ngModel)]="dataModel.aboutUsTel" [disabled]="!fieldsInfo['aboutUsTel']?.accessEditField"
+            class="input-Mobile" name="dataModel.aboutUsTel" #AboutUsTel type="text" placeholder="021444444444"
+            minlength="0" maxlength="100" />
           <mat-icon matSuffix *ngIf="dataModel.aboutUsTel && fieldsInfo['aboutUsTel']?.accessEditField" matSuffix
             mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsTel = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['aboutUsTel']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsTel']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsTel']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ AboutUsTel.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -184,7 +187,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsFax']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsFax']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsFax']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ AboutUsFax.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -199,7 +202,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsEmail']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsEmail']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsEmail']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ AboutUsEmail.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -208,13 +211,14 @@
           <mat-label>{{ fieldsInfo['aboutUsAddress']?.fieldTitle }}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.aboutUsAddress"
             [disabled]="!fieldsInfo['aboutUsAddress']?.accessEditField" name="dataModel.aboutUsAddress" #AboutUsAddress
-            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0" maxlength="100"></textarea>
+            type="text" placeholder="{{'TITLE.Iran_Tehran' | translate}} ..." row="5" minlength="0"
+            maxlength="100"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.aboutUsAddress && fieldsInfo['aboutUsAddress']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsAddress = ''">close</mat-icon>
           <mat-icon *ngIf="fieldsInfo['aboutUsAddress']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsAddress']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsAddress']?.fieldDescription}}</strong>
           </mat-hint>
           <mat-hint align="end">{{ AboutUsAddress.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -230,7 +234,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkFacebook']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkFacebook']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkFacebook']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkTwitter Field -->
@@ -244,7 +248,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkTwitter']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkTwitter']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkTwitter']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkGooglePlus Field -->
@@ -259,7 +263,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkGooglePlus']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkGooglePlus']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkGooglePlus']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkInstagram Field -->
@@ -274,7 +278,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkInstagram']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkInstagram']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkInstagram']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkWhatsapp Field -->
@@ -289,7 +293,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkWhatsapp']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>close
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkWhatsapp']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkWhatsapp']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinklinkedin Field -->
@@ -304,7 +308,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinklinkedin']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinklinkedin']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinklinkedin']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkYahoo Field -->
@@ -318,7 +322,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkYahoo']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkYahoo']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkYahoo']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkYoutube Field -->
@@ -332,7 +336,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkYoutube']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkYoutube']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkYoutube']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkTelegram Field -->
@@ -347,7 +351,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkTelegram']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkTelegram']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkTelegram']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkPinterest Field -->
@@ -362,7 +366,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkPinterest']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkPinterest']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkPinterest']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- AboutUsLinkRss Field -->
@@ -376,7 +380,7 @@
           <mat-icon *ngIf="fieldsInfo['aboutUsLinkRss']?.accessEditField" matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkRss']?.FieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['aboutUsLinkRss']?.fieldDescription}}</strong>
           </mat-hint>
         </mat-form-field>
 
@@ -401,7 +405,7 @@
               (click)="fileManagerOpenFormAboutUsLinkImageId = true">mode_edit</mat-icon>
             <mat-hint align="start">
               <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-              <strong class="info-field-text">{{fieldsInfo['aboutUsLinkImageId']?.FieldDescription}}</strong>
+              <strong class="info-field-text">{{fieldsInfo['aboutUsLinkImageId']?.fieldDescription}}</strong>
             </mat-hint>
           </mat-form-field>
           <cms-file-manager (itemSelected)="onActionFileSelectedAboutUsLinkImageId($event)" [language]="appLanguage"
@@ -410,8 +414,9 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
-          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull"
-            id="main" *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')"
+            [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
             [disabled]="!fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessEditField"
             [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
           </angular-editor>
@@ -464,8 +469,8 @@
           <mat-label>{{fieldsInfo['downloadLinkSrcCustomize']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="dataModel.downloadLinkSrcCustomize"
             [disabled]="!fieldsInfo['downloadLinkSrcCustomize']?.accessEditField"
-            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text" placeholder="{{'TITLE.download_link' | translate}}"
-            minlength="0" maxlength="1000" />
+            name="dataModel.downloadLinkSrcCustomize" #DownloadLinkSrcCustomize type="text"
+            placeholder="{{'TITLE.download_link' | translate}}" minlength="0" maxlength="1000" />
           <mat-icon matSuffix
             *ngIf="dataModel.downloadLinkSrcCustomize && fieldsInfo['downloadLinkSrcCustomize']?.accessEditField"
             matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.downloadLinkSrcCustomize = ''">close
@@ -619,8 +624,8 @@
           <mat-label>{{fieldsInfo['configBuilderAdminJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configBuilderAdminJsonValues"
             [disabled]="!fieldsInfo['configBuilderAdminJsonValues']?.accessEditField"
-            name="dataModel.configBuilderAdminJsonValues" #ConfigBuilderAdminJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
-            rows="5"></textarea>
+            name="dataModel.configBuilderAdminJsonValues" #ConfigBuilderAdminJsonValues type="text"
+            placeholder="{{'TITLE.Values' | translate}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configBuilderAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.configBuilderAdminJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -629,8 +634,8 @@
           <mat-label>{{fieldsInfo['configRuntimeAdminJsonValues']?.fieldTitle}}</mat-label>
           <textarea matInput [(ngModel)]="dataModel.configRuntimeAdminJsonValues"
             [disabled]="!fieldsInfo['configRuntimeAdminJsonValues']?.accessEditField"
-            name="dataModel.configRuntimeAdminJsonValues" #ConfigRuntimeAdminJsonValues type="text" placeholder="{{'TITLE.Values' | translate}}"
-            rows="5"></textarea>
+            name="dataModel.configRuntimeAdminJsonValues" #ConfigRuntimeAdminJsonValues type="text"
+            placeholder="{{'TITLE.Values' | translate}}" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataModel.configRuntimeAdminJsonValues" matSuffix mat-icon-button
             aria-label="Clear" (click)="dataModel.configRuntimeAdminJsonValues = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
@@ -691,7 +696,7 @@
                 <mat-label>{{fieldsInfo['buildKey2String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey2String"
                   [disabled]="!fieldsInfo['buildKey2String']?.accessEditField" name="dataModel.buildKey2String"
-                  #BuildKey2String type="text" placeholder="KEY" minlength="0"/>
+                  #BuildKey2String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey2String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -729,7 +734,7 @@
                 <mat-label>{{fieldsInfo['buildKey3Files']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3Files"
                   [disabled]="!fieldsInfo['buildKey3Files']?.accessEditField" name="dataModel.buildKey3Files"
-                  #BuildKey3Files type="text" placeholder="Files" minlength="0"  />
+                  #BuildKey3Files type="text" placeholder="Files" minlength="0" />
                 <mat-hint align="end">{{ BuildKey3Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -738,7 +743,7 @@
                 <mat-label>{{fieldsInfo['buildKey3Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey3Value"
                   [disabled]="!fieldsInfo['buildKey3Value']?.accessEditField" name="dataModel.buildKey3Value"
-                  #BuildKey3Value type="text" placeholder="Value" minlength="0"  />
+                  #BuildKey3Value type="text" placeholder="Value" minlength="0" />
                 <mat-hint align="end">{{ BuildKey3Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -749,7 +754,7 @@
                 <mat-label>{{fieldsInfo['buildKey4String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey4String"
                   [disabled]="!fieldsInfo['buildKey4String']?.accessEditField" name="dataModel.buildKey4String"
-                  #BuildKey4String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey4String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey4String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -778,7 +783,7 @@
                 <mat-label>{{fieldsInfo['buildKey5String']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5String"
                   [disabled]="!fieldsInfo['buildKey5String']?.accessEditField" name="dataModel.buildKey5String"
-                  #BuildKey5String type="text" placeholder="KEY" minlength="0"  />
+                  #BuildKey5String type="text" placeholder="KEY" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5String.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -787,7 +792,7 @@
                 <mat-label>{{fieldsInfo['buildKey5Files']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5Files"
                   [disabled]="!fieldsInfo['buildKey5Files']?.accessEditField" name="dataModel.buildKey5Files"
-                  #BuildKey5Files type="text" placeholder="Files" minlength="0"  />
+                  #BuildKey5Files type="text" placeholder="Files" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5Files.value.length }} </mat-hint>
               </mat-form-field>
             </td>
@@ -796,7 +801,7 @@
                 <mat-label>{{fieldsInfo['buildKey5Value']?.fieldTitle}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.buildKey5Value"
                   [disabled]="!fieldsInfo['buildKey5Value']?.accessEditField" name="dataModel.buildKey5Value"
-                  #BuildKey5Value type="text" placeholder="Value" minlength="0"  />
+                  #BuildKey5Value type="text" placeholder="Value" minlength="0" />
                 <mat-hint align="end">{{ BuildKey5Value.value.length }} </mat-hint>
               </mat-form-field>
             </td>

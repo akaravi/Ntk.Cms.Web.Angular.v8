@@ -84,6 +84,9 @@ export class CoreLocationAddComponent implements OnInit {
 
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.coreLocationService
       .ServiceViewModel()
       .subscribe({
@@ -93,9 +96,11 @@ export class CoreLocationAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

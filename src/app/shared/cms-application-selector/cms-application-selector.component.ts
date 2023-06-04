@@ -7,7 +7,7 @@ import {
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
@@ -29,7 +29,13 @@ export class CmsApplicationSelectorComponent implements OnInit {
   }
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
   dataModelSelect: ApplicationAppModel = new ApplicationAppModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formControl = new FormControl();
   filteredOptions: Observable<ApplicationAppModel[]>;
   @Input() optionDisabled = false;
@@ -111,9 +117,9 @@ export class CmsApplicationSelectorComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
@@ -127,8 +133,7 @@ export class CmsApplicationSelectorComponent implements OnInit {
           this.loading.Stop(pName);
 
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: ApplicationAppModel): void {
     if (this.optionDisabled) {

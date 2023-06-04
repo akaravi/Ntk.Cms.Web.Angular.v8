@@ -20,7 +20,8 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
-import { map } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -41,6 +42,7 @@ export class PublicHelper {
     private coreModuleService: CoreModuleService,
     private cmsStoreService: CmsStoreService,
     public dialog: MatDialog,
+    private pageInfo: PageInfoService
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
     this.innerWidth = + window.innerWidth;
@@ -370,13 +372,13 @@ export class PublicHelper {
     }
 
     this.getCurrencyActionIndo = true;
-    return await this.coreCurrencyService.ServiceGetAll(null)
-      .pipe(map(response => {
+    return await firstValueFrom(this.coreCurrencyService.ServiceGetAll(null))
+      .then((response) => {
         this.getCurrencyActionIndo = false;
         this.cmsStoreService.setState({ CurrencyResultStore: response });
 
         return response;
-      })).toPromise();
+      });
 
   }
 
@@ -407,12 +409,12 @@ export class PublicHelper {
     }
 
     this.getEnumRecordStatusActionIndo = true;
-    return await this.coreEnumService.ServiceEnumRecordStatus()
-      .pipe(map(response => {
+    return await firstValueFrom(this.coreEnumService.ServiceEnumRecordStatus())
+      .then((response) => {
         this.getEnumRecordStatusActionIndo = false;
         this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });
         return response;
-      })).toPromise();
+      });
 
   }
   async getCurrentSite(): Promise<ErrorExceptionResult<CoreSiteModel>> {
@@ -420,22 +422,22 @@ export class PublicHelper {
     if (storeSnapshot?.CoreSiteResultStore && storeSnapshot?.CoreSiteResultStore.item && storeSnapshot?.CoreSiteResultStore?.item?.id > 0) {
       return storeSnapshot.CoreSiteResultStore;
     }
-    return await this.coreSiteService.ServiceCurrectSite()
-      .pipe(map(response => {
+    return await firstValueFrom(this.coreSiteService.ServiceCurrectSite())
+      .then((response) => {
         this.cmsStoreService.setState({ CoreSiteResultStore: response });
         return response;
-      })).toPromise();
+      });
   }
   async getCurrentSiteModule(): Promise<ErrorExceptionResult<CoreModuleModel>> {
     const storeSnapshot = this.cmsStoreService.getStateSnapshot();
     if (storeSnapshot?.CoreModuleResultStore && storeSnapshot?.CoreModuleResultStore?.listItems?.length > 0) {
       return storeSnapshot.CoreModuleResultStore;
     }
-    return await this.coreModuleService.ServiceGetAllModuleName(null)
-      .pipe(map(response => {
+    return await firstValueFrom(this.coreModuleService.ServiceGetAllModuleName(null))
+      .then((response) => {
         this.cmsStoreService.setState({ CoreModuleResultStore: response });
         return response;
-      })).toPromise();
+      });
   }
   StringRandomGenerator(passwordLength = 10, onlynumber = false): string {
     // const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -490,12 +492,12 @@ export class PublicHelper {
     }
 
 
-
-    if (cloumn.indexOf('Id') >= 0)
-      cloumnAdminAccessDispaly.push('Id');
-    if (cloumn.indexOf('LinkSiteId') >= 0)
-      cloumnAdminAccessDispaly.push('LinkSiteId');
-
+    if (cloumnAdminAccessDispaly.length == 0) {
+      if (cloumn.indexOf('Id') >= 0)
+        cloumnAdminAccessDispaly.push('Id');
+      if (cloumn.indexOf('LinkSiteId') >= 0)
+        cloumnAdminAccessDispaly.push('LinkSiteId');
+    }
     if (token.userAccessAdminAllowToAllData || token.userAccessAdminAllowToProfessionalData) {
       var i = 0;
       cloumnAdminAccessDispaly.forEach(element => {
@@ -507,5 +509,15 @@ export class PublicHelper {
       });
     }
     return cloumn;
+  }
+  OpenNewTabByClick(event: MouseEvent, linkOfRoute: String): void {
+    if (event?.ctrlKey) {
+      window.open("/#" + linkOfRoute, "_blank");
+    } else if (this.router.url === linkOfRoute) {
+      this.router.navigate([linkOfRoute]);
+    } else {
+      this.pageInfo.updateContentService(null);
+      this.router.navigate([linkOfRoute]);
+    }
   }
 }

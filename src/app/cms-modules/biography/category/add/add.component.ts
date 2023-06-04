@@ -66,6 +66,9 @@ export class BiographyCategoryAddComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+
     this.biographyCategoryService
       .ServiceViewModel()
       .subscribe({
@@ -75,9 +78,11 @@ export class BiographyCategoryAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

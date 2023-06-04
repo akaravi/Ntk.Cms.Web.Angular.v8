@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -23,7 +23,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkTargeId Field -->
-    <app-donate-target-selector (optionChange)="onActionSelectorSelect($event)" [(loading)]="loading"
+    <app-donate-target-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkTargeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
     </app-donate-target-selector>
     <!-- Title Field -->
@@ -39,8 +39,8 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-     <!-- Description Field -->
-     <mat-form-field class="ntk-full-width">
+    <!-- Description Field -->
+    <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
         placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="3" maxlength="100" required />

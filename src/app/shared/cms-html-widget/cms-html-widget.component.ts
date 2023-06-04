@@ -8,12 +8,14 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 export class CmsHtmlWidgetComponent implements OnInit {
   static nextId = 0;
   id = ++CmsHtmlWidgetComponent.nextId;
-  @Input()
-  public set optionLoading(v: ProgressSpinnerModel) {
-    this.loading = v;
+ 
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input()
-  loading = new ProgressSpinnerModel();
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   constructor() { }
   ngOnInit(): void {
 

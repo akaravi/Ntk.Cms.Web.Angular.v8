@@ -1,4 +1,4 @@
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm"  [ngStyle]="{'direction' : tokenInfo.direction }">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     {{ formInfo.formTitle }}
@@ -26,7 +26,7 @@
         </mat-form-field>
         <!-- Title Field -->
         <app-core-cpmainmenu-selector (optionChange)="onActionSelectorSelect($event)" [optionDisabled]="false"
-          [(loading)]="loading" [optionSelectForce]="dataModel.linkParentId"
+          [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkParentId"
           [optionPlaceholder]="this.translate.instant('TITLE.Parent_Menu')">
         </app-core-cpmainmenu-selector>
         <!-- Title Field -->
@@ -172,7 +172,7 @@
         </div>
         <!-- LinkModuleId Field -->
         <app-core-module-selector (optionChange)="onActionSelectorModuleSelect($event)" [optionDisabled]="false"
-          [(loading)]="loading" [optionSelectForce]="dataModel.linkModuleId"
+          [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkModuleId"
           [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
         </app-core-module-selector>
 

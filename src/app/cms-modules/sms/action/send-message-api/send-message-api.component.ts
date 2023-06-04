@@ -9,7 +9,7 @@ import {
   SmsMainApiNumberService, SmsMainApiPathModel,
   SmsMainApiPathService
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -37,7 +37,13 @@ export class SmsActionSendMessageApiComponent implements OnInit {
   dataNumberModelResult: ErrorExceptionResult<SmsMainApiNumberModel> = new ErrorExceptionResult<SmsMainApiNumberModel>();
   dataPathModelSelect: SmsMainApiPathModel = new SmsMainApiPathModel();
   dataNumberModelSelect: SmsMainApiNumberModel = new SmsMainApiNumberModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   formPathControl = new FormControl();
   formNumberControl = new FormControl();
   filteredPathOptions: Observable<SmsMainApiPathModel[]>;
@@ -118,9 +124,9 @@ export class SmsActionSendMessageApiComponent implements OnInit {
       filterModel.filters.push(filter);
     }
     this.loading.Start('DataPathGetAll');
-    return await this.pathService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.pathService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataPathModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
@@ -133,8 +139,7 @@ export class SmsActionSendMessageApiComponent implements OnInit {
           /*select First Item */
           this.loading.Stop('DataPathGetAll');
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   async DataNumberGetAll(text: string | number | any): Promise<SmsMainApiNumberModel[]> {
     const filterModel = new FilterModel();
@@ -155,9 +160,9 @@ export class SmsActionSendMessageApiComponent implements OnInit {
       filterModel.filters.push(filter);
     }
     this.loading.Start('DataNumberGetAll');
-    return await this.numberService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom(this.numberService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataNumberModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
@@ -170,8 +175,7 @@ export class SmsActionSendMessageApiComponent implements OnInit {
           /*select First Item */
           this.loading.Stop('DataNumberGetAll');
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelectPath(model: SmsMainApiPathModel): void {
     if (this.optionDisabled) {

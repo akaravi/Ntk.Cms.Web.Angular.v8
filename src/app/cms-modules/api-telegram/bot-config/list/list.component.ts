@@ -13,8 +13,8 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
-import { ComponentOptionStatistModel } from 'src/app/core/cmsComponentModels/base/componentOptionStatistModel';
+import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
+import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -100,7 +100,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApiTelegramBotConfigModel();
+    this.onActionTableRowSelect(new ApiTelegramBotConfigModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -179,7 +179,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -204,7 +204,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(  model);
 
     if (
       this.dataModelResult == null ||
@@ -251,7 +251,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(this.tableRowSelected );
 
     this.router.navigate(['/core/siteModule/', this.tableRowSelected.id]);
   }
@@ -312,7 +312,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     this.router.navigate(['api-telegram/log-input/LinkBotConfigId/', model.id]);
   }
   onActionbuttonOutboxList(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
@@ -321,7 +321,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     this.router.navigate(['api-telegram/log-output/LinkBotConfigId/', model.id]);
   }
   onActionbuttonSendMessage(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
@@ -330,7 +330,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     //open popup
     const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
       // height: "90%",
@@ -351,7 +351,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     const pName = this.constructor.name + 'ServiceGetUpdatesAsync';
 
     this.contentService.ServiceGetUpdatesAsync(model.id).subscribe({
@@ -376,7 +376,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     const pName = this.constructor.name + 'ServiceGetMeAsync';
 
     this.contentService.ServiceGetMeAsync(model.id).subscribe({
@@ -413,7 +413,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     const pName = this.constructor.name + 'ServiceGetUpdatesAsyncLast';
     this.contentService.ServiceGetUpdatesAsyncLast(model.id).subscribe({
       next: (ret) => {
@@ -471,7 +471,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -515,7 +515,7 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));

@@ -9,10 +9,13 @@ import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { CoreModuleSiteCreditChargeDirectComponent } from './site-credit/charge-direct/charge-direct.component';
 import { CoreModuleSiteCreditChargePaymentComponent } from './site-credit/charge-payment/charge-payment.component';
 import { CoreModuleSiteCreditChargeComponent } from './site-credit/charge/charge.component';
 import { CoreModuleSiteCreditEditComponent } from './site-credit/edit/edit.component';
 import { CoreModuleSiteCreditListComponent } from './site-credit/list/list.component';
+import { CoreModuleSiteUserCreditChargeDirectComponent } from './site-user-credit/charge-direct/charge-direct.component';
 import { CoreModuleSiteUserCreditChargePaymentComponent } from './site-user-credit/charge-payment/charge-payment.component';
 import { CoreModuleSiteUserCreditChargeComponent } from './site-user-credit/charge/charge.component';
 import { CoreModuleSiteUserCreditEditComponent } from './site-user-credit/edit/edit.component';
@@ -57,7 +60,9 @@ import { CoreModuleTagCategoryTreeComponent } from './tagCategory/tree/tree.comp
     CoreModuleSiteUserCreditChargeComponent,
     CoreModuleSiteCreditChargeComponent,
     CoreModuleSiteCreditChargePaymentComponent,
-    CoreModuleSiteUserCreditChargePaymentComponent
+    CoreModuleSiteUserCreditChargePaymentComponent,
+    CoreModuleSiteCreditChargeDirectComponent,
+    CoreModuleSiteUserCreditChargeDirectComponent,
   ],
   exports: [
     CoreModuleComponent,
@@ -77,6 +82,8 @@ import { CoreModuleTagCategoryTreeComponent } from './tagCategory/tree/tree.comp
     CoreModuleSiteCreditChargeComponent,
     CoreModuleSiteCreditChargePaymentComponent,
     CoreModuleSiteUserCreditChargePaymentComponent,
+    CoreModuleSiteCreditChargeDirectComponent,
+    CoreModuleSiteUserCreditChargeDirectComponent,
   ],
   providers: [
     CoreModuleService,
@@ -84,7 +91,7 @@ import { CoreModuleTagCategoryTreeComponent } from './tagCategory/tree/tree.comp
     CoreModuleTagCategoryService,
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
-
+    CmsConfirmationDialogService
   ]
 })
 export class CoreModuleModule { }

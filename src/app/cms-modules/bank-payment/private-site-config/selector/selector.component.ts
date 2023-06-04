@@ -8,7 +8,7 @@ import {
   FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -43,12 +43,12 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
   @Output() optionChange = new EventEmitter<BankPaymentPrivateSiteConfigModel>();
   @Input() optionReload = () => this.onActionReload();
 
-  _loading: ProgressSpinnerModel = new ProgressSpinnerModel();
-  get loading(): ProgressSpinnerModel {
-    return this._loading;
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
   }
-  @Input() set loading(value: ProgressSpinnerModel) {
-    this._loading = value;
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
   }
 
   ngOnInit(): void {
@@ -115,9 +115,9 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    return await this.categoryService.ServiceGetAll(filterModel)
-      .pipe(
-        map(response => {
+    return await firstValueFrom( this.categoryService.ServiceGetAll(filterModel))
+      .then(
+        (response) => {
           this.dataModelResult = response;
           /*select First Item */
           if (this.optionSelectFirstItem &&
@@ -130,8 +130,7 @@ export class BankPaymentPrivateSiteConfigSelectorComponent implements OnInit {
           /*select First Item */
           this.loading.Stop(pName);
           return response.listItems;
-        })
-      ).toPromise();
+        });
   }
   onActionSelect(model: BankPaymentPrivateSiteConfigModel): void {
     if (this.optionDisabled) {

@@ -9,9 +9,11 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCpMainMenuModel, CoreCpMainMenuService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult,
-  FormInfoModel
+  FormInfoModel,
+  TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -31,6 +33,7 @@ export class CoreCpMainMenuAddComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    public tokenHelper: TokenHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -40,6 +43,9 @@ export class CoreCpMainMenuAddComponent implements OnInit {
     if (this.requestParentId > 0) {
       this.dataModel.linkParentId = this.requestParentId;
     }
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
 
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -52,7 +58,7 @@ export class CoreCpMainMenuAddComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fileManagerOpenForm = false;
-
+  tokenInfo = new TokenInfoModel();
   ngOnInit(): void {
 
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
@@ -71,6 +77,9 @@ export class CoreCpMainMenuAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.coreCpMainMenuService
       .ServiceViewModel()
       .subscribe({
@@ -80,9 +89,11 @@ export class CoreCpMainMenuAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

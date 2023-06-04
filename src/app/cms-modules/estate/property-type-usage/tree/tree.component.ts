@@ -49,7 +49,13 @@ export class EstatePropertyTypeUsageTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: EstatePropertyTypeUsageModel = new EstatePropertyTypeUsageModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<EstatePropertyTypeUsageModel>(node => null);
   dataSource = new MatTreeNestedDataSource<EstatePropertyTypeUsageModel>();
   @Output() optionChange = new EventEmitter<EstatePropertyTypeUsageModel>();

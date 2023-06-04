@@ -51,7 +51,13 @@ export class DataProviderPlanCategoryTreeComponent implements OnInit, OnDestroy 
   dataModelSelect: DataProviderPlanCategoryModel = new DataProviderPlanCategoryModel();
   dataModelResult: ErrorExceptionResult<DataProviderPlanCategoryModel> = new ErrorExceptionResult<DataProviderPlanCategoryModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<DataProviderPlanCategoryModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<DataProviderPlanCategoryModel>();
   @Output() optionChange = new EventEmitter<DataProviderPlanCategoryModel>();

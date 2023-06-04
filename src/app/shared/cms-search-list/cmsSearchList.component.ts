@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { QueryBuilderFieldMap, Rule, RuleSet } from 'ngx-ntk-query-builder';
 import { AccessModel, EnumClauseType, FilterDataModel } from 'ntk-cms-api';
-import { ComponentOptionSearchModel } from 'src/app/core/cmsComponentModels/base/componentOptionSearchModel';
+import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({

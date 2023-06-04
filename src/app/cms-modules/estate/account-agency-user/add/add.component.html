@@ -10,14 +10,14 @@
 
 
     <!-- linkEstateAccountUserId Field -->
-    <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [(loading)]="loading"
+    <app-estate-account-user-selector (optionChange)="onActionSelectorAccountUser($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkEstateAccountUserId" [optionPlaceholder]="'user'">
     </app-estate-account-user-selector>
 
     <!-- linkEstateAccountAgencyId Field -->
-    <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)" [(loading)]="loading"
-      [optionSelectForce]="dataModel.linkEstateAccountAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
-      [optionPlaceholder]="'Agency'">
+    <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)"
+      [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkEstateAccountAgencyId"
+      [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="'Agency'">
     </app-estate-account-agency-selector>
 
 

@@ -144,11 +144,11 @@
     </app-estate-contract-type-autocomplete>
     <!-- linkCoreCurrencyId Field -->
     <app-cms-currency-selector [optionSelectFirstItem]="true" [optionSelectForce]="dataModel.linkCoreCurrencyId"
-      *ngIf="!LinkPropertyIdsInUse" (optionChange)="onActionSelectCurrency($event)" [(loading)]="loading"
+      *ngIf="!LinkPropertyIdsInUse" (optionChange)="onActionSelectCurrency($event)" [(optionLoading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
     </app-cms-currency-selector>
     <!-- LinkLocationIds Field -->
-    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(loading)]="loading"
+    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
       *ngIf="!LinkPropertyIdsInUse" [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessAddField"
       [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
     </app-cms-location-autocomplete>

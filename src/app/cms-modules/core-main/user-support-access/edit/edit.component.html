@@ -22,18 +22,18 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkSiteId Field -->
-    <app-cms-site-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessEditField" [(loading)]="loading"
+    <app-cms-site-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessEditField" [(optionLoading)]="loading"
       [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
     </app-cms-site-selector>
 
     <!-- LinkUserId Field -->
-    <app-cms-user-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessEditField" [(loading)]="loading"
+    <app-cms-user-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessEditField" [(optionLoading)]="loading"
       [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
     </app-cms-user-selector>
 
     <!-- module-entity Field -->
     <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)"
-      [optionDisabled]="!fieldsInfo['moduleName']?.accessEditField" [(loading)]="loading"
+      [optionDisabled]="!fieldsInfo['moduleName']?.accessEditField" [(optionLoading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
     </app-core-module-entity-selector>
 
@@ -49,7 +49,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleName']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleName.errors?.required">
@@ -70,7 +70,7 @@
       <mat-icon matSuffix>mode_edit</mat-icon>
       <mat-hint align="start">
         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.FieldDescription}}</strong>
+        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.fieldDescription}}</strong>
       </mat-hint>
       <mat-hint align="end">{{ ModuleEntityName.value.length }} / 100</mat-hint>
       <mat-error *ngIf="ModuleEntityName.errors?.required">

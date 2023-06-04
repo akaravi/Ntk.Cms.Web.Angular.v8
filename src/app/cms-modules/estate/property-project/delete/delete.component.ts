@@ -7,14 +7,15 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel,
   EnumManageUserAccessDataTypes, ErrorExceptionResult, EstatePropertyProjectModel,
-  EstatePropertyProjectService, FormInfoModel
+  EstatePropertyProjectService, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
@@ -30,6 +31,7 @@ export class EstatePropertyProjectDeleteComponent implements OnInit {
     public contentService: EstatePropertyProjectService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
+    public tokenHelper: TokenHelper,
     public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
@@ -37,10 +39,15 @@ export class EstatePropertyProjectDeleteComponent implements OnInit {
     if (data) {
       this.requestId = data.id;
     }
+
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+    });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
+  tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   dataModelResultContent: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
   formInfo: FormInfoModel = new FormInfoModel();

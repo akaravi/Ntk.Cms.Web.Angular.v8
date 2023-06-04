@@ -31,7 +31,7 @@ export class AuthSingInComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel: AuthUserSignInModel = new AuthUserSignInModel();
   captchaModel: CaptchaModel = new CaptchaModel();
-  expireDate: string;
+  expireDate: Date;
   aoutoCaptchaOrder = 1;
   // KeenThemes mock, change it to:
   hasError: boolean;
@@ -100,7 +100,7 @@ export class AuthSingInComponent implements OnInit {
       next: (ret) => {
         if (ret.isSuccess) {
           this.captchaModel = ret.item;
-          this.expireDate = ret.item.expire.split('+')[1];
+          this.expireDate = ret.item.expire;//.split('+')[1];
           const startDate = new Date();
           const endDate = new Date(ret.item.expire);
           const seconds = (endDate.getTime() - startDate.getTime());

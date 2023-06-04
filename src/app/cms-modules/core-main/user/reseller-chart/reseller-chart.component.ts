@@ -52,7 +52,13 @@ export class CoreUserResellerChartComponent implements OnInit, OnDestroy {
   dataModelSelect: RessellerChartModel = new RessellerChartModel();
   dataModelResult: ErrorExceptionResult<RessellerChartModel> = new ErrorExceptionResult<RessellerChartModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<RessellerChartModel>(node => node.userChilds);
 
   dataSource = new MatTreeNestedDataSource<RessellerChartModel>();

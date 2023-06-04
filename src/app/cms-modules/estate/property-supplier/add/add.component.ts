@@ -78,6 +78,9 @@ export class EstatePropertySupplierAddComponent implements OnInit, AfterViewInit
   ngAfterViewInit(): void {
   }
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.contentService
       .ServiceViewModel()
       .subscribe({
@@ -87,9 +90,11 @@ export class EstatePropertySupplierAddComponent implements OnInit, AfterViewInit
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
       }
       );

@@ -9,7 +9,7 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-estate-content-widget2',
+  selector: 'app-estate-property-widget2',
   templateUrl: './widget2.component.html',
   styleUrls: ['./widget2.component.scss']
 })
@@ -34,8 +34,13 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
   modelData = new Map<string, number>();
   widgetInfoModel = new WidgetInfoModel();
   cmsApiStoreSubscribe: Subscription;
-  @Input()
-  loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   ngOnInit() {
     this.widgetInfoModel.title = this.translate.instant('TITLE.Registered_property');
     this.widgetInfoModel.description = '';
@@ -97,8 +102,8 @@ export class EstatePropertyWidget2Component implements OnInit, OnDestroy {
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
-    fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    fastfilter.value = EnumRecordStatus.Pending;
+    //fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
     filterStatist2.filters.push(fastfilter);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({

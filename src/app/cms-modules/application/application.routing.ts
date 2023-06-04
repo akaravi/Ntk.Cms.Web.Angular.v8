@@ -14,119 +14,142 @@ import { ApplicationSourceEditComponent } from './source/edit/edit.component';
 import { ApplicationSourceListComponent } from './source/list/list.component';
 import { ApplicationThemeConfigListComponent } from './themeConfig/list/list.component';
 
-
 const routes: Routes = [
   {
     path: '',
     component: ApplicationComponent,
+    data: { title: 'ROUTE.APPLICATION' },
+
     children: [
       /*Config*/
       {
         path: 'config',
         loadChildren: () =>
-          import('./config/application-config.module').then((m) => m.ApplicationConfigModule),
+          import('./config/application-config.module').then(
+            (m) => m.ApplicationConfigModule
+          ),
+        data: { title: 'ROUTE.APPLICATION' },
       },
       /*Config*/
       {
         path: 'source',
-        component: ApplicationSourceListComponent
+        component: ApplicationSourceListComponent,
+        data: { title: 'ROUTE.APPLICATION.SOURCE' },
       },
       {
         path: 'source/add',
-        component: ApplicationSourceAddComponent
+        component: ApplicationSourceAddComponent,
+        data: { title: 'ROUTE.APPLICATION.SOURCE' },
       },
       {
         path: 'source/edit/:Id',
-        component: ApplicationSourceEditComponent
+        component: ApplicationSourceEditComponent,
+        data: { title: 'ROUTE.APPLICATION.SOURCE' },
       },
       {
         path: 'app',
-        component: ApplicationAppListComponent
+        component: ApplicationAppListComponent,
+        data: { title: 'ROUTE.APPLICATION.APP' },
       },
       {
         path: 'app/LinkSourceId/:LinkSourceId',
-        component: ApplicationAppListComponent
-      }, {
+        component: ApplicationAppListComponent,
+        data: { title: 'ROUTE.APPLICATION.APP' },
+      },
+      {
         path: 'app/LinkThemeConfigId/:LinkThemeConfigId',
-        component: ApplicationAppListComponent
+        component: ApplicationAppListComponent,
+        data: { title: 'ROUTE.APPLICATION.APP' },
       },
       {
         path: 'app/add',
         component: ApplicationAppAddComponent,
+        data: { title: 'ROUTE.APPLICATION.APP' },
       },
       {
         path: 'app/add/:SourceId',
-        component: ApplicationAppAddComponent
+        component: ApplicationAppAddComponent,
+        data: { title: 'ROUTE.APPLICATION.APP' },
       },
       {
         path: 'app/edit/:Id',
-        component: ApplicationAppEditComponent
+        component: ApplicationAppEditComponent,
+        data: { title: 'ROUTE.APPLICATION.APP' },
       },
       /** */
       {
         path: 'intro',
-        component: ApplicationIntroListComponent
+        component: ApplicationIntroListComponent,
+        data: { title: 'ROUTE.APPLICATION.INTRO' },
       },
       {
         path: 'intro/LinkApplicationId/:LinkApplicationId',
-        component: ApplicationIntroListComponent
+        component: ApplicationIntroListComponent,
+        data: { title: 'ROUTE.APPLICATION.INTRO' },
       },
       {
         path: 'intro/add/:LinkApplicationId',
-        component: ApplicationIntroAddComponent
+        component: ApplicationIntroAddComponent,
+        data: { title: 'ROUTE.APPLICATION.INTRO' },
       },
       {
         path: 'intro/edit/:Id',
-        component: ApplicationIntroEditComponent
+        component: ApplicationIntroEditComponent,
+        data: { title: 'ROUTE.APPLICATION.INTRO' },
       },
       /** */
       {
         path: 'memberinfo',
-        component: ApplicationMemberInfoListComponent
+        component: ApplicationMemberInfoListComponent,
+        data: { title: 'ROUTE.APPLICATION.MEMBERINFO' },
       },
       {
         path: 'memberinfo/LinkMemberId/:LinkMemberId',
-        component: ApplicationMemberInfoListComponent
+        component: ApplicationMemberInfoListComponent,
+        data: { title: 'ROUTE.APPLICATION.MEMBERINFO' },
       },
       {
         path: 'memberinfo/LinkUserId/:LinkUserId',
-        component: ApplicationMemberInfoListComponent
+        component: ApplicationMemberInfoListComponent,
+        data: { title: 'ROUTE.APPLICATION.MEMBERINFO' },
       },
       {
         path: 'memberinfo/LinkApplicationId/:LinkApplicationId',
-        component: ApplicationMemberInfoListComponent
+        component: ApplicationMemberInfoListComponent,
+        data: { title: 'ROUTE.APPLICATION.MEMBERINFO' },
       },
       {
         path: 'notification',
-        component: ApplicationLogNotificationListComponent
+        component: ApplicationLogNotificationListComponent,
+        data: { title: 'ROUTE.APPLICATION.NOTIFICATION' },
       },
       {
         path: 'notification/LinkApplicationId/:LinkApplicationId',
-        component: ApplicationLogNotificationListComponent
+        component: ApplicationLogNotificationListComponent,
+        data: { title: 'ROUTE.APPLICATION.NOTIFICATION' },
       },
       {
         path: 'notification/LinkApplicationMemberId/:LinkApplicationMemberId',
-        component: ApplicationLogNotificationListComponent
+        component: ApplicationLogNotificationListComponent,
+        data: { title: 'ROUTE.APPLICATION.NOTIFICATION' },
       },
-
 
       {
         path: 'themeconfig',
-        component: ApplicationThemeConfigListComponent
+        component: ApplicationThemeConfigListComponent,
+        data: { title: 'ROUTE.APPLICATION.THEMECONFIG' },
       },
       {
         path: 'themeconfig/LinkSourceId/:LinkSourceId',
-        component: ApplicationThemeConfigListComponent
+        component: ApplicationThemeConfigListComponent,
+        data: { title: 'ROUTE.APPLICATION.THEMECONFIG' },
       },
-
-
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ApplicationRoutes {
-}
+export class ApplicationRoutes {}

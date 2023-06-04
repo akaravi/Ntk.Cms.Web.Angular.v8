@@ -12,6 +12,7 @@ import { CoreUserSupportAccessComponent } from './core-user-support-access.compo
 import { CoreUserSupportAccessRouting } from './core-user-support-access.routing';
 import { CoreUserSupportAccessEditComponent } from './edit/edit.component';
 import { CoreUserSupportAccessListComponent } from './list/list.component';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CoreUserSupportAccessListComponent } from './list/list.component';
   ],
   providers: [
     CoreUserSupportAccessService,
+    CmsConfirmationDialogService,
     CoreModuleService,
   ]
 })

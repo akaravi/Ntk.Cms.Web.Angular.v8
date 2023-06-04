@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -50,8 +50,9 @@
     </mat-form-field>
 
     <!-- LinkModuleSaleHeaderId Field -->
-    <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)" [(loading)]="loading"
-      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"
+    <app-core-modulesaleheader-selector (optionChange)="onActionSelectHeader($event)" [(optionLoading)]="loading"
+      [optionSelectForce]="this.dataModel.linkModuleSaleHeaderId"
+      [optionPlaceholder]="this.translate.instant('TITLE.Category')"
       [optionDisabled]="!fieldsInfo['linkModuleSaleHeaderId']?.accessEditField">
     </app-core-modulesaleheader-selector>
     <!-- HasDemo Field -->

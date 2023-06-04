@@ -48,8 +48,8 @@
                             </a>
                         </span>
                         <!-- &nbsp; &nbsp; -->
-                        <span class="menu-title me-2" data-link="/crafted/pages/profile">
-                            <a routerLink="{{childLeve1.routeAddressLink}}">
+                        <span class="menu-title me-2" data-link="childLeve1.routeAddressLink">
+                            <a routerLink="{{childLeve1.routeAddressLink}}" (click)="publicHelper.OpenNewTabByClick($event,childLeve1.routeAddressLink)">
                                 {{childLeve1.titleML}}
                             </a>
                         </span>
@@ -58,14 +58,14 @@
                     <!--By Child-->
                     <span *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-link">
                         <span class="menu-bullet"><span class="{{childLeve1.icon}}" style="scale: 1.5;" [style.color]="childLeve1.color?.length>0 ? childLeve1.color:''"></span></span>
-                        <span class="menu-title" data-link="/crafted/pages/profile">{{childLeve1.titleML}}</span>
+                        <span class="menu-title" data-link="childLeve1.routeAddressLink">{{childLeve1.titleML}}</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <!--By Child-->
                     <!--Child-->
                     <div *ngIf="childLeve1.children && childLeve1.children.length>0" class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg show">
                         <div *ngFor="let childLeve2 of childLeve1.children" class="menu-item">
-                            <a class="menu-link" routerLinkActive="active" routerLink="/crafted/pages/profile/overview"><span class="menu-bullet"><span class="{{childLeve2.icon}}" style="scale: 1.5;" [style.color]="childLeve2.color?.length>0 ? childLeve2.color:''"></span></span><span class="menu-title">{{childLeve2.titleML}}</span></a>
+                            <a class="menu-link" routerLinkActive="active" routerLink="{{childLeve2.routeAddressLink}}"><span class="menu-bullet"><span class="{{childLeve2.icon}}" style="scale: 1.5;" [style.color]="childLeve2.color?.length>0 ? childLeve2.color:''"></span></span><span class="menu-title">{{childLeve2.titleML}}</span></a>
                         </div>
                     </div>
                     <!--Child-->

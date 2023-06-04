@@ -51,7 +51,13 @@ export class MemberPropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   dataModelSelect: MemberPropertyDetailGroupModel = new MemberPropertyDetailGroupModel();
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailGroupModel> = new ErrorExceptionResult<MemberPropertyDetailGroupModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<MemberPropertyDetailGroupModel>(node => null);
   dataSource = new MatTreeNestedDataSource<MemberPropertyDetailGroupModel>();
   @Output() optionChange = new EventEmitter<MemberPropertyDetailGroupModel>();

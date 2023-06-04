@@ -13,6 +13,7 @@ import { CoreModuleEntityReportFileComponent } from './core-module-entity-report
 import { CoreModuleEntityReportFileRouting } from './core-module-entity-report-file.routing';
 import { CoreModuleEntityReportFileEditComponent } from './edit/edit.component';
 import { CoreModuleEntityReportFileListComponent } from './list/list.component';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { CoreModuleEntityReportFileListComponent } from './list/list.component';
   ],
   providers: [
     CoreModuleEntityReportFileService,
+    CmsConfirmationDialogService,
   ]
 })
 export class CoreModuleEntityReportFileModule {

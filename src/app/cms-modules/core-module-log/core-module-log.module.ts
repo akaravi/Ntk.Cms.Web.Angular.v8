@@ -8,7 +8,13 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService, CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteUserCreditBlockedService, CoreModuleService, CoreModuleSiteCreditService, CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService } from 'ntk-cms-api';
+import {
+  CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService,
+  CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogShowKeyService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteCreditService,
+  CoreModuleLogSiteUserCreditBlockedService, CoreModuleLogSiteUserCreditService, CoreModuleService, CoreModuleSiteCreditService,
+  CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService
+} from 'ntk-cms-api';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreModuleLogContentCountEditComponent } from './content-count/edit/edit.component';
 import { CoreModuleLogContentCountListComponent } from './content-count/list/list.component';
 import { CoreModuleLogContentCountViewComponent } from './content-count/view/view.component';
@@ -28,13 +34,22 @@ import { CoreModuleLogReportAbuseViewComponent } from './report-abuse/view/view.
 import { CoreModuleLogScoreEditComponent } from './score/edit/edit.component';
 import { CoreModuleLogScoreListComponent } from './score/list/list.component';
 import { CoreModuleLogScoreViewComponent } from './score/view/view.component';
+import { CoreModuleLogShowKeyAddComponent } from './show-key/add/add.component';
+import { CoreModuleLogShowKeyEditComponent } from './show-key/edit/edit.component';
+import { CoreModuleLogShowKeyListComponent } from './show-key/list/list.component';
+import { CoreModuleLogShowKeyViewComponent } from './show-key/view/view.component';
 import { CoreModuleLogSiteCreditBlockedEditComponent } from './site-credit-blocked/edit/edit.component';
 import { CoreModuleLogSiteCreditBlockedListComponent } from './site-credit-blocked/list/list.component';
 import { CoreModuleLogSiteCreditBlockedViewComponent } from './site-credit-blocked/view/view.component';
+import { CoreModuleLogSiteCreditEditComponent } from './site-credit/edit/edit.component';
+import { CoreModuleLogSiteCreditListComponent } from './site-credit/list/list.component';
+import { CoreModuleLogSiteCreditViewComponent } from './site-credit/view/view.component';
 import { CoreModuleLogSiteUserCreditBlockedEditComponent } from './site-user-credit-blocked/edit/edit.component';
 import { CoreModuleLogSiteUserCreditBlockedListComponent } from './site-user-credit-blocked/list/list.component';
 import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-credit-blocked/view/view.component';
-
+import { CoreModuleLogSiteUserCreditEditComponent } from './site-user-credit/edit/edit.component';
+import { CoreModuleLogSiteUserCreditListComponent } from './site-user-credit/list/list.component';
+import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/view/view.component';
 
 
 @NgModule({
@@ -56,6 +71,11 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleLogMemoEditComponent,
     CoreModuleLogMemoAddComponent,
     CoreModuleLogMemoViewComponent,
+    /**ShowKey */
+    CoreModuleLogShowKeyListComponent,
+    CoreModuleLogShowKeyEditComponent,
+    CoreModuleLogShowKeyAddComponent,
+    CoreModuleLogShowKeyViewComponent,
     /**ReportAbuse */
     CoreModuleLogReportAbuseListComponent,
     CoreModuleLogReportAbuseEditComponent,
@@ -84,6 +104,14 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleLogSiteUserCreditBlockedListComponent,
     CoreModuleLogSiteUserCreditBlockedEditComponent,
     CoreModuleLogSiteUserCreditBlockedViewComponent,
+    /**SiteCredit */
+    CoreModuleLogSiteCreditListComponent,
+    CoreModuleLogSiteCreditEditComponent,
+    CoreModuleLogSiteCreditViewComponent,
+    /**SiteUserCredit */
+    CoreModuleLogSiteUserCreditListComponent,
+    CoreModuleLogSiteUserCreditEditComponent,
+    CoreModuleLogSiteUserCreditViewComponent,
   ],
   exports: [
     CoreModuleLogComponent,
@@ -120,6 +148,14 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleLogSiteUserCreditBlockedListComponent,
     CoreModuleLogSiteUserCreditBlockedEditComponent,
     CoreModuleLogSiteUserCreditBlockedViewComponent,
+    /**SiteCredit */
+    CoreModuleLogSiteCreditListComponent,
+    CoreModuleLogSiteCreditEditComponent,
+    CoreModuleLogSiteCreditViewComponent,
+    /**SiteUserCredit */
+    CoreModuleLogSiteUserCreditListComponent,
+    CoreModuleLogSiteUserCreditEditComponent,
+    CoreModuleLogSiteUserCreditViewComponent,
   ],
   providers: [
     CoreModuleService,
@@ -131,10 +167,14 @@ import { CoreModuleLogSiteUserCreditBlockedViewComponent } from './site-user-cre
     CoreModuleLogContentCountService,
     CoreModuleLogLikeService,
     CoreModuleLogMemoService,
+    CoreModuleLogShowKeyService,
     CoreModuleLogReportAbuseService,
     CoreModuleLogScoreService,
     CoreModuleLogSiteCreditBlockedService,
     CoreModuleLogSiteUserCreditBlockedService,
+    CoreModuleLogSiteCreditService,
+    CoreModuleLogSiteUserCreditService,
+    CmsConfirmationDialogService
   ]
 })
 export class CoreModuleLogModule { }

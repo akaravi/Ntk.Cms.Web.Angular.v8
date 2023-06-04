@@ -1,136 +1,138 @@
-<form  #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-	<app-progress-spinner [options]="loading"> </app-progress-spinner>
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <!-- SendStatusType Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.sendStatusType" name="dataModel.sendStatusType"
-            #SendStatusType="ngModel" panelClass="SendStatusType-{{ dataModel.sendStatusType }}" required>
-            <mat-option *ngFor="
+<form #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- SendStatusType Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.sendStatusType"
+        name="dataModel.sendStatusType" #SendStatusType="ngModel"
+        panelClass="SendStatusType-{{ dataModel.sendStatusType }}" required>
+        <mat-option *ngFor="
                   let item of dataModelEnumSendSmsStatusTypeResult.listItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-          <mat-error *ngIf="SendStatusType.errors?.required">
-            SendStatusType is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-  
-        <!-- LinkUserId Field -->
-        <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId" [(loading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
-        <!-- LinkUserId Field -->
-        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId" [(loading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
-        <!-- LinkMemberId Field -->
-        <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId" [(loading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
-  
-        <!-- ModuleName Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>ModuleName</mat-label>
-          <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
-            placeholder="ModuleName" />
-          <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.moduleName = ''">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-  
-        <!-- ModuleEntityName Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>ModuleEntityName</mat-label>
-          <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
-            type="text" placeholder="ModuleEntityName" />
-          <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.moduleEntityName = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-        <!-- ModuleEntityId Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>ModuleEntityId</mat-label>
-          <input matInput [(ngModel)]="dataModel.moduleEntityId" name="dataModel.moduleEntityId" #ModuleEntityId
-            type="text" placeholder="ModuleEntityId" />
-          <mat-icon matSuffix *ngIf="dataModel.moduleEntityId" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.moduleEntityId = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-  
-        <!-- FromNumber Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>FromNumber</mat-label>
-          <input matInput [(ngModel)]="dataModel.fromNumber" name="dataModel.fromNumber" #FromNumber type="text"
-            placeholder="FromNumber" />
-          <mat-icon matSuffix *ngIf="dataModel.fromNumber" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.fromNumber = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-        <!-- toNumber Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>toNumber</mat-label>
-          <input matInput [(ngModel)]="dataModel.toNumber" name="dataModel.toNumber" #toNumber type="text"
-            placeholder="toNumber" />
-          <mat-icon matSuffix *ngIf="dataModel.toNumber" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.toNumber = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-  
-        <!-- ApiNumber Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>ApiNumber</mat-label>
-          <input matInput [(ngModel)]="dataModel.apiNumber" name="dataModel.apiNumber" #ApiNumber type="text"
-            placeholder="ApiNumber" />
-          <mat-icon matSuffix *ngIf="dataModel.apiNumber" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.apiNumber = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-        <!-- Message Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>Message</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.message" name="dataModel.message" #Message type="text"
-            placeholder="Message"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.message" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.message = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-  
-        <!-- ReturnApi Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>ReturnApi</mat-label>
-          <textarea matInput [(ngModel)]="dataModel.returnApi" name="dataModel.returnApi" #ReturnApi type="text"
-            placeholder="ReturnApi"></textarea>
-          <mat-icon matSuffix *ngIf="dataModel.returnApi" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.returnApi = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-        </mat-form-field>
-  
-        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-          <div [innerHTML]="dataModel | prettyjson"></div>
-        </div>
-  
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-     </div>
-	 <div class="ntk-cms-html-card-message">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-      <div class="form-actions">
-        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-        <small class="form-text text-muted danger">{{ formInfo.formError }}
-        </small>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+      </mat-select>
+      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+      <mat-error *ngIf="SendStatusType.errors?.required">
+        SendStatusType is <strong>{{'MESSAGE.required' | translate}}</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LinkUserId Field -->
+    <app-cms-site-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkSiteId"
+      [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.SITE')"></app-cms-site-selector>
+    <!-- LinkUserId Field -->
+    <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkUserId"
+      [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+    <!-- LinkMemberId Field -->
+    <app-cms-member-selector [optionDisabled]="true" [optionSelectForce]="this.dataModel.linkMemberId"
+      [(optionLoading)]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
+
+    <!-- ModuleName Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ModuleName</mat-label>
+      <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
+        placeholder="ModuleName" />
+      <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.moduleName = ''">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ModuleEntityName Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ModuleEntityName</mat-label>
+      <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
+        type="text" placeholder="ModuleEntityName" />
+      <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.moduleEntityName = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- ModuleEntityId Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ModuleEntityId</mat-label>
+      <input matInput [(ngModel)]="dataModel.moduleEntityId" name="dataModel.moduleEntityId" #ModuleEntityId type="text"
+        placeholder="ModuleEntityId" />
+      <mat-icon matSuffix *ngIf="dataModel.moduleEntityId" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.moduleEntityId = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- FromNumber Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>FromNumber</mat-label>
+      <input matInput [(ngModel)]="dataModel.fromNumber" name="dataModel.fromNumber" #FromNumber type="text"
+        placeholder="FromNumber" />
+      <mat-icon matSuffix *ngIf="dataModel.fromNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.fromNumber = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- toNumber Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>toNumber</mat-label>
+      <input matInput [(ngModel)]="dataModel.toNumber" name="dataModel.toNumber" #toNumber type="text"
+        placeholder="toNumber" />
+      <mat-icon matSuffix *ngIf="dataModel.toNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.toNumber = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ApiNumber Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ApiNumber</mat-label>
+      <input matInput [(ngModel)]="dataModel.apiNumber" name="dataModel.apiNumber" #ApiNumber type="text"
+        placeholder="ApiNumber" />
+      <mat-icon matSuffix *ngIf="dataModel.apiNumber" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.apiNumber = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <!-- Message Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>Message</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.message" name="dataModel.message" #Message type="text"
+        placeholder="Message"></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.message" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.message = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <!-- ReturnApi Field -->
+    <mat-form-field class="ntk-full-width">
+      <mat-label>ReturnApi</mat-label>
+      <textarea matInput [(ngModel)]="dataModel.returnApi" name="dataModel.returnApi" #ReturnApi type="text"
+        placeholder="ReturnApi"></textarea>
+      <mat-icon matSuffix *ngIf="dataModel.returnApi" matSuffix mat-icon-button aria-label="Clear"
+        (click)="dataModel.returnApi = null">close</mat-icon>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+
+    <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+      <div [innerHTML]="dataModel | prettyjson"></div>
     </div>
-    <div class="ntk-cms-html-card-footer">
-      <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-        <button type="button" (click)="onFormCancel()" class="btn btn-light">
-          <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-        </button>
-      </div>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
     </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

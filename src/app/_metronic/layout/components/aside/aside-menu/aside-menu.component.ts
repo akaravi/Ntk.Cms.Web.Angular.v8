@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreCpMainMenuModel, CoreCpMainMenuService, ErrorExceptionResult, TokenInfoModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -18,6 +19,7 @@ export class AsideMenuComponent implements OnInit {
 
   constructor(
     public tokenHelper: TokenHelper,
+    public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private coreCpMainMenuService: CoreCpMainMenuService,
     public translate: TranslateService,

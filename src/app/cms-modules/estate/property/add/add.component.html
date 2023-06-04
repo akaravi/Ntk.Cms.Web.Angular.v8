@@ -15,7 +15,7 @@
             <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
                 <!-- LinkPropertyTypeUsageId Field -->
-                <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)" [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessAddField" [optionTypeView]="2" [(loading)]="loading" [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="this.translate.instant('TITLE.User_Type')">
+                <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)" [optionDisabled]="!fieldsInfo['linkPropertyTypeUsageId']?.accessAddField" [optionTypeView]="2" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="this.translate.instant('TITLE.User_Type')">
                 </app-estate-property-type-usage-selector>
 
                 <!-- LinkPropertyTypeLanduseId Field -->
@@ -26,149 +26,150 @@
                 </div>
 
                 <!-- LinkPropertyTypeLanduseId Field -->
-                <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)" *ngIf="(!listTypeLanduse || listTypeLanduse.length===0) && dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0" [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessAddField" [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(loading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')" [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
+                <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)" *ngIf="(!listTypeLanduse || listTypeLanduse.length===0) && dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0" [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessAddField" [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')" [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
                 </app-estate-property-type-landuse-selector>
 
                 <br>
                 <br>
                 <br>
-                <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
-                    {{'TITLE.Would_you_like_to_complete_your_information' | translate}}
-                </mat-slide-toggle>
-                <br>
-                <!-- RecordStatus Field -->
-                <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
-                    <mat-label>{{fieldsInfo['recordStatus']?.fieldTitle}}</mat-label>
-                    <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['recordStatus']?.accessAddField" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
-                        <mat-option *ngFor="
+                <div *ngIf="dataModel.linkPropertyTypeLanduseId&& dataModel.linkPropertyTypeLanduseId.length>0">
+                    <mat-slide-toggle style="position: inherit;" [(ngModel)]="dataProfessional" name="dataProfessional">
+                        {{'TITLE.Would_you_like_to_complete_your_information' | translate}}
+                    </mat-slide-toggle>
+                    <br>
+                    <!-- RecordStatus Field -->
+                    <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
+                        <mat-label>{{fieldsInfo['recordStatus']?.fieldTitle}}</mat-label>
+                        <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['recordStatus']?.accessAddField" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
+                            <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
-                    </mat-select>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['recordStatus']?.FieldDescription}}</strong>
-                    </mat-hint>
-                    <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-                    <mat-error *ngIf="RecordStatus.errors?.required">
-                        {{fieldsInfo['recordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-                    </mat-error>
-                </mat-form-field>
+                        </mat-select>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">{{fieldsInfo['recordStatus']?.fieldDescription}}</strong>
+                        </mat-hint>
+                        <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+                        <mat-error *ngIf="RecordStatus.errors?.required">
+                            {{fieldsInfo['recordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                        </mat-error>
+                    </mat-form-field>
 
-                <!-- Title Field -->
+                    <!-- Title Field -->
 
-                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
-                    <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" disabled="{{!fieldsInfo['title']?.accessAddField}}" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
-                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
-                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
-                    <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['title']?.FieldDescription}}</strong>
-                    </mat-hint>
-                    <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
-                    <mat-error *ngIf="Title.errors?.required">
-                        {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-                    </mat-error>
-                </mat-form-field>
-                <!-- Priority Field -->
-                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
-                    <mat-select placeholder="{{fieldsInfo['priority']?.fieldTitle}}" [(ngModel)]="dataModel.priority" [disabled]="!fieldsInfo['priority']?.accessEditField" name="dataModel.priority" #Priority="ngModel" panelClass="Priority-{{ dataModel.priority }}">
-                        <mat-option *ngFor="
+                    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
+                        <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
+                        <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" disabled="{{!fieldsInfo['title']?.accessAddField}}" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+                        <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+                        <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
+                        <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class=" info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">{{fieldsInfo['title']?.fieldDescription}}</strong>
+                        </mat-hint>
+                        <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
+                        <mat-error *ngIf="Title.errors?.required">
+                            {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- Priority Field -->
+                    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
+                        <mat-select placeholder="{{fieldsInfo['priority']?.fieldTitle}}" [(ngModel)]="dataModel.priority" [disabled]="!fieldsInfo['priority']?.accessAddField" name="dataModel.priority" #Priority="ngModel" panelClass="Priority-{{ dataModel.priority }}">
+                            <mat-option *ngFor="
                 let number of numbers;
               " [value]="number">{{ number }}</mat-option>
-                    </mat-select>
-                    <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.priority = null">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">شما میتوانید برای ملک خود اولویت از 1 تا 10 بدهید</strong>
-                    </mat-hint>
-                </mat-form-field>
-                <!-- CaseCode Field -->
-                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
-                    <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text" disabled="{{!fieldsInfo['caseCode']?.accessAddField}}" placeholder="{{fieldsInfo['caseCode']?.fieldTitle}}" minlength="3" maxlength="100" required />
-                    <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.caseCode = ''">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['caseCode']?.FieldDescription}}</strong>
-                    </mat-hint>
-                    <mat-hint align="end">{{ CaseCode.value.length }} / 100</mat-hint>
-                    <mat-error *ngIf="CaseCode.errors?.required">
-                        {{fieldsInfo['caseCode']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-                    </mat-error>
-                </mat-form-field>
-                <!-- ViewConfigHiddenInList Field -->
-                <div class="ntk-full-width">
-                    <mat-slide-toggle [(ngModel)]="dataModel.viewConfigHiddenInList" *ngIf="fieldsInfo['viewConfigHiddenInList']?.accessWatchField" [disabled]="!fieldsInfo['viewConfigHiddenInList']?.accessAddField" name="dataModel.viewConfigHiddenInList">
-                        {{fieldsInfo['viewConfigHiddenInList']?.fieldTitle}}
-                    </mat-slide-toggle>
+                        </mat-select>
+                        <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.priority = null">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">شما میتوانید برای ملک خود اولویت از 1 تا 10 بدهید</strong>
+                        </mat-hint>
+                    </mat-form-field>
+                    <!-- CaseCode Field -->
+                    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
+                        <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
+                        <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text" disabled="{{!fieldsInfo['caseCode']?.accessAddField}}" placeholder="{{fieldsInfo['caseCode']?.fieldTitle}}" minlength="3" maxlength="100" required />
+                        <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.caseCode = ''">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">{{fieldsInfo['caseCode']?.fieldDescription}}</strong>
+                        </mat-hint>
+                        <mat-hint align="end">{{ CaseCode.value.length }} / 100</mat-hint>
+                        <mat-error *ngIf="CaseCode.errors?.required">
+                            {{fieldsInfo['caseCode']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- ViewConfigHiddenInList Field -->
+                    <div class="ntk-full-width">
+                        <mat-slide-toggle [(ngModel)]="dataModel.viewConfigHiddenInList" *ngIf="fieldsInfo['viewConfigHiddenInList']?.accessWatchField" [disabled]="!fieldsInfo['viewConfigHiddenInList']?.accessAddField" name="dataModel.viewConfigHiddenInList">
+                            {{fieldsInfo['viewConfigHiddenInList']?.fieldTitle}}
+                        </mat-slide-toggle>
+                    </div>
+                    <!-- CreatedYaer Field -->
+                    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titleCreatedYaer.length>1">
+                        <mat-label>{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
+                        <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
+                        <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.createdYaer = null">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+
+                    </mat-form-field>
+                    <!-- Partition Field -->
+                    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titlePartition.length>1">
+                        <mat-label>{{PropertyTypeSelected.titlePartition}}</mat-label>
+                        <input matInput [(ngModel)]="dataModel.partition" name="dataModel.partition" #Partition type="number" placeholder="{{PropertyTypeSelected.titlePartition}}" />
+                        <mat-icon matSuffix *ngIf="dataModel.partition" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.partition = 0">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                    </mat-form-field>
+                    <!-- Area Field -->
+                    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
+                        <mat-label>{{fieldsInfo['area']?.fieldTitle}}</mat-label>
+                        <input matInput [(ngModel)]="dataModel.area" name="dataModel.area" #Area type="number" disabled="{{!fieldsInfo['area']?.accessAddField}}" placeholder="{{fieldsInfo['area']?.fieldTitle}}" />
+                        <mat-icon matSuffix *ngIf="dataModel.area" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.area = 0">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">{{fieldsInfo['area']?.fieldDescription}}</strong>
+                        </mat-hint>
+                    </mat-form-field>
+
+                    <!-- LinkLocationId Field -->
+                    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+                    </app-cms-location-selector>
+
+
+                    <!-- Address Field -->
+                    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['address']?.accessWatchField">
+                        <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
+                        <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text" placeholder="{{fieldsInfo['address']?.fieldTitle}}" minlength="1" maxlength="500" rows=5 [disabled]="!fieldsInfo['address']?.accessAddField"></textarea>
+                        <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.address = ''">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">{{fieldsInfo['address']?.fieldDescription}}</strong>
+                        </mat-hint>
+                        <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
+                    </mat-form-field>
+
+                    <!-- Description Field -->
+                    <mat-form-field class="ntk-full-width">
+                        <mat-label>{{'TITLE.General_Description' | translate}}</mat-label>
+                        <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text" disabled="{{!fieldsInfo['description']?.accessAddField}}" placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="2000" rows=5 required></textarea>
+                        <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
+                        <mat-icon matSuffix>mode_edit</mat-icon>
+                        <mat-hint align="start">
+                            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                            <strong class="info-field-text">{{fieldsInfo['description']?.fieldDescription}}</strong>
+                        </mat-hint>
+                        <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
+                        <mat-error *ngIf="Description.errors?.required">
+                            {{fieldsInfo['description']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                        </mat-error>
+                    </mat-form-field>
+
                 </div>
-                <!-- CreatedYaer Field -->
-                <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titleCreatedYaer.length>1">
-                    <mat-label>{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
-                    <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.createdYaer = null">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-
-                </mat-form-field>
-                <!-- Partition Field -->
-                <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titlePartition.length>1">
-                    <mat-label>{{PropertyTypeSelected.titlePartition}}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.partition" name="dataModel.partition" #Partition type="number" placeholder="{{PropertyTypeSelected.titlePartition}}" />
-                    <mat-icon matSuffix *ngIf="dataModel.partition" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.partition = 0">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                </mat-form-field>
-                <!-- Area Field -->
-                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
-                    <mat-label>{{fieldsInfo['area']?.fieldTitle}}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.area" name="dataModel.area" #Area type="number" disabled="{{!fieldsInfo['area']?.accessAddField}}" placeholder="{{fieldsInfo['area']?.fieldTitle}}" />
-                    <mat-icon matSuffix *ngIf="dataModel.area" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.area = 0">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['area']?.FieldDescription}}</strong>
-                    </mat-hint>
-                </mat-form-field>
-
-                <!-- LinkLocationId Field -->
-                <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField" [(loading)]="loading" [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
-                </app-cms-location-selector>
-
-
-                <!-- Address Field -->
-                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['address']?.accessWatchField">
-                    <mat-label>{{fieldsInfo['address']?.fieldTitle}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text" placeholder="{{fieldsInfo['address']?.fieldTitle}}" minlength="1" maxlength="500" rows=5 [disabled]="!fieldsInfo['address']?.accessAddField"></textarea>
-                    <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.address = ''">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['address']?.FieldDescription}}</strong>
-                    </mat-hint>
-                    <mat-hint align="end">{{ Address.value.length }} / 500</mat-hint>
-                </mat-form-field>
-
-                <!-- Description Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'TITLE.General_Description' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text" disabled="{{!fieldsInfo['description']?.accessAddField}}" placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="2000" rows=5 required></textarea>
-                    <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-hint align="start">
-                        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['description']?.FieldDescription}}</strong>
-                    </mat-hint>
-                    <mat-hint align="end">{{ Description.value.length }} / 2000</mat-hint>
-                    <mat-error *ngIf="Description.errors?.required">
-                        {{fieldsInfo['description']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-                    </mat-error>
-                </mat-form-field>
-
-
                 <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
                     <button type="button" mat-raised-button (click)="onActionBackToParent()">
                         {{'ACTION.CANCEL' | translate}}
@@ -178,18 +179,72 @@
                     </button>
                 </div>
             </mat-step>
+            <mat-step label="{{'TITLE.Admin_Config' | translate}}" state="main" *ngIf="tokenHelper.isAdminSite">
+              <!-- LinkSiteId Field -->
+              <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['linkSiteId']?.accessWatchField && this.tokenHelper.isAdminSite">
+                  <mat-label>{{fieldsInfo['linkSiteId']?.fieldTitle}}</mat-label>
+                  <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text" disabled="{{!fieldsInfo['linkSiteId']?.accessAddField}}" placeholder="{{fieldsInfo['linkSiteId']?.fieldTitle}}" minlength="3" maxlength="100" required />
 
+
+                  <!-- viewContentHidden Field -->
+                  <div class="ntk-full-width">
+                      <mat-slide-toggle [(ngModel)]="dataModel.viewContentHidden" *ngIf="fieldsInfo['viewContentHidden']?.accessWatchField" [disabled]="!fieldsInfo['viewContentHidden']?.accessAddField" name="dataModel.viewContentHidden">
+                          {{fieldsInfo['viewContentHidden']?.fieldTitle}}
+                      </mat-slide-toggle>
+                  </div>
+                  <!-- siteAdminViewContentHidden Field -->
+                  <div class="ntk-full-width">
+                      <mat-slide-toggle [(ngModel)]="dataModel.siteAdminViewContentHidden" *ngIf="fieldsInfo['siteAdminViewContentHidden']?.accessWatchField" [disabled]="!fieldsInfo['siteAdminViewContentHidden']?.accessAddField" name="dataModel.siteAdminViewContentHidden">
+                          {{fieldsInfo['siteAdminViewContentHidden']?.fieldTitle}}
+                      </mat-slide-toggle>
+                  </div>
+                  <mat-hint align="start">
+                      <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                      <strong class="info-field-text">{{fieldsInfo['linkSiteId']?.fieldDescription}}</strong>
+                  </mat-hint>
+                  <mat-hint align="end">{{ LinkSiteId.value.length }} / 100</mat-hint>
+                  <mat-error *ngIf="LinkSiteId.errors?.required">
+                      {{fieldsInfo['linkSiteId']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                  </mat-error>
+              </mat-form-field>
+              <!-- MainAdminRecordStatus Field -->
+              <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['mainAdminRecordStatus']?.accessWatchField">
+                  <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField" [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus" #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}" required>
+                      <mat-option *ngFor="
+let item of dataModelEnumRecordStatusResult.listItems;
+index as i
+" [value]="item.value">{{ item.description }}</mat-option>
+                  </mat-select>
+                  <mat-hint align="start">
+                      <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                      <strong class="info-field-text">{{fieldsInfo['mainAdminRecordStatus']?.fieldDescription}}</strong>
+                  </mat-hint>
+                  <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+                  <mat-error *ngIf="MainAdminRecordStatus.errors?.required">
+                      {{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}} <strong>{{'MESSAGE.required' |
+            translate}}</strong>
+                  </mat-error>
+              </mat-form-field>
+              <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
+                  <button type="button" mat-raised-button color="accent" matStepperPrevious>
+                      {{'ACTION.BEFOR' | translate}}
+                  </button>
+                  <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0">
+                      {{'ACTION.NEXT' | translate}}
+                  </button>
+              </div>
+          </mat-step>
             <mat-step label="{{'TITLE.Personal_Information' | translate}}" state="main">
                 <!-- LinkCmsUserId Field -->
-                <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)" [(loading)]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
+                <app-cms-user-selector *ngIf="dataProfessional && this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_Owner')">
                 </app-cms-user-selector>
 
                 <!-- linkEstateAgencyId Field -->
-                <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorEstateAgency($event)" [(loading)]="loading" [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+                <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
                 </app-estate-account-agency-selector>
 
                 <!-- LinkEstateUserId Field -->
-                <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorEstateUser($event)" [(loading)]="loading" [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
+                <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorEstateUser($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.Property_personnel')">
                 </app-estate-account-user-selector>
 
                 <!-- AboutAgentMobile Field -->
@@ -200,7 +255,7 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['aboutAgentTel']?.FieldDescription}}</strong>
+                        <strong class="info-field-text">{{fieldsInfo['aboutAgentTel']?.fieldDescription}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{ AboutAgentMobile.value.length }} / 100</mat-hint>
                 </mat-form-field>
@@ -213,7 +268,7 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['aboutAgentTel']?.FieldDescription}}</strong>
+                        <strong class="info-field-text">{{fieldsInfo['aboutAgentTel']?.fieldDescription}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{ AboutAgentTel.value.length }} / 100</mat-hint>
                 </mat-form-field>
@@ -227,7 +282,7 @@
                     <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['aboutCustomerMobile']?.FieldDescription}}</strong>
+                        <strong class="info-field-text">{{fieldsInfo['aboutCustomerMobile']?.fieldDescription}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{ AboutCustomerMobile.value.length }} / 100</mat-hint>
                 </mat-form-field>
@@ -242,7 +297,7 @@
                     <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['aboutCustomerTel']?.FieldDescription}}</strong>
+                        <strong class="info-field-text">{{fieldsInfo['aboutCustomerTel']?.fieldDescription}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
                 </mat-form-field>
@@ -263,10 +318,10 @@
                 <p>{{'TITLE.Property_details_according_to_the_type_of_property' | translate}}</p>
 
                 <!-- LinkPropertyCompanyId Field -->
-                <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading" (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId" [optionPlaceholder]="this.translate.instant('TITLE.Company')">
+                <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(optionLoading)]="loading" (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId" [optionPlaceholder]="this.translate.instant('TITLE.Company')">
                 </app-estate-property-company-selector>
                 <!-- LinkPropertyProjectId Field -->
-                <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(loading)]="loading" (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId" [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+                <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(optionLoading)]="loading" (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId" [optionPlaceholder]="this.translate.instant('TITLE.Project')">
                 </app-estate-property-project-selector>
                 <hr>
 
@@ -302,6 +357,7 @@
                                     <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
                                     </app-input-boolean>
                                 </div>
+                                <br>
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
                                     <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
@@ -328,7 +384,8 @@
                         <mat-action-row>
                             <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.BEFOR' |
                 translate}}</button>
-                            <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length" (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+                            <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length" (click)="nextStep()">{{'ACTION.NEXT'
+                | translate}}</button>
                             <button mat-button type="button" color="primary" *ngIf="(i+1)===dataModel.propertyDetailGroups.length" (click)="nextStep()">{{'ACTION.END' | translate}}</button>
                         </mat-action-row>
                     </mat-expansion-panel>
@@ -355,11 +412,12 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['descriptionHidden']?.FieldDescription}}</strong>
+                        <strong class="info-field-text">{{fieldsInfo['descriptionHidden']?.fieldDescription}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{ DescriptionHidden.value.length }} / 2000</mat-hint>
                     <mat-error *ngIf="DescriptionHidden.errors?.required">
-                        {{fieldsInfo['descriptionHidden']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+                        {{fieldsInfo['descriptionHidden']?.fieldTitle}} <strong>{{'MESSAGE.required' |
+              translate}}</strong>
                     </mat-error>
                 </mat-form-field>
                 <!-- AddressHidden Field -->
@@ -370,7 +428,7 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                        <strong class="info-field-text">{{fieldsInfo['addressHidden']?.FieldDescription}}</strong>
+                        <strong class="info-field-text">{{fieldsInfo['addressHidden']?.fieldDescription}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{ AddressHidden.value.length }} / 2000</mat-hint>
                     <mat-error *ngIf="AddressHidden.errors?.required">
@@ -393,14 +451,14 @@
             <mat-step label="{{'TITLE.Transaction' | translate}}" state="contract">
                 <p>{{'TITLE.Specify_the_type_of_transaction_for_this_property' | translate}}</p>
 
-                <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2" [optionDisabled]="false" [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')" [(loading)]="loading" [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
+                <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2" [optionDisabled]="false" [optionPlaceholder]="this.translate.instant('TITLE.Type_Of_Transaction')" [(optionLoading)]="loading" [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
                 </app-estate-contract-type-selector>
 
                 <div class="container" *ngIf="contractTypeSelected && contractTypeSelected.id.length>0">
                     <br>
 
                     <br>
-                    <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem" [(loading)]="loading" [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
+                    <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem" [(optionLoading)]="loading" [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="this.translate.instant('TITLE.Specify_the_transaction_currency')">
                     </app-cms-currency-selector>
 
                     <div *ngIf="contractDataModel.linkCoreCurrencyId>0">
@@ -414,7 +472,8 @@
                                     <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
-                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}}
+                                        {{dataModelCorCurrencySelector.symbol}} )
                                     </mat-label>
                                 </mat-form-field>
                             </div>
@@ -437,7 +496,8 @@
                                     <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
-                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}}
+                                        {{dataModelCorCurrencySelector.symbol}} )
                                     </mat-label>
                                 </mat-form-field>
                             </div>
@@ -460,7 +520,8 @@
                                     <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
-                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}}
+                                        {{dataModelCorCurrencySelector.symbol}} )
                                     </mat-label>
                                 </mat-form-field>
                             </div>
@@ -483,7 +544,8 @@
                                     <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
-                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}} {{dataModelCorCurrencySelector.symbol}} )
+                                    <mat-label> ({{dataModelCorCurrencySelector.titleML}}
+                                        {{dataModelCorCurrencySelector.symbol}} )
                                     </mat-label>
                                 </mat-form-field>
                             </div>
@@ -635,7 +697,8 @@
                 <div class="mb-9">
                     <mat-form-field class="ntk-full-width">
 
-                        <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' | translate}}</mat-label>
+                        <mat-label (click)="fileManagerOpenForm = true">{{'TITLE.Original_Photo' |
+              translate}}</mat-label>
                         <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
                         <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
                         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -644,7 +707,8 @@
                     <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage" [openDirectUploadView]="true" [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
                 </div>
                 <hr>
-                <p *ngIf="dataFileModelImgaes && dataFileModelImgaes.size>0">{{'TITLE.List_of_attached_photos' | translate}}</p>
+                <p *ngIf="dataFileModelImgaes && dataFileModelImgaes.size>0">{{'TITLE.List_of_attached_photos' |
+          translate}}</p>
                 <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [optionFileType]="selectFileTypeMainImage" [openDirectUploadView]="true">
                 </app-cms-files-selector>
                 <hr>

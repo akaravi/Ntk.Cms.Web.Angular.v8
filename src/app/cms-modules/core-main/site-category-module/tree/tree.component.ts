@@ -49,7 +49,13 @@ export class CoreSiteCategoryCmsModuleTreeComponent implements OnInit, OnDestroy
   dataModelSelect: CoreSiteCategoryCmsModuleModel = new CoreSiteCategoryCmsModuleModel();
   dataModelResult: ErrorExceptionResult<CoreSiteCategoryCmsModuleModel> = new ErrorExceptionResult<CoreSiteCategoryCmsModuleModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<CoreSiteCategoryCmsModuleModel>(node => null);
   dataSource = new MatTreeNestedDataSource<CoreSiteCategoryCmsModuleModel>();
   @Output() optionChange = new EventEmitter<CoreSiteCategoryCmsModuleModel>();

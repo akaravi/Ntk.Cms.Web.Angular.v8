@@ -41,6 +41,7 @@ import { CoreModuleEntitySelectorComponent } from './selector/selector.component
   ],
   providers: [
     CoreModuleEntityService,
+
   ]
 })
 export class CoreModuleEntityModule {

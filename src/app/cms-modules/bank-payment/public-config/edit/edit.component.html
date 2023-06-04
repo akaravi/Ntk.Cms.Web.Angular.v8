@@ -1,7 +1,7 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-      {{ formInfo.formTitle }}
+    {{ formInfo.formTitle }}
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </div>
   <div class="ntk-cms-html-card-body">
@@ -48,7 +48,7 @@
       </mat-error>
     </mat-form-field>
     <!-- LinkCurrencyId Field -->
-    <app-cms-currency-selector (optionChange)="onActionSelectCurrency($event)" [(loading)]="loading"
+    <app-cms-currency-selector (optionChange)="onActionSelectCurrency($event)" [(optionLoading)]="loading"
       [optionDisabled]="!fieldsInfo['linkCurrencyId']?.accessEditField" [optionSelectForce]="dataModel.linkCurrencyId"
       [optionPlaceholder]="this.translate.instant('TITLE.Financial_Unit')">
     </app-cms-currency-selector>
@@ -68,8 +68,8 @@
     </mat-form-field>
     <!-- LinkModuleFileLogoId Field -->
     <div class="mb-3">
-      <img *ngIf="dataModel?.linkModuleFileLogoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
-        src="{{dataModel.linkModuleFileLogoIdSrc }}" height="50" width="50" />
+      <img *ngIf="dataModel?.linkModuleFileLogoIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+        aria-hidden src="{{dataModel.linkModuleFileLogoIdSrc }}" height="50" width="50" />
     </div>
     <div class="mb-9">
       <mat-form-field class="ntk-full-width">

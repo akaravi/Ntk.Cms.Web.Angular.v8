@@ -87,6 +87,9 @@ export class TicketingAnswerAddComponent implements OnInit {
   }
 
   DataGetAccess(): void {
+    const pName = this.constructor.name + 'DataGetAccess';
+    this.loading.Start(pName);
+
     this.ticketingAnswerService
       .ServiceViewModel()
       .subscribe(
@@ -97,9 +100,11 @@ export class TicketingAnswerAddComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(next.errorMessage);
           }
+          this.loading.Stop(pName);
         },
         (error) => {
           this.cmsToastrService.typeErrorGetAccess(error);
+          this.loading.Stop(pName);
         }
       );
   }

@@ -49,7 +49,13 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   dataModelSelect: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   filterModel = new FilterModel();
-  @Input() loading = new ProgressSpinnerModel();
+  loading: ProgressSpinnerModel = new ProgressSpinnerModel();
+  get optionLoading(): ProgressSpinnerModel {
+    return this.loading;
+  }
+  @Input() set optionLoading(value: ProgressSpinnerModel) {
+    this.loading = value;
+  }
   treeControl = new NestedTreeControl<WebDesignerMainMenuModel>(node => node.children);
   dataSource = new MatTreeNestedDataSource<WebDesignerMainMenuModel>();
   @Output() optionChange = new EventEmitter<WebDesignerMainMenuModel>();
