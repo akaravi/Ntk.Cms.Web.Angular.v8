@@ -124,7 +124,7 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.onActionTableRowSelect(new EstateAdsTypeModel());
+    this.tableRowSelected = new EstateAdsTypeModel();
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
