@@ -35,7 +35,7 @@
                 <div *ngIf="dataModel.linkPropertyTypeLanduseId&& dataModel.linkPropertyTypeLanduseId.length>0">
 
                     <!-- Title Field -->
-
+close
                     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
                         <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
                         <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" disabled="{{!fieldsInfo['title']?.accessAddField}}" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
@@ -55,7 +55,7 @@
                     <!-- CaseCode Field -->
                     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
                         <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text" disabled="{{!fieldsInfo['caseCode']?.accessAddField}}" placeholder="{{fieldsInfo['caseCode']?.fieldTitle}}" minlength="3" maxlength="100" required />
+                        <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text" disabled="{{!fieldsInfo['caseCode']?.accessAddField}}" placeholder="{{fieldsInfo['caseCode']?.fieldTitle}}" minlength="3" maxlength="100"  />
                         <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.caseCode = ''">close</mat-icon>
                         <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
                         <mat-hint align="start">
@@ -74,7 +74,7 @@
                         </mat-slide-toggle>
                     </div>
                     <!-- CreatedYaer Field -->
-                    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titleCreatedYaer.length>1">
+                    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titleCreatedYaer.length>1&& PropertyTypeSelected.titleCreatedYaer!=='---'">
                         <mat-label>{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
                         <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer type="number" placeholder="{{fieldsInfo['createdYaer']?.fieldTitle}}" />
                         <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.createdYaer = null">close</mat-icon>
@@ -82,7 +82,7 @@
 
                     </mat-form-field>
                     <!-- Partition Field -->
-                    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titlePartition.length>1">
+                    <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titlePartition.length>1&& PropertyTypeSelected.titleCreatedYaer!=='---'">
                         <mat-label>{{PropertyTypeSelected.titlePartition}}</mat-label>
                         <input matInput [(ngModel)]="dataModel.partition" name="dataModel.partition" #Partition type="number" placeholder="{{PropertyTypeSelected.titlePartition}}" />
                         <mat-icon matSuffix *ngIf="dataModel.partition" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.partition = 0">close</mat-icon>
@@ -148,7 +148,7 @@
               <!-- LinkSiteId Field -->
               <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['linkSiteId']?.accessWatchField && this.tokenHelper.isAdminSite">
                   <mat-label>{{fieldsInfo['linkSiteId']?.fieldTitle}}</mat-label>
-                  <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text" disabled="{{!fieldsInfo['linkSiteId']?.accessAddField}}" placeholder="{{fieldsInfo['linkSiteId']?.fieldTitle}}" minlength="3" maxlength="100" required />
+                  <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text" disabled="{{!fieldsInfo['linkSiteId']?.accessAddField}}" placeholder="{{fieldsInfo['linkSiteId']?.fieldTitle}}" minlength="3" maxlength="100"  />
 
 
                   <!-- viewContentHidden Field -->
@@ -174,7 +174,7 @@
               </mat-form-field>
               <!-- MainAdminRecordStatus Field -->
               <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['mainAdminRecordStatus']?.accessWatchField">
-                  <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField" [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus" #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}" required>
+                  <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField" [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus" #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}" >
                       <mat-option *ngFor="
 let item of dataModelEnumRecordStatusResult.listItems;
 index as i

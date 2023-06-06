@@ -59,7 +59,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   enumInputDataType = EnumInputDataType;
-
+  numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   tokenInfo = new TokenInfoModel();

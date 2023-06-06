@@ -56,7 +56,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   enumInputDataType = EnumInputDataType;
   fileManagerTree: TreeModel;

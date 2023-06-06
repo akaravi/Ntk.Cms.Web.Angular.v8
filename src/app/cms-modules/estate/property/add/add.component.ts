@@ -95,7 +95,7 @@ export class EstatePropertyAddComponent implements OnInit {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle ='';
+  optionActionTitle = '';
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'PeriodPrice', 'Action'];
@@ -552,6 +552,7 @@ export class EstatePropertyAddComponent implements OnInit {
       }
 
       if (!this.formGroup.valid) {
+
         this.cmsToastrService.typeErrorFormInvalid();
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;

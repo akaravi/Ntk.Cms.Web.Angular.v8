@@ -14,7 +14,7 @@
           <mat-label>{{fieldsInfo['recordStatus']?.fieldTitle}}</mat-label>
           <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
             [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus"
-            #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
+            #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
             <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i

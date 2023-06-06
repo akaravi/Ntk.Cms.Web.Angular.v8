@@ -9,8 +9,8 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-        required>
+        name="dataModel.recordStatus" #RecordStatus="ngModel"
+        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
@@ -37,7 +37,7 @@
     <!-- Username Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['username']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.username" name="dataModel.username" #Username type="text"  class="input-ltr"
+      <input matInput [(ngModel)]="dataModel.username" name="dataModel.username" #Username type="text" class="input-ltr"
         placeholder="{{fieldsInfo['username']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.username" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.username = ''">close</mat-icon>
@@ -51,7 +51,7 @@
     <!-- BotToken Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['botToken']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.botToken" name="dataModel.botToken" #BotToken type="text"  class="input-ltr"
+      <input matInput [(ngModel)]="dataModel.botToken" name="dataModel.botToken" #BotToken type="text" class="input-ltr"
         placeholder="{{fieldsInfo['botToken']?.fieldTitle}}" minlength="3" maxlength="100" required />
       <mat-icon matSuffix *ngIf="dataModel.botToken" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.botToken = ''">close</mat-icon>
@@ -65,8 +65,9 @@
     <!-- SecurityKey Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['securityKey']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"  class="input-ltr"
-        placeholder="{{fieldsInfo['securityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"
+        class="input-ltr" placeholder="{{fieldsInfo['securityKey']?.fieldTitle}}" minlength="3" maxlength="100"
+        required />
       <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.securityKey = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -80,8 +81,9 @@
     <!-- UrlWebhook Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['urlWebhook']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['urlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text"
+        class="input-ltr" placeholder="{{fieldsInfo['urlWebhook']?.fieldTitle}}" minlength="3" maxlength="100"
+        required />
       <mat-icon matSuffix *ngIf="dataModel.urlWebhook" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.urlWebhook = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -117,12 +119,12 @@
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
-      <button  (click)="onActionbuttonGetMeAsync()"
-      type="button" class="btn btn-outline-primary">{{'ACTION.GetMeAsync' | translate}}</button>
-      <button  (click)="onActionbuttonSetWebhookAsync()"
-      type="button" class="btn btn-outline-primary">{{'ACTION.SetWebhookAsync' | translate}}</button>
-      <button  (click)="onActionbuttonSetWebhookAsyncEmpty()"
-      type="button" class="btn btn-outline-primary">{{'ACTION.SetWebhookAsyncEmpty' | translate}}</button>
+      <button (click)="onActionbuttonGetMeAsync()" type="button" class="btn btn-outline-primary">{{'ACTION.GetMeAsync' |
+        translate}}</button>
+      <button (click)="onActionbuttonSetWebhookAsync()" type="button"
+        class="btn btn-outline-primary">{{'ACTION.SetWebhookAsync' | translate}}</button>
+      <button (click)="onActionbuttonSetWebhookAsyncEmpty()" type="button"
+        class="btn btn-outline-primary">{{'ACTION.SetWebhookAsyncEmpty' | translate}}</button>
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
       </button>

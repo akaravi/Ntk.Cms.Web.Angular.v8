@@ -10,8 +10,8 @@
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-        required>
+        name="dataModel.recordStatus" #RecordStatus="ngModel"
+        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
@@ -59,10 +59,11 @@
     </mat-form-field>
     <!-- RuleHtmlBody Field -->
     {{'TITLE.Rules' | translate}} :
-    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_text_of_the_rules')" [config]="publicHelper.editorConfig" id="main"
-      [(ngModel)]="dataModel.ruleHtmlBody" name="dataModel.ruleHtmlBody"></angular-editor>
+    <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_text_of_the_rules')"
+      [config]="publicHelper.editorConfig" id="main" [(ngModel)]="dataModel.ruleHtmlBody"
+      name="dataModel.ruleHtmlBody"></angular-editor>
 
-  {{'TITLE.Available_models' | translate}}
+    {{'TITLE.Available_models' | translate}}
     <app-core-module-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
       (optionChange)="onActionSelectorUserCategorySelect($event)"
       (optionSelectAdded)="onActionSelectorUserCategorySelectAdded($event)"

@@ -13,7 +13,6 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -25,6 +24,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -92,6 +92,10 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     'Title',
     'CreatedDate',
     'UpdatedDate',
+    'priorityRushToBuy',
+    'priorityPurchaseDecision',
+    'priorityLiquidityPower',
+    'priorityPurchasingPower',
     "CaseCode",
     'Action',
     "LinkTo",
@@ -109,10 +113,22 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      if (!this.tokenHelper.isAdminSite && !this.tokenHelper.isSupportSite) {
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityRushToBuy');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityPurchaseDecision');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityLiquidityPower');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityPurchasingPower');
+      }
       this.DataGetAll();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
+      if (!this.tokenHelper.isAdminSite && this.tokenHelper.isSupportSite) {
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityRushToBuy');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityPurchaseDecision');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityLiquidityPower');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'priorityPurchasingPower');
+      }
       this.DataGetAll();
     });
   }

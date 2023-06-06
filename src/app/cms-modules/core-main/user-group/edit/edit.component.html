@@ -9,8 +9,8 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-        required>
+        name="dataModel.recordStatus" #RecordStatus="ngModel"
+        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
@@ -23,8 +23,8 @@
     </mat-form-field>
     <!-- UserType Field -->
     <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userType" name="dataModel.userType" #UserType="ngModel"
-        panelClass="UserType-{{ dataModel.userType }}" required>
+      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userType"
+        name="dataModel.userType" #UserType="ngModel" panelClass="UserType-{{ dataModel.userType }}" required>
         <mat-option *ngFor="
                 let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
                 index as i
@@ -35,7 +35,7 @@
         UserType is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-        <!-- Title Field -->
+    <!-- Title Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"

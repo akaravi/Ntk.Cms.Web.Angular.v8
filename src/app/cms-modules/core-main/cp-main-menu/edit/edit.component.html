@@ -1,4 +1,4 @@
-<form (ngSubmit)="onFormSubmit()" #vform="ngForm"  [ngStyle]="{'direction' : tokenInfo.direction }">
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm" [ngStyle]="{'direction' : tokenInfo.direction }">
   <div class="ntk-cms-html-card-header">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
     {{ formInfo.formTitle }}
@@ -12,8 +12,8 @@
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
           <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-            name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-            required>
+            name="dataModel.recordStatus" #RecordStatus="ngModel"
+            ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
             <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
