@@ -10,7 +10,7 @@ import {
   EstateContractTypeService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
-import { firstValueFrom, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, firstValueFrom } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -34,7 +34,8 @@ export class EstateContractTypeSelectorComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: string | EstateContractTypeModel) {
-    this.onActionSelectForce(x);
+    if (x && ((typeof x === 'string' && x.length > 0) || typeof x === typeof EstateContractTypeModel))
+      this.onActionSelectForce(x);
   }
   @Input() set optionTypeUsageId(x: string) {
     this.typeUsageId = x;
@@ -174,7 +175,7 @@ export class EstateContractTypeSelectorComponent implements OnInit, OnDestroy {
 
   }
   onActionSelectForce(id: string | EstateContractTypeModel): void {
-    if (!id || (id === 'string' && id.length === 0)) {
+    if (!id || (typeof id === 'string' && id.length === 0)) {
       this.dataModelSelect = new EstateContractTypeModel();
     }
     if (typeof id === 'string' && id.length > 0) {

@@ -87,7 +87,7 @@ export class ContactContentSelectorComponent implements OnInit {
     filter.searchType = EnumFilterDataModelSearchTypes.Contains;
     filter.clauseType = EnumClauseType.Or;
     filterModel.filters.push(filter);
-    if (text && typeof +text === 'string' && +text > 0) {
+    if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;

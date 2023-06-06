@@ -172,7 +172,7 @@ export class EstateCustomerCategorySelectorComponent implements OnInit, OnDestro
 
   }
   onActionSelectForce(id: string | EstateCustomerCategoryModel): void {
-    if (!id || (id === 'string' && id.length === 0)) {
+    if (!id || (typeof id === 'string' && id.length === 0)) {
       this.dataModelSelect = new EstateCustomerCategoryModel();
     }
     if (typeof id === 'string' && id.length > 0) {

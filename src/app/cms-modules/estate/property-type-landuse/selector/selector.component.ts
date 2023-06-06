@@ -33,7 +33,8 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDes
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   @Input() set optionSelectForce(x: string | EstatePropertyTypeLanduseModel) {
-    this.onActionSelectForce(x);
+    if (x && ((typeof x === 'string' && x.length > 0) || typeof x === typeof EstatePropertyTypeLanduseModel))
+      this.onActionSelectForce(x);
   }
   @Input() set optionTypeUsageId(x: string) {
     this.typeUsageId = x;
@@ -172,7 +173,7 @@ export class EstatePropertyTypeLanduseSelectorComponent implements OnInit, OnDes
 
   }
   onActionSelectForce(id: string | EstatePropertyTypeLanduseModel): void {
-    if (!id || (id === 'string' && id.length === 0)) {
+    if (!id || (typeof id === 'string' && id.length === 0)) {
       this.dataModelSelect = new EstatePropertyTypeLanduseModel();
     }
     if (typeof id === 'string' && id.length > 0) {
