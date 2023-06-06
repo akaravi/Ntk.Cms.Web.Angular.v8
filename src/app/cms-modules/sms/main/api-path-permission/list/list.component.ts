@@ -108,7 +108,7 @@ export class SmsMainApiPathPermissionListComponent implements OnInit, OnDestroy 
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new SmsMainApiPathPermissionModel();
+    this.onActionTableRowSelect(new SmsMainApiPathPermissionModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

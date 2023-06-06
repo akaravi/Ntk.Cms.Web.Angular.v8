@@ -124,7 +124,7 @@ export class ChartCommentListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ChartCommentModel();
+    this.onActionTableRowSelect(new ChartCommentModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

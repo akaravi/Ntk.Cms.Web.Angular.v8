@@ -153,7 +153,7 @@ export class CoreLogReportDataListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreLogReportDataModel();
+    this.onActionTableRowSelect(new CoreLogReportDataModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

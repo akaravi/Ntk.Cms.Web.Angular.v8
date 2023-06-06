@@ -104,7 +104,7 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSiteUserCreditModel();
+    this.onActionTableRowSelect(new CoreModuleSiteUserCreditModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

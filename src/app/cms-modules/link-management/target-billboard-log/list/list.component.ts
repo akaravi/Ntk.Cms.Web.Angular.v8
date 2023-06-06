@@ -117,7 +117,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new LinkManagementTargetBillboardLogModel();
+    this.onActionTableRowSelect(new LinkManagementTargetBillboardLogModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -389,7 +389,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: LinkManagementTargetBillboardLogModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: LinkManagementTargetBillboardLogModel): void {

@@ -104,7 +104,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tableRowSelected = new CoreUserClaimCheckModel();
+    this.onActionTableRowSelect(new CoreUserClaimCheckModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

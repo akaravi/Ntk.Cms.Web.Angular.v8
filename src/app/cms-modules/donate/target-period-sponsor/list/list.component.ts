@@ -126,7 +126,7 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new DonateTargetPeriodSponsorModel();
+    this.onActionTableRowSelect(new DonateTargetPeriodSponsorModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));

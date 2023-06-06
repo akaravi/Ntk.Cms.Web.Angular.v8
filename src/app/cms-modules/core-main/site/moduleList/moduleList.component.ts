@@ -142,7 +142,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSiteModel();
+    this.onActionTableRowSelect(new CoreModuleSiteModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

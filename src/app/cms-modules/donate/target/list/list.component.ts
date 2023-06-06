@@ -100,7 +100,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new DonateTargetModel();
+    this.onActionTableRowSelect(new DonateTargetModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -383,7 +383,7 @@ export class DonateTargetListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: DonateTargetModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: DonateTargetModel): void {

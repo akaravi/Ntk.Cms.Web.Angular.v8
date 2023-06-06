@@ -124,7 +124,7 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new TicketingDepartemenLogModel();
+    this.onActionTableRowSelect(new TicketingDepartemenLogModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

@@ -148,7 +148,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new WebDesignerMainPageModel();
+    this.onActionTableRowSelect(new WebDesignerMainPageModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.filteModelContent.accessLoad = true;

@@ -128,7 +128,7 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new NewsCommentModel();
+    this.onActionTableRowSelect(new NewsCommentModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

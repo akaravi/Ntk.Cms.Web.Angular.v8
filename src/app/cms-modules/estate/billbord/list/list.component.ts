@@ -114,7 +114,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstateBillboardModel();
+    this.onActionTableRowSelect(new EstateBillboardModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -424,7 +424,7 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstateBillboardModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstateBillboardModel): void {

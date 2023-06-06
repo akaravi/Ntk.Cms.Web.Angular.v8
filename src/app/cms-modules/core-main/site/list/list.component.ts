@@ -125,7 +125,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['linkCreatedBySiteId'], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreSiteModel();
+    this.onActionTableRowSelect(new CoreSiteModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

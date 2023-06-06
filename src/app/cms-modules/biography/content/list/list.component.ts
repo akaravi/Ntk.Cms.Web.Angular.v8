@@ -95,7 +95,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BiographyContentModel();
+    this.onActionTableRowSelect(new BiographyContentModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -386,7 +386,7 @@ export class BiographyContentListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: BiographyContentModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: BiographyContentModel): void {

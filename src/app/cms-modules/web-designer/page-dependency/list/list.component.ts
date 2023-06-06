@@ -114,7 +114,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new WebDesignerMainPageDependencyModel();
+    this.onActionTableRowSelect(new WebDesignerMainPageDependencyModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

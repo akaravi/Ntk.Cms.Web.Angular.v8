@@ -120,7 +120,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreUserModel();
+    this.onActionTableRowSelect(new CoreUserModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -491,7 +491,7 @@ export class CoreUserListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: CoreUserModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: CoreUserModel): void {

@@ -124,7 +124,7 @@ export class EstateCustomerOrderResultListComponent implements OnInit, OnDestroy
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstateCustomerOrderResultModel();
+    this.onActionTableRowSelect(new EstateCustomerOrderResultModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -374,7 +374,7 @@ export class EstateCustomerOrderResultListComponent implements OnInit, OnDestroy
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstateCustomerOrderResultModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstateCustomerOrderResultModel): void {

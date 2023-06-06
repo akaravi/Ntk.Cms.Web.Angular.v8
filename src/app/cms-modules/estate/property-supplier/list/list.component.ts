@@ -92,7 +92,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstatePropertySupplierModel();
+    this.onActionTableRowSelect(new EstatePropertySupplierModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -371,7 +371,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstatePropertySupplierModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertySupplierModel): void {
