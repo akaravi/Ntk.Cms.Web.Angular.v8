@@ -460,7 +460,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstateAccountAgencyModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstateAccountAgencyModel): void {

@@ -780,7 +780,7 @@ export class EstatePropertyQuickListComponent
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstatePropertyModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {

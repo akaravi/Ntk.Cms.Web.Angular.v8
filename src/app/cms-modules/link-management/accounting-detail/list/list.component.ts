@@ -348,7 +348,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: LinkManagementAccountingDetailModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: LinkManagementAccountingDetailModel): void {

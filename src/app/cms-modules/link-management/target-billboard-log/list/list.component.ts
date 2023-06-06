@@ -389,7 +389,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: LinkManagementTargetBillboardLogModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: LinkManagementTargetBillboardLogModel): void {

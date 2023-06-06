@@ -374,7 +374,7 @@ export class EstateCustomerOrderResultListComponent implements OnInit, OnDestroy
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstateCustomerOrderResultModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstateCustomerOrderResultModel): void {
