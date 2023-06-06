@@ -135,7 +135,7 @@ export class SmsMainApiPathPriceServiceListComponent implements OnInit, OnDestro
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new SmsMainApiPathPriceServiceModel();
+    this.onActionTableRowSelect(new SmsMainApiPathPriceServiceModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

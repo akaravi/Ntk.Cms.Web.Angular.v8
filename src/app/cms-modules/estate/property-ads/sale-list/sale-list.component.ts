@@ -122,7 +122,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tableRowSelected = new EstateAdsTypeModel();
+    this.onActionTableRowSelect(new EstateAdsTypeModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.showBuy = false;

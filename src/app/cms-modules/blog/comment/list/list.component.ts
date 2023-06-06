@@ -133,7 +133,7 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BlogCommentModel();
+    this.onActionTableRowSelect(new BlogCommentModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

@@ -106,7 +106,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   DataCheckUseSerialForSite(serial: string): void {
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
+    this.onActionTableRowSelect(new CoreModuleSaleInvoiceDetailModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -138,7 +138,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   }
   RegisterUseSerialForSite(model: CoreModuleCheckSerialForSiteDtoModel): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSaleInvoiceDetailModel();
+    this.onActionTableRowSelect(new CoreModuleSaleInvoiceDetailModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

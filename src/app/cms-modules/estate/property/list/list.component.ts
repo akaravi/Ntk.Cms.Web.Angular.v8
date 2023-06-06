@@ -960,7 +960,7 @@ export class EstatePropertyListComponent extends ListBaseComponent
       setTimeout(() => {
         if (this.isSingleClick) {
           this.isSingleClick = false;
-          this.tableRowSelected = new EstatePropertyModel();
+          this.onActionTableRowSelect(new EstatePropertyModel());
           this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
           this.cdr.detectChanges();
         }

@@ -140,7 +140,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreSiteUserModel();
+    this.onActionTableRowSelect(new CoreSiteUserModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

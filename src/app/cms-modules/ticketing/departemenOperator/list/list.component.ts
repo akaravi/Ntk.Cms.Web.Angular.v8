@@ -110,7 +110,7 @@ export class TicketingDepartemenOperatorListComponent implements OnInit, OnDestr
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new TicketingDepartemenOperatorModel();
+    this.onActionTableRowSelect(new TicketingDepartemenOperatorModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

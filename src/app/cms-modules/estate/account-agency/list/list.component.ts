@@ -105,7 +105,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstateAccountAgencyModel();
+    this.onActionTableRowSelect(new EstateAccountAgencyModel());
 
 
 

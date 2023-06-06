@@ -119,7 +119,7 @@ export class DonateTargetPeriodListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new DonateTargetPeriodModel();
+    this.onActionTableRowSelect(new DonateTargetPeriodModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

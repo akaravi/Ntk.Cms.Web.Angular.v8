@@ -134,7 +134,7 @@ export class CoreModuleSaleHeaderSaleListComponent implements OnInit, OnDestroy 
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSaleHeaderModel();
+    this.onActionTableRowSelect(new CoreModuleSaleHeaderModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 

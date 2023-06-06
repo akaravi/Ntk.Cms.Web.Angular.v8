@@ -103,7 +103,7 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstatePropertyAdsModel();
+    this.onActionTableRowSelect(new EstatePropertyAdsModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

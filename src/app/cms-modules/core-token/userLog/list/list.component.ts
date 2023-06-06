@@ -150,7 +150,7 @@ export class CoreTokenUserLogListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['Id'], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreTokenUserLogModel();
+    this.onActionTableRowSelect(new CoreTokenUserLogModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

@@ -277,7 +277,7 @@ export class EstatePropertyQuickListComponent
       return;
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstatePropertyModel();
+    this.onActionTableRowSelect(new EstatePropertyModel());
     const pName = this.constructor.name + "main";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;

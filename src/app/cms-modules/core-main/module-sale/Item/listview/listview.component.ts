@@ -102,7 +102,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSaleItemModel();
+    this.onActionTableRowSelect(new CoreModuleSaleItemModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
