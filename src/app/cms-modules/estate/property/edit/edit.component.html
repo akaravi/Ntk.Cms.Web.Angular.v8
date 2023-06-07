@@ -87,23 +87,7 @@
             {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- Priority Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['priority']?.fieldTitle}}" [(ngModel)]="dataModel.priority"
-            [disabled]="!fieldsInfo['priority']?.accessEditField" name="dataModel.priority" #Priority="ngModel"
-            ngClass="priority-{{ dataModel.priority }}">
-            <mat-option *ngFor="
-                let number of numbers;
-              " [value]="number">{{ number }}</mat-option>
-          </mat-select>
-          <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.priority = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">شما میتوانید برای ملک خود اولویت از 1 تا 10 بدهید</strong>
-          </mat-hint>
-        </mat-form-field>
+
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
           <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
@@ -271,6 +255,7 @@
               {{fieldsInfo['siteAdminViewContentHidden']?.fieldTitle}}
             </mat-slide-toggle>
           </div>
+
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['linkSiteId']?.fieldDescription}}</strong>
@@ -301,6 +286,61 @@
               translate}}</strong>
           </mat-error>
         </mat-form-field>
+
+                 <!-- score Field -->
+                 <div class="content" *ngIf="this.tokenHelper.isAdminSite || this.tokenHelper.isSupportSite">
+                  <div class="row">
+                      <div class="col-lg-3 col-md-12">
+                          <!-- scoreEstateLocation Field -->
+                          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstateLocation']?.accessWatchField">
+                              <mat-select placeholder="{{fieldsInfo['scoreEstateLocation']?.fieldTitle}}" [(ngModel)]="dataModel.scoreEstateLocation" [disabled]="!fieldsInfo['scoreEstateLocation']?.accessEditField" name="dataModel.scoreEstateLocation" #scoreEstateLocation="ngModel" ngClass="score-{{ dataModel.scoreEstateLocation }}">
+                                  <mat-option *ngFor="
+            let number of numbers;
+          " [value]="number">{{ number }}</mat-option>
+                              </mat-select>
+                              <mat-hint align="start">
+                                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                                  <strong class="info-field-text">شما میتوانید برای عجله در خرید اولویت از 1 تا 10 بدهید</strong>
+                              </mat-hint>
+                          </mat-form-field>
+
+                      </div>
+                      <div class="col-lg-3 col-md-12">
+                          <!-- scoreEstateBuild Field -->
+                          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstateBuild']?.accessWatchField">
+                              <mat-select placeholder="{{fieldsInfo['scoreEstateBuild']?.fieldTitle}}" [(ngModel)]="dataModel.scoreEstateBuild" [disabled]="!fieldsInfo['scoreEstateBuild']?.accessEditField" name="dataModel.scoreEstateBuild" #scoreEstateBuild="ngModel" ngClass="score-{{ dataModel.scoreEstateBuild }}">
+                                  <mat-option *ngFor="
+            let number of numbers;
+          " [value]="number">{{ number }}</mat-option>
+                              </mat-select>
+                              <mat-hint align="start">
+                                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                                  <strong class="info-field-text">شما میتوانید برای تصمیم در خرید اولویت از 1 تا 10 بدهید</strong>
+                              </mat-hint>
+                          </mat-form-field>
+
+                      </div>
+                      <div class="col-lg-3 col-md-12">
+                          <!-- scoreEstatePrice Field -->
+                          <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstatePrice']?.accessWatchField">
+                              <mat-select placeholder="{{fieldsInfo['scoreEstatePrice']?.fieldTitle}}" [(ngModel)]="dataModel.scoreEstatePrice" [disabled]="!fieldsInfo['scoreEstatePrice']?.accessEditField" name="dataModel.scoreEstatePrice" #scoreEstatePrice="ngModel" ngClass="score-{{ dataModel.scoreEstatePrice }}">
+                                  <mat-option *ngFor="
+            let number of numbers;
+          " [value]="number">{{ number }}</mat-option>
+                              </mat-select>
+                              <mat-hint align="start">
+                                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                                  <strong class="info-field-text">شما میتوانید برای توان نقدینگی اولویت از 1 تا 10 بدهید</strong>
+                              </mat-hint>
+                          </mat-form-field>
+
+                      </div>
+                      <div class="col-lg-3 col-md-12">
+
+
+                      </div>
+                  </div>
+              </div>
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}

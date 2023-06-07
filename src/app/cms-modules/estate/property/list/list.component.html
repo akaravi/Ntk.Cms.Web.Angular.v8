@@ -380,11 +380,23 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.caseCode}} </mat-cell>
             </ng-container>
-            <!-- Priority Column -->
-            <ng-container matColumnDef="Priority">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['priority']?.fieldTitle}}
+            <!-- scoreEstateLocation Column -->
+            <ng-container matColumnDef="scoreEstateLocation">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreEstateLocation']?.fieldTitle}}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.priority}} </mat-cell>
+                <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreEstateLocation"> {{row.scoreEstateLocation}} </mat-cell>
+            </ng-container>
+            <!-- scoreEstateBuild Column -->
+            <ng-container matColumnDef="scoreEstateBuild">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreEstateBuild']?.fieldTitle}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreEstateBuild"> {{row.scoreEstateBuild}} </mat-cell>
+            </ng-container>
+            <!-- scoreEstatePrice Column -->
+            <ng-container matColumnDef="scoreEstatePrice">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreEstatePrice']?.fieldTitle}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreEstatePrice"> {{row.scoreEstatePrice}} </mat-cell>
             </ng-container>
             <!-- CreatedDate Column -->
             <ng-container matColumnDef="CreatedDate">

@@ -82,16 +82,16 @@
         <mat-icon matSuffix>mode_edit</mat-icon>
         <mat-hint align="end">{{ DescriptionHidden.value.length }} / 500</mat-hint>
       </mat-form-field>
-      <!-- priority Field -->
+      <!-- score Field -->
       <div class="content" *ngIf="this.tokenHelper.isAdminSite || this.tokenHelper.isSupportSite">
         <div class="row">
           <div class="col-lg-3 col-md-12">
-            <!-- priorityRushToBuy Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priorityRushToBuy']?.accessWatchField">
-              <mat-select placeholder="{{fieldsInfo['priorityRushToBuy']?.fieldTitle}}"
-                [(ngModel)]="dataModel.priorityRushToBuy" [disabled]="!fieldsInfo['priorityRushToBuy']?.accessEditField"
-                name="dataModel.priorityRushToBuy" #priorityRushToBuy="ngModel"
-                ngClass="priority-{{ dataModel.priorityRushToBuy }}">
+            <!-- scoreRushToBuy Field -->
+            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreRushToBuy']?.accessWatchField">
+              <mat-select placeholder="{{fieldsInfo['scoreRushToBuy']?.fieldTitle}}"
+                [(ngModel)]="dataModel.scoreRushToBuy" [disabled]="!fieldsInfo['scoreRushToBuy']?.accessEditField"
+                name="dataModel.scoreRushToBuy" #scoreRushToBuy="ngModel"
+                ngClass="score-{{ dataModel.scoreRushToBuy }}">
                 <mat-option *ngFor="
                 let number of numbers;
               " [value]="number">{{ number }}</mat-option>
@@ -104,13 +104,13 @@
 
           </div>
           <div class="col-lg-3 col-md-12">
-            <!-- priorityPurchaseDecision Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priorityPurchaseDecision']?.accessWatchField">
-              <mat-select placeholder="{{fieldsInfo['priorityPurchaseDecision']?.fieldTitle}}"
-                [(ngModel)]="dataModel.priorityPurchaseDecision"
-                [disabled]="!fieldsInfo['priorityPurchaseDecision']?.accessEditField"
-                name="dataModel.priorityPurchaseDecision" #priorityPurchaseDecision="ngModel"
-                ngClass="priority-{{ dataModel.priorityPurchaseDecision }}">
+            <!-- scorePurchaseDecision Field -->
+            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scorePurchaseDecision']?.accessWatchField">
+              <mat-select placeholder="{{fieldsInfo['scorePurchaseDecision']?.fieldTitle}}"
+                [(ngModel)]="dataModel.scorePurchaseDecision"
+                [disabled]="!fieldsInfo['scorePurchaseDecision']?.accessEditField"
+                name="dataModel.scorePurchaseDecision" #scorePurchaseDecision="ngModel"
+                ngClass="score-{{ dataModel.scorePurchaseDecision }}">
                 <mat-option *ngFor="
                 let number of numbers;
               " [value]="number">{{ number }}</mat-option>
@@ -125,13 +125,13 @@
 
           </div>
           <div class="col-lg-3 col-md-12">
-            <!-- priorityLiquidityPower Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priorityLiquidityPower']?.accessWatchField">
-              <mat-select placeholder="{{fieldsInfo['priorityLiquidityPower']?.fieldTitle}}"
-                [(ngModel)]="dataModel.priorityLiquidityPower"
-                [disabled]="!fieldsInfo['priorityLiquidityPower']?.accessEditField"
-                name="dataModel.priorityLiquidityPower" #priorityLiquidityPower="ngModel"
-                ngClass="priority-{{ dataModel.priorityLiquidityPower }}">
+            <!-- scoreLiquidityPower Field -->
+            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreLiquidityPower']?.accessWatchField">
+              <mat-select placeholder="{{fieldsInfo['scoreLiquidityPower']?.fieldTitle}}"
+                [(ngModel)]="dataModel.scoreLiquidityPower"
+                [disabled]="!fieldsInfo['scoreLiquidityPower']?.accessEditField"
+                name="dataModel.scoreLiquidityPower" #scoreLiquidityPower="ngModel"
+                ngClass="score-{{ dataModel.scoreLiquidityPower }}">
                 <mat-option *ngFor="
                 let number of numbers;
               " [value]="number">{{ number }}</mat-option>
@@ -146,13 +146,13 @@
 
           </div>
           <div class="col-lg-3 col-md-12">
-            <!-- priorityPurchasingPower Field -->
-            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priorityPurchasingPower']?.accessWatchField">
-              <mat-select placeholder="{{fieldsInfo['priorityPurchasingPower']?.fieldTitle}}"
-                [(ngModel)]="dataModel.priorityPurchasingPower"
-                [disabled]="!fieldsInfo['priorityPurchasingPower']?.accessEditField"
-                name="dataModel.priorityPurchasingPower" #priorityPurchasingPower="ngModel"
-                ngClass="priority-{{ dataModel.priorityPurchasingPower }}">
+            <!-- scorePurchasingPower Field -->
+            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scorePurchasingPower']?.accessWatchField">
+              <mat-select placeholder="{{fieldsInfo['scorePurchasingPower']?.fieldTitle}}"
+                [(ngModel)]="dataModel.scorePurchasingPower"
+                [disabled]="!fieldsInfo['scorePurchasingPower']?.accessEditField"
+                name="dataModel.scorePurchasingPower" #scorePurchasingPower="ngModel"
+                ngClass="score-{{ dataModel.scorePurchasingPower }}">
                 <mat-option *ngFor="
                 let number of numbers;
               " [value]="number">{{ number }}</mat-option>

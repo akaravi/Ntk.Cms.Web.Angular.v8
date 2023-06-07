@@ -228,7 +228,9 @@ export class EstatePropertyListComponent extends ListBaseComponent
     "AdsActive",
     "ViewCount",
     "CaseCode",
-    "Priority",
+    "scoreEstateLocation",
+    "scoreEstateBuild",
+    "scoreEstatePrice",
     "CreatedDate",
     "UpdatedDate",
     "Action",
@@ -257,6 +259,11 @@ export class EstatePropertyListComponent extends ListBaseComponent
       this.tokenInfo = value;
       this.DataGetAll();
       this.tokenHelper.CheckIsAdmin();
+      if (!this.tokenHelper.isAdminSite && !this.tokenHelper.isSupportSite) {
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateLocation');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateBuild');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstatePrice');
+      }
     });
     this.tokenInfo.direction
     this.cmsApiStoreSubscribe = this.tokenHelper
@@ -265,6 +272,11 @@ export class EstatePropertyListComponent extends ListBaseComponent
         this.tokenInfo = next;
         this.DataGetAll();
         this.tokenHelper.CheckIsAdmin();
+        if (!this.tokenHelper.isAdminSite && !this.tokenHelper.isSupportSite) {
+          this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateLocation');
+          this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateBuild');
+          this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstatePrice');
+        }
       });
 
     // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;

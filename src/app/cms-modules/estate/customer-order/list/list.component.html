@@ -119,36 +119,36 @@
         <mat-cell *matCellDef="let row">
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
-      <!-- priorityRushToBuy Column -->
-      <ng-container matColumnDef="priorityRushToBuy">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['priorityRushToBuy']?.fieldTitle}}
+      <!-- scoreRushToBuy Column -->
+      <ng-container matColumnDef="scoreRushToBuy">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreRushToBuy']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngClass]="'priority-'+row.priorityRushToBuy">
-          {{row.priorityRushToBuy}}
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreRushToBuy">
+          {{row.scoreRushToBuy}}
         </mat-cell>
       </ng-container>
-      <!-- priorityPurchaseDecision Column -->
-      <ng-container matColumnDef="priorityPurchaseDecision">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['priorityPurchaseDecision']?.fieldTitle}}
+      <!-- scorePurchaseDecision Column -->
+      <ng-container matColumnDef="scorePurchaseDecision">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scorePurchaseDecision']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngClass]="'priority-'+row.priorityPurchaseDecision">
-          {{row.priorityPurchaseDecision}}
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scorePurchaseDecision">
+          {{row.scorePurchaseDecision}}
         </mat-cell>
       </ng-container>
-      <!-- priorityLiquidityPower Column -->
-      <ng-container matColumnDef="priorityLiquidityPower">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['priorityLiquidityPower']?.fieldTitle}}
+      <!-- scoreLiquidityPower Column -->
+      <ng-container matColumnDef="scoreLiquidityPower">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreLiquidityPower']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngClass]="'priority-'+row.priorityLiquidityPower">
-          {{row.priorityLiquidityPower}}
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreLiquidityPower">
+          {{row.scoreLiquidityPower}}
         </mat-cell>
       </ng-container>
-      <!-- priorityPurchasingPower Column -->
-      <ng-container matColumnDef="priorityPurchasingPower">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['priorityPurchasingPower']?.fieldTitle}}
+      <!-- scorePurchasingPower Column -->
+      <ng-container matColumnDef="scorePurchasingPower">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scorePurchasingPower']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" [ngClass]="'priority-'+row.priorityPurchasingPower">
-          {{row.priorityPurchasingPower}}
+        <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scorePurchasingPower">
+          {{row.scorePurchasingPower}}
         </mat-cell>
       </ng-container>
       <!-- UpdatedDate Column -->
