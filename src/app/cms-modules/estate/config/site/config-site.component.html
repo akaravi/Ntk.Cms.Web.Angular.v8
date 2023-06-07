@@ -26,52 +26,52 @@
         </div>
           <!-- autoArchiveDataDay Field -->
           <mat-form-field class="ntk-full-width">
-            <mat-label>تعداد روز آرشیو خود کار اطلاعات</mat-label>
+            <mat-label>{{'TITLE.ARCHIEVE'|translate}}</mat-label>
             <input matInput [(ngModel)]="dataConfigSiteValuesModel.autoArchiveDataDay" name="dataConfigSiteValuesModel.autoArchiveDataDay"
               #autoArchiveDataDay type="number" placeholder="60"  />
             <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.autoArchiveDataDay" matSuffix mat-icon-button aria-label="Clear"
               (click)="dataConfigSiteValuesModel.autoArchiveDataDay = 0">close</mat-icon>
-            <mat-icon matTooltip="برای آرشیو خودکار اطلاعات تعداد روز را بیشتر از صفر قرار دهید" matSuffix>info</mat-icon>
+            <mat-icon matTooltip="{{'TITLE.AUTO_ARCHIEVE' | translate}}" matSuffix>info</mat-icon>
             
           </mat-form-field>
         <!-- aboutAgentMobiles Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>لیست شماره موبایل های املاک</mat-label>
+          <mat-label>{{'TITLE.TITLE.LIST_ESTATE_PHONE' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutAgentMobiles" name="dataConfigSiteValuesModel.aboutAgentMobiles"
             #aboutAgentMobiles type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutAgentMobiles" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataConfigSiteValuesModel.aboutAgentMobiles = ''">close</mat-icon>
-          <mat-icon matTooltip="این لیست شماره در کلیه املاک به کاربر نهایی نمایش داده می شود" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
           <mat-hint align="end">{{ aboutAgentMobiles.value.length }} / 500</mat-hint>
         </mat-form-field>
         <!-- aboutAgentTels Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>لیست شماره تماس های املاک</mat-label>
+          <mat-label>{{'TITLE.TITLE.LIST_ESTATE_PHONE' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutAgentTels" name="dataConfigSiteValuesModel.aboutAgentTels" #aboutAgentTels
             type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutAgentTels" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataConfigSiteValuesModel.aboutAgentTels = ''">close</mat-icon>
-          <mat-icon matTooltip="این لیست شماره در کلیه املاک به کاربر نهایی نمایش داده می شود" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
           <mat-hint align="end">{{ aboutAgentTels.value.length }} / 500</mat-hint>
         </mat-form-field>
         <!-- aboutCustomerMobiles Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>لیست شماره موبایل های مشتری</mat-label>
+          <mat-label>{{'TITLE.LIST_CUSTOMER_PHONE_MOBILE' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutCustomerMobiles" name="dataConfigSiteValuesModel.aboutCustomerMobiles"
             #aboutCustomerMobiles type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutCustomerMobiles" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataConfigSiteValuesModel.aboutCustomerMobiles = ''">close</mat-icon>
-          <mat-icon matTooltip="این لیست شماره در کلیه املاک به کاربر نهایی نمایش داده می شود" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
           <mat-hint align="end">{{ aboutCustomerMobiles.value.length }} / 500</mat-hint>
         </mat-form-field>
         <!-- aboutCustomerTels Field -->
         <mat-form-field class="ntk-full-width">
-          <mat-label>لیست شماره تماس های مشتری</mat-label>
+          <mat-label>{{'TITLE.LIST_CUSTOMER_PHONE' | translate}}</mat-label>
           <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutCustomerTels" name="dataConfigSiteValuesModel.aboutCustomerTels"
             #aboutCustomerTels type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
           <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutCustomerTels" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataConfigSiteValuesModel.aboutCustomerTels = ''">close</mat-icon>
-          <mat-icon matTooltip="این لیست شماره در کلیه املاک به کاربر نهایی نمایش داده می شود" matSuffix>info</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
           <mat-hint align="end">{{ aboutCustomerTels.value.length }} / 500</mat-hint>
         </mat-form-field>
 

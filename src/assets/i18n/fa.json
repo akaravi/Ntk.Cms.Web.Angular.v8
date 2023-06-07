@@ -704,6 +704,8 @@
   "MESSAGE.Password_and_password_confirmation_are_different": "پسورد و تاییدیه پسورد با هم مغایرت دارد",
   "MESSAGE.By_activating_this_setting_the_income_of_this_ad_will_be_deposited_in_the_account_of_the_reference_website": "با فعال شدن این تنظیم در آمد این تبلیغ به حساب وب سایت مرجع واریز می شود",
   "MESSAGE.PriceInquiryCalculateNotFind": "استعلام قیمت یافت نشد",
+  "MESSAGE.PRIOTY_POINT":" شما میتوانید برای ملک خود اولویت از 1 تا 10 بدهید",
+  "MESSAGE.LIST_DISPLAYED":" این لیست شماره در کلیه املاک به کاربر نهایی نمایش داده می شود",
   "TITLE.Price": "قیمت",
   "TITLE.Expert_Price_Inquiry": "استعلام قیمت کارشناسی",
   "TITLE.Create_your_first_system": "ایجاد اولین سامانه شما",
@@ -1454,6 +1456,12 @@
   "TITLE.Site_Sub_Domain": "ساب دامنه سایت",
   "TITLE.End": "پایان",
   "TITLE.NEXT": "بعدی",
+  "TITLE.SELF_ARCHIEVE":"تعداد روز آرشیو خود کار اطلاعات",
+  "TITLE.AUTO_ARCHIEVE":"برای آرشیو خودکار اطلاعات تعداد روز را بیشتر از صفر قرار دهید",
+  "TITLE.LIST_ESTATE_PHONE":"لیست شماره موبایل های املاک",
+  "TITLE.LIST_CUSTOMER_PHONE_MOBILE":"لیست شماره موبایل های مشتری",
+  "TITLE.LIST_CUSTOMER_PHONE":"لیست شماره تماس های مشتری",
+  "TITLE.SQUARE_METER":"متر مربع",
   "TITLE.Previous": "قبلی",
   "TRANSLATOR.HI": "سلام",
   "TRANSLATOR.SELECT": "زبان خود را انتخاب کنید",
@@ -1529,17 +1537,13 @@
   "ROUTE.EXPERT.PRICE": "استعلام قیمت کارشناسی",
   "ROUTE.ESTATE.CUSTOMER.ORDER": "سفارش مشتری  ",
   "ROUTE.ESTATE.PROPERTY": "مدیریت املاک",
-<<<<<<< HEAD
   "ROUTE.ARTICLE": "مقاله ",
-=======
   "ROUTE.Article": "مقاله ",
->>>>>>> main
   "ROUTE.BANKPAYMENT": "پرداخت اینترنتی",
   "ROUTE.BIOGRAPHY": "بیوگرافی",
   "ROUTE.CATALOG": "کاتالوگ",
   "ROUTE.CHART": "چارت",
   "ROUTE.CONTACT": "مخاطب",
-<<<<<<< HEAD
   "ROUTE.CORELOG": "صفحه اصلی",
   "ROUTE.CORELOG.ERROR": "ماژول ها",
   "ROUTE.CORE": "صفحه اصلی",
@@ -1645,8 +1649,7 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "اطلاعات اعضا",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "نوتیفیکیشن",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "برنامه",
-=======
->>>>>>> main
+
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

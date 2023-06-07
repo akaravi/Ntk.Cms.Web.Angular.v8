@@ -704,6 +704,8 @@
   "MESSAGE.Password_and_password_confirmation_are_different": "Password and password confirmation are different",
   "MESSAGE.By_activating_this_setting_the_income_of_this_ad_will_be_deposited_in_the_account_of_the_reference_website": "By activating this setting, the income of this ad will be deposited in the account of the reference website",
   "MESSAGE.PriceInquiryCalculateNotFind": "Price Inquiry Calculate Not Find",
+  "MESSAGE.PRIOTY_POINT":" You can give priority for your property from 1 to 10",
+  "MESSAGE.LIST_DISPLAYED":" This number list is displayed to the end user in all properties",
   "TITLE.Price": "Price",
   "TITLE.Expert_Price_Inquiry": "Expert Price Inquiry",
   "TITLE.Create_your_first_system": "Create your first system",
@@ -1445,6 +1447,12 @@
   "TITLE.Site_Sub_Domain": "Site Sub Domain",
   "TITLE.End": "End",
   "TITLE.NEXT": "NEXT",
+  "TITLE.SELF_ARCHIEVE":"The number of days of self-archiving information",
+  "TITLE.AUTO_ARCHIEVE":"For automatic data archiving, set the number of days to be greater than zero",
+  "TITLE.LIST_ESTATE_PHONE":"List of real estate mobile numbers",
+  "TITLE.LIST_CUSTOMER_PHONE_MOBILE":"List of customer mobilephone numbers",
+  "TITLE.LIST_CUSTOMER_PHONE":"List of customer phone numbers",
+  "TITLE.SQUARE_METER":"square's meter",
   "TITLE.Previous": "Previous",
   "TRANSLATOR.HI": "hi",
   "TRANSLATOR.SELECT": "Select your language",
@@ -1526,7 +1534,6 @@
   "ROUTE.CATALOG": "Catalog",
   "ROUTE.CHART": "Chart",
   "ROUTE.CONTACT": "Contact",
-<<<<<<< HEAD
   "ROUTE.CORELOG": "Main page",
   "ROUTE.CORELOG.ERROR": "Modules",
   "ROUTE.CORE": "Main page",
@@ -1632,8 +1639,7 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "Member info",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "Notification",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "Application",
-=======
->>>>>>> main
+
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

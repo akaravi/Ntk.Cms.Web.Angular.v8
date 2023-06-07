@@ -101,7 +101,7 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">شما میتوانید برای ملک خود اولویت از 1 تا 10 بدهید</strong>
+            <strong class="info-field-text">{{'MESSAGE.PRIOTY_POINT' | translate}}</strong>
           </mat-hint>
         </mat-form-field>
         <!-- CaseCode Field -->
@@ -784,7 +784,7 @@
                   {{'TITLE.PriceByAgreement' | translate}}
                 </ng-container>
                 <ng-container *ngIf="row.salePrice>0&&dataModel.area>0">
-                  (مترمربع :{{row.salePrice/dataModel.area | number}})
+                  ({{'TITLE.SQUARE_METER' | translate}}:{{row.salePrice/dataModel.area | number}})
                 </ng-container>
               </mat-cell>
             </ng-container>
