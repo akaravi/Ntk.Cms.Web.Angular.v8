@@ -13,6 +13,7 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -24,7 +25,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -525,18 +526,30 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: EstateCustomerOrderModel): void {
-    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', ''));
     this.tableRowSelected = row;
-    if (!row["expanded"])
+    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', row.urlViewContent));
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseClick(row: EstateCustomerOrderModel): void {
+    if (this.tableRowSelected.id === row.id) {
       row["expanded"] = false;
-    row["expanded"] = !row["expanded"]
+      this.onActionTableRowSelect(new EstateCustomerOrderModel());
+      this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
+    } else {
+      this.onActionTableRowSelect(row);
+      row["expanded"] = true;
+    }
   }
   onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
-    this.onActionTableRowSelect(row);
+    if (!environment.cmsViewConfig.tableRowMouseEnter)
+      return;
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
-    row["expanded"] = false;
+    if (!environment.cmsViewConfig.tableRowMouseEnter)
+      return;
+    if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
+      row["expanded"] = false;
   }
   onActionbuttonLinkTo(
     model: EstateCustomerOrderModel = this.tableRowSelected
