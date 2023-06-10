@@ -16,22 +16,21 @@ import { Subscription } from 'rxjs';
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
+import { ListBaseComponent } from 'src/app/core/cmsComponent/listBaseComponent';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
   styleUrls: ["./list.component.scss"],
 })
-export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
+export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCustomerOrderService, EstateCustomerOrderModel, string> implements OnInit, OnDestroy {
   constructor(
     public contentService: EstateCustomerOrderService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -43,8 +42,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
-    private pageInfo: PageInfoService) {
-    pageInfo.updateContentService(contentService);
+    public pageInfo: PageInfoService) {
+    super(contentService, new EstateCustomerOrderModel(), pageInfo, dialog);
+
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
@@ -525,32 +525,32 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: EstateCustomerOrderModel): void {
-    this.tableRowSelected = row;
-    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', row.urlViewContent));
-    row["expanded"] = true;
-  }
-  onActionTableRowMouseClick(row: EstateCustomerOrderModel): void {
-    if (this.tableRowSelected.id === row.id) {
-      row["expanded"] = false;
-      this.onActionTableRowSelect(new EstateCustomerOrderModel());
-      this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
-    } else {
-      this.onActionTableRowSelect(row);
-      row["expanded"] = true;
-    }
-  }
-  onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
-    if (!environment.cmsViewConfig.tableRowMouseEnter)
-      return;
-    row["expanded"] = true;
-  }
-  onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
-    if (!environment.cmsViewConfig.tableRowMouseEnter)
-      return;
-    if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
-      row["expanded"] = false;
-  }
+  // onActionTableRowSelect(row: EstateCustomerOrderModel): void {
+  //   this.tableRowSelected = row;
+  //   this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', row.urlViewContent));
+  //   row["expanded"] = true;
+  // }
+  // onActionTableRowMouseClick(row: EstateCustomerOrderModel): void {
+  //   if (this.tableRowSelected.id === row.id) {
+  //     row["expanded"] = false;
+  //     this.onActionTableRowSelect(new EstateCustomerOrderModel());
+  //     this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
+  //   } else {
+  //     this.onActionTableRowSelect(row);
+  //     row["expanded"] = true;
+  //   }
+  // }
+  // onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
+  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
+  //     return;
+  //   row["expanded"] = true;
+  // }
+  // onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
+  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
+  //     return;
+  //   if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
+  //     row["expanded"] = false;
+  // }
   onActionbuttonLinkTo(
     model: EstateCustomerOrderModel = this.tableRowSelected
   ): void {
