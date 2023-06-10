@@ -964,43 +964,31 @@ export class EstatePropertyListComponent extends ListBaseComponent
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  isSingleClick: Boolean = true;
   onActionTableRowSelect(row: EstatePropertyModel): void {
-    /**isSingleClick */
-    this.isSingleClick = true;
-    if (this.tableRowSelected.id === row.id)
-      setTimeout(() => {
-        if (this.isSingleClick) {
-          this.isSingleClick = false;
-          this.onActionTableRowSelect(new EstatePropertyModel());
-          this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
-          this.cdr.detectChanges();
-        }
-      }, 250)
-    /**isSingleClick */
     this.tableRowSelected = row;
     this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, row.viewContentHidden, '', row.urlViewContent));
-    if (!row["expanded"])
+    row["expanded"] = true;
+  }
+  onActionTableRowMouseClick(row: EstatePropertyModel): void {
+    if (this.tableRowSelected.id === row.id) {
       row["expanded"] = false;
-    row["expanded"] = !row["expanded"]
+      this.onActionTableRowSelect(new EstatePropertyModel());
+      this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
+    } else {
+      this.onActionTableRowSelect(row);
+      row["expanded"] = true;
+    }
   }
   onActionTableRowMouseEnter(row: EstatePropertyModel): void {
-    row["expanded"] = true;
     if (!environment.cmsViewConfig.tableRowMouseEnter)
       return;
-    this.onActionTableRowSelect(row);
+    row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstatePropertyModel): void {
-    if (row.id !== this.tableRowSelected.id)
-      setTimeout(() => {
-        row["expanded"] = false;
-        this.cdr.detectChanges();
-      }, 500);
     if (!environment.cmsViewConfig.tableRowMouseEnter)
       return;
-    //this.onActionTableRowSelect(new EstatePropertyModel);
-
-
+    if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
+      row["expanded"] = false;
   }
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);

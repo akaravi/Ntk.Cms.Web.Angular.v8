@@ -35,7 +35,7 @@ export const environment = {
     PackageName: '',
   },
   cmsViewConfig: {
-    tableRowMouseEnter: false
+    tableRowMouseEnter: true
   },
   // appVersion: 'v8.1.7',
   USERDATA_KEY: 'authf649fc9a5f55',
