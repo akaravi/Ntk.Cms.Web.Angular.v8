@@ -45,12 +45,6 @@
         Title is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-    <!-- LinkCmsUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
-      [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
-      [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
-    </app-cms-user-selector>
-
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
@@ -65,6 +59,22 @@
         Description is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- LinkCmsUserId Field -->
+    <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="dataModel.linkCmsUserId"
+      [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+      [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
+    </app-cms-user-selector>
+    <!-- LinkLocationId Field -->
+    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+      [optionSelectForce]="dataModel.linkLocationId" [(optionLoading)]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
+      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
+    <!-- LinkLocationIds Field -->
+    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading"
+      [optionSelectForce]="dataModel.linkLocationWorkAreaIds"
+      [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+    </app-cms-location-autocomplete>
+
     <!-- PhoneNumber Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['phoneNumber']?.fieldTitle}}</mat-label>
@@ -145,6 +155,9 @@
         {{fieldsInfo['accessAllowShareRowWatchOtherAgent']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
+
+
+
     <hr>
     <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>
     <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
