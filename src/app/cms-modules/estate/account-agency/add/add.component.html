@@ -64,16 +64,7 @@
       [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
       [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField">
     </app-cms-user-selector>
-    <!-- LinkLocationId Field -->
-    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-      [optionSelectForce]="dataModel.linkLocationId" [(optionLoading)]="loading"
-      [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
-      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
-    <!-- LinkLocationIds Field -->
-    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading"
-      [optionSelectForce]="dataModel.linkLocationWorkAreaIds"
-      [optionPlaceholder]="this.translate.instant('TITLE.Region')">
-    </app-cms-location-autocomplete>
+
 
     <!-- PhoneNumber Field -->
     <mat-form-field class="ntk-full-width">
@@ -111,6 +102,18 @@
         Address is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
+    <!-- LinkLocationId Field -->
+    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+      [optionSelectForce]="dataModel.linkLocationId" [(optionLoading)]="loading"
+      [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
+      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
+    <br>
+    لیست مناطق تحت پوشش
+    <!-- linkLocationWorkAreaIds Field -->
+    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading"
+      [optionSelectForce]="dataModel.linkLocationWorkAreaIds"
+      [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+    </app-cms-location-autocomplete>
     <hr>
     <!-- AccessWatchRowSite Field -->
     <div class="ntk-full-width">
