@@ -592,6 +592,9 @@
             *ngIf="dataModel?.id?.length >0 ">
             <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid" (click)="onFormSubmitAndMessage()" *ngIf="this.tokenHelper.isAdminSite">
+            {{'ACTION.SAVE_SEND_MESSAGE' | translate}}
+        </button>
         </div>
       </div>
     </div>

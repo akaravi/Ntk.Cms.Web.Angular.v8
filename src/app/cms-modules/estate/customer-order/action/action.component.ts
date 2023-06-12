@@ -3,10 +3,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel,
+  EstateCustomerOrderActionSendSmsDtoModel,
   EstateCustomerOrderModel, FormInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -25,13 +26,16 @@ export class EstateCustomerOrderActionComponent implements OnInit {
     public translate: TranslateService,
   ) {
     if (data) {
-      this.dataModel = data.model;
+      this.dataModelCustomerOrder = data.model;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
+
+  dataModel: EstateCustomerOrderActionSendSmsDtoModel = new EstateCustomerOrderActionSendSmsDtoModel();
+  dataModelCustomerOrder: EstateCustomerOrderModel = new EstateCustomerOrderModel();
+
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenForm = false;
 

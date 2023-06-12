@@ -178,7 +178,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     }
     );
   }
-  DataEditContent(): void {
+  DataEditContent(forcePopupMessageAction = false): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
@@ -191,6 +191,14 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
+          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
+            const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+              // height: '90%',
+              data: { model: this.dataModel }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+            });
+          }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -332,7 +340,10 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.step--;
   }
   // ** Accardon */
-  onFormSubmit(): void {
+  onFormSubmitAndMessage() {
+    this.onFormSubmit(true);
+  }
+  onFormSubmit(forcePopupMessageAction = false): void {
     if (!this.formGroup.valid) {
       return;
     }
@@ -349,22 +360,9 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
-      const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-        // height: '90%',
-        data: { model: this.dataModel }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.dialogChangedDate) {
-          this.dataModel = result.model;
-          this.DataEditContent();
-        } else {
-          this.formInfo.formSubmitAllow = true;
-        }
-      });
-    } else {
-      this.DataEditContent();
-    }
+
+      this.DataEditContent(forcePopupMessageAction );
+
 
   }
 
