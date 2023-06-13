@@ -161,8 +161,6 @@ export class EstateCustomerOrderAddComponent implements OnInit {
             dialogRef.afterClosed().subscribe(result => {
               this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
             });
-          } else {
-            this.DataAddContent();
           }
 
 
