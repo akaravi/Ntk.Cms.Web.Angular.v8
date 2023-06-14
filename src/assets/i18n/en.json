@@ -30,6 +30,8 @@
   "ACTION.VIEW_USER": "View user",
   "ACTION.VIEW_SITE": "View site",
   "ACTION.VIEW_OTHER_USER_ADVERTISE": "View other user advertise",
+  "ACTION.VIEW_Estate_Users": "relate Agent",
+  "ACTION.VIEW_Estate_Agencys": "relate Agency",
   "ACTION.PROPERTYLIST": "Property list",
   "ACTION.TARGET_PERIOD": "Target period",
   "ACTION.TARGET_PERIOD_SPONSER": "Target period sponser",
@@ -202,7 +204,6 @@
   "ACTION.LIST_THEMES": "List of themes",
   "ACTION.LIST_APPS": "List of apps",
   "ACTION.LIST_SITES": "List of sites",
-
   "ACTION.CATEGORY_LIST_SITES": "Category list of sites",
   "ACTION.DOWNLOAD": "Download",
   "ACTION.REPORTS": "Reports",
