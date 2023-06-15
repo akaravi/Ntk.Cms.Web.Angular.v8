@@ -57,6 +57,7 @@ karavi tooltip guid
   font-weight: bold !important;
   color: #000 !important;
 }
+
 .cms-EnumRecordStatus-cell-6 {
   background-color: rgb(172, 194, 255) !important;
   font-weight: bold !important;
@@ -92,6 +93,7 @@ karavi tooltip guid
   font-weight: bold !important;
   color: #000 !important;
 }
+
 .cms-EnumRecordStatus-selector-6 {
   background-color: rgb(172, 194, 255) !important;
   font-weight: bold !important;
@@ -99,37 +101,47 @@ karavi tooltip guid
 }
 
 
-.score-0{
+.score-0 {
   background-color: rgb(0, 253, 253) !important;
 }
-.score-1{
+
+.score-1 {
   background-color: rgb(0, 230, 253) !important;
 }
-.score-2{
+
+.score-2 {
   background-color: rgb(0, 210, 253) !important;
 }
-.score-3{
+
+.score-3 {
   background-color: rgb(0, 190, 253) !important;
 }
-.score-4{
+
+.score-4 {
   background-color: rgb(0, 170, 253) !important;
 }
-.score-5{
+
+.score-5 {
   background-color: rgb(0, 150, 253) !important;
 }
-.score-6{
+
+.score-6 {
   background-color: rgb(0, 130, 253) !important;
 }
-.score-7{
+
+.score-7 {
   background-color: rgb(0, 120, 253) !important;
 }
-.score-8{
+
+.score-8 {
   background-color: rgb(0, 110, 253) !important;
 }
-.score-9{
+
+.score-9 {
   background-color: rgb(0, 90, 253) !important;
 }
-.score-10{
+
+.score-10 {
   background-color: rgb(0, 70, 253) !important;
 }
 
@@ -356,7 +368,8 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  // background: white;
+  background-color: var(--bs-page-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
@@ -375,6 +388,10 @@ karavi tooltip guid
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
+}
+
+.ntk-cms-html-table {
+  background-color: var(--bs-page-bg);
 }
 
 .ntk-cms-html-list-header {
