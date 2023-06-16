@@ -342,7 +342,7 @@
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
                                     <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;
-                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]" [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue" [optionMultipleChoice]="itemDetail.configValueMultipleChoice" [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]" [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue" [optionMultipleChoice]="itemDetail.configValueMultipleChoice" [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                                     </app-input-string>
                                 </div>
                                 <!-- ngSwitchCase-->
@@ -379,7 +379,7 @@
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchDefault class="ntk-full-width">
                                     <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;
-                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]" [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue" [optionMultipleChoice]="itemDetail.configValueMultipleChoice" [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]" [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue" [optionMultipleChoice]="itemDetail.configValueMultipleChoice" [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                                     </app-input-string>
                                 </div>
                             </ng-container>

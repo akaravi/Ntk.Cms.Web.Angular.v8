@@ -1125,6 +1125,7 @@
   "TITLE.This_section_helps_search_engines_better_index_content": "This section helps search engines better index content",
   "TITLE.This_section_is_for_the_type_and_option_of_the_survey": "This section is for the type and option of the survey",
   "TITLE.Choose_keywords_relative_to_the_content": "Select keywords relative to the content",
+  "TITLE.Choose_keywords_relative_to_null_content": "Select keywork Null value",
   "TITLE.Source_page_address": "Source page address",
   "TITLE.Add_other_information_related_to_this_content_in_this_section": "Add other information related to this content in this section",
   "TITLE.Content_attachments": "Content attachments",

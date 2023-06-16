@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, EnumInfoModel,
@@ -63,7 +63,8 @@ export class EstatePropertyDetailAddComponent implements OnInit {
   fileManagerOpenForm = false;
 
   dataModelInputDataTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  keywordDataModel = [];
+  keywordDefaultDataModel = [];
+  keywordNullDataModel = [];
 
   ngOnInit(): void {
 
@@ -157,9 +158,9 @@ export class EstatePropertyDetailAddComponent implements OnInit {
     }
     this.formInfo.formSubmitAllow = false;
     this.dataModel.configValueDefaultValueJson = '';
-    if (this.keywordDataModel && this.keywordDataModel.length > 0) {
+    if (this.keywordDefaultDataModel && this.keywordDefaultDataModel.length > 0) {
       const listKeyword = [];
-      this.keywordDataModel.forEach(element => {
+      this.keywordDefaultDataModel.forEach(element => {
         if (element.display) {
           listKeyword.push(element.display);
         } else {
@@ -168,6 +169,20 @@ export class EstatePropertyDetailAddComponent implements OnInit {
       });
       if (listKeyword && listKeyword.length > 0) {
         this.dataModel.configValueDefaultValueJson = listKeyword.join(',');
+      }
+    }
+    this.dataModel.configValueNullValueJson = '';
+    if (this.keywordNullDataModel && this.keywordNullDataModel.length > 0) {
+      const listKeyword = [];
+      this.keywordNullDataModel.forEach(element => {
+        if (element.display) {
+          listKeyword.push(element.display);
+        } else {
+          listKeyword.push(element);
+        }
+      });
+      if (listKeyword && listKeyword.length > 0) {
+        this.dataModel.configValueNullValueJson = listKeyword.join(',');
       }
     }
     this.DataAddContent();
@@ -181,21 +196,38 @@ export class EstatePropertyDetailAddComponent implements OnInit {
 */
   addOnBlurTag = true;
   readonly separatorKeysCodes = [ENTER] as const;
-  addTag(event: MatChipInputEvent): void {
+  addTagDefault(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
     // Add our item
     if (value) {
-      this.keywordDataModel.push(value);
+      this.keywordDefaultDataModel.push(value);
     }
     // Clear the input value
     event.chipInput!.clear();
   }
 
-  removeTag(item: string): void {
-    const index = this.keywordDataModel.indexOf(item);
+  removeTagDefault(item: string): void {
+    const index = this.keywordDefaultDataModel.indexOf(item);
 
     if (index >= 0) {
-      this.keywordDataModel.splice(index, 1);
+      this.keywordDefaultDataModel.splice(index, 1);
+    }
+  }
+  addTagNull(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    // Add our item
+    if (value) {
+      this.keywordNullDataModel.push(value);
+    }
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  removeTagNull(item: string): void {
+    const index = this.keywordNullDataModel.indexOf(item);
+
+    if (index >= 0) {
+      this.keywordNullDataModel.splice(index, 1);
     }
   }
   /**

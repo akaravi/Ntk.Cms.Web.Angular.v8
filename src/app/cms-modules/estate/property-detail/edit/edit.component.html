@@ -149,6 +149,7 @@
         {{fieldsInfo['showInFastSearch']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
+
     <!-- ConfigValueForceUseDefaultValue Field -->
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.configValueForceUseDefaultValue"
@@ -172,7 +173,7 @@
     <mat-form-field style="width: 100%;" appearance="fill">
       <mat-label>{{'TITLE.Choose_keywords_relative_to_the_content' | translate}}</mat-label>
       <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
-        <mat-chip *ngFor="let item of keywordDataModel" (removed)="removeTag(item)">
+        <mat-chip *ngFor="let item of keywordDefaultDataModel" (removed)="removeTagDefault(item)">
           {{item}}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
@@ -180,12 +181,26 @@
         </mat-chip>
         <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
-          (matChipInputTokenEnd)="addTag($event)" />
+          (matChipInputTokenEnd)="addTagDefault($event)" />
       </mat-chip-grid>
     </mat-form-field>
 
 
 
+    <mat-form-field style="width: 100%;" appearance="fill">
+      <mat-label>{{'TITLE.Choose_keywords_relative_to_null_content' | translate}}</mat-label>
+      <mat-chip-grid #chipList aria-label="this.translate.instant('TITLE.key_word')">
+        <mat-chip *ngFor="let item of keywordNullDataModel" (removed)="removeTagNull(item)">
+          {{item}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+          (matChipInputTokenEnd)="addTagNull($event)" />
+      </mat-chip-grid>
+    </mat-form-field>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>

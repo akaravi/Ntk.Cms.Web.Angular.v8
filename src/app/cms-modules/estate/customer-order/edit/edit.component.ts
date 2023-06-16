@@ -201,6 +201,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
               data: { model: this.dataModel }
             });
             dialogRef.afterClosed().subscribe(result => {
+              this.formInfo.formSubmitAllow = true;
+              this.loading.Stop(pName);
             });
           }
         } else {
@@ -383,8 +385,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   optionReload = (): void => {
     this.loadResult = ''
-    this.estatePropertyListComponent.optionloadComponent = true;
-    this.estatePropertyListComponent.DataGetAll();
   }
   loadResult = '';
   onFormLoadResult(): void {
