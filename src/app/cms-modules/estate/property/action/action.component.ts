@@ -55,6 +55,7 @@ export class EstatePropertyActionComponent implements OnInit {
         dialogChangedDate: false,
       });
     }
+
   }
 
   onFormSubmit(): void {

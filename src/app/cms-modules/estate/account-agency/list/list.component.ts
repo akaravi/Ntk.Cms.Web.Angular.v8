@@ -63,7 +63,14 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     if (this.requestLinkLocationWorkAreaIds && this.requestLinkLocationWorkAreaIds.length > 0)
       this.filteModelContent.linkLocationWorkAreaIds = this.requestLinkLocationWorkAreaIds;
   }
-
+  @Input() set optionLinkLocationWorkAreaId(id: number) {
+    this.requestLinkLocationWorkAreaIds = [];
+    if (id && id > 0) {
+      this.requestLinkLocationWorkAreaIds.push(id);
+    }
+    if (this.requestLinkLocationWorkAreaIds && this.requestLinkLocationWorkAreaIds.length > 0)
+      this.filteModelContent.linkLocationWorkAreaIds = this.requestLinkLocationWorkAreaIds;
+  }
   link: string;
   comment: string;
   author: string;

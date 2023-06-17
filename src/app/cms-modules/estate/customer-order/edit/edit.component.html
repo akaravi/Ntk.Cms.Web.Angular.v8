@@ -476,10 +476,10 @@
                     <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
                         <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
                     </button>
-                    <button type="button" (click)="onFormLoadEstateAgencyResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
+                    <button type="button" (click)="onFormLoadEstateAgencyResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationIds&&this.dataModel?.linkLocationIds.length>0">
                         <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Agencys' | translate}}
                     </button>
-                    <button type="button" (click)="onFormLoadEstateUserResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
+                    <button type="button" (click)="onFormLoadEstateUserResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationIds&&this.dataModel?.linkLocationIds.length>0">
                         <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Users' | translate}}
                     </button>
                     <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid" (click)="onFormSendMessage()" *ngIf="this.tokenHelper.isAdminSite">
