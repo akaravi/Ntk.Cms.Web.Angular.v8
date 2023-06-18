@@ -140,7 +140,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new BankPaymentPrivateSiteConfigModel();
+    this.onActionTableRowSelect(new BankPaymentPrivateSiteConfigModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -251,7 +251,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -276,7 +276,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -373,7 +373,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/bankpayment/transaction/LinkPrivateSiteConfigId', this.tableRowSelected.id]);
   }
@@ -384,7 +384,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -426,7 +426,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -459,7 +459,7 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.DataGetAll();
   }
   onActionTableRowSelect(row: BankPaymentPrivateSiteConfigModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
   onActionBackToParent(): void {
     this.router.navigate(['/bankpayment/publicconfig/']);

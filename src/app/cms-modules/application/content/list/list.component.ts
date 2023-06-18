@@ -134,7 +134,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       );
     }
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApplicationAppModel();
+    this.onActionTableRowSelect(new ApplicationAppModel());
     const pName = this.constructor.name + 'contentService.ServiceGetAll';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -241,7 +241,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -258,7 +258,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -373,7 +373,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -406,7 +406,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationAppModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/source/']);
@@ -420,7 +420,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     const dialogRef = this.dialog.open(ApplicationAppUploadAppComponent, {
       height: '90%',
       data: this.tableRowSelected,
@@ -437,7 +437,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     const dialogRef = this.dialog.open(ApplicationAppUploadUpdateComponent, {
       height: '90%',
       data: this.tableRowSelected,
@@ -454,7 +454,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     const pName = this.constructor.name + 'contentService.ServiceBuild';
     this.loading.Start(pName);
     this.contentService.ServiceBuild(this.tableRowSelected.id).subscribe({
@@ -480,7 +480,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     const dialogRef = this.dialog.open(ApplicationAppDownloadComponent, {
       height: '90%',
       data: this.tableRowSelected,
@@ -496,7 +496,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -521,7 +521,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     this.router.navigate(['/application/memberinfo/LinkApplicationId/', this.tableRowSelected.id]);
   }
   onActionbuttonIntroList(mode: ApplicationAppModel = this.tableRowSelected): void {
@@ -530,7 +530,7 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     this.router.navigate(['/application/intro/LinkApplicationId/', this.tableRowSelected.id]);
   }
 }

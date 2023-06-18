@@ -5,7 +5,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
@@ -339,7 +339,9 @@ export class EstateAccountUserEditComponent implements OnInit {
 
   }
 
-
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
+    this.dataModel.linkLocationWorkAreaIds = model;
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

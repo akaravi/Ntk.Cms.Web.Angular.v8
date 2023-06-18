@@ -106,7 +106,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new NewsContentModel();
+    this.onActionTableRowSelect( new NewsContentModel());
 
     this.filteModelContent.accessLoad = true;
     /*filter CLone*/
@@ -265,7 +265,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -287,7 +287,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -372,7 +372,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -413,13 +413,12 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: NewsContentModel): void {
     this.tableRowSelected = row;
-
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: NewsContentModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: NewsContentModel): void {
@@ -447,7 +446,7 @@ export class NewsContentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_news_information'));

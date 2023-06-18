@@ -15,7 +15,8 @@ import {
   BankPaymentTransactionService, CoreAuthService,
   CoreEnumService, CoreModuleService, CoreModuleTagService, EstateAccountAgencyAdsService, EstateAccountAgencyService,
   EstateAccountAgencyUserService,
-  EstateAccountUserService, EstateActivityTypeService, EstateAdsTypeService, EstateBillboardService, EstateConfigurationService, EstateContractService, EstateContractTypeService, EstateCustomerCategoryService, EstateCustomerOrderResultService, EstateCustomerOrderService, EstateEnumService,
+  EstateAccountAgencyWorkAreaService,
+  EstateAccountUserService, EstateAccountUserWorkAreaService, EstateActivityTypeService, EstateAdsTypeService, EstateBillboardService, EstateConfigurationService, EstateContractService, EstateContractTypeService, EstateCustomerCategoryService, EstateCustomerOrderResultService, EstateCustomerOrderService, EstateEnumService,
   EstatePropertyAccountTypeUserService, EstatePropertyAdsService, EstatePropertyCompanyService, EstatePropertyDetailGroupService, EstatePropertyDetailService, EstatePropertyExpertPriceService, EstatePropertyHistoryService, EstatePropertyProjectService, EstatePropertyService, EstatePropertyShareAgencyService,
   EstatePropertyShareAgentService,
   EstatePropertyShareSiteService, EstatePropertySupplierCategoryService, EstatePropertySupplierService, EstatePropertyTypeLanduseService, EstatePropertyTypeService, EstatePropertyTypeUsageService, FileCategoryService
@@ -120,8 +121,12 @@ import { EstateAccountAgencyAdsEditComponent } from './account-agency-ads/edit/e
 import { EstateAccountAgencyAdsListComponent } from './account-agency-ads/list/list.component';
 import { EstateAccountAgencyAdsSaleListComponent } from './account-agency-ads/sale-list/sale-list.component';
 import { EstateAccountAgencyAdsSalePaymentComponent } from './account-agency-ads/sale-payment/sale-payment.component';
+import { EstateAccountAgencyWorkAreaAddComponent } from './account-agency-work-area/add/add.component';
+import { EstateAccountAgencyWorkAreaListComponent } from './account-agency-work-area/list/list.component';
 import { EstateAccountAgencyHeaderComponent } from './account-agency/header/header.component';
 import { EstateAccountAgencySelectionlistComponent } from './account-agency/selectionlist/selectionlist.component';
+import { EstateAccountUserWorkAreaAddComponent } from './account-user-work-area/add/add.component';
+import { EstateAccountUserWorkAreaListComponent } from './account-user-work-area/list/list.component';
 import { EstateAccountUserHeaderComponent } from './account-user/header/header.component';
 import { EstateAccountUserSelectionlistComponent } from './account-user/selectionlist/selectionlist.component';
 import { EstateContractTypeHeaderComponent } from './contract-type/header/header.component';
@@ -333,6 +338,12 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstateAccountAgencyUserAddComponent,
     EstateAccountAgencyUserListComponent,
     /* */
+    EstateAccountAgencyWorkAreaAddComponent,
+    EstateAccountAgencyWorkAreaListComponent,
+    /* */
+    EstateAccountUserWorkAreaAddComponent,
+    EstateAccountUserWorkAreaListComponent,
+    /* */
     EstateAccountAgencyAdsAddComponent,
     EstateAccountAgencyAdsEditComponent,
     EstateAccountAgencyAdsListComponent,
@@ -374,6 +385,8 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     /** */
     EstateAccountAgencyService,
     EstateAccountAgencyUserService,
+    EstateAccountAgencyWorkAreaService,
+    EstateAccountUserWorkAreaService,
     EstateAccountUserService,
     EstateContractService,
     EstateContractTypeService,

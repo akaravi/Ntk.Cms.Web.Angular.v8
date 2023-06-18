@@ -87,7 +87,7 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreSiteCategoryCmsModuleModel();
+    this.onActionTableRowSelect(new CoreSiteCategoryCmsModuleModel());
     this.filteModelContent.accessLoad = true;
 
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));

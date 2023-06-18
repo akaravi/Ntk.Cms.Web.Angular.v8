@@ -7,18 +7,21 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateCustomerOrderModel,
-  EstateCustomerOrderService, FilterDataModel, FilterModel,
+  CoreCurrencyModel,
+  DataFieldInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
+  ErrorExceptionResult, EstateContractTypeModel, EstateCustomerOrderModel,
+  EstateCustomerOrderSearchDtoModel,
+  EstateCustomerOrderService, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel,
+  FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
+import { ListBaseComponent } from 'src/app/core/cmsComponent/listBaseComponent';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
-import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
@@ -30,10 +33,11 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
   templateUrl: './list.component.html',
   styleUrls: ["./list.component.scss"],
 })
-export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
+export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCustomerOrderService, EstateCustomerOrderModel, string> implements OnInit, OnDestroy {
   constructor(
     public contentService: EstateCustomerOrderService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
+    public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
@@ -42,8 +46,9 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     public translate: TranslateService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
-    private pageInfo: PageInfoService) {
-    pageInfo.updateContentService(contentService);
+    public pageInfo: PageInfoService) {
+    super(contentService, new EstateCustomerOrderModel(), pageInfo, dialog);
+
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.optionsSearch.parentMethods = {
@@ -72,11 +77,12 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-  filteModelContent = new FilterModel();
+  filteModelContent = new EstateCustomerOrderSearchDtoModel();
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
-
+  dataModelPropertyDetailGroups: EstatePropertyDetailGroupModel[] = [];
+  enumInputDataType = EnumInputDataType;
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstateCustomerOrderModel> = [];
@@ -84,7 +90,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   tableSource: MatTableDataSource<EstateCustomerOrderModel> = new MatTableDataSource<EstateCustomerOrderModel>();
   tabledisplayedColumns: string[] = [];
   categoryModelSelected: EstateCustomerOrderModel;
-
+  step = 0;
   tabledisplayedColumnsSource: string[] = [
     'Id',
     'LinkSiteId',
@@ -92,6 +98,10 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     'Title',
     'CreatedDate',
     'UpdatedDate',
+    'scoreRushToBuy',
+    'scorePurchaseDecision',
+    'scoreLiquidityPower',
+    'scorePurchasingPower',
     "CaseCode",
     'Action',
     "LinkTo",
@@ -106,13 +116,26 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   expandedElement: EstateCustomerOrderModel | null;
   cmsApiStoreSubscribe: Subscription;
+  propertyDetails: Map<string, string> = new Map<string, string>();
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      if (!this.tokenHelper.isAdminSite && !this.tokenHelper.isSupportSite) {
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreRushToBuy');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scorePurchaseDecision');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreLiquidityPower');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scorePurchasingPower');
+      }
       this.DataGetAll();
     });
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
+      if (!this.tokenHelper.isAdminSite && this.tokenHelper.isSupportSite) {
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreRushToBuy');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scorePurchaseDecision');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreLiquidityPower');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scorePurchasingPower');
+      }
       this.DataGetAll();
     });
   }
@@ -169,8 +192,21 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
       );
       /** ResponsibleUserId  */
     } else {
-      /** GetAllEditor  */
-      this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+      // ** Save Value */
+      var propertyDetailValues = [];
+      if (this.dataModelPropertyDetailGroups)
+        this.dataModelPropertyDetailGroups.forEach(itemGroup => {
+          itemGroup.propertyDetails.forEach(element => {
+            const value = new EstatePropertyDetailValueModel();
+            value.linkPropertyDetailId = element.id;
+            value.value = this.propertyDetails[element.id];
+            propertyDetailValues.push(value);
+          });
+        });
+      filterModel.propertyDetailValues = propertyDetailValues;
+      // ** Save Value */
+      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           if (ret.isSuccess) {
@@ -488,7 +524,7 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new FilterModel();
+    this.filteModelContent = new EstateCustomerOrderSearchDtoModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -508,20 +544,32 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: EstateCustomerOrderModel): void {
-    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', ''));
-    this.tableRowSelected = row;
-    if (!row["expanded"])
-      row["expanded"] = false;
-    row["expanded"] = !row["expanded"]
-  }
-  onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
-    this.onActionTableRowSelect(row);
-    row["expanded"] = true;
-  }
-  onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
-    row["expanded"] = false;
-  }
+  // onActionTableRowSelect(row: EstateCustomerOrderModel): void {
+  //   this.tableRowSelected = row;
+  //   this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', row.urlViewContent));
+  //   row["expanded"] = true;
+  // }
+  // onActionTableRowMouseClick(row: EstateCustomerOrderModel): void {
+  //   if (this.tableRowSelected.id === row.id) {
+  //     row["expanded"] = false;
+  //     this.onActionTableRowSelect(new EstateCustomerOrderModel());
+  //     this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
+  //   } else {
+  //     this.onActionTableRowSelect(row);
+  //     row["expanded"] = true;
+  //   }
+  // }
+  // onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
+  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
+  //     return;
+  //   row["expanded"] = true;
+  // }
+  // onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
+  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
+  //     return;
+  //   if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
+  //     row["expanded"] = false;
+  // }
   onActionbuttonLinkTo(
     model: EstateCustomerOrderModel = this.tableRowSelected
   ): void {
@@ -574,5 +622,108 @@ export class EstateCustomerOrderListComponent implements OnInit, OnDestroy {
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })
+  }
+  onActionSelectorLocation(model: number[] | null): void {
+
+    this.filteModelContent.linkLocationIds = model;
+  }
+  onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.filteModelContent.linkPropertyTypeUsageId = model.id;
+  }
+  onSearchCaseCodeChange(caseCode: string) {
+    if (caseCode && caseCode.length > 0) {
+      this.filteModelContent = new EstateCustomerOrderSearchDtoModel();
+      this.filteModelContent.caseCode = caseCode;
+      this.dataModelPropertyDetailGroups = [];
+    }
+  }
+  PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
+  contractTypeSelected: EstateContractTypeModel;
+  dataModelCorCurrencySelector = new CoreCurrencyModel();
+  onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
+    this.dataModelPropertyDetailGroups = [];
+    this.PropertyTypeSelected = null;
+    this.filteModelContent.linkPropertyTypeLanduseId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.DataGetPropertyDetailGroup(model.id);
+    this.PropertyTypeSelected = model;
+    this.filteModelContent.linkPropertyTypeLanduseId = model.id;
+  }
+  DataGetPropertyDetailGroup(id: string): void {
+    const filteModelProperty = new FilterModel();
+    const filter = new FilterDataModel();
+    filter.propertyName = 'LinkPropertyTypeLanduseId';
+    filter.value = id;
+    filteModelProperty.filters.push(filter);
+    this.dataModelPropertyDetailGroups = [];
+    const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
+    this.estatePropertyDetailGroupService.ServiceGetAllFastSearch(filteModelProperty)
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.dataModelPropertyDetailGroups = ret.listItems;
+            /** load Value */
+            if (this.dataModelPropertyDetailGroups)
+              this.dataModelPropertyDetailGroups.forEach(itemGroup => {
+                itemGroup.propertyDetails.forEach(element => {
+                  this.propertyDetails[element.id] = 0;
+
+                });
+              });
+            /** load Value */
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+  }
+  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
+    this.contractTypeSelected = null;
+    this.filteModelContent.linkContractTypeId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.contractTypeSelected = model;
+    this.filteModelContent.linkContractTypeId = model.id;
+
+  }
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      // this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.filteModelContent.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.filteModelContent.linkCoreCurrencyId = model.id;
+  }
+  setStep(index: number): void {
+    this.step = index;
+  }
+
+  nextStep(): void {
+    this.step++;
+  }
+
+  prevStep(): void {
+    this.step--;
   }
 }

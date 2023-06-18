@@ -99,7 +99,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new LinkManagementAccountingModel();
+    this.onActionTableRowSelect(new LinkManagementAccountingModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -186,7 +186,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -212,7 +212,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage); return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -301,7 +301,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -344,7 +344,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: LinkManagementAccountingModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: LinkManagementAccountingModel): void {
@@ -358,7 +358,7 @@ export class LinkManagementAccountingListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['/linkmanagement/accountingdetail/LinkManagementAccountingId', this.tableRowSelected.id]);
   }
 

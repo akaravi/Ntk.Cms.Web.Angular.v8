@@ -109,7 +109,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApiTelegramLogInputModel();
+    this.onActionTableRowSelect( new ApiTelegramLogInputModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -248,7 +248,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     //open popup
     const dialogRef = this.dialog.open(ApiTelegramActionSendMessageComponent, {
       // height: "90%",
@@ -286,7 +286,7 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect( model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

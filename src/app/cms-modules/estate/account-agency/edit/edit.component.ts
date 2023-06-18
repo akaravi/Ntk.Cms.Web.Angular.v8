@@ -5,13 +5,13 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  CoreEnumService, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyService, EstateAccountAgencyUserModel,
+  CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyService, EstateAccountAgencyUserModel,
   EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -57,6 +57,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fieldsInfoAgencyUser: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
@@ -337,9 +338,16 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     if (model && model.id.length > 0) {
       this.dataEstateAccountAgencyUserModel.linkEstateAccountUserId = model.id;
     }
-
   }
-
+  onActionSelectorLocation(model: CoreLocationModel | null): void {
+    this.dataModel.linkLocationId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkLocationId = model.id;
+    }
+  }
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
+    this.dataModel.linkLocationWorkAreaIds = model;
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

@@ -125,7 +125,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['linkCreatedBySiteId'], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreSiteModel();
+    this.onActionTableRowSelect(new CoreSiteModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -205,7 +205,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -222,7 +222,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -250,7 +250,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['/core/site/modulelist/LinkSiteId/', this.tableRowSelected.id]);
   }
   onActionbuttonLoginToRow(model: CoreSiteModel = this.tableRowSelected): void {
@@ -260,7 +260,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
 
     let authModel: AuthRenewTokenModel;
@@ -288,7 +288,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['/core/sitedomainalias/', this.tableRowSelected.id]);
   }
   onActionbuttonUserListRow(model: CoreSiteModel = this.tableRowSelected): void {
@@ -297,7 +297,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate(['/core/site/userlist/LinkSiteId', this.tableRowSelected.id]);
   }
   onActionbuttonDeviceListRow(model: CoreSiteModel = this.tableRowSelected): void {
@@ -306,7 +306,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/core/device', this.tableRowSelected.id]);
   }
@@ -316,7 +316,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/core/site/reseller-chart/LinkSiteId', this.tableRowSelected.id]);
   }
@@ -327,7 +327,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -356,7 +356,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -452,7 +452,7 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

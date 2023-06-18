@@ -10,7 +10,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType,
+  EnumManageUserAccessUserTypes,
+  EnumRecordStatus,
+  ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -56,7 +59,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   enumInputDataType = EnumInputDataType;
   fileManagerTree: TreeModel;
@@ -149,7 +152,18 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+
+          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
+            const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+              // height: '90%',
+              data: { model: ret.item }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+            });
+          }
+
+
 
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -339,22 +353,9 @@ export class EstateCustomerOrderAddComponent implements OnInit {
         });
       });
     // ** Save Value */
-    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
-      const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-        // height: '90%',
-        data: { model: this.dataModel }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.dialogChangedDate) {
-          this.dataModel = result.model;
-          this.DataAddContent();
-        } else {
-          this.formInfo.formSubmitAllow = true;
-        }
-      });
-    } else {
-      this.DataAddContent();
-    }
+
+    this.DataAddContent();
+
   }
 
   onActionSelectorSelect(model: EstateCustomerCategoryModel | null): void {

@@ -33,6 +33,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
+
   dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   dataModelSelect: EstatePropertyTypeUsageModel = new EstatePropertyTypeUsageModel();
   formControl = new FormControl();
@@ -44,7 +45,8 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
   @Output() optionChange = new EventEmitter<EstatePropertyTypeUsageModel>();
   @Input() optionReload = () => this.onActionReload();
   @Input() set optionSelectForce(x: string | EstatePropertyTypeUsageModel) {
-    this.onActionSelectForce(x);
+    if (x && ((typeof x === 'string' && x.length > 0) || typeof x === typeof EstatePropertyTypeUsageModel))
+      this.onActionSelectForce(x);
   }
   cmsApiStoreSubscribe: Subscription;
 
@@ -131,6 +133,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
     if (this.optionDisabled) {
       return;
     }
+
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
@@ -138,8 +141,10 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
     if (this.optionDisabled) {
       return;
     }
-    this.formControl.setValue(null);
+    this.dataModelSelect = null;
+    this.formControl.patchValue('');
     this.optionChange.emit(null);
+    this.cdr.detectChanges();
   }
 
   push(newvalue: EstatePropertyTypeUsageModel): Observable<EstatePropertyTypeUsageModel[]> {
@@ -153,7 +158,7 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
 
   }
   onActionSelectForce(id: string | EstatePropertyTypeUsageModel): void {
-    if (!id || (id === 'string' && id.length === 0)) {
+    if (!id || (typeof id === 'string' && id.length === 0)) {
       this.dataModelSelect = new EstatePropertyTypeUsageModel();
     }
     if (typeof id === 'string' && id.length > 0) {

@@ -10,7 +10,9 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  CoreCurrencyModel, CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyCompanyModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertyProjectModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes,
+  EnumManageUserAccessUserTypes,
+  EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyCompanyModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertyProjectModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
@@ -21,6 +23,8 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
+import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
+import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
@@ -53,6 +57,8 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
+  @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
+  @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -78,9 +84,9 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
-
+  optionloadComponent = false;
   propertyDetails: Map<string, string> = new Map<string, string>();
-  numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   /** map */
   viewMap = false;
   private mapModel: leafletMap;
@@ -235,7 +241,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       }
       );
   }
-  DataEdit(): void {
+  DataEditContent(forcePopupMessageAction = false): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     if (this.dataFileModelFiles) {
@@ -260,6 +266,15 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
+          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite)
+            && (forcePopupMessageAction || (this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus))) {
+            const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
+              height: '90%',
+              data: { model: this.dataModel }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+            });
+          }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -393,7 +408,10 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.contractDataModel.contractType = this.contractTypeSelected;
     this.contractDataModel.linkEstateContractTypeId = this.contractTypeSelected.id;
   }
-  onFormSubmit(): void {
+  onFormSubmitAndMessage() {
+    this.onFormSubmit(true);
+  }
+  onFormSubmit(forcePopupMessageAction = false): void {
     if (!this.formGroup.valid) {
       return;
     }
@@ -420,22 +438,9 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.formInfo.formSubmitAllow = true;
       return;
     }
-    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available && this.dataModel.recordStatus != this.lastRecordStatus) {
-      const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
-        height: '90%',
-        data: { model: this.dataModel }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.dialogChangedDate) {
-          this.dataModel = result.model;
-          this.DataEdit();
-        } else {
-          this.formInfo.formSubmitAllow = true;
-        }
-      });
-    } else {
-      this.DataEdit();
-    }
+
+    this.DataEditContent(forcePopupMessageAction);
+
 
   }
   onFormCancel(): void {
@@ -694,6 +699,20 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+  optionReload = (): void => {
+    this.loadResult = ''
+  }
+  loadResult = '';
 
+  onFormLoadEstateAgencyResult(): void {
+    this.loadResult = 'estateAccountAgencyList';
+    this.estateAccountAgencyListComponent.optionloadComponent = true;
+    this.estateAccountAgencyListComponent.DataGetAll();
+  }
+  onFormLoadEstateUserResult(): void {
+    this.loadResult = 'estateAccountUserList';
+    this.estateAccountUserListComponent.optionloadComponent = true;
+    this.estateAccountUserListComponent.DataGetAll();
+  }
 }
 

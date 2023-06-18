@@ -10,8 +10,8 @@
     <!-- RecordStatus Field -->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-        required>
+        name="dataModel.recordStatus" #RecordStatus="ngModel"
+        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
@@ -22,11 +22,11 @@
         RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-     <!-- Id Field -->
-     <mat-form-field class="ntk-full-width">
+    <!-- Id Field -->
+    <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['id']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.id" name="dataModel.id" #Id type="Id"
-        placeholder="{{fieldsInfo['id']?.fieldTitle}}"  required />
+        placeholder="{{fieldsInfo['id']?.fieldTitle}}" required />
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
     <!-- Title Field -->
@@ -46,8 +46,7 @@
 
 
     <app-data-provider-plan-selectionlist [optionSelectForce]="dataCoreCpMainMenuIds" [optionDisabled]="false"
-      (optionChange)="onActionSelectorPlanSelect($event)"
-      (optionSelectAdded)="onActionSelectorPlanSelectAdded($event)"
+      (optionChange)="onActionSelectorPlanSelect($event)" (optionSelectAdded)="onActionSelectorPlanSelectAdded($event)"
       (optionSelectRemoved)="onActionSelectorPlanSelectRemoved($event)">
     </app-data-provider-plan-selectionlist>
 

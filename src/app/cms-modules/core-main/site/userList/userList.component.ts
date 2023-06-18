@@ -140,7 +140,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreSiteUserModel();
+    this.onActionTableRowSelect(new CoreSiteUserModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -235,7 +235,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -264,7 +264,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorDeleteRowIsNull();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -314,7 +314,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/core/site/edit/" + model.id;
@@ -329,7 +329,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (this.tokenInfo.userId != model.linkUserId &&
       (
         this.dataModelResult == null ||
@@ -356,7 +356,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/core/user/edit/" + model.id;
@@ -372,7 +372,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/core/user/reseller-chart/LinkUserId/" + model.id;
@@ -388,7 +388,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.No_row_selected_for_editing'));
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/core/site/reseller-chart/LinkSiteId/" + model.id;
@@ -404,7 +404,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     let authModel: AuthRenewTokenModel;
     authModel = new AuthRenewTokenModel();
@@ -506,7 +506,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -547,7 +547,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: CoreSiteUserModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: CoreSiteUserModel): void {
@@ -558,7 +558,7 @@ export class CoreSiteUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (event?.ctrlKey) {
       this.link = "/#/core/site/list/LinkUserId/" + model.id;

@@ -28,6 +28,8 @@
   "ACTION.VIEW_USER": "مشاهده کاربر",
   "ACTION.VIEW_SITE": "مشاهده سایت ",
   "ACTION.VIEW_OTHER_USER_ADVERTISE": "مشاهده سایر آگهی های کاربر",
+  "ACTION.VIEW_Estate_Users": "کارشناس های مربوطه",
+  "ACTION.VIEW_Estate_Agencys": "آژانس های مربوطه",
   "ACTION.PROPERTYLIST": "لیست املاک",
   "ACTION.TARGET_PERIOD": "لیست دوره های هدف",
   "ACTION.TARGET_PERIOD_SPONSER": "لیست اسپانسرهای دوره هدف",
@@ -1136,6 +1138,7 @@
   "TITLE.This_section_helps_search_engines_better_index_content": "این بخش کمک می کند موتورهای سرچ بهتر مطالب را ایندکس کنند",
   "TITLE.This_section_is_for_the_type_and_option_of_the_survey": "این بخش برای نوع و گزینه نظرسنجی است",
   "TITLE.Choose_keywords_relative_to_the_content": "انتخاب کلمات کلیدی نسبت به مطلب",
+  "TITLE.Choose_keywords_relative_to_null_content":"انتخاب مقدایر خالی بودن محتوا",
   "TITLE.Source_page_address": "آدرس صفحه منبع مطلب",
   "TITLE.Add_other_information_related_to_this_content_in_this_section": "سایر اطلاعات در رابطه با این محتوا را در این قسمت اضافه کنید",
   "TITLE.Content_attachments": "فایل های پیوست محتوا",
@@ -1538,7 +1541,10 @@
   "ROUTE.ESTATE.CUSTOMER.ORDER": "سفارش مشتری  ",
   "ROUTE.ESTATE.PROPERTY": "مدیریت املاک",
   "ROUTE.ARTICLE": "مقاله ",
+<<<<<<< HEAD
   "ROUTE.Article": "مقاله ",
+=======
+>>>>>>> main
   "ROUTE.BANKPAYMENT": "پرداخت اینترنتی",
   "ROUTE.BIOGRAPHY": "بیوگرافی",
   "ROUTE.CATALOG": "کاتالوگ",
@@ -1649,7 +1655,10 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "اطلاعات اعضا",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "نوتیفیکیشن",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "برنامه",
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
   "lang": "fa",
   "ngx-ntk-cron-editor": {
     "TABS": {

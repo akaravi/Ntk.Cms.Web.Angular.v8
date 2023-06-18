@@ -172,7 +172,7 @@ export class EstatePropertySupplierCategorySelectorComponent implements OnInit, 
 
   }
   onActionSelectForce(id: string | EstatePropertySupplierCategoryModel): void {
-    if (!id || (id === 'string' && id.length === 0)) {
+    if (!id || (typeof id === 'string' && id.length === 0)) {
       this.dataModelSelect = new EstatePropertySupplierCategoryModel();
     }
     if (typeof id === 'string' && id.length > 0) {

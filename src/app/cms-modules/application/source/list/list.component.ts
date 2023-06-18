@@ -108,7 +108,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['Title'], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new ApplicationSourceModel();
+    this.onActionTableRowSelect(new ApplicationSourceModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -189,7 +189,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -207,7 +207,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -254,7 +254,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/application/app/LinkSourceId', this.tableRowSelected.id]);
   }
@@ -263,7 +263,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     this.router.navigate(['/application/themeconfig/LinkSourceId', this.tableRowSelected.id]);
   }
@@ -340,7 +340,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -372,7 +372,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    this.tableRowSelected = mode;
+    this.onActionTableRowSelect(mode);
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -405,7 +405,7 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationSourceModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
   }
 
 }

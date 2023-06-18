@@ -1,5 +1,5 @@
 
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -7,9 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  DataFieldInfoModel, EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateAccountAgencyModel,
-  EstateAccountAgencyService, FilterDataModel, FilterModel,
+  EstateAccountAgencyService, EstateAccountUserSearchDtoModel, FilterDataModel,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -31,6 +31,7 @@ import { EstateAccountAgencyEditComponent } from '../edit/edit.component';
 })
 export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   requestLinkAccountUserId = '';
+  requestLinkLocationWorkAreaIds: number[];
   constructor(
     private contentService: EstateAccountAgencyService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -52,6 +53,24 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = EnumSortType.Descending;
   }
+  @Input() optionloadComponent = true;
+  @Input() optionloadByRoute = true;
+  @Input() set optionLinkLocationWorkAreaIds(ids: number[]) {
+    this.requestLinkLocationWorkAreaIds = [];
+    if (ids && ids.length > 0) {
+      this.requestLinkLocationWorkAreaIds = ids;
+    }
+    if (this.requestLinkLocationWorkAreaIds && this.requestLinkLocationWorkAreaIds.length > 0)
+      this.filteModelContent.linkLocationWorkAreaIds = this.requestLinkLocationWorkAreaIds;
+  }
+  @Input() set optionLinkLocationWorkAreaId(id: number) {
+    this.requestLinkLocationWorkAreaIds = [];
+    if (id && id > 0) {
+      this.requestLinkLocationWorkAreaIds.push(id);
+    }
+    if (this.requestLinkLocationWorkAreaIds && this.requestLinkLocationWorkAreaIds.length > 0)
+      this.filteModelContent.linkLocationWorkAreaIds = this.requestLinkLocationWorkAreaIds;
+  }
   link: string;
   comment: string;
   author: string;
@@ -59,7 +78,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   flag = false;
   tableContentSelected = [];
 
-  filteModelContent = new FilterModel();
+  filteModelContent = new EstateAccountUserSearchDtoModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
@@ -105,7 +124,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new EstateAccountAgencyModel();
+    this.onActionTableRowSelect(new EstateAccountAgencyModel());
 
 
 
@@ -124,7 +143,8 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    this.contentService.ServiceGetAllEditor(filterModel).subscribe({
+    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
@@ -176,6 +196,14 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
 
 
+  onActionSelectorLocation(model: number[] | null): void {
+
+    this.filteModelContent.locationListIds = model;
+  }
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
+
+    this.filteModelContent.linkLocationWorkAreaIds = model;
+  }
   onActionbuttonNewRow(): void {
 
     if (
@@ -203,7 +231,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -228,7 +256,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -344,7 +372,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -460,7 +488,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     row["expanded"] = !row["expanded"]
   }
   onActionTableRowMouseEnter(row: EstateAccountAgencyModel): void {
-    this.tableRowSelected = row;
+    this.onActionTableRowSelect(row);
     row["expanded"] = true;
   }
   onActionTableRowMouseLeave(row: EstateAccountAgencyModel): void {

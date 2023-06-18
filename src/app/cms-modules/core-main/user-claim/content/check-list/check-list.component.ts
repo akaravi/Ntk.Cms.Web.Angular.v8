@@ -104,7 +104,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tableRowSelected = new CoreUserClaimCheckModel();
+    this.onActionTableRowSelect(new CoreUserClaimCheckModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
@@ -192,7 +192,7 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (model.linkContentId && model.linkContentId > 0) {
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
         height: '90%',

@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes, EnumRecordStatus, EstatePropertyService, FilterDataModel, FilterModel } from 'ntk-cms-api';
+import { EnumManageUserAccessDataTypes, EnumRecordStatus, EstatePropertyService, FilterDataModel, FilterModel } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -93,8 +93,8 @@ export class EstatePropertyWidgetComponent implements OnInit, OnDestroy {
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
-    fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+    fastfilter.value = EnumRecordStatus.Pending;
+    //fastfilter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
     filterStatist2.filters.push(fastfilter);
     this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({

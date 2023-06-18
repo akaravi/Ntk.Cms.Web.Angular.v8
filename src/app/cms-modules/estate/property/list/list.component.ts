@@ -10,7 +10,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel, DataFieldInfoModel,
-  EnumFilterDataModelSearchTypes,
   EnumInputDataType,
   EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
@@ -22,14 +21,12 @@ import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/comp
 import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
 import { PublicHelper } from "src/app/core/helpers/publicHelper";
 import { TokenHelper } from "src/app/core/helpers/tokenHelper";
-import { ContentInfoModel } from "src/app/core/models/contentInfoModel";
 import { ProgressSpinnerModel } from "src/app/core/models/progressSpinnerModel";
 import { CmsToastrService } from "src/app/core/services/cmsToastr.service";
 import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service";
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
@@ -39,7 +36,7 @@ import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.compo
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.scss"],
 })
-export class EstatePropertyListComponent extends ListBaseComponent
+export class EstatePropertyListComponent extends ListBaseComponent<EstatePropertyService, EstatePropertyModel, string>
   implements OnInit, OnDestroy, AfterViewInit {
   requestLinkPropertyTypeLanduseId = "";
   requestLinkPropertyTypeUsageId = "";
@@ -65,10 +62,10 @@ export class EstatePropertyListComponent extends ListBaseComponent
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public translate: TranslateService,
-    private pageInfo: PageInfoService,
+    public pageInfo: PageInfoService,
   ) {
-    super();
-    pageInfo.updateContentService(contentService);
+    super(contentService, new EstatePropertyModel(), pageInfo, dialog);
+
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestLinkPropertyTypeLanduseId =
@@ -212,7 +209,7 @@ export class EstatePropertyListComponent extends ListBaseComponent
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstatePropertyModel> = [];
-  tableRowSelected: EstatePropertyModel = new EstatePropertyModel();
+  // tableRowSelected: EstatePropertyModel = new EstatePropertyModel();
   tableSource: MatTableDataSource<EstatePropertyModel> =
     new MatTableDataSource<EstatePropertyModel>();
   categoryModelSelected: EstatePropertyTypeLanduseModel;
@@ -228,7 +225,9 @@ export class EstatePropertyListComponent extends ListBaseComponent
     "AdsActive",
     "ViewCount",
     "CaseCode",
-    "Priority",
+    "scoreEstateLocation",
+    "scoreEstateBuild",
+    "scoreEstatePrice",
     "CreatedDate",
     "UpdatedDate",
     "Action",
@@ -257,14 +256,24 @@ export class EstatePropertyListComponent extends ListBaseComponent
       this.tokenInfo = value;
       this.DataGetAll();
       this.tokenHelper.CheckIsAdmin();
+      if (!this.tokenHelper.isAdminSite && !this.tokenHelper.isSupportSite) {
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateLocation');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateBuild');
+        this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstatePrice');
+      }
     });
-
+    this.tokenInfo.direction
     this.cmsApiStoreSubscribe = this.tokenHelper
       .getCurrentTokenOnChange()
       .subscribe((next) => {
         this.tokenInfo = next;
         this.DataGetAll();
         this.tokenHelper.CheckIsAdmin();
+        if (!this.tokenHelper.isAdminSite && !this.tokenHelper.isSupportSite) {
+          this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateLocation');
+          this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstateBuild');
+          this.tabledisplayedColumnsSource = this.publicHelper.listRemoveIfExist(this.tabledisplayedColumnsSource, 'scoreEstatePrice');
+        }
       });
 
     // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;
@@ -320,14 +329,14 @@ export class EstatePropertyListComponent extends ListBaseComponent
     if (this.searchInChecking) {
       const filter1 = new FilterDataModel();
       filter1.propertyName = "RecordStatus";
-      filter1.value = EnumRecordStatus.Available;
-      filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filter1.value = EnumRecordStatus.Pending;
+      //filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
       filterModel.filters.push(filter1);
-      const filter2 = new FilterDataModel();
-      filter2.propertyName = "RecordStatus";
-      filter2.value = EnumRecordStatus.DeniedConfirmed;
-      filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
-      filterModel.filters.push(filter2);
+      // const filter2 = new FilterDataModel();
+      // filter2.propertyName = "RecordStatus";
+      // filter2.value = EnumRecordStatus.DeniedConfirmed;
+      // filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      // filterModel.filters.push(filter2);
     }
 
     if (setResponsibleUserId > 0) {
@@ -890,25 +899,6 @@ export class EstatePropertyListComponent extends ListBaseComponent
     });
     //open popup
   }
-  onActionbuttonMemo(model: EstatePropertyModel = this.tableRowSelected): void {
-    //open popup
-    const dialogRef = this.dialog.open(CmsMemoComponent, {
-      height: "70%",
-      width: "50%",
-      data: {
-        service: this.contentService,
-        id: this.tableRowSelected?.id,
-        title: this.tableRowSelected?.title
-      },
-    }
-    );
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.dialogChangedDate) {
-        // this.DataGetAll();
-      }
-    });
-    //open popup
-  }
 
 
   actionbuttonExportOn = false;
@@ -952,20 +942,32 @@ export class EstatePropertyListComponent extends ListBaseComponent
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: EstatePropertyModel): void {
-    this.tableRowSelected = row;
-    this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, row.viewContentHidden, '', row.urlViewContent));
-    if (!row["expanded"])
-      row["expanded"] = false;
-    row["expanded"] = !row["expanded"]
-  }
-  onActionTableRowMouseEnter(row: EstatePropertyModel): void {
-    this.onActionTableRowSelect(row);
-    row["expanded"] = true;
-  }
-  onActionTableRowMouseLeave(row: EstatePropertyModel): void {
-    row["expanded"] = false;
-  }
+  // onActionTableRowSelect(row: EstatePropertyModel): void {
+  //   this.tableRowSelected = row;
+  //   this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, row.viewContentHidden, '', row.urlViewContent));
+  //   row["expanded"] = true;
+  // }
+  // onActionTableRowMouseClick(row: EstatePropertyModel): void {
+  //   if (this.tableRowSelected.id === row.id) {
+  //     row["expanded"] = false;
+  //     this.onActionTableRowSelect(new EstatePropertyModel());
+  //     this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
+  //   } else {
+  //     this.onActionTableRowSelect(row);
+  //     row["expanded"] = true;
+  //   }
+  // }
+  // onActionTableRowMouseEnter(row: EstatePropertyModel): void {
+  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
+  //     return;
+  //   row["expanded"] = true;
+  // }
+  // onActionTableRowMouseLeave(row: EstatePropertyModel): void {
+  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
+  //     return;
+  //   if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
+  //     row["expanded"] = false;
+  // }
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);
   }

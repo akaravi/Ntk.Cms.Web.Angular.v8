@@ -95,7 +95,7 @@ export class EstatePropertyAddComponent implements OnInit {
   contractTypeSelected: EstateContractTypeModel;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   contractDataModel = new EstateContractModel();
-  optionActionTitle ='';
+  optionActionTitle = '';
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'RentPrice', 'DepositPrice', 'PeriodPrice', 'Action'];
@@ -244,7 +244,19 @@ export class EstatePropertyAddComponent implements OnInit {
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
-          setTimeout(() => this.router.navigate(['/estate/property']), 1000);
+
+          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
+            const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
+              height: '90%',
+              data: { model: this.dataModelResult.item }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              setTimeout(() => this.router.navigate(['/estate/property']), 1000);
+            });
+          }
+          else {
+            setTimeout(() => this.router.navigate(['/estate/property']), 1000);
+          }
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -419,23 +431,8 @@ export class EstatePropertyAddComponent implements OnInit {
       this.formInfo.formSubmitAllow = true;
       return;
     }
-    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
-      const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
-        height: '90%',
-        data: { model: this.dataModel }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.dialogChangedDate) {
-          this.dataModel = result.model;
-          this.DataAdd();
-        } else {
-          this.formInfo.formSubmitAllow = true;
-        }
-      });
-    }
-    else {
-      this.DataAdd();
-    }
+
+    this.DataAdd();
 
 
   }
@@ -552,6 +549,7 @@ export class EstatePropertyAddComponent implements OnInit {
       }
 
       if (!this.formGroup.valid) {
+
         this.cmsToastrService.typeErrorFormInvalid();
         setTimeout(() => {
           stepper.selectedIndex = event.previouslySelectedIndex;

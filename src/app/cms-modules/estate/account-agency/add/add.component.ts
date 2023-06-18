@@ -4,12 +4,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  CoreEnumService, CoreUserModel, DataFieldInfoModel, EnumInfoModel,
+  CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyService, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -162,6 +162,15 @@ export class EstateAccountAgencyAddComponent implements OnInit {
     if (model && model.id > 0) {
       this.dataModel.linkCmsUserId = model.id;
     }
+  }
+  onActionSelectorLocation(model: CoreLocationModel | null): void {
+    this.dataModel.linkLocationId = null;
+    if (model && model.id > 0) {
+      this.dataModel.linkLocationId = model.id;
+    }
+  }
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
+    this.dataModel.linkLocationWorkAreaIds = model;
   }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {

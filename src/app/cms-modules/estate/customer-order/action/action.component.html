@@ -6,24 +6,78 @@
   </div>
   <div class="ntk-cms-html-card-body">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-
-    <!-- ActionSendSmsToCustomer Field -->
+    <!-- actionSendSmsToMe Field -->
     <div class="ntk-full-width">
-      {{'TITLE.Send_link_message_to_the_property_customer' | translate}}
+
       <br>
-      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToCustomer" name="dataModel.actionSendSmsToCustomer">
-        {{'TITLE.SMS_to_the_property_customer' | translate}}
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToMe" name="dataModel.actionSendSmsToMe">
+        ارسال به خودم
+
       </mat-slide-toggle>
     </div>
-    <br>
+    <!-- actionSendSmsToEstateUser Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateUser" name="dataModel.actionSendSmsToEstateUser">
+        ارسال به کاربر املاک
+
+      </mat-slide-toggle>
+    </div>
+    <!-- actionSendSmsToEstateAgency Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateAgency"
+        name="dataModel.actionSendSmsToEstateAgency">
+        ارسال به آرژانس
+
+      </mat-slide-toggle>
+    </div>
+    <!-- actionSendSmsToEstateCustomer Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateCustomer"
+        name="dataModel.actionSendSmsToEstateCustomer">
+        ارسال به مشتری
+
+      </mat-slide-toggle>
+    </div>
+
+    <hr>
+    <div *ngIf="this.dataModelCustomerOrder.linkLocationIds&&this.dataModelCustomerOrder.linkLocationIds.length>0">
+      <!-- actionSendSmsToAreaEstateAgency Field -->
+      <div class="ntk-full-width">
+        <br>
+        <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAreaEstateAgency"
+          name="dataModel.actionSendSmsToAreaEstateAgency">
+          ارسال به آژانس محدود جغرافیایی
+        </mat-slide-toggle>
+      </div>
+      <!-- actionSendSmsToAreaEstateUser Field -->
+      <div class="ntk-full-width">
+
+        <br>
+        <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAreaEstateUser"
+          name="dataModel.actionSendSmsToAreaEstateUser">
+          ارسال به کارمندان آژانس محدود جغرافیایی
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+
+    <hr>
 
     <!-- actionSendSmsToContactNumber Field -->
     <div class="ntk-full-width">
       {{'TITLE.Send_link_message_to_the_special_number' | translate}}
       <br>
-      <textarea matInput [(ngModel)]="dataModel.actionSendSmsToContactNumber" name="dataModel.actionSendSmsToContactNumber"
-      #ActionSendSmsToContactNumber type="text" class="text-line" rows="5" maxlength="100" placeholder="09123456789" ></textarea>
+      <textarea matInput [(ngModel)]="dataModel.actionSendSmsToContactNumber"
+        name="dataModel.actionSendSmsToContactNumber" #ActionSendSmsToContactNumber type="text" class="text-line"
+        rows="5" maxlength="100" placeholder="09123456789"></textarea>
     </div>
+
 
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
@@ -43,7 +97,7 @@
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
       <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+        <i class="fa fa-check-square-o"></i> {{'ACTION.Send_Message' | translate}}
       </button>
     </div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

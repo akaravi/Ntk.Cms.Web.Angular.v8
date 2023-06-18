@@ -133,7 +133,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleLogSiteUserCreditBlockedModel();
+    this.onActionTableRowSelect(new CoreModuleLogSiteUserCreditBlockedModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -203,7 +203,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -228,7 +228,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -253,7 +253,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -361,7 +361,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (!this.tableRowSelected.linkUserId || this.tableRowSelected.linkUserId === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_contain_user_information'));
       return;
@@ -377,7 +377,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (!this.tableRowSelected.linkSiteId || this.tableRowSelected.linkSiteId === 0) {
       this.cmsToastrService.typeErrorSelected(this.translate.instant('MESSAGE.content_does_not_include_site_information'));
       return;
@@ -407,7 +407,7 @@ export class CoreModuleLogSiteUserCreditBlockedListComponent implements OnInit, 
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||

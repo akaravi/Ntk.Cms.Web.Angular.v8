@@ -85,7 +85,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
 
   DataGetAll(): void {
     this.tableRowsSelected = [];
-    this.tableRowSelected = new TicketingFaqModel();
+    this.onActionTableRowSelect(new TicketingFaqModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

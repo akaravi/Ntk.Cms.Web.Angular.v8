@@ -30,6 +30,8 @@
   "ACTION.VIEW_USER": "View user",
   "ACTION.VIEW_SITE": "View site",
   "ACTION.VIEW_OTHER_USER_ADVERTISE": "View other user advertise",
+  "ACTION.VIEW_Estate_Users": "relate Agent",
+  "ACTION.VIEW_Estate_Agencys": "relate Agency",
   "ACTION.PROPERTYLIST": "Property list",
   "ACTION.TARGET_PERIOD": "Target period",
   "ACTION.TARGET_PERIOD_SPONSER": "Target period sponser",
@@ -202,7 +204,6 @@
   "ACTION.LIST_THEMES": "List of themes",
   "ACTION.LIST_APPS": "List of apps",
   "ACTION.LIST_SITES": "List of sites",
-
   "ACTION.CATEGORY_LIST_SITES": "Category list of sites",
   "ACTION.DOWNLOAD": "Download",
   "ACTION.REPORTS": "Reports",
@@ -1126,6 +1127,7 @@
   "TITLE.This_section_helps_search_engines_better_index_content": "This section helps search engines better index content",
   "TITLE.This_section_is_for_the_type_and_option_of_the_survey": "This section is for the type and option of the survey",
   "TITLE.Choose_keywords_relative_to_the_content": "Select keywords relative to the content",
+  "TITLE.Choose_keywords_relative_to_null_content": "Select keywork Null value",
   "TITLE.Source_page_address": "Source page address",
   "TITLE.Add_other_information_related_to_this_content_in_this_section": "Add other information related to this content in this section",
   "TITLE.Content_attachments": "Content attachments",
@@ -1639,7 +1641,10 @@
   "ROUTE.ROUTE.APPLICATION.MEMBERINFO": "Member info",
   "ROUTE.ROUTE.APPLICATION.NOTIFICATION": "Notification",
   "ROUTE.ROUTE.APPLICATION.THEMECONFIG": "Application",
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
   "lang": "en",
   "ngx-ntk-cron-editor": {
     "TABS": {

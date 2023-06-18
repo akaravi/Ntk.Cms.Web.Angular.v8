@@ -9,8 +9,8 @@
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
     <mat-form-field class="ntk-full-width">
       <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-        required>
+        name="dataModel.recordStatus" #RecordStatus="ngModel"
+        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
@@ -65,8 +65,9 @@
     <!-- SecurityKey Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['securityKey']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['securityKey']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <input matInput [(ngModel)]="dataModel.securityKey" name="dataModel.securityKey" #SecurityKey type="text"
+        class="input-ltr" placeholder="{{fieldsInfo['securityKey']?.fieldTitle}}" minlength="3" maxlength="100"
+        required />
       <mat-icon matSuffix *ngIf="dataModel.securityKey" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.securityKey = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -80,8 +81,9 @@
     <!-- UrlWebhook Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['urlWebhook']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text" class="input-ltr"
-        placeholder="{{fieldsInfo['urlWebhook']?.fieldTitle}}" minlength="3" maxlength="100" required />
+      <input matInput [(ngModel)]="dataModel.urlWebhook" name="dataModel.urlWebhook" #UrlWebhook type="text"
+        class="input-ltr" placeholder="{{fieldsInfo['urlWebhook']?.fieldTitle}}" minlength="3" maxlength="100"
+        required />
       <mat-icon matSuffix *ngIf="dataModel.urlWebhook" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.urlWebhook = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>

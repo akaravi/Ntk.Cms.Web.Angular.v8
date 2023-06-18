@@ -47,8 +47,8 @@
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
           <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}"
             [disabled]="!fieldsInfo['recordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus"
-            name="dataModel.recordStatus" #RecordStatus="ngModel" panelClass="recordStatus-{{ dataModel.recordStatus }}"
-            required>
+            name="dataModel.recordStatus" #RecordStatus="ngModel"
+            ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
             <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
@@ -87,6 +87,7 @@
             {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
+<<<<<<< HEAD
         <!-- Priority Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
           <mat-select placeholder="{{fieldsInfo['priority']?.fieldTitle}}" [(ngModel)]="dataModel.priority"
@@ -104,6 +105,9 @@
             <strong class="info-field-text">{{'MESSAGE.PRIOTY_POINT' | translate}}</strong>
           </mat-hint>
         </mat-form-field>
+=======
+
+>>>>>>> main
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
           <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
@@ -146,7 +150,8 @@
           </mat-slide-toggle>
         </div>
         <!-- CreatedYaer Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId">
+        <mat-form-field class="ntk-full-width"
+          *ngIf="this.dataModel.linkPropertyTypeLanduseId&& this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titleCreatedYaer?.length>1 && PropertyTypeSelected.titleCreatedYaer!=='---'">
           <mat-label>{{PropertyTypeSelected.titleCreatedYaer}}</mat-label>
           <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer type="number"
             disabled="{{!fieldsInfo['createdYaer']?.accessEditField}}"
@@ -160,7 +165,8 @@
           </mat-hint>
         </mat-form-field>
         <!-- Partition Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="this.dataModel.linkPropertyTypeLanduseId">
+        <mat-form-field class="ntk-full-width"
+          *ngIf="this.dataModel.linkPropertyTypeLanduseId&& this.dataModel.linkPropertyTypeLanduseId && PropertyTypeSelected.titlePartition?.length>1 && PropertyTypeSelected.titlePartition!=='---'">
           <mat-label>{{PropertyTypeSelected.titlePartition}}</mat-label>
           <input matInput [(ngModel)]="dataModel.partition" name="dataModel.partition" #Partition type="number"
             disabled="{{!fieldsInfo['partition']?.accessEditField}}"
@@ -234,6 +240,19 @@
           <button type="button" mat-raised-button (click)="onActionBackToParent()">
             {{'ACTION.BACK_TO_PROPERTY_LIST' | translate}}
           </button>
+
+          <button type="button" (click)="onFormLoadEstateAgencyResult()" class="btn btn-info BTN-text"
+            *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
+            <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Agencys' | translate}}
+          </button>
+          <button type="button" (click)="onFormLoadEstateUserResult()" class="btn btn-info BTN-text"
+            *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
+            <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Users' | translate}}
+          </button>
+
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid"
+          (click)="onFormSubmitAndMessage()" *ngIf="this.tokenHelper.isAdminSite">
+          {{'ACTION.Send_Message' | translate}}</button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
@@ -256,8 +275,7 @@
           <div class="ntk-full-width">
             <mat-slide-toggle [(ngModel)]="dataModel.viewContentHidden"
               *ngIf="fieldsInfo['viewContentHidden']?.accessWatchField"
-              [disabled]="!fieldsInfo['viewContentHidden']?.accessEditField"
-              name="dataModel.viewContentHidden">
+              [disabled]="!fieldsInfo['viewContentHidden']?.accessEditField" name="dataModel.viewContentHidden">
               {{fieldsInfo['viewContentHidden']?.fieldTitle}}
             </mat-slide-toggle>
           </div>
@@ -270,6 +288,7 @@
               {{fieldsInfo['siteAdminViewContentHidden']?.fieldTitle}}
             </mat-slide-toggle>
           </div>
+
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
             <strong class="info-field-text">{{fieldsInfo['linkSiteId']?.fieldDescription}}</strong>
@@ -284,8 +303,7 @@
           <mat-select placeholder="{{fieldsInfo['mainAdminRecordStatus']?.fieldTitle}}"
             [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessEditField"
             [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus"
-            #MainAdminRecordStatus="ngModel" panelClass="MainAdminRecordStatus-{{ dataModel.mainAdminRecordStatus }}"
-            required>
+            #MainAdminRecordStatus="ngModel" ngClass="recordStatus-{{ dataModel.mainAdminRecordStatus }}" required>
             <mat-option *ngFor="
   let item of dataModelEnumRecordStatusResult.listItems;
   index as i
@@ -301,6 +319,74 @@
               translate}}</strong>
           </mat-error>
         </mat-form-field>
+
+        <!-- score Field -->
+        <div class="content" *ngIf="this.tokenHelper.isAdminSite || this.tokenHelper.isSupportSite">
+          <div class="row">
+            <div class="col-lg-3 col-md-12">
+              <!-- scoreEstateLocation Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstateLocation']?.accessWatchField">
+                <mat-select placeholder="{{fieldsInfo['scoreEstateLocation']?.fieldTitle}}"
+                  [(ngModel)]="dataModel.scoreEstateLocation"
+                  [disabled]="!fieldsInfo['scoreEstateLocation']?.accessEditField" name="dataModel.scoreEstateLocation"
+                  #scoreEstateLocation="ngModel" ngClass="score-{{ dataModel.scoreEstateLocation }}">
+                  <mat-option *ngFor="
+      let number of numbers;
+    " [value]="number">{{ number }}</mat-option>
+                </mat-select>
+                <mat-hint align="start">
+                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                  <strong class="info-field-text">شما میتوانید برای مقعیت ملک امتیاز از 1 تا 10
+                    بدهید</strong>
+                </mat-hint>
+              </mat-form-field>
+
+            </div>
+            <div class="col-lg-3 col-md-12">
+              <!-- scoreEstateBuild Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstateBuild']?.accessWatchField">
+                <mat-select placeholder="{{fieldsInfo['scoreEstateBuild']?.fieldTitle}}"
+                  [(ngModel)]="dataModel.scoreEstateBuild" [disabled]="!fieldsInfo['scoreEstateBuild']?.accessEditField"
+                  name="dataModel.scoreEstateBuild" #scoreEstateBuild="ngModel"
+                  ngClass="score-{{ dataModel.scoreEstateBuild }}">
+                  <mat-option *ngFor="
+      let number of numbers;
+    " [value]="number">{{ number }}</mat-option>
+                </mat-select>
+                <mat-hint align="start">
+                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                  <strong class="info-field-text">شما میتوانید برای نوع ساخت امتیاز از 1 تا 10
+                    بدهید</strong>
+                </mat-hint>
+              </mat-form-field>
+
+            </div>
+            <div class="col-lg-3 col-md-12">
+              <!-- scoreEstatePrice Field -->
+              <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstatePrice']?.accessWatchField">
+                <mat-select placeholder="{{fieldsInfo['scoreEstatePrice']?.fieldTitle}}"
+                  [(ngModel)]="dataModel.scoreEstatePrice" [disabled]="!fieldsInfo['scoreEstatePrice']?.accessEditField"
+                  name="dataModel.scoreEstatePrice" #scoreEstatePrice="ngModel"
+                  ngClass="score-{{ dataModel.scoreEstatePrice }}">
+                  <mat-option *ngFor="
+      let number of numbers;
+    " [value]="number">{{ number }}</mat-option>
+                </mat-select>
+                <mat-hint align="start">
+                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                  <strong class="info-field-text">شما میتوانید برای قیمت گذاری امتیاز از 1 تا 10
+                    بدهید</strong>
+                </mat-hint>
+              </mat-form-field>
+
+            </div>
+            <div class="col-lg-3 col-md-12">
+
+
+            </div>
+          </div>
+        </div>
+
         <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
@@ -510,7 +596,7 @@
                   <app-input-string [(model)]="propertyDetails[itemDetail.id]"
                     [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
-                    [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required"
+                    [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionRequired]="itemDetail.required"
                     [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                   </app-input-string>
                 </div>
@@ -560,7 +646,7 @@
                   <app-input-string [(model)]="propertyDetails[itemDetail.id]"
                     [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
                     [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
-                    [optionDefaultValue]="itemDetail.configValueDefaultValue" [optionRequired]="itemDetail.required"
+                    [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionRequired]="itemDetail.required"
                     [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
                   </app-input-string>
                 </div>
@@ -961,6 +1047,10 @@
           <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
             {{'ACTION.SAVE' | translate}}
           </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid"
+            (click)="onFormSubmitAndMessage()" *ngIf="this.tokenHelper.isAdminSite">
+            {{'ACTION.Send_Message' | translate}}
+          </button>
         </div>
       </mat-step>
 
@@ -994,3 +1084,14 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
   </div>
 </form>
+<div class="row alert alert-custom alert-white alert-shadow gutter-b">
+
+  <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateAccountAgencyList'">
+      <app-estate-account-agency-list [optionLinkLocationWorkAreaId]="dataModel.linkLocationId" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #optionReloadList></app-estate-account-agency-list>
+  </div>
+
+  <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateAccountUserList'">
+      <app-estate-account-user-list [optionLinkLocationWorkAreaId]="dataModel.linkLocationId" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #optionReloadList></app-estate-account-user-list>
+  </div>
+
+</div>

@@ -11,7 +11,7 @@
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
       <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
         [disabled]="!fieldsInfo['recordStatus']?.accessAddField" name="dataModel.recordStatus" #RecordStatus="ngModel"
-        panelClass="recordStatus-{{ dataModel.recordStatus }}" required>
+        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
         <mat-option *ngFor="
             let item of dataModelEnumRecordStatusResult.listItems;
             index as i

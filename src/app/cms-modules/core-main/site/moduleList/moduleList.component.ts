@@ -142,7 +142,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
 
     this.tableRowsSelected = [];
-    this.tableRowSelected = new CoreModuleSiteModel();
+    this.onActionTableRowSelect(new CoreModuleSiteModel());
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
@@ -243,7 +243,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -272,7 +272,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     if (
       this.dataModelResult == null ||
@@ -396,7 +396,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate([model.virtual_CmsModule.className.toLowerCase() + '/config/site/', model.linkSiteId]);
   }
   onActionbuttonConfigMainAdminRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
@@ -405,7 +405,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     this.router.navigate([model.virtual_CmsModule.className.toLowerCase() + '/config/mainadmin/']);
   }
   onActionbuttonSiteCreditAccountRow(model: CoreModuleSiteModel = this.tableRowSelected): void {
@@ -414,7 +414,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     const dialogRef = this.dialog.open(CmsSiteCreditViewComponent, {
       // height: '90%',
@@ -429,7 +429,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(emessage);
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
 
     const dialogRef = this.dialog.open(CmsSiteUserCreditViewComponent, {
       // height: '90%',
@@ -460,7 +460,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.tableRowSelected = model;
+    this.onActionTableRowSelect(model);
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
