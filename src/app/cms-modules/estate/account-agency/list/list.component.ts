@@ -123,6 +123,9 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    if (!this.optionloadComponent) {
+      return;
+    }
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new EstateAccountAgencyModel());
 
@@ -474,6 +477,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonReload(): void {
+    this.optionloadComponent = true;
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {

@@ -389,16 +389,19 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   loadResult = '';
   onFormLoadResult(): void {
     this.loadResult = 'estatePropertyList';
+    this.cdr.detectChanges();
     this.estatePropertyListComponent.optionloadComponent = true;
     this.estatePropertyListComponent.DataGetAll();
   }
   onFormLoadEstateAgencyResult(): void {
     this.loadResult = 'estateAccountAgencyList';
+    this.cdr.detectChanges();
     this.estateAccountAgencyListComponent.optionloadComponent = true;
     this.estateAccountAgencyListComponent.DataGetAll();
   }
   onFormLoadEstateUserResult(): void {
     this.loadResult = 'estateAccountUserList';
+    this.cdr.detectChanges();
     this.estateAccountUserListComponent.optionloadComponent = true;
     this.estateAccountUserListComponent.DataGetAll();
   }

@@ -369,18 +369,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   onFormCancel(): void {
     this.router.navigate(['/estate/customer-order/']);
   }
-  // optionReload = (): void => {
-  //   if (this.dataModel.id && this.dataModel.id.length > 0){
-  //   this.estatePropertyList.optionloadComponent = true;
-  //   this.estatePropertyList.DataGetAll();
-  //   }
-  // }
-  // onFormLoadResult(): void {
-  //   if (this.dataModel.id && this.dataModel.id.length > 0){
-  //   this.estatePropertyList.optionloadComponent = true;
-  //   this.estatePropertyList.DataGetAll();
-  //   }
-  // }
+
   onActionSelectCurrency(model: CoreCurrencyModel): void {
     if (!model || model.id <= 0) {
       // this.cmsToastrService.typeErrorSelected();

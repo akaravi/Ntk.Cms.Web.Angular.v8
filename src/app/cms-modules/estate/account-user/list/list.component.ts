@@ -124,6 +124,9 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    if (!this.optionloadComponent) {
+      return;
+    }
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new EstateAccountUserModel());
     const pName = this.constructor.name + 'main';
@@ -470,6 +473,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonReload(): void {
+    this.optionloadComponent = true;
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {

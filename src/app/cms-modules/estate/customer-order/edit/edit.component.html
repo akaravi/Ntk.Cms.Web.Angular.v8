@@ -504,15 +504,15 @@
 </form>
 <div class="row alert alert-custom alert-white alert-shadow gutter-b">
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estatePropertyList'">
-        <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="optionloadComponent" [optionsortType]="resultSortArrowIcon ? 'asc' : 'desc'" [optionloadByRoute]="false" #optionReloadList></app-estate-property-list>
+        <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="optionloadComponent" [optionsortType]="resultSortArrowIcon ? 'asc' : 'desc'" [optionloadByRoute]="false" #estatePropertyListComponent></app-estate-property-list>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateAccountAgencyList'">
-        <app-estate-account-agency-list [optionLinkLocationWorkAreaIds]="dataModel.linkLocationIds" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #optionReloadList></app-estate-account-agency-list>
+        <app-estate-account-agency-list [optionLinkLocationWorkAreaIds]="dataModel.linkLocationIds" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #estateAccountAgencyListComponent></app-estate-account-agency-list>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateAccountUserList'">
-        <app-estate-account-user-list [optionLinkLocationWorkAreaIds]="dataModel.linkLocationIds" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #optionReloadList></app-estate-account-user-list>
+        <app-estate-account-user-list [optionLinkLocationWorkAreaIds]="dataModel.linkLocationIds" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #estateAccountUserListComponent></app-estate-account-user-list>
     </div>
 
 </div>

@@ -25,6 +25,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
 import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
+import { EstateCustomerOrderListComponent } from '../../customer-order/list/list.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
@@ -59,6 +60,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
+  @ViewChild(EstateCustomerOrderListComponent) estateCustomerOrderListComponent: EstateCustomerOrderListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -84,7 +86,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateContractModel>();
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice', 'Action'];
-  optionloadComponent = false;
+
   propertyDetails: Map<string, string> = new Map<string, string>();
   numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   /** map */
@@ -394,6 +396,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     }
     this.dataModel.linkEstateAgencyId = model.id;
   }
+
 
   onActionSelectorContractType(model: EstateContractTypeModel | null): void {
     this.contractTypeSelected = null;
@@ -706,13 +709,22 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
 
   onFormLoadEstateAgencyResult(): void {
     this.loadResult = 'estateAccountAgencyList';
+    this.cdr.detectChanges();
     this.estateAccountAgencyListComponent.optionloadComponent = true;
     this.estateAccountAgencyListComponent.DataGetAll();
   }
   onFormLoadEstateUserResult(): void {
     this.loadResult = 'estateAccountUserList';
+    this.cdr.detectChanges();
     this.estateAccountUserListComponent.optionloadComponent = true;
     this.estateAccountUserListComponent.DataGetAll();
   }
+  onFormLoadEstateCustomerOrderResult(): void {
+    this.loadResult = 'estateCustomerOrderList';
+    this.cdr.detectChanges();
+    this.estateCustomerOrderListComponent.optionloadComponent = true;
+    this.estateCustomerOrderListComponent.DataGetAll();
+  }
+
 }
 

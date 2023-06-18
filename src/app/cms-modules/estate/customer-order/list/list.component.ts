@@ -1,5 +1,5 @@
 
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -34,6 +34,7 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
   styleUrls: ["./list.component.scss"],
 })
 export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCustomerOrderService, EstateCustomerOrderModel, string> implements OnInit, OnDestroy {
+  requestLinkPropertyId: string;
   constructor(
     public contentService: EstateCustomerOrderService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -71,6 +72,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
   responsibleUserId = 0;
   searchInResponsible = false;
   searchInResponsibleChecked = false;
+
   link: string;
   comment: string;
   author: string;
@@ -117,6 +119,13 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
   expandedElement: EstateCustomerOrderModel | null;
   cmsApiStoreSubscribe: Subscription;
   propertyDetails: Map<string, string> = new Map<string, string>();
+  @Input() optionloadComponent = true;
+  @Input() optionloadByRoute = true;
+  @Input() set optionLinkPropertyId(id: string) {
+    if (id && id.length > 0) {
+      this.requestLinkPropertyId = id;
+    }
+  }
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -143,8 +152,10 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-
     this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, [], this.tokenInfo);
+    if (!this.optionloadComponent) {
+      return;
+    }
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new EstateCustomerOrderModel());
     const pName = this.constructor.name + 'main';
@@ -167,7 +178,32 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     } else if (this.responsibleUserId > 0) {
       setResponsibleUserId = this.responsibleUserId;
     }
-    if (setResponsibleUserId > 0) {
+    if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
+      /**requestLinkPropertyId */
+      this.contentService.ServiceGetAllWithResponsiblePropertyId(this.requestLinkPropertyId, filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+      /**requestLinkPropertyId */
+    }
+    else if (setResponsibleUserId > 0) {
       /** ResponsibleUserId  */
       this.contentService.ServiceGetAllWithResponsibleUserId(setResponsibleUserId, filterModel).subscribe({
         next: (ret) => {
@@ -535,6 +571,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     this.DataGetAll();
   }
   onActionbuttonReload(): void {
+    this.optionloadComponent = true;
     this.DataGetAll();
   }
   onActionCopied(): void {

@@ -32,6 +32,7 @@
   "ACTION.VIEW_OTHER_USER_ADVERTISE": "View other user advertise",
   "ACTION.VIEW_Estate_Users": "relate Agent",
   "ACTION.VIEW_Estate_Agencys": "relate Agency",
+  "ACTION.VIEW_Estate_Customer_Orders": "relate customer order",
   "ACTION.PROPERTYLIST": "Property list",
   "ACTION.TARGET_PERIOD": "Target period",
   "ACTION.TARGET_PERIOD_SPONSER": "Target period sponser",
