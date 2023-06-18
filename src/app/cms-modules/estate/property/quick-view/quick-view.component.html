@@ -107,59 +107,6 @@
         <mat-cell *matCellDef="let row"> {{row.linkEstateContractTypeId | cmstitle:
           dataModelEstateContractTypeResult.listItems}} </mat-cell>
 
-<<<<<<< HEAD
-            </ng-container>
-            <!-- Price Column -->
-            <ng-container matColumnDef="Price">
-                <mat-header-cell *matHeaderCellDef> {{'TITLE.Price' | translate}} </mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                    <ng-container *ngIf="row.salePrice>0">
-                        {{'TITLE.SalePrice' | translate}}:
-                        {{row.salePrice | number}} <br>( {{row.currencyTitle}} {{row.currencySymbol}} )
-                        <ng-container *ngIf="dataModel.area>0">
-                            ({{'TITLE.SQUARE_METER' | translate}}:{{row.salePrice/dataModel.area | number: '1.0-0'}})
-                        </ng-container>
-
-                    </ng-container>
-                    <ng-container *ngIf="row.salePriceByAgreement">
-                        {{'TITLE.SalePrice' | translate}}:
-                        {{'TITLE.PriceByAgreement' | translate}}
-                    </ng-container>
-                    <br>
-
-                    <ng-container *ngIf="row.depositPrice>0">
-                        {{'TITLE.DepositPrice' | translate}}:
-                        {{row.depositPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
-                    </ng-container>
-                    <ng-container *ngIf="row.depositPriceByAgreement">
-                        {{'TITLE.DepositPrice' | translate}}:
-                        {{'TITLE.PriceByAgreement' | translate}}
-                    </ng-container>
-                    <br>
-
-                    <ng-container *ngIf="row.rentPrice>0">
-                        {{'TITLE.RentPrice' | translate}}
-                        {{row.rentPrice | number}}<br> ( {{row.currencyTitle}} {{row.currencySymbol}} )
-                    </ng-container>
-                    <ng-container *ngIf="row.rentPriceByAgreement">
-                        {{'TITLE.RentPrice' | translate}}
-                        {{'TITLE.PriceByAgreement' | translate}}
-                    </ng-container>
-                    <br>
-
-                    <ng-container *ngIf="row.periodPrice>0">
-                        {{'TITLE.PeriodPrice' | translate}}:
-                        {{row.periodPrice | number}}
-                        <br>
-                        ( {{row.currencyTitle}} {{row.currencySymbol}})
-                    </ng-container>
-                    <ng-container *ngIf="row.periodPriceByAgreement">
-                        {{'TITLE.PeriodPrice' | translate}}:
-                        {{'TITLE.PriceByAgreement' | translate}}
-                    </ng-container>
-
-                </mat-cell>
-=======
       </ng-container>
       <!-- Price Column -->
       <ng-container matColumnDef="Price">
@@ -170,7 +117,6 @@
             {{row.salePrice | number}} <br>( {{row.currencyTitle}} {{row.currencySymbol}} )
             <ng-container *ngIf="dataModel.area>0">
               (مترمربع :{{row.salePrice/dataModel.area | number: '1.0-0'}})
->>>>>>> main
             </ng-container>
 
           </ng-container>

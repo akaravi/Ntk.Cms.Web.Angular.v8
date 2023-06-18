@@ -87,27 +87,7 @@
             {{fieldsInfo['title']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-<<<<<<< HEAD
-        <!-- Priority Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['priority']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['priority']?.fieldTitle}}" [(ngModel)]="dataModel.priority"
-            [disabled]="!fieldsInfo['priority']?.accessEditField" name="dataModel.priority" #Priority="ngModel"
-            panelClass="Priority-{{ dataModel.priority }}">
-            <mat-option *ngFor="
-                let number of numbers;
-              " [value]="number">{{ number }}</mat-option>
-          </mat-select>
-          <mat-icon matSuffix *ngIf="dataModel.priority && fieldsInfo['priority']?.accessAddField" matSuffix
-            mat-icon-button aria-label="Clear" (click)="dataModel.priority = null">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-hint align="start">
-            <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{'MESSAGE.PRIOTY_POINT' | translate}}</strong>
-          </mat-hint>
-        </mat-form-field>
-=======
 
->>>>>>> main
         <!-- CaseCode Field -->
         <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
           <mat-label>{{fieldsInfo['caseCode']?.fieldTitle}}</mat-label>
@@ -870,7 +850,7 @@
                   {{'TITLE.PriceByAgreement' | translate}}
                 </ng-container>
                 <ng-container *ngIf="row.salePrice>0&&dataModel.area>0">
-                  ({{'TITLE.SQUARE_METER' | translate}}:{{row.salePrice/dataModel.area | number}})
+                  (مترمربع :{{row.salePrice/dataModel.area | number}})
                 </ng-container>
               </mat-cell>
             </ng-container>
