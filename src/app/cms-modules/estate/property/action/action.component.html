@@ -11,7 +11,7 @@
 
       <br>
       <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToMe" name="dataModel.actionSendSmsToMe">
-        ارسال به خودم
+        {{'ACTION.SEND_TO_ME' | translate}} 
 
       </mat-slide-toggle>
     </div>
@@ -20,7 +20,7 @@
 
       <br>
       <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateUser" name="dataModel.actionSendSmsToEstateUser">
-        ارسال به کاربر املاک
+        {{'ACTION.SEND_TO_ESTATE' | translate}} 
 
       </mat-slide-toggle>
     </div>
@@ -30,7 +30,7 @@
       <br>
       <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateAgency"
         name="dataModel.actionSendSmsToEstateAgency">
-        ارسال به آرژانس
+        {{'ACTION.SEND_TO_AGENCY' | translate}} 
 
       </mat-slide-toggle>
     </div>
@@ -40,7 +40,7 @@
       <br>
       <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateCustomer"
         name="dataModel.actionSendSmsToEstateCustomer">
-        ارسال به مشتری
+        {{'ACTION.SEND_TO_CLIENT' | translate}} 
 
       </mat-slide-toggle>
     </div>
@@ -51,7 +51,7 @@
         <br>
         <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAreaEstateAgency"
           name="dataModel.actionSendSmsToAreaEstateAgency">
-          ارسال به آژانس محدود جغرافیایی
+          {{'ACTION.SEND_TO_NEAR_AGENCY' | translate}} 
         </mat-slide-toggle>
       </div>
       <!-- actionSendSmsToAreaEstateUser Field -->
@@ -60,7 +60,7 @@
         <br>
         <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAreaEstateUser"
           name="dataModel.actionSendSmsToAreaEstateUser">
-          ارسال به کارمندان آژانس محدود جغرافیایی
+          {{'ACTION.SEND_TO_NEAR_EMPLOYE_AGENCY' | translate}} 
         </mat-slide-toggle>
       </div>
     </div>

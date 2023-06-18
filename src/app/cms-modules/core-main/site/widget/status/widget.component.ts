@@ -44,8 +44,8 @@ export class CoreSiteWidgetStatusComponent implements OnInit, OnDestroy {
     private tokenHelper: TokenHelper,
   ) { }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'سامانه فعال :';
-    this.widgetInfoModel.description = 'خلاصه مشخصات حساب این سامانه ';
+    this.widgetInfoModel.title = 'TITLE.ACTIVE.SYSTEM :';
+    this.widgetInfoModel.description = 'TITLE.SUMMARY_SYSTEM_DESCRIPTION';
     this.widgetInfoModel.link = '/core/site';
 
     this.tokenHelper.getCurrentToken().then((value) => {
