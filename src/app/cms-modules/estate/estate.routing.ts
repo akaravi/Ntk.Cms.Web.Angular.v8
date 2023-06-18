@@ -211,11 +211,7 @@ const routes: Routes = [
       {
         path: 'property-history',
         component: EstatePropertyHistoryListComponent,
-<<<<<<< HEAD
         data: { title: 'ROUTE.ESTATE.HISTORY' }
-=======
-        data: { title: 'ROUTE.ESTATE.HISTORY' },
->>>>>>> main
       },
       {
         path: 'property-history/InCheckingOnDay/:InCheckingOnDay',

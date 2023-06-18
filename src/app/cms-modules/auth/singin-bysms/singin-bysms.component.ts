@@ -87,7 +87,7 @@ export class AuthSingInBySmsComponent implements OnInit {
             var timeleft = this.prorocess.progressBarMaxValue;
             let downloadTimer = setInterval(() => {
               this.prorocess.progressBarValue = this.prorocess.progressBarMaxValue - timeleft;
-              this.prorocess.message = '(' + timeleft + ' ' + 'ثانیه' + ')';
+              this.prorocess.message = '(' + timeleft + ' ' + this.translate.instant('MESSAGE.MESSAGE.SECONDS') + ')';
               timeleft -= 1;
               if (timeleft <= 0) {
                 this.buttonnResendSmsDisable = false;

@@ -45,12 +45,12 @@
         <app-cms-search-list [(options)]="optionsSearch">
 
             <!-- LinkLocationIds Field -->
-            موقعیت مکانی
+            {{'ACTION.LOCATION' | translate}} 
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.locationListIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
             </app-cms-location-autocomplete>
             <!-- LinkLocationIds Field -->
             <br>
-            موقعیت فعالیت کاری
+            {{'ACTION.LOCATION_WORK_ACTIVITY' | translate}} 
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.linkLocationWorkAreaIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
             </app-cms-location-autocomplete>
             <hr>

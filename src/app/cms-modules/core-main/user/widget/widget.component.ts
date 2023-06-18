@@ -40,8 +40,8 @@ export class CoreUserWidgetComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
   ngOnInit(): void {
-    this.widgetInfoModel.title = 'شما :';
-    this.widgetInfoModel.description = 'خلاصه مشخصات حساب کاربری شما';
+    this.widgetInfoModel.title = 'TITLE.YOU:';
+    this.widgetInfoModel.description = 'TITLE.SUMMARY_ACCOUNT_DESCRIPTION';
     this.widgetInfoModel.link = '/core/User';
 
 
