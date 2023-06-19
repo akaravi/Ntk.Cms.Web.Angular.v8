@@ -897,7 +897,7 @@
         <button type="button" (click)="onFormLoadEstateHistoryResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0">
             <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Histories' | translate}}
         </button>
-        <button type="button" (click)="onFormSubmitAndMessage()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0">
+        <button type="button" (click)="onFormSubmitAndMessage()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0&& this.tokenHelper.isAdminSite">
             <i class="ft-x"></i> {{'ACTION.Send_Message' | translate}}
         </button>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->

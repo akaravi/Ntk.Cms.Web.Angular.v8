@@ -389,7 +389,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.loadResult = ''
   }
   loadResult = '';
-  onFormLoadResult(): void {
+  onFormLoadEstateResult(): void {
     this.loadResult = 'estatePropertyList';
     this.cdr.detectChanges();
     this.estatePropertyListComponent.optionloadComponent = true;
