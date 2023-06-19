@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
+import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { EstateCustomerOrderActionComponent } from '../action/action.component';
 
@@ -59,6 +60,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   @ViewChild(EstatePropertyListComponent) estatePropertyListComponent: EstatePropertyListComponent;
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
+  @ViewChild(EstatePropertyHistoryListComponent) estatePropertyHistoryListComponent: EstatePropertyHistoryListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
@@ -393,6 +395,16 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estatePropertyListComponent.optionloadComponent = true;
     this.estatePropertyListComponent.DataGetAll();
   }
+  onActionSelectCurrency(model: CoreCurrencyModel): void {
+    if (!model || model.id <= 0) {
+      // this.cmsToastrService.typeErrorSelected();
+      this.dataModelCorCurrencySelector = null;
+      this.dataModel.linkCoreCurrencyId = null;
+      return;
+    }
+    this.dataModelCorCurrencySelector = model;
+    this.dataModel.linkCoreCurrencyId = model.id;
+  }
   onFormLoadEstateAgencyResult(): void {
     this.loadResult = 'estateAccountAgencyList';
     this.cdr.detectChanges();
@@ -405,15 +417,12 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.estateAccountUserListComponent.optionloadComponent = true;
     this.estateAccountUserListComponent.DataGetAll();
   }
-  onActionSelectCurrency(model: CoreCurrencyModel): void {
-    if (!model || model.id <= 0) {
-      // this.cmsToastrService.typeErrorSelected();
-      this.dataModelCorCurrencySelector = null;
-      this.dataModel.linkCoreCurrencyId = null;
-      return;
-    }
-    this.dataModelCorCurrencySelector = model;
-    this.dataModel.linkCoreCurrencyId = model.id;
+
+  onFormLoadEstateHistoryResult(): void {
+    this.loadResult = 'estateHistoryList';
+    this.cdr.detectChanges();
+    this.estatePropertyHistoryListComponent.optionloadComponent = true;
+    this.estatePropertyHistoryListComponent.DataGetAll();
   }
 }
-;
+

@@ -1,5 +1,5 @@
 
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
@@ -78,6 +78,18 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortColumn = 'CreatedDate';
     this.filteModelContent.sortType = EnumSortType.Descending;
 
+  }
+  @Input() optionloadComponent = true;
+  @Input() optionloadByRoute = true;
+  @Input() set optionLinkCustomerOrderId(id: string) {
+    if (id && id.length > 0) {
+      this.requestLinkCustomerOrderId = id;
+    }
+  }
+  @Input() set optionLinkPropertyId(id: string) {
+    if (id && id.length > 0) {
+      this.requestLinkPropertyId = id;
+    }
   }
   recordStatus: EnumRecordStatus;
   popupAdd = false;
@@ -163,7 +175,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   });
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
-
+    if (!this.optionloadComponent) {
+      return;
+    }
 
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new EstatePropertyHistoryModel());
@@ -567,6 +581,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionbuttonReload(): void {
+    this.optionloadComponent = true;
     this.DataGetAll();
   }
   onActionCopied(): void {

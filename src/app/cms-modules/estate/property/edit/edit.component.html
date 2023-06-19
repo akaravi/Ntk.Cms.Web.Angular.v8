@@ -181,18 +181,7 @@
                         {{'ACTION.BACK_TO_PROPERTY_LIST' | translate}}
                     </button>
 
-                    <button type="button" (click)="onFormLoadEstateAgencyResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
-                        <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Agencys' | translate}}
-                    </button>
-                    <button type="button" (click)="onFormLoadEstateUserResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
-                        <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Users' | translate}}
-                    </button>
-                    <button type="button" (click)="onFormLoadEstateCustomerOrderResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
-                        <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Customer_Orders' | translate}}
-                    </button>
 
-                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid" (click)="onFormSubmitAndMessage()" *ngIf="this.tokenHelper.isAdminSite">
-                        {{'ACTION.Send_Message' | translate}}</button>
                     <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
                         {{'ACTION.NEXT' | translate}}
                     </button>
@@ -259,13 +248,13 @@
                                     <mat-option *ngFor="
       let number of numbers;
     " [value]="number">{{ number }}</mat-option>
-                </mat-select>
-                <mat-hint align="start">
-                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                  <strong class="info-field-text">{{'MESSAGE.POINT_LOCATION' | translate}}
-                     </strong>
-                </mat-hint>
-              </mat-form-field>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                                    <strong class="info-field-text">{{'MESSAGE.POINT_LOCATION' | translate}}
+                                    </strong>
+                                </mat-hint>
+                            </mat-form-field>
 
                         </div>
                         <div class="col-lg-3 col-md-12">
@@ -275,13 +264,13 @@
                                     <mat-option *ngFor="
       let number of numbers;
     " [value]="number">{{ number }}</mat-option>
-                </mat-select>
-                <mat-hint align="start">
-                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                  <strong class="info-field-text">{{'MESSAGE.POINT_CONSTRUCTION' | translate}}
-                     </strong>
-                </mat-hint>
-              </mat-form-field>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                                    <strong class="info-field-text">{{'MESSAGE.POINT_CONSTRUCTION' | translate}}
+                                    </strong>
+                                </mat-hint>
+                            </mat-form-field>
 
                         </div>
                         <div class="col-lg-3 col-md-12">
@@ -291,13 +280,13 @@
                                     <mat-option *ngFor="
       let number of numbers;
     " [value]="number">{{ number }}</mat-option>
-                </mat-select>
-                <mat-hint align="start">
-                  <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                  <strong class="info-field-text">{{'MESSAGE.POINT_PRICE' | translate}}
-                     </strong>
-                </mat-hint>
-              </mat-form-field>
+                                </mat-select>
+                                <mat-hint align="start">
+                                    <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                                    <strong class="info-field-text">{{'MESSAGE.POINT_PRICE' | translate}}
+                                    </strong>
+                                </mat-hint>
+                            </mat-form-field>
 
                         </div>
                         <div class="col-lg-3 col-md-12">
@@ -896,7 +885,21 @@
     </div>
     <div class="ntk-cms-html-card-footer">
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
+        <button type="button" (click)="onFormLoadEstateAgencyResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
+            <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Agencys' | translate}}
+        </button>
+        <button type="button" (click)="onFormLoadEstateUserResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
+            <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Users' | translate}}
+        </button>
+        <button type="button" (click)="onFormLoadEstateCustomerOrderResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationId&&this.dataModel?.linkLocationId>0">
+            <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Customer_Orders' | translate}}
+        </button>
+        <button type="button" (click)="onFormLoadEstateHistoryResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0">
+            <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Histories' | translate}}
+        </button>
+        <button type="button" (click)="onFormSubmitAndMessage()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0">
+            <i class="ft-x"></i> {{'ACTION.Send_Message' | translate}}
+        </button>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </div>
 </form>
@@ -912,5 +915,7 @@
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateCustomerOrderList'">
         <app-estate-customer-order-list [optionLinkPropertyId]="dataModel.id" [optionloadComponent]="false" [optionloadByRoute]="false" #estateCustomerOrderListComponent></app-estate-customer-order-list>
     </div>
-
+    <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateHistoryList'">
+        <app-estate-property-history-list [optionLinkPropertyId]="dataModel.id" [optionloadComponent]="false" [optionloadByRoute]="false" #estatePropertyHistoryListComponent></app-estate-property-history-list>
+    </div>
 </div>

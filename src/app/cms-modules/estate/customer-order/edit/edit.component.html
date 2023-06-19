@@ -475,13 +475,16 @@
                         <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
                     </button>
                     <button type="button" (click)="onFormLoadResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 ">
-                        <i class="ft-x"></i> {{'ACTION.VIEW' | translate}}
+                        <i class="ft-x"></i> {{'ACTION.VIEW_Estates' | translate}}
                     </button>
                     <button type="button" (click)="onFormLoadEstateAgencyResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationIds&&this.dataModel?.linkLocationIds.length>0">
                         <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Agencys' | translate}}
                     </button>
                     <button type="button" (click)="onFormLoadEstateUserResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0 && this.dataModel?.linkLocationIds&&this.dataModel?.linkLocationIds.length>0">
                         <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Users' | translate}}
+                    </button>
+                    <button type="button" (click)="onFormLoadEstateHistoryResult()" class="btn btn-info BTN-text" *ngIf="dataModel?.id?.length >0">
+                        <i class="ft-x"></i> {{'ACTION.VIEW_Estate_Histories' | translate}}
                     </button>
                     <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid" (click)="onFormSendMessage()" *ngIf="this.tokenHelper.isAdminSite">
                         {{'ACTION.Send_Message' | translate}}
@@ -507,13 +510,13 @@
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estatePropertyList'">
         <app-estate-property-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="optionloadComponent" [optionsortType]="resultSortArrowIcon ? 'asc' : 'desc'" [optionloadByRoute]="false" #estatePropertyListComponent></app-estate-property-list>
     </div>
-
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateAccountAgencyList'">
         <app-estate-account-agency-list [optionLinkLocationWorkAreaIds]="dataModel.linkLocationIds" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #estateAccountAgencyListComponent></app-estate-account-agency-list>
     </div>
-
     <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateAccountUserList'">
         <app-estate-account-user-list [optionLinkLocationWorkAreaIds]="dataModel.linkLocationIds" [optionloadComponent]="optionloadComponent" [optionloadByRoute]="false" #estateAccountUserListComponent></app-estate-account-user-list>
     </div>
-
+    <div class="col-md-12 col-sm-12 col-xs-18" *ngIf="this.loadResult==='estateHistoryList'">
+        <app-estate-property-history-list [optionLinkCustomerOrderId]="dataModel.id" [optionloadComponent]="false" [optionloadByRoute]="false" #estatePropertyHistoryListComponent></app-estate-property-history-list>
+    </div>
 </div>

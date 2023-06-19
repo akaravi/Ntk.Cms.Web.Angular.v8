@@ -29,6 +29,7 @@ import { EstateCustomerOrderListComponent } from '../../customer-order/list/list
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
+import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
@@ -61,6 +62,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
   @ViewChild(EstateCustomerOrderListComponent) estateCustomerOrderListComponent: EstateCustomerOrderListComponent;
+  @ViewChild(EstatePropertyHistoryListComponent) estatePropertyHistoryListComponent: EstatePropertyHistoryListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   enumInputDataType = EnumInputDataType;
@@ -725,6 +727,11 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.estateCustomerOrderListComponent.optionloadComponent = true;
     this.estateCustomerOrderListComponent.DataGetAll();
   }
-
+  onFormLoadEstateHistoryResult(): void {
+    this.loadResult = 'estateHistoryList';
+    this.cdr.detectChanges();
+    this.estatePropertyHistoryListComponent.optionloadComponent = true;
+    this.estatePropertyHistoryListComponent.DataGetAll();
+  }
 }
 
