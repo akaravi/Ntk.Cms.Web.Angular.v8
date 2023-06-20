@@ -115,6 +115,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.cdr.detectChanges();
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
@@ -138,7 +139,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         this.lastRecordStatus = ret.item.recordStatus;
         this.dataModel = ret.item;
         if (ret.isSuccess) {
-          this.cdr.detectChanges();
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0)
             this.LinkPropertyIdsInUse = true;
@@ -167,9 +167,11 @@ export class EstateCustomerOrderEditComponent implements OnInit {
                 } else {
                   this.cmsToastrService.typeErrorMessage(ret.errorMessage);
                 }
+                this.cdr.detectChanges();
               }
             });
           }
+          this.cdr.detectChanges();
           /** */
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -209,6 +211,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
               this.loading.Stop(pName);
             });
           }
+          this.cdr.detectChanges();
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -240,7 +243,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
-            this.cdr.detectChanges();
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
             if (this.dataModel.propertyDetailGroups)
@@ -256,6 +258,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
                   }
                 });
               });
+            this.cdr.detectChanges();
             /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
