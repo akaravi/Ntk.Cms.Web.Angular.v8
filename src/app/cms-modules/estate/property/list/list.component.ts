@@ -428,7 +428,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
         }
         );
       // **requestLinkCustomerOrderId*/
-    }else if (
+    } else if (
       this.requestLinkCustomerOrderIdHaveHistory && this.requestLinkCustomerOrderIdHaveHistory.length > 0
     ) {
       // **requestLinkCustomerOrderIdHaveHistory*/
@@ -698,10 +698,13 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.link = "/#/estate/property/add/";
       window.open(this.link, "_blank");
     }
+    var nextId='';
+    var beforeId='';
     const dialogRef = this.dialog.open(EstatePropertyQuickAddComponent, {
       height: '90%',
       data: {
-
+        beforeId: beforeId,
+        nextId: nextId
       }
     });
     dialogRef.afterClosed().subscribe(result => {
