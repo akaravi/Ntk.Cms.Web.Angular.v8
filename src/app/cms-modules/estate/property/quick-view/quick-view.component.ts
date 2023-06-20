@@ -5,7 +5,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -24,6 +24,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 })
 export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   requestId = '';
+  requestPerviusItem: any;
+  requestNextItem: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EstatePropertyQuickViewComponent>,
@@ -40,8 +42,12 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id + '';
+      this.requestPerviusItem = data.perviusItem;
+      this.requestNextItem = data.nextItem;
+
     }
   }
+
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
@@ -163,5 +169,11 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onActionNext(): void {
+    this.dialogRef.close({ dialogChangedDate: true, onActionOpenItem: this.requestNextItem });
+  }
+  onActionPervius(): void {
+    this.dialogRef.close({ dialogChangedDate: true, onActionOpenItem: this.requestPerviusItem });
   }
 }

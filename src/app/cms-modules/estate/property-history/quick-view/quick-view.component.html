@@ -1,7 +1,15 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
   {{ formInfo.formTitle }}
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <button type="button" (click)="onActionNext()" *ngIf="requestNextItem&& requestNextItem?.id?.length>0"
+    class="btn btn-light">
+    <i class="ft-x"></i>
+    < </button>
+      <button type="button" (click)="onActionPervius()" *ngIf="requestPerviusItem&& requestPerviusItem?.id?.length>0"
+        class="btn btn-light">
+        <i class="ft-x"></i>
+        > </button>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body" dir="rtl">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
@@ -13,6 +21,10 @@
       <tr>
         <td><b> {{fieldsInfo['linkActivityTypeId']?.fieldTitle}}:</b></td>
         <td><b>{{dataModel.linkActivityTypeId}}</b></td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['createdBy']?.fieldTitle}}:</td>
+        <td>{{dataModel.createdBy| cmsuserinfo |async}}</td>
       </tr>
       <tr>
         <td>{{fieldsInfo['linkEstateUserId']?.fieldTitle}}:</td>
@@ -63,6 +75,14 @@
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>
+    <button type="button" (click)="onActionNext()" *ngIf="requestNextItem&& requestNextItem?.id?.length>0"
+      class="btn btn-light">
+      <i class="ft-x"></i>
+      < </button>
+        <button type="button" (click)="onActionPervius()" *ngIf="requestPerviusItem&& requestPerviusItem?.id?.length>0"
+          class="btn btn-light">
+          <i class="ft-x"></i>
+          > </button>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 </div>

@@ -5,6 +5,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel,
+  BaseEntity,
   CoreCurrencyModel,
   CoreCurrencyService,
   CoreEnumService,
@@ -519,5 +520,25 @@ export class PublicHelper {
       this.pageInfo.updateContentService(null);
       this.router.navigate([linkOfRoute]);
     }
+  }
+  InfoPerviusRowInList<TKey>(list: BaseEntity<TKey>[], item: BaseEntity<TKey>): BaseEntity<TKey> {
+    if (!item || !item.id)
+      return null;
+    if (!list || list.length <= 1)
+      return null;
+    var index = list.findIndex(x => x.id === item.id);
+    if (index <= 0 || index == list.length - 1)
+      return null;
+    return list[index - 1];
+  }
+  InfoNextRowInList<TKey>(list: BaseEntity<TKey>[], item: BaseEntity<TKey>): BaseEntity<TKey> {
+    if (!item || !item.id)
+      return null;
+    if (!list || list.length <= 1)
+      return null;
+    var index = list.findIndex(x => x.id === item.id);
+    if (index < 0 || index == list.length - 1)
+      return null;
+    return list[index + 1];
   }
 }

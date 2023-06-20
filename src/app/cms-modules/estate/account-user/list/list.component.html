@@ -14,10 +14,10 @@
     </ng-container>
     <ng-container cms-action>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-        <button *ngIf="dataModelResult.access.accessAddRow && optionloadByRoute " (click)="onActionbuttonNewRow()" type="button" class="btn box-shadow-button btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+        <button *ngIf="optionloadByRoute && dataModelResult.access.accessAddRow  " (click)="onActionbuttonNewRow()" type="button" class="btn box-shadow-button btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-        <button *ngIf="dataModelResult.access.accessEditRow && optionloadByRoute && tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()" type="button" class="btn box-shadow-button btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-        <button *ngIf="dataModelResult.access.accessDeleteRow&& optionloadByRoute && tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()" type="button" class="btn box-shadow-button btn-outline-danger">{{'ACTION.DELETE' |
+        <button *ngIf="optionloadByRoute && dataModelResult.access.accessEditRow  && tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()" type="button" class="btn box-shadow-button btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+        <button *ngIf="optionloadByRoute && dataModelResult.access.accessDeleteRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()" type="button" class="btn box-shadow-button btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
 
         <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text">
@@ -45,12 +45,12 @@
         <app-cms-search-list [(options)]="optionsSearch">
 
             <!-- LinkLocationIds Field -->
-            {{'ACTION.LOCATION' | translate}} 
+            {{'ACTION.LOCATION' | translate}}
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.locationListIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
             </app-cms-location-autocomplete>
             <!-- LinkLocationIds Field -->
             <br>
-            {{'ACTION.LOCATION_WORK_ACTIVITY' | translate}} 
+            {{'ACTION.LOCATION_WORK_ACTIVITY' | translate}}
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.linkLocationWorkAreaIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
             </app-cms-location-autocomplete>
             <hr>

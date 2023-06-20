@@ -124,7 +124,8 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     'AppointmentDateTo',
     'LinkActivityTypeId',
     'ActivityStatus',
-    'Action'
+    'Action',
+    'QuickView'
   ];
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -559,12 +560,19 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelResult.listItems, this.tableRowSelected);
+    var perviusItem = this.publicHelper.InfoPerviusRowInList(this.dataModelResult.listItems, this.tableRowSelected);
     const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
-      data: { id: id }
+      data: {
+        id: this.tableRowSelected.id,
+        perviusItem: perviusItem,
+        nextItem: nextItem
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonQuickViewRow(result.onActionOpenItem)
       }
     });
   }

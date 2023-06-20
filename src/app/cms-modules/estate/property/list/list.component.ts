@@ -15,6 +15,7 @@ import {
   ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
+import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
 import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/componentOptionStatistModel";
 import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
@@ -26,7 +27,6 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
@@ -676,15 +676,24 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelResult.listItems, this.tableRowSelected);
+    var perviusItem = this.publicHelper.InfoPerviusRowInList(this.dataModelResult.listItems, this.tableRowSelected);
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
-      data: { id: this.tableRowSelected.id }
+      data: {
+        id: this.tableRowSelected.id,
+        perviusItem: perviusItem,
+        nextItem: nextItem
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result && result.dialogChangedDate) {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonQuickViewRow(result.onActionOpenItem)
       }
     });
   }
+
+
   onActionbuttonQuickAddRow(event?: MouseEvent): void {
     if (
       this.dataModelResult == null ||
@@ -698,13 +707,11 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.link = "/#/estate/property/add/";
       window.open(this.link, "_blank");
     }
-    var nextId='';
-    var beforeId='';
+
     const dialogRef = this.dialog.open(EstatePropertyQuickAddComponent, {
       height: '90%',
       data: {
-        beforeId: beforeId,
-        nextId: nextId
+
       }
     });
     dialogRef.afterClosed().subscribe(result => {

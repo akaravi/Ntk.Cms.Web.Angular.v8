@@ -25,6 +25,8 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 })
 export class EstatePropertyHistoryQuickViewComponent implements OnInit, OnDestroy {
   requestId = '';
+  requestPerviusItem: any;
+  requestNextItem: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EstatePropertyHistoryQuickViewComponent>,
@@ -40,6 +42,8 @@ export class EstatePropertyHistoryQuickViewComponent implements OnInit, OnDestro
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestId = data.id + '';
+      this.requestPerviusItem = data.perviusItem;
+      this.requestNextItem = data.nextItem;
     }
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -133,5 +137,11 @@ export class EstatePropertyHistoryQuickViewComponent implements OnInit, OnDestro
 
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
+  }
+  onActionNext(): void {
+    this.dialogRef.close({ dialogChangedDate: true, onActionOpenItem: this.requestNextItem });
+  }
+  onActionPervius(): void {
+    this.dialogRef.close({ dialogChangedDate: true, onActionOpenItem: this.requestPerviusItem });
   }
 }
