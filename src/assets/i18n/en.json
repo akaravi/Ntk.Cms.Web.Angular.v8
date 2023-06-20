@@ -35,6 +35,8 @@
   "ACTION.VIEW_Estate_Agencys": "relate Agency",
   "ACTION.VIEW_Estate_Customer_Orders": "relate customer order",
   "ACTION.VIEW_Estate_Histories": "relate Histories",
+  "ACTION.VIEW_Estate_Customer_Have_Histories": "Checked Customer Order",
+  "ACTION.VIEW_Estate_Have_Histories": "Checked Estates",
   "ACTION.PROPERTYLIST": "Property list",
   "ACTION.TARGET_PERIOD": "Target period",
   "ACTION.TARGET_PERIOD_SPONSER": "Target period sponser",

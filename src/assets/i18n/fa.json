@@ -33,6 +33,8 @@
   "ACTION.VIEW_Estate_Agencys": "آژانس های مربوطه",
   "ACTION.VIEW_Estate_Customer_Orders": "سفارش های مربوطه",
   "ACTION.VIEW_Estate_Histories": "تاریخچه مربوطه",
+  "ACTION.VIEW_Estate_Have_Histories": "املاک بررسی شده",
+  "ACTION.VIEW_Estate_Customer_Have_Histories": "سفارش های بررسی شده",
   "ACTION.PROPERTYLIST": "لیست املاک",
   "ACTION.TARGET_PERIOD": "لیست دوره های هدف",
   "ACTION.TARGET_PERIOD_SPONSER": "لیست اسپانسرهای دوره هدف",

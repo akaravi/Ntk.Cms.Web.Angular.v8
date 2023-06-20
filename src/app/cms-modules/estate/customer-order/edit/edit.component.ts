@@ -58,6 +58,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(EstatePropertyListComponent) estatePropertyListComponent: EstatePropertyListComponent;
+  @ViewChild(EstatePropertyListComponent) estatePropertyHaveHistoryListComponent: EstatePropertyListComponent;
+
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
   @ViewChild(EstatePropertyHistoryListComponent) estatePropertyHistoryListComponent: EstatePropertyHistoryListComponent;
@@ -394,6 +396,12 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.cdr.detectChanges();
     this.estatePropertyListComponent.optionloadComponent = true;
     this.estatePropertyListComponent.DataGetAll();
+  }
+  onFormLoadEstateHaveHistoryResult(): void {
+    this.loadResult = 'estatePropertyHaveHistoryList';
+    this.cdr.detectChanges();
+    this.estatePropertyHaveHistoryListComponent.optionloadComponent = true;
+    this.estatePropertyHaveHistoryListComponent.DataGetAll();
   }
   onActionSelectCurrency(model: CoreCurrencyModel): void {
     if (!model || model.id <= 0) {

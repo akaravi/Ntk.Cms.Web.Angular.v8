@@ -16,7 +16,6 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { ListBaseComponent } from 'src/app/core/cmsComponent/listBaseComponent';
@@ -28,6 +27,7 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -35,6 +35,8 @@ import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.compo
 })
 export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCustomerOrderService, EstateCustomerOrderModel, string> implements OnInit, OnDestroy {
   requestLinkPropertyId: string;
+  requestLinkPropertyIdHaveHistory: string;
+
   constructor(
     public contentService: EstateCustomerOrderService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -126,6 +128,12 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       this.requestLinkPropertyId = id;
     }
   }
+  @Input() set optionLinkPropertyIdHaveHistory(id: string) {
+    if (id && id.length > 0) {
+      this.requestLinkPropertyIdHaveHistory = id;
+    }
+  }
+
   ngOnInit(): void {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
@@ -180,7 +188,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     }
     if (this.requestLinkPropertyId && this.requestLinkPropertyId.length > 0) {
       /**requestLinkPropertyId */
-      this.contentService.ServiceGetAllWithResponsiblePropertyId(this.requestLinkPropertyId, filterModel).subscribe({
+      this.contentService.ServiceGetAllWithCoverPropertyId(this.requestLinkPropertyId, filterModel).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           if (ret.isSuccess) {
@@ -202,6 +210,30 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       }
       );
       /**requestLinkPropertyId */
+    } else if (this.requestLinkPropertyIdHaveHistory && this.requestLinkPropertyIdHaveHistory.length > 0) {
+      /**requestLinkPropertyIdHaveHistory */
+      this.contentService.ServiceGetAllWithCoverPropertyIdHaveHistory(this.requestLinkPropertyIdHaveHistory, filterModel).subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelResult = ret;
+            this.tableSource.data = ret.listItems;
+
+            if (this.optionsSearch.childMethods) {
+              this.optionsSearch.childMethods.setAccess(ret.access);
+            }
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
+      /**requestLinkPropertyIdHaveHistory */
     }
     else if (setResponsibleUserId > 0) {
       /** ResponsibleUserId  */

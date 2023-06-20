@@ -338,7 +338,7 @@ export class EstatePropertyQuickListComponent
     ) {
       // ** */
       this.contentService
-        .ServiceGetAllWithCustomerOrderId(
+        .ServiceGetAllWithCoverCustomerOrderId(
           this.requestLinkCustomerOrderId,
           filterModel
         )

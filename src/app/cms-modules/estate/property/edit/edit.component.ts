@@ -27,9 +27,9 @@ import { EstateAccountAgencyListComponent } from '../../account-agency/list/list
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
 import { EstateCustomerOrderListComponent } from '../../customer-order/list/list.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
+import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
-import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
@@ -62,6 +62,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
   @ViewChild(EstateCustomerOrderListComponent) estateCustomerOrderListComponent: EstateCustomerOrderListComponent;
+  @ViewChild(EstateCustomerOrderListComponent) estateCustomerOrderHaveHistoryListComponent: EstateCustomerOrderListComponent;
   @ViewChild(EstatePropertyHistoryListComponent) estatePropertyHistoryListComponent: EstatePropertyHistoryListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -726,6 +727,12 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
     this.estateCustomerOrderListComponent.optionloadComponent = true;
     this.estateCustomerOrderListComponent.DataGetAll();
+  }
+  onFormLoadEstateHaveHistoryResult(): void {
+    this.loadResult = 'estateCustomerOrderHaveHistoryList';
+    this.cdr.detectChanges();
+    this.estateCustomerOrderHaveHistoryListComponent.optionloadComponent = true;
+    this.estateCustomerOrderHaveHistoryListComponent.DataGetAll();
   }
   onFormLoadEstateHistoryResult(): void {
     this.loadResult = 'estateHistoryList';
