@@ -282,7 +282,6 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
         }
       });
 
-    // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;
   }
 
   ngAfterViewInit(): void {

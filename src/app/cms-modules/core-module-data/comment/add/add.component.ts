@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, CoreEnumService, CoreModuleLogShowKeyModel,
-  CoreModuleLogShowKeyService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel,
+  AccessModel, CoreEnumService, CoreModuleDataCommentModel,
+  CoreModuleDataCommentService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel
 } from 'ntk-cms-api';
@@ -17,17 +17,17 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-coremodule-data-memo-add',
+  selector: 'app-coremodule-data-comment-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class CoreModuleLogShowKeyAddComponent implements OnInit {
+export class CoreModuleDataCommentAddComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreModuleLogShowKeyAddComponent>,
+    private dialogRef: MatDialogRef<CoreModuleDataCommentAddComponent>,
     public coreEnumService: CoreEnumService,
-    public coreModuleLogShowKeyService: CoreModuleLogShowKeyService,
+    public coreModuleDataCommentService: CoreModuleDataCommentService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -48,8 +48,8 @@ export class CoreModuleLogShowKeyAddComponent implements OnInit {
 
   dataAccessModel: AccessModel;
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogShowKeyModel> = new ErrorExceptionResult<CoreModuleLogShowKeyModel>();
-  dataModel: CoreModuleLogShowKeyModel = new CoreModuleLogShowKeyModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataCommentModel> = new ErrorExceptionResult<CoreModuleDataCommentModel>();
+  dataModel: CoreModuleDataCommentModel = new CoreModuleDataCommentModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -69,7 +69,7 @@ export class CoreModuleLogShowKeyAddComponent implements OnInit {
     const pName = this.constructor.name + 'DataGetAccess';
     this.loading.Start(pName);
 
-    this.coreModuleLogShowKeyService
+    this.coreModuleDataCommentService
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
@@ -95,7 +95,7 @@ export class CoreModuleLogShowKeyAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreModuleLogShowKeyService.ServiceAdd(this.dataModel).subscribe({
+    this.coreModuleDataCommentService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;

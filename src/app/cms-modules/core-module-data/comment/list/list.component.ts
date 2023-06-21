@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogShowKeyModel, CoreModuleLogShowKeyService, CoreSiteModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  CoreEnumService, CoreModuleDataCommentModel, CoreModuleDataCommentService, CoreSiteModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, FilterDataModel, FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -21,19 +21,19 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CoreModuleLogShowKeyEditComponent } from '../edit/edit.component';
-import { CoreModuleLogShowKeyViewComponent } from '../view/view.component';
+import { CoreModuleDataCommentEditComponent } from '../edit/edit.component';
+import { CoreModuleDataCommentViewComponent } from '../view/view.component';
 
 @Component({
-  selector: 'app-coremodule-data-memo-list',
+  selector: 'app-coremodule-data-comment-list',
   templateUrl: './list.component.html',
 
 })
-export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
+export class CoreModuleDataCommentListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private coreEnumService: CoreEnumService,
-    public contentService: CoreModuleLogShowKeyService,
+    public contentService: CoreModuleDataCommentService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -69,15 +69,15 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogShowKeyModel> = new ErrorExceptionResult<CoreModuleLogShowKeyModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataCommentModel> = new ErrorExceptionResult<CoreModuleDataCommentModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
 
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreModuleLogShowKeyModel> = [];
-  tableRowSelected: CoreModuleLogShowKeyModel = new CoreModuleLogShowKeyModel();
-  tableSource: MatTableDataSource<CoreModuleLogShowKeyModel> = new MatTableDataSource<CoreModuleLogShowKeyModel>();
+  tableRowsSelected: Array<CoreModuleDataCommentModel> = [];
+  tableRowSelected: CoreModuleDataCommentModel = new CoreModuleDataCommentModel();
+  tableSource: MatTableDataSource<CoreModuleDataCommentModel> = new MatTableDataSource<CoreModuleDataCommentModel>();
 
 
   tabledisplayedColumns: string[] = [];
@@ -86,7 +86,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
     'ModuleName',
     'ModuleEntityName',
     'ModuleEntityId',
-    'showKey',
+    'SubjectBody',
     'CreatedDate',
     'Action'
   ];
@@ -116,7 +116,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.onActionTableRowSelect(new CoreModuleLogShowKeyModel());
+    this.onActionTableRowSelect(new CoreModuleDataCommentModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -187,7 +187,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
   //     this.cmsToastrService.typeErrorAccessAdd();
   //     return;
   //   }
-  //   const dialogRef = this.dialog.open(CoreModuleLogShowKeyAddComponent, {
+  //   const dialogRef = this.dialog.open(CoreModuleDataCommentAddComponent, {
   //     height: '90%',
   //     data: {
   //       LinkSiteId: this.requestLinkSiteId,
@@ -200,7 +200,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  onActionbuttonViewRow(model: CoreModuleLogShowKeyModel = this.tableRowSelected): void {
+  onActionbuttonViewRow(model: CoreModuleDataCommentModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -215,7 +215,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(CoreModuleLogShowKeyViewComponent, {
+    const dialogRef = this.dialog.open(CoreModuleDataCommentViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -226,7 +226,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonEditRow(model: CoreModuleLogShowKeyModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: CoreModuleDataCommentModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -241,7 +241,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CoreModuleLogShowKeyEditComponent, {
+    const dialogRef = this.dialog.open(CoreModuleDataCommentEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -251,7 +251,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: CoreModuleLogShowKeyModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: CoreModuleDataCommentModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -411,7 +411,7 @@ export class CoreModuleLogShowKeyListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: CoreModuleLogShowKeyModel): void {
+  onActionTableRowSelect(row: CoreModuleDataCommentModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {

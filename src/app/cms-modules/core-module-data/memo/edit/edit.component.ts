@@ -5,10 +5,10 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogMemoModel, CoreModuleLogMemoService, DataFieldInfoModel,
+  CoreEnumService, CoreModuleDataMemoModel, CoreModuleDataMemoService, DataFieldInfoModel,
   EnumManageUserAccessDataTypes, ErrorExceptionResult,
   FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -19,17 +19,17 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-coremodulelog-memo-edit',
+  selector: 'app-coremodule-data-memo-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
-export class CoreModuleLogMemoEditComponent implements OnInit, OnDestroy {
+export class CoreModuleDataMemoEditComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreModuleLogMemoEditComponent>,
+    private dialogRef: MatDialogRef<CoreModuleDataMemoEditComponent>,
     public coreEnumService: CoreEnumService,
-    public coreModuleLogMemoService: CoreModuleLogMemoService,
+    public coreModuleDataMemoService: CoreModuleDataMemoService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -46,8 +46,8 @@ export class CoreModuleLogMemoEditComponent implements OnInit, OnDestroy {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
-  dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataMemoModel> = new ErrorExceptionResult<CoreModuleDataMemoModel>();
+  dataModel: CoreModuleDataMemoModel = new CoreModuleDataMemoModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -95,9 +95,9 @@ export class CoreModuleLogMemoEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.coreModuleLogMemoService.setAccessLoad();
-    this.coreModuleLogMemoService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.coreModuleLogMemoService.ServiceGetOneById(this.requestId).subscribe({
+    this.coreModuleDataMemoService.setAccessLoad();
+    this.coreModuleDataMemoService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleDataMemoService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;
@@ -128,7 +128,7 @@ export class CoreModuleLogMemoEditComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
-    this.coreModuleLogMemoService.ServiceEdit(this.dataModel).subscribe({
+    this.coreModuleDataMemoService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
         if (ret.isSuccess) {

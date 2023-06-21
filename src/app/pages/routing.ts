@@ -66,6 +66,13 @@ const Routing: Routes = [
       ),
   },
   {
+    path: 'coremoduledata',
+    loadChildren: () =>
+      import('../cms-modules/core-module-data/core-module-data.module').then(
+        (m) => m.CoreModuleDataModule
+      ),
+  },
+  {
     path: 'coretoken',
     loadChildren: () =>
       import('../cms-modules/core-token/core-token.module').then(
@@ -258,3 +265,4 @@ const Routing: Routes = [
 ];
 
 export { Routing };
+

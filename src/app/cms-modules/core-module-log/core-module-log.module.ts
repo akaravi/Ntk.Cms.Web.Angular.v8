@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModuleLogComponent } from './core-module-log.component';
-import { CoreModuleRoutes } from './core-module-log.routing';
+import { CoreModuleLogRoutes } from './core-module-log.routing';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsFileManagerModule } from 'ntk-cms-filemanager';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import {
-  CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService, CoreModuleLogMemoService,
+  CoreModuleDataMemoService,
+  CoreModuleLogContentCountService, CoreModuleLogFavoriteService, CoreModuleLogLikeService,
   CoreModuleLogReportAbuseService, CoreModuleLogScoreService, CoreModuleLogShowKeyService, CoreModuleLogSiteCreditBlockedService, CoreModuleLogSiteCreditService,
   CoreModuleLogSiteUserCreditBlockedService, CoreModuleLogSiteUserCreditService, CoreModuleService, CoreModuleSiteCreditService,
   CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService
@@ -24,10 +25,6 @@ import { CoreModuleLogFavoriteViewComponent } from './favorite/view/view.compone
 import { CoreModuleLogLikeEditComponent } from './like/edit/edit.component';
 import { CoreModuleLogLikeListComponent } from './like/list/list.component';
 import { CoreModuleLogLikeViewComponent } from './like/view/view.component';
-import { CoreModuleLogMemoAddComponent } from './memo/add/add.component';
-import { CoreModuleLogMemoEditComponent } from './memo/edit/edit.component';
-import { CoreModuleLogMemoListComponent } from './memo/list/list.component';
-import { CoreModuleLogMemoViewComponent } from './memo/view/view.component';
 import { CoreModuleLogReportAbuseEditComponent } from './report-abuse/edit/edit.component';
 import { CoreModuleLogReportAbuseListComponent } from './report-abuse/list/list.component';
 import { CoreModuleLogReportAbuseViewComponent } from './report-abuse/view/view.component';
@@ -54,7 +51,7 @@ import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/vie
 
 @NgModule({
   imports: [
-    CoreModuleRoutes,
+    CoreModuleLogRoutes,
     CommonModule,
     FormsModule,
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
@@ -66,11 +63,7 @@ import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/vie
   ],
   declarations: [
     CoreModuleLogComponent,
-    /**Memo */
-    CoreModuleLogMemoListComponent,
-    CoreModuleLogMemoEditComponent,
-    CoreModuleLogMemoAddComponent,
-    CoreModuleLogMemoViewComponent,
+
     /**ShowKey */
     CoreModuleLogShowKeyListComponent,
     CoreModuleLogShowKeyEditComponent,
@@ -115,11 +108,7 @@ import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/vie
   ],
   exports: [
     CoreModuleLogComponent,
-    /**Memo */
-    CoreModuleLogMemoListComponent,
-    CoreModuleLogMemoEditComponent,
-    CoreModuleLogMemoAddComponent,
-    CoreModuleLogMemoViewComponent,
+
     /**ReportAbuse */
     CoreModuleLogReportAbuseListComponent,
     CoreModuleLogReportAbuseEditComponent,
@@ -166,7 +155,7 @@ import { CoreModuleLogSiteUserCreditViewComponent } from './site-user-credit/vie
     CoreModuleLogFavoriteService,
     CoreModuleLogContentCountService,
     CoreModuleLogLikeService,
-    CoreModuleLogMemoService,
+    CoreModuleDataMemoService,
     CoreModuleLogShowKeyService,
     CoreModuleLogReportAbuseService,
     CoreModuleLogScoreService,

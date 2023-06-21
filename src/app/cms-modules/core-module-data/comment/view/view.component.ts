@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogShowKeyModel, CoreModuleLogShowKeyService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  CoreEnumService, CoreModuleDataCommentModel, CoreModuleDataCommentService, DataFieldInfoModel, EnumInfoModel,
+  ErrorExceptionResult,
   FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -19,17 +19,16 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-coremodule-data-memo-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss'],
+  selector: 'app-coremodule-data-comment-view',
+  templateUrl: './view.component.html',
 })
-export class CoreModuleLogShowKeyEditComponent implements OnInit, OnDestroy {
+export class CoreModuleDataCommentViewComponent implements OnInit, OnDestroy {
   requestId = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreModuleLogShowKeyEditComponent>,
+    private dialogRef: MatDialogRef<CoreModuleDataCommentViewComponent>,
     public coreEnumService: CoreEnumService,
-    public coreModuleLogShowKeyService: CoreModuleLogShowKeyService,
+    public coreModuleDataCommentService: CoreModuleDataCommentService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -39,34 +38,28 @@ export class CoreModuleLogShowKeyEditComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
-      this.requestId = data.id;
+      this.requestId = data.id + '';
     }
   }
-  tokenInfo = new TokenInfoModel();
-
-
-  loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogShowKeyModel> = new ErrorExceptionResult<CoreModuleLogShowKeyModel>();
-  dataModel: CoreModuleLogShowKeyModel = new CoreModuleLogShowKeyModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
-
+  tokenInfo = new TokenInfoModel();
+  loading = new ProgressSpinnerModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataCommentModel> = new ErrorExceptionResult<CoreModuleDataCommentModel>();
+  dataModel: CoreModuleDataCommentModel = new CoreModuleDataCommentModel();
   formInfo: FormInfoModel = new FormInfoModel();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
-
   fileManagerOpenForm = false;
 
   cmsApiStoreSubscribe: Subscription;
-
   ngOnInit(): void {
-    if (this.requestId && this.requestId.length > 0) {
-      this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
-      this.DataGetOneContent();
-    } else {
+    this.formInfo.formTitle = this.translate.instant('TITLE.VIEW');
+    if (this.requestId.length === 0) {
       this.cmsToastrService.typeErrorComponentAction();
       this.dialogRef.close({ dialogChangedDate: false });
       return;
     }
+    this.DataGetOneContent();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
@@ -74,9 +67,14 @@ export class CoreModuleLogShowKeyEditComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
     });
+    this.getEnumSendSmsStatusType();
   }
 
-
+  getEnumSendSmsStatusType(): void {
+    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
+      this.dataModelEnumSendSmsStatusTypeResult = next;
+    });
+  }
 
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
@@ -84,20 +82,15 @@ export class CoreModuleLogShowKeyEditComponent implements OnInit, OnDestroy {
 
 
   DataGetOneContent(): void {
-    if (!this.requestId || this.requestId.length === 0) {
-      this.cmsToastrService.typeErrorEditRowIsNull();
-      return;
-    }
-
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     /*َAccess Field*/
-    this.coreModuleLogShowKeyService.setAccessLoad();
-    this.coreModuleLogShowKeyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.coreModuleLogShowKeyService.ServiceGetOneById(this.requestId).subscribe({
+    this.coreModuleDataCommentService.setAccessLoad();
+
+    this.coreModuleDataCommentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/
         // this.dataAccessModel = next.Access;
@@ -121,46 +114,6 @@ export class CoreModuleLogShowKeyEditComponent implements OnInit, OnDestroy {
     }
     );
   }
-
-  DataEditContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
-
-    this.coreModuleLogShowKeyService.ServiceEdit(this.dataModel).subscribe({
-      next: (ret) => {
-        this.dataModelResult = ret;
-        if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessEdit();
-          this.dialogRef.close({ dialogChangedDate: true });
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-
-        this.formInfo.formSubmitAllow = true;
-      },
-      error: (er) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
-  }
-
-  onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      return;
-    }
-    this.formInfo.formSubmitAllow = false;
-    this.DataEditContent();
-  }
-
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
