@@ -527,7 +527,7 @@ export class PublicHelper {
     if (!list || list.length <= 1)
       return null;
     var index = list.findIndex(x => x.id === item.id);
-    if (index <= 0 || index == list.length - 1)
+    if (index <= 0)
       return null;
     return list[index - 1];
   }
