@@ -15,7 +15,6 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -26,6 +25,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 import { EstatePropertyHistoryAddComponent } from '../add/add.component';
 import { EstatePropertyHistoryEditComponent } from '../edit/edit.component';
@@ -547,11 +547,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonQuickViewRow(id: any): void {
-    if (!id || id.length === 0) {
+
+  onActionbuttonQuickViewRow(model: EstatePropertyHistoryModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    this.onActionTableRowSelect(model);
+
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -561,12 +564,12 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       return;
     }
     var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelResult.listItems, this.tableRowSelected);
-    var perviusItem = this.publicHelper.InfoPerviusRowInList(this.dataModelResult.listItems, this.tableRowSelected);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelResult.listItems, this.tableRowSelected);
     const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
       data: {
         id: this.tableRowSelected.id,
-        perviusItem: perviusItem,
+        perviousItem: perviousItem,
         nextItem: nextItem
       }
     });

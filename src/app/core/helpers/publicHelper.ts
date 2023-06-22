@@ -22,8 +22,8 @@ import {
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
@@ -521,7 +521,7 @@ export class PublicHelper {
       this.router.navigate([linkOfRoute]);
     }
   }
-  InfoPerviusRowInList<TKey>(list: BaseEntity<TKey>[], item: BaseEntity<TKey>): BaseEntity<TKey> {
+  InfoPerviousRowInList<TKey>(list: BaseEntity<TKey>[], item: BaseEntity<TKey>): BaseEntity<TKey> {
     if (!item || !item.id)
       return null;
     if (!list || list.length <= 1)
