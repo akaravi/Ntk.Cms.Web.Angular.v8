@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel, FilterDataModel,
   FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -84,6 +84,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
   areaAddressView = false;
+
+
   // ** Accardon */
   step = 0;
   hidden = true;
@@ -434,6 +436,15 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.cdr.detectChanges();
     this.estatePropertyHistoryListComponent.optionloadComponent = true;
     this.estatePropertyHistoryListComponent.DataGetAll();
+  }
+  onActionSelectorCmsUser(model: CoreUserModel | null): void {
+    if (!model || !model.id || model.id <= 0) {
+      //  const message = this.translate.instant('MESSAGE.Information_user_is_not_clear');
+      //  this.cmsToastrService.typeErrorSelected(message);
+      this.dataModel.linkCmsUserId = null;
+      return;
+    }
+    this.dataModel.linkCmsUserId = model.id;
   }
 }
 

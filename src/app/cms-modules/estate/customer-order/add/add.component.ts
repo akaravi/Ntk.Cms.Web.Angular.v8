@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType,
+  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType,
   EnumManageUserAccessUserTypes,
   EnumRecordStatus,
   ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
@@ -78,6 +78,8 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   contractTypeSelected: EstateContractTypeModel;
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
+
+
   // ** Accardon */
   step = 0;
   hidden = true;
@@ -379,5 +381,14 @@ export class EstateCustomerOrderAddComponent implements OnInit {
     }
     this.dataModelCorCurrencySelector = model;
     this.dataModel.linkCoreCurrencyId = model.id;
+  }
+  onActionSelectorCmsUser(model: CoreUserModel | null): void {
+    if (!model || !model.id || model.id <= 0) {
+      //  const message = this.translate.instant('MESSAGE.Information_user_is_not_clear');
+      //  this.cmsToastrService.typeErrorSelected(message);
+      this.dataModel.linkCmsUserId = null;
+      return;
+    }
+    this.dataModel.linkCmsUserId = model.id;
   }
 }
