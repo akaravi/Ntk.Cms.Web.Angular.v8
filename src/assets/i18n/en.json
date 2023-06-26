@@ -1289,6 +1289,7 @@
   "TITLE.Type_of_Activity": "Type of Activity",
   "TITLE.Dispatch_variables": "Dispatch variables",
   "TITLE.Status_receiving_variables": "Status receiving variables",
+  "TITLE.Api_path_send_variables":"send variables",
   "TITLE.Credit_return_status": "Credit return status",
   "TITLE.Receiving_variables": "Receiving variables",
   "TITLE.Check_validity": "Check validity",

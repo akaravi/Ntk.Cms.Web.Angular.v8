@@ -1299,6 +1299,7 @@
   "TITLE.Type_of_Activity": "نوع فعالیت",
   "TITLE.Dispatch_variables": "متغیر های ارسال",
   "TITLE.Status_receiving_variables": "متغیرهای دریافت وضعیت",
+  "TITLE.Api_path_send_variables": "متغییر های ارسال",
   "TITLE.Credit_return_status": "وضعیت برگشت اعتبار",
   "TITLE.Receiving_variables": "متغیرهای دریافت",
   "TITLE.Check_validity": " اعتبار بررسی",
