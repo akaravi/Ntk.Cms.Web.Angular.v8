@@ -136,11 +136,11 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.createdDate) }} </mat-cell>
       </ng-container>
-      <!-- ExpireDate Column -->
-      <ng-container matColumnDef="ExpireDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['expireDate']?.fieldTitle}}
+      <!-- tokenExpireDate Column -->
+      <ng-container matColumnDef="tokenExpireDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['tokenExpireDate']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.expireDate) }} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.tokenExpireDate) }} </mat-cell>
       </ng-container>
 
       <!-- Action Column -->
