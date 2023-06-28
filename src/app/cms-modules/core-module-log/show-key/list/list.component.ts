@@ -25,7 +25,7 @@ import { CoreModuleLogShowKeyEditComponent } from '../edit/edit.component';
 import { CoreModuleLogShowKeyViewComponent } from '../view/view.component';
 
 @Component({
-  selector: 'app-coremodulelog-memo-list',
+  selector: 'app-coremodule-data-memo-list',
   templateUrl: './list.component.html',
 
 })

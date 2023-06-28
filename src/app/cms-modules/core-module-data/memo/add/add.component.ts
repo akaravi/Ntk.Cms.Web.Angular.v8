@@ -4,11 +4,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, CoreEnumService, CoreModuleLogMemoModel,
-  CoreModuleLogMemoService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel,
+  AccessModel, CoreEnumService, CoreModuleDataMemoModel,
+  CoreModuleDataMemoService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult,
   FormInfoModel
 } from 'ntk-cms-api';
@@ -17,17 +17,17 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-coremodulelog-memo-add',
+  selector: 'app-coremodule-data-memo-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class CoreModuleLogMemoAddComponent implements OnInit {
+export class CoreModuleDataMemoAddComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CoreModuleLogMemoAddComponent>,
+    private dialogRef: MatDialogRef<CoreModuleDataMemoAddComponent>,
     public coreEnumService: CoreEnumService,
-    public coreModuleLogMemoService: CoreModuleLogMemoService,
+    public coreModuleDataMemoService: CoreModuleDataMemoService,
     private cmsToastrService: CmsToastrService,
     private publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -48,8 +48,8 @@ export class CoreModuleLogMemoAddComponent implements OnInit {
 
   dataAccessModel: AccessModel;
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
-  dataModel: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataMemoModel> = new ErrorExceptionResult<CoreModuleDataMemoModel>();
+  dataModel: CoreModuleDataMemoModel = new CoreModuleDataMemoModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
@@ -69,7 +69,7 @@ export class CoreModuleLogMemoAddComponent implements OnInit {
     const pName = this.constructor.name + 'DataGetAccess';
     this.loading.Start(pName);
 
-    this.coreModuleLogMemoService
+    this.coreModuleDataMemoService
       .ServiceViewModel()
       .subscribe({
         next: (ret) => {
@@ -95,7 +95,7 @@ export class CoreModuleLogMemoAddComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.coreModuleLogMemoService.ServiceAdd(this.dataModel).subscribe({
+    this.coreModuleDataMemoService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;

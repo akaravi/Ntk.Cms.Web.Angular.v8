@@ -5,6 +5,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel,
+  BaseEntity,
   CoreCurrencyModel,
   CoreCurrencyService,
   CoreEnumService,
@@ -21,8 +22,8 @@ import {
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { environment } from 'src/environments/environment';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
@@ -519,5 +520,25 @@ export class PublicHelper {
       this.pageInfo.updateContentService(null);
       this.router.navigate([linkOfRoute]);
     }
+  }
+  InfoPerviousRowInList<TKey>(list: BaseEntity<TKey>[], item: BaseEntity<TKey>): BaseEntity<TKey> {
+    if (!item || !item.id)
+      return null;
+    if (!list || list.length <= 1)
+      return null;
+    var index = list.findIndex(x => x.id === item.id);
+    if (index <= 0)
+      return null;
+    return list[index - 1];
+  }
+  InfoNextRowInList<TKey>(list: BaseEntity<TKey>[], item: BaseEntity<TKey>): BaseEntity<TKey> {
+    if (!item || !item.id)
+      return null;
+    if (!list || list.length <= 1)
+      return null;
+    var index = list.findIndex(x => x.id === item.id);
+    if (index < 0 || index == list.length - 1)
+      return null;
+    return list[index + 1];
   }
 }

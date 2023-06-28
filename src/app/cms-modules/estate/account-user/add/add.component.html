@@ -151,7 +151,7 @@
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
       [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
     <br>
-    لیست مناطق تحت پوشش
+    {{'TITLE.COVERED_AREAS' | translate}} 
     <!-- linkLocationWorkAreaIds Field -->
     <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkLocationWorkAreaIds"

@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel, FilterDataModel,
   FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
+import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { EstateCustomerOrderActionComponent } from '../action/action.component';
 
@@ -57,8 +58,11 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(EstatePropertyListComponent) estatePropertyListComponent: EstatePropertyListComponent;
+  @ViewChild(EstatePropertyListComponent) estatePropertyHaveHistoryListComponent: EstatePropertyListComponent;
+
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
+  @ViewChild(EstatePropertyHistoryListComponent) estatePropertyHistoryListComponent: EstatePropertyHistoryListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
@@ -80,6 +84,8 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
   areaAddressView = false;
+
+
   // ** Accardon */
   step = 0;
   hidden = true;
@@ -111,6 +117,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.cdr.detectChanges();
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
@@ -134,7 +141,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
         this.lastRecordStatus = ret.item.recordStatus;
         this.dataModel = ret.item;
         if (ret.isSuccess) {
-          this.cdr.detectChanges();
           this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
           if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0)
             this.LinkPropertyIdsInUse = true;
@@ -163,9 +169,11 @@ export class EstateCustomerOrderEditComponent implements OnInit {
                 } else {
                   this.cmsToastrService.typeErrorMessage(ret.errorMessage);
                 }
+                this.cdr.detectChanges();
               }
             });
           }
+          this.cdr.detectChanges();
           /** */
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
@@ -205,6 +213,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
               this.loading.Stop(pName);
             });
           }
+          this.cdr.detectChanges();
         } else {
           this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
           this.formInfo.formError = ret.errorMessage;
@@ -236,7 +245,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
-            this.cdr.detectChanges();
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
             if (this.dataModel.propertyDetailGroups)
@@ -252,6 +260,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
                   }
                 });
               });
+            this.cdr.detectChanges();
             /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
@@ -387,20 +396,17 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.loadResult = ''
   }
   loadResult = '';
-  onFormLoadResult(): void {
+  onFormLoadEstateResult(): void {
     this.loadResult = 'estatePropertyList';
+    this.cdr.detectChanges();
     this.estatePropertyListComponent.optionloadComponent = true;
     this.estatePropertyListComponent.DataGetAll();
   }
-  onFormLoadEstateAgencyResult(): void {
-    this.loadResult = 'estateAccountAgencyList';
-    this.estateAccountAgencyListComponent.optionloadComponent = true;
-    this.estateAccountAgencyListComponent.DataGetAll();
-  }
-  onFormLoadEstateUserResult(): void {
-    this.loadResult = 'estateAccountUserList';
-    this.estateAccountUserListComponent.optionloadComponent = true;
-    this.estateAccountUserListComponent.DataGetAll();
+  onFormLoadEstateHaveHistoryResult(): void {
+    this.loadResult = 'estatePropertyHaveHistoryList';
+    this.cdr.detectChanges();
+    this.estatePropertyHaveHistoryListComponent.optionloadComponent = true;
+    this.estatePropertyHaveHistoryListComponent.DataGetAll();
   }
   onActionSelectCurrency(model: CoreCurrencyModel): void {
     if (!model || model.id <= 0) {
@@ -412,5 +418,33 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     this.dataModelCorCurrencySelector = model;
     this.dataModel.linkCoreCurrencyId = model.id;
   }
+  onFormLoadEstateAgencyResult(): void {
+    this.loadResult = 'estateAccountAgencyList';
+    this.cdr.detectChanges();
+    this.estateAccountAgencyListComponent.optionloadComponent = true;
+    this.estateAccountAgencyListComponent.DataGetAll();
+  }
+  onFormLoadEstateUserResult(): void {
+    this.loadResult = 'estateAccountUserList';
+    this.cdr.detectChanges();
+    this.estateAccountUserListComponent.optionloadComponent = true;
+    this.estateAccountUserListComponent.DataGetAll();
+  }
+
+  onFormLoadEstateHistoryResult(): void {
+    this.loadResult = 'estateHistoryList';
+    this.cdr.detectChanges();
+    this.estatePropertyHistoryListComponent.optionloadComponent = true;
+    this.estatePropertyHistoryListComponent.DataGetAll();
+  }
+  onActionSelectorCmsUser(model: CoreUserModel | null): void {
+    if (!model || !model.id || model.id <= 0) {
+      //  const message = this.translate.instant('MESSAGE.Information_user_is_not_clear');
+      //  this.cmsToastrService.typeErrorSelected(message);
+      this.dataModel.linkCmsUserId = null;
+      return;
+    }
+    this.dataModel.linkCmsUserId = model.id;
+  }
 }
-;
+

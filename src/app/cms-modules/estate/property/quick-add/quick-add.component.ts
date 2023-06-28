@@ -2,13 +2,14 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 
 import {
-  CoreCurrencyModel, CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType, EnumManageUserAccessUserTypes, EnumRecordStatus, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyCompanyModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertyProjectModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeLanduseService, EstatePropertyTypeModel,
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumInputDataType,
+  ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyCompanyModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertyProjectModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeLanduseService, EstatePropertyTypeModel,
   EstatePropertyTypeService, EstatePropertyTypeUsageModel, FilterDataModel,
   FilterModel, FormInfoModel, TokenInfoModel
 } from 'ntk-cms-api';
@@ -18,8 +19,6 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
-import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
 @Component({
   selector: 'app-estate-property-quick-add',
@@ -333,6 +332,7 @@ export class EstatePropertyQuickAddComponent implements OnInit {
         });
       });
     // ** Save Value */
+
     if (!this.dataModel.contracts || this.dataModel.contracts.length === 0) {
       this.onActionOptionAddToList(false);
     }
@@ -342,25 +342,7 @@ export class EstatePropertyQuickAddComponent implements OnInit {
       this.formInfo.formSubmitAllow = true;
       return;
     }
-    if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == EnumManageUserAccessUserTypes.ResellerEmployeeCpSite) && this.dataModel.recordStatus == EnumRecordStatus.Available) {
-      const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
-        height: '90%',
-        data: { model: this.dataModel }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result && result.dialogChangedDate) {
-          this.dataModel = result.model;
-          this.DataAdd();
-        } else {
-          this.formInfo.formSubmitAllow = true;
-        }
-      });
-    }
-    else {
-      this.DataAdd();
-    }
-
-
+    this.DataAdd();
   }
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });

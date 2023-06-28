@@ -1,7 +1,17 @@
 <div class="ntk-cms-html-card-header">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
   {{ formInfo.formTitle }}
-  <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <button type="button" (click)="onActionNext()" *ngIf="requestNextItem&& requestNextItem?.id?.length>0"
+    class="btn btn-light">
+    <i class="ft-x"></i>
+    < </button>
+      <button type="button" (click)="onActionPervious()" *ngIf="requestPerviousItem&& requestPerviousItem?.id?.length>0"
+        class="btn btn-light">
+        <i class="ft-x"></i>
+        > </button>
+      <hr>
+
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
 </div>
 <div class="ntk-cms-html-card-body" dir="rtl">
   <app-progress-spinner [options]="loading"> </app-progress-spinner>
@@ -34,11 +44,10 @@
         <td>{{fieldsInfo['createdDate']?.fieldTitle}}:</td>
         <td>{{ publicHelper.LocaleDateTime(dataModel.updatedDate)}}</td>
       </tr>
-      <!-- <tr>
-        <td>{{'TITLE.Transaction_type' | translate}}:</td>
-        <td>{{contractType}}</td>
-      </tr> -->
-
+      <tr>
+        <td>{{fieldsInfo['createdBy']?.fieldTitle}}:</td>
+        <td>{{dataModel.createdBy| cmsuserinfo |async}}</td>
+      </tr>
       <tr>
         <td>{{'TITLE.CreatedYaer' | translate}}:</td>
         <td>{{dataModel.createdYaer}}</td>
@@ -320,11 +329,18 @@
 </div>
 <div class="ntk-cms-html-card-footer">
   <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-
   <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
     <button type="button" (click)="onFormCancel()" class="btn btn-light">
       <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
     </button>
+    <button type="button" (click)="onActionNext()" *ngIf="requestNextItem&& requestNextItem?.id?.length>0"
+      class="btn btn-light">
+      <i class="ft-x"></i>
+      < </button>
+        <button type="button" (click)="onActionPervious()" *ngIf="requestPerviousItem&& requestPerviousItem?.id?.length>0"
+          class="btn btn-light">
+          <i class="ft-x"></i>
+          > </button>
   </div>
   <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 </div>

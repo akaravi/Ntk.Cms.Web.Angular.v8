@@ -105,7 +105,7 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
     'UserAccessAdminAllowToProfessionalData',
     'RememberOnDevice',
     'CreatedDate',
-    'ExpireDate',
+    'tokenExpireDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();

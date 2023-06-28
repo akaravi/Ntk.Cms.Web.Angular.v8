@@ -1,85 +1,111 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <!-- actionSendSmsToMe Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToMe" name="dataModel.actionSendSmsToMe">
+        {{'ACTION.SEND_TO_ME' | translate}} 
+
+      </mat-slide-toggle>
     </div>
-    <div class="ntk-cms-html-card-body">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <!-- actionSendSmsToMe Field -->
-        <div class="ntk-full-width">
+    <!-- actionSendSmsToEstateUser Field -->
+    <div class="ntk-full-width">
 
-            <br>
-            <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToMe" name="dataModel.actionSendSmsToMe">
-                ارسال به خودم
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateUser" name="dataModel.actionSendSmsToEstateUser">
+        {{'ACTION.SEND_TO_ESTATE' | translate}} 
 
-            </mat-slide-toggle>
-        </div>
-        <!-- actionSendSmsToEstateUser Field -->
-        <div class="ntk-full-width">
-
-            <br>
-            <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateUser" name="dataModel.actionSendSmsToEstateUser">
-                ارسال به کاربر املاک
-
-            </mat-slide-toggle>
-        </div>
-        <!-- actionSendSmsToEstateAgency Field -->
-        <div class="ntk-full-width">
-
-            <br>
-            <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateAgency" name="dataModel.actionSendSmsToEstateAgency">
-                ارسال به آرژانس
-
-            </mat-slide-toggle>
-        </div>
-        <!-- actionSendSmsToEstateCustomer Field -->
-        <div class="ntk-full-width">
-
-            <br>
-            <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateCustomer" name="dataModel.actionSendSmsToEstateCustomer">
-                ارسال به مشتری
-
-            </mat-slide-toggle>
-        </div>
-        <!-- ActionSendSmsToCustomerOrder Field -->
-        <div class="ntk-full-width">
-
-            <br>
-            <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToCustomerOrder" name="dataModel.actionSendSmsToCustomerOrder">
-                {{'TITLE.SMS_to_the_list_of_applicants_for_this_property' | translate}}
-            </mat-slide-toggle>
-        </div>
-
-        <!-- actionSendSmsToContactNumber Field -->
-        <div class="ntk-full-width">
-            {{'TITLE.Send_link_message_to_the_special_number' | translate}}
-            <br>
-            <textarea matInput [(ngModel)]="dataModel.actionSendSmsToContactNumber" name="dataModel.actionSendSmsToContactNumber" #ActionSendSmsToContactNumber type="text" class="text-line" rows="5" maxlength="100" placeholder="09123456789"></textarea>
-        </div>
-
-
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+      </mat-slide-toggle>
     </div>
-    <div class="ntk-cms-html-card-message">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-        <div class="form-actions">
-            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-            <small class="form-text text-muted danger">{{ formInfo.formError }}
-            </small>
-        </div>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <!-- actionSendSmsToEstateAgency Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateAgency"
+        name="dataModel.actionSendSmsToEstateAgency">
+        {{'ACTION.SEND_TO_AGENCY' | translate}} 
+
+      </mat-slide-toggle>
     </div>
-    <div class="ntk-cms-html-card-footer">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
-            <button type="button" (click)="onFormCancel()" class="btn btn-light">
-                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-            </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-                <i class="fa fa-check-square-o"></i> {{'ACTION.Send_Message' | translate}}
-            </button>
-        </div>
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <!-- actionSendSmsToEstateCustomer Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToEstateCustomer"
+        name="dataModel.actionSendSmsToEstateCustomer">
+        {{'ACTION.SEND_TO_CLIENT' | translate}} 
+
+      </mat-slide-toggle>
     </div>
+    <hr>
+    <div *ngIf="this.dataModelProperty.linkLocationId&&this.dataModelProperty.linkLocationId>0">
+      <!-- actionSendSmsToAreaEstateAgency Field -->
+      <div class="ntk-full-width">
+        <br>
+        <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAreaEstateAgency"
+          name="dataModel.actionSendSmsToAreaEstateAgency">
+          {{'ACTION.SEND_TO_NEAR_AGENCY' | translate}} 
+        </mat-slide-toggle>
+      </div>
+      <!-- actionSendSmsToAreaEstateUser Field -->
+      <div class="ntk-full-width">
+
+        <br>
+        <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToAreaEstateUser"
+          name="dataModel.actionSendSmsToAreaEstateUser">
+          {{'ACTION.SEND_TO_NEAR_EMPLOYE_AGENCY' | translate}} 
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <!-- ActionSendSmsToCustomerOrder Field -->
+    <div class="ntk-full-width">
+
+      <br>
+      <mat-slide-toggle [(ngModel)]="dataModel.actionSendSmsToCustomerOrder"
+        name="dataModel.actionSendSmsToCustomerOrder">
+        {{'TITLE.SMS_to_the_list_of_applicants_for_this_property' | translate}}
+      </mat-slide-toggle>
+    </div>
+
+    <!-- actionSendSmsToContactNumber Field -->
+    <div class="ntk-full-width">
+      {{'TITLE.Send_link_message_to_the_special_number' | translate}}
+      <br>
+      <textarea matInput [(ngModel)]="dataModel.actionSendSmsToContactNumber"
+        name="dataModel.actionSendSmsToContactNumber" #ActionSendSmsToContactNumber type="text" class="text-line"
+        rows="5" maxlength="100" placeholder="09123456789"></textarea>
+    </div>
+
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow">
+      <button type="button" (click)="onFormCancel()" class="btn btn-light">
+        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+      </button>
+      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+        <i class="fa fa-check-square-o"></i> {{'ACTION.Send_Message' | translate}}
+      </button>
+    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

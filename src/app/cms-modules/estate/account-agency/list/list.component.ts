@@ -63,7 +63,14 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
     if (this.requestLinkLocationWorkAreaIds && this.requestLinkLocationWorkAreaIds.length > 0)
       this.filteModelContent.linkLocationWorkAreaIds = this.requestLinkLocationWorkAreaIds;
   }
-
+  @Input() set optionLinkLocationWorkAreaId(id: number) {
+    this.requestLinkLocationWorkAreaIds = [];
+    if (id && id > 0) {
+      this.requestLinkLocationWorkAreaIds.push(id);
+    }
+    if (this.requestLinkLocationWorkAreaIds && this.requestLinkLocationWorkAreaIds.length > 0)
+      this.filteModelContent.linkLocationWorkAreaIds = this.requestLinkLocationWorkAreaIds;
+  }
   link: string;
   comment: string;
   author: string;
@@ -116,6 +123,9 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
+    if (!this.optionloadComponent) {
+      return;
+    }
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new EstateAccountAgencyModel());
 
@@ -467,6 +477,7 @@ export class EstateAccountAgencyListComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonReload(): void {
+    this.optionloadComponent = true;
     this.DataGetAll();
   }
   onSubmitOptionsSearch(model: any): void {

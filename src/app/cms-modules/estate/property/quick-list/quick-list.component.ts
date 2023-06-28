@@ -59,7 +59,7 @@ export class EstatePropertyQuickListComponent
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public translate: TranslateService,
-    // private CoreModuleLogMemoModel : CoreModuleLogMemoModel,
+
   ) {
     this.loading.cdr = this.cdr;
     if (data) {
@@ -258,8 +258,6 @@ export class EstatePropertyQuickListComponent
         this.DataGetAll();
         this.tokenHelper.CheckIsAdmin();
       });
-
-    // this.SubjectTitle = this.CoreModuleLogMemoModel.SubjectTitle;
   }
 
   ngAfterViewInit(): void {
@@ -338,7 +336,7 @@ export class EstatePropertyQuickListComponent
     ) {
       // ** */
       this.contentService
-        .ServiceGetAllWithCustomerOrderId(
+        .ServiceGetAllWithCoverCustomerOrderId(
           this.requestLinkCustomerOrderId,
           filterModel
         )

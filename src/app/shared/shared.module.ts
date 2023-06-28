@@ -58,7 +58,7 @@ import {
   CoreGuideService,
   CoreLocationService,
   CoreLogMemberService,
-  CoreModuleLogMemoService,
+  CoreModuleDataMemoService,
   CoreModuleSiteCreditService,
   CoreModuleSiteUserCreditService,
   CoreSiteCategoryService,
@@ -136,6 +136,7 @@ import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelec
 import { CmsMemoComponent } from './cms-memo/cms-memo.component';
 import { CmsModuleSelectorComponent } from './cms-module-selector/cms-module-selector.component';
 import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
+import { CmsShowKeyComponent } from './cms-show-key/cms-show-key.component';
 import { CmsSiteCategorySelectionListComponent } from './cms-site-category-selection-list/cmsSiteCategorySelectionList.component';
 import { CmsSiteCategorySelectorComponent } from './cms-site-category-selector/cmsSiteCategorySelector.component';
 import { CmsSiteCreditViewComponent } from './cms-site-credit-view/cms-site-credit-view.component';
@@ -154,7 +155,6 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './material/mat
 import { OverlayService } from './overlay/overlay.service';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
-import { CmsShowKeyComponent } from './cms-show-key/cms-show-key.component';
 
 @NgModule({
   imports: [
@@ -460,7 +460,7 @@ import { CmsShowKeyComponent } from './cms-show-key/cms-show-key.component';
     BankPaymentEnumService,
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
-    CoreModuleLogMemoService,
+    CoreModuleDataMemoService,
     SmsMainApiPathService,
     SmsMainApiNumberService,
   ]

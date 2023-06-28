@@ -42,7 +42,7 @@ export class EstateBillboardAddComponent implements OnInit {
   @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  optionloadComponent = false;
+
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;

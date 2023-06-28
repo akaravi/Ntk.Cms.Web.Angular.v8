@@ -5,7 +5,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreModuleLogShowKeyModel, CoreModuleLogShowKeyService, DataFieldInfoModel, EnumInfoModel,
@@ -19,7 +19,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-coremodulelog-memo-view',
+  selector: 'app-coremodule-data-memo-view',
   templateUrl: './view.component.html',
 })
 export class CoreModuleLogShowKeyViewComponent implements OnInit, OnDestroy {

@@ -143,7 +143,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        title: 'آدرس وب سایت',
+        title: 'TITLE.website_address',
         urlViewContentQRCodeBase64: this.dataModelResult.item.urlSiteHomeShortLinkQRCodeBase64,
         urlViewContent: this.dataModelResult.item.urlSiteHome,
       },
@@ -159,7 +159,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        title: 'آدرس سامانه مدیریت محتوا',
+        title: 'TITLE.The_address_of_the_content_management_system',
         urlViewContentQRCodeBase64: this.dataModelResult.item.urlSiteCPanelShortLinkQRCodeBase64,
         urlViewContent: this.dataModelResult.item.urlSiteCPanel,
       },
@@ -175,7 +175,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        title: 'آدرس اشتراک گزاری وب سایت',
+        title: 'TITLE.Website_sharing_address',
         urlViewContentQRCodeBase64: this.dataModelResult.item.urlSiteCPanelShortLinkQRCodeBase64,
         urlViewContent: this.dataModelResult.item.urlSiteCPanel,
       },
@@ -191,7 +191,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        title: 'آدرس اشتراک گزاری با حساب کاربری شما',
+        title: 'TITLE.Sharing_address_with_your_user_account',
         urlViewContentQRCodeBase64: this.dataModelResult.item.urlResellerUserShortLinkQRCodeBase64,
         urlViewContent: this.dataModelResult.item.urlResellerUserShortLinkUrl,
       },
@@ -207,7 +207,7 @@ export class CoreInfoComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       // height: "90%",
       data: {
-        title: 'آدرس اشتراک گزاری با حساب کاربری شما',
+        title: 'TITLE.Sharing_address_with_your_user_account',
         urlViewContentQRCodeBase64: this.dataModelResult.item.urlResellerSiteCategoryShortLinkQRCodeBase64,
         urlViewContent: this.dataModelResult.item.urlResellerSiteCategoryShortLinkUrl,
       },

@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogMemoModel, CoreModuleLogMemoService, CoreSiteModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  CoreEnumService, CoreModuleDataMemoModel, CoreModuleDataMemoService, CoreSiteModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, FilterDataModel, FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -21,19 +21,19 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { CoreModuleLogMemoEditComponent } from '../edit/edit.component';
-import { CoreModuleLogMemoViewComponent } from '../view/view.component';
+import { CoreModuleDataMemoEditComponent } from '../edit/edit.component';
+import { CoreModuleDataMemoViewComponent } from '../view/view.component';
 
 @Component({
-  selector: 'app-coremodulelog-memo-list',
+  selector: 'app-coremodule-data-memo-list',
   templateUrl: './list.component.html',
 
 })
-export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
+export class CoreModuleDataMemoListComponent implements OnInit, OnDestroy {
   requestLinkSiteId = 0;
   constructor(
     private coreEnumService: CoreEnumService,
-    public contentService: CoreModuleLogMemoService,
+    public contentService: CoreModuleDataMemoService,
     public publicHelper: PublicHelper,
     private cmsToastrService: CmsToastrService,
     private cmsConfirmationDialogService: CmsConfirmationDialogService,
@@ -69,15 +69,15 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
   tableContentSelected = [];
 
   filteModelContent = new FilterModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogMemoModel> = new ErrorExceptionResult<CoreModuleLogMemoModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataMemoModel> = new ErrorExceptionResult<CoreModuleDataMemoModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
 
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  tableRowsSelected: Array<CoreModuleLogMemoModel> = [];
-  tableRowSelected: CoreModuleLogMemoModel = new CoreModuleLogMemoModel();
-  tableSource: MatTableDataSource<CoreModuleLogMemoModel> = new MatTableDataSource<CoreModuleLogMemoModel>();
+  tableRowsSelected: Array<CoreModuleDataMemoModel> = [];
+  tableRowSelected: CoreModuleDataMemoModel = new CoreModuleDataMemoModel();
+  tableSource: MatTableDataSource<CoreModuleDataMemoModel> = new MatTableDataSource<CoreModuleDataMemoModel>();
 
 
   tabledisplayedColumns: string[] = [];
@@ -116,7 +116,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
-    this.onActionTableRowSelect(new CoreModuleLogMemoModel());
+    this.onActionTableRowSelect(new CoreModuleDataMemoModel());
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     this.filteModelContent.accessLoad = true;
@@ -187,7 +187,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
   //     this.cmsToastrService.typeErrorAccessAdd();
   //     return;
   //   }
-  //   const dialogRef = this.dialog.open(CoreModuleLogMemoAddComponent, {
+  //   const dialogRef = this.dialog.open(CoreModuleDataMemoAddComponent, {
   //     height: '90%',
   //     data: {
   //       LinkSiteId: this.requestLinkSiteId,
@@ -200,7 +200,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  onActionbuttonViewRow(model: CoreModuleLogMemoModel = this.tableRowSelected): void {
+  onActionbuttonViewRow(model: CoreModuleDataMemoModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -215,7 +215,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
-    const dialogRef = this.dialog.open(CoreModuleLogMemoViewComponent, {
+    const dialogRef = this.dialog.open(CoreModuleDataMemoViewComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -226,7 +226,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onActionbuttonEditRow(model: CoreModuleLogMemoModel = this.tableRowSelected): void {
+  onActionbuttonEditRow(model: CoreModuleDataMemoModel = this.tableRowSelected): void {
 
     if (!model || !model.id || model.id.length === 0) {
       this.cmsToastrService.typeErrorSelectedRow();
@@ -241,7 +241,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-    const dialogRef = this.dialog.open(CoreModuleLogMemoEditComponent, {
+    const dialogRef = this.dialog.open(CoreModuleDataMemoEditComponent, {
       height: '90%',
       data: { id: this.tableRowSelected.id }
     });
@@ -251,7 +251,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onActionbuttonDeleteRow(model: CoreModuleLogMemoModel = this.tableRowSelected): void {
+  onActionbuttonDeleteRow(model: CoreModuleDataMemoModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('MESSAGE.no_row_selected_to_delete');
       this.cmsToastrService.typeErrorSelected(emessage);
@@ -411,7 +411,7 @@ export class CoreModuleLogMemoListComponent implements OnInit, OnDestroy {
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  onActionTableRowSelect(row: CoreModuleLogMemoModel): void {
+  onActionTableRowSelect(row: CoreModuleDataMemoModel): void {
     this.tableRowSelected = row;
   }
   onActionBackToParent(): void {

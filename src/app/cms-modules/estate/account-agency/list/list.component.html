@@ -1,207 +1,235 @@
-<app-cms-guide-notice [Key]="'accountagency.content.list'" [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
-<app-estate-account-user-header *ngIf="this.requestLinkAccountUserId?.length>0" [optionId]="this.requestLinkAccountUserId">
+<app-cms-guide-notice [Key]="'accountagency.content.list'"
+  [svg]="'assets/media/svg/icons/General/Notifications1.svg'"></app-cms-guide-notice>
+<app-estate-account-user-header *ngIf="this.requestLinkAccountUserId?.length>0"
+  [optionId]="this.requestLinkAccountUserId">
 </app-estate-account-user-header>
 <app-cms-html-list [optionLoading]="loading" [optionTreeDisplay]="false">
-    <ng-container cms-tree>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-        --------------------------------------
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
-    </ng-container>
-    <ng-container cms-header>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  <ng-container cms-tree>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    --------------------------------------
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+  </ng-container>
+  <ng-container cms-header>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </ng-container>
-    <ng-container cms-action>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-        <button *ngIf="dataModelResult.access.accessAddRow && optionloadByRoute" (click)="onActionbuttonNewRow()" type="button" class="btn box-shadow-button btn-outline-primary" id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' |
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </ng-container>
+  <ng-container cms-action>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
+    <button *ngIf="optionloadByRoute && dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()"
+      type="button" class="btn box-shadow-button btn-outline-primary" id="openModalButton" data-toggle="modal"
+      data-target="#categoryModal">{{'ACTION.ADD' |
       translate}}</button>
-        <button *ngIf="dataModelResult.access.accessEditRow && optionloadByRoute&& tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonEditRow()" type="button" class="btn box-shadow-button btn-outline-warning" data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
-        <button *ngIf="dataModelResult.access.accessDeleteRow && optionloadByRoute && tableRowSelected.id &&  tableRowSelected?.id?.length>0" (click)="onActionbuttonDeleteRow()" type="button" class="btn box-shadow-button btn-outline-danger">{{'ACTION.DELETE' |
+    <button
+      *ngIf="optionloadByRoute && dataModelResult.access.accessEditRow && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonEditRow()" type="button" class="btn box-shadow-button btn-outline-warning"
+      data-toggle="modal" data-target="#categoryModal">{{'ACTION.EDIT' | translate}}</button>
+    <button
+      *ngIf="optionloadByRoute && dataModelResult.access.accessDeleteRow  && tableRowSelected.id &&  tableRowSelected?.id?.length>0"
+      (click)="onActionbuttonDeleteRow()" type="button"
+      class="btn box-shadow-button btn-outline-danger">{{'ACTION.DELETE' |
       translate}}</button>
 
-        <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text">
-            <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
-        </a>
+    <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text">
+      <mat-slide-toggle [(ngModel)]="optionsSearch.data.show">{{'ACTION.SEARCH' | translate}}</mat-slide-toggle>
+    </a>
 
-        <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text">
-            <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
-            </mat-slide-toggle>
-        </a>
-        <button (click)="onActionbuttonExport()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
-            <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
-        </button>
-        <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
-            <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
-        </button>
-        <button (click)="onActionbuttonReload()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
-            <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
-        </button>
+    <a class="btn box-shadow-button btn-outline-info btn-sm BTN-text">
+      <mat-slide-toggle (click)="onActionbuttonStatist()">{{'ACTION.STATIST' | translate}}
+      </mat-slide-toggle>
+    </a>
+    <button (click)="onActionbuttonExport()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -11px;"
+        title="{{'ACTION.EXPORTFILE' | translate}}">cloud_download</mat-icon>
+    </button>
+    <button (click)="onActionButtonPrintEntity()" *ngIf="tableRowSelected?.id?.length>0" type="button"
+      class="btn box-shadow-button btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PRINT' | translate}}">print</mat-icon>
+    </button>
+    <button (click)="onActionbuttonReload()" type="button" class="btn box-shadow-button btn-outline-secondary BTN-icon">
+      <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.RELOAD' | translate}}">refresh</mat-icon>
+    </button>
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
-    </ng-container>
-    <ng-container cms-action-area>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
-        <app-cms-search-list [(options)]="optionsSearch">
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
+  </ng-container>
+  <ng-container cms-action-area>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+    <app-cms-search-list [(options)]="optionsSearch">
 
-            <!-- LinkLocationIds Field -->
-            موقعیت مکانی
-            <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.locationListIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
-            </app-cms-location-autocomplete>
-            <!-- LinkLocationIds Field -->
-            <br>
-            موقعیت فعالیت کاری
-            <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.linkLocationWorkAreaIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
-            </app-cms-location-autocomplete>
-            <hr>
-        </app-cms-search-list>
-        <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
+      <!-- LinkLocationIds Field -->
+      {{'ACTION.LOCATION' | translate}}
+      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
+        [optionSelectForce]="filteModelContent.locationListIds"
+        [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+      </app-cms-location-autocomplete>
+      <!-- LinkLocationIds Field -->
+      <br>
+      {{'ACTION.LOCATION_WORK_ACTIVITY' | translate}}
+      <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)"
+        [(optionLoading)]="loading" [optionSelectForce]="filteModelContent.linkLocationWorkAreaIds"
+        [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+      </app-cms-location-autocomplete>
+      <hr>
+    </app-cms-search-list>
+    <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
-    </ng-container>
-    <ng-container cms-body>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)" multiTemplateDataRows>
-            <!-- LinkMainImageIdSrc Column -->
-            <ng-container matColumnDef="LinkMainImageIdSrc">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                    <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-area-->
+  </ng-container>
+  <ng-container cms-body>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
+      multiTemplateDataRows>
+      <!-- LinkMainImageIdSrc Column -->
+      <ng-container matColumnDef="LinkMainImageIdSrc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.PICTURE' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom"
+            aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="40" width="40" />
 
-                </mat-cell>
-            </ng-container>
-            <!-- ID Column -->
-            <ng-container matColumnDef="Id">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
-            </ng-container>
-            <!-- Title Column -->
-            <ng-container matColumnDef="Title">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
-            </ng-container>
-            <!-- linkCmsUserId Column -->
-            <ng-container matColumnDef="LinkCmsUserId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCmsUserId']?.fieldTitle}}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.linkCmsUserId| cmsuserinfo |async}} </mat-cell>
-            </ng-container>
-
-
-            <!-- Description Column -->
-            <ng-container matColumnDef="Description">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
-            </ng-container>
+        </mat-cell>
+      </ng-container>
+      <!-- ID Column -->
+      <ng-container matColumnDef="Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+      <!-- Title Column -->
+      <ng-container matColumnDef="Title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      </ng-container>
+      <!-- linkCmsUserId Column -->
+      <ng-container matColumnDef="LinkCmsUserId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkCmsUserId']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.linkCmsUserId| cmsuserinfo |async}} </mat-cell>
+      </ng-container>
 
 
-            <!-- Action Column -->
-            <ng-container matColumnDef="Action">
-                <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
-                <mat-cell *matCellDef="let row" class=' Action'>
+      <!-- Description Column -->
+      <ng-container matColumnDef="Description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['description']?.fieldTitle}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      </ng-container>
 
-                    <!-- Action Menu -->
-                    <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #actionMenu="matMenu">
-                        <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
-                            <mat-icon>mode_edit</mat-icon>
-                            <span>{{'ACTION.EDIT' | translate}}</span>
-                        </button>
-                        <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
-                            <mat-icon>delete_forever</mat-icon>
-                            <span>{{'ACTION.DELETE' | translate}}</span>
-                        </button>
-                        <button mat-menu-item (click)="onActionbuttonAgentRow(row,$event)">
-                            <mat-icon>person</mat-icon>
-                            <span>{{'ACTION.PERSONNEL' | translate}}</span>
-                        </button>
-                        <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
-                            <mat-icon>history</mat-icon>
-                            <span>{{'ACTION.HISTORY' | translate}}</span>
-                        </button>
-                        <button mat-menu-item (click)="onActionbuttonPropertyRow(row,$event)">
-                            <mat-icon>home</mat-icon>
-                            <span>{{'ACTION.CONNECT_TO_PROPERTY' | translate}}</span>
-                        </button>
-                    </mat-menu>
-                </mat-cell>
-            </ng-container>
 
-            <!--expandedDetail-->
-            <ng-container matColumnDef="expandedDetail">
-                <mat-cell *matCellDef="let row">
-                    <div>
-                        <table>
-                            <tr>
-                                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80" width="80" /></th>
-                                <th>
-                                    <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
-                                        <i class="flaticon2-copy"></i></span> {{row.id}}
+      <!-- Action Column -->
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+        <mat-cell *matCellDef="let row" class=' Action'>
 
-                                </th>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>{{fieldsInfo['title']?.fieldTitle}} : {{row.title}} </td>
-                            </tr>
-                            <tr *ngIf="row.description">
-                                <td></td>
-                                <td>{{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
-                            </tr>
-                            <tr *ngIf="row.address">
-                                <td></td>
-                                <td>{{'TITLE.Address' | translate}} : {{row.address}} </td>
-                            </tr>
-                            <tr *ngIf="row.phoneNumber">
-                                <td></td>
-                                <td>{{fieldsInfo['phoneNumber']?.fieldTitle}} : {{row.phoneNumber}} </td>
-                            </tr>
-                            <tr *ngIf="row.mobileNumber">
-                                <td></td>
-                                <td>{{fieldsInfo['mobileNumber']?.fieldTitle}} : {{row.mobileNumber}} </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
+          <!-- Action Menu -->
+          <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Action Menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #actionMenu="matMenu">
+            <button mat-menu-item (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow">
+              <mat-icon>mode_edit</mat-icon>
+              <span>{{'ACTION.EDIT' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow">
+              <mat-icon>delete_forever</mat-icon>
+              <span>{{'ACTION.DELETE' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonAgentRow(row,$event)">
+              <mat-icon>person</mat-icon>
+              <span>{{'ACTION.PERSONNEL' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
+              <mat-icon>history</mat-icon>
+              <span>{{'ACTION.HISTORY' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="onActionbuttonPropertyRow(row,$event)">
+              <mat-icon>home</mat-icon>
+              <span>{{'ACTION.CONNECT_TO_PROPERTY' | translate}}</span>
+            </button>
+          </mat-menu>
+        </mat-cell>
+      </ng-container>
 
-                                    <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow" class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+      <!--expandedDetail-->
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let row">
+          <div>
+            <table>
+              <tr>
+                <th> <img *ngIf="row?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{row.linkMainImageIdSrc | cmsthumbnail}}" height="80"
+                    width="80" /></th>
+                <th>
+                  <span class="navi-icon pointer" [cdkCopyToClipboard]="row.id" (click)="onActionCopied()">
+                    <i class="flaticon2-copy"></i></span> {{row.id}}
 
-                                    <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow" class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+                </th>
+              </tr>
+              <tr>
+                <td></td>
+                <td>{{fieldsInfo['title']?.fieldTitle}} : {{row.title}} </td>
+              </tr>
+              <tr *ngIf="row.description">
+                <td></td>
+                <td>{{fieldsInfo['description']?.fieldTitle}} : {{row.description}} </td>
+              </tr>
+              <tr *ngIf="row.address">
+                <td></td>
+                <td>{{'TITLE.Address' | translate}} : {{row.address}} </td>
+              </tr>
+              <tr *ngIf="row.phoneNumber">
+                <td></td>
+                <td>{{fieldsInfo['phoneNumber']?.fieldTitle}} : {{row.phoneNumber}} </td>
+              </tr>
+              <tr *ngIf="row.mobileNumber">
+                <td></td>
+                <td>{{fieldsInfo['mobileNumber']?.fieldTitle}} : {{row.mobileNumber}} </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
 
-                                    <a (click)="onActionbuttonAgentRow(row,$event)" class="link-primary pointer"> {{'ACTION.PERSONNEL' |
+                  <a (click)="onActionbuttonEditRow(row)" *ngIf="dataModelResult.access.accessEditRow"
+                    class="link-primary pointer"> {{'ACTION.EDIT' | translate}} </a>|
+
+                  <a (click)="onActionbuttonDeleteRow(row)" *ngIf="dataModelResult.access.accessDeleteRow"
+                    class="link-primary pointer"> {{'ACTION.DELETE' | translate}} </a>|
+
+                  <a (click)="onActionbuttonAgentRow(row,$event)" class="link-primary pointer"> {{'ACTION.PERSONNEL' |
                     translate}} </a>|
 
-                                    <a (click)="onActionbuttonHistoryRow(row,$event)" class="link-primary pointer">
-                                        {{'ACTION.HISTORY' | translate}} </a>|
+                  <a (click)="onActionbuttonHistoryRow(row,$event)" class="link-primary pointer">
+                    {{'ACTION.HISTORY' | translate}} </a>|
 
-                                    <a (click)="onActionbuttonPropertyRow(row,$event)" class="link-primary pointer">
-                                        {{'ACTION.CONNECT_TO_PROPERTY' | translate}} </a>
+                  <a (click)="onActionbuttonPropertyRow(row,$event)" class="link-primary pointer">
+                    {{'ACTION.CONNECT_TO_PROPERTY' | translate}} </a>
 
-                                </td>
-                            </tr>
+                </td>
+              </tr>
 
-                        </table>
-                    </div>
-                </mat-cell>
-            </ng-container>
+            </table>
+          </div>
+        </mat-cell>
+      </ng-container>
 
-            <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)" (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)" [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
-            </mat-row>
-            <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)" (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)" [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
-            </mat-row>
-        </mat-table>
+      <mat-header-row *matHeaderRowDef="tabledisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: tabledisplayedColumns;" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '' }">
+      </mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" (click)="onActionTableRowSelect(row)"
+        (mouseenter)="onActionTableRowMouseEnter(row)" (mouseleave)="onActionTableRowMouseLeave(row)"
+        [ngStyle]="{'background': row.id === tableRowSelected.id ? '#d3d3da' : '', 'display': row.expanded === true ? '' : 'none' }">
+      </mat-row>
+    </mat-table>
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </ng-container>
-    <ng-container cms-footer>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-        <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)" [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage" [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </ng-container>
+  <ng-container cms-footer>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <mat-paginator #paginator [length]="(dataModelResult.totalRowCount)"
+      [pageIndex]="(dataModelResult.currentPageNumber-1)" [pageSize]="dataModelResult.rowPerPage"
+      [pageSizeOptions]="[5, 10, 20, 100]" (page)="onTablePageingData($event)"></mat-paginator>
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </ng-container>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </ng-container>
 </app-cms-html-list>

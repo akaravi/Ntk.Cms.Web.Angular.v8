@@ -211,7 +211,7 @@ const routes: Routes = [
       {
         path: 'property-history',
         component: EstatePropertyHistoryListComponent,
-        data: { title: 'ROUTE.ESTATE.HISTORY' },
+        data: { title: 'ROUTE.ESTATE.HISTORY' }
       },
       {
         path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
