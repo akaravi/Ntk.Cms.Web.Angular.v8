@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel, DataFieldInfoModel,
+  EnumClauseType,
   EnumInputDataType,
   EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
@@ -861,11 +862,35 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    this.requestLinkUserId = model.linkCmsUserId;
-    if (this.requestLinkUserId && this.requestLinkUserId > 0) {
+    if (model.linkCmsUserId && model.linkCmsUserId > 0)
+      this.requestLinkUserId = model.linkCmsUserId;
+    else
+      this.requestLinkUserId = model.createdBy;
+
+    if (model.linkCmsUserId && model.linkCmsUserId > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = "linkCmsUserId";
-      filter.value = this.requestLinkUserId;
+      filter.value = model.linkCmsUserId;
+      filter.clauseType = EnumClauseType.Or
+      this.filteModelContent.filters.push(filter);
+
+      const filter2 = new FilterDataModel();
+      filter2.propertyName = "createdBy";
+      filter2.value = model.linkCmsUserId;
+      filter2.clauseType = EnumClauseType.Or
+      this.filteModelContent.filters.push(filter);
+    }
+    if (model.createdBy && model.createdBy > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkCmsUserId";
+      filter.value = model.createdBy;
+      filter.clauseType = EnumClauseType.Or
+      this.filteModelContent.filters.push(filter);
+
+      const filter2 = new FilterDataModel();
+      filter2.propertyName = "createdBy";
+      filter2.value = model.createdBy;
+      filter2.clauseType = EnumClauseType.Or
       this.filteModelContent.filters.push(filter);
     }
     this.DataGetAll();
