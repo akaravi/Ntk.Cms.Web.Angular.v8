@@ -275,7 +275,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       filterModel.propertyDetailValues = propertyDetailValues;
       // ** Save Value */
       this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-      this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
+      this.contentService.ServiceGetAll(filterModel).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           if (ret.isSuccess) {

@@ -9,9 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateActivityTypeModel, EstateActivityTypeService, EstateEnumService, EstatePropertyHistoryModel,
-  EstatePropertyHistoryFilterModel,
-  EstatePropertyHistoryService, FilterDataModel, FilterModel,
+  ErrorExceptionResult, EstateActivityTypeModel, EstateActivityTypeService, EstateEnumService, EstatePropertyHistoryFilterModel, EstatePropertyHistoryModel, EstatePropertyHistoryService, FilterDataModel, FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -238,7 +236,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
 
       /** Search On Select Day */
-      this.contentService.ServiceGetAllWithFilterOnDate(filterModelOnDay).subscribe({
+      this.contentService.ServiceGetAll(filterModelOnDay).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           if (ret.isSuccess) {

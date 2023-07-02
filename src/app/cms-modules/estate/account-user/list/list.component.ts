@@ -144,7 +144,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
     this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
-    this.contentService.ServiceGetAllWithFilter(filterModel).subscribe({
+    this.contentService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
