@@ -9,12 +9,13 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel,
   DataFieldInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateContractTypeModel, EstateCustomerOrderModel,
-  EstateCustomerOrderSearchDtoModel,
+  ErrorExceptionResult, EstateContractTypeModel, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
+
   EstateCustomerOrderService, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel,
   FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
+
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
@@ -81,7 +82,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
   dataSource: any;
   flag = false;
   tableContentSelected = [];
-  filteModelContent = new EstateCustomerOrderSearchDtoModel();
+  filteModelContent = new EstateCustomerOrderFilterModel();
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
@@ -592,7 +593,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new EstateCustomerOrderSearchDtoModel();
+    this.filteModelContent = new EstateCustomerOrderFilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -706,7 +707,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
   }
   onSearchCaseCodeChange(caseCode: string) {
     if (caseCode && caseCode.length > 0) {
-      this.filteModelContent = new EstateCustomerOrderSearchDtoModel();
+      this.filteModelContent = new EstateCustomerOrderFilterModel();
       this.filteModelContent.caseCode = caseCode;
       this.dataModelPropertyDetailGroups = [];
     }

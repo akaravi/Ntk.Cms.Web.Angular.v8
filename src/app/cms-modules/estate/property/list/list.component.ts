@@ -13,7 +13,7 @@ import {
   EnumClauseType,
   EnumInputDataType,
   EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyModel, EstatePropertySearchDtoModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
+  ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel,  EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
@@ -206,7 +206,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
   searchInCheckingChecked = false;
   searchInResponsible = false;
   searchInResponsibleChecked = false;
-  filteModelContent = new EstatePropertySearchDtoModel();
+  filteModelContent = new EstatePropertyFilterModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyModel> =
     new ErrorExceptionResult<EstatePropertyModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -629,7 +629,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new EstatePropertySearchDtoModel();
+    this.filteModelContent = new EstatePropertyFilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -1165,7 +1165,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
   }
   onSearchCaseCodeChange(caseCode: string) {
     if (caseCode && caseCode.length > 0) {
-      this.filteModelContent = new EstatePropertySearchDtoModel();
+      this.filteModelContent = new EstatePropertyFilterModel();
       this.filteModelContent.caseCode = caseCode;
       this.dataModelPropertyDetailGroups = [];
     }

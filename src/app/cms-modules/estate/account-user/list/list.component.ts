@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateAccountUserModel,
-  EstateAccountUserSearchDtoModel,
+  EstateAccountUserFilterModel,
   EstateAccountUserService, FilterDataModel,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -79,7 +79,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   flag = false;
   tableContentSelected = [];
 
-  filteModelContent = new EstateAccountUserSearchDtoModel();
+  filteModelContent = new EstateAccountUserFilterModel();
   dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();

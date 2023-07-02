@@ -6,7 +6,7 @@ import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateAccountUserModel,
+  ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel,
   EstateAccountUserService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
@@ -80,7 +80,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstateAccountUserModel[]> {
-    const filterModel = new FilterModel();
+    const filterModel = new EstateAccountUserFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;
@@ -166,7 +166,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
         this.formControl.setValue(item);
         return;
       }
-      const filterModel = new FilterModel();
+      const filterModel = new EstateAccountUserFilterModel();
 
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkCmsUserId';

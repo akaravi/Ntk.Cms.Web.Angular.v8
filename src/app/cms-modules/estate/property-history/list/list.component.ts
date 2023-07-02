@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, EnumSortType,
   ErrorExceptionResult, EstateActivityTypeModel, EstateActivityTypeService, EstateEnumService, EstatePropertyHistoryModel,
-  EstatePropertyHistorySearchDtoModel,
+  EstatePropertyHistoryFilterModel,
   EstatePropertyHistoryService, FilterDataModel, FilterModel,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -228,7 +228,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
     if (this.searchInCheckingOnDay) {
       // const CheckingOnDay = new Date();
-      let filterModelOnDay = new EstatePropertyHistorySearchDtoModel();
+      let filterModelOnDay = new EstatePropertyHistoryFilterModel();
       filterModelOnDay = filterModel;
       if (!this.checkingOnDayRange.controls.start?.value)
         this.checkingOnDayRange.controls.start.setValue(new Date());

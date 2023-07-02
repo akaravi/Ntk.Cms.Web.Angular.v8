@@ -2,7 +2,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreEnumService, ErrorExceptionResult, EstateAccountUserModel, EstateAccountUserService, FilterModel } from 'ntk-cms-api';
+import { CoreEnumService, ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel, EstateAccountUserService, FilterModel } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -46,7 +46,7 @@ export class EstateAccountUserSelectionlistComponent implements OnInit {
 
   DataGetAll(): void {
 
-    const filterModel = new FilterModel();
+    const filterModel = new EstateAccountUserFilterModel();
     filterModel.rowPerPage = 50;
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;

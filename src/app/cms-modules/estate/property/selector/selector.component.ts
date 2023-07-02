@@ -6,7 +6,7 @@ import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstatePropertyModel,
+  ErrorExceptionResult, EstatePropertyFilterModel, EstatePropertyModel,
   EstatePropertyService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
@@ -87,7 +87,7 @@ export class EstatePropertySelectorComponent implements OnInit, OnDestroy {
     return model ? model.title + ' # ' + model.caseCode : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertyModel[]> {
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertyFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     let filter = new FilterDataModel();

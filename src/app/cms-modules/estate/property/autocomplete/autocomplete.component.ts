@@ -6,7 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { TranslateService } from '@ngx-translate/core';
 import {
   EnumClauseType,
-  EnumFilterDataModelSearchTypes, EstatePropertyService, FilterDataModel,
+  EnumFilterDataModelSearchTypes, EstatePropertyFilterModel, EstatePropertyService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
@@ -55,7 +55,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
   // filter and return the values
   filter(text: string): Observable<chipModel[]> {
 
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertyFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     let filter = new FilterDataModel();
@@ -156,7 +156,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
       return;
     }
 
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertyFilterModel();
     ids.forEach(item => {
       if (item.length > 0) {
         const filter = new FilterDataModel();

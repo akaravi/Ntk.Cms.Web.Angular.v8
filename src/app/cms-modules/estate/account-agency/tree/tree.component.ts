@@ -16,7 +16,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
-  ErrorExceptionResult, EstateAccountAgencyModel,
+  ErrorExceptionResult, EstateAccountAgencyFilterModel, EstateAccountAgencyModel,
   EstateAccountAgencyService, FilterModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -49,7 +49,7 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: EstateAccountAgencyModel = new EstateAccountAgencyModel();
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
-  filterModel = new FilterModel();
+  filterModel = new EstateAccountAgencyFilterModel();
   loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get optionLoading(): ProgressSpinnerModel {
     return this.loading;

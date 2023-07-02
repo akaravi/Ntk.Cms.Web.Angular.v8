@@ -6,7 +6,7 @@ import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateAccountAgencyModel,
+  ErrorExceptionResult, EstateAccountAgencyFilterModel, EstateAccountAgencyModel,
   EstateAccountAgencyService, FilterDataModel,
   FilterModel
 } from 'ntk-cms-api';
@@ -86,7 +86,7 @@ export class EstateAccountAgencySelectorComponent implements OnInit {
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstateAccountAgencyModel[]> {
-    const filterModel = new FilterModel();
+    const filterModel = new EstateAccountAgencyFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;

@@ -16,9 +16,10 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
-  ErrorExceptionResult, EstateCustomerOrderModel,
-  EstateCustomerOrderService, FilterModel
+  ErrorExceptionResult, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
+  EstateCustomerOrderService
 } from 'ntk-cms-api';
+
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -49,7 +50,7 @@ export class EstateCustomerOrderTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
-  filterModel = new FilterModel();
+  filterModel = new EstateCustomerOrderFilterModel();
   loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get optionLoading(): ProgressSpinnerModel {
     return this.loading;

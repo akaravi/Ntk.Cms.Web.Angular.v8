@@ -6,11 +6,11 @@ import {
   CoreEnumService,
   EnumClauseType,
   EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateCustomerOrderModel,
-  EstateCustomerOrderService, FilterDataModel,
-  FilterModel
+  ErrorExceptionResult, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
+  EstateCustomerOrderService, FilterDataModel
 } from 'ntk-cms-api';
-import { Observable, firstValueFrom } from 'rxjs';
+
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -78,7 +78,7 @@ export class EstateCustomerOrderSelectorComponent implements OnInit {
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | any): Promise<EstateCustomerOrderModel[]> {
-    const filterModel = new FilterModel();
+    const filterModel = new EstateCustomerOrderFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;

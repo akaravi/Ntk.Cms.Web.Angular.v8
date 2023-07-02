@@ -7,11 +7,7 @@ import { EnumDeviceType, EnumOperatingSystemType } from "ntk-cms-api";
 export const environment = {
   production: true,
   checkAccess: false,
-<<<<<<< HEAD
-  appVersion: '15.2.0326.2',
-=======
-  appVersion: '15.2.0405.3',
->>>>>>> main
+  appVersion: '15.2.0411.1',
   authKey: 'authf649fc9a5f55',
   loadDemoTheme: false,
   ProgressConsoleLog: false,
