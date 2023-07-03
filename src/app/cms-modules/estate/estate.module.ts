@@ -114,7 +114,7 @@ import { estateCustomerOrderInfoPipe } from 'src/app/core/pipe/esate/estate-cust
 import { estatePropertyCompanyInfoPipe } from 'src/app/core/pipe/esate/estate-property-company-info.pipe';
 import { estatePropertyInfoPipe } from 'src/app/core/pipe/esate/estate-property-info.pipe';
 
-import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { estatePropertyProjectInfoPipe } from 'src/app/core/pipe/esate/estate-property-project-info.pipe';
 import { estatePropertySupplierInfoPipe } from 'src/app/core/pipe/esate/estate-property-supplier-info.pipe';
 import { EstateAccountAgencyAdsAddComponent } from './account-agency-ads/add/add.component';
@@ -178,15 +178,7 @@ import { EstatePropertyQuickAddComponent } from './property/quick-add/quick-add.
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
 
-export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
-  align: "right",
-  allowNegative: true,
-  decimal: ",",
-  precision: 0,
-  prefix: "",
-  suffix: "",
-  thousands: " "
-};
+
 @NgModule({
   declarations: [
     EstateComponent,
@@ -385,7 +377,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     InlineSVGModule,
   ],
   providers: [
-    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+
     CoreModuleService,
     FileCategoryService,
     CoreEnumService,

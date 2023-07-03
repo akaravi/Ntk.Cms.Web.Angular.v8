@@ -221,7 +221,9 @@ karavi tooltip guid
   direction: ltr !important;
   text-align: center !important;
 }
-
+.input-ltr {
+  direction: ltr !important;
+}
 
 /* Popup container */
 .popup {

@@ -213,7 +213,7 @@
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
           <mat-label>{{fieldsInfo['area']?.fieldTitle}}</mat-label>
           <input matInput [(ngModel)]="filteModelContent.area" name="filteModelContent.area" #Area type="text"
-            currencyMask class="input-ltr-center" placeholder="{{fieldsInfo['area']?.fieldTitle}}" step="10" />
+            currencyMask class="input-ltr" placeholder="{{fieldsInfo['area']?.fieldTitle}}" step="10" />
           <mat-icon matPrefix *ngIf="filteModelContent.area" matPrefix mat-icon-button aria-label="Clear"
             (click)="filteModelContent.area = 0"> close</mat-icon>
           <mat-icon matPrefix> mode_edit</mat-icon>

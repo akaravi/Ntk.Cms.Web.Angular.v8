@@ -162,8 +162,9 @@
         <!-- Area Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
           <mat-label>{{fieldsInfo['area']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="filteModelContent.area" name="filteModelContent.area" #Area type="number"
-            pattern="(d{3})" placeholder="{{fieldsInfo['area']?.fieldTitle}}" step="10" />
+          <input matInput [(ngModel)]="filteModelContent.area" name="filteModelContent.area" #Area type="text"
+            currencyMask class="input-ltr" pattern="(d{3})" placeholder="{{fieldsInfo['area']?.fieldTitle}}"
+            step="10" />
           <mat-icon matPrefix *ngIf="filteModelContent.area" matPrefix mat-icon-button aria-label="Clear"
             (click)="filteModelContent.area = 0"> close</mat-icon>
           <mat-icon matPrefix> mode_edit</mat-icon>
@@ -186,7 +187,7 @@
             <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasSalePrice">
               <mat-label>{{'TITLE.SalePriceMin' | translate}} </mat-label>
               <input matInput [(ngModel)]="filteModelContent.salePriceMin" name="filteModelContent.salePriceMin"
-                #SalePriceMin type="number" step="1000000" />
+                #SalePriceMin type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.salePriceMin" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.salePriceMin = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -195,7 +196,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasRentPrice">
               <mat-label>{{'TITLE.RentPriceMin' | translate}}</mat-label>
               <input matInput [(ngModel)]="filteModelContent.rentPriceMin" name="filteModelContent.rentPriceMin"
-                #RentPriceMin type="number" step="1000000" />
+                #RentPriceMin type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.rentPriceMin" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.rentPriceMin = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -204,7 +205,7 @@
             <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasDepositPrice">
               <mat-label>{{'TITLE.DepositPriceMin' | translate}} </mat-label>
               <input matInput [(ngModel)]="filteModelContent.depositPriceMin" name="filteModelContent.depositPriceMin"
-                #DepositPriceMin type="number" step="1000000" />
+                #DepositPriceMin type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.depositPriceMin" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.depositPriceMin = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -213,7 +214,7 @@
             <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasDepositPrice">
               <mat-label>{{'TITLE.PeriodPriceMin' | translate}} </mat-label>
               <input matInput [(ngModel)]="filteModelContent.periodPriceMin" name="filteModelContent.periodPriceMin"
-                #PeriodPriceMin type="number" step="1000000" />
+                #PeriodPriceMin type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.periodPriceMin" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.periodPriceMin = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -224,7 +225,7 @@
             <mat-form-field class="ntk-full-width" *ngIf=" contractTypeSelected?.hasSalePrice">
               <mat-label> {{'TITLE.SalePriceMax' | translate}}</mat-label>
               <input matInput [(ngModel)]="filteModelContent.salePriceMax" name="filteModelContent.salePriceMax"
-                #SalePriceMax type="number" step="1000000" />
+                #SalePriceMax type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.salePriceMax" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.salePriceMax = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -233,7 +234,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasRentPrice">
               <mat-label>{{'TITLE.RentPriceMax' | translate}} </mat-label>
               <input matInput [(ngModel)]="filteModelContent.rentPriceMax" name="filteModelContent.rentPriceMax"
-                #RentPriceMax type="number" step="1000000" />
+                #RentPriceMax type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.rentPriceMax" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.rentPriceMax = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -242,7 +243,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasDepositPrice">
               <mat-label>{{'TITLE.DepositPriceMax' | translate}}</mat-label>
               <input matInput [(ngModel)]="filteModelContent.depositPriceMax" name="filteModelContent.depositPriceMax"
-                #DepositPriceMax type="number" step="1000000" />
+                #DepositPriceMax type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.depositPriceMax" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.depositPriceMax = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
@@ -251,7 +252,7 @@
             <mat-form-field class="ntk-full-width" *ngIf="contractTypeSelected?.hasDepositPrice">
               <mat-label>{{'TITLE.PeriodPriceMax' | translate}} </mat-label>
               <input matInput [(ngModel)]="filteModelContent.periodPriceMax" name="filteModelContent.periodPriceMax"
-                #PeriodPriceMax type="number" step="1000000" />
+                #PeriodPriceMax type="text" currencyMask class="input-ltr-center" step="1000000" />
               <mat-icon matPrefix *ngIf="filteModelContent.periodPriceMax" matPrefix mat-icon-button aria-label="Clear"
                 (click)="filteModelContent.periodPriceMax = 0"> close</mat-icon>
               <mat-icon matPrefix> mode_edit</mat-icon>
