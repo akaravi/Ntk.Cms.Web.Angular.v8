@@ -114,7 +114,7 @@
           [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
           [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
         <br>
-        {{'TITLE.COVERED_AREAS' | translate}} 
+        {{'TITLE.COVERED_AREAS' | translate}}
         <!-- linkLocationWorkAreaIds Field -->
         <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)"
           [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkLocationWorkAreaIds"
@@ -166,7 +166,26 @@
           </mat-slide-toggle>
         </div>
         <hr>
+        <!-- notificationWorkAreaEstate Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.notificationWorkAreaEstate"
+            *ngIf="fieldsInfo['notificationWorkAreaEstate']?.accessWatchField"
+            [disabled]="!fieldsInfo['notificationWorkAreaEstate']?.accessEditField"
+            name="dataModel.notificationWorkAreaEstate">
+            {{fieldsInfo['notificationWorkAreaEstate']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
+        <!-- notificationWorkAreaCustomerOrder Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataModel.notificationWorkAreaCustomerOrder"
+            *ngIf="fieldsInfo['notificationWorkAreaCustomerOrder']?.accessWatchField"
+            [disabled]="!fieldsInfo['notificationWorkAreaCustomerOrder']?.accessEditField"
+            name="dataModel.notificationWorkAreaCustomerOrder">
+            {{fieldsInfo['notificationWorkAreaCustomerOrder']?.fieldTitle}}
+          </mat-slide-toggle>
+        </div>
 
+        <hr>
 
 
 

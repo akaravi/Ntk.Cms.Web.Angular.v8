@@ -106,10 +106,10 @@
     <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
       [optionSelectForce]="dataModel.linkLocationId" [(optionLoading)]="loading"
       [optionPlaceholder]="this.translate.instant('TITLE.Geographical_Region')"
-      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField"></app-cms-location-selector>
+      [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField"></app-cms-location-selector>
     <br>
-    {{'TITLE.COVERED_AREAS' | translate}} 
-        <!-- linkLocationWorkAreaIds Field -->
+    {{'TITLE.COVERED_AREAS' | translate}}
+    <!-- linkLocationWorkAreaIds Field -->
     <app-cms-location-autocomplete (optionChange)="onActionSelectorLocationWorkArea($event)" [(optionLoading)]="loading"
       [optionSelectForce]="dataModel.linkLocationWorkAreaIds"
       [optionPlaceholder]="this.translate.instant('TITLE.Region')">
@@ -119,7 +119,7 @@
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowSite"
         *ngIf="fieldsInfo['accessWatchRowSite']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessWatchRowSite']?.accessEditField" name="dataModel.accessWatchRowSite">
+        [disabled]="!fieldsInfo['accessWatchRowSite']?.accessAddField" name="dataModel.accessWatchRowSite">
         {{fieldsInfo['accessWatchRowSite']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
@@ -127,7 +127,7 @@
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherAgency"
         *ngIf="fieldsInfo['accessWatchRowOtherAgency']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessWatchRowOtherAgency']?.accessEditField"
+        [disabled]="!fieldsInfo['accessWatchRowOtherAgency']?.accessAddField"
         name="dataModel.accessWatchRowOtherAgency">
         {{fieldsInfo['accessWatchRowOtherAgency']?.fieldTitle}}
       </mat-slide-toggle>
@@ -136,7 +136,7 @@
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherAgent"
         *ngIf="fieldsInfo['accessWatchRowOtherAgent']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessWatchRowOtherAgent']?.accessEditField" name="dataModel.accessWatchRowOtherAgent">
+        [disabled]="!fieldsInfo['accessWatchRowOtherAgent']?.accessAddField" name="dataModel.accessWatchRowOtherAgent">
         {{fieldsInfo['accessWatchRowOtherAgent']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
@@ -144,7 +144,7 @@
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.accessAllowShareRowWatchOtherAgency"
         *ngIf="fieldsInfo['accessAllowShareRowWatchOtherAgency']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessAllowShareRowWatchOtherAgency']?.accessEditField"
+        [disabled]="!fieldsInfo['accessAllowShareRowWatchOtherAgency']?.accessAddField"
         name="dataModel.accessAllowShareRowWatchOtherAgency">
         {{fieldsInfo['accessAllowShareRowWatchOtherAgency']?.fieldTitle}}
       </mat-slide-toggle>
@@ -153,13 +153,31 @@
     <div class="ntk-full-width">
       <mat-slide-toggle [(ngModel)]="dataModel.accessAllowShareRowWatchOtherAgent"
         *ngIf="fieldsInfo['accessAllowShareRowWatchOtherAgent']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessAllowShareRowWatchOtherAgent']?.accessEditField"
+        [disabled]="!fieldsInfo['accessAllowShareRowWatchOtherAgent']?.accessAddField"
         name="dataModel.accessAllowShareRowWatchOtherAgent">
         {{fieldsInfo['accessAllowShareRowWatchOtherAgent']?.fieldTitle}}
       </mat-slide-toggle>
     </div>
+    <hr>
 
-
+    <!-- notificationWorkAreaEstate Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.notificationWorkAreaEstate"
+        *ngIf="fieldsInfo['notificationWorkAreaEstate']?.accessWatchField"
+        [disabled]="!fieldsInfo['notificationWorkAreaEstate']?.accessAddField"
+        name="dataModel.notificationWorkAreaEstate">
+        {{fieldsInfo['notificationWorkAreaEstate']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
+    <!-- notificationWorkAreaCustomerOrder Field -->
+    <div class="ntk-full-width">
+      <mat-slide-toggle [(ngModel)]="dataModel.notificationWorkAreaCustomerOrder"
+        *ngIf="fieldsInfo['notificationWorkAreaCustomerOrder']?.accessWatchField"
+        [disabled]="!fieldsInfo['notificationWorkAreaCustomerOrder']?.accessAddField"
+        name="dataModel.notificationWorkAreaCustomerOrder">
+        {{fieldsInfo['notificationWorkAreaCustomerOrder']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
 
     <hr>
     <p>{{'TITLE.Click_on_the_map_to_specify_the_location' | translate}}</p>

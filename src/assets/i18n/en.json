@@ -1170,6 +1170,7 @@
   "TITLE.Content_management": "Content management",
   "TITLE.Scan_the_barcode": "Scan the barcode",
   "TITLE.Enter_the_user_privacy_text": "Enter the user privacy text",
+  "TITLE.Enter_the_user_licenses_text":"Enter the user licenses text and html code",
   "TITLE.Alternative_classification_to_move_information_to_this_branch": "Alternative classification to move information to this branch",
   "TITLE.details": "Details",
   "TITLE.Create_a_site": "Create a site",

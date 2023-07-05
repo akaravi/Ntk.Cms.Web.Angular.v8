@@ -1181,6 +1181,7 @@
   "TITLE.Content_management": "مدیریت محتوای ",
   "TITLE.Scan_the_barcode": "باارکد را اسکن کنید",
   "TITLE.Enter_the_user_privacy_text": "متن حریم خصوصی کاربر را وارد کنید",
+  "TITLE.Enter_the_user_licenses_text": "عنوان ها و کد های لاینس های قانونی و نماد ها را وارد کنید",
   "TITLE.Alternative_classification_to_move_information_to_this_branch": "دسته بندی جایگزین جهت جابجایی اطلاعات به این  شاخه",
   "TITLE.details": "جزییات",
   "TITLE.Create_a_site": "ایجاد سایت",

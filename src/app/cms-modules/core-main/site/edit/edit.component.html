@@ -1061,6 +1061,14 @@
             [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
         </div>
         <div class="mb-12">
+          <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_licenses_text')"
+            [config]="publicHelper.editorConfigFull" id="main"
+            *ngIf="fieldsInfo['aboutUsLicensesHtmlBody']?.accessWatchField"
+            [disabled]="!fieldsInfo['aboutUsLicensesHtmlBody']?.accessEditField"
+            [(ngModel)]="dataModel.aboutUsLicensesHtmlBody" name="dataModel.aboutUsLicensesHtmlBody">
+          </angular-editor>
+        </div>
+        <div class="mb-12">
           <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')"
             [config]="publicHelper.editorConfigFull" id="main"
             *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField"
