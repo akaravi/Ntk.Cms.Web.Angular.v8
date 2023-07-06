@@ -43,24 +43,22 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = + Number(this.activatedRoute.snapshot.paramMap.get('Id'));
-    if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId > 0) {
-      this.requestId = this.tokenInfo.siteId;
-    }
     this.fileManagerTree = this.publicHelper.GetfileManagerTreeConfig();
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
-      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId > 0) {
-        this.requestId = this.tokenInfo.siteId;
+      if (this.requestId > 0) {
+        this.DataGetOne(this.requestId);
+      } else {
+        this.DataGetOne(this.tokenInfo.siteId);
       }
-      this.DataGetOne(this.requestId);
     });
-
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.tokenInfo = next;
-      if (this.requestId === 0 && this.tokenInfo && this.tokenInfo.siteId > 0) {
-        this.requestId = this.tokenInfo.siteId;
+      if (this.requestId > 0) {
+        this.DataGetOne(this.requestId);
+      } else {
+        this.DataGetOne(this.tokenInfo.siteId);
       }
-      this.DataGetOne(this.requestId);
     });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
