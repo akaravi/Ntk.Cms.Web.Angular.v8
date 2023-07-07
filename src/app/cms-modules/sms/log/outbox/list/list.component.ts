@@ -82,12 +82,11 @@ export class SmsLogOutBoxListComponent implements OnInit, OnDestroy {
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
     'Id',
-    'SendDate',
     'IsAccepted',
     'LinkPrivateConfigId',
     'Message',
-    'SendDate',
     'CreatedDate',
+    'SendDate',
     'UpdatedDate',
     'Action'
   ];
@@ -151,6 +150,7 @@ export class SmsLogOutBoxListComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
+
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new SmsLogOutBoxModel());
