@@ -816,9 +816,23 @@
                             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
                             <strong class="info-field-text">{{fieldsInfo['aboutUsLicensesHtmlBody']?.fieldDescription}}</strong>
                         </mat-hint>
-                        <mat-hint align="end">{{ aboutUsLicensesHtmlBody.value.length }} / 1000</mat-hint>
+                        <mat-hint align="end">{{ aboutUsLicensesHtmlBody.value.length }} / 10000</mat-hint>
                     </mat-form-field>
                 </div>
+                <div class="mb-12">
+                  <!-- aboutUsSupportHtmlBody Field -->
+                  <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['aboutUsSupportHtmlBody']?.accessWatchField">
+                    <mat-label>{{ fieldsInfo['aboutUsSupportHtmlBody']?.fieldTitle }}</mat-label>
+                      <textarea matInput [(ngModel)]="dataModel.aboutUsSupportHtmlBody" [disabled]="!fieldsInfo['aboutUsSupportHtmlBody']?.accessEditField" name="dataModel.aboutUsSupportHtmlBody" #aboutUsSupportHtmlBody type="text" placeholder="{{fieldsInfo['aboutUsSupportHtmlBody']?.fieldTitle}}" row="6" minlength="0"></textarea>
+                      <mat-icon matSuffix *ngIf="dataModel.aboutUsSupportHtmlBody && fieldsInfo['aboutUsSupportHtmlBody']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutUsSupportHtmlBody = ''">close</mat-icon>
+                      <mat-icon *ngIf="fieldsInfo['aboutUsSupportHtmlBody']?.accessEditField" matSuffix>mode_edit</mat-icon>
+                      <mat-hint align="start">
+                          <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                          <strong class="info-field-text">{{fieldsInfo['aboutUsSupportHtmlBody']?.fieldDescription}}</strong>
+                      </mat-hint>
+                      <mat-hint align="end">{{ aboutUsSupportHtmlBody.value.length }} / 10000</mat-hint>
+                  </mat-form-field>
+              </div>
                 <div class="mb-12">
                     <angular-editor [placeholder]="this.translate.instant('TITLE.Enter_the_user_privacy_text')" [config]="publicHelper.editorConfigFull" id="main" *ngIf="fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessWatchField" [disabled]="!fieldsInfo['aboutUsPrivacyPolicyHtmlBody']?.accessEditField" [(ngModel)]="dataModel.aboutUsPrivacyPolicyHtmlBody" name="dataModel.aboutUsPrivacyPolicyHtmlBody">
                     </angular-editor>

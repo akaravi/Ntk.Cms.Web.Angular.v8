@@ -1,1 +1,2 @@
 <router-outlet></router-outlet>
+<div *ngIf="dataSupportModelResult && dataSupportModelResult.isSuccess && dataSupportModelResult.item.supportHtmlBody?.length>0 " [innerHtml]="dataSupportModelResult.item.supportHtmlBody | safeHtml" runScripts></div>

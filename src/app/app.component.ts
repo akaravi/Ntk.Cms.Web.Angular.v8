@@ -7,13 +7,13 @@ import {
 //start change title when route happened
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { Subscription, filter, map } from 'rxjs';
 //end change title when route happened
 
 //import { TranslationService } from './modules/i18n';
 // language list
 import { HttpParams } from '@angular/common/http';
-import { CoreAuthService } from 'ntk-cms-api';
+import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, ErrorExceptionResult } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
@@ -24,8 +24,8 @@ import { TokenHelper } from './core/helpers/tokenHelper';
 // import { locale as frLang } from './modules/i18n/vocabs/fr';
 // import { locale as jpLang } from './modules/i18n/vocabs/jp';
 import { TranslateService } from '@ngx-translate/core';
-import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
 import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
+import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
     private titleService: Title,
     private translate: TranslateService,
     private coreAuthService: CoreAuthService,
-    //private translationService: TranslationService,
+    private coreSiteService: CoreSiteService,
     private modeService: ThemeModeService,
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
@@ -77,6 +77,9 @@ export class AppComponent implements OnInit {
       this.coreAuthService.setConfig(
         environment.cmsServerConfig.configApiServerPath
       );
+      this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+        this.getSupport();
+      });
     }
     // register translations
     // this.translationService.loadTranslations(
@@ -88,7 +91,8 @@ export class AppComponent implements OnInit {
     //   frLang
     // );
   }
-
+  cmsApiStoreSubscribe: Subscription;
+  dataSupportModelResult: ErrorExceptionResult<CoreSiteSupportModel>;
   ngOnInit() {
     this.modeService.init();
     const url = window.location.href;
@@ -119,6 +123,20 @@ export class AppComponent implements OnInit {
     this.tokenHelper.getDeviceToken();
     this.publicHelper.getEnumRecordStatus();
   }
+  getSupport() {
+    this.coreSiteService.ServiceSupportSite()
+      .subscribe({
+        next: (ret) => {
+          this.dataSupportModelResult = ret;
+
+
+        },
+        error: (er) => {
+
+        }
+      }
+      );
+  }
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (event?.key === 'F9') {
@@ -126,5 +144,8 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('KeyboardEventF9');
       else localStorage.setItem('KeyboardEventF9', 'F9');
     }
+  }
+  ngOnDestroy() {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
 }

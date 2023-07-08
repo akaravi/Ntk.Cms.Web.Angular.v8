@@ -2,7 +2,7 @@
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,9 +12,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter, MatNativeDateModule,
-  MatRippleModule, MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  MatRippleModule
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -76,11 +78,13 @@ import { CmsSearchListComponent } from './cms-search-list/cmsSearchList.componen
 import { CmsStatistListComponent } from './cms-statist-list/cmsStatistList.component';
 
 
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { CmsHtmlTreeActionDirective, CmsHtmlTreeBodyDirective, CmsHtmlTreeFooterDirective, CmsHtmlTreeHeaderDirective } from '../core/directive/cms-html-tree.directive';
 import { CmsRecordStatusSelfSaveDirective } from '../core/directive/cms-record-status-self-save.directive';
 import { DirDirective } from '../core/directive/dir.directive';
 import { MatInputCommifiedDirective } from '../core/directive/mat-input-commified.directive';
 import { PhoneDirective } from '../core/directive/phone.directive';
+import { RunScriptsDirective } from '../core/directive/runScripts.directive';
 import { SelfSaveDirective } from '../core/directive/self-save.directive';
 import { TooltipGuideDirective } from '../core/directive/tooltip-guide.directive';
 import { TooltipDirective } from '../core/directive/tooltip.directive';
@@ -106,6 +110,7 @@ import { RecordStatusCellClassPipe } from '../core/pipe/recordStatusCellClass.pi
 import { RecordStatusIconClassPipe } from '../core/pipe/recordStatusIconClass.pipe';
 import { ReplaceTextPipe } from '../core/pipe/repalaceTest.pip';
 import { SafePipe } from '../core/pipe/safe.pipe';
+import { SafeHtmlPipe } from '../core/pipe/safeHtml.pipe';
 import { ValueArrayPipe } from '../core/pipe/valueArray.pipe';
 import { Cms360ImageListComponent } from './cms-360-image-list/cms-360-image-list.component';
 import { Cms360TourListComponent } from './cms-360-tour-list/cms-360-tour-list.component';
@@ -153,7 +158,6 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from './material/mat
 import { OverlayService } from './overlay/overlay.service';
 import { PasswordStrengthComponent } from './password-strength/password-strength.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.component';
-import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 @NgModule({
   imports: [
@@ -220,6 +224,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     /** pipe */
     TruncatePipe,
     KeysPipe,
+    SafeHtmlPipe,
     EnumsPipe,
     CmsTitlePipe,
     CmsUserInfoPipe,
@@ -296,6 +301,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     TooltipDirective,
     DirDirective,
     PhoneDirective,
+    RunScriptsDirective,
     CmsHtmlTreeHeaderDirective,
     CmsHtmlTreeActionDirective,
     CmsHtmlTreeBodyDirective,
@@ -358,6 +364,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     FirstLetterPipe,
     SafePipe,
     KeysPipe,
+    SafeHtmlPipe,
     EnumsPipe,
     CmsTitlePipe,
     CmsUserInfoPipe,
@@ -431,6 +438,7 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     TooltipDirective,
     DirDirective,
     PhoneDirective,
+    RunScriptsDirective,
     CmsHtmlTreeHeaderDirective,
     CmsHtmlTreeActionDirective,
     CmsHtmlTreeBodyDirective,
