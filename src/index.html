@@ -2,48 +2,63 @@
 <html lang="en" dir="ltr" direction="ltr" style="direction: ltr">
 
 <head>
-  <meta charset="utf-8" />
-  <title>NTK Cms | مدیریت محتوا </title>
-  <base href="/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-  <!-- SPLASH SCREEN-->
-  <link rel="stylesheet" id="layout-styles-anchor" href="./assets/splash-screen.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#1976d2">
+    <meta charset="utf-8" />
+    <title>NTK Cms | مدیریت محتوا </title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <!-- SPLASH SCREEN-->
+    <link rel="stylesheet" id="layout-styles-anchor" href="./assets/splash-screen.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#1976d2">
 </head>
 
 <body root id="kt_body" class="mat-typography">
-  <!--begin::Theme mode setup on page load-->
-  <script>
-    if (document.documentElement) {
-      var defaultThemeMode = "system";
+    <!--begin::Theme mode setup on page load-->
+    <script>
+        if (document.documentElement) {
+            var defaultThemeMode = "system";
 
-      var hasKTName = document.body.hasAttribute("data-kt-name");
-      var lsKey = "kt_" + (hasKTName ? name + "_" : "") + "theme_mode_value"
-      var themeMode = localStorage.getItem(lsKey);
-      if (!themeMode) {
-        if (defaultThemeMode === "system") {
-          themeMode =
-            window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        } else {
-          themeMode = defaultThemeMode;
+            var hasKTName = document.body.hasAttribute("data-kt-name");
+            var lsKey = "kt_" + (hasKTName ? name + "_" : "") + "theme_mode_value"
+            var themeMode = localStorage.getItem(lsKey);
+            if (!themeMode) {
+                if (defaultThemeMode === "system") {
+                    themeMode =
+                        window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                } else {
+                    themeMode = defaultThemeMode;
+                }
+            }
+
+            document.documentElement.setAttribute("data-bs-theme", themeMode);
         }
-      }
+    </script>
+    <!--end::Theme mode setup on page load-->
+    <div id="splash-screen" class="splash-screen">
+        <img src="./assets/media/logos/logo-letter-5.png" alt="NTK Cms" />
+        <span>Loading ...</span>
+    </div>
+    <noscript>Please enable JavaScript to continue using this application.</noscript>
 
-      document.documentElement.setAttribute("data-bs-theme", themeMode);
-    }
-  </script>
-  <!--end::Theme mode setup on page load-->
-  <div id="splash-screen" class="splash-screen">
-    <img src="./assets/media/logos/logo-letter-5.png" alt="NTK Cms" />
-    <span>Loading ...</span>
-  </div>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
+    <script>
+        var LHC_API = LHC_API || {};
+        LHC_API.args = { mode: 'widget', lhc_base_url: '//live.ntk.ir/index.php/', wheight: 450, wwidth: 350, pheight: 520, pwidth: 500, leaveamessage: true, department: ["15"], check_messages: false, lang: 'per/', position_placement: 'bottom_left' };
+        (function() {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.setAttribute('crossorigin', 'anonymous');
+            po.async = true;
+            var date = new Date();
+            po.src = '//live.ntk.ir/design/defaulttheme/js/widgetv2/index.js?' + ("" + date.getFullYear() + date.getMonth() + date.getDate());
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    </script>
 </body>
 
 </html>
