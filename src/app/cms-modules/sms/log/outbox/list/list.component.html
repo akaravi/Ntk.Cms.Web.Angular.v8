@@ -108,8 +108,7 @@
       <ng-container matColumnDef="UpdatedDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}} </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngStyle]="{'direction':'ltr'}"> {{ publicHelper.LocaleDateTime(row.updatedDate)
-          }}
-          {{ publicHelper.getTime(row.updatedDate) }} </mat-cell>
+          }} </mat-cell>
       </ng-container>
 
       <!-- Action Column -->
