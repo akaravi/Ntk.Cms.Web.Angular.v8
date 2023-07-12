@@ -13,6 +13,8 @@ import { EstateCustomerOrderAddComponent } from './customer-order/add/add.compon
 import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
 import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
 import { EstateComponent } from './estate.component';
+import { EstateOverviewEventsComponent } from './overview/events/events.component';
+import { EstateOverviewSummaryComponent } from './overview/summary/summary.component';
 import { EstatePropertyAdsListComponent } from './property-ads/list/list.component';
 import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
 import { EstatePropertyCompanyAddComponent } from './property-company/add/add.component';
@@ -33,8 +35,6 @@ import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list
 import { EstatePropertyAddComponent } from './property/add/add.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyListComponent } from './property/list/list.component';
-import { EstateViewSummaryComponent } from './view/summary/summary.component';
-import { EstateViewEventsComponent } from './view/events/events.component';
 
 const routes: Routes = [
   {
@@ -54,13 +54,13 @@ const routes: Routes = [
       /* Config */
       /* View */
       {
-        path: 'view-events',
-        component: EstateViewEventsComponent,
+        path: 'overview-events',
+        component: EstateOverviewEventsComponent,
         data: { title: 'ROUTE.ESTATE.EVENTS' },
       },
       {
-        path: 'view-summary',
-        component: EstateViewSummaryComponent,
+        path: 'overview-summary',
+        component: EstateOverviewSummaryComponent,
         data: { title: 'ROUTE.ESTATE.SUMMARY' },
       },
       /* View */
@@ -415,4 +415,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class EstateRoutes {}
+export class EstateRoutes { }

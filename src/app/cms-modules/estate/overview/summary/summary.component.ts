@@ -15,10 +15,10 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
-  selector: 'app-estate-view-events',
-  templateUrl: './events.component.html'
+  selector: 'app-estate-overview-summary',
+  templateUrl: './summary.component.html'
 })
-export class EstateViewEventsComponent implements OnInit, OnDestroy {
+export class EstateOverviewSummaryComponent implements OnInit, OnDestroy {
   constructor(
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -43,6 +43,5 @@ export class EstateViewEventsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-
 
 }

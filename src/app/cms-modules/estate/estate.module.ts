@@ -177,6 +177,8 @@ import { EstatePropertyActionComponent } from './property/action/action.componen
 import { EstatePropertyQuickAddComponent } from './property/quick-add/quick-add.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
+import { EstateOverviewEventsComponent } from './overview/events/events.component';
+import { EstateOverviewSummaryComponent } from './overview/summary/summary.component';
 
 
 @NgModule({
@@ -190,6 +192,9 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     estatePropertyProjectInfoPipe,
     estatePropertyCompanyInfoPipe,
     estatePropertySupplierInfoPipe,
+    /* */
+    EstateOverviewEventsComponent,
+    EstateOverviewSummaryComponent,
     /* */
     EstatePropertyTypeLanduseAddComponent,
     EstatePropertyTypeLanduseEditComponent,
@@ -357,7 +362,6 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstateCustomerCategorySelectorComponent,
     EstateCustomerCategoryTreeComponent,
     /* */
-
   ],
   imports: [
     CommonModule,
@@ -366,7 +370,6 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-
     CurrencyMaskModule,
     MatIconModule,
     MatFormFieldModule,
@@ -377,7 +380,6 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     InlineSVGModule,
   ],
   providers: [
-
     CoreModuleService,
     FileCategoryService,
     CoreEnumService,

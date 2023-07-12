@@ -84,6 +84,13 @@
         <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
           translate}}</mat-error>
       </mat-form-field>
+      <button type="button" (click)="onActionNext()"    class="btn btn-light">
+        <i class="ft-x"></i>
+        < </button>
+          <button type="button" (click)="onActionPervious()"      class="btn btn-light">
+            <i class="ft-x"></i>
+            > </button>
+
       <br>
       <a href="javascript:void(0)" (click)="onActionbuttonInCheckingOnDateSearch()"
         class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>

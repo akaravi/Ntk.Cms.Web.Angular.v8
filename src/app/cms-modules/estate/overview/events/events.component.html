@@ -1,0 +1,27 @@
+<div class="alert alert-info">
+  <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
+  <mat-form-field appearance="fill">
+    <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
+    <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="{{'TITLE.Start_Date'| translate}}">
+      <input matEndDate formControlName="end" placeholder="{{'TITLE.Start_Date'| translate}}">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">{{'MESSAGE.InvalidStartDate'
+      | translate}}</mat-error>
+    <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
+      translate}}</mat-error>
+  </mat-form-field>
+  <button type="button" (click)="onActionNext()" class="btn btn-light">
+    <i class="ft-x"></i>
+    < </button>
+      <button type="button" (click)="onActionPervious()" class="btn btn-light">
+        <i class="ft-x"></i>
+        > </button>
+
+      <br>
+      <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()"
+        class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
+</div>

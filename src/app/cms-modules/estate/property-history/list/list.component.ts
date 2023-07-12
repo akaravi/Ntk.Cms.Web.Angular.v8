@@ -626,4 +626,27 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     if (this.searchInCheckingOnDay)
       this.DataGetAll();
   }
+  onActionNext() {
+    if (!this.checkingOnDayRange.controls.start?.value)
+      this.checkingOnDayRange.controls.start.setValue(new Date());
+    if (!this.checkingOnDayRange.controls.end?.value)
+      this.checkingOnDayRange.controls.end.setValue(new Date());
+    this.checkingOnDayRange.controls.start.setValue(this.addDays(this.checkingOnDayRange.controls.start.value, 1));
+    this.checkingOnDayRange.controls.end.setValue(this.addDays(this.checkingOnDayRange.controls.end.value, 1));
+  }
+  onActionPervious() {
+    if (!this.checkingOnDayRange.controls.start?.value)
+      this.checkingOnDayRange.controls.start.setValue(new Date());
+    if (!this.checkingOnDayRange.controls.end?.value)
+      this.checkingOnDayRange.controls.end.setValue(new Date());
+    this.checkingOnDayRange.controls.start.setValue(this.addDays(this.checkingOnDayRange.controls.start.value, -1));
+    this.checkingOnDayRange.controls.end.setValue(this.addDays(this.checkingOnDayRange.controls.end.value, -1));
+
+  }
+  addDays(date: Date, days: number): Date {
+    let result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  };
+
 }

@@ -2,30 +2,21 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
-  OnInit,
+  OnInit
 } from '@angular/core';
 //start change title when route happened
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Subscription, filter, map } from 'rxjs';
+import { filter, map, Subscription } from 'rxjs';
 //end change title when route happened
-
-//import { TranslationService } from './modules/i18n';
-// language list
 import { HttpParams } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, ErrorExceptionResult } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
-// import { locale as chLang } from './modules/i18n/vocabs/ch';
-// import { locale as deLang } from './modules/i18n/vocabs/de';
-// import { locale as enLang } from './modules/i18n/vocabs/en';
-// import { locale as esLang } from './modules/i18n/vocabs/es';
-// import { locale as frLang } from './modules/i18n/vocabs/fr';
-// import { locale as jpLang } from './modules/i18n/vocabs/jp';
-import { TranslateService } from '@ngx-translate/core';
-import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
+import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -67,9 +58,7 @@ export class AppComponent implements OnInit {
           this.titleService.setTitle(`${this.translate.instant(title)}`);
         } //set title that defines in routing's files
       });
-
     //end change title when route happened
-
     if (
       environment.cmsServerConfig.configApiServerPath &&
       environment.cmsServerConfig.configApiServerPath.length > 0
@@ -81,15 +70,6 @@ export class AppComponent implements OnInit {
         this.getSupport();
       });
     }
-    // register translations
-    // this.translationService.loadTranslations(
-    //   enLang,
-    //   chLang,
-    //   esLang,
-    //   jpLang,
-    //   deLang,
-    //   frLang
-    // );
   }
   cmsApiStoreSubscribe: Subscription;
   dataSupportModelResult: ErrorExceptionResult<CoreSiteSupportModel>;
@@ -119,7 +99,6 @@ export class AppComponent implements OnInit {
         localStorage.setItem('ResellerUserId', ResellerUser);
       }
     }
-
     this.tokenHelper.getDeviceToken();
     this.publicHelper.getEnumRecordStatus();
   }
@@ -128,8 +107,6 @@ export class AppComponent implements OnInit {
       .subscribe({
         next: (ret) => {
           this.dataSupportModelResult = ret;
-
-
         },
         error: (er) => {
 
