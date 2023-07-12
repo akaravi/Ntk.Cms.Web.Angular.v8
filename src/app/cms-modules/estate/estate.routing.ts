@@ -33,6 +33,8 @@ import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list
 import { EstatePropertyAddComponent } from './property/add/add.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyListComponent } from './property/list/list.component';
+import { EstateViewSummaryComponent } from './view/summary/summary.component';
+import { EstateViewEventsComponent } from './view/events/events.component';
 
 const routes: Routes = [
   {
@@ -50,6 +52,18 @@ const routes: Routes = [
         data: { title: 'ROUTE.ESTATE' },
       },
       /* Config */
+      /* View */
+      {
+        path: 'view-events',
+        component: EstateViewEventsComponent,
+        data: { title: 'ROUTE.ESTATE.EVENTS' },
+      },
+      {
+        path: 'view-summary',
+        component: EstateViewSummaryComponent,
+        data: { title: 'ROUTE.ESTATE.SUMMARY' },
+      },
+      /* View */
       {
         path: 'property',
         component: EstatePropertyListComponent,
