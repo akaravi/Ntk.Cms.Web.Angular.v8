@@ -360,23 +360,25 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
-      multiTemplateDataRows>
+    <mat-table class="ntk-cms-html-table" [dataSource]="tableSource" matSort #tableSort="matSort"
+      (matSortChange)="onTableSortData(tableSort)" multiTemplateDataRows>
 
       <!-- ID Column -->
       <ng-container matColumnDef="Id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['id']?.fieldTitle}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['id']?.fieldTitle}}
+        </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
       <!-- LinkSiteId Column -->
       <ng-container matColumnDef="LinkSiteId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['linkSiteId']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['linkSiteId']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.linkSiteId | cmssiteinfo |async}} </mat-cell>
       </ng-container>
       <!-- RecordStatus Column -->
       <ng-container matColumnDef="RecordStatus">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['recordStatus']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['recordStatus']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i
             [ngClass]="row.recordStatus|statusIconClass"></i>
@@ -388,7 +390,7 @@
       </ng-container>
       <!-- Title Column -->
       <ng-container matColumnDef="Title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['title']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
       </ng-container>
@@ -396,14 +398,15 @@
 
       <!-- CreatedDate Column -->
       <ng-container matColumnDef="CreatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['createdDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['createdDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           {{ publicHelper.LocaleDateTime(row.createdDate)}} </mat-cell>
       </ng-container>
       <!-- scoreRushToBuy Column -->
       <ng-container matColumnDef="scoreRushToBuy">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreRushToBuy']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scoreRushToBuy']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreRushToBuy">
           {{row.scoreRushToBuy}}
@@ -411,7 +414,8 @@
       </ng-container>
       <!-- scorePurchaseDecision Column -->
       <ng-container matColumnDef="scorePurchaseDecision">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scorePurchaseDecision']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scorePurchaseDecision']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scorePurchaseDecision">
           {{row.scorePurchaseDecision}}
@@ -419,7 +423,8 @@
       </ng-container>
       <!-- scoreLiquidityPower Column -->
       <ng-container matColumnDef="scoreLiquidityPower">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scoreLiquidityPower']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scoreLiquidityPower']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scoreLiquidityPower">
           {{row.scoreLiquidityPower}}
@@ -427,7 +432,8 @@
       </ng-container>
       <!-- scorePurchasingPower Column -->
       <ng-container matColumnDef="scorePurchasingPower">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['scorePurchasingPower']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label">
+          {{fieldsInfo['scorePurchasingPower']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngClass]="'score-'+row.scorePurchasingPower">
           {{row.scorePurchasingPower}}
@@ -435,20 +441,20 @@
       </ng-container>
       <!-- UpdatedDate Column -->
       <ng-container matColumnDef="UpdatedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['updatedDate']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['updatedDate']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{ publicHelper.LocaleDateTime(row.updatedDate) }}
         </mat-cell>
       </ng-container>
       <!-- CaseCode Column -->
       <ng-container matColumnDef="CaseCode">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['caseCode']?.fieldTitle}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{fieldsInfo['caseCode']?.fieldTitle}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.caseCode}} </mat-cell>
       </ng-container>
       <!-- Action Column -->
       <ng-container matColumnDef="Action">
-        <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="form-label"> {{'TITLE.OPTION' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let row" class=' Action'>
 
           <!-- Action Menu -->
@@ -482,7 +488,7 @@
       </ng-container>
       <!-- LinkTo Column -->
       <ng-container matColumnDef="LinkTo">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> {{'TITLE.LINKTO' | translate}}
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.LINKTO' | translate}}
         </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <button mat-icon-button (click)="onActionbuttonLinkTo(row)">

@@ -12,7 +12,7 @@
       </h6>
       <div>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.FIRSTNAME' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.FIRSTNAME' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.name" name="dataModel.name"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #Name type="text" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
@@ -27,7 +27,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.LASTNAME' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.LASTNAME' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.family" name="dataModel.family"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #Family type="text"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" autocomplete="off"
@@ -42,7 +42,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.email" name="dataModel.email"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #Email type="email" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
@@ -57,7 +57,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.MOBILE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.mobile" name="dataModel.mobile" class="input-Mobile"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #Mobile type="text" autocomplete="off"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
@@ -72,7 +72,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
           <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dataModel.password"
             name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password
             type="{{(PasswordView? 'text':'password')}}"
@@ -95,7 +95,7 @@
         <app-password-strength [passwordToCheck]="dataModel.password" (passwordStrength)="passwordValid($event)">
         </app-password-strength>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.CONFIRM_PASSWORD' | translate}}</mat-label>
           <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="RePasswordModel"
             name="RePasswordModel" [disabled]=" !formInfo.buttonSubmittedEnabled" #RePassword type="password"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
@@ -120,7 +120,7 @@
         <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
         <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
         <mat-form-field class="ntk-full-width">
-          <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+          <mat-label class="form-label"> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
             [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
             class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"

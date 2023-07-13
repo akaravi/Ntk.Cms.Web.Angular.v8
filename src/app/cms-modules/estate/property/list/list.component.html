@@ -408,8 +408,8 @@
   </ng-container>
   <ng-container cms-body>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-table [dataSource]="tableSource" matSort #tableSort="matSort" (matSortChange)="onTableSortData(tableSort)"
-      multiTemplateDataRows class="ntk-cms-html-table">
+    <mat-table class="ntk-cms-html-table" [dataSource]="tableSource" matSort #tableSort="matSort"
+      (matSortChange)="onTableSortData(tableSort)" multiTemplateDataRows>
       <!-- LinkMainImageIdSrc Column -->
       <ng-container matColumnDef="LinkMainImageIdSrc">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.PICTURE' | translate}}

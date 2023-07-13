@@ -12,7 +12,8 @@
         <!--end::Title-->
         <!--Email Field-->
         <mat-form-field class="ntk-full-width">
-            <mat-label> {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' | translate}}</mat-label>
+            <mat-label class="form-label"> {{'AUTH.INPUT.MOBILE' | translate}} / {{'AUTH.INPUT.EMAIL' |
+                translate}}</mat-label>
             <input matInput [(ngModel)]="dataModel.email" name="dataModel.email"
                 [disabled]=" !formInfo.buttonSubmittedEnabled" #Email type="text" autocomplete="off"
                 class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
@@ -28,7 +29,7 @@
 
         <!--Password Field-->
         <mat-form-field class="ntk-full-width">
-            <mat-label> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
+            <mat-label class="form-label"> {{'AUTH.INPUT.PASSWORD' | translate}}</mat-label>
             <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="dataModel.password"
                 name="dataModel.password" [disabled]=" !formInfo.buttonSubmittedEnabled" #Password type="password"
                 class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
@@ -48,7 +49,7 @@
             <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
             <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
             <mat-form-field class="ntk-full-width">
-                <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+                <mat-label class="form-label"> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
                 <input matInput [(ngModel)]="dataModel.captchaText" name="dataModel.captchaText"
                     [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number"
                     class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h4 input-ltr-center"
