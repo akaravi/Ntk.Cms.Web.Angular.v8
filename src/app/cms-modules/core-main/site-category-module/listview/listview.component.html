@@ -1,7 +1,7 @@
 <div class="example-container mat-elevation-z8">
   <app-progress-spinner [options]="loading">
   </app-progress-spinner>
-  <mat-table *ngIf="!loading.display" [dataSource]="tableSource" matSort #tableSort="matSort"
+  <mat-table *ngIf="!loading?.display" [dataSource]="tableSource" matSort #tableSort="matSort"
     (matSortChange)="onTableSortData(tableSort)">
 
 

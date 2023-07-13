@@ -1,71 +1,62 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
-  <div class="ntk-cms-html-card-body">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <!-- RecordStatus Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel"
-        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
-        <mat-option *ngFor="
+    <div class="ntk-cms-html-card-header">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.formTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+        <app-progress-spinner [options]="loading"> </app-progress-spinner>
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+                <mat-option *ngFor="
                     let item of dataModelEnumRecordStatusResult.listItems;
                     index as i
                   " [value]="item.value">{{ item.description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="RecordStatus.errors?.required">
-        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+            </mat-select>
+            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+            <mat-error *ngIf="RecordStatus.errors?.required">
+                RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
 
-    <!-- LinkUserClaimGroupId Field -->
-    <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)" [(optionLoading)]="loading"
-      [optionSelectForce]="this.dataModel.linkUserClaimGroupId"
-      [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_GROUP')"
-      [optionDisabled]="!fieldsInfo['linkUserClaimGroupId']?.accessEditField">
-    </app-core-userclaimgroup-selector>
+        <!-- LinkUserClaimGroupId Field -->
+        <app-core-userclaimgroup-selector (optionChange)="onActionSelectClaimGroup($event)" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkUserClaimGroupId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_GROUP')" [optionDisabled]="!fieldsInfo['linkUserClaimGroupId']?.accessEditField">
+        </app-core-userclaimgroup-selector>
 
-    <!-- LinkUserClaimTypeId Field -->
-    <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" [(optionLoading)]="loading"
-      [optionSelectForce]="this.dataModel.linkUserClaimTypeId"
-      [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')"
-      [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessEditField">
-    </app-core-userclaimtype-selector>
+        <!-- LinkUserClaimTypeId Field -->
+        <app-core-userclaimtype-selector (optionChange)="onActionSelectClaimType($event)" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkUserClaimTypeId" [optionPlaceholder]="this.translate.instant('TITLE.DOCUMENT_CATEGORY')" [optionDisabled]="!fieldsInfo['linkUserClaimTypeId']?.accessEditField">
+        </app-core-userclaimtype-selector>
 
 
-    <!-- IsRequired Field -->
-    <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.isRequired" *ngIf="fieldsInfo['isRequired']?.accessWatchField"
-        [disabled]="!fieldsInfo['isRequired']?.accessEditField" name="dataModel.isRequired">
-        {{fieldsInfo['isRequired']?.fieldTitle}}
-      </mat-slide-toggle>
+        <!-- IsRequired Field -->
+        <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.isRequired" *ngIf="fieldsInfo['isRequired']?.accessWatchField" [disabled]="!fieldsInfo['isRequired']?.accessEditField" name="dataModel.isRequired">
+                {{fieldsInfo['isRequired']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </div>
-  <div class="ntk-cms-html-card-message">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.formError }}
-      </small>
+    <div class="ntk-cms-html-card-message">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+        <div class="form-actions">
+            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+            <small class="form-text text-muted danger">{{ formInfo.formError }}
+            </small>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </div>
-  <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-      <button type="button" (click)="onFormCancel()" class="btn btn-light">
-        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-      </button>
-      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-      </button>
+    <div class="ntk-cms-html-card-footer">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+        <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+            <button type="button" (click)="onFormCancel()" class="btn btn-light">
+                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+            </button>
+            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+                <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+            </button>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </div>
 </form>

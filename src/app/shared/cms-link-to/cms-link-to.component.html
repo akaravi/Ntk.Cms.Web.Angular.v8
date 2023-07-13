@@ -107,10 +107,10 @@
                                     <strong class="info-field-text">{{'TITLE.You_can_separate_the_number_of_the_recipient_of_the_message_with_an_inter'
                                         | translate}}</strong>
                                 </mat-hint>
-                      
+
                             </mat-form-field>
                         </div>
-                        <div class="row" *ngIf="formInfo.formSubmitAllow  && !loading.display" style="height:140px;bottom: 4vh;justify-content: center;">
+                        <div class="row" *ngIf="formInfo.formSubmitAllow  && !loading?.display" style="height:140px;bottom: 4vh;justify-content: center;">
                             <app-progress-spinner [options]="loadingAction"> </app-progress-spinner>
                             <button type="submit" (click)="onFormSubmit()" class="message-box-button" [disabled]="!vform.valid" *ngIf="!this.loading.display">
                                 <i class="fa fa-check-square-o"></i>

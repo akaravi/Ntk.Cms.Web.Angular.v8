@@ -1,187 +1,155 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
-  <div class="ntk-cms-html-card-body">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <div class="ntk-cms-html-card-header">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.formTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+        <app-progress-spinner [options]="loading"> </app-progress-spinner>
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
-    <!-- RecordStatus Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel"
-        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
-        <mat-option *ngFor="
+        <!-- RecordStatus Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+                <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="RecordStatus.errors?.required">
-        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- LinkMemberId Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberId"
-        name="dataModel.linkMemberId" #LinkMemberId="ngModel" panelClass="LinkMemberId-{{ dataModel.linkMemberId }}"
-        required>
-        <mat-option *ngFor="
+            </mat-select>
+            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+            <mat-error *ngIf="RecordStatus.errors?.required">
+                RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <!-- LinkMemberId Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.linkMemberId" name="dataModel.linkMemberId" #LinkMemberId="ngModel" panelClass="LinkMemberId-{{ dataModel.linkMemberId }}" required>
+                <mat-option *ngFor="
                 let item of dataModelEnumManageUserAccessUserTypesResult.listItems;
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="LinkMemberId.errors?.required">
-        LinkMemberId is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- UserAccessAreaType Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType"
-        name="dataModel.userAccessAreaType" #UserAccessAreaType="ngModel"
-        panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
-        <mat-option *ngFor="
+            </mat-select>
+            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+            <mat-error *ngIf="LinkMemberId.errors?.required">
+                LinkMemberId is <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <!-- UserAccessAreaType Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-select placeholder="{{'TITLE.Status' | translate}}" [(ngModel)]="dataModel.userAccessAreaType" name="dataModel.userAccessAreaType" #UserAccessAreaType="ngModel" panelClass="UserAccessAreaType-{{ dataModel.userAccessAreaType }}" required>
+                <mat-option *ngFor="
                   let item of dataModelEnumManageUserAccessAreaTypesResult.listItems;
                   index as i
                 " [value]="item.value">{{ item.description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="UserAccessAreaType.errors?.required">
-        UserAccessAreaType is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
-    <!-- LinkSiteId Field -->
-    <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false"
-      [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkSiteId"
-      [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
+            </mat-select>
+            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+            <mat-error *ngIf="UserAccessAreaType.errors?.required">
+                UserAccessAreaType is <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+        <!-- LinkSiteId Field -->
+        <app-cms-site-selector (optionChange)="onActionSiteSelect($event)" [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-cms-site-selector>
 
-    <!-- LinkUserId Field -->
-    <app-cms-user-selector (optionChange)="onActionUserSelect($event)" [optionDisabled]="false"
-      [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkUserId"
-      [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
-    <!-- LinkMemberId Field -->
-    <app-cms-member-selector (optionChange)="onActionMemberSelect($event)" [optionDisabled]="false"
-      [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkMemberId"
-      [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
-    <!-- UserAccessAdminAllowToAllData Field -->
-    <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToAllData"
-        *ngIf="fieldsInfo['userAccessAdminAllowToAllData']?.accessWatchField"
-        [disabled]="!fieldsInfo['userAccessAdminAllowToAllData']?.accessEditField"
-        name="dataModel.userAccessAdminAllowToAllData">
-        {{fieldsInfo['userAccessAdminAllowToAllData']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <!-- LinkUserId Field -->
-    <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToProfessionalData"
-        *ngIf="fieldsInfo['userAccessAdminAllowToProfessionalData']?.accessWatchField"
-        [disabled]="!fieldsInfo['userAccessAdminAllowToProfessionalData']?.accessEditField"
-        name="dataModel.userAccessAdminAllowToProfessionalData">
-        {{fieldsInfo['userAccessAdminAllowToProfessionalData']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <!-- RememberOnDevice Field -->
-    <div class="ntk-full-width">
-      <mat-slide-toggle [(ngModel)]="dataModel.rememberOnDevice"
-        *ngIf="fieldsInfo['rememberOnDevice']?.accessWatchField"
-        [disabled]="!fieldsInfo['rememberOnDevice']?.accessEditField" name="dataModel.rememberOnDevice">
-        {{fieldsInfo['rememberOnDevice']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+        <!-- LinkUserId Field -->
+        <app-cms-user-selector (optionChange)="onActionUserSelect($event)" [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+        <!-- LinkMemberId Field -->
+        <app-cms-member-selector (optionChange)="onActionMemberSelect($event)" [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkMemberId" [optionPlaceholder]="this.translate.instant('TITLE.Member')"></app-cms-member-selector>
+        <!-- UserAccessAdminAllowToAllData Field -->
+        <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToAllData" *ngIf="fieldsInfo['userAccessAdminAllowToAllData']?.accessWatchField" [disabled]="!fieldsInfo['userAccessAdminAllowToAllData']?.accessEditField" name="dataModel.userAccessAdminAllowToAllData">
+                {{fieldsInfo['userAccessAdminAllowToAllData']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <!-- LinkUserId Field -->
+        <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.userAccessAdminAllowToProfessionalData" *ngIf="fieldsInfo['userAccessAdminAllowToProfessionalData']?.accessWatchField" [disabled]="!fieldsInfo['userAccessAdminAllowToProfessionalData']?.accessEditField" name="dataModel.userAccessAdminAllowToProfessionalData">
+                {{fieldsInfo['userAccessAdminAllowToProfessionalData']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <!-- RememberOnDevice Field -->
+        <div class="ntk-full-width">
+            <mat-slide-toggle [(ngModel)]="dataModel.rememberOnDevice" *ngIf="fieldsInfo['rememberOnDevice']?.accessWatchField" [disabled]="!fieldsInfo['rememberOnDevice']?.accessEditField" name="dataModel.rememberOnDevice">
+                {{fieldsInfo['rememberOnDevice']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
 
-    <!-- BrowserLanguage Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>BrowserLanguage</mat-label>
-      <input matInput [(ngModel)]="dataModel.browserLanguage" name="dataModel.browserLanguage" #BrowserLanguage
-        type="text" placeholder="BrowserLanguage" />
-      <mat-icon matSuffix *ngIf="dataModel.browserLanguage" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.browserLanguage = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <!-- UserLanguage Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>UserLanguage</mat-label>
-      <input matInput [(ngModel)]="dataModel.userLanguage" name="dataModel.userLanguage" #UserLanguage type="text"
-        placeholder="UserLanguage" />
-      <mat-icon matSuffix *ngIf="dataModel.userLanguage" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.userLanguage = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <!-- DeviceClientMAC Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>DeviceClientMAC</mat-label>
-      <input matInput [(ngModel)]="dataModel.deviceClientMAC" name="dataModel.deviceClientMAC" #DeviceClientMAC
-        type="text" placeholder="DeviceClientMAC" />
-      <mat-icon matSuffix *ngIf="dataModel.deviceClientMAC" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.deviceClientMAC = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <!-- Token Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>Token</mat-label>
-      <input matInput [(ngModel)]="dataModel.token" name="dataModel.token" #Token type="text" placeholder="Token" />
-      <mat-icon matSuffix *ngIf="dataModel.token" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.token = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <!-- LinkDeviceId Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>LinkDeviceId</mat-label>
-      <input matInput [(ngModel)]="dataModel.linkDeviceId" name="dataModel.linkDeviceId" #LinkDeviceId type="text"
-        placeholder="LinkDeviceId" />
-      <mat-icon matSuffix *ngIf="dataModel.linkDeviceId" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.linkDeviceId = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
+        <!-- BrowserLanguage Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>BrowserLanguage</mat-label>
+            <input matInput [(ngModel)]="dataModel.browserLanguage" name="dataModel.browserLanguage" #BrowserLanguage type="text" placeholder="BrowserLanguage" />
+            <mat-icon matSuffix *ngIf="dataModel.browserLanguage" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.browserLanguage = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- UserLanguage Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>UserLanguage</mat-label>
+            <input matInput [(ngModel)]="dataModel.userLanguage" name="dataModel.userLanguage" #UserLanguage type="text" placeholder="UserLanguage" />
+            <mat-icon matSuffix *ngIf="dataModel.userLanguage" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.userLanguage = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- DeviceClientMAC Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>DeviceClientMAC</mat-label>
+            <input matInput [(ngModel)]="dataModel.deviceClientMAC" name="dataModel.deviceClientMAC" #DeviceClientMAC type="text" placeholder="DeviceClientMAC" />
+            <mat-icon matSuffix *ngIf="dataModel.deviceClientMAC" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.deviceClientMAC = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- Token Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>Token</mat-label>
+            <input matInput [(ngModel)]="dataModel.token" name="dataModel.token" #Token type="text" placeholder="Token" />
+            <mat-icon matSuffix *ngIf="dataModel.token" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.token = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <!-- LinkDeviceId Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>LinkDeviceId</mat-label>
+            <input matInput [(ngModel)]="dataModel.linkDeviceId" name="dataModel.linkDeviceId" #LinkDeviceId type="text" placeholder="LinkDeviceId" />
+            <mat-icon matSuffix *ngIf="dataModel.linkDeviceId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkDeviceId = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-    <!-- LinkApplicationId Field -->
-    <mat-form-field class="ntk-full-width">
-      <mat-label>LinkApplicationId</mat-label>
-      <input matInput [(ngModel)]="dataModel.linkApplicationId" name="dataModel.linkApplicationId" #LinkApplicationId
-        type="text" placeholder="LinkApplicationId" />
-      <mat-icon matSuffix *ngIf="dataModel.linkApplicationId" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.linkApplicationId = null">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
+        <!-- LinkApplicationId Field -->
+        <mat-form-field class="ntk-full-width">
+            <mat-label>LinkApplicationId</mat-label>
+            <input matInput [(ngModel)]="dataModel.linkApplicationId" name="dataModel.linkApplicationId" #LinkApplicationId type="text" placeholder="LinkApplicationId" />
+            <mat-icon matSuffix *ngIf="dataModel.linkApplicationId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkApplicationId = null">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
 
-    <!-- tokenExpireDate Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['tokenExpireDate']?.accessWatchField">
-      <mat-label>{{fieldsInfo['tokenExpireDate']?.fieldTitle}}</mat-label>
-      <input matInput [matDatepicker]="tokenExpireDate" [(ngModel)]="dataModel.tokenExpireDate" name="dataModel.tokenExpireDate" />
-      <mat-icon matSuffix *ngIf="dataModel.tokenExpireDate && fieldsInfo['tokenExpireDate']?.accessEditField" matSuffix
-        mat-icon-button aria-label="Clear" (click)="dataModel.tokenExpireDate = null">close</mat-icon>
-      <mat-datepicker-toggle matSuffix [for]="tokenExpireDate"></mat-datepicker-toggle>
-      <mat-datepicker touchUi #tokenExpireDate></mat-datepicker>
-    </mat-form-field>
+        <!-- tokenExpireDate Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['tokenExpireDate']?.accessWatchField">
+            <mat-label>{{fieldsInfo['tokenExpireDate']?.fieldTitle}}</mat-label>
+            <input matInput [matDatepicker]="tokenExpireDate" [(ngModel)]="dataModel.tokenExpireDate" name="dataModel.tokenExpireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.tokenExpireDate && fieldsInfo['tokenExpireDate']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.tokenExpireDate = null">close</mat-icon>
+            <mat-datepicker-toggle matSuffix [for]="tokenExpireDate"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #tokenExpireDate></mat-datepicker>
+        </mat-form-field>
 
-    <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-      <div [innerHTML]="dataModel | prettyjson"></div>
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+            <div [innerHTML]="dataModel | prettyjson"></div>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </div>
-  <div class="ntk-cms-html-card-message">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.formError }}
-      </small>
+    <div class="ntk-cms-html-card-message">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+        <div class="form-actions">
+            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+            <small class="form-text text-muted danger">{{ formInfo.formError }}
+            </small>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </div>
-  <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-      <button type="button" (click)="onFormCancel()" class="btn btn-light">
-        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-      </button>
-      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-      </button>
+    <div class="ntk-cms-html-card-footer">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+        <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+            <button type="button" (click)="onFormCancel()" class="btn btn-light">
+                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+            </button>
+            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+                <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+            </button>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </div>
 </form>

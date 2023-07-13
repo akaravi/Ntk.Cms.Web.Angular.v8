@@ -1,76 +1,74 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
-  <div class="ntk-cms-html-card-body">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+    <div class="ntk-cms-html-card-header">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.formTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+        <app-progress-spinner [options]="loading"> </app-progress-spinner>
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+        <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
 
-      <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
+            <mat-step label="{{'TITLE.REQUIRED_INFORMATION' | translate}}" state="main">
 
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
-          <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-            [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus"
-            #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
-            <mat-option *ngFor="
+                <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
+                    <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+                        <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
               " [value]="item.value">{{ item.description }}</mat-option>
-          </mat-select>
-          <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
-          <mat-error *ngIf="RecordStatus.errors?.required">
-            {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
+                    </mat-select>
+                    <mat-hint align="end">{{ 'Application.source.recordStatus_hint' | translate }}</mat-hint>
+                    <mat-error *ngIf="RecordStatus.errors?.required">
+                        {{ fieldsInfo['recordStatus']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
 
 
 
 
 
 
-        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-          <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
-          </button>
-          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-            {{'ACTION.NEXT' | translate}}
-          </button>
-        </div>
-      </mat-step>
+                <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+                    <button type="button" mat-raised-button (click)="onActionBackToParent()">
+                        {{'ACTION.BACK' | translate}}
+                    </button>
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+                        {{'ACTION.NEXT' | translate}}
+                    </button>
+                </div>
+            </mat-step>
 
-      <mat-step label="{{'ACTION.ABOUT' | translate}}" state="seo">
-        <p>{{'TITLE.Content_Of_The_About_Us_App' | translate}} </p>
-
-
-
-
-        <div *ngIf="formInfo.formSubmitAllow  && !loading.display" class="ntk-button-row">
-          <button type="button" mat-raised-button color="accent" matStepperPrevious>
-            {{'ACTION.BEFOR' | translate}}
-          </button>
-          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-            {{'ACTION.SAVE' | translate}}
-          </button>
-        </div>
-      </mat-step>
+            <mat-step label="{{'ACTION.ABOUT' | translate}}" state="seo">
+                <p>{{'TITLE.Content_Of_The_About_Us_App' | translate}} </p>
 
 
 
-    </mat-horizontal-stepper>
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </div>
-  <div class="ntk-cms-html-card-message">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+                <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+                    <button type="button" mat-raised-button color="accent" matStepperPrevious>
+                        {{'ACTION.BEFOR' | translate}}
+                    </button>
+                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+                        {{'ACTION.SAVE' | translate}}
+                    </button>
+                </div>
+            </mat-step>
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </div>
-  <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </div>
+
+        </mat-horizontal-stepper>
+
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    </div>
+    <div class="ntk-cms-html-card-message">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    </div>
+    <div class="ntk-cms-html-card-footer">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
 </form>

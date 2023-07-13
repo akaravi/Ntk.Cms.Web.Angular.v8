@@ -1,45 +1,44 @@
 <h2 mat-dialog-title>{{ formInfo.formTitle }}</h2>
 <mat-dialog-content>
 
-  <app-cms-bankpayment-grid [optionloading]="loading" [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
-  </app-cms-bankpayment-grid>
-  <div *ngIf="viewCalculate">
-    <div *ngIf="dataModelCalculateResult.item?.feeTax>0">
-      {{ 'TITLE.FEETAX'|translate }}:
-      {{dataModelCalculateResult.item?.feeTax|currency:' '+dataModelCalculateResult.item?.currency+' '}}
-  </div>
-  <br>
-  <div *ngIf="dataModelCalculateResult.item?.amountPure>0">
-      {{ 'TITLE.Amount_pure'|translate }}:
-      {{dataModelCalculateResult.item?.amountPure|currency:' '+dataModelCalculateResult.item?.currency+' '}}
-  </div>
-  <br>
-  <div *ngIf="dataModelCalculateResult.item?.feeTransport>0">
-      {{ 'TITLE.Fee_transport'|translate }}:
-      {{dataModelCalculateResult.item?.feeTransport|currency:' '+dataModelCalculateResult.item?.currency+' '}}
-  </div>
-  <hr>
-  <div *ngIf="dataModelCalculateResult.item?.amount>0">
-      {{ 'TITLE.Final_Amount'|translate }}:
-      {{dataModelCalculateResult.item?.amount|currency:' '+dataModelCalculateResult.item?.currency+' '}}
-  </div>
-  </div>
+    <app-cms-bankpayment-grid [optionloading]="loading" [optionMasterItem]="requestBankPrivateMaster" (optionChange)="onActionSelectCalculate($event)">
+    </app-cms-bankpayment-grid>
+    <div *ngIf="viewCalculate">
+        <div *ngIf="dataModelCalculateResult.item?.feeTax>0">
+            {{ 'TITLE.FEETAX'|translate }}:
+            {{dataModelCalculateResult.item?.feeTax|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+        </div>
+        <br>
+        <div *ngIf="dataModelCalculateResult.item?.amountPure>0">
+            {{ 'TITLE.Amount_pure'|translate }}:
+            {{dataModelCalculateResult.item?.amountPure|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+        </div>
+        <br>
+        <div *ngIf="dataModelCalculateResult.item?.feeTransport>0">
+            {{ 'TITLE.Fee_transport'|translate }}:
+            {{dataModelCalculateResult.item?.feeTransport|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+        </div>
+        <hr>
+        <div *ngIf="dataModelCalculateResult.item?.amount>0">
+            {{ 'TITLE.Final_Amount'|translate }}:
+            {{dataModelCalculateResult.item?.amount|currency:' '+dataModelCalculateResult.item?.currency+' '}}
+        </div>
+    </div>
 
 </mat-dialog-content>
 <mat-dialog-actions style="text-align: left;">
-  <div class="form-actions">
-    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-    <small class="form-text text-muted danger">{{ formInfo.formError }}
-    </small>
-  </div>
-  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-    <button type="button" (click)="onFormCancel()" class="btn btn-light">
-      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-    </button>
+    <div class="form-actions">
+        <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+        <small class="form-text text-muted danger">{{ formInfo.formError }}
+        </small>
+    </div>
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+        <button type="button" (click)="onFormCancel()" class="btn btn-light">
+            <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+        </button>
 
-    <button type="submit" (click)="onActionSelectBankPayment()" class="btn btn-raised btn-primary"
-      [disabled]="!viewCalculate">
-      <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
-    </button>
-  </div>
+        <button type="submit" (click)="onActionSelectBankPayment()" class="btn btn-raised btn-primary" [disabled]="!viewCalculate">
+            <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
+        </button>
+    </div>
 </mat-dialog-actions>

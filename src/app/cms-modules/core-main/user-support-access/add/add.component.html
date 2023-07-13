@@ -1,217 +1,178 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-  <div class="ntk-cms-html-card-header">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    {{ formInfo.formTitle }}
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-  </div>
-  <div class="ntk-cms-html-card-body">
-    <app-progress-spinner [options]="loading"> </app-progress-spinner>
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    <mat-form-field class="ntk-full-width">
-      <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
-        name="dataModel.recordStatus" #RecordStatus="ngModel"
-        ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
-        <mat-option *ngFor="
+    <div class="ntk-cms-html-card-header">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+        {{ formInfo.formTitle }}
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    </div>
+    <div class="ntk-cms-html-card-body">
+        <app-progress-spinner [options]="loading"> </app-progress-spinner>
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+        <mat-form-field class="ntk-full-width">
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+                <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
             " [value]="item.value">{{ item.description }}</mat-option>
-      </mat-select>
-      <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
-      <mat-error *ngIf="RecordStatus.errors?.required">
-        RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+            </mat-select>
+            <mat-hint align="end">{{'TITLE.SELECT_STATUS' | translate}}</mat-hint>
+            <mat-error *ngIf="RecordStatus.errors?.required">
+                RecordStatus is <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
 
-    <!-- LinkSiteId Field -->
-    <app-cms-site-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(optionLoading)]="loading"
-      [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
-    </app-cms-site-selector>
+        <!-- LinkSiteId Field -->
+        <app-cms-site-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
+        </app-cms-site-selector>
 
-    <!-- LinkUserId Field -->
-    <app-cms-user-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(optionLoading)]="loading"
-      [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
-    </app-cms-user-selector>
+        <!-- LinkUserId Field -->
+        <app-cms-user-selector [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        </app-cms-user-selector>
 
-    <!-- module-entity Field -->
-    <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)"
-      [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(optionLoading)]="loading"
-      [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
-    </app-core-module-entity-selector>
+        <!-- module-entity Field -->
+        <app-core-module-entity-selector (optionChange)="onActionSelectorModuleEntitySelect($event)" [optionDisabled]="!fieldsInfo['moduleName']?.accessAddField" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
+        </app-core-module-entity-selector>
 
 
-    <!-- moduleName Field -->
-    <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleName']?.accessWatchField">
-      <mat-label>{{fieldsInfo['moduleName']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
-        disabled="{{!fieldsInfo['moduleName']?.accessAddField}}" placeholder="{{fieldsInfo['moduleName']?.fieldTitle}}"
-        minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.moduleName = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">
-        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleName']?.fieldDescription}}</strong>
-      </mat-hint>
-      <mat-hint align="end">{{ ModuleName.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="ModuleName.errors?.required">
-        {{fieldsInfo['moduleName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+        <!-- moduleName Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleName']?.accessWatchField">
+            <mat-label>{{fieldsInfo['moduleName']?.fieldTitle}}</mat-label>
+            <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text" disabled="{{!fieldsInfo['moduleName']?.accessAddField}}" placeholder="{{fieldsInfo['moduleName']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.moduleName = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+                <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                <strong class="info-field-text">{{fieldsInfo['moduleName']?.fieldDescription}}</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ ModuleName.value.length }} / 100</mat-hint>
+            <mat-error *ngIf="ModuleName.errors?.required">
+                {{fieldsInfo['moduleName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
 
 
 
-    <!-- moduleEntityName Field -->
-    <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleEntityName']?.accessWatchField">
-      <mat-label>{{fieldsInfo['moduleEntityName']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
-        type="text" disabled="{{!fieldsInfo['moduleEntityName']?.accessAddField}}"
-        placeholder="{{fieldsInfo['moduleEntityName']?.fieldTitle}}" minlength="3" maxlength="100" required />
-      <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
-        (click)="dataModel.moduleEntityName = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
-      <mat-hint align="start">
-        <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-        <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.fieldDescription}}</strong>
-      </mat-hint>
-      <mat-hint align="end">{{ ModuleEntityName.value.length }} / 100</mat-hint>
-      <mat-error *ngIf="ModuleEntityName.errors?.required">
-        {{fieldsInfo['moduleEntityName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
-      </mat-error>
-    </mat-form-field>
+        <!-- moduleEntityName Field -->
+        <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['moduleEntityName']?.accessWatchField">
+            <mat-label>{{fieldsInfo['moduleEntityName']?.fieldTitle}}</mat-label>
+            <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName type="text" disabled="{{!fieldsInfo['moduleEntityName']?.accessAddField}}" placeholder="{{fieldsInfo['moduleEntityName']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.moduleEntityName = ''">close</mat-icon>
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="start">
+                <mat-icon matSuffix class="info-field-icon">info</mat-icon>
+                <strong class="info-field-text">{{fieldsInfo['moduleEntityName']?.fieldDescription}}</strong>
+            </mat-hint>
+            <mat-hint align="end">{{ ModuleEntityName.value.length }} / 100</mat-hint>
+            <mat-error *ngIf="ModuleEntityName.errors?.required">
+                {{fieldsInfo['moduleEntityName']?.fieldTitle}} <strong>{{'MESSAGE.required' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
 
-    <hr>
-    <div class="ntk-full-width">
-      <!-- accessDeleteRow Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessDeleteRow" *ngIf="fieldsInfo['accessDeleteRow']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessDeleteRow']?.accessAddField" name="dataModel.accessDeleteRow">
-        {{fieldsInfo['accessDeleteRow']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessWatchRow Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRow" *ngIf="fieldsInfo['accessWatchRow']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessWatchRow']?.accessAddField" name="dataModel.accessWatchRow">
-        {{fieldsInfo['accessWatchRow']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessCountRow Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessCountRow" *ngIf="fieldsInfo['accessCountRow']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessCountRow']?.accessAddField" name="dataModel.accessCountRow">
-        {{fieldsInfo['accessCountRow']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessEditRow Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessEditRow" *ngIf="fieldsInfo['accessEditRow']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessEditRow']?.accessAddField" name="dataModel.accessEditRow">
-        {{fieldsInfo['accessEditRow']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessAddRow Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessAddRow" *ngIf="fieldsInfo['accessAddRow']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessAddRow']?.accessAddField" name="dataModel.accessAddRow">
-        {{fieldsInfo['accessAddRow']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessExportFile Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessExportFile"
-        *ngIf="fieldsInfo['accessExportFile']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessExportFile']?.accessAddField" name="dataModel.accessExportFile">
-        {{fieldsInfo['accessExportFile']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+        <hr>
+        <div class="ntk-full-width">
+            <!-- accessDeleteRow Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessDeleteRow" *ngIf="fieldsInfo['accessDeleteRow']?.accessWatchField" [disabled]="!fieldsInfo['accessDeleteRow']?.accessAddField" name="dataModel.accessDeleteRow">
+                {{fieldsInfo['accessDeleteRow']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessWatchRow Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRow" *ngIf="fieldsInfo['accessWatchRow']?.accessWatchField" [disabled]="!fieldsInfo['accessWatchRow']?.accessAddField" name="dataModel.accessWatchRow">
+                {{fieldsInfo['accessWatchRow']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessCountRow Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessCountRow" *ngIf="fieldsInfo['accessCountRow']?.accessWatchField" [disabled]="!fieldsInfo['accessCountRow']?.accessAddField" name="dataModel.accessCountRow">
+                {{fieldsInfo['accessCountRow']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessEditRow Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessEditRow" *ngIf="fieldsInfo['accessEditRow']?.accessWatchField" [disabled]="!fieldsInfo['accessEditRow']?.accessAddField" name="dataModel.accessEditRow">
+                {{fieldsInfo['accessEditRow']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessAddRow Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessAddRow" *ngIf="fieldsInfo['accessAddRow']?.accessWatchField" [disabled]="!fieldsInfo['accessAddRow']?.accessAddField" name="dataModel.accessAddRow">
+                {{fieldsInfo['accessAddRow']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessExportFile Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessExportFile" *ngIf="fieldsInfo['accessExportFile']?.accessWatchField" [disabled]="!fieldsInfo['accessExportFile']?.accessAddField" name="dataModel.accessExportFile">
+                {{fieldsInfo['accessExportFile']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
 
-    <div class="ntk-full-width">
-      <!-- accessWatchRowOtherSiteId Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherSiteId"
-        *ngIf="fieldsInfo['accessWatchRowOtherSiteId']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessWatchRowOtherSiteId']?.accessAddField"
-        name="dataModel.accessWatchRowOtherSiteId">
-        {{fieldsInfo['accessWatchRowOtherSiteId']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessWatchRowOtherCreatedBy Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherCreatedBy"
-        *ngIf="fieldsInfo['accessWatchRowOtherCreatedBy']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessWatchRowOtherCreatedBy']?.accessAddField"
-        name="dataModel.accessWatchRowOtherCreatedBy">
-        {{fieldsInfo['accessWatchRowOtherCreatedBy']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessCountRowOtherSiteId Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessCountRowOtherSiteId"
-        *ngIf="fieldsInfo['accessCountRowOtherSiteId']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessCountRowOtherSiteId']?.accessAddField"
-        name="dataModel.accessCountRowOtherSiteId">
-        {{fieldsInfo['accessCountRowOtherSiteId']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
-    <div class="ntk-full-width">
-      <!-- accessCountRowOtherCreatedBy Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessCountRowOtherCreatedBy"
-        *ngIf="fieldsInfo['accessCountRowOtherCreatedBy']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessCountRowOtherCreatedBy']?.accessAddField"
-        name="dataModel.accessCountRowOtherCreatedBy">
-        {{fieldsInfo['accessCountRowOtherCreatedBy']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+        <div class="ntk-full-width">
+            <!-- accessWatchRowOtherSiteId Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherSiteId" *ngIf="fieldsInfo['accessWatchRowOtherSiteId']?.accessWatchField" [disabled]="!fieldsInfo['accessWatchRowOtherSiteId']?.accessAddField" name="dataModel.accessWatchRowOtherSiteId">
+                {{fieldsInfo['accessWatchRowOtherSiteId']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessWatchRowOtherCreatedBy Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessWatchRowOtherCreatedBy" *ngIf="fieldsInfo['accessWatchRowOtherCreatedBy']?.accessWatchField" [disabled]="!fieldsInfo['accessWatchRowOtherCreatedBy']?.accessAddField" name="dataModel.accessWatchRowOtherCreatedBy">
+                {{fieldsInfo['accessWatchRowOtherCreatedBy']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessCountRowOtherSiteId Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessCountRowOtherSiteId" *ngIf="fieldsInfo['accessCountRowOtherSiteId']?.accessWatchField" [disabled]="!fieldsInfo['accessCountRowOtherSiteId']?.accessAddField" name="dataModel.accessCountRowOtherSiteId">
+                {{fieldsInfo['accessCountRowOtherSiteId']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
+        <div class="ntk-full-width">
+            <!-- accessCountRowOtherCreatedBy Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessCountRowOtherCreatedBy" *ngIf="fieldsInfo['accessCountRowOtherCreatedBy']?.accessWatchField" [disabled]="!fieldsInfo['accessCountRowOtherCreatedBy']?.accessAddField" name="dataModel.accessCountRowOtherCreatedBy">
+                {{fieldsInfo['accessCountRowOtherCreatedBy']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
 
-    <div class="ntk-full-width">
-      <!-- accessEditRowOtherSiteId Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessEditRowOtherSiteId"
-        *ngIf="fieldsInfo['accessEditRowOtherSiteId']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessEditRowOtherSiteId']?.accessAddField" name="dataModel.accessEditRowOtherSiteId">
-        {{fieldsInfo['accessEditRowOtherSiteId']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+        <div class="ntk-full-width">
+            <!-- accessEditRowOtherSiteId Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessEditRowOtherSiteId" *ngIf="fieldsInfo['accessEditRowOtherSiteId']?.accessWatchField" [disabled]="!fieldsInfo['accessEditRowOtherSiteId']?.accessAddField" name="dataModel.accessEditRowOtherSiteId">
+                {{fieldsInfo['accessEditRowOtherSiteId']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
 
-    <div class="ntk-full-width">
-      <!-- accessEditRowOtherCreatedBy Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessEditRowOtherCreatedBy"
-        *ngIf="fieldsInfo['accessEditRowOtherCreatedBy']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessEditRowOtherCreatedBy']?.accessAddField"
-        name="dataModel.accessEditRowOtherCreatedBy">
-        {{fieldsInfo['accessEditRowOtherCreatedBy']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+        <div class="ntk-full-width">
+            <!-- accessEditRowOtherCreatedBy Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessEditRowOtherCreatedBy" *ngIf="fieldsInfo['accessEditRowOtherCreatedBy']?.accessWatchField" [disabled]="!fieldsInfo['accessEditRowOtherCreatedBy']?.accessAddField" name="dataModel.accessEditRowOtherCreatedBy">
+                {{fieldsInfo['accessEditRowOtherCreatedBy']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
 
-    <div class="ntk-full-width">
-      <!-- accessDeleteRowOtherCreatedBy Field -->
-      <mat-slide-toggle [(ngModel)]="dataModel.accessDeleteRowOtherCreatedBy"
-        *ngIf="fieldsInfo['accessDeleteRowOtherCreatedBy']?.accessWatchField"
-        [disabled]="!fieldsInfo['accessDeleteRowOtherCreatedBy']?.accessAddField"
-        name="dataModel.accessDeleteRowOtherCreatedBy">
-        {{fieldsInfo['accessDeleteRowOtherCreatedBy']?.fieldTitle}}
-      </mat-slide-toggle>
-    </div>
+        <div class="ntk-full-width">
+            <!-- accessDeleteRowOtherCreatedBy Field -->
+            <mat-slide-toggle [(ngModel)]="dataModel.accessDeleteRowOtherCreatedBy" *ngIf="fieldsInfo['accessDeleteRowOtherCreatedBy']?.accessWatchField" [disabled]="!fieldsInfo['accessDeleteRowOtherCreatedBy']?.accessAddField" name="dataModel.accessDeleteRowOtherCreatedBy">
+                {{fieldsInfo['accessDeleteRowOtherCreatedBy']?.fieldTitle}}
+            </mat-slide-toggle>
+        </div>
 
 
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-  </div>
-  <div class="ntk-cms-html-card-message">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    <div class="form-actions">
-      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
-      <small class="form-text text-muted danger">{{ formInfo.formError }}
-      </small>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-  </div>
-  <div class="ntk-cms-html-card-footer">
-    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
-      <button type="button" (click)="onFormCancel()" class="btn btn-light">
-        <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
-      </button>
-      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
-        <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
-      </button>
+    <div class="ntk-cms-html-card-message">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+        <div class="form-actions">
+            <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+            <small class="form-text text-muted danger">{{ formInfo.formError }}
+            </small>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
     </div>
-    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-  </div>
+    <div class="ntk-cms-html-card-footer">
+        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+        <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+            <button type="button" (click)="onFormCancel()" class="btn btn-light">
+                <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+            </button>
+            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+                <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
+            </button>
+        </div>
+        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    </div>
 </form>

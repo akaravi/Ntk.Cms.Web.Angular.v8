@@ -76,7 +76,7 @@
 <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     <br>
-    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+    <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
         <button type="submit" *ngIf="showFormAdd" (click)="onFormSubmit()" class="btn btn-success btn-lg btn-block" [disabled]="!formGroup?.valid">
             <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
         </button>

@@ -7,8 +7,8 @@
     <div class="ntk-cms-html-card-body">
 	<app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        
-  
+
+
         <mat-form-field class="ntk-full-width">
           <mat-label>ModuleName</mat-label>
           <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
@@ -17,7 +17,7 @@
             (click)="dataModel.moduleName = ''">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-  
+
         <!-- ModuleEntityName Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>ModuleEntityName</mat-label>
@@ -36,7 +36,7 @@
             (click)="dataModel.moduleEntityId = null">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
-  
+
         <!-- SubjectBody Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>SubjectBody</mat-label>
@@ -57,11 +57,11 @@
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
-  
+
         <!-- <div *ngIf="tokenInfo.UserAccessAdminAllowToProfessionalData">
           <div [innerHTML]="dataModel | prettyjson"></div>
         </div> -->
-  
+
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
      </div>
 	 <div class="ntk-cms-html-card-message">
@@ -75,7 +75,7 @@
     </div>
     <div class="ntk-cms-html-card-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading.display">
+      <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
         <button type="button" (click)="onFormCancel()" class="btn btn-light">
           <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>

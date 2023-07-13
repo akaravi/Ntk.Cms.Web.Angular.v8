@@ -36,7 +36,8 @@ export class EstatePropertyDetailAddComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     if (data) {
       this.requestLinkPropertyTypeLanduseId = data.linkPropertyTypeLanduseId;
       this.requestLinkPropertyDetailGroupId = data.linkPropertyDetailGroupId;
@@ -95,6 +96,7 @@ export class EstatePropertyDetailAddComponent implements OnInit {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
           this.loading.Stop(pName);
+          var aaa = 22;
         },
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);

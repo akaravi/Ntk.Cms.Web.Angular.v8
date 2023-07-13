@@ -12,11 +12,9 @@
         <mat-horizontal-stepper (selectionChange)="onStepClick($event, stepper)" #stepper>
             <mat-step label="{{ 'TITLE.REQUIRED_INFORMATION' | translate }}" state="main">
                 <!-- LinkPropertyTypeUsageId Field -->
-                <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)"
-                    [optionDisabled]="
+                <app-estate-property-type-usage-selector (optionChange)="onActionSelectorSelectUsage($event)" [optionDisabled]="
             !fieldsInfo['linkPropertyTypeUsageId']?.accessAddField
-          " [optionTypeView]="2" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPropertyTypeUsageId"
-                    [optionPlaceholder]="this.translate.instant('TITLE.User_Type')">
+          " [optionTypeView]="2" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkPropertyTypeUsageId" [optionPlaceholder]="this.translate.instant('TITLE.User_Type')">
                 </app-estate-property-type-usage-selector>
 
                 <!-- LinkPropertyTypeLanduseId Field -->
@@ -48,9 +46,7 @@
             dataModel.linkPropertyTypeUsageId.length > 0
           " [optionDisabled]="
             !fieldsInfo['linkPropertyTypeLanduseId']?.accessAddField
-          " [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading"
-                    [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')"
-                    [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
+          " [optionTypeView]="2" [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')" [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
                 </app-estate-property-type-landuse-selector>
 
                 <br />
@@ -70,10 +66,7 @@
                     <!-- RecordStatus Field -->
                     <mat-form-field *ngIf="dataProfessional" class="ntk-full-width">
                         <mat-label>{{ fieldsInfo["recordStatus"]?.fieldTitle }}</mat-label>
-                        <mat-select placeholder="{{ fieldsInfo['recordStatus']?.fieldTitle }}"
-                            [disabled]="!fieldsInfo['recordStatus']?.accessAddField"
-                            [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel"
-                            ngClass="cms-EnumRecordStatus-selector-{{
+                        <mat-select placeholder="{{ fieldsInfo['recordStatus']?.fieldTitle }}" [disabled]="!fieldsInfo['recordStatus']?.accessAddField" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{
                 dataModel.recordStatus
               }}">
                             <mat-option *ngFor="
@@ -100,14 +93,9 @@
 
                     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['title']?.accessWatchField">
                         <mat-label>{{ fieldsInfo["title"]?.fieldTitle }}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
-                            disabled="{{ !fieldsInfo['title']?.accessAddField }}"
-                            placeholder="{{ fieldsInfo['title']?.fieldTitle }}" minlength="3" maxlength="100"
-                            required />
-                        <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" matSuffix mat-icon-button
-                            aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
-                        <mat-icon matSuffix class="pointer" *ngIf="dataModel.title"
-                            (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
+                        <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" disabled="{{ !fieldsInfo['title']?.accessAddField }}" placeholder="{{ fieldsInfo['title']?.fieldTitle }}" minlength="3" maxlength="100" required />
+                        <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+                        <mat-icon matSuffix class="pointer" *ngIf="dataModel.title" (click)="onActionbuttonQuickListSearchTitle()">find_replace</mat-icon>
                         <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
                         <mat-hint align="start">
                             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -125,11 +113,8 @@
                     <!-- CaseCode Field -->
                     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['caseCode']?.accessWatchField">
                         <mat-label>{{ fieldsInfo["caseCode"]?.fieldTitle }}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text"
-                            disabled="{{ !fieldsInfo['caseCode']?.accessAddField }}"
-                            placeholder="{{ fieldsInfo['caseCode']?.fieldTitle }}" minlength="3" maxlength="100" />
-                        <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="dataModel.caseCode = ''">close</mat-icon>
+                        <input matInput [(ngModel)]="dataModel.caseCode" name="dataModel.caseCode" #CaseCode type="text" disabled="{{ !fieldsInfo['caseCode']?.accessAddField }}" placeholder="{{ fieldsInfo['caseCode']?.fieldTitle }}" minlength="3" maxlength="100" />
+                        <mat-icon matSuffix *ngIf="dataModel.caseCode" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.caseCode = ''">close</mat-icon>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                         <mat-hint align="start">
                             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -145,10 +130,7 @@
                     </mat-form-field>
                     <!-- ViewConfigHiddenInList Field -->
                     <div class="ntk-full-width">
-                        <mat-slide-toggle [(ngModel)]="dataModel.viewConfigHiddenInList"
-                            *ngIf="fieldsInfo['viewConfigHiddenInList']?.accessWatchField"
-                            [disabled]="!fieldsInfo['viewConfigHiddenInList']?.accessAddField"
-                            name="dataModel.viewConfigHiddenInList">
+                        <mat-slide-toggle [(ngModel)]="dataModel.viewConfigHiddenInList" *ngIf="fieldsInfo['viewConfigHiddenInList']?.accessWatchField" [disabled]="!fieldsInfo['viewConfigHiddenInList']?.accessAddField" name="dataModel.viewConfigHiddenInList">
                             {{ fieldsInfo["viewConfigHiddenInList"]?.fieldTitle }}
                         </mat-slide-toggle>
                     </div>
@@ -159,10 +141,8 @@
               PropertyTypeSelected.titleCreatedYaer !== '---'
             ">
                         <mat-label>{{ PropertyTypeSelected.titleCreatedYaer }}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer
-                            type="number" placeholder="{{ fieldsInfo['createdYaer']?.fieldTitle }}" />
-                        <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="dataModel.createdYaer = null">close</mat-icon>
+                        <input matInput [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" #CreatedYaer type="number" placeholder="{{ fieldsInfo['createdYaer']?.fieldTitle }}" />
+                        <mat-icon matSuffix *ngIf="dataModel.createdYaer" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.createdYaer = null">close</mat-icon>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                     </mat-form-field>
                     <!-- Partition Field -->
@@ -172,20 +152,15 @@
               PropertyTypeSelected.titlePartition !== '---'
             ">
                         <mat-label>{{ PropertyTypeSelected.titlePartition }}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.partition" name="dataModel.partition" #Partition
-                            type="number" placeholder="{{ PropertyTypeSelected.titlePartition }}" />
-                        <mat-icon matSuffix *ngIf="dataModel.partition" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="dataModel.partition = 0">close</mat-icon>
+                        <input matInput [(ngModel)]="dataModel.partition" name="dataModel.partition" #Partition type="number" placeholder="{{ PropertyTypeSelected.titlePartition }}" />
+                        <mat-icon matSuffix *ngIf="dataModel.partition" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.partition = 0">close</mat-icon>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                     </mat-form-field>
                     <!-- Area Field -->
                     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['area']?.accessWatchField">
                         <mat-label>{{ fieldsInfo["area"]?.fieldTitle }}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.area" name="dataModel.area" #Area type="text"
-                            currencyMask class="input-ltr" disabled="{{ !fieldsInfo['area']?.accessAddField }}"
-                            placeholder="{{ fieldsInfo['area']?.fieldTitle }}" />
-                        <mat-icon matSuffix *ngIf="dataModel.area" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="dataModel.area = 0">close</mat-icon>
+                        <input matInput [(ngModel)]="dataModel.area" name="dataModel.area" #Area type="text" currencyMask class="input-ltr" disabled="{{ !fieldsInfo['area']?.accessAddField }}" placeholder="{{ fieldsInfo['area']?.fieldTitle }}" />
+                        <mat-icon matSuffix *ngIf="dataModel.area" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.area = 0">close</mat-icon>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                         <mat-hint align="start">
                             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -196,20 +171,14 @@
                     </mat-form-field>
 
                     <!-- LinkLocationId Field -->
-                    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
-                        [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField" [(optionLoading)]="loading"
-                        [optionSelectForce]="dataModel.linkLocationId"
-                        [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+                    <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [optionDisabled]="!fieldsInfo['linkLocationId']?.accessAddField" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
                     </app-cms-location-selector>
 
                     <!-- Address Field -->
                     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['address']?.accessWatchField">
                         <mat-label>{{ fieldsInfo["address"]?.fieldTitle }}</mat-label>
-                        <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text"
-                            placeholder="{{ fieldsInfo['address']?.fieldTitle }}" minlength="1" maxlength="500" rows="5"
-                            [disabled]="!fieldsInfo['address']?.accessAddField"></textarea>
-                        <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="dataModel.address = ''">close</mat-icon>
+                        <textarea matInput [(ngModel)]="dataModel.address" name="dataModel.address" #Address type="text" placeholder="{{ fieldsInfo['address']?.fieldTitle }}" minlength="1" maxlength="500" rows="5" [disabled]="!fieldsInfo['address']?.accessAddField"></textarea>
+                        <mat-icon matSuffix *ngIf="dataModel.address" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.address = ''">close</mat-icon>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                         <mat-hint align="start">
                             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -223,12 +192,8 @@
                     <!-- Description Field -->
                     <mat-form-field class="ntk-full-width">
                         <mat-label>{{ "TITLE.General_Description" | translate }}</mat-label>
-                        <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description
-                            type="text" disabled="{{ !fieldsInfo['description']?.accessAddField }}"
-                            placeholder="{{ fieldsInfo['description']?.fieldTitle }}" minlength="1" maxlength="2000"
-                            rows="5" required></textarea>
-                        <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
-                            (click)="dataModel.description = ''">close</mat-icon>
+                        <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text" disabled="{{ !fieldsInfo['description']?.accessAddField }}" placeholder="{{ fieldsInfo['description']?.fieldTitle }}" minlength="1" maxlength="2000" rows="5" required></textarea>
+                        <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
                         <mat-icon matSuffix>mode_edit</mat-icon>
                         <mat-hint align="start">
                             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -243,12 +208,11 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button (click)="onActionBackToParent()">
                         {{ "ACTION.CANCEL" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext *ngIf="
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="
               dataModel.linkPropertyTypeUsageId &&
               dataModel.linkPropertyTypeUsageId.length > 0
             ">
@@ -263,23 +227,17 @@
             this.tokenHelper.isAdminSite
           ">
                     <mat-label>{{ fieldsInfo["linkSiteId"]?.fieldTitle }}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId
-                        type="text" disabled="{{ !fieldsInfo['linkSiteId']?.accessAddField }}"
-                        placeholder="{{ fieldsInfo['linkSiteId']?.fieldTitle }}" minlength="3" maxlength="100" />
+                    <input matInput [(ngModel)]="dataModel.linkSiteId" name="dataModel.linkSiteId" #LinkSiteId type="text" disabled="{{ !fieldsInfo['linkSiteId']?.accessAddField }}" placeholder="{{ fieldsInfo['linkSiteId']?.fieldTitle }}" minlength="3" maxlength="100" />
 
                     <!-- viewContentHidden Field -->
                     <div class="ntk-full-width">
-                        <mat-slide-toggle [(ngModel)]="dataModel.viewContentHidden"
-                            *ngIf="fieldsInfo['viewContentHidden']?.accessWatchField"
-                            [disabled]="!fieldsInfo['viewContentHidden']?.accessAddField"
-                            name="dataModel.viewContentHidden">
+                        <mat-slide-toggle [(ngModel)]="dataModel.viewContentHidden" *ngIf="fieldsInfo['viewContentHidden']?.accessWatchField" [disabled]="!fieldsInfo['viewContentHidden']?.accessAddField" name="dataModel.viewContentHidden">
                             {{ fieldsInfo["viewContentHidden"]?.fieldTitle }}
                         </mat-slide-toggle>
                     </div>
                     <!-- siteAdminViewContentHidden Field -->
                     <div class="ntk-full-width">
-                        <mat-slide-toggle [(ngModel)]="dataModel.siteAdminViewContentHidden"
-                            *ngIf="fieldsInfo['siteAdminViewContentHidden']?.accessWatchField" [disabled]="
+                        <mat-slide-toggle [(ngModel)]="dataModel.siteAdminViewContentHidden" *ngIf="fieldsInfo['siteAdminViewContentHidden']?.accessWatchField" [disabled]="
                 !fieldsInfo['siteAdminViewContentHidden']?.accessAddField
               " name="dataModel.siteAdminViewContentHidden">
                             {{ fieldsInfo["siteAdminViewContentHidden"]?.fieldTitle }}
@@ -298,12 +256,8 @@
                     </mat-error>
                 </mat-form-field>
                 <!-- MainAdminRecordStatus Field -->
-                <mat-form-field class="ntk-full-width mb-1"
-                    *ngIf="fieldsInfo['mainAdminRecordStatus']?.accessWatchField">
-                    <mat-select placeholder="{{ fieldsInfo['mainAdminRecordStatus']?.fieldTitle }}"
-                        [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField"
-                        [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus"
-                        #MainAdminRecordStatus="ngModel" ngClass="recordStatus-{{ dataModel.mainAdminRecordStatus }}">
+                <mat-form-field class="ntk-full-width mb-1" *ngIf="fieldsInfo['mainAdminRecordStatus']?.accessWatchField">
+                    <mat-select placeholder="{{ fieldsInfo['mainAdminRecordStatus']?.fieldTitle }}" [disabled]="!fieldsInfo['mainAdminRecordStatus']?.accessAddField" [(ngModel)]="dataModel.mainAdminRecordStatus" name="dataModel.mainAdminRecordStatus" #MainAdminRecordStatus="ngModel" ngClass="recordStatus-{{ dataModel.mainAdminRecordStatus }}">
                         <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
@@ -329,14 +283,12 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-12">
                             <!-- scoreEstateLocation Field -->
-                            <mat-form-field class="ntk-full-width"
-                                *ngIf="fieldsInfo['scoreEstateLocation']?.accessWatchField">
+                            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstateLocation']?.accessWatchField">
                                 <mat-select placeholder="{{
                     fieldsInfo['scoreEstateLocation']?.fieldTitle
                   }}" [(ngModel)]="dataModel.scoreEstateLocation" [disabled]="
                     !fieldsInfo['scoreEstateLocation']?.accessEditField
-                  " name="dataModel.scoreEstateLocation" #scoreEstateLocation="ngModel"
-                                    ngClass="score-{{ dataModel.scoreEstateLocation }}">
+                  " name="dataModel.scoreEstateLocation" #scoreEstateLocation="ngModel" ngClass="score-{{ dataModel.scoreEstateLocation }}">
                                     <mat-option *ngFor="let number of numbers" [value]="number">{{
                                         number
                                         }}</mat-option>
@@ -350,13 +302,8 @@
                         </div>
                         <div class="col-lg-3 col-md-12">
                             <!-- scoreEstateBuild Field -->
-                            <mat-form-field class="ntk-full-width"
-                                *ngIf="fieldsInfo['scoreEstateBuild']?.accessWatchField">
-                                <mat-select placeholder="{{ fieldsInfo['scoreEstateBuild']?.fieldTitle }}"
-                                    [(ngModel)]="dataModel.scoreEstateBuild"
-                                    [disabled]="!fieldsInfo['scoreEstateBuild']?.accessEditField"
-                                    name="dataModel.scoreEstateBuild" #scoreEstateBuild="ngModel"
-                                    ngClass="score-{{ dataModel.scoreEstateBuild }}">
+                            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstateBuild']?.accessWatchField">
+                                <mat-select placeholder="{{ fieldsInfo['scoreEstateBuild']?.fieldTitle }}" [(ngModel)]="dataModel.scoreEstateBuild" [disabled]="!fieldsInfo['scoreEstateBuild']?.accessEditField" name="dataModel.scoreEstateBuild" #scoreEstateBuild="ngModel" ngClass="score-{{ dataModel.scoreEstateBuild }}">
                                     <mat-option *ngFor="let number of numbers" [value]="number">{{
                                         number
                                         }}</mat-option>
@@ -370,13 +317,8 @@
                         </div>
                         <div class="col-lg-3 col-md-12">
                             <!-- scoreEstatePrice Field -->
-                            <mat-form-field class="ntk-full-width"
-                                *ngIf="fieldsInfo['scoreEstatePrice']?.accessWatchField">
-                                <mat-select placeholder="{{ fieldsInfo['scoreEstatePrice']?.fieldTitle }}"
-                                    [(ngModel)]="dataModel.scoreEstatePrice"
-                                    [disabled]="!fieldsInfo['scoreEstatePrice']?.accessEditField"
-                                    name="dataModel.scoreEstatePrice" #scoreEstatePrice="ngModel"
-                                    ngClass="score-{{ dataModel.scoreEstatePrice }}">
+                            <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['scoreEstatePrice']?.accessWatchField">
+                                <mat-select placeholder="{{ fieldsInfo['scoreEstatePrice']?.fieldTitle }}" [(ngModel)]="dataModel.scoreEstatePrice" [disabled]="!fieldsInfo['scoreEstatePrice']?.accessEditField" name="dataModel.scoreEstatePrice" #scoreEstatePrice="ngModel" ngClass="score-{{ dataModel.scoreEstatePrice }}">
                                     <mat-option *ngFor="let number of numbers" [value]="number">{{
                                         number
                                         }}</mat-option>
@@ -391,12 +333,11 @@
                     </div>
                 </div>
 
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext *ngIf="
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="
               dataModel.linkPropertyTypeUsageId &&
               dataModel.linkPropertyTypeUsageId.length > 0
             ">
@@ -406,26 +347,15 @@
             </mat-step>
             <mat-step label="{{ 'TITLE.Personal_Information' | translate }}" state="main">
                 <!-- LinkCmsUserId Field -->
-                <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite"
-                    (optionChange)="onActionSelectorCmsUser($event)" [(optionLoading)]="loading"
-                    [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField"
-                    [optionSelectForce]="dataModel.linkCmsUserId"
-                    [optionPlaceholder]="this.translate.instant('TITLE.Order_Owner')">
+                <app-cms-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorCmsUser($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkCmsUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCmsUserId" [optionPlaceholder]="this.translate.instant('TITLE.Order_Owner')">
                 </app-cms-user-selector>
 
                 <!-- linkEstateAgencyId Field -->
-                <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite"
-                    (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading"
-                    [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField"
-                    [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
-                    [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+                <app-estate-account-agency-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkEstateAgencyId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
                 </app-estate-account-agency-selector>
 
                 <!-- LinkEstateUserId Field -->
-                <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite"
-                    (optionChange)="onActionSelectorEstateUser($event)" [(optionLoading)]="loading"
-                    [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessAddField"
-                    [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="
+                <app-estate-account-user-selector *ngIf="this.tokenHelper.isAdminSite" (optionChange)="onActionSelectorEstateUser($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkEstateUserId']?.accessAddField" [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="
             this.translate.instant('TITLE.Property_personnel')
           ">
                 </app-estate-account-user-selector>
@@ -435,12 +365,8 @@
                     <mat-label>{{
                         fieldsInfo["aboutAgentMobile"]?.fieldTitle
                         }}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.aboutAgentMobile" name="dataModel.aboutAgentMobile"
-                        class="input-Mobile" #AboutAgentMobile type="text"
-                        disabled="{{ !fieldsInfo['aboutAgentMobile']?.accessAddField }}"
-                        placeholder="{{ fieldsInfo['aboutAgentMobile']?.fieldTitle }}" minlength="0" maxlength="100" />
-                    <mat-icon matSuffix *ngIf="dataModel.aboutAgentMobile" matSuffix mat-icon-button aria-label="Clear"
-                        (click)="dataModel.aboutAgentMobile = ''">close</mat-icon>
+                    <input matInput [(ngModel)]="dataModel.aboutAgentMobile" name="dataModel.aboutAgentMobile" class="input-Mobile" #AboutAgentMobile type="text" disabled="{{ !fieldsInfo['aboutAgentMobile']?.accessAddField }}" placeholder="{{ fieldsInfo['aboutAgentMobile']?.fieldTitle }}" minlength="0" maxlength="100" />
+                    <mat-icon matSuffix *ngIf="dataModel.aboutAgentMobile" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutAgentMobile = ''">close</mat-icon>
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -454,12 +380,8 @@
                 <!-- AboutAgentTel Field -->
                 <mat-form-field *ngIf="fieldsInfo['aboutAgentTel']?.accessWatchField" class="ntk-full-width">
                     <mat-label>{{ fieldsInfo["aboutAgentTel"]?.fieldTitle }}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.aboutAgentTel" name="dataModel.aboutAgentTel"
-                        class="input-Mobile" #AboutAgentTel type="text"
-                        disabled="{{ !fieldsInfo['aboutAgentTel']?.accessAddField }}"
-                        placeholder="{{ fieldsInfo['aboutAgentTel']?.fieldTitle }}" minlength="0" maxlength="100" />
-                    <mat-icon matSuffix *ngIf="dataModel.aboutAgentTel" matSuffix mat-icon-button aria-label="Clear"
-                        (click)="dataModel.aboutAgentTel = ''">close</mat-icon>
+                    <input matInput [(ngModel)]="dataModel.aboutAgentTel" name="dataModel.aboutAgentTel" class="input-Mobile" #AboutAgentTel type="text" disabled="{{ !fieldsInfo['aboutAgentTel']?.accessAddField }}" placeholder="{{ fieldsInfo['aboutAgentTel']?.fieldTitle }}" minlength="0" maxlength="100" />
+                    <mat-icon matSuffix *ngIf="dataModel.aboutAgentTel" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutAgentTel = ''">close</mat-icon>
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -475,15 +397,9 @@
                     <mat-label>{{
                         fieldsInfo["aboutCustomerMobile"]?.fieldTitle
                         }}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.aboutCustomerMobile" name="dataModel.aboutCustomerMobile"
-                        class="input-Mobile" #AboutCustomerMobile type="text"
-                        disabled="{{ !fieldsInfo['aboutCustomerMobile']?.accessAddField }}"
-                        placeholder="{{ fieldsInfo['aboutCustomerMobile']?.fieldTitle }}" minlength="0"
-                        maxlength="100" />
-                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button
-                        aria-label="Clear" (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
-                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile"
-                        (click)="onActionbuttonQuickListSearchCustomerMobile()">find_replace</mat-icon>
+                    <input matInput [(ngModel)]="dataModel.aboutCustomerMobile" name="dataModel.aboutCustomerMobile" class="input-Mobile" #AboutCustomerMobile type="text" disabled="{{ !fieldsInfo['aboutCustomerMobile']?.accessAddField }}" placeholder="{{ fieldsInfo['aboutCustomerMobile']?.fieldTitle }}" minlength="0" maxlength="100" />
+                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutCustomerMobile = ''">close</mat-icon>
+                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerMobile" (click)="onActionbuttonQuickListSearchCustomerMobile()">find_replace</mat-icon>
                     <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -499,14 +415,9 @@
                     <mat-label>{{
                         fieldsInfo["aboutCustomerTel"]?.fieldTitle
                         }}</mat-label>
-                    <input matInput [(ngModel)]="dataModel.aboutCustomerTel" name="dataModel.aboutCustomerTel"
-                        class="input-Mobile" #AboutCustomerTel type="text"
-                        disabled="{{ !fieldsInfo['aboutCustomerTel']?.accessAddField }}"
-                        placeholder="{{ fieldsInfo['aboutCustomerTel']?.fieldTitle }}" minlength="0" maxlength="100" />
-                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button
-                        aria-label="Clear" (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
-                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel"
-                        (click)="onActionbuttonQuickListSearchCustomerTel()">
+                    <input matInput [(ngModel)]="dataModel.aboutCustomerTel" name="dataModel.aboutCustomerTel" class="input-Mobile" #AboutCustomerTel type="text" disabled="{{ !fieldsInfo['aboutCustomerTel']?.accessAddField }}" placeholder="{{ fieldsInfo['aboutCustomerTel']?.fieldTitle }}" minlength="0" maxlength="100" />
+                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.aboutCustomerTel = ''">close</mat-icon>
+                    <mat-icon matSuffix class="pointer" *ngIf="dataModel.aboutCustomerTel" (click)="onActionbuttonQuickListSearchCustomerTel()">
                         find_replace</mat-icon>
                     <mat-icon matSuffix class="pointer">mode_edit</mat-icon>
                     <mat-hint align="start">
@@ -518,18 +429,15 @@
                     <mat-hint align="end">{{ AboutCustomerTel.value.length }} / 100</mat-hint>
                 </mat-form-field>
                 <!-- actionCreateCmsUserId Field -->
-                <mat-slide-toggle
-                    *ngIf="fieldsInfo['linkCmsUserId']?.accessWatchField &&dataModel.aboutCustomerMobile && dataModel.aboutCustomerMobile.length>0 &&(this.dataModel.linkCmsUserId===null ||this.dataModel.linkCmsUserId<=0)"
-                    [(ngModel)]="this.dataModel.actionCreateCmsUserId" name="dataModel.actionCreateCmsUserId">
+                <mat-slide-toggle *ngIf="fieldsInfo['linkCmsUserId']?.accessWatchField &&dataModel.aboutCustomerMobile && dataModel.aboutCustomerMobile.length>0 &&(this.dataModel.linkCmsUserId===null ||this.dataModel.linkCmsUserId<=0)" [(ngModel)]="this.dataModel.actionCreateCmsUserId" name="dataModel.actionCreateCmsUserId">
                     ساخت حساب کاربری
                 </mat-slide-toggle>
 
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext *ngIf="
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="
               dataModel.linkPropertyTypeUsageId &&
               dataModel.linkPropertyTypeUsageId.length > 0
             ">
@@ -550,22 +458,15 @@
                 </p>
 
                 <!-- LinkPropertyCompanyId Field -->
-                <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(optionLoading)]="loading"
-                    (optionChange)="onActionSelectorCompany($event)"
-                    [optionSelectForce]="dataModel.linkPropertyCompanyId"
-                    [optionPlaceholder]="this.translate.instant('TITLE.Company')">
+                <app-estate-property-company-selector *ngIf="this.tokenHelper.isAdminSite" [(optionLoading)]="loading" (optionChange)="onActionSelectorCompany($event)" [optionSelectForce]="dataModel.linkPropertyCompanyId" [optionPlaceholder]="this.translate.instant('TITLE.Company')">
                 </app-estate-property-company-selector>
                 <!-- LinkPropertyProjectId Field -->
-                <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(optionLoading)]="loading"
-                    (optionChange)="onActionSelectorProject($event)"
-                    [optionSelectForce]="dataModel.linkPropertyProjectId"
-                    [optionPlaceholder]="this.translate.instant('TITLE.Project')">
+                <app-estate-property-project-selector *ngIf="this.tokenHelper.isAdminSite" [(optionLoading)]="loading" (optionChange)="onActionSelectorProject($event)" [optionSelectForce]="dataModel.linkPropertyProjectId" [optionPlaceholder]="this.translate.instant('TITLE.Project')">
                 </app-estate-property-project-selector>
                 <hr />
 
                 <mat-accordion class="example-headers-align">
-                    <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups; index as i"
-                        [expanded]="step === i" (opened)="setStep(i)">
+                    <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups; index as i" [expanded]="step === i" (opened)="setStep(i)">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 {{ itemGroup.title }}
@@ -581,44 +482,33 @@
                             <ng-container [ngSwitch]="itemDetail.inputDataType">
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]"
-                                        [optionForceUseDefaultValue]="
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]" [optionForceUseDefaultValue]="
                       itemDetail.configValueForceUseDefaultValue
                     " [optionMultipleChoice]="
                       itemDetail.configValueMultipleChoice
-                    " [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionTitle]="itemDetail.title"
-                                        style="color:'{{ itemDetail.iconColor }}';"></app-input-string>
+                    " [optionDefaultValue]="itemDetail.configValueDefaultValues" [optionTitle]="itemDetail.title" style="color:'{{ itemDetail.iconColor }}';"></app-input-string>
                                 </div>
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <app-input-int [(model)]="propertyDetails[itemDetail.id]"
-                                        [optionTitle]="itemDetail.title"
-                                        style="color:'{{ itemDetail.iconColor }}';"></app-input-int>
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionTitle]="itemDetail.title" style="color:'{{ itemDetail.iconColor }}';"></app-input-int>
                                 </div>
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
                                     <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{ itemDetail.title }}
                                     </app-input-boolean>
                                 </div>
                                 <br />
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <app-input-float [(model)]="propertyDetails[itemDetail.id]"
-                                        [optionTitle]="itemDetail.title"
-                                        style="color:'{{ itemDetail.iconColor }}';"></app-input-float>
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionTitle]="itemDetail.title" style="color:'{{ itemDetail.iconColor }}';"></app-input-float>
                                 </div>
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
                                     <label style="color:'{{ itemDetail.iconColor }}';">{{
                                         itemDetail.title
                                         }}</label>
@@ -626,19 +516,13 @@
                                 </div>
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <app-input-textarea [(model)]="propertyDetails[itemDetail.id]"
-                                        [optionTitle]="itemDetail.title"
-                                        style="color:'{{ itemDetail.iconColor }}';"></app-input-textarea>
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <app-input-textarea [(model)]="propertyDetails[itemDetail.id]" [optionTitle]="itemDetail.title" style="color:'{{ itemDetail.iconColor }}';"></app-input-textarea>
                                 </div>
                                 <!-- ngSwitchCase-->
                                 <div *ngSwitchDefault>
-                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
-                                        aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]"
-                                        [optionTitle]="itemDetail.title"
-                                        style="color:'{{ itemDetail.iconColor }}';"></app-input-string>
+                                    <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor" aria-hidden="true"></i>&nbsp;&nbsp;
+                                    <app-input-string [(model)]="propertyDetails[itemDetail.id]" [optionTitle]="itemDetail.title" style="color:'{{ itemDetail.iconColor }}';"></app-input-string>
                                 </div>
                             </ng-container>
                         </ng-container>
@@ -646,24 +530,21 @@
                             <button mat-button type="button" color="warn" *ngIf="i > 0" (click)="prevStep()">
                                 {{ "ACTION.BEFOR" | translate }}
                             </button>
-                            <button mat-button type="button" color="primary"
-                                *ngIf="i + 1 < dataModel.propertyDetailGroups.length" (click)="nextStep()">
+                            <button mat-button type="button" color="primary" *ngIf="i + 1 < dataModel.propertyDetailGroups.length" (click)="nextStep()">
                                 {{ "ACTION.NEXT" | translate }}
                             </button>
-                            <button mat-button type="button" color="primary"
-                                *ngIf="i + 1 === dataModel.propertyDetailGroups.length" (click)="nextStep()">
+                            <button mat-button type="button" color="primary" *ngIf="i + 1 === dataModel.propertyDetailGroups.length" (click)="nextStep()">
                                 {{ "ACTION.END" | translate }}
                             </button>
                         </mat-action-row>
                     </mat-expansion-panel>
                     <br />
                 </mat-accordion>
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext>
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
                         {{ "ACTION.NEXT" | translate }}
                     </button>
                 </div>
@@ -673,11 +554,8 @@
                 <!-- DescriptionHidden Field -->
                 <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
                     <mat-label>{{ "TITLE.Description_Hidden" | translate }}</mat-label>
-                    <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
-                        #DescriptionHidden type="text" placeholder="{{ fieldsInfo['descriptionHidden']?.fieldTitle }}"
-                        minlength="1" maxlength="2000" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
-                        (click)="dataModel.descriptionHidden = ''">close</mat-icon>
+                    <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden" #DescriptionHidden type="text" placeholder="{{ fieldsInfo['descriptionHidden']?.fieldTitle }}" minlength="1" maxlength="2000" rows="5"></textarea>
+                    <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.descriptionHidden = ''">close</mat-icon>
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -694,11 +572,8 @@
                 <!-- AddressHidden Field -->
                 <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['addressHidden']?.accessWatchField">
                     <mat-label>{{ "TITLE.Address_Hidden" | translate }}</mat-label>
-                    <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden"
-                        #AddressHidden type="text" placeholder="{{ fieldsInfo['addressHidden']?.fieldTitle }}"
-                        minlength="1" maxlength="2000" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataModel.addressHidden" matSuffix mat-icon-button aria-label="Clear"
-                        (click)="dataModel.addressHidden = ''">close</mat-icon>
+                    <textarea matInput [(ngModel)]="dataModel.addressHidden" name="dataModel.addressHidden" #AddressHidden type="text" placeholder="{{ fieldsInfo['addressHidden']?.fieldTitle }}" minlength="1" maxlength="2000" rows="5"></textarea>
+                    <mat-icon matSuffix *ngIf="dataModel.addressHidden" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.addressHidden = ''">close</mat-icon>
                     <mat-icon matSuffix>mode_edit</mat-icon>
                     <mat-hint align="start">
                         <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -713,12 +588,11 @@
                     </mat-error>
                 </mat-form-field>
 
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext *ngIf="
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="
               dataModel.linkPropertyTypeUsageId &&
               dataModel.linkPropertyTypeUsageId.length > 0
             ">
@@ -735,8 +609,7 @@
                     }}
                 </p>
 
-                <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)"
-                    [optionTypeView]="2" [optionDisabled]="false" [optionPlaceholder]="
+                <app-estate-contract-type-selector (optionChange)="onActionSelectorContractType($event)" [optionTypeView]="2" [optionDisabled]="false" [optionPlaceholder]="
             this.translate.instant('TITLE.Type_Of_Transaction')
           " [(optionLoading)]="loading" [optionSelectForce]="contractDataModel.linkEstateContractTypeId">
                 </app-estate-contract-type-selector>
@@ -745,9 +618,7 @@
                     <br />
 
                     <br />
-                    <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem"
-                        [(optionLoading)]="loading" [optionSelectForce]="contractDataModel.linkCoreCurrencyId"
-                        (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="
+                    <app-cms-currency-selector [optionSelectFirstItem]="currencyOptionSelectFirstItem" [(optionLoading)]="loading" [optionSelectForce]="contractDataModel.linkCoreCurrencyId" (optionChange)="onActionSelectCurrency($event)" [optionPlaceholder]="
               this.translate.instant('TITLE.Specify_the_transaction_currency')
             ">
                     </app-cms-currency-selector>
@@ -760,12 +631,8 @@
                                     <mat-label>{{
                                         contractTypeSelected.titleSalePriceML
                                         }}</mat-label>
-                                    <input matInput [(ngModel)]="contractDataModel.salePrice"
-                                        name="contractDataModel.salePrice"
-                                        [disabled]="contractDataModel.salePriceByAgreement" type="text" currencyMask
-                                        class="input-ltr-center" placeholder="0" />
-                                    <mat-icon matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="contractDataModel.salePrice = 0">
+                                    <input matInput [(ngModel)]="contractDataModel.salePrice" name="contractDataModel.salePrice" [disabled]="contractDataModel.salePriceByAgreement" type="text" currencyMask class="input-ltr-center" placeholder="0" />
+                                    <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.salePrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                     <mat-label>
@@ -776,10 +643,7 @@
                             </div>
                             <div class="col-3"></div>
                             <div class="col-3">
-                                <mat-slide-toggle *ngIf="contractTypeSelected.salePriceAllowAgreement"
-                                    [(ngModel)]="contractDataModel.salePriceByAgreement"
-                                    (change)="onActionClickSalePriceAllowAgreement()"
-                                    name="contractDataModel.salePriceAllowAgreement">
+                                <mat-slide-toggle *ngIf="contractTypeSelected.salePriceAllowAgreement" [(ngModel)]="contractDataModel.salePriceByAgreement" (change)="onActionClickSalePriceAllowAgreement()" name="contractDataModel.salePriceAllowAgreement">
                                     {{ "TITLE.Agreement" | translate }}
                                 </mat-slide-toggle>
                             </div>
@@ -792,12 +656,8 @@
                                     <mat-label>{{
                                         contractTypeSelected.titleDepositPriceML
                                         }}</mat-label>
-                                    <input matInput [(ngModel)]="contractDataModel.depositPrice"
-                                        name="contractDataModel.depositPrice"
-                                        [disabled]="contractDataModel.depositPriceByAgreement" type="text" currencyMask
-                                        class="input-ltr-center" urrencyMask class="input-ltr-center" placeholder="0" />
-                                    <mat-icon matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="contractDataModel.depositPrice = 0">
+                                    <input matInput [(ngModel)]="contractDataModel.depositPrice" name="contractDataModel.depositPrice" [disabled]="contractDataModel.depositPriceByAgreement" type="text" currencyMask class="input-ltr-center" urrencyMask class="input-ltr-center" placeholder="0" />
+                                    <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.depositPrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                     <mat-label>
@@ -808,10 +668,7 @@
                             </div>
                             <div class="col-3"></div>
                             <div class="col-3">
-                                <mat-slide-toggle *ngIf="contractTypeSelected.depositPriceAllowAgreement"
-                                    [(ngModel)]="contractDataModel.depositPriceByAgreement"
-                                    (change)="onActionClickDepositPriceByAgreement()"
-                                    name="contractDataModel.depositPriceByAgreement">
+                                <mat-slide-toggle *ngIf="contractTypeSelected.depositPriceAllowAgreement" [(ngModel)]="contractDataModel.depositPriceByAgreement" (change)="onActionClickDepositPriceByAgreement()" name="contractDataModel.depositPriceByAgreement">
                                     {{ "TITLE.Agreement" | translate }}
                                 </mat-slide-toggle>
                             </div>
@@ -824,12 +681,8 @@
                                     <mat-label>{{
                                         contractTypeSelected.titleRentPriceML
                                         }}</mat-label>
-                                    <input matInput [(ngModel)]="contractDataModel.rentPrice"
-                                        name="contractDataModel.rentPrice"
-                                        [disabled]="contractDataModel.rentPriceByAgreement" type="text" currencyMask
-                                        class="input-ltr-center" placeholder="0" />
-                                    <mat-icon matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="contractDataModel.rentPrice = 0">
+                                    <input matInput [(ngModel)]="contractDataModel.rentPrice" name="contractDataModel.rentPrice" [disabled]="contractDataModel.rentPriceByAgreement" type="text" currencyMask class="input-ltr-center" placeholder="0" />
+                                    <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.rentPrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                     <mat-label>
@@ -840,10 +693,7 @@
                             </div>
                             <div class="col-3"></div>
                             <div class="col-3">
-                                <mat-slide-toggle *ngIf="contractTypeSelected.rentPriceAllowAgreement"
-                                    [(ngModel)]="contractDataModel.rentPriceByAgreement"
-                                    (change)="onActionClickRentPriceAllowAgreement()"
-                                    name="contractDataModel.rentPriceByAgreement">
+                                <mat-slide-toggle *ngIf="contractTypeSelected.rentPriceAllowAgreement" [(ngModel)]="contractDataModel.rentPriceByAgreement" (change)="onActionClickRentPriceAllowAgreement()" name="contractDataModel.rentPriceByAgreement">
                                     {{ "TITLE.Agreement" | translate }}
                                 </mat-slide-toggle>
                             </div>
@@ -856,12 +706,8 @@
                                     <mat-label>{{
                                         contractTypeSelected.titlePeriodPriceML
                                         }}</mat-label>
-                                    <input matInput [(ngModel)]="contractDataModel.periodPrice"
-                                        name="contractDataModel.periodPrice"
-                                        [disabled]="contractDataModel.periodPriceByAgreement" type="text" currencyMask
-                                        class="input-ltr-center" urrencyMask class="input-ltr-center" placeholder="0" />
-                                    <mat-icon matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="contractDataModel.periodPrice = 0">
+                                    <input matInput [(ngModel)]="contractDataModel.periodPrice" name="contractDataModel.periodPrice" [disabled]="contractDataModel.periodPriceByAgreement" type="text" currencyMask class="input-ltr-center" urrencyMask class="input-ltr-center" placeholder="0" />
+                                    <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.periodPrice = 0">
                                         close</mat-icon>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                     <mat-label>
@@ -876,9 +722,7 @@
                                 <mat-slide-toggle *ngIf="
                     contractTypeSelected.hasPeriodPrice &&
                     contractTypeSelected.periodPriceAllowAgreement
-                  " [(ngModel)]="contractDataModel.periodPriceByAgreement"
-                                    (change)="onActionClickPeriodPriceAllowAgreement()"
-                                    name="contractDataModel.periodPriceByAgreement">
+                  " [(ngModel)]="contractDataModel.periodPriceByAgreement" (change)="onActionClickPeriodPriceAllowAgreement()" name="contractDataModel.periodPriceByAgreement">
                                     {{ "TITLE.Agreement" | translate }}
                                 </mat-slide-toggle>
                             </div>
@@ -887,12 +731,8 @@
                         <!-- contractDataModel.description Field -->
                         <mat-form-field class="ntk-full-width">
                             <mat-label>{{ fieldsInfo["description"]?.fieldTitle }}</mat-label>
-                            <textarea matInput [(ngModel)]="contractDataModel.description"
-                                name="contractDataModel.description" #contractDataModel_Description type="text"
-                                placeholder="{{ fieldsInfo['description']?.fieldTitle }}" minlength="0" maxlength="500"
-                                rows="5"></textarea>
-                            <mat-icon matSuffix *ngIf="contractDataModel.description" matSuffix mat-icon-button
-                                aria-label="Clear" (click)="contractDataModel.description = ''">close</mat-icon>
+                            <textarea matInput [(ngModel)]="contractDataModel.description" name="contractDataModel.description" #contractDataModel_Description type="text" placeholder="{{ fieldsInfo['description']?.fieldTitle }}" minlength="0" maxlength="500" rows="5"></textarea>
+                            <mat-icon matSuffix *ngIf="contractDataModel.description" matSuffix mat-icon-button aria-label="Clear" (click)="contractDataModel.description = ''">close</mat-icon>
                             <mat-icon matSuffix>mode_edit</mat-icon>
                             <mat-hint align="end">{{ contractDataModel_Description.value.length }} /
                                 500</mat-hint>
@@ -902,9 +742,7 @@
                     <br />
                 </div>
 
-                <button (click)="onActionOptionAddToList()" type="button" mat-button
-                    *ngIf="contractTypeSelected && contractTypeSelected.id.length > 0"
-                    class="btn btn-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px">
+                <button (click)="onActionOptionAddToList()" type="button" mat-button *ngIf="contractTypeSelected && contractTypeSelected.id.length > 0" class="btn btn-primary font-weight-bold font-size-h5 px-9 py-4" style="margin: 10px 0px">
                     {{ "ACTION.Add_To_List" | translate }} ...
                 </button>
                 <hr />
@@ -1000,9 +838,7 @@
                             <mat-cell *matCellDef="let row; let i = index" class="Action">
                                 <button type="button" mat-icon-button (click)="onActionOptionRemoveFromList(i)">
                                     <small>
-                                        <mat-icon matTooltip="{{ 'ACTION.DELETE' | translate }}"
-                                            matTooltipPosition="before" aria-hidden="false"
-                                            style="color: red">delete</mat-icon>
+                                        <mat-icon matTooltip="{{ 'ACTION.DELETE' | translate }}" matTooltipPosition="before" aria-hidden="false" style="color: red">delete</mat-icon>
                                     </small>
                                 </button>
                             </mat-cell>
@@ -1026,12 +862,11 @@
                     </mat-table>
                 </div>
                 <!-- TABLE  -->
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext *ngIf="
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext *ngIf="
               this.dataModel.contracts && this.dataModel.contracts.length > 0
             ">
                         {{ "ACTION.NEXT" | translate }}
@@ -1042,9 +877,7 @@
                 <p>{{ "TITLE.CONTENT_ATTACH_FILES" | translate }}</p>
                 <div class="mb-3">
                     <a href="{{ dataModel.linkMainImageIdSrc | cmsthumbnail }}" target="_blank">
-                        <img *ngIf="dataModel?.linkMainImageIdSrc?.length > 0" style="vertical-align: middle"
-                            class="ntk-hover-zoom" aria-hidden src="{{ dataModel.linkMainImageIdSrc | cmsthumbnail }}"
-                            height="50" width="50" />
+                        <img *ngIf="dataModel?.linkMainImageIdSrc?.length > 0" style="vertical-align: middle" class="ntk-hover-zoom" aria-hidden src="{{ dataModel.linkMainImageIdSrc | cmsthumbnail }}" height="50" width="50" />
                     </a>
                 </div>
                 <div class="mb-9">
@@ -1052,26 +885,18 @@
                         <mat-label (click)="fileManagerOpenForm = true">{{
                             "TITLE.Original_Photo" | translate
                             }}</mat-label>
-                        <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId"
-                            #LinkMainImageId type="text" placeholder="{{ 'TITLE.Original_File_ID' | translate }}"
-                            autocomplete="off" (click)="fileManagerOpenForm = true" />
-                        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button
-                            aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
+                        <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="{{ 'TITLE.Original_File_ID' | translate }}" autocomplete="off" (click)="fileManagerOpenForm = true" />
+                        <mat-icon matSuffix *ngIf="dataModel.linkMainImageId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
                         <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
                     </mat-form-field>
 
-                    <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)"
-                        [language]="appLanguage" [openDirectUploadView]="true" [isPopup]="true"
-                        [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree"
-                        [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage"
-                        [openFilemanagerButtonView]="false"></cms-file-manager>
+                    <cms-file-manager (itemSelected)="onActionFileSelectedLinkMainImageId($event)" [language]="appLanguage" [openDirectUploadView]="true" [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false"></cms-file-manager>
                 </div>
                 <hr />
                 <p *ngIf="dataFileModelImgaes && dataFileModelImgaes.size > 0">
                     {{ "TITLE.List_of_attached_photos" | translate }}
                 </p>
-                <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes"
-                    [optionFileType]="selectFileTypeMainImage" [openDirectUploadView]="true">
+                <app-cms-files-selector [(dataFileModel)]="dataFileModelImgaes" [optionFileType]="selectFileTypeMainImage" [openDirectUploadView]="true">
                 </app-cms-files-selector>
                 <hr />
                 <div *ngIf="!hidden">
@@ -1084,15 +909,13 @@
                 <app-cms-360-image-list [(dataModel)]="dataModel.file360Views"></app-cms-360-image-list>
                 <br />
                 <h3>{{ "TITLE.virtual_tour" | translate }}</h3>
-                <app-cms-360-tour-list [(dataModel)]="dataModel.file360Tour"
-                    [dataImageModel]="dataModel.file360Views"></app-cms-360-tour-list>
+                <app-cms-360-tour-list [(dataModel)]="dataModel.file360Tour" [dataImageModel]="dataModel.file360Views"></app-cms-360-tour-list>
 
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid"
-                        matStepperNext>
+                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
                         {{ "ACTION.NEXT" | translate }}
                     </button>
                     <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
@@ -1105,12 +928,11 @@
                 <p>
                     {{ "TITLE.Click_on_the_map_to_specify_the_location" | translate }}
                 </p>
-                <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter"
-                    id="main-map"></app-cms-map>
+                <app-cms-map (map$)="receiveMap($event)" (zoom$)="receiveZoom($event)" [optonCenter]="mapOptonCenter" id="main-map"></app-cms-map>
                 <button type="button" class="btn btn-primary" (click)="ActionCurrentPoint()">
                     {{ "ACTION.MY_LOCATION" | translate }}
                 </button>
-                <div *ngIf="formInfo.formSubmitAllow && !loading.display" class="ntk-button-row">
+                <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
