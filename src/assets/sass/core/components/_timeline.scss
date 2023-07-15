@@ -17,13 +17,13 @@
 				bottom: 100%;
 			}
 		}
-	}        
+	}
 
 	// Line
 	.timeline-line {
 		display: block;
 		content: " ";
-		justify-content: center;     
+		justify-content: center;
 		position: absolute;
 		z-index: 0;
 		left: 0;
@@ -32,7 +32,7 @@
 		transform: translate(50%);
 		border-left-width: 1px;
 		border-left-style: dashed;
-		border-left-color: var(--#{$prefix}gray-300); 
+		border-left-color: var(--#{$prefix}gray-300);
 	}
 
 	// Icon
@@ -47,9 +47,11 @@
 		width: 100%;
 		overflow: auto;
 		margin-bottom: 1.5rem;
+    padding-left: 3px ;
+    padding-right: 3px;
 	}
 
-	// Vertical center 
+	// Vertical center
 	&.timeline-center {
 		.timeline-item {
 			align-items: center;

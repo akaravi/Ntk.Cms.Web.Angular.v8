@@ -122,6 +122,7 @@ export class TicketingTemplateSelectorComponent implements OnInit {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionSelectClear(): void {
+    this.dataModelSelect = null;
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

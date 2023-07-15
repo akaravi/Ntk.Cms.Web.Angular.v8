@@ -157,6 +157,7 @@ export class EstateCustomerCategorySelectorComponent implements OnInit, OnDestro
     if (this.optionDisabled) {
       return;
     }
+    this.dataModelSelect = null;
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

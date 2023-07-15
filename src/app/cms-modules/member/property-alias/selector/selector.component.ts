@@ -114,6 +114,7 @@ export class MemberPropertyAliasSelectorComponent implements OnInit {
   }
   onActionSelectClear(): void {
     this.dataModelSelect.linkPropertyTypeId = 0;
+    this.dataModelSelect = null;
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

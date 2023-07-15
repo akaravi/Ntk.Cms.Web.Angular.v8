@@ -1,106 +1,230 @@
 <div class="alert alert-info">
-    <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
-    <mat-form-field appearance="fill">
-        <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
-        <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
-            <input matStartDate formControlName="start" placeholder="{{'TITLE.Start_Date'| translate}}">
-            <input matEndDate formControlName="end" placeholder="{{'TITLE.Start_Date'| translate}}">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-        <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">{{'MESSAGE.InvalidStartDate'
+  <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
+  <mat-form-field appearance="fill">
+    <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
+    <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="{{'TITLE.Start_Date'| translate}}">
+      <input matEndDate formControlName="end" placeholder="{{'TITLE.Start_Date'| translate}}">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">{{'MESSAGE.InvalidStartDate'
       | translate}}</mat-error>
-        <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
+    <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
       translate}}</mat-error>
-    </mat-form-field>
-    <button type="button" (click)="onActionNext()" class="btn btn-light" *ngIf="!loading?.display">
+  </mat-form-field>
+  <button type="button" (click)="onActionNext()" class="btn btn-light" *ngIf="!loading?.display">
+    <i class="ft-x"></i>
+    < </button> <button type="button" (click)="onActionPervious()" class="btn btn-light" *ngIf="!loading?.display">
         <i class="ft-x"></i>
-        < </button> <button type="button" (click)="onActionPervious()" class="btn btn-light" *ngIf="!loading?.display">
-            <i class="ft-x"></i>
-            >
-    </button>
-    <br>
-    <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()" *ngIf="!loading?.display" class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
+        >
+      </button>
+      <br>
+      <!-- LinkCmsUserId Field -->
+      <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="linkCmsUserId"
+        *ngIf="tokenHelper.isAdminSite" [(optionLoading)]="loading"
+        [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+      </app-cms-user-selector>
+      <br>
+      <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()" *ngIf="!loading?.display"
+        class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
 </div>
-<div class="row">
-    <div class="col-4">
-        <table class="table table-striped ntk-cms-html-table">
-            <thead>
-                <th>
-                    <h3>ملک</h3>
-                </th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of dataModelPropertyResult.listItems">
-                    <td  (click)="onActionbuttonProperty(item,$event)">
-                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<!-- begin::Row -->
+<div class="row g-5 g-xl-8">
+  <div class="col-xl-4">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">ملک</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelPropertyResult.totalRowCount}} عدد</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelPropertyResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i class="fa fa-genderless text-warning fs-1"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              <a (click)="onActionbuttonProperty(item,$event)">
+                {{item.title}}
+              </a>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
     </div>
-    <div class="col-4">
-        <table class="table table-striped ntk-cms-html-table">
-            <thead>
-                <th>
-                    <h3>سفارش ملک</h3>
-                </th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of dataModelCustomerOrderResult.listItems">
-                    <td (click)="onActionbuttonCustomerOrder(item,$event)">
-                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  </div>
+  <div class="col-xl-4">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">سفارش ملک</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelCustomerOrderResult.totalRowCount}} عدد</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelCustomerOrderResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i class="fa fa-genderless text-warning fs-1"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              <a (click)="onActionbuttonCustomerOrder(item,$event)">
+                {{item.title}}
+              </a>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
     </div>
-    <div class="col-4">
-        <table class="table table-striped ntk-cms-html-table">
-            <thead>
-                <th>
-                    <h3>تاریخچه</h3>
-                </th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of dataModelHistoryResult.listItems">
-                    <td  (click)="onActionbuttonHistory(item,$event)">
-                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  </div>
+  <div class="col-xl-4">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">تاریخچه</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelHistoryResult.totalRowCount}} عدد</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelHistoryResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i class="fa fa-genderless text-warning fs-1"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              <a (click)="onActionbuttonHistory(item,$event)">
+                {{item.title}}
+              </a>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
     </div>
-    <div class="col-4">
-        <table class="table table-striped ntk-cms-html-table">
-            <thead>
-                <th>
-                    <h3>آژانس املاک</h3>
-                </th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of dataModelAccountAgencyResult.listItems">
-                  <td  (click)="onActionbuttonAccountAgency(item,$event)">
-                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  </div>
+  <div class="col-xl-4">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">آژانس املاک</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelAccountAgencyResult.totalRowCount}} عدد</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelAccountAgencyResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i class="fa fa-genderless text-warning fs-1"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              <a (click)="onActionbuttonAccountAgency(item,$event)">
+                {{item.title}}
+              </a>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
     </div>
-    <div class="col-4">
-        <table class="table table-striped ntk-cms-html-table">
-            <thead>
-                <th>
-                    <h3>کارشناس املاک</h3>
-                </th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of dataModelAccountUserResult.listItems">
-                  <td  (click)="onActionbuttonAccountUser(item,$event)">
-                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  </div>
+  <div class="col-xl-4">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">کارشناس املاک</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelAccountUserResult.totalRowCount}} عدد</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelAccountUserResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i class="fa fa-genderless text-warning fs-1"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              <a (click)="onActionbuttonAccountUser(item,$event)">
+                {{item.title}}
+              </a>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
     </div>
+  </div>
 </div>
+<!-- end::Row -->

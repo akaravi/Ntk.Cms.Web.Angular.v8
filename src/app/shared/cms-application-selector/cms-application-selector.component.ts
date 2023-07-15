@@ -146,6 +146,7 @@ export class CmsApplicationSelectorComponent implements OnInit {
     if (this.optionDisabled) {
       return;
     }
+    this.dataModelSelect = null;
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

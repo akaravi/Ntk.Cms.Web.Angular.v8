@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
+  CoreUserModel,
   DataFieldInfoModel, EnumInfoModel,
   ErrorExceptionResult,
   EstateAccountAgencyFilterModel,
@@ -52,6 +53,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+
   }
   loading = new ProgressSpinnerModel();
   //dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
@@ -72,9 +74,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.checkingOnDayRange.controls.start.setValue(new Date());
     if (!this.checkingOnDayRange.controls.end?.value)
       this.checkingOnDayRange.controls.end.setValue(new Date());
+
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
       this.onActionbuttonOnDateSearch();
+      this.linkCmsUserId = next.userId;
     });
+    if (this.tokenHelper?.tokenInfo?.userId > 0)
+      this.linkCmsUserId = this.tokenHelper.tokenInfo.userId
+    this.onActionbuttonOnDateSearch();
   }
   DataGetAllProperty(): void {
     const pName = this.constructor.name + 'DataGetAllProperty';
@@ -87,6 +94,8 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.checkingOnDayRange.controls.end.setValue(new Date());
     filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertyService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -94,8 +103,6 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelPropertyResult = ret;
-          console.log(this.dataModelPropertyResult);
-
           this.loading.Stop(pName);
         }
         error: (er) => {
@@ -116,6 +123,8 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.checkingOnDayRange.controls.end.setValue(new Date());
     filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estateCustomerOrderService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -123,8 +132,6 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelCustomerOrderResult = ret;
-          //console.log(this.dataModelCustomerOrderResult);
-
           this.loading.Stop(pName);
         }
         error: (er) => {
@@ -146,6 +153,8 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.checkingOnDayRange.controls.end.setValue(new Date());
     filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertyHistoryService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -153,8 +162,6 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelHistoryResult = ret;
-          //console.log(this.dataModelHistoryResult);
-
           this.loading.Stop(pName);
         }
         error: (er) => {
@@ -177,6 +184,8 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.checkingOnDayRange.controls.end.setValue(new Date());
     filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estateAccountUserService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -184,8 +193,6 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelAccountUserResult = ret;
-          //console.log(this.dataModelHistoryResult);
-
           this.loading.Stop(pName);
         }
         error: (er) => {
@@ -208,6 +215,8 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.checkingOnDayRange.controls.end.setValue(new Date());
     filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estateAccountAgencyService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -215,8 +224,6 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelAccountAgencyResult = ret;
-          //console.log(this.dataModelHistoryResult);
-
           this.loading.Stop(pName);
         }
         error: (er) => {
@@ -238,6 +245,13 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     this.DataGetAllAccountUser();
     this.DataGetAllAccountAgency();
 
+  }
+  linkCmsUserId = 0;
+  onActionSelectorUser(model: CoreUserModel | null): void {
+    this.linkCmsUserId = 0;
+    if (model && model.id > 0) {
+      this.linkCmsUserId = model.id;
+    }
   }
   onActionNext() {
     if (!this.checkingOnDayRange.controls.start?.value)

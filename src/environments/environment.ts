@@ -15,8 +15,8 @@ export const environment = {
   mainTitle: 'سامانه مدیریتی محتوا',
   cmsServerConfig: {
     configApiRetry: 1,
-    configApiServerPath: 'https://apicms.ir/api/v2/',
-    //configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
+    //configApiServerPath: 'https://apicms.ir/api/v2/',
+    configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:7130/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:44342/api/v2/', // Test Api Docer
     configMvcServerPath: 'https://ntkcms.ir/',

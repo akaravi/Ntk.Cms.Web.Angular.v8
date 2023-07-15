@@ -116,6 +116,7 @@ export class DonateTargetPeriodSponserSelectorComponent implements OnInit {
 
   }
   onActionSelectClear(): void {
+    this.dataModelSelect = null;
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }

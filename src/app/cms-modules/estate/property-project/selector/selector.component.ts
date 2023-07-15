@@ -113,6 +113,7 @@ export class EstatePropertyProjectSelectorComponent implements OnInit {
   }
   onActionSelectClear(): void {
     this.dataModelSelect.linkMainImageIdSrc = '';
+    this.dataModelSelect = null;
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
