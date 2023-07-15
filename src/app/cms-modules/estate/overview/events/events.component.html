@@ -1,77 +1,106 @@
 <div class="alert alert-info">
-  <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
-  <mat-form-field appearance="fill">
-    <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
-    <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
-      <input matStartDate formControlName="start" placeholder="{{'TITLE.Start_Date'| translate}}">
-      <input matEndDate formControlName="end" placeholder="{{'TITLE.Start_Date'| translate}}">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-date-range-picker #picker></mat-date-range-picker>
-
-    <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">{{'MESSAGE.InvalidStartDate'
+    <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
+    <mat-form-field appearance="fill">
+        <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
+        <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="{{'TITLE.Start_Date'| translate}}">
+            <input matEndDate formControlName="end" placeholder="{{'TITLE.Start_Date'| translate}}">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-error *ngIf="checkingOnDayRange.controls.start.hasError('matStartDateInvalid')">{{'MESSAGE.InvalidStartDate'
       | translate}}</mat-error>
-    <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
+        <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
       translate}}</mat-error>
-  </mat-form-field>
-  <button type="button" (click)="onActionNext()" class="btn btn-light">
-    <i class="ft-x"></i>
-    < </button>
-      <button type="button" (click)="onActionPervious()" class="btn btn-light">
+    </mat-form-field>
+    <button type="button" (click)="onActionNext()" class="btn btn-light" *ngIf="!loading?.display">
         <i class="ft-x"></i>
-        > </button>
-
-      <br>
-      <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()"
-        class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
+        < </button> <button type="button" (click)="onActionPervious()" class="btn btn-light" *ngIf="!loading?.display">
+            <i class="ft-x"></i>
+            >
+    </button>
+    <br>
+    <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()" *ngIf="!loading?.display" class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
 </div>
 <div class="row">
-  <div class="col-4">
-    <table class="table table-striped ntk-cms-html-table">
-      <thead>
-        <th>
-          <h3>ملک</h3>
-        </th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of dataModelPropertyResult.listItems">
-          <td>
-            {{item.title}} ({{ publicHelper.LocaleDateTime(item.createdDate) }})
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-4">
-    <table class="table table-striped ntk-cms-html-table">
-      <thead>
-        <th>
-          <h3>سفارش ملک</h3>
-        </th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of dataModelCustomerOrderResult.listItems">
-          <td>
-            {{item.title}} ({{ publicHelper.LocaleDateTime(item.createdDate) }})
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-4">
-    <table class="table table-striped ntk-cms-html-table">
-      <thead>
-        <th>
-          <h3>تاریخچه</h3>
-        </th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of dataModelHistoryResult.listItems">
-          <td>
-            {{item.title}} ({{ publicHelper.LocaleDateTime(item.createdDate) }})
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="col-4">
+        <table class="table table-striped ntk-cms-html-table">
+            <thead>
+                <th>
+                    <h3>ملک</h3>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataModelPropertyResult.listItems">
+                    <td  (click)="onActionbuttonProperty(item,$event)">
+                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-striped ntk-cms-html-table">
+            <thead>
+                <th>
+                    <h3>سفارش ملک</h3>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataModelCustomerOrderResult.listItems">
+                    <td (click)="onActionbuttonCustomerOrder(item,$event)">
+                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-striped ntk-cms-html-table">
+            <thead>
+                <th>
+                    <h3>تاریخچه</h3>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataModelHistoryResult.listItems">
+                    <td  (click)="onActionbuttonHistory(item,$event)">
+                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-striped ntk-cms-html-table">
+            <thead>
+                <th>
+                    <h3>آژانس املاک</h3>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataModelAccountAgencyResult.listItems">
+                  <td  (click)="onActionbuttonAccountAgency(item,$event)">
+                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-4">
+        <table class="table table-striped ntk-cms-html-table">
+            <thead>
+                <th>
+                    <h3>کارشناس املاک</h3>
+                </th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataModelAccountUserResult.listItems">
+                  <td  (click)="onActionbuttonAccountUser(item,$event)">
+                        {{item.title}} ({{ publicHelper.getTime(item.createdDate) }})
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
