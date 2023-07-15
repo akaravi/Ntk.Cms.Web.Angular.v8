@@ -1,7 +1,8 @@
 <app-progress-spinner [options]="loading"> </app-progress-spinner>
 <div class="login-form login-forgot">
     <!--begin::Form-->
-    <form *ngIf="forgetState==='sms'" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate" #vformBySms="ngForm" (ngSubmit)="onActionSubmitOrderCodeBySms()" id="kt_login_forgot_form" [ngStyle]="{
+    <form *ngIf="forgetState==='sms'" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate"
+        #vformBySms="ngForm" (ngSubmit)="onActionSubmitOrderCodeBySms()" id="kt_login_forgot_form" [ngStyle]="{
       display: errorState === errorStates.NoError ? 'none' : 'block'
     }">
         <!--begin::Title-->
@@ -16,9 +17,14 @@
         <!--end::Title-->
         <!--Mobile Field-->
         <mat-form-field class="ntk-full-width">
-            <mat-label> {{'AUTH.SINGINBYSMS.MOBILE' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.mobile" name="dataModelAuthUserSignInBySms.mobile" class="input-Mobile" [disabled]=" !formInfo.buttonSubmittedEnabled" #Mobile type="text" autocomplete="off" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" placeholder=" {{'AUTH.SINGINBYSMS.MOBILE' | translate}}" minlength="5" maxlength="50" required />
-            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.mobile" matSuffix mat-icon-button aria-label="Clear" (click)="dataModelAuthUserSignInBySms.mobile = ''">
+            <mat-label class="form-label"> {{'AUTH.SINGINBYSMS.MOBILE' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.mobile" name="dataModelAuthUserSignInBySms.mobile"
+                class="input-Mobile" [disabled]=" !formInfo.buttonSubmittedEnabled" #Mobile type="text"
+                autocomplete="off"
+                class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+                placeholder=" {{'AUTH.SINGINBYSMS.MOBILE' | translate}}" minlength="5" maxlength="50" required />
+            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.mobile" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModelAuthUserSignInBySms.mobile = ''">
                 close</mat-icon>
             <mat-error *ngIf="Mobile.errors?.required">
                 {{'AUTH.SINGINBYSMS.MOBILE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -28,9 +34,14 @@
         <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
         <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
         <mat-form-field class="ntk-full-width">
-            <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.captchaText" name="dataModelforgetPasswordBySms.captchaText" [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button aria-label="Clear" (click)="dataModelAuthUserSignInBySms.captchaText = ''">
+            <mat-label class="form-label"> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.captchaText"
+                name="dataModelforgetPasswordBySms.captchaText" [disabled]=" !formInfo.buttonSubmittedEnabled"
+                #captchaText type="number"
+                class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+                autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button
+                aria-label="Clear" (click)="dataModelAuthUserSignInBySms.captchaText = ''">
                 close</mat-icon>
             <mat-error *ngIf="captchaText.errors?.required">
                 {{'AUTH.INPUT.CAPTCHACODE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -39,12 +50,15 @@
         <!--begin::Form group-->
         <div class="row">
             <div class="col-12 col-lg-6">
-                <button type="submit" id="kt_login_forgot_submit" [disabled]="vformBySms.invalid || !formInfo.buttonSubmittedEnabled" class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+                <button type="submit" id="kt_login_forgot_submit"
+                    [disabled]="vformBySms.invalid || !formInfo.buttonSubmittedEnabled"
+                    class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
                     {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}
                 </button>
             </div>
             <div class="col-12 col-lg-6">
-                <a routerLink="/auth/singin" id="kt_login_forgot_cancel" class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
+                <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
+                    class="btn btn-primary font-weight-bolder font-size-h4  col-12" style="margin: 1px;">
                     {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
                 </a>
             </div>
@@ -54,7 +68,9 @@
     </form>
     <!--end::Form-->
     <!--begin::Form-->
-    <form *ngIf="forgetState==='entrycode'" class="form fv-plugins-bootstrap fv-plugins-framework" novalidate="novalidate" #vformEntryCode="ngForm" (ngSubmit)="onActionSubmitEntryPinCode()" id="kt_login_forgot_form" [ngStyle]="{
+    <form *ngIf="forgetState==='entrycode'" class="form fv-plugins-bootstrap fv-plugins-framework"
+        novalidate="novalidate" #vformEntryCode="ngForm" (ngSubmit)="onActionSubmitEntryPinCode()"
+        id="kt_login_forgot_form" [ngStyle]="{
       display: errorState === errorStates.NoError ? 'none' : 'block'
     }">
         <!--begin::Title-->
@@ -63,13 +79,18 @@
                 {{'AUTH.SINGINBYSMS.TITLE' | translate}}
             </h3>
             <p class="text-muted font-weight-bold font-size-h4">
-                {{'AUTH.SINGINBYSMS.DESCSMSEntryCode' | translate| replaceText:'$MOBILE$':dataModelAuthUserSignInBySms.mobile}}
+                {{'AUTH.SINGINBYSMS.DESCSMSEntryCode' | translate|
+                replaceText:'$MOBILE$':dataModelAuthUserSignInBySms.mobile}}
             </p>
         </div>
         <mat-form-field class="ntk-full-width">
-            <mat-label> {{'AUTH.SINGINBYSMS.PIN_CODE' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.code" name="dataModelAuthUserSignInBySms.code" [disabled]=" !formInfo.buttonSubmittedEnabled" #Code type="number" autocomplete="off" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" placeholder=" {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}" minlength="3" maxlength="50" required />
-            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.code" matSuffix mat-icon-button aria-label="Clear" (click)="dataModelAuthUserSignInBySms.code = ''">
+            <mat-label class="form-label"> {{'AUTH.SINGINBYSMS.PIN_CODE' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.code" name="dataModelAuthUserSignInBySms.code"
+                [disabled]=" !formInfo.buttonSubmittedEnabled" #Code type="number" autocomplete="off"
+                class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+                placeholder=" {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}}" minlength="3" maxlength="50" required />
+            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.code" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModelAuthUserSignInBySms.code = ''">
                 close</mat-icon>
             <mat-error *ngIf="Code.errors?.required">
                 {{'AUTH.SINGINBYSMS.SEND_PIN_CODE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -79,9 +100,14 @@
         <img src="{{captchaModel.image}}" (click)="onCaptchaOrder()" class="mb-3" alt="">
         <mat-icon matSuffix (click)="onCaptchaOrder()">refresh</mat-icon>
         <mat-form-field class="ntk-full-width">
-            <mat-label> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.captchaText" name="dataModelAuthUserSignInBySms.captchaText" [disabled]=" !formInfo.buttonSubmittedEnabled" #captchaText type="number" class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center" autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
-            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button aria-label="Clear" (click)="dataModelAuthUserSignInBySms.captchaText = ''">
+            <mat-label class="form-label"> {{'AUTH.INPUT.CAPTCHACODE' | translate}}</mat-label>
+            <input matInput [(ngModel)]="dataModelAuthUserSignInBySms.captchaText"
+                name="dataModelAuthUserSignInBySms.captchaText" [disabled]=" !formInfo.buttonSubmittedEnabled"
+                #captchaText type="number"
+                class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6 input-ltr-center"
+                autocomplete="off" placeholder=" {{'AUTH.INPUT.CAPTCHACODE' | translate}}" required />
+            <mat-icon matSuffix *ngIf="dataModelAuthUserSignInBySms.captchaText" matSuffix mat-icon-button
+                aria-label="Clear" (click)="dataModelAuthUserSignInBySms.captchaText = ''">
                 close</mat-icon>
             <mat-error *ngIf="captchaText.errors?.required">
                 {{'AUTH.INPUT.CAPTCHACODE' | translate}} <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -90,18 +116,25 @@
         <!--begin::Form group-->
         <div class="row">
             <div class="col-12 col-lg-12">
-                <button type="submit" id="kt_login_forgot_submit" [disabled]="vformEntryCode.invalid || !formInfo.buttonSubmittedEnabled" class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
+                <button type="submit" id="kt_login_forgot_submit"
+                    [disabled]="vformEntryCode.invalid || !formInfo.buttonSubmittedEnabled"
+                    class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
                     {{'AUTH.SINGINBYSMS.LOGIN' | translate}}
                 </button>
             </div>
             <div class="col-12 col-lg-12">
-                <button type="button" id="kt_login_forgot_submit" (click)="onActionSubmitOrderCodeBySms()" [disabled]="buttonnResendSmsDisable" class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
+                <button type="button" id="kt_login_forgot_submit" (click)="onActionSubmitOrderCodeBySms()"
+                    [disabled]="buttonnResendSmsDisable" class="btn btn-primary font-weight-bolder font-size-h5  col-12"
+                    style="margin: 1px;">
                     {{'AUTH.LOGIN.RESEND_SMS' | translate}} {{prorocess?.message}}
                 </button>
-                <progress *ngIf="prorocess?.progressBarValue>0 && buttonnResendSmsDisable" [value]="prorocess.progressBarValue" max="{{prorocess.progressBarMaxValue}}" style="width: inherit;"></progress>
+                <progress *ngIf="prorocess?.progressBarValue>0 && buttonnResendSmsDisable"
+                    [value]="prorocess.progressBarValue" max="{{prorocess.progressBarMaxValue}}"
+                    style="width: inherit;"></progress>
             </div>
             <div class="col-12 col-lg-12">
-                <a routerLink="/auth/singin" id="kt_login_forgot_cancel" class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
+                <a routerLink="/auth/singin" id="kt_login_forgot_cancel"
+                    class="btn btn-primary font-weight-bolder font-size-h5  col-12" style="margin: 1px;">
                     {{'AUTH.REGISTER.RETURN_TO_LOGIN' | translate}}
                 </a>
             </div>

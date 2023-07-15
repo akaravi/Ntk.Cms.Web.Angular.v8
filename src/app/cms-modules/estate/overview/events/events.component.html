@@ -25,3 +25,53 @@
       <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()"
         class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
 </div>
+<div class="row">
+  <div class="col-4">
+    <table class="table table-striped ntk-cms-html-table">
+      <thead>
+        <th>
+          <h3>ملک</h3>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataModelPropertyResult.listItems">
+          <td>
+            {{item.title}} ({{ publicHelper.LocaleDateTime(item.createdDate) }})
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+    <table class="table table-striped ntk-cms-html-table">
+      <thead>
+        <th>
+          <h3>سفارش ملک</h3>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataModelCustomerOrderResult.listItems">
+          <td>
+            {{item.title}} ({{ publicHelper.LocaleDateTime(item.createdDate) }})
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+    <table class="table table-striped ntk-cms-html-table">
+      <thead>
+        <th>
+          <h3>تاریخچه</h3>
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataModelHistoryResult.listItems">
+          <td>
+            {{item.title}} ({{ publicHelper.LocaleDateTime(item.createdDate) }})
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
