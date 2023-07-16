@@ -325,7 +325,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
-        this.onActionbuttonProperty(result.onActionOpenItem)
+        this.onActionbuttonCustomerOrder(result.onActionOpenItem)
       }
     });
   }
@@ -349,7 +349,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
-        this.onActionbuttonProperty(result.onActionOpenItem)
+        this.onActionbuttonHistory(result.onActionOpenItem)
       }
     });
   }
