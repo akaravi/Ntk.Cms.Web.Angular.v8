@@ -1,5 +1,5 @@
 <div class="alert alert-info">
-  <div mat-subheader style="font-size: 30px;">{{'TITLE.SearchInCheckingOnDay' | translate}}</div>
+  <div mat-subheader style="font-size: 20px;">بررسی رویداد</div>
   <mat-form-field appearance="fill">
     <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
     <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
@@ -52,14 +52,13 @@
             <!-- end::Label-->
             <!-- begin::Badge-->
             <div class="timeline-badge">
-              <i class="fa fa-genderless text-warning fs-1"></i>
+              <i class="fa fa-genderless text-warning fs-1" (click)="onActionbuttonProperty(item,$event)"></i>
             </div>
             <!-- end::Badge-->
             <!-- begin::Text-->
             <div class="fw-mormal timeline-content text-muted ps-3">
-              <a (click)="onActionbuttonProperty(item,$event)">
-                {{item.title}}
-              </a>
+              {{item.title}}
+
             </div>
             <!-- end::Text-->
           </div>

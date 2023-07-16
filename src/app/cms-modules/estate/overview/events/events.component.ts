@@ -31,6 +31,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 @Component({
   selector: 'app-estate-overview-events',
   templateUrl: './events.component.html',
@@ -282,13 +283,21 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-
-    if (event?.ctrlKey) {
-      var link = "/#/estate/property/edit/" + model.id;
-      window.open(link, "_blank");
-    } else {
-      this.router.navigate(['/estate/property/edit/', model.id]);
-    }
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelPropertyResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelPropertyResult.listItems, model);
+    const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
+      height: '90%',
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonProperty(result.onActionOpenItem)
+      }
+    });
   }
   onActionbuttonCustomerOrder(model: EstateCustomerOrderModel, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
