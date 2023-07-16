@@ -31,9 +31,9 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
 import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/quick-view/quick-view.component';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
-import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
 @Component({
   selector: 'app-estate-overview-events',
   templateUrl: './events.component.html',
@@ -255,6 +255,11 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     if (model && model.id > 0) {
       this.linkCmsUserId = model.id;
     }
+  }
+  onActionToDay() {
+    this.checkingOnDayRange.controls.start.setValue(new Date());
+    this.checkingOnDayRange.controls.end.setValue(new Date());
+    this.onActionbuttonOnDateSearch();
   }
   onActionNext() {
     if (!this.checkingOnDayRange.controls.start?.value)

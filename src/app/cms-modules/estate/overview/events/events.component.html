@@ -19,6 +19,10 @@
         <i class="ft-x"></i>
         >
       </button>
+      <button type="button" (click)="onActionToDay()" class="btn btn-light" *ngIf="!loading?.display">
+        <i class="ft-x"></i>
+        امروز
+      </button>
       <br>
       <!-- LinkCmsUserId Field -->
       <app-cms-user-selector (optionChange)="onActionSelectorUser($event)" [optionSelectForce]="linkCmsUserId"
@@ -28,6 +32,11 @@
       <br>
       <a href="javascript:void(0)" (click)="onActionbuttonOnDateSearch()" *ngIf="!loading?.display"
         class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
+</div>
+<div *ngIf="checkingOnDayRange?.controls?.start?.value">
+  {{ publicHelper.LocaleDateTime(this.checkingOnDayRange.controls.start.value)}}
+  -
+  {{ publicHelper.LocaleDateTime(this.checkingOnDayRange.controls.end.value)}}
 </div>
 <!-- begin::Row -->
 <div class="row g-5 g-xl-8">
