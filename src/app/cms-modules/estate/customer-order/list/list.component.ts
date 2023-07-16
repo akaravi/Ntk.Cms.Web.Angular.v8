@@ -29,6 +29,7 @@ import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
+import { EstatePropertyHistoryAddComponent } from '../../property-history/add/add.component';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -784,6 +785,30 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     }
     this.dataModelCorCurrencySelector = model;
     this.filteModelContent.linkCoreCurrencyId = model.id;
+  }
+
+
+  onActionbuttonQuickHistoryAddRow(model: EstateCustomerOrderModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.onActionTableRowSelect(model);
+    const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
+      height: '90%',
+      data: {
+        linkActivityTypeId: this.categoryModelSelected?.id,
+        linkPropertyId: null,
+        linkEstateUserId: null,
+        linkCustomerOrderId: model.id,
+        linkEstateAgencyId: null
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+
+      }
+    });
   }
   setStep(index: number): void {
     this.step = index;

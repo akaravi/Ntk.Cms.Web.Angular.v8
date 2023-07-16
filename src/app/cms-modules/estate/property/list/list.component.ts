@@ -28,6 +28,7 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+import { EstatePropertyHistoryAddComponent } from "../../property-history/add/add.component";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
 
@@ -721,6 +722,29 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     });
   }
 
+
+  onActionbuttonQuickHistoryAddRow(model: EstatePropertyModel = this.tableRowSelected): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.onActionTableRowSelect(model);
+    const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
+      height: '90%',
+      data: {
+        linkActivityTypeId: null,
+        linkPropertyId: model.id,
+        linkEstateUserId: null,
+        linkCustomerOrderId: null,
+        linkEstateAgencyId: null,
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+
+      }
+    });
+  }
 
   onActionbuttonAdsRow(
     mode: EstatePropertyModel = this.tableRowSelected, event?: MouseEvent

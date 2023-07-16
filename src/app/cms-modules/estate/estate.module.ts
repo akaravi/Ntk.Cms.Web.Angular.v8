@@ -1,16 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { EstateComponent } from './estate.component';
-import { EstateRoutes } from './estate.routing';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { SharedModule } from 'src/app/shared/shared.module';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import {
   BankPaymentTransactionService, CoreAuthService,
   CoreEnumService, CoreModuleService, CoreModuleTagService, EstateAccountAgencyAdsService, EstateAccountAgencyService,
@@ -22,6 +16,9 @@ import {
   EstatePropertyShareSiteService, EstatePropertySupplierCategoryService, EstatePropertySupplierService, EstatePropertyTypeLanduseService, EstatePropertyTypeService, EstatePropertyTypeUsageService, FileCategoryService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { EstateComponent } from './estate.component';
+import { EstateRoutes } from './estate.routing';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColorPickerModule } from 'ngx-color-picker';
@@ -139,6 +136,9 @@ import { EstateCustomerOrderResultListComponent } from './customer-order-result/
 import { EstateCustomerOrderResultViewComponent } from './customer-order-result/view/view.component';
 import { EstateCustomerOrderActionComponent } from './customer-order/action/action.component';
 import { EstateCustomerOrderHeaderComponent } from './customer-order/header/header.component';
+import { EstateCustomerOrderQuickViewComponent } from './customer-order/quick-view/quick-view.component';
+import { EstateOverviewEventsComponent } from './overview/events/events.component';
+import { EstateOverviewSummaryComponent } from './overview/summary/summary.component';
 import { EstatePropertyCompanyAddComponent } from './property-company/add/add.component';
 import { EstatePropertyCompanyDeleteComponent } from './property-company/delete/delete.component';
 import { EstatePropertyCompanyEditComponent } from './property-company/edit/edit.component';
@@ -177,8 +177,6 @@ import { EstatePropertyActionComponent } from './property/action/action.componen
 import { EstatePropertyQuickAddComponent } from './property/quick-add/quick-add.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
-import { EstateOverviewEventsComponent } from './overview/events/events.component';
-import { EstateOverviewSummaryComponent } from './overview/summary/summary.component';
 
 
 @NgModule({
@@ -302,6 +300,7 @@ import { EstateOverviewSummaryComponent } from './overview/summary/summary.compo
     EstateCustomerOrderTreeComponent,
     EstateCustomerOrderHeaderComponent,
     EstateCustomerOrderActionComponent,
+    EstateCustomerOrderQuickViewComponent,
     /* */
     EstateCustomerOrderResultListComponent,
     EstateCustomerOrderResultViewComponent,

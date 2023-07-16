@@ -148,6 +148,8 @@
   "ACTION.LOGS": "لاگ ها",
   "ACTION.LOGIN": "ورود",
   "ACTION.HISTORY": "تاریخچه",
+  "ACTION.HISTORY_ADD": "ثبت تاریخچه",
+  "ACTION.HISTORY_LIST": "لیست تاریخچه",
   "ACTION.CONNECTED_AGENCY": "آژانس های متصل",
   "ACTION.MEMBER_SITES": "سایت های عضو ",
   "ACTION.EDIT_SITES": "ویرایش سایت",
