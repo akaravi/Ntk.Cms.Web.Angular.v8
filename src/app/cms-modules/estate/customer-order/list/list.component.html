@@ -471,9 +471,13 @@
               <mat-icon>delete_forever</mat-icon>
               <span>{{'ACTION.DELETE' | translate}}</span>
             </button>
+            <button mat-menu-item (click)="onActionbuttonQuickHistoryAddRow(row)">
+              <span>{{'ACTION.HISTORY_ADD' | translate}}</span>
+              <mat-icon>history</mat-icon>
+            </button>
             <button mat-menu-item (click)="onActionbuttonHistoryRow(row,$event)">
               <mat-icon>history</mat-icon>
-              <span>{{'ACTION.HISTORY' | translate}}</span>
+              <span>{{'ACTION.HISTORY_LIST' | translate}}</span>
             </button>
             <button mat-menu-item (click)="onActionbuttonContentList(row,$event)">
               <mat-icon>list</mat-icon>

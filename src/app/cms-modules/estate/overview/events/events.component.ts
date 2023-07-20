@@ -31,6 +31,9 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
+import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/quick-view/quick-view.component';
+import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 @Component({
   selector: 'app-estate-overview-events',
   templateUrl: './events.component.html',
@@ -253,6 +256,11 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.linkCmsUserId = model.id;
     }
   }
+  onActionToDay() {
+    this.checkingOnDayRange.controls.start.setValue(new Date());
+    this.checkingOnDayRange.controls.end.setValue(new Date());
+    this.onActionbuttonOnDateSearch();
+  }
   onActionNext() {
     if (!this.checkingOnDayRange.controls.start?.value)
       this.checkingOnDayRange.controls.start.setValue(new Date());
@@ -282,13 +290,21 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-
-    if (event?.ctrlKey) {
-      var link = "/#/estate/property/edit/" + model.id;
-      window.open(link, "_blank");
-    } else {
-      this.router.navigate(['/estate/property/edit/', model.id]);
-    }
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelPropertyResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelPropertyResult.listItems, model);
+    const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
+      height: '90%',
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonProperty(result.onActionOpenItem)
+      }
+    });
   }
   onActionbuttonCustomerOrder(model: EstateCustomerOrderModel, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -297,12 +313,21 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (event?.ctrlKey) {
-      var link = "/#/estate/customer-order/edit/" + model.id;
-      window.open(link, "_blank");
-    } else {
-      this.router.navigate(['/estate/customer-order/edit/', model.id]);
-    }
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    const dialogRef = this.dialog.open(EstateCustomerOrderQuickViewComponent, {
+      height: '90%',
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonCustomerOrder(result.onActionOpenItem)
+      }
+    });
   }
 
   onActionbuttonHistory(model: EstatePropertyHistoryModel, event?: MouseEvent): void {
@@ -312,12 +337,21 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (event?.ctrlKey) {
-      var link = "/#/estate/property-history/LinkCustomerOrderId/" + model.id;
-      window.open(link, "_blank");
-    } else {
-      this.router.navigate(['/estate/property-history/LinkCustomerOrderId/', model.id]);
-    }
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelHistoryResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelHistoryResult.listItems, model);
+    const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
+      height: '90%',
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonHistory(result.onActionOpenItem)
+      }
+    });
   }
   onActionbuttonAccountAgency(model: EstateAccountAgencyModel, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
