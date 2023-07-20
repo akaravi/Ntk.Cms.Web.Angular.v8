@@ -21,6 +21,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
+import { EstatePropertyHistoryAddComponent } from '../../property-history/add/add.component';
 import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { EstateCustomerOrderActionComponent } from '../action/action.component';
@@ -445,6 +446,24 @@ export class EstateCustomerOrderEditComponent implements OnInit {
       return;
     }
     this.dataModel.linkCmsUserId = model.id;
+  }
+
+  onActionbuttonQuickHistoryAddRow(): void {
+    const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
+      height: '90%',
+      data: {
+        linkActivityTypeId: null,
+        linkPropertyId: null,
+        linkEstateUserId: null,
+        linkCustomerOrderId: this.dataModel.id,
+        linkEstateAgencyId: null
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+
+      }
+    });
   }
 }
 

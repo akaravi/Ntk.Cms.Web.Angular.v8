@@ -27,6 +27,7 @@ import { EstateAccountAgencyListComponent } from '../../account-agency/list/list
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
 import { EstateCustomerOrderListComponent } from '../../customer-order/list/list.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-expert-price/inquiry-list/inquiry-list.component';
+import { EstatePropertyHistoryAddComponent } from '../../property-history/add/add.component';
 import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
@@ -740,5 +741,24 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.estatePropertyHistoryListComponent.optionloadComponent = true;
     this.estatePropertyHistoryListComponent.DataGetAll();
   }
+
+  onActionbuttonQuickHistoryAddRow(): void {
+    const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
+      height: '90%',
+      data: {
+        linkActivityTypeId: null,
+        linkPropertyId: this.dataModel.id,
+        linkEstateUserId: null,
+        linkCustomerOrderId: null,
+        linkEstateAgencyId: null,
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+
+      }
+    });
+  }
+
 }
 
