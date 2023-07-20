@@ -1,5 +1,5 @@
 <div class="alert alert-info">
-  <div mat-subheader style="font-size: 20px;">بررسی رویداد</div>
+  <div mat-subheader style="font-size: 20px;">{{'TITLE.Event_Review'| translate}}</div>
   <mat-form-field appearance="fill">
     <mat-label>{{'TITLE.Enter_a_date_range'| translate}}</mat-label>
     <mat-date-range-input [formGroup]="checkingOnDayRange" [rangePicker]="picker">
@@ -21,7 +21,7 @@
       </button>
       <button type="button" (click)="onActionToDay()" class="btn btn-light" *ngIf="!loading?.display">
         <i class="ft-x"></i>
-        امروز
+        {{'TITLE.Today'| translate}}
       </button>
       <br>
       <!-- LinkCmsUserId Field -->
@@ -34,8 +34,11 @@
         class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
 </div>
 <div *ngIf="checkingOnDayRange?.controls?.start?.value">
+  {{'TITLE.From_Date'| translate}}
   {{ publicHelper.LocaleDateTime(this.checkingOnDayRange.controls.start.value)}}
   -
+  {{'TITLE.To_Date'| translate}}
+
   {{ publicHelper.LocaleDateTime(this.checkingOnDayRange.controls.end.value)}}
 </div>
 <!-- begin::Row -->
@@ -45,8 +48,9 @@
       <!-- begin::Header-->
       <div class="card-header align-items-center border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
-          <span class="fw-bolder mb-2 text-dark">ملک</span>
-          <span class="text-muted fw-bold fs-7">{{dataModelPropertyResult.totalRowCount}} عدد</span>
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelPropertyResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
         </h3>
       </div>
       <!-- end::Header-->
@@ -83,8 +87,9 @@
       <!-- begin::Header-->
       <div class="card-header align-items-center border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
-          <span class="fw-bolder mb-2 text-dark">سفارش ملک</span>
-          <span class="text-muted fw-bold fs-7">{{dataModelCustomerOrderResult.totalRowCount}} عدد</span>
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Customer_Order'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelCustomerOrderResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
         </h3>
       </div>
       <!-- end::Header-->
@@ -120,8 +125,9 @@
       <!-- begin::Header-->
       <div class="card-header align-items-center border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
-          <span class="fw-bolder mb-2 text-dark">تاریخچه</span>
-          <span class="text-muted fw-bold fs-7">{{dataModelHistoryResult.totalRowCount}} عدد</span>
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.History'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelHistoryResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
         </h3>
       </div>
       <!-- end::Header-->
@@ -157,8 +163,9 @@
       <!-- begin::Header-->
       <div class="card-header align-items-center border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
-          <span class="fw-bolder mb-2 text-dark">آژانس املاک</span>
-          <span class="text-muted fw-bold fs-7">{{dataModelAccountAgencyResult.totalRowCount}} عدد</span>
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property_agency'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelAccountAgencyResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
         </h3>
       </div>
       <!-- end::Header-->
@@ -194,8 +201,9 @@
       <!-- begin::Header-->
       <div class="card-header align-items-center border-0 mt-4">
         <h3 class="card-title align-items-start flex-column">
-          <span class="fw-bolder mb-2 text-dark">کارشناس املاک</span>
-          <span class="text-muted fw-bold fs-7">{{dataModelAccountUserResult.totalRowCount}} عدد</span>
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property_expert'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelAccountUserResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
         </h3>
       </div>
       <!-- end::Header-->
