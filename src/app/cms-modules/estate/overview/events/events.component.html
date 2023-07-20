@@ -37,6 +37,10 @@
   {{ publicHelper.LocaleDateTime(this.checkingOnDayRange.controls.start.value)}}
   -
   {{ publicHelper.LocaleDateTime(this.checkingOnDayRange.controls.end.value)}}
+
+</div>
+<div *ngIf="this.linkCmsUserId>0 ">
+  {{this.linkCmsUserId | cmsuserinfo |async}}
 </div>
 <!-- begin::Row -->
 <div class="row g-5 g-xl-8">

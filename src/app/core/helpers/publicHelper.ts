@@ -22,9 +22,10 @@ import {
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
-import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
+import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
+import { ComponentLocalStorageModel } from '../models/componentLocalStorageModel';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 import { CmsToastrService } from '../services/cmsToastr.service';
 // import { ProviderAst } from '@angular/compiler';
@@ -540,5 +541,34 @@ export class PublicHelper {
     if (index < 0 || index == list.length - 1)
       return null;
     return list[index + 1];
+  }
+  //localStorage.getItem('KeyboardEventF9')
+  setComponentLocalStorage(name: string, model: ComponentLocalStorageModel): void {
+    localStorage.setItem(name, JSON.stringify(model));
+  }
+  getComponentLocalStorage(name: string): ComponentLocalStorageModel {
+    const lStor = localStorage.getItem(name);
+    var retOut = new ComponentLocalStorageModel();
+    if (lStor)
+      retOut = JSON.parse(lStor)
+    if (!retOut)
+      retOut = new ComponentLocalStorageModel();
+    return retOut;
+  }
+  setComponentLocalStorageMap(name: string, key: string, value: any): void {
+    var lStor = this.getComponentLocalStorage(name);
+    if (!lStor.componentValues)
+      lStor.componentValues = new Map();
+    lStor.componentValues[key] = value;
+    this.setComponentLocalStorage(name, lStor);
+  }
+  getComponentLocalStorageMap(name: string, key: string): string {
+    const lStor = localStorage.getItem(name);
+    var model = new ComponentLocalStorageModel();
+    if (lStor)
+      model = JSON.parse(lStor)
+    if (model && model.componentValues)
+      return model.componentValues[key];
+    return '';
   }
 }

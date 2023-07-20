@@ -56,10 +56,10 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    var stl = this.publicHelper.getComponentLocalStorage(this.constructor.name);
 
   }
   loading = new ProgressSpinnerModel();
-  //dataModelResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   dataModelPropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModelCustomerOrderResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   dataModelHistoryResult: ErrorExceptionResult<EstatePropertyHistoryModel> = new ErrorExceptionResult<EstatePropertyHistoryModel>();
@@ -78,12 +78,18 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     if (!this.checkingOnDayRange.controls.end?.value)
       this.checkingOnDayRange.controls.end.setValue(new Date());
 
+    var lStorlinkCmsUserId = this.publicHelper.getComponentLocalStorageMap(this.constructor.name, 'linkCmsUserId');
     this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
-      this.onActionbuttonOnDateSearch();
       this.linkCmsUserId = next.userId;
+      if (Number.isFinite(lStorlinkCmsUserId) && +lStorlinkCmsUserId >= 0)
+        this.linkCmsUserId = +lStorlinkCmsUserId;
+      this.onActionbuttonOnDateSearch();
     });
     if (this.tokenHelper?.tokenInfo?.userId > 0)
       this.linkCmsUserId = this.tokenHelper.tokenInfo.userId
+    if (Number.isFinite(lStorlinkCmsUserId) && +lStorlinkCmsUserId >= 0)
+      this.linkCmsUserId = +lStorlinkCmsUserId;
+
     this.onActionbuttonOnDateSearch();
   }
   DataGetAllProperty(): void {
@@ -242,6 +248,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   onActionbuttonOnDateSearch() {
+
     this.DataGetAllProperty();
     this.DataGetAllCustomerOrder();
     this.DataGetAllPropertyHistory();
@@ -255,6 +262,8 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     if (model && model.id > 0) {
       this.linkCmsUserId = model.id;
     }
+    this.publicHelper.setComponentLocalStorageMap(this.constructor.name, 'linkCmsUserId', this.linkCmsUserId);
+    this.onActionbuttonOnDateSearch();
   }
   onActionToDay() {
     this.checkingOnDayRange.controls.start.setValue(new Date());
@@ -382,3 +391,5 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     }
   }
 }
+
+
