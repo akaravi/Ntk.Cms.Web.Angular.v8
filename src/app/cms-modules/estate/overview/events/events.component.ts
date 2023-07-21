@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsSignalrService } from 'src/app/core/services/cmsSignalr.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
 import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/quick-view/quick-view.component';
@@ -52,12 +53,27 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     private router: Router,
     public dialog: MatDialog,
     public translate: TranslateService,
-    public tokenHelper: TokenHelper
+    public tokenHelper: TokenHelper,
+    private singlarService: CmsSignalrService
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-    var stl = this.publicHelper.getComponentLocalStorage(this.constructor.name);
 
+    this.singlarService.startConnection(this.signalrlogin());
+    this.singlarService.addListenerMessage(this.testfunc);
+    this.singlarService.addListenerActionLogin();
+    this.singlarService.addListenerActionLogout();
+
+  }
+  testfunc() {
+    this.cmsToastrService.typeSuccessMessage("oooooook");
+  }
+  subscribeToProduct(productId: string) {
+
+    this.singlarService.subscribeToProduct(productId);
+  }
+  signalrlogin() {
+    this.singlarService.login(this.tokenHelper.tokenInfo.token);
   }
   loading = new ProgressSpinnerModel();
   dataModelPropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
@@ -84,11 +100,15 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       if (Number.isFinite(lStorlinkCmsUserId) && +lStorlinkCmsUserId >= 0)
         this.linkCmsUserId = +lStorlinkCmsUserId;
       this.onActionbuttonOnDateSearch();
+      //this.singlarService.login(next.token);
     });
-    if (this.tokenHelper?.tokenInfo?.userId > 0)
+    if (this.tokenHelper?.tokenInfo?.userId > 0) {
       this.linkCmsUserId = this.tokenHelper.tokenInfo.userId
+      //this.singlarService.login(this.tokenHelper.tokenInfo.token);
+    }
     if (Number.isFinite(lStorlinkCmsUserId) && +lStorlinkCmsUserId >= 0)
       this.linkCmsUserId = +lStorlinkCmsUserId;
+
 
     this.onActionbuttonOnDateSearch();
   }

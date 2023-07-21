@@ -16,6 +16,7 @@ export const environment = {
   cmsServerConfig: {
     configApiRetry: 1,
     configApiServerPath: 'https://apicms.ir/api/v2/',
+    configHubServerPath: 'https://apicms.ir/hub/',
     configMvcServerPath: 'https://ntkcms.ir/',
     configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
     configFileServerPath: 'https://apifile.ir/api/v2/',
