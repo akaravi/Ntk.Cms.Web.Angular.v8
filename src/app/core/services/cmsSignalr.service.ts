@@ -8,6 +8,10 @@ import { CmsNotificationModel } from '../models/cmsNotificationModel';
 //karavi import { ProductService } from './product.service';
 //https://medium.com/@aym003.hit/notifications-system-in-net-6-and-angular-with-signalr-
 //https://github.com/aym003/NotificationHubPartOne
+
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,8 +25,14 @@ export class CmsSignalrService {
   public connected = false;
 
   public startConnection(onConnected: any): void {
+    const token = localStorage.getItem('userToken');
+
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(environment.cmsServerConfig.configHubServerPath + 'notify', {
+        headers: {
+          "Authorization2": token
+        },
+        accessTokenFactory: () => token,
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       })
