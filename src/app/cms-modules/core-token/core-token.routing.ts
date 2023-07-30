@@ -7,6 +7,8 @@ import { CoreTokenMicroServiceListComponent } from './micro-service/list/list.co
 import { CoreTokenUserListComponent } from './user/list/list.component';
 import { CoreTokenUserBadLoginListComponent } from './userBadLogin/list/list.component';
 import { CoreTokenUserLogListComponent } from './userLog/list/list.component';
+import { CoreTokenNotificationListComponent } from './notification/list/list.component';
+import { CoreTokenNotificationLogListComponent } from './notification-log/list/list.component';
 
 const routes: Routes = [
   {
@@ -94,6 +96,18 @@ const routes: Routes = [
         path: 'microservicelog',
         component: CoreTokenMicroServiceLogListComponent,
         data: { title: 'ROUTE.CORETOKEN.MICROSERVICELOG' },
+      },
+       /** */
+       {
+        path: 'notification',
+        component: CoreTokenNotificationListComponent,
+        data: { title: 'ROUTE.CORETOKEN.NOTIFICATION' },
+      },
+      /** */
+      {
+        path: 'notificationlog',
+        component: CoreTokenNotificationLogListComponent,
+        data: { title: 'ROUTE.CORETOKEN.NOTIFICATIONLOG' },
       },
     ],
   },

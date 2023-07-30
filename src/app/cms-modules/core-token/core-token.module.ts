@@ -7,6 +7,8 @@ import {
   CoreTokenActivationService,
   CoreTokenMicroServiceLogService,
   CoreTokenMicroServiceService,
+  CoreTokenNotificationLogService,
+  CoreTokenNotificationService,
   CoreTokenUserBadLoginService,
   CoreTokenUserLogService,
   CoreTokenUserService,
@@ -25,6 +27,12 @@ import { CoreTokenMicroServiceLogViewComponent } from './micro-service-log/view/
 import { CoreTokenMicroServiceEditComponent } from './micro-service/edit/edit.component';
 import { CoreTokenMicroServiceListComponent } from './micro-service/list/list.component';
 import { CoreTokenMicroServiceViewComponent } from './micro-service/view/view.component';
+import { CoreTokenNotificationLogEditComponent } from './notification-log/edit/edit.component';
+import { CoreTokenNotificationLogListComponent } from './notification-log/list/list.component';
+import { CoreTokenNotificationLogViewComponent } from './notification-log/view/view.component';
+import { CoreTokenNotificationEditComponent } from './notification/edit/edit.component';
+import { CoreTokenNotificationListComponent } from './notification/list/list.component';
+import { CoreTokenNotificationViewComponent } from './notification/view/view.component';
 import { CoreTokenUserEditComponent } from './user/edit/edit.component';
 import { CoreTokenUserListComponent } from './user/list/list.component';
 import { CoreTokenUserViewComponent } from './user/view/view.component';
@@ -74,7 +82,16 @@ import { CoreTokenUserLogViewComponent } from './userLog/view/view.component';
     CoreTokenMicroServiceLogViewComponent,
     /** */
 
-
+    /** */
+    CoreTokenNotificationListComponent,
+    CoreTokenNotificationEditComponent,
+    CoreTokenNotificationViewComponent,
+    /** */
+    /** */
+    CoreTokenNotificationLogListComponent,
+    CoreTokenNotificationLogEditComponent,
+    CoreTokenNotificationLogViewComponent,
+    /** */
 
   ],
   providers: [
@@ -86,6 +103,8 @@ import { CoreTokenUserLogViewComponent } from './userLog/view/view.component';
     CoreTokenActivationService,
     CoreTokenMicroServiceService,
     CoreTokenMicroServiceLogService,
+    CoreTokenNotificationService,
+    CoreTokenNotificationLogService,
     CoreUserService,
     CmsConfirmationDialogService
   ]

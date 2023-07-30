@@ -30,7 +30,7 @@ import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
-import { CmsSignalrService } from 'src/app/core/services/cmsSignalr.service';
+// import { CmsSignalrService } from 'src/app/core/services/cmsSignalr.service';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
 import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/quick-view/quick-view.component';
@@ -54,15 +54,15 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public translate: TranslateService,
     public tokenHelper: TokenHelper,
-    private singlarService: CmsSignalrService
+    // private singlarService: CmsSignalrService
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
-    this.singlarService.startConnection(this.signalrlogin());
-    this.singlarService.addListenerMessage(this.testfunc);
-    this.singlarService.addListenerActionLogin();
-    this.singlarService.addListenerActionLogout();
+    // this.singlarService.startConnection(this.signalrlogin());
+    // this.singlarService.addListenerMessage(this.testfunc);
+    // this.singlarService.addListenerActionLogin();
+    // this.singlarService.addListenerActionLogout();
 
   }
   testfunc() {
@@ -70,10 +70,10 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
   }
   subscribeToProduct(productId: string) {
 
-    this.singlarService.subscribeToProduct(productId);
+    // this.singlarService.subscribeToProduct(productId);
   }
   signalrlogin() {
-    this.singlarService.login(this.tokenHelper.tokenInfo.token);
+    // this.singlarService.login(this.tokenHelper.tokenInfo.token);
   }
   loading = new ProgressSpinnerModel();
   dataModelPropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();

@@ -7,17 +7,17 @@ import {
 //start change title when route happened
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, Subscription } from 'rxjs';
+import { Subscription, filter, map } from 'rxjs';
 //end change title when route happened
 import { HttpParams } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, ErrorExceptionResult } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
+import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { CmsSignalrService } from './core/services/cmsSignalr.service';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
-import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -39,10 +39,7 @@ export class AppComponent implements OnInit {
     private splashScreenService: SplashScreenService,
     private singlarService: CmsSignalrService
   ) {
-    this.singlarService.startConnection(null);
-    this.singlarService.addListenerMessage(null);
-    this.singlarService.addListenerActionLogin();
-    this.singlarService.addListenerActionLogout();
+
     //start change title when route happened
     this.router.events
       .pipe(
@@ -75,6 +72,12 @@ export class AppComponent implements OnInit {
       this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
         if (next.siteId > 0 && next.userId > 0)
           this.getSupport();
+        /**singlarService */
+        this.singlarService.startConnection(null);
+        this.singlarService.addListenerMessage(null);
+        this.singlarService.addListenerActionLogin();
+        this.singlarService.addListenerActionLogout();
+        /**singlarService */
       });
     }
   }
