@@ -18,6 +18,12 @@ const routes: Routes = [
       },
       /* Config */
       {
+        path: 'action',
+        loadChildren: () =>
+          import('./action/core-main-action.module').then((m) => m.CoreMainActionModule),
+        data: { title: 'ROUTE.CORE.ACTION' },
+      },
+      {
         path: 'user',
         loadChildren: () =>
           import('./user/coreUser.module').then((m) => m.CoreUserModule),
@@ -150,4 +156,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CoreRoutes {}
+export class CoreRoutes { }

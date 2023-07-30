@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as signalR from "@microsoft/signalr";
 import { ToastrService } from 'ngx-toastr';
-import { ErrorExceptionResultBase } from 'ntk-cms-api';
+import { CmsNotificationModel, ErrorExceptionResultBase } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
-import { CmsNotificationModel } from '../models/cmsNotificationModel';
+
 // import {Notification} from '../models/notification';
 //karavi import { ProductService } from './product.service';
 //https://medium.com/@aym003.hit/notifications-system-in-net-6-and-angular-with-signalr-
@@ -47,15 +47,13 @@ export class CmsSignalrService {
   }
   public addListenerMessage = (xFunc: any) => {
     this.hubConnection.on('ActionSendMessageToClient', (notification: CmsNotificationModel) => {
-      this.toastr.warning(notification.title, notification.body + " " + notification.sound);
+      this.toastr.info(notification.title, notification.content);
       if (!xFunc)
         xFunc;
     });
   }
   public addListenerActionLogin = () => {
-    //ErrorExceptionResult<CoreTokenMicroServiceViewModel>
     this.hubConnection.on('ActionLogin', (model: any) => {
-
       console.log('ActionLogin');
       console.log(model);
       this.toastr.warning("وارد شدید");
@@ -65,9 +63,7 @@ export class CmsSignalrService {
     this.hubConnection.on('ActionLogout', (model: ErrorExceptionResultBase) => {
       console.log('ActionLogout');
       console.log(model);
-
       this.toastr.warning("خارج شدید");
-
     });
   }
   public subscribeToProduct(productId: string) {

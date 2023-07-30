@@ -1,0 +1,56 @@
+.form-body {
+    width: 500px;
+  }
+  @media (max-width: 700px) {
+    .form-body {
+      display: contents;
+    }
+  }
+  #file-manager {
+    width: calc(100vw - 16px);
+    height: calc(100vh - 16px);
+  }
+  .recordStatus-1.mat-select-panel {
+    background: yellow;
+    /* .mat-option-text {
+      color: black;
+    } */
+  }
+  
+  .recordStatus-2.mat-select-panel {
+    background: black;
+    /* .mat-option-text {
+      color: white;
+    } */
+  }
+  
+  .recordStatus-3.mat-select-panel {
+    background: red;
+    /* .mat-option-text {
+      color: white;
+    } */
+  }
+  .mat-tab-group{
+    height: 95%;
+  }
+  .message-box{
+    background-image: url("/assets/media/bg/iphone.png"); /* The image used */
+    //background-color: #cccccc; /* Used if the image is unavailable */
+    height: 600px; /* You must set a specified height */
+    width: 300px;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    padding-right: 33px;
+    padding-left: 33px;
+  }
+  .message-box-button{
+    color:blue;border-color: transparent;background-color :transparent;  
+  }
+  .message-box-button:hover {
+    color: red;
+    font-size: initial;
+  }
+  .message-box-button:active {
+    color: #a200ff;
+  }

@@ -1,0 +1,210 @@
+<form (ngSubmit)="onFormSubmit()" #vform="ngForm">
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <div class="row">
+
+      <div class="col-6">
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'TITLE.Direction' | translate}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{'TITLE.Select_the_path_to_send_the_message' | translate}}
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+
+            <mat-action-row>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'TITLE.Message_Text' | translate}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{'TITLE.Select_the_text_of_the_default_messages' | translate}}
+                <mat-icon>map</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+
+            <textarea matInput [(ngModel)]="dataMessageContentModel.messageBody"
+              name="dataMessageContentModel.messageBody" type="text"
+              *ngIf="dataMessageContentModel?.messageBody?.length>0" rows="10"></textarea>
+            <button type="button" (click)="onActionMessageContentAdd()" class="btn btn-light"
+              *ngIf="dataMessageContentModel?.messageBody?.length>0 && dataModel.content?.length>0">
+              <i class="ft-x"></i> {{'TITLE.Added_to_the_text' | translate}}
+            </button>
+            <button type="button" (click)="onActionMessageContentNew()" class="btn btn-light"
+              *ngIf="dataMessageContentModel?.messageBody?.length>0">
+              <i class="ft-x"></i> {{'TITLE.Message_Text' | translate}}
+            </button>
+            <mat-action-row>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'TITLE.Phonebook' | translate}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{'TITLE.Audience_selection' | translate}}
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-action-row>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'TITLE.Shipping_time' | translate}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{'TITLE.Time_to_start_sending_and_finish' | translate}}
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+
+            </div>
+            <hr>
+
+            <mat-action-row>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
+            </mat-action-row>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'TITLE.Timing' | translate}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{'TITLE.Retry_schedule' | translate}}
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+
+
+
+
+            <mat-action-row>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.NEXT' |
+                translate}}</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'TITLE.Settings' | translate}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{'TITLE.Send_settings' | translate}}
+                <mat-icon>date_range</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <!-- sendToAll Field -->
+            <div class="ntk-full-width">
+              <mat-slide-toggle [(ngModel)]="dataModel.sendToAll" name="dataModel.sendToAll">
+                {{'TITLE.Send_To_All' | translate}}
+              </mat-slide-toggle>
+            </div>
+            <!-- SendByQeue Field -->
+            <div class="ntk-full-width">
+
+            </div>
+
+            <mat-action-row>
+              <button type="button" mat-button color="warn" (click)="prevStep()">{{'ACTION.BACK' | translate}}</button>
+              <button type="button" mat-button color="primary" (click)="nextStep()">{{'ACTION.END' |
+                translate}}</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+      <div class="col-6">
+        <div class="message-box">
+          <div class="row" style="height:64px">
+
+          </div>
+          <div class="row" style="height:300px">
+            <!-- content Field -->
+            <mat-form-field class="ntk-full-width">
+              <mat-label>{{'TITLE.Message_Text' | translate}}</mat-label>
+              <textarea matInput [(ngModel)]="dataModel.content" name="dataModel.content" #content type="text"
+                placeholder="..." minlength="1" maxlength="500" rows="9"></textarea>
+              <mat-icon *ngIf="dataModel.content" mat-icon-button aria-label="Clear" (click)="dataModel.content = ''">
+                close</mat-icon>
+              <mat-icon (click)="onActionMessageRTL()">chevron_left</mat-icon>
+              <mat-icon (click)="onActionMessageLTR()">chevron_right</mat-icon>
+              <mat-hint align="end">{{ content.value.length }} / 500</mat-hint>
+              <mat-error *ngIf="content.errors?.required">
+                {{'TITLE.Message_Text' | translate}} <strong>{{'content.required' | translate}}</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row" style="height:83px">
+
+          </div>
+          <div class="row" *ngIf="formInfo.formSubmitAllow  && !loading?.display"
+            style="height:140px;bottom: 4vh;justify-content: center;">
+            <app-progress-spinner [options]="loadingAction"> </app-progress-spinner>
+            <button type="submit" (click)="onFormSubmit()" class="message-box-button" [disabled]="!vform.valid"
+              *ngIf="!this.loading.display">
+              <i class="fa fa-check-square-o"></i>
+              {{'ACTION.Send_Message' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <div class="form-actions">
+      <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+      <small class="form-text text-muted danger">{{ formInfo.formError }}
+      </small>
+    </div>
+    <app-cms-json-list [dataModel]="dataModelResult.item" [optionMethod]="1" *ngIf="dataModelResult?.item">
+    </app-cms-json-list>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
+</form>
