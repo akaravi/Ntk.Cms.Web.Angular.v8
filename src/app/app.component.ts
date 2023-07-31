@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     /**singlarService */
     this.singlarService.startConnection(null);
     this.singlarService.addListenerMessage(null);
-    this.singlarService.addListenerActionLogin();
+    //this.singlarService.addListenerActionLogin();
     //this.singlarService.addListenerActionLogout();
     /**singlarService */
 
