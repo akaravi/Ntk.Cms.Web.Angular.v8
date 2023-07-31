@@ -19,7 +19,7 @@ export class CmsSignalrService {
   }
   public connected = false;
   private hubConnection!: signalR.HubConnection;
-  public startConnection(onConnected: any): void {
+  public startConnection(onActionConnected: any): void {
     const token = localStorage.getItem('userToken');
 
     this.hubConnection = new signalR.HubConnectionBuilder()
@@ -36,8 +36,8 @@ export class CmsSignalrService {
       .then(() => {
         console.log('Connection started');
         this.connected = true;
-        if (onConnected)
-          onConnected;
+        if (onActionConnected)
+          onActionConnected;
       })
       .catch(err => console.log('Error while starting connection: ' + err));
 

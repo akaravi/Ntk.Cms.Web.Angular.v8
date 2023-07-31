@@ -39,6 +39,12 @@ export class AppComponent implements OnInit {
     private splashScreenService: SplashScreenService,
     private singlarService: CmsSignalrService
   ) {
+    /**singlarService */
+    this.singlarService.startConnection(null);
+    this.singlarService.addListenerMessage(null);
+    this.singlarService.addListenerActionLogin();
+    //this.singlarService.addListenerActionLogout();
+    /**singlarService */
 
     //start change title when route happened
     this.router.events
@@ -72,12 +78,7 @@ export class AppComponent implements OnInit {
       this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
         if (next.siteId > 0 && next.userId > 0)
           this.getSupport();
-        /**singlarService */
-        this.singlarService.startConnection(null);
-        this.singlarService.addListenerMessage(null);
-        this.singlarService.addListenerActionLogin();
-        this.singlarService.addListenerActionLogout();
-        /**singlarService */
+        this.singlarService.login(next.token);
       });
     }
   }
