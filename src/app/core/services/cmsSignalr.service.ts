@@ -15,7 +15,17 @@ import { environment } from 'src/environments/environment';
 export class CmsSignalrService {
   constructor(private toastr: ToastrService,
   ) {
-
+    // {
+    //   // timeOut: 0,
+    //   timeOut: 5000,
+    //   enableHtml: true,
+    //   positionClass: 'toast-bottom-right',
+    //   // positionClass: "toast-bottom-full-width",
+    //   preventDuplicates: true,
+    //   closeButton: true,
+    //   // extendedTimeOut: 0,
+    //   extendedTimeOut: 1000,
+    // }
   }
   public connected = false;
   private hubConnection!: signalR.HubConnection;
@@ -45,9 +55,13 @@ export class CmsSignalrService {
   public login(token: string) {
     this.hubConnection.invoke("login", token)
   }
+  public logout() {
+    this.hubConnection.invoke("logout")
+  }
+
   public addListenerMessage = (xFunc: any) => {
     this.hubConnection.on('ActionSendMessageToClient', (notification: CmsNotificationModel) => {
-      this.toastr.info(notification.title, notification.content);
+      this.toastr.info(notification.title, notification.content, { positionClass: 'toast-top-center', timeOut: 0 });
       if (!xFunc)
         xFunc;
     });

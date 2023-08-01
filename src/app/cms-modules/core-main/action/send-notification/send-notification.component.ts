@@ -163,7 +163,7 @@ export class CoreMainActionSendNotificationComponent implements OnInit {
     this.loadingAction.Start(pName);
     this.formInfo.formAlert = '';
     this.formInfo.formError = '';
-    this.coreTokenNotificationService.ServiceSendMessage(this.dataModel).subscribe({
+    this.coreTokenNotificationService.ServiceSendNotification(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         this.dataModelResult = ret;
