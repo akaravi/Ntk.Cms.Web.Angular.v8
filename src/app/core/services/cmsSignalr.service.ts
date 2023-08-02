@@ -15,17 +15,7 @@ import { environment } from 'src/environments/environment';
 export class CmsSignalrService {
   constructor(private toastr: ToastrService,
   ) {
-    // {
-    //   // timeOut: 0,
-    //   timeOut: 5000,
-    //   enableHtml: true,
-    //   positionClass: 'toast-bottom-right',
-    //   // positionClass: "toast-bottom-full-width",
-    //   preventDuplicates: true,
-    //   closeButton: true,
-    //   // extendedTimeOut: 0,
-    //   extendedTimeOut: 1000,
-    // }
+
   }
   public connected = false;
   private hubConnection!: signalR.HubConnection;
@@ -61,6 +51,7 @@ export class CmsSignalrService {
 
   public addListenerMessage = (xFunc: any) => {
     this.hubConnection.on('ActionSendMessageToClient', (notification: CmsNotificationModel) => {
+      notification.title = notification.title + " " + new Date().toLocaleTimeString();
       switch (notification.icon) {
         case 'info':
           this.toastr.info(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
@@ -81,6 +72,9 @@ export class CmsSignalrService {
           this.toastr.info(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
           break;
       }
+      // web-push generate-vapid-keys --json
+      //{"publicKey":"BKxkwx4CTSU2psDIs5LDX08P7hEwsbgDZa2hjJqLjUj_gmjg0cOD1vSkqMtBfBZ52RvFXl1R55FIVrj5eUMbx1Q","privateKey":"El0I7GEeskNmXn5qrPppzz80_LCEF0zkcCt76_R_SEo"}
+
 
       if (!xFunc)
         xFunc;
