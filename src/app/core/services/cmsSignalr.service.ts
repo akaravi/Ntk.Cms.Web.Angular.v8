@@ -61,7 +61,27 @@ export class CmsSignalrService {
 
   public addListenerMessage = (xFunc: any) => {
     this.hubConnection.on('ActionSendMessageToClient', (notification: CmsNotificationModel) => {
-      this.toastr.info(notification.title, notification.content, { positionClass: 'toast-top-center', timeOut: 0 });
+      switch (notification.icon) {
+        case 'info':
+          this.toastr.info(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
+          break;
+        case 'warning':
+          this.toastr.warning(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
+          break;
+        case 'success':
+          this.toastr.success(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
+          break;
+        case 'show':
+          this.toastr.show(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
+          break;
+        case 'error':
+          this.toastr.error(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
+          break;
+        default:
+          this.toastr.info(notification.content, notification.title, { positionClass: 'toast-top-center', timeOut: 0 });
+          break;
+      }
+
       if (!xFunc)
         xFunc;
     });
