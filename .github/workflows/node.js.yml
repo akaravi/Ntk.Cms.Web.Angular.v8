@@ -5,65 +5,61 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         #node-version: [12.x, 14.x, 16.x]
-        node-version: [ 18.x]
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-    - name: Install all dependencies
-      run: npm ci --force
+      - name: Install all dependencies
+        run: npm ci --force
 
-    - name: Build
-      run: npm run build-prod
-      #run: npm run build --if-present
-    #- run: npm test
+      - name: Build
+        run: npm run build-prod
+        #run: npm run build --if-present
+      #- run: npm test
 
-    - name: Push Publish To Other Git repo
-      if: success()
-      uses: cpina/github-action-push-to-another-repository@main
-      env:
-        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      - name: Push Publish To Other Git repo
+        if: success()
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
 
-      with:
-        source-directory: 'dist/ntk-cms-web'
-        destination-github-username: 'akaravi'
-        destination-repository-name: 'Ntk.Cms.Web.Angular.Publish'
-        user-email: karavi.alireza@gmail.com
-        #destination-repository-username :
-        commit-message: See $GITHUB_REF
-        target-branch: main
+        with:
+          source-directory: "dist/ntk-cms-web/browser"
+          destination-github-username: "akaravi"
+          destination-repository-name: "Ntk.Cms.Web.Angular.Publish"
+          user-email: karavi.alireza@gmail.com
+          #destination-repository-username :
+          commit-message: See $GITHUB_REF
+          target-branch: main
 
-    - name: Webhook Sms
-      uses: joelwmale/webhook-action@master
-      with:
-        url: 'https://smsban.com/api/?action=SMS_SEND&username=${{ vars.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ vars.SMS_API }}&from=${{ vars.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ vars.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}'
-        #headers: '{"repository": "joelwmale/webhook-action"}'
-        #body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
-    - name: Webhook Plesk
-      uses: joelwmale/webhook-action@master
-      with:
-        url: '${{vars.PLESK_WEBHOOK_ADMINPANEL_IR}}'
+      - name: Webhook Sms
+        uses: joelwmale/webhook-action@master
+        with:
+          url: "https://smsban.com/api/?action=SMS_SEND&username=${{ vars.SMS_USERNAME }}&password=${{ secrets.SMS_PASSWORD }}&api=${{ vars.SMS_API }}&from=${{ vars.SMS_FROM }}&API_CHANGE_ALLOW=true&to=${{ vars.SMS_TO }}&text=${{ github.repository }} status is ${{ job.status }}"
+          #headers: '{"repository": "joelwmale/webhook-action"}'
+          #body: '{"event": "deployment", "repository": "joelwmale/webhook-action"}'
+      - name: Webhook Plesk
+        uses: joelwmale/webhook-action@master
+        with:
+          url: "${{vars.PLESK_WEBHOOK_ADMINPANEL_IR}}"
 
-    - name: Test get variable exported by push-to-another-repository
-      run: echo $DESTINATION_CLONED_DIRECTORY
-
-
-
+      - name: Test get variable exported by push-to-another-repository
+        run: echo $DESTINATION_CLONED_DIRECTORY
