@@ -10,7 +10,9 @@
         <!-- RecordStatus Field -->
 
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
@@ -22,15 +24,19 @@
             </mat-error>
         </mat-form-field>
         <!-- LinkCategoryId Field -->
-        <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+        <app-tag-category-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkCategoryId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-tag-category-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="1000" cols="20" required>
+            <textarea matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+                placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="1000" cols="20" required>
 
       </textarea>
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Title.value.length }} / 1000</mat-hint>
             <mat-error *ngIf="Title.errors?.required">

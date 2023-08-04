@@ -8,8 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, TicketingEnumService, TicketingTaskModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, InfoEnumModel, TicketingEnumService, TicketingTaskModel,
   TicketingTaskService,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -50,7 +49,7 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
   dataModel: TicketingTaskModel = new TicketingTaskModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumTicketStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumTicketStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataTaskReadedResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
 
@@ -76,7 +75,7 @@ export class TicketingTaskViewComponent implements OnInit, OnDestroy {
   }
 
   getEnumTicketStatus(): void {
-    this.ticketingEnumService.ServiceEnumTicketStatus().subscribe({
+    this.ticketingEnumService.ServiceTicketStatusEnum().subscribe({
       next: (ret) => {
         this.dataModelEnumTicketStatusResult = ret;
       }

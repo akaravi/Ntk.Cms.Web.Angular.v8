@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, SmsEnumService, SmsMainApiNumberModel, SmsMainApiNumberService, SmsMainApiPathAndApiNumberModel,
+  DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainApiNumberModel, SmsMainApiNumberService, SmsMainApiPathAndApiNumberModel,
   SmsMainApiPathAndApiNumberService, SmsMainApiPathModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -53,9 +53,9 @@ export class SmsMainApiNumberEditComponent implements OnInit {
   dataModel: SmsMainApiNumberModel = new SmsMainApiNumberModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiNumberAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiNumberActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiNumberAccessStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiNumberActionResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataSmsMainApiNumberModel: SmsMainApiNumberModel[];
@@ -87,7 +87,7 @@ export class SmsMainApiNumberEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiNumberService.setAccessLoad();
-    this.smsMainApiNumberService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsMainApiNumberService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsMainApiNumberService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

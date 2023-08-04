@@ -2,13 +2,11 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, EnumPageAbilityType, ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel,
-  WebDesignerMainPageModel,
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult,
+  FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, PageAbilityTypeEnum, WebDesignerMainPageModel,
   WebDesignerMainPageService
 } from 'ntk-cms-api';
-import { Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 @Component({
@@ -83,33 +81,33 @@ export class WebDesignerMainPageSelectorComponent implements OnInit {
     if (text && text.length > 0) {
       filter.propertyName = 'Title';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterChild.filters.push(filter);
     }
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterChild.filters.push(filter);
     }
     filterModel.filters.push(filterChild);
     if (this.optionMasterPage) {
       filter = new FilterDataModel();
       filter.propertyName = 'PageAbilityType';
-      filter.value = EnumPageAbilityType.Master;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.And;
+      filter.value = PageAbilityTypeEnum.Master;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.And;
       filterModel.filters.push(filter);
     }
     if (this.masterTemplateId && this.masterTemplateId.length > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'LinkPageTemplateGuId';
       filter.value = this.masterTemplateId;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.And;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.And;
       filterModel.filters.push(filter);
     }
     const pName = this.constructor.name + 'main';

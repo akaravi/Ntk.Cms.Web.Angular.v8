@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLogErrorModel, CoreLogErrorService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLogErrorModel, CoreLogErrorService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -94,7 +93,7 @@ export class CoreLogErrorEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreLogErrorService.setAccessLoad();
-    this.coreLogErrorService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreLogErrorService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreLogErrorService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

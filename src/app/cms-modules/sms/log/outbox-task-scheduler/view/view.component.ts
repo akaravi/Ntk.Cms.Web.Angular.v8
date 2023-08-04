@@ -8,10 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  SmsLogOutBoxTaskSchedulerModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, SmsLogOutBoxTaskSchedulerModel,
   SmsLogOutBoxTaskSchedulerService,
   TokenInfoModel
 } from 'ntk-cms-api';
@@ -50,7 +48,7 @@ export class SmsLogOutBoxTaskSchedulerViewComponent implements OnInit, OnDestroy
   dataModelResult: ErrorExceptionResult<SmsLogOutBoxTaskSchedulerModel> = new ErrorExceptionResult<SmsLogOutBoxTaskSchedulerModel>();
   dataModel: SmsLogOutBoxTaskSchedulerModel = new SmsLogOutBoxTaskSchedulerModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
 
@@ -74,7 +72,7 @@ export class SmsLogOutBoxTaskSchedulerViewComponent implements OnInit, OnDestroy
   }
 
   getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
+    this.coreEnumService.ServiceSendSmsStatusTypeEnum().subscribe((next) => {
       this.dataModelEnumSendSmsStatusTypeResult = next;
     });
   }

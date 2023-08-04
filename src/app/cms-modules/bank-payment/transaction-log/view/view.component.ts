@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BankPaymentTransactionLogModel, BankPaymentTransactionLogService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  BankPaymentTransactionLogModel, BankPaymentTransactionLogService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,7 +45,7 @@ export class BankPaymentTransactionLogViewComponent implements OnInit, OnDestroy
   dataModelResult: ErrorExceptionResult<BankPaymentTransactionLogModel> = new ErrorExceptionResult<BankPaymentTransactionLogModel>();
   dataModel: BankPaymentTransactionLogModel = new BankPaymentTransactionLogModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
   cmsApiStoreSubscribe: Subscription;
@@ -67,7 +66,7 @@ export class BankPaymentTransactionLogViewComponent implements OnInit, OnDestroy
     this.getEnumSendSmsStatusType();
   }
   getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
+    this.coreEnumService.ServiceSendSmsStatusTypeEnum().subscribe((next) => {
       this.dataModelEnumSendSmsStatusTypeResult = next;
     });
   }

@@ -4,8 +4,7 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult
+  CoreEnumService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -33,7 +32,7 @@ export class CoreUserClaimTypeHeaderComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<CoreUserClaimTypeModel> = new ErrorExceptionResult<CoreUserClaimTypeModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
 

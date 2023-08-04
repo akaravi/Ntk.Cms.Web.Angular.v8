@@ -4,10 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult, FileCategoryModel,
+  DataFieldInfoModel, ErrorExceptionResult, FileCategoryModel,
   FileCategoryService, FilterModel,
-  FormInfoModel
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -64,7 +63,7 @@ export class FileCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.fileCategoryService.setAccessLoad();
-    this.fileCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.fileCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.fileCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

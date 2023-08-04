@@ -3,10 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  TicketingDepartemenModel, TicketingTemplateModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, TicketingDepartemenModel, TicketingTemplateModel,
   TicketingTemplateService
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,7 +46,7 @@ export class TicketingTemplateAddComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<TicketingTemplateModel> = new ErrorExceptionResult<TicketingTemplateModel>();
   dataModel: TicketingTemplateModel = new TicketingTemplateModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
 

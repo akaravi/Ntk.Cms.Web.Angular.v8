@@ -5,9 +5,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  SmsLogOutBoxModel,
+  DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel, SmsLogOutBoxModel,
   SmsLogOutBoxService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -39,7 +37,7 @@ export class SmsLogOutBoxHeaderComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<SmsLogOutBoxModel> = new ErrorExceptionResult<SmsLogOutBoxModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
   cmsApiStoreSubscribe: Subscription;

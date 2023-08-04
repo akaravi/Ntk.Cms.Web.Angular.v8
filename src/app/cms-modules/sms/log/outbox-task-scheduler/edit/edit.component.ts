@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, SmsEnumService, SmsLogOutBoxTaskSchedulerModel,
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsLogOutBoxTaskSchedulerModel,
   SmsLogOutBoxTaskSchedulerService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -53,9 +53,9 @@ export class SmsLogOutBoxTaskSchedulerEditComponent implements OnInit {
   dataModel: SmsLogOutBoxTaskSchedulerModel = new SmsLogOutBoxTaskSchedulerModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataSmsLogOutBoxTaskSchedulerModel: SmsLogOutBoxTaskSchedulerModel[];
@@ -99,7 +99,7 @@ export class SmsLogOutBoxTaskSchedulerEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsLogOutBoxTaskSchedulerService.setAccessLoad();
-    this.smsLogOutBoxTaskSchedulerService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsLogOutBoxTaskSchedulerService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsLogOutBoxTaskSchedulerService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -6,9 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ApplicationSourceModel, CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TicketingAnswerModel,
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingAnswerModel,
   TicketingAnswerService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -51,8 +50,8 @@ export class TicketingAnswerEditComponent implements OnInit {
   dataAccessModel: AccessModel;
   dataModel = new TicketingAnswerModel();
   dataModelResult: ErrorExceptionResult<TicketingAnswerModel> = new ErrorExceptionResult<TicketingAnswerModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
@@ -92,7 +91,7 @@ export class TicketingAnswerEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.ticketingAnswerService.setAccessLoad();
-    this.ticketingAnswerService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.ticketingAnswerService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.ticketingAnswerService
       .ServiceGetOneById(requestId)
       .subscribe(

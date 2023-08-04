@@ -3,9 +3,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel,
-  TicketingDepartemenModel, TicketingFaqModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingDepartemenModel, TicketingFaqModel,
   TicketingFaqService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -55,7 +54,7 @@ export class TicketingFaqEditComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -87,7 +86,7 @@ export class TicketingFaqEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ticketingFaqService.setAccessLoad();
-    this.ticketingFaqService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.ticketingFaqService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.ticketingFaqService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

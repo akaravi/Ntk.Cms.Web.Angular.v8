@@ -5,9 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ContactCategoryModel,
-  ContactCategoryService, DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  ContactCategoryService, DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -64,7 +64,7 @@ export class ContactCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.contactCategoryService.setAccessLoad();
-    this.contactCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contactCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contactCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

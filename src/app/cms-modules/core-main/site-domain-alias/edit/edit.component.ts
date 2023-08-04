@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreSiteDomainAliasModel, CoreSiteDomainAliasService, CoreSiteModel,
-  DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -49,7 +49,7 @@ export class CoreSiteDomainAliasEditComponent implements OnInit {
   dataModel: CoreSiteDomainAliasModel = new CoreSiteDomainAliasModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -81,7 +81,7 @@ export class CoreSiteDomainAliasEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreSiteDomainAliasService.setAccessLoad();
-    this.coreSiteDomainAliasService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreSiteDomainAliasService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreSiteDomainAliasService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

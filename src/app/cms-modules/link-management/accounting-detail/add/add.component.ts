@@ -7,9 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, LinkManagementAccountingDetailModel, LinkManagementAccountingDetailService, LinkManagementAccountingModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, LinkManagementAccountingDetailModel, LinkManagementAccountingDetailService, LinkManagementAccountingModel,
   LinkManagementEnumService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -52,8 +51,8 @@ export class LinkManagementAccountingDetailAddComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumSharingAccountingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumSharingAccountingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
 
@@ -68,7 +67,7 @@ export class LinkManagementAccountingDetailAddComponent implements OnInit {
     this.getEnumSharingAccountingType();
   }
   getEnumSharingAccountingType(): void {
-    this.linkManagementEnumService.ServiceEnumSharingAccountingType().subscribe((res) => {
+    this.linkManagementEnumService.ServiceSharingAccountingTypeEnum().subscribe((res) => {
       this.dataModelEnumSharingAccountingTypeResult = res;
     });
   }

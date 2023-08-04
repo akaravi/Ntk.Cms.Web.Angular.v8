@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, SmsEnumService, SmsMainCustomerCreditModel,
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainCustomerCreditModel,
   SmsMainCustomerCreditService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -53,9 +53,9 @@ export class SmsMainCustomerCreditEditComponent implements OnInit {
   dataModel: SmsMainCustomerCreditModel = new SmsMainCustomerCreditModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiPathPermissionAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiPathPermissionActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiPathPermissionAccessStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiPathPermissionActionResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   SmsMainCustomerCreditModel: SmsMainCustomerCreditModel[];
@@ -98,7 +98,7 @@ export class SmsMainCustomerCreditEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.SmsMainCustomerCreditService.setAccessLoad();
-    this.SmsMainCustomerCreditService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.SmsMainCustomerCreditService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.SmsMainCustomerCreditService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -5,10 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumSortType,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TicketingDepartemenModel, TicketingDepartemenService, TicketingFaqModel,
+  FilterModel, SortTypeEnum, TicketingDepartemenModel, TicketingDepartemenService, TicketingFaqModel,
   TicketingFaqService, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -38,7 +37,7 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Ascending;
+    this.filteModelContent.sortType = SortTypeEnum.Ascending;
   }
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
@@ -151,17 +150,17 @@ export class TicketingFaqOriginListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

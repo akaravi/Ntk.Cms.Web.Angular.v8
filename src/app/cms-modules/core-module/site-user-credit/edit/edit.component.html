@@ -9,7 +9,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
@@ -21,20 +23,25 @@
             </mat-error>
         </mat-form-field>
         <!-- LinkSiteId Field -->
-        <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
+        <app-cms-site-selector [optionSelectForce]="dataModel.linkSiteId" [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')">
         </app-cms-site-selector>
         <!-- LinkUserId Field -->
-        <app-cms-user-selector [optionSelectForce]="dataModel.linkUserId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        <app-cms-user-selector [optionSelectForce]="dataModel.linkUserId" [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.USER')">
         </app-cms-user-selector>
         <!-- LinkModuleId Field -->
-        <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
+        <app-cms-module-selector [optionSelectForce]="dataModel.linkModuleId" [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.MODULE')">
         </app-cms-module-selector>
 
         <!-- Credit Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['credit']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.credit" name="dataModel.credit" #Credit type="number" placeholder="{{fieldsInfo['credit']?.fieldTitle}}" required />
-            <mat-icon matSuffix *ngIf="dataModel.credit" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.credit = 0">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.credit" name="dataModel.credit" #Credit type="number"
+                placeholder="{{fieldsInfo['credit']?.fieldTitle}}" required />
+            <mat-icon matSuffix *ngIf="dataModel.credit" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.credit = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error *ngIf="Credit.errors?.required">
                 Credit is <strong>{{'MESSAGE.required' | translate}}</strong>

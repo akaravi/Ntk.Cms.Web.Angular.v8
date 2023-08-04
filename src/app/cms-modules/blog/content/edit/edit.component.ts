@@ -12,9 +12,8 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, BlogCategoryModel, BlogContentCategoryModel,
-  BlogContentCategoryService, BlogContentModel, BlogContentOtherInfoModel, BlogContentOtherInfoService, BlogContentService, BlogContentSimilarModel, BlogContentSimilarService, BlogContentTagModel, BlogContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
-  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
-  FormInfoModel
+  BlogContentCategoryService, BlogContentModel, BlogContentOtherInfoModel, BlogContentOtherInfoService, BlogContentService, BlogContentSimilarModel, BlogContentSimilarService, BlogContentTagModel, BlogContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { map, of } from 'rxjs';
@@ -57,7 +56,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   dataContentTagModelResult: ErrorExceptionResult<BlogContentTagModel> = new ErrorExceptionResult<BlogContentTagModel>();
   dataContentSimilarModelResult: ErrorExceptionResult<BlogContentSimilarModel> = new ErrorExceptionResult<BlogContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<BlogContentOtherInfoModel> = new ErrorExceptionResult<BlogContentOtherInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   similarDataModel = new Array<BlogContentModel>();
   otherInfoDataModel = new Array<BlogContentOtherInfoModel>();
@@ -157,7 +156,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({
@@ -532,7 +531,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
 
 

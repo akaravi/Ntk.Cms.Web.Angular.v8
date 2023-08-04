@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { EnumRecordStatus, FilterDataModel, FilterModel, NewsCommentService, TicketingTaskService } from 'ntk-cms-api';
+import { FilterDataModel, FilterModel, NewsCommentService, RecordStatusEnum, TicketingTaskService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -67,7 +67,7 @@ export class TicketingTaskWidgetComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
@@ -86,7 +86,7 @@ export class TicketingTaskWidgetComponent implements OnInit, OnDestroy {
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter2 = new FilterDataModel();
     fastfilter2.propertyName = 'RecordStatus';
-    fastfilter2.value = EnumRecordStatus.Pending;
+    fastfilter2.value = RecordStatusEnum.Pending;
     filterStatist2.filters.push(fastfilter2);
     this.loading.Start(this.constructor.name + 'Pending_Comment');
     this.modelData.set('Pending_Comment', 0);

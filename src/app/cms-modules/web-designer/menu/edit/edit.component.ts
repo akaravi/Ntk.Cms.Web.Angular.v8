@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, CoreEnumService, CoreUserGroupModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, WebDesignerMainMenuModel, WebDesignerMainMenuService
+  AccessModel, CoreEnumService, CoreUserGroupModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerMainMenuModel, WebDesignerMainMenuService
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -43,8 +43,8 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<WebDesignerMainMenuModel> = new ErrorExceptionResult<WebDesignerMainMenuModel>();
   dataModel: WebDesignerMainMenuModel = new WebDesignerMainMenuModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataAccessModel: AccessModel;
   fileManagerOpenForm = false;
   dataWebDesignerMainMenuModel: CoreUserGroupModel[];
@@ -62,7 +62,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     this.getEnumMenuPlaceType();
   }
   getEnumMenuPlaceType(): void {
-    this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {
+    this.coreEnumService.ServiceMenuPlaceTypeEnum().subscribe((next) => {
       this.dataModelEnumMenuPlaceTypeResult = next;
     });
   }
@@ -76,7 +76,7 @@ export class WebDesignerMainMenuEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.webDesignerMainMenuService.setAccessLoad();
-    this.webDesignerMainMenuService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.webDesignerMainMenuService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.webDesignerMainMenuService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

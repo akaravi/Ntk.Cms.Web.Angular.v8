@@ -10,7 +10,10 @@
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
             <mat-label>{{fieldsInfo['recordStatus']?.fieldTitle}}</mat-label>
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [disabled]="!fieldsInfo['recordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}"
+                [disabled]="!fieldsInfo['recordStatus']?.accessEditField" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
@@ -28,8 +31,11 @@
         <!-- Writer Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['writer']?.accessWatchField">
             <mat-label>{{fieldsInfo['writer']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" [disabled]="!fieldsInfo['writer']?.accessEditField" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.writer = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.writer" name="dataModel.writer" #Writer type="text"
+                placeholder="{{fieldsInfo['title']?.fieldTitle}}" [disabled]="!fieldsInfo['writer']?.accessEditField"
+                minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.writer" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.writer = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">
                 <mat-icon matSuffix class="info-field-icon">info</mat-icon>
@@ -43,8 +49,11 @@
         <!-- Comment Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['comment']?.accessWatchField">
             <mat-label>{{fieldsInfo['comment']?.fieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text" placeholder="{{fieldsInfo['comment']?.fieldTitle}}" [disabled]="!fieldsInfo['comment']?.accessEditField" minlength="1" maxlength="1000" required rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.comment = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.comment" name="dataModel.comment" #Comment type="text"
+                placeholder="{{fieldsInfo['comment']?.fieldTitle}}" [disabled]="!fieldsInfo['comment']?.accessEditField"
+                minlength="1" maxlength="1000" required rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.comment" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.comment = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">
                 <mat-icon matSuffix class="info-field-icon">info</mat-icon>

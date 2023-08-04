@@ -4,8 +4,7 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleSaleHeaderModel, CoreModuleSaleHeaderService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult
+  CoreEnumService, CoreModuleSaleHeaderModel, CoreModuleSaleHeaderService, DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -34,7 +33,7 @@ export class CoreModuleSaleHeaderHeaderComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<CoreModuleSaleHeaderModel> = new ErrorExceptionResult<CoreModuleSaleHeaderModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
 

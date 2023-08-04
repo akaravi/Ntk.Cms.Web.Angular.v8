@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ApiTelegramBotConfigModel, ApiTelegramBotConfigService, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  ApiTelegramBotConfigModel, ApiTelegramBotConfigService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -60,7 +60,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
   dataModel: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -91,7 +91,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.apiTelegramBotConfigService.setAccessLoad();
-    this.apiTelegramBotConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.apiTelegramBotConfigService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.apiTelegramBotConfigService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.dataModel = ret.item;

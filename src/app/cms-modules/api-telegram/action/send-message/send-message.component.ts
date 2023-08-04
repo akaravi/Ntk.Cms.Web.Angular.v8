@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ApiTelegramBotConfigModel, ApiTelegramBotConfigService, ApiTelegramSendMessageTodoModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel
+  ApiTelegramBotConfigModel, ApiTelegramBotConfigService, ApiTelegramSendMessageTodoModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -50,7 +49,7 @@ export class ApiTelegramActionSendMessageComponent implements OnInit {
   dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: ApiTelegramSendMessageTodoModel = new ApiTelegramSendMessageTodoModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
 

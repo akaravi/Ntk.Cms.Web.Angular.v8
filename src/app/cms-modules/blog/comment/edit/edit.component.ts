@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BlogCommentModel, BlogCommentService, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  BlogCommentModel, BlogCommentService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
@@ -58,7 +58,7 @@ export class BlogCommentEditComponent implements OnInit {
   ComponentAction = ComponentActionEnum.none;
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   selected: any;
   openFormFileManager = false;
@@ -96,7 +96,7 @@ export class BlogCommentEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.commentService.setAccessLoad();
-    this.commentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.commentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.commentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

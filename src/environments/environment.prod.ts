@@ -2,12 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 //test karavi indonarimani
-import { EnumDeviceType, EnumOperatingSystemType } from "ntk-cms-api";
+import { DeviceTypeEnum, OperatingSystemTypeEnum } from "ntk-cms-api";
 
 export const environment = {
   production: true,
   checkAccess: false,
-  appVersion: '15.2.0509.2',
+  appVersion: '15.2.0513.1',
   authKey: 'authf649fc9a5f55',
   loadDemoTheme: false,
   ProgressConsoleLog: false,
@@ -27,8 +27,8 @@ export const environment = {
   cmsTokenConfig: {
     SecurityKey: '123456789',
     ClientMACAddress: '',
-    OSType: EnumOperatingSystemType.Windows,
-    DeviceType: EnumDeviceType.WebSite,
+    OSType: OperatingSystemTypeEnum.Windows,
+    DeviceType: DeviceTypeEnum.WebSite,
     PackageName: '',
   },
   cmsViewConfig: {

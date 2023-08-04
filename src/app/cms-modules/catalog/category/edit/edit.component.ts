@@ -4,11 +4,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CatalogCategoryModel, CatalogCategoryService, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CatalogCategoryModel, CatalogCategoryService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,7 +53,7 @@ export class CatalogCategoryEditComponent implements OnInit {
   dataModel: CatalogCategoryModel = new CatalogCategoryModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -65,7 +65,7 @@ export class CatalogCategoryEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.requestId?.length>  0) {
+    if (this.requestId?.length > 0) {
       this.formInfo.formTitle = this.translate.instant('TITLE.Edit_Categories');
       this.DataGetOneContent();
     } else {
@@ -80,7 +80,7 @@ export class CatalogCategoryEditComponent implements OnInit {
   }
 
   DataGetOneContent(): void {
-    if (!this.requestId || this.requestId.length=== 0) {
+    if (!this.requestId || this.requestId.length === 0) {
       this.cmsToastrService.typeErrorEditRowIsNull();
       return;
     }
@@ -91,7 +91,7 @@ export class CatalogCategoryEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.categoryService.setAccessLoad();
-    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.categoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.categoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

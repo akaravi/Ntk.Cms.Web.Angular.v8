@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, WebDesignerMainPageTemplateModel, WebDesignerMainPageTemplateService, WebDesignerMainPageTemplateSiteCategoryModel,
+  CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerMainPageTemplateModel, WebDesignerMainPageTemplateService, WebDesignerMainPageTemplateSiteCategoryModel,
   WebDesignerMainPageTemplateSiteCategoryService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -46,7 +46,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel> = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
   dataModel: WebDesignerMainPageTemplateModel = new WebDesignerMainPageTemplateModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   dataCoreSiteCategoryModel: CoreSiteCategoryModel[];
   dataCoreSiteCategoryIds: number[] = [];
@@ -72,7 +72,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainPageTemplateService.setAccessLoad();
-    this.webDesignerMainPageTemplateService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.webDesignerMainPageTemplateService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.webDesignerMainPageTemplateService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

@@ -4,12 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel,
-  SmsMainMessageCategoryModel,
+  FormInfoModel, ManageUserAccessDataTypesEnum, SmsMainMessageCategoryModel,
   SmsMainMessageCategoryService
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -67,7 +64,7 @@ export class SmsMainMessageCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainMessageCategoryService.setAccessLoad();
-    this.smsMainMessageCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsMainMessageCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsMainMessageCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

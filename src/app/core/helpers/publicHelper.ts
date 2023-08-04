@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel,
-  BaseEntity,
+  AccessModel, AnswerStatusEnum, BaseEntity,
   CoreCurrencyModel,
   CoreCurrencyService,
   CoreEnumService,
@@ -13,17 +12,13 @@ import {
   CoreModuleService,
   CoreSiteModel,
   CoreSiteService,
-  DataFieldInfoModel,
-  EnumAnswerStatus,
-  EnumInfoModel, EnumTicketStatus,
-  ErrorExceptionResult,
-  ErrorExceptionResultBase,
-  TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase, InfoEnumModel, TicketStatusEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { environment } from 'src/environments/environment';
 import { ComponentLocalStorageModel } from '../models/componentLocalStorageModel';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -323,28 +318,28 @@ export class PublicHelper {
     }
     return '#91ffa5';
   }
-  RowStyleTicketStatus(row: EnumTicketStatus): string {
+  RowStyleTicketStatus(row: TicketStatusEnum): string {
 
-    if (row == EnumTicketStatus.Answered) {
+    if (row == TicketStatusEnum.Answered) {
       return '#91ffa5';
     }
-    if (row == EnumTicketStatus.Read) {
+    if (row == TicketStatusEnum.Read) {
       return '#FFFF99';
     }
-    if (row == EnumTicketStatus.Ended) {
+    if (row == TicketStatusEnum.Ended) {
       return '#CCCCCC';
     }
     return '#fc6868';
   }
-  RowStyleAnswerStatus(row: EnumAnswerStatus): string {
+  RowStyleAnswerStatus(row: AnswerStatusEnum): string {
 
-    if (row == EnumAnswerStatus.Answered) {
+    if (row == AnswerStatusEnum.Answered) {
       return '#91ffa5';
     }
-    if (row == EnumAnswerStatus.Read) {
+    if (row == AnswerStatusEnum.Read) {
       return '#FFFF99';
     }
-    if (row == EnumAnswerStatus.Ended) {
+    if (row == AnswerStatusEnum.Ended) {
       return '#CCCCCC';
     }
     return '#fc6868';
@@ -395,7 +390,7 @@ export class PublicHelper {
     return str;
   }
   getEnumRecordStatusActionIndo = false;
-  async getEnumRecordStatus(): Promise<ErrorExceptionResult<EnumInfoModel>> {
+  async getEnumRecordStatus(): Promise<ErrorExceptionResult<InfoEnumModel>> {
     var i = 0;
     while (this.getEnumRecordStatusActionIndo) {
       //**indo */
@@ -411,7 +406,7 @@ export class PublicHelper {
     }
 
     this.getEnumRecordStatusActionIndo = true;
-    return await firstValueFrom(this.coreEnumService.ServiceEnumRecordStatus())
+    return await firstValueFrom(this.coreEnumService.ServiceRecordStatusEnum())
       .then((response) => {
         this.getEnumRecordStatusActionIndo = false;
         this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });

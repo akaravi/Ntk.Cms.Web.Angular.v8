@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLocationModel, CoreLocationService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreEnumService, CoreLocationModel, CoreLocationService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,8 +53,8 @@ export class CoreLocationEditComponent implements OnInit {
   dataModel: CoreLocationModel = new CoreLocationModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumLocationTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumLocationTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -73,7 +73,7 @@ export class CoreLocationEditComponent implements OnInit {
     this.getEnumLocationType();
   }
   getEnumLocationType(): void {
-    this.coreEnumService.ServiceEnumLocationType().subscribe((next) => {
+    this.coreEnumService.ServiceLocationTypeEnum().subscribe((next) => {
       this.dataModelEnumLocationTypeResult = next;
     });
   }
@@ -92,7 +92,7 @@ export class CoreLocationEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreLocationService.setAccessLoad();
-    this.coreLocationService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreLocationService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreLocationService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -9,7 +9,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, Subscription } from 'rxjs';
 //end change title when route happened
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { SwPush } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, ErrorExceptionResult } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
@@ -27,6 +28,8 @@ import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switche
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
+  readonly VAPID_PUBLIC_KEY = "BOr78Ceadeel4AyuayJxgsPXC5Eo3yIpSq__q6uPF6losigIi9HTSFHnp-Itqhq4UGfujxeTf0PxScyyJO3lfng";
+
   constructor(
     private router: Router,
     private titleService: Title,
@@ -37,7 +40,9 @@ export class AppComponent implements OnInit {
     private publicHelper: PublicHelper,
     private tokenHelper: TokenHelper,
     private splashScreenService: SplashScreenService,
-    private singlarService: CmsSignalrService
+    private singlarService: CmsSignalrService,
+    private swPush: SwPush,
+    private httpClient: HttpClient
   ) {
     /**singlarService */
     this.singlarService.startConnection(null);
@@ -85,6 +90,8 @@ export class AppComponent implements OnInit {
         }
       });
     }
+
+    //this.subscribeToNotifications();
   }
   cmsApiStoreSubscribe: Subscription;
   dataSupportModelResult: ErrorExceptionResult<CoreSiteSupportModel>;
@@ -116,6 +123,19 @@ export class AppComponent implements OnInit {
     }
     this.tokenHelper.getDeviceToken();
     this.publicHelper.getEnumRecordStatus();
+  }
+  subscribeToNotifications() {
+    this.httpClient.get(`${environment.cmsServerConfig.configApiServerPath}/backgroundPush/subscriptions/key`, { responseType: 'text' })
+      .subscribe(publicKey => {
+        this.swPush.requestSubscription({
+          serverPublicKey: this.VAPID_PUBLIC_KEY
+        })
+          .then(sub => {
+            //this.newsletterService.addPushSubscriber(sub).subscribe()
+            console.log('ooooooooooooooook')
+          })
+          .catch(err => console.error("Could not subscribe to notifications", err));
+      });
   }
   getSupport() {
     this.coreSiteService.ServiceSupportSite()

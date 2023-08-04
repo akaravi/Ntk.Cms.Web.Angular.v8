@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreSiteModel, CoreUserClaimContentModel, CoreUserClaimContentService, CoreUserClaimTypeModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreSiteModel, CoreUserClaimContentModel, CoreUserClaimContentService, CoreUserClaimTypeModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
@@ -80,7 +80,7 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
   dataModel: CoreUserClaimContentModel = new CoreUserClaimContentModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -115,7 +115,7 @@ export class CoreUserClaimContentEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     this.coreUserClaimContentService.setAccessLoad();
-    this.coreUserClaimContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreUserClaimContentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreUserClaimContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

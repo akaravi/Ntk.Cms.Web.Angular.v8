@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   BlogContentModel,
   BlogContentService,
-  DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, ErrorExceptionResult
+  DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel, RecordStatusEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -37,7 +37,7 @@ export class BlogContentHeaderComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<BlogContentModel> = new ErrorExceptionResult<BlogContentModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
 
@@ -77,7 +77,7 @@ export class BlogContentHeaderComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

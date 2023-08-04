@@ -11,9 +11,8 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, CoreEnumService, CoreSiteCategoryModel, CoreSiteModel,
-  CoreSiteService, CoreUserModel, DataFieldInfoModel,
-  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreSiteService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
@@ -68,9 +67,9 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new CoreSiteModel();
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumSiteStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumLanguageResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumSiteStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumLanguageResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFavIconId = false;
@@ -99,12 +98,12 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   getEnumSiteStatus(): void {
-    this.coreEnumService.ServiceEnumSiteStatus().subscribe((next) => {
+    this.coreEnumService.ServiceSiteStatusEnum().subscribe((next) => {
       this.dataModelEnumSiteStatusResult = next;
     });
   }
   getEnumLanguage(): void {
-    this.coreEnumService.ServiceEnumLanguage().subscribe((next) => {
+    this.coreEnumService.ServiceLanguageEnum().subscribe((next) => {
       this.dataModelEnumLanguageResult = next;
     });
   }
@@ -148,7 +147,7 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.coreSiteService.setAccessLoad();
-    this.coreSiteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreSiteService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreSiteService
       .ServiceGetOneById(id)
       .subscribe({

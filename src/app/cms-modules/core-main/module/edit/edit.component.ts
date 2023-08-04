@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleModel, CoreModuleService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreEnumService, CoreModuleModel, CoreModuleService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,7 +53,7 @@ export class CoreModuleEditComponent implements OnInit {
   dataModel: CoreModuleModel = new CoreModuleModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -84,7 +84,7 @@ export class CoreModuleEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.coreModuleService.setAccessLoad();
-    this.coreModuleService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.dataModel = ret.item;

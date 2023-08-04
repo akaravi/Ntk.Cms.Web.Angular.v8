@@ -9,7 +9,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { ChartContentModel, ChartContentService, DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FormInfoModel } from 'ntk-cms-api';
+import { ChartContentModel, ChartContentService, DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, ManageUserAccessDataTypesEnum } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -60,7 +60,7 @@ export class ChartContentDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

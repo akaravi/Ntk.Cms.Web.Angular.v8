@@ -6,8 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, WebDesignerMainPageModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, InfoEnumModel, WebDesignerMainPageModel,
   WebDesignerMainPageService,
   WebDesignerMainPageTemplateModel, WebDesignerPageAutoAddDtoModel
 } from 'ntk-cms-api';
@@ -43,7 +42,7 @@ export class WebDesignerMainPageDependencyAutoAddPageComponent implements OnInit
   dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: WebDesignerPageAutoAddDtoModel = new WebDesignerPageAutoAddDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Automatically_add_all_pages');

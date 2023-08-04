@@ -5,10 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DonateTargetCategoryModel,
-  DonateTargetCategoryService,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  DonateTargetCategoryService, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -63,7 +62,7 @@ export class DonateTargetCategoryDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.donateTargetCategoryService.setAccessLoad();
-    this.donateTargetCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.donateTargetCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.donateTargetCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

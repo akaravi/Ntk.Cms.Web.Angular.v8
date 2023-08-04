@@ -9,10 +9,8 @@ import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, ApplicationAppModel,
   ApplicationAppService, ApplicationEnumService, ApplicationSourceModel, ApplicationThemeConfigModel, CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,8 +44,8 @@ export class ApplicationAppAddComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new ApplicationAppModel();
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumLangResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumLangResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFileIdIcon = false;
@@ -69,7 +67,7 @@ export class ApplicationAppAddComponent implements OnInit {
     this.getEnumLang();
   }
   getEnumLang(): void {
-    this.coreEnumService.ServiceEnumLanguage().subscribe((res) => {
+    this.coreEnumService.ServiceLanguageEnum().subscribe((res) => {
       this.dataModelEnumLangResult = res;
     });
   }

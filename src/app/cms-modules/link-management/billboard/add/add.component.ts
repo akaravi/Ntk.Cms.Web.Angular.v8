@@ -4,9 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, LinkManagementBillboardModel,
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardModel,
   LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementBillboardTargetCategoryModel,
   LinkManagementBillboardTargetCategoryService, LinkManagementMemberModel
 } from 'ntk-cms-api';
@@ -52,7 +51,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
   dataModel = new LinkManagementBillboardModel();
   dataAccessModel: AccessModel;
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardModel> = new ErrorExceptionResult<LinkManagementBillboardModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionActionTitle = '';
 
   optionActionButtomEnable = true;

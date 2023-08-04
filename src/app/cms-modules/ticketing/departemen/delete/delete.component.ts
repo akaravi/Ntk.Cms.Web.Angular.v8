@@ -3,12 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel,
-  TicketingDepartemenModel,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TicketingDepartemenModel,
   TicketingDepartemenService
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -65,7 +62,7 @@ export class TicketingDepartemenDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ticketingDepartemenService.setAccessLoad();
-    this.ticketingDepartemenService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.ticketingDepartemenService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.ticketingDepartemenService
       .ServiceGetOneById(this.requestId)
       .subscribe(

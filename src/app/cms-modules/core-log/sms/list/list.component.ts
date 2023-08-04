@@ -7,10 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLogSmsModel, CoreLogSmsService, CoreSiteModel, DataFieldInfoModel,
-  EnumInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  TokenInfoModel
+  CoreEnumService, CoreLogSmsModel, CoreLogSmsService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, InfoEnumModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -77,7 +74,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
   }
   comment: string;
   author: string;
@@ -111,7 +108,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
 
@@ -120,7 +117,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.filteModelContent.sortColumn = 'CreatedDate';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -134,7 +131,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
   }
 
   getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
+    this.coreEnumService.ServiceSendSmsStatusTypeEnum().subscribe((next) => {
       this.dataModelEnumSendSmsStatusTypeResult = next;
     });
   }
@@ -184,17 +181,17 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -344,7 +341,7 @@ export class CoreLogSmsListComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {

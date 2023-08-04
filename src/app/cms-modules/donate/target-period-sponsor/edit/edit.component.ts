@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel,
-  DonateTargetCategoryModel, DonateTargetPeriodSponsorModel, DonateTargetPeriodSponsorService, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DonateTargetCategoryModel, DonateTargetPeriodSponsorModel, DonateTargetPeriodSponsorService, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,7 +53,7 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
   dataModel: DonateTargetPeriodSponsorModel = new DonateTargetPeriodSponsorModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -84,7 +84,7 @@ export class DonateTargetPeriodSponserEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetPeriodSponsorService.setAccessLoad();
-    this.donateTargetPeriodSponsorService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.donateTargetPeriodSponsorService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.donateTargetPeriodSponsorService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -4,9 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TicketingDepartemenLogModel,
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingDepartemenLogModel,
   TicketingDepartemenLogService, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -47,7 +46,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<TicketingDepartemenLogModel> = new ErrorExceptionResult<TicketingDepartemenLogModel>();
   dataModel: TicketingDepartemenLogModel = new TicketingDepartemenLogModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
   cmsApiStoreSubscribe: Subscription;
@@ -83,7 +82,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
     this.loading.Start(pName);
 
     this.ticketingDepartemenLogService.setAccessLoad();
-    this.ticketingDepartemenLogService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.ticketingDepartemenLogService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.ticketingDepartemenLogService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

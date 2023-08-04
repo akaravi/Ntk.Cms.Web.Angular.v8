@@ -2,11 +2,7 @@
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreModuleSiteService,
-  EnumFilterDataModelSearchTypes,
-  EnumRecordStatus,
-  FilterDataModel,
-  FilterModel
+  CoreModuleSiteService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, RecordStatusEnum
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -79,7 +75,7 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
@@ -102,7 +98,7 @@ export class CoreSiteWidgetModuleComponent implements OnInit, OnDestroy {
     const fastFilter2 = new FilterDataModel();
     fastFilter2.propertyName = 'ExpireDate';
     fastFilter2.value = new Date();
-    fastFilter2.searchType = EnumFilterDataModelSearchTypes.GreaterThan;
+    fastFilter2.searchType = FilterDataModelSearchTypesEnum.GreaterThan;
     filterStatist2.filters.push(fastFilter2);
   }
 }

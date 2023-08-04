@@ -7,9 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, FilterDataModel, FilterModel, SmsLogApiPathModel,
-  SmsLogApiPathService, SmsMainApiPathModel, SmsMainApiPathService, TokenInfoModel
+  CoreCurrencyModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SmsLogApiPathModel,
+  SmsLogApiPathService, SmsMainApiPathModel, SmsMainApiPathService, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -48,7 +47,7 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
     const filter = new FilterDataModel();
     if (this.requestLinkApiPathId && this.requestLinkApiPathId.length > 0) {
       filter.propertyName = 'LinkApiPathId';
@@ -164,17 +163,17 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -282,7 +281,7 @@ export class SmsLogApiPathListComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {

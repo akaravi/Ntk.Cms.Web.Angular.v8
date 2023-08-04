@@ -10,13 +10,9 @@ import {
   CoreModuleSaleItemModel,
   CoreModuleSaleItemService,
   CoreModuleService,
-  DataFieldInfoModel,
-  EnumInfoModel,
-  EnumSortType,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel,
-  TokenInfoModel
+  FilterModel, InfoEnumModel, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -58,7 +54,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
   tableRowSelected: CoreModuleSaleItemModel = new CoreModuleSaleItemModel();
   tableSource: MatTableDataSource<CoreModuleSaleItemModel> = new MatTableDataSource<CoreModuleSaleItemModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
   tabledisplayedColumns: string[] = [
@@ -93,7 +89,7 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
     });
   }
   getEnumCmsModuleSaleItemType(): void {
-    this.coreEnumService.ServiceEnumCmsModuleSaleItemType().subscribe((next) => {
+    this.coreEnumService.ServiceCmsModuleSaleItemTypeEnum().subscribe((next) => {
       this.dataModelEnumCmsModuleSaleItemTypeResult = next;
     });
   }
@@ -145,17 +141,17 @@ export class CoreModuleSaleItemListViewComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

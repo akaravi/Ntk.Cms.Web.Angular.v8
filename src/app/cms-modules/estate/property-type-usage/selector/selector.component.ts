@@ -3,14 +3,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, O
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstatePropertyTypeUsageModel,
-  EstatePropertyTypeUsageService, FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstatePropertyTypeUsageModel,
+  EstatePropertyTypeUsageService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
-import { Observable, Subscription, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -97,14 +93,14 @@ export class EstatePropertyTypeUsageSelectorComponent implements OnInit, OnDestr
       let filter = new FilterDataModel();
       filter.propertyName = 'Name';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
       filterModel.filters.push(filter);
       /* */
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
 

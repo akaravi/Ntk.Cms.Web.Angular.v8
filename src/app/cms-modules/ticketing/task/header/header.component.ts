@@ -4,9 +4,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  TicketingTaskModel,
+  DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel, TicketingTaskModel,
   TicketingTaskService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -38,7 +36,7 @@ export class TicketingTaskHeaderComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
   cmsApiStoreSubscribe: Subscription;

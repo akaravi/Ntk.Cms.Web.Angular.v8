@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, CoreCpMainMenuCmsUserGroupModel,
   CoreCpMainMenuCmsUserGroupService, CoreCpMainMenuModel, CoreCpMainMenuService, CoreEnumService, CoreModuleModel,
-  CoreUserGroupModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
+  CoreUserGroupModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -58,8 +58,8 @@ export class CoreCpMainMenuEditComponent implements OnInit {
   dataModel: CoreCpMainMenuModel = new CoreCpMainMenuModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataAccessModel: AccessModel;
 
   fileManagerOpenForm = false;
@@ -82,7 +82,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     this.getEnumMenuPlaceType();
   }
   getEnumMenuPlaceType(): void {
-    this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {
+    this.coreEnumService.ServiceMenuPlaceTypeEnum().subscribe((next) => {
       this.dataModelEnumMenuPlaceTypeResult = next;
     });
   }
@@ -102,7 +102,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.coreCpMainMenuService.setAccessLoad();
-    this.coreCpMainMenuService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreCpMainMenuService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreCpMainMenuService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

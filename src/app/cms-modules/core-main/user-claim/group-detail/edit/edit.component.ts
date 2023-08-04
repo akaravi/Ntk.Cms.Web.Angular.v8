@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel, CoreUserClaimTypeModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel
+  CoreEnumService, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel, CoreUserClaimTypeModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +52,7 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
   dataModel: CoreUserClaimGroupDetailModel = new CoreUserClaimGroupDetailModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -92,7 +92,7 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
     filteModelContent.filters.push(fastfilter);
 
     this.coreUserClaimGroupDetailService.setAccessLoad();
-    this.coreUserClaimGroupDetailService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreUserClaimGroupDetailService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreUserClaimGroupDetailService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

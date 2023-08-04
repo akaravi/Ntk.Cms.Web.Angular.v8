@@ -9,7 +9,7 @@ import {
   BankPaymentModuleConfigSiteAccessValuesModel,
   BankPaymentModuleConfigSiteValuesModel,
   BankPaymentModuleSiteStorageValuesModel, CoreEnumService,
-  DataFieldInfoModel, EnumInfoModel, ErrorExceptionResult, FormInfoModel, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
@@ -48,7 +48,7 @@ export class BankPaymentConfigSiteComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';

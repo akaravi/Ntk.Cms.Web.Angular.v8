@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { EnumInfoModel } from 'ntk-cms-api';
+import { InfoEnumModel } from 'ntk-cms-api';
 
 @Pipe({ name: 'enums' })
 export class EnumsPipe implements PipeTransform {
-  transform(value, args: EnumInfoModel[]): any {
+  transform(value, args: InfoEnumModel[]): any {
 
     if (!args || args.length === 0) {
       return '';

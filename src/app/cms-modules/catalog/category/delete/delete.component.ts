@@ -1,15 +1,14 @@
 
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CatalogCategoryModel,
   CatalogCategoryService,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -66,7 +65,7 @@ export class CatalogCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.categoryService.setAccessLoad();
-    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.categoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.categoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

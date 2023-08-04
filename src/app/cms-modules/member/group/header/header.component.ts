@@ -5,9 +5,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  MemberGroupModel,
+  DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel, MemberGroupModel,
   MemberGroupService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -40,7 +38,7 @@ export class MemberGroupHeaderComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<MemberGroupModel> = new ErrorExceptionResult<MemberGroupModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {

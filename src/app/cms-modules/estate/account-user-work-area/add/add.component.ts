@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserWorkAreaModel, EstateAccountUserWorkAreaService, EstateAccountUserModel, EstateEnumService, FormInfoModel, TokenInfoModel, CoreLocationModel
+  CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountUserModel, EstateAccountUserWorkAreaModel, EstateAccountUserWorkAreaService, EstateEnumService, FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -51,8 +50,8 @@ export class EstateAccountUserWorkAreaAddComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<EstateAccountUserWorkAreaModel> = new ErrorExceptionResult<EstateAccountUserWorkAreaModel>();
   dataModel: EstateAccountUserWorkAreaModel = new EstateAccountUserWorkAreaModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumEstateUserTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumEstateUserTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 

@@ -12,9 +12,8 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, ChartCategoryModel, ChartContentCategoryModel,
-  ChartContentCategoryService, ChartContentModel, ChartContentOtherInfoModel, ChartContentOtherInfoService, ChartContentService, ChartContentSimilarModel, ChartContentSimilarService, ChartContentTagModel, ChartContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
-  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
-  FormInfoModel
+  ChartContentCategoryService, ChartContentModel, ChartContentOtherInfoModel, ChartContentOtherInfoService, ChartContentService, ChartContentSimilarModel, ChartContentSimilarService, ChartContentTagModel, ChartContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { map, of } from 'rxjs';
@@ -57,7 +56,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
   dataContentSimilarModelResult: ErrorExceptionResult<ChartContentSimilarModel> = new ErrorExceptionResult<ChartContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<ChartContentOtherInfoModel>
     = new ErrorExceptionResult<ChartContentOtherInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   similarDataModel = new Array<ChartContentModel>();
   otherInfoDataModel = new Array<ChartContentOtherInfoModel>();
@@ -158,7 +157,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({
@@ -213,7 +212,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
 
 
@@ -260,7 +259,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
 
     this.contentOtherInfoService
@@ -299,12 +298,12 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkSourceId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.Or;
+    filter.clauseType = ClauseTypeEnum.Or;
     filterModel.filters.push(filter);
 
     filter.propertyName = 'LinkDestinationId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.Or;
+    filter.clauseType = ClauseTypeEnum.Or;
     filterModel.filters.push(filter);
 
 
@@ -355,7 +354,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
-        filter.clauseType = EnumClauseType.Or;
+        filter.clauseType = ClauseTypeEnum.Or;
         filterModel.filters.push(filter);
       }
     });
@@ -551,7 +550,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
 
 

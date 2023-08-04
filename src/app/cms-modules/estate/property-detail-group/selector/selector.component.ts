@@ -3,12 +3,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstatePropertyDetailGroupModel,
-  EstatePropertyDetailGroupService, FilterDataModel,
-  FilterModel
+  CoreEnumService, ErrorExceptionResult, EstatePropertyDetailGroupModel,
+  EstatePropertyDetailGroupService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
-import { Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -91,7 +89,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
       let filter = new FilterDataModel();
       filter.propertyName = 'Name';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
       filterModel.filters.push(filter);
       /* */
 
@@ -100,7 +98,7 @@ export class EstatePropertyDetailGroupSelectorComponent implements OnInit {
       var filter = new FilterDataModel();
       filter.propertyName = 'linkPropertyTypeLanduseId';
       filter.value = this.linkPropertyTypeLanduseId;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
       filterModel.filters.push(filter);
     }
     const pName = this.constructor.name + 'main';

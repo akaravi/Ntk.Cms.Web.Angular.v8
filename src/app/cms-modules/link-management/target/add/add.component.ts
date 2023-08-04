@@ -4,9 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, LinkManagementBillboardPatternModel,
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel,
   LinkManagementEnumService, LinkManagementTargetCategoryModel, LinkManagementTargetModel,
   LinkManagementTargetService
 } from 'ntk-cms-api';
@@ -52,9 +51,9 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
   dataModel = new LinkManagementTargetModel();
   dataAccessModel: AccessModel;
   dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionActionTitle = '';
   optionActionButtomEnable = true;
   dataProfessional = false;
@@ -96,12 +95,12 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
     this.getEnumManagementContentSettingType();
   }
   getEnumManagementContentSettingType(): void {
-    this.linkManagementEnumService.ServiceEnumManagementContentSettingType().subscribe((res) => {
+    this.linkManagementEnumService.ServiceManagementContentSettingTypeEnum().subscribe((res) => {
       this.dataModelEnumManagementContentSettingTypeResult = res;
     });
   }
   getEnumSharingPriceType(): void {
-    this.linkManagementEnumService.ServiceEnumSharingPriceType().subscribe((res) => {
+    this.linkManagementEnumService.ServiceSharingPriceTypeEnum().subscribe((res) => {
       this.dataModelEnumSharingPriceTypeResult = res;
     });
   }

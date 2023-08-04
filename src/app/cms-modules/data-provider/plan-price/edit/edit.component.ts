@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreSiteService, DataFieldInfoModel, DataProviderPlanModel, DataProviderPlanPriceModel,
-  DataProviderPlanPriceService, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataProviderPlanPriceService, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -55,7 +55,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
   dataModel: DataProviderPlanPriceModel = new DataProviderPlanPriceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -107,7 +107,7 @@ export class DataProviderPlanPriceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.dataproviderplanpriceservice.setAccessLoad();
-    this.dataproviderplanpriceservice.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.dataproviderplanpriceservice.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.dataproviderplanpriceservice.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -14,9 +14,8 @@ import {
 } from '@angular/material/tree';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, EnumSortType, ErrorExceptionResult,
-  FilterModel,
-  WebDesignerMainMenuModel,
+  CoreEnumService, ErrorExceptionResult,
+  FilterModel, SortTypeEnum, WebDesignerMainMenuModel,
   WebDesignerMainMenuService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -41,7 +40,7 @@ export class WebDesignerMainMenuTreeComponent implements OnInit, OnDestroy {
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.filterModel.sortColumn = 'ShowInMenuOrder';
-    this.filterModel.sortType = EnumSortType.Ascending;
+    this.filterModel.sortType = SortTypeEnum.Ascending;
   }
   @Input() set optionSelectForce(x: number | WebDesignerMainMenuModel) {
     this.onActionSelectForce(x);

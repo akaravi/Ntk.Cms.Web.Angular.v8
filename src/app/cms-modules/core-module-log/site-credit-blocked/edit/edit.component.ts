@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogSiteCreditBlockedModel, CoreModuleLogSiteCreditBlockedService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreModuleLogSiteCreditBlockedModel, CoreModuleLogSiteCreditBlockedService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -96,7 +95,7 @@ export class CoreModuleLogSiteCreditBlockedEditComponent implements OnInit, OnDe
 
     /*َAccess Field*/
     this.coreModuleLogSiteCreditBlockedService.setAccessLoad();
-    this.coreModuleLogSiteCreditBlockedService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleLogSiteCreditBlockedService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleLogSiteCreditBlockedService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

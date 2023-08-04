@@ -9,8 +9,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, MemberPropertyDetailGroupModel, MemberPropertyDetailModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, MemberPropertyDetailGroupModel, MemberPropertyDetailModel,
   MemberPropertyDetailService, MemberPropertyTypeModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -52,8 +52,8 @@ export class MemberPropertyDetailEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailModel> = new ErrorExceptionResult<MemberPropertyDetailModel>();
   dataModel: MemberPropertyDetailModel = new MemberPropertyDetailModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumInputDataTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumInputDataTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   keywordDataModel = [];
 
   fileManagerOpenForm = false;
@@ -70,7 +70,7 @@ export class MemberPropertyDetailEditComponent implements OnInit {
     // this.getEnumInputDataType();
   }
   // getEnumInputDataType(): void {
-  //   this.estateEnumService.ServiceEnumInputDataType().subscribe((next) => {
+  //   this.estateEnumService.ServiceInputDataTypeEnum().subscribe((next) => {
   //     this.dataModelEnumInputDataTypeResult = next;
   //   });
   // }
@@ -86,7 +86,7 @@ export class MemberPropertyDetailEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.memberPropertyDetailService.setAccessLoad();
-    this.memberPropertyDetailService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.memberPropertyDetailService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.memberPropertyDetailService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

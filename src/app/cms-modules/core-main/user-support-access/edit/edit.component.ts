@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleEntityModel, CoreUserSupportAccessModel, CoreUserSupportAccessService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel,
-  FilterModel, FormInfoModel
+  CoreEnumService, CoreModuleEntityModel, CoreUserSupportAccessModel, CoreUserSupportAccessService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel,
+  FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -59,8 +59,8 @@ export class CoreUserSupportAccessEditComponent implements OnInit {
   dataModel: CoreUserSupportAccessModel = new CoreUserSupportAccessModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
@@ -79,7 +79,7 @@ export class CoreUserSupportAccessEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   getEnumManageUserAccessUserTypes(): void {
-    this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
+    this.coreEnumService.ServiceManageUserAccessUserTypesEnum().subscribe((next) => {
       this.dataModelEnumManageUserAccessUserTypesResult = next;
     });
   }
@@ -116,7 +116,7 @@ export class CoreUserSupportAccessEditComponent implements OnInit {
     filteModelContent.filters.push(filter);
 
     this.coreUserSupportAccessService.setAccessLoad();
-    this.coreUserSupportAccessService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreUserSupportAccessService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreUserSupportAccessService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

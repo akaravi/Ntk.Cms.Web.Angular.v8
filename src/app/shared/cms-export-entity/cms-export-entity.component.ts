@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleEntityReportFileModel, EnumExportFileType, EnumExportReceiveMethod, EnumInfoModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, FormInfoModel, IApiCmsServerBase, ReportFileTypeEnum, TokenInfoModel } from 'ntk-cms-api';
+import { CoreModuleEntityReportFileModel, ErrorExceptionResult, ErrorExceptionResultExportFile, ExportFileModel, ExportFileTypeEnum, ExportReceiveMethodEnum, FormInfoModel, IApiCmsServerBase, InfoEnumModel, ReportFileTypeEnum, TokenInfoModel } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -38,37 +38,37 @@ export class CmsExportEntityComponent implements OnInit {
     } else {
       this.dialogRef.close({ dialogChangedDate: true });
     }
-    let eum = new EnumInfoModel();
+    let eum = new InfoEnumModel();
     eum.value = 1;
     eum.key = 'Excel';
     eum.description = 'Excel';
     this.fileTypeListItems.push(eum);
 
-    eum = new EnumInfoModel();
+    eum = new InfoEnumModel();
     eum.value = 3;
     eum.key = 'Json';
     eum.description = 'Json';
     this.fileTypeListItems.push(eum);
 
-    eum = new EnumInfoModel();
+    eum = new InfoEnumModel();
     eum.value = 4;
     eum.key = 'Report';
     eum.description = 'Report';
     this.fileTypeListItems.push(eum);
 
-    eum = new EnumInfoModel();
+    eum = new InfoEnumModel();
     eum.value = 0;
     eum.key = 'Now';
     eum.description = 'Now';
     this.recieveMethodListItems.push(eum);
 
-    eum = new EnumInfoModel();
+    eum = new InfoEnumModel();
     eum.value = 1;
     eum.key = 'Email';
     eum.description = 'Email';
     this.recieveMethodListItems.push(eum);
 
-    eum = new EnumInfoModel();
+    eum = new InfoEnumModel();
     eum.value = 2;
     eum.key = 'FileManager';
     eum.description = 'FileManager';
@@ -80,8 +80,8 @@ export class CmsExportEntityComponent implements OnInit {
   }
   dataModelReportFileResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   dataModelSubmitResult: ErrorExceptionResultExportFile = new ErrorExceptionResultExportFile();
-  fileTypeListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
-  recieveMethodListItems: Array<EnumInfoModel> = new Array<EnumInfoModel>();
+  fileTypeListItems: Array<InfoEnumModel> = new Array<InfoEnumModel>();
+  recieveMethodListItems: Array<InfoEnumModel> = new Array<InfoEnumModel>();
 
   loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get optionLoading(): ProgressSpinnerModel {
@@ -97,8 +97,8 @@ export class CmsExportEntityComponent implements OnInit {
   filteredOptions: Observable<CoreModuleEntityReportFileModel[]>;
   dataModelFileSelect: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
   dataModel: ExportFileModel = new ExportFileModel();
-  EnumExportFileTypeReport = EnumExportFileType.Report;
-  EnumExportReceiveMethodNow = EnumExportReceiveMethod.Now;
+  EnumExportFileTypeReport = ExportFileTypeEnum.Report;
+  EnumExportReceiveMethodNow = ExportReceiveMethodEnum.Now;
 
   formInfo: FormInfoModel = new FormInfoModel();
 

@@ -10,12 +10,10 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FormInfoModel,
   LinkManagementBillboardModel,
-  LinkManagementBillboardService
+  LinkManagementBillboardService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -66,7 +64,7 @@ export class LinkManagementBillboardDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.linkManagementBillboardService.setAccessLoad();
-    this.linkManagementBillboardService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.linkManagementBillboardService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.linkManagementBillboardService
       .ServiceGetOneById(this.requestId)
       .subscribe({

@@ -9,9 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreSiteService, DataFieldInfoModel,
   DataProviderPlanModel, DataProviderPlanPriceModel,
-  DataProviderPlanPriceService, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  DataProviderPlanPriceService, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -59,7 +58,7 @@ export class DataProviderPlanPriceAddComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 

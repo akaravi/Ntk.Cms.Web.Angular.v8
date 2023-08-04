@@ -9,7 +9,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                   let item of dataModelEnumRecordStatusResult.listItems;
                   index as i
@@ -24,38 +26,50 @@
         <!-- LinkManagementBillboardId Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['linkManagementBillboardId']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.linkManagementBillboardId" name="dataModel.linkManagementBillboardId" #LinkManagementBillboardId type="number" placeholder="{{fieldsInfo['linkManagementBillboardId']?.fieldTitle}}" />
-            <mat-icon matSuffix *ngIf="dataModel.linkManagementBillboardId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkManagementBillboardId = 0">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.linkManagementBillboardId" name="dataModel.linkManagementBillboardId"
+                #LinkManagementBillboardId type="number"
+                placeholder="{{fieldsInfo['linkManagementBillboardId']?.fieldTitle}}" />
+            <mat-icon matSuffix *ngIf="dataModel.linkManagementBillboardId" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.linkManagementBillboardId = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- LinkManagementTargetId Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['linkManagementTargetId']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.linkManagementTargetId" name="dataModel.linkManagementTargetId" #LinkManagementTargetId type="number" placeholder="{{fieldsInfo['linkManagementTargetId']?.fieldTitle}}" />
-            <mat-icon matSuffix *ngIf="dataModel.linkManagementTargetId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkManagementTargetId = 0">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.linkManagementTargetId" name="dataModel.linkManagementTargetId"
+                #LinkManagementTargetId type="number"
+                placeholder="{{fieldsInfo['linkManagementTargetId']?.fieldTitle}}" />
+            <mat-icon matSuffix *ngIf="dataModel.linkManagementTargetId" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.linkManagementTargetId = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- ClickPrice Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['clickPrice']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.clickPrice" name="dataModel.clickPrice" #ClickPrice type="number" placeholder="{{fieldsInfo['clickPrice']?.fieldTitle}}" />
-            <mat-icon matSuffix *ngIf="dataModel.clickPrice" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.clickPrice = 0">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.clickPrice" name="dataModel.clickPrice" #ClickPrice type="number"
+                placeholder="{{fieldsInfo['clickPrice']?.fieldTitle}}" />
+            <mat-icon matSuffix *ngIf="dataModel.clickPrice" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.clickPrice = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- ViewPrice Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['viewPrice']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.viewPrice" name="dataModel.viewPrice" #ViewPrice type="number" placeholder="{{fieldsInfo['viewPrice']?.fieldTitle}}" />
-            <mat-icon matSuffix *ngIf="dataModel.viewPrice" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.viewPrice = 0">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.viewPrice" name="dataModel.viewPrice" #ViewPrice type="number"
+                placeholder="{{fieldsInfo['viewPrice']?.fieldTitle}}" />
+            <mat-icon matSuffix *ngIf="dataModel.viewPrice" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.viewPrice = 0">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- DeviceId Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['deviceId']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.deviceId" name="dataModel.deviceId" #DeviceId type="text" placeholder="{{fieldsInfo['deviceId']?.fieldTitle}}" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.deviceId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.deviceId = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.deviceId" name="dataModel.deviceId" #DeviceId type="text"
+                placeholder="{{fieldsInfo['deviceId']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.deviceId" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.deviceId = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ DeviceId.value.length }} / 100</mat-hint>
             <mat-error *ngIf="DeviceId.errors?.required">
@@ -65,8 +79,10 @@
         <!-- IpAddress Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['ipAddress']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.ipAddress" name="dataModel.ipAddress" #IpAddress type="text" placeholder="{{fieldsInfo['ipAddress']?.fieldTitle}}" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.ipAddress" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.ipAddress = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.ipAddress" name="dataModel.ipAddress" #IpAddress type="text"
+                placeholder="{{fieldsInfo['ipAddress']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.ipAddress" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.ipAddress = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ IpAddress.value.length }} / 100</mat-hint>
             <mat-error *ngIf="IpAddress.errors?.required">
@@ -76,8 +92,10 @@
         <!-- BrowserName Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['browserName']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.browserName" name="dataModel.browserName" #BrowserName type="text" placeholder="{{fieldsInfo['browserName']?.fieldTitle}}" minlength="3" maxlength="100" />
-            <mat-icon matSuffix *ngIf="dataModel.browserName" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.browserName = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.browserName" name="dataModel.browserName" #BrowserName type="text"
+                placeholder="{{fieldsInfo['browserName']?.fieldTitle}}" minlength="3" maxlength="100" />
+            <mat-icon matSuffix *ngIf="dataModel.browserName" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.browserName = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ BrowserName.value.length }} / 100</mat-hint>
             <mat-error *ngIf="BrowserName.errors?.required">

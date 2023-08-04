@@ -11,9 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DonateTargetPeriodSponsorModel,
-  DonateTargetPeriodSponsorService,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DonateTargetPeriodSponsorService, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -64,7 +63,7 @@ export class DonateTargetPeriodSponserDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetPeriodSponsorService.setAccessLoad();
-    this.donateTargetPeriodSponsorService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.donateTargetPeriodSponsorService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.donateTargetPeriodSponsorService
       .ServiceGetOneById(this.requestId)
       .subscribe({

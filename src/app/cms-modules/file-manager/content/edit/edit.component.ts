@@ -11,8 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FileCategoryModel, FileContentModel,
-  FileContentService, FormInfoModel
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FileCategoryModel, FileContentModel,
+  FileContentService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -44,7 +44,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new FileContentModel();
   dataModelResult: ErrorExceptionResult<FileContentModel> = new ErrorExceptionResult<FileContentModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   similarDataModel = new Array<FileContentModel>();
   contentSimilarSelected: FileContentModel = new FileContentModel();
   otherInfoTabledisplayedColumns = ['Id', 'Title', 'TypeId', 'Action'];
@@ -125,7 +125,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.fileContentService.setAccessLoad();
-    this.fileContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.fileContentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.fileContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

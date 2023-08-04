@@ -9,8 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteCategoryModel,
   CoreSiteModel,
-  CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, SmsEnumService, SmsMainApiNumberModel, SmsMainApiNumberPermissionModel, SmsMainApiNumberPermissionService
+  CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainApiNumberModel, SmsMainApiNumberPermissionModel, SmsMainApiNumberPermissionService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -54,9 +54,9 @@ export class SmsMainApiNumberPermissionEditComponent implements OnInit {
   dataModel: SmsMainApiNumberPermissionModel = new SmsMainApiNumberPermissionModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiNumberPermissionAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiNumberPermissionActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiNumberPermissionAccessStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiNumberPermissionActionResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataSmsMainApiNumberPermissionModel: SmsMainApiNumberPermissionModel[];
@@ -99,7 +99,7 @@ export class SmsMainApiNumberPermissionEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiNumberPermissionService.setAccessLoad();
-    this.smsMainApiNumberPermissionService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsMainApiNumberPermissionService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsMainApiNumberPermissionService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

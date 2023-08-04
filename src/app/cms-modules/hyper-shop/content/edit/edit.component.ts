@@ -4,10 +4,10 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
   FormInfoModel,
   HyperShopCategoryModel, HyperShopContentModel,
-  HyperShopContentService
+  HyperShopContentService, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -59,7 +59,7 @@ export class HyperShopContentEditComponent implements OnInit {
   dataFileModel = new Map<number, string>();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -87,7 +87,7 @@ export class HyperShopContentEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.hyperShopContentService.setAccessLoad();
-    this.hyperShopContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.hyperShopContentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.hyperShopContentService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

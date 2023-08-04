@@ -7,10 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCpMainMenuModel, CoreCpMainMenuService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel,
-  TokenInfoModel
+  CoreCpMainMenuModel, CoreCpMainMenuService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -55,8 +53,8 @@ export class CoreCpMainMenuAddComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
   dataModel: CoreCpMainMenuModel = new CoreCpMainMenuModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumMenuPlaceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   tokenInfo = new TokenInfoModel();
   ngOnInit(): void {
@@ -68,7 +66,7 @@ export class CoreCpMainMenuAddComponent implements OnInit {
 
   }
   getEnumMenuPlaceType(): void {
-    this.coreEnumService.ServiceEnumMenuPlaceType().subscribe((next) => {
+    this.coreEnumService.ServiceMenuPlaceTypeEnum().subscribe((next) => {
       this.dataModelEnumMenuPlaceTypeResult = next;
     });
   }

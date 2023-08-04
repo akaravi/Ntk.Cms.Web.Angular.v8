@@ -5,10 +5,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   EstatePropertyExpertPriceModel,
-  EstatePropertyExpertPriceService
+  EstatePropertyExpertPriceService, InfoEnumModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -37,7 +36,7 @@ export class EstatePropertyExpertPriceHeaderComponent implements OnInit, OnDestr
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {

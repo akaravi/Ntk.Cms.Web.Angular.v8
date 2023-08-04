@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, CoreEnumService, CoreModuleModel, CoreSiteCategoryCmsModuleModel, CoreSiteCategoryCmsModuleService, CoreSiteCategoryModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel
+  AccessModel, CoreEnumService, CoreModuleModel, CoreSiteCategoryCmsModuleModel, CoreSiteCategoryCmsModuleService, CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -53,7 +53,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -97,7 +97,7 @@ export class CoreSiteCategoryCmsModuleEditComponent implements OnInit {
     filteModelContent.accessLoad = true;
     /*َAccess Field*/
     this.coreSiteCategoryCmsModuleService.setAccessLoad();
-    this.coreSiteCategoryCmsModuleService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreSiteCategoryCmsModuleService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreSiteCategoryCmsModuleService.ServiceGetAll(filteModelContent).subscribe({
       next: (ret) => {
 

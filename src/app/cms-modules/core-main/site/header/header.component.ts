@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteModel,
   CoreSiteService,
-  DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, ErrorExceptionResult
+  DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel, RecordStatusEnum
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -38,7 +38,7 @@ export class CoreSiteHeaderComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreSiteModel> = new ErrorExceptionResult<CoreSiteModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
@@ -84,7 +84,7 @@ export class CoreSiteHeaderComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

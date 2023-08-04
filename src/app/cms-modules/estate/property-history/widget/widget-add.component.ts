@@ -1,10 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import {
-  EnumFilterDataModelSearchTypes,
-  EnumManageUserAccessDataTypes, EnumRecordStatus, EstatePropertyHistoryService, FilterDataModel, FilterModel
-} from 'ntk-cms-api';
+import { EstatePropertyHistoryService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, ManageUserAccessDataTypesEnum, RecordStatusEnum } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -62,7 +59,7 @@ export class EstatePropertyHistoryWidgetAddComponent implements OnInit, OnDestro
     this.loading.Start(this.constructor.name + 'Archive', this.translate.instant('MESSAGE.customer_order_list_close'));
     this.loading.Start(this.constructor.name + 'Disable', this.translate.instant('MESSAGE.customer_order_list_disable'));
     this.loading.Start(this.constructor.name + 'Pending', this.translate.instant('MESSAGE.customer_order_needs_approval'));
-    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.service.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.service.ServiceGetCount(this.filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -89,11 +86,11 @@ export class EstatePropertyHistoryWidgetAddComponent implements OnInit, OnDestro
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     let fastfilter1 = new FilterDataModel();
     fastfilter1.propertyName = 'RecordStatus';
-    fastfilter1.value = EnumRecordStatus.Pending;
-    fastfilter1.searchType = EnumFilterDataModelSearchTypes.Equal;
+    fastfilter1.value = RecordStatusEnum.Pending;
+    fastfilter1.searchType = FilterDataModelSearchTypesEnum.Equal;
     filterStatist2.filters.push(fastfilter1);
 
-    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.service.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.service.ServiceGetCount(filterStatist2).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -118,11 +115,11 @@ export class EstatePropertyHistoryWidgetAddComponent implements OnInit, OnDestro
     const filterStatist3 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter1 = new FilterDataModel();
     fastfilter1.propertyName = 'RecordStatus';
-    fastfilter1.value = EnumRecordStatus.Available;
-    fastfilter1.searchType = EnumFilterDataModelSearchTypes.Equal;
+    fastfilter1.value = RecordStatusEnum.Available;
+    fastfilter1.searchType = FilterDataModelSearchTypesEnum.Equal;
     filterStatist3.filters.push(fastfilter1);
 
-    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.service.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.service.ServiceGetCount(filterStatist3).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -147,10 +144,10 @@ export class EstatePropertyHistoryWidgetAddComponent implements OnInit, OnDestro
     const filterStatist4 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter1 = new FilterDataModel();
     fastfilter1.propertyName = 'RecordStatus';
-    fastfilter1.value = EnumRecordStatus.Archive;
-    fastfilter1.searchType = EnumFilterDataModelSearchTypes.Equal;
+    fastfilter1.value = RecordStatusEnum.Archive;
+    fastfilter1.searchType = FilterDataModelSearchTypesEnum.Equal;
     filterStatist4.filters.push(fastfilter1);
-    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.service.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.service.ServiceGetCount(filterStatist4).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -175,10 +172,10 @@ export class EstatePropertyHistoryWidgetAddComponent implements OnInit, OnDestro
     const filterStatist5 = JSON.parse(JSON.stringify(this.filteModelContent));
     fastfilter1 = new FilterDataModel();
     fastfilter1.propertyName = 'RecordStatus';
-    fastfilter1.value = EnumRecordStatus.Disable;
-    fastfilter1.searchType = EnumFilterDataModelSearchTypes.Equal;
+    fastfilter1.value = RecordStatusEnum.Disable;
+    fastfilter1.searchType = FilterDataModelSearchTypesEnum.Equal;
     filterStatist5.filters.push(fastfilter1);
-    this.service.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.service.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.service.ServiceGetCount(filterStatist5).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {

@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ApplicationSourceModel, ApplicationThemeConfigModel, ApplicationThemeConfigService, DataFieldInfoModel, EnumRecordStatus, EnumSortType,
+  ApplicationSourceModel, ApplicationThemeConfigModel, ApplicationThemeConfigService, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
   ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
@@ -49,7 +49,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
   }
   comment: string;
   author: string;
@@ -160,17 +160,17 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -300,7 +300,7 @@ export class ApplicationThemeConfigListComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {

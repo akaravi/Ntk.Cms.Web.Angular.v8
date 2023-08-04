@@ -7,9 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ApplicationAppModel, ApplicationSourceModel, CoreEnumService, CoreModuleModel, CoreSiteCategoryModel, CoreUserClaimGroupModel, CoreUserClaimGroupService, CoreUserGroupModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  ApplicationAppModel, ApplicationSourceModel, CoreEnumService, CoreModuleModel, CoreSiteCategoryModel, CoreUserClaimGroupModel, CoreUserClaimGroupService, CoreUserGroupModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -51,8 +50,8 @@ export class CoreUserClaimGroupAddComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumUserClaimGroupActionTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumUserClaimGroupActionTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -67,7 +66,7 @@ export class CoreUserClaimGroupAddComponent implements OnInit {
     this.getEnumUserClaimGroupActionType();
   }
   getEnumUserClaimGroupActionType(): void {
-    this.coreEnumService.ServiceEnumUserClaimGroupActionType().subscribe((next) => {
+    this.coreEnumService.ServiceUserClaimGroupActionTypeEnum().subscribe((next) => {
       this.dataModelEnumUserClaimGroupActionTypeResult = next;
     });
   }

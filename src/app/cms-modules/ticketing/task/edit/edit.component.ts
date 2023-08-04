@@ -6,9 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ApplicationSourceModel, CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TicketingTaskModel,
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingTaskModel,
   TicketingTaskService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -54,8 +53,8 @@ export class TicketingTaskEditComponent implements OnInit {
   dataAccessModel: AccessModel;
   dataModel = new TicketingTaskModel();
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
@@ -96,7 +95,7 @@ export class TicketingTaskEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.ticketingTaskService.setAccessLoad();
-    this.ticketingTaskService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.ticketingTaskService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.ticketingTaskService
       .ServiceGetOneById(requestId)
       .subscribe(

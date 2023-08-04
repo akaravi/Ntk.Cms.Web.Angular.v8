@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyAdsModel, EstateAccountAgencyAdsService, EstateAccountAgencyModel, FormInfoModel, TokenInfoModel
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyAdsModel, EstateAccountAgencyAdsService, EstateAccountAgencyModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -54,7 +54,7 @@ export class EstateAccountAgencyAdsEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<EstateAccountAgencyAdsModel> = new ErrorExceptionResult<EstateAccountAgencyAdsModel>();
   dataModel: EstateAccountAgencyAdsModel = new EstateAccountAgencyAdsModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
@@ -79,7 +79,7 @@ export class EstateAccountAgencyAdsEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateAccountAgencyAdsService.setAccessLoad();
-    this.estateAccountAgencyAdsService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estateAccountAgencyAdsService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estateAccountAgencyAdsService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

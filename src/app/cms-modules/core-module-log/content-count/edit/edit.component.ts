@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogContentCountModel, CoreModuleLogContentCountService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreModuleLogContentCountModel, CoreModuleLogContentCountService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -96,7 +95,7 @@ export class CoreModuleLogContentCountEditComponent implements OnInit, OnDestroy
 
     /*َAccess Field*/
     this.coreModuleLogContentCountService.setAccessLoad();
-    this.coreModuleLogContentCountService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleLogContentCountService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleLogContentCountService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

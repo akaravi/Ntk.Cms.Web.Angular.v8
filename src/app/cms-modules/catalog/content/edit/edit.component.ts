@@ -13,9 +13,8 @@ import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel,
 
-  CatalogContentModel, CatalogContentOtherInfoModel,  CatalogContentService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
-  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
-  FormInfoModel
+  CatalogContentModel, CatalogContentOtherInfoModel, CatalogContentService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -51,7 +50,7 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
   dataModel = new CatalogContentModel();
   dataModelResult: ErrorExceptionResult<CatalogContentModel> = new ErrorExceptionResult<CatalogContentModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<CatalogContentOtherInfoModel> = new ErrorExceptionResult<CatalogContentOtherInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   similarDataModel = new Array<CatalogContentModel>();
   otherInfoDataModel = new Array<CatalogContentOtherInfoModel>();
@@ -149,7 +148,7 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({
@@ -264,7 +263,7 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
 
 

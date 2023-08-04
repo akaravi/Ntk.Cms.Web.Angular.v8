@@ -6,8 +6,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, ApplicationThemeConfigModel, ApplicationThemeConfigService, CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  AccessModel, ApplicationThemeConfigModel, ApplicationThemeConfigService, CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -50,7 +50,7 @@ export class ApplicationThemeConfigEditComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -80,7 +80,7 @@ export class ApplicationThemeConfigEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.applicationThemeConfigService.setAccessLoad();
-    this.applicationThemeConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.applicationThemeConfigService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.applicationThemeConfigService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

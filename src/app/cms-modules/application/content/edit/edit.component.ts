@@ -9,9 +9,8 @@ import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, ApplicationAppModel,
   ApplicationAppService, ApplicationEnumService, ApplicationSourceModel, ApplicationThemeConfigModel, CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,8 +46,8 @@ export class ApplicationAppEditComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new ApplicationAppModel();
   dataModelResult: ErrorExceptionResult<ApplicationAppModel> = new ErrorExceptionResult<ApplicationAppModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumLangResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumLangResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenFormAboutUsLinkImageId = false;
   fileManagerOpenFormLinkFileIdIcon = false;
@@ -72,7 +71,7 @@ export class ApplicationAppEditComponent implements OnInit {
     this.getEnumLang();
   }
   getEnumLang(): void {
-    this.coreEnumService.ServiceEnumLanguage().subscribe((res) => {
+    this.coreEnumService.ServiceLanguageEnum().subscribe((res) => {
       this.dataModelEnumLangResult = res;
     });
   }
@@ -102,7 +101,7 @@ export class ApplicationAppEditComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
     this.applicationAppService.setAccessLoad();
-    this.applicationAppService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.applicationAppService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.applicationAppService
       .ServiceGetOneById(requestId)
       .subscribe({

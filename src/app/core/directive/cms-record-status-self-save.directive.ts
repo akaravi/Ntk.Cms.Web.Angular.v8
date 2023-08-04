@@ -8,7 +8,7 @@ import {
   Input,
   Renderer2
 } from '@angular/core';
-import { EnumManageUserAccessDataTypes, EnumRecordStatus } from 'ntk-cms-api';
+import { ManageUserAccessDataTypesEnum, RecordStatusEnum } from 'ntk-cms-api';
 import { PublicHelper } from '../helpers/publicHelper';
 import { CmsToastrService } from '../services/cmsToastr.service';
 
@@ -58,9 +58,9 @@ export class CmsRecordStatusSelfSaveDirective {
   @HostListener('change')
   onChange() {
     const element: HTMLElement = this.elRef.nativeElement;
-    const recordStatus = element['value'] as EnumRecordStatus;
+    const recordStatus = element['value'] as RecordStatusEnum;
     this.addLoader(element);
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService.ServiceSetStatus(this.row.id, recordStatus).subscribe(
       (next) => {
         if (next.isSuccess) {
@@ -123,7 +123,7 @@ export class CmsRecordStatusSelfSaveDirective {
   removeBackground(element: HTMLElement) {
     element.style.background = 'none';
   }
-  iconStatus(value: EnumRecordStatus): string {
+  iconStatus(value: RecordStatusEnum): string {
     let ret = '';
     switch (value) {
       case 1:

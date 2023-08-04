@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreSiteService, EnumInfoModel, ErrorExceptionResult, EstateAdsTypeModel, EstateAdsTypeService, FilterModel,
-  TokenInfoModel
+  CoreEnumService, CoreSiteService, ErrorExceptionResult, EstateAdsTypeModel, EstateAdsTypeService, FilterModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,7 +47,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   loading = new ProgressSpinnerModel();
   tableRowSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
   categoryModelSelected: EstateAdsTypeModel = new EstateAdsTypeModel();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   tabledisplayedColumns: string[] = [
     'LinkModuleId',
@@ -114,7 +113,7 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
   }
 
   getEnumCmsModuleSaleItemType(): void {
-    this.coreEnumService.ServiceEnumCmsModuleSaleItemType().subscribe((next) => {
+    this.coreEnumService.ServiceCmsModuleSaleItemTypeEnum().subscribe((next) => {
       this.dataModelEnumCmsModuleSaleItemTypeResult = next;
     });
   }

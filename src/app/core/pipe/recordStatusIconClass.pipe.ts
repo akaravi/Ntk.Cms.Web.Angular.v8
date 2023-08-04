@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { EnumRecordStatus } from 'ntk-cms-api';
+import { RecordStatusEnum } from 'ntk-cms-api';
 
 @Pipe({
   name: 'statusIconClass'
@@ -8,7 +8,7 @@ import { EnumRecordStatus } from 'ntk-cms-api';
 export class RecordStatusIconClassPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) { }
 
-  transform(value: EnumRecordStatus, editable = false): SafeHtml {
+  transform(value: RecordStatusEnum, editable = false): SafeHtml {
     let ret = '';
     switch (value) {
       case 1:

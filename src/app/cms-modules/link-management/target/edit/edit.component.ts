@@ -4,10 +4,10 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, LinkManagementBillboardPatternModel, LinkManagementEnumService,
+  AccessModel, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService,
   LinkManagementTargetCategoryModel, LinkManagementTargetModel,
-  LinkManagementTargetService
+  LinkManagementTargetService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -52,9 +52,9 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionActionTitle = '';
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
@@ -100,12 +100,12 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
     });
   }
   getEnumManagementContentSettingType(): void {
-    this.linkManagementEnumService.ServiceEnumManagementContentSettingType().subscribe((res) => {
+    this.linkManagementEnumService.ServiceManagementContentSettingTypeEnum().subscribe((res) => {
       this.dataModelEnumManagementContentSettingTypeResult = res;
     });
   }
   getEnumSharingPriceType(): void {
-    this.linkManagementEnumService.ServiceEnumSharingPriceType().subscribe((res) => {
+    this.linkManagementEnumService.ServiceSharingPriceTypeEnum().subscribe((res) => {
       this.dataModelEnumSharingPriceTypeResult = res;
     });
   }
@@ -146,7 +146,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
 
     /*َAccess Field*/
     this.linkManagementTargetService.setAccessLoad();
-    this.linkManagementTargetService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.linkManagementTargetService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.linkManagementTargetService
       .ServiceGetOneById(this.requestId)
       .subscribe({

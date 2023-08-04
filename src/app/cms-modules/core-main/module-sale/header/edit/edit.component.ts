@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleSaleHeaderGroupModel, CoreModuleSaleHeaderModel, CoreModuleSaleHeaderService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreEnumService, CoreModuleSaleHeaderGroupModel, CoreModuleSaleHeaderModel, CoreModuleSaleHeaderService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,7 +53,7 @@ export class CoreModuleSaleHeaderEditComponent implements OnInit {
   dataModel: CoreModuleSaleHeaderModel = new CoreModuleSaleHeaderModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -85,7 +85,7 @@ export class CoreModuleSaleHeaderEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleSaleHeaderService.setAccessLoad();
-    this.coreModuleSaleHeaderService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleSaleHeaderService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleSaleHeaderService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

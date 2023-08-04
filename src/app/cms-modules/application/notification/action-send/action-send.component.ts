@@ -7,9 +7,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ApplicationAppModel,
-  ApplicationEnumService, ApplicationLogNotificationModel, ApplicationLogNotificationService, ApplicationMemberInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, SendNotificationModel
+  ApplicationEnumService, ApplicationLogNotificationModel, ApplicationLogNotificationService, ApplicationMemberInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, SendNotificationModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -54,7 +53,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<ApplicationLogNotificationModel> = new ErrorExceptionResult<ApplicationLogNotificationModel>();
   dataModel: SendNotificationModel = new SendNotificationModel();
-  dataModelEnumContentTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumContentTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   formInfo: FormInfoModel = new FormInfoModel();
   fileManagerOpenFormSmallFile = false;
   fileManagerOpenFormBigFile = false;
@@ -74,7 +73,7 @@ export class ApplicationLogNotificationActionSendComponent implements OnInit {
     this.getEnumContentType();
   }
   getEnumContentType(): void {
-    this.applicationEnumService.ServiceEnumNotificationType().subscribe((next) => {
+    this.applicationEnumService.ServiceNotificationTypeEnum().subscribe((next) => {
       this.dataModelEnumContentTypeResult = next;
     });
   }

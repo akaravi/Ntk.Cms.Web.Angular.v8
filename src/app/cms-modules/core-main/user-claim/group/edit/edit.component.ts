@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ApplicationAppModel, ApplicationSourceModel, CoreEnumService, CoreModuleModel, CoreSiteCategoryModel, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel, CoreUserClaimGroupService, CoreUserClaimTypeModel, CoreUserGroupModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel
+  ApplicationAppModel, ApplicationSourceModel, CoreEnumService, CoreModuleModel, CoreSiteCategoryModel, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel, CoreUserClaimGroupService, CoreUserClaimTypeModel, CoreUserGroupModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -55,8 +55,8 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
   dataModel: CoreUserClaimGroupModel = new CoreUserClaimGroupModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumUserClaimGroupActionTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumUserClaimGroupActionTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataCoreUserClaimTypeModels: CoreUserClaimTypeModel[];
@@ -80,7 +80,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
 
   }
   getEnumUserClaimGroupActionType(): void {
-    this.coreEnumService.ServiceEnumUserClaimGroupActionType().subscribe((next) => {
+    this.coreEnumService.ServiceUserClaimGroupActionTypeEnum().subscribe((next) => {
       this.dataModelEnumUserClaimGroupActionTypeResult = next;
     });
   }
@@ -99,7 +99,7 @@ export class CoreUserClaimGroupEditComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.Receive_categories_of_documents'));
 
     this.coreUserClaimGroupService.setAccessLoad();
-    this.coreUserClaimGroupService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreUserClaimGroupService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreUserClaimGroupService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

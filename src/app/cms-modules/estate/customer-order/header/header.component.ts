@@ -5,9 +5,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   EstateCustomerOrderModel,
-  EstateCustomerOrderService
+  EstateCustomerOrderService, InfoEnumModel, RecordStatusEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -36,7 +36,7 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

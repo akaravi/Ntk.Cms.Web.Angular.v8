@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, TokenInfoModel, WebDesignerMainPageModel, WebDesignerMainPageService } from 'ntk-cms-api';
+import { DataFieldInfoModel, ErrorExceptionResult, ManageUserAccessDataTypesEnum, TokenInfoModel, WebDesignerMainPageModel, WebDesignerMainPageService } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -56,7 +56,7 @@ export class WebDesignerBuilderComponent implements OnInit, OnDestroy {
     const pName = this.constructor.name + 'webDesignerMainPageService.ServiceGetOneById';
     this.loading.Start(pName);
     this.webDesignerMainPageService.setAccessLoad();
-    this.webDesignerMainPageService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.webDesignerMainPageService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.webDesignerMainPageService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

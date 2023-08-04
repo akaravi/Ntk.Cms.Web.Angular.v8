@@ -2,10 +2,9 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel,
-  CoreCurrencyService, CoreEnumService, EnumClauseType, EnumFilterDataModelSearchTypes, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreCurrencyModel,
+  CoreCurrencyService, CoreEnumService, ErrorExceptionResult,
+  FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
@@ -107,15 +106,15 @@ export class CmsCurrencySelectorComponent implements OnInit {
       filter = new FilterDataModel();
       filter.propertyName = 'Symbol';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
       /*Filters */
       filter = new FilterDataModel();
       filter.propertyName = 'Title';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
 
       if (text && typeof +text === 'number' && +text > 0) {
@@ -123,8 +122,8 @@ export class CmsCurrencySelectorComponent implements OnInit {
         filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = text;
-        filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-        filter.clauseType = EnumClauseType.Or;
+        filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+        filter.clauseType = ClauseTypeEnum.Or;
         filterModel.filters.push(filter);
 
       }
@@ -132,7 +131,7 @@ export class CmsCurrencySelectorComponent implements OnInit {
 
     const pName = this.constructor.name + 'ServiceGetAll';
     this.loading.Start(pName);
-    this.categoryService.setAccessDataType(EnumManageUserAccessDataTypes.Viewer);
+    this.categoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Viewer);
     return await firstValueFrom(this.categoryService.ServiceGetAll(filterModel))
       .then(
         (response) => {

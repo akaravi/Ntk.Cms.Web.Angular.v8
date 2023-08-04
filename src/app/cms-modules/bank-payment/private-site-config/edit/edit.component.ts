@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, BankPaymentPrivateSiteConfigAliasJsonModel, BankPaymentPrivateSiteConfigModel, BankPaymentPrivateSiteConfigService, BankPaymentPublicConfigModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  AccessModel, BankPaymentPrivateSiteConfigAliasJsonModel, BankPaymentPrivateSiteConfigModel, BankPaymentPrivateSiteConfigService, BankPaymentPublicConfigModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +47,7 @@ export class BankPaymentPrivateSiteConfigEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<BankPaymentPrivateSiteConfigModel> = new ErrorExceptionResult<BankPaymentPrivateSiteConfigModel>();
   dataModel: BankPaymentPrivateSiteConfigAliasJsonModel = new BankPaymentPrivateSiteConfigAliasJsonModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   dataAccessModel: AccessModel;
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class BankPaymentPrivateSiteConfigEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.bankPaymentPrivateSiteConfigService.setAccessLoad();
-    this.bankPaymentPrivateSiteConfigService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.bankPaymentPrivateSiteConfigService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.bankPaymentPrivateSiteConfigService.ServiceGetOneWithJsonFormatter(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

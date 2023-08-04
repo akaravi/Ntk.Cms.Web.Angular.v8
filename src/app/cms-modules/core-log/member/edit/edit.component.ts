@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLogMemberModel, CoreLogMemberService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLogMemberModel, CoreLogMemberService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -50,7 +50,7 @@ export class CoreLogMemberEditComponent implements OnInit, OnDestroy {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendMemberStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendMemberStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
@@ -78,7 +78,7 @@ export class CoreLogMemberEditComponent implements OnInit, OnDestroy {
   }
 
   // getEnumSendMemberStatusType(): void {
-  //   this.coreEnumService.ServiceEnumSendMemberStatusType().subscribe((next) => {
+  //   this.coreEnumService.ServiceSendMemberStatusTypeEnum().subscribe((next) => {
   //     this.dataModelEnumSendMemberStatusTypeResult = next;
   //   });
   // }
@@ -101,7 +101,7 @@ export class CoreLogMemberEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreLogMemberService.setAccessLoad();
-    this.coreLogMemberService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreLogMemberService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreLogMemberService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

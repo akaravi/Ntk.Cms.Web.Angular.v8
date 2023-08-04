@@ -9,7 +9,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
@@ -23,28 +25,50 @@
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required [disabled]="!fieldsInfo['title']?.accessAddField" />
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+                placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required
+                [disabled]="!fieldsInfo['title']?.accessAddField" />
+            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
             <mat-error *ngIf="Title.errors?.required">
                 {{fieldsInfo['title']?.fieldTitle}} is <strong>{{'MESSAGE.required' | translate}}</strong>
             </mat-error>
         </mat-form-field>
-        <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPageDependencyGuId']?.accessAddField" [optionSelectForce]="dataModel.linkPageDependencyGuId" [optionPlaceholder]="this.translate.instant('TITLE.Show_place')">
+        <app-webdesigner-pagedependency-selector (optionChange)="onActionSelectDependency($event)"
+            [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPageDependencyGuId']?.accessAddField"
+            [optionSelectForce]="dataModel.linkPageDependencyGuId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Show_place')">
         </app-webdesigner-pagedependency-selector>
-        <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPageTemplateGuId']?.accessAddField" [optionSelectForce]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.Page_template')" [optionSelectFirstItem]="true">
+        <app-webdesigner-pagetemplate-selector (optionChange)="onActionSelectTemplate($event)"
+            [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkPageTemplateGuId']?.accessAddField"
+            [optionSelectForce]="dataModel.linkPageTemplateGuId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Page_template')" [optionSelectFirstItem]="true">
         </app-webdesigner-pagetemplate-selector>
-        <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)" [(optionLoading)]="loading" *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0" [optionDisabled]="!fieldsInfo['linkPageParentGuId']?.accessAddField" [optionSelectForce]="dataModel.linkPageParentGuId" [optionMasterPage]="true" [optionMasterTemplateId]="dataModel.linkPageTemplateGuId" [optionPlaceholder]="this.translate.instant('TITLE.parent_page')">
+        <app-webdesigner-page-selector (optionChange)="onActionSelectParent($event)" [(optionLoading)]="loading"
+            *ngIf="dataModel.linkPageTemplateGuId && dataModel.linkPageTemplateGuId.length>0"
+            [optionDisabled]="!fieldsInfo['linkPageParentGuId']?.accessAddField"
+            [optionSelectForce]="dataModel.linkPageParentGuId" [optionMasterPage]="true"
+            [optionMasterTemplateId]="dataModel.linkPageTemplateGuId"
+            [optionPlaceholder]="this.translate.instant('TITLE.parent_page')">
         </app-webdesigner-page-selector>
         <!-- PageDependencyIsDefaultPage Field -->
         <div class="ntk-full-width" *ngIf="fieldsInfo['pageDependencyIsDefaultPage']?.accessWatchField">
-            <mat-slide-toggle [(ngModel)]="dataModel.pageDependencyIsDefaultPage" *ngIf="fieldsInfo['pageDependencyIsDefaultPage']?.accessWatchField" [disabled]="!fieldsInfo['pageDependencyIsDefaultPage']?.accessAddField" name="dataModel.pageDependencyIsDefaultPage">
+            <mat-slide-toggle [(ngModel)]="dataModel.pageDependencyIsDefaultPage"
+                *ngIf="fieldsInfo['pageDependencyIsDefaultPage']?.accessWatchField"
+                [disabled]="!fieldsInfo['pageDependencyIsDefaultPage']?.accessAddField"
+                name="dataModel.pageDependencyIsDefaultPage">
                 {{fieldsInfo['pageDependencyIsDefaultPage']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
         <!-- LinkSiteCategoryId Field -->
-        <app-cms-sitecategory-selector *ngIf="dataModel.pageDependencyIsDefaultPage && fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.accessWatchField" (optionChange)="onActionSelectCategory($event)" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')" [optionDisabled]="!fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.accessAddField">
+        <app-cms-sitecategory-selector
+            *ngIf="dataModel.pageDependencyIsDefaultPage && fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.accessWatchField"
+            (optionChange)="onActionSelectCategory($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="this.dataModel.pageDependencyIsDefaultPageLinkSiteCategoryId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Website_Type')"
+            [optionDisabled]="!fieldsInfo['pageDependencyIsDefaultPageLinkSiteCategoryId']?.accessAddField">
         </app-cms-sitecategory-selector>
         <!-- KeywordModel Field -->
 
@@ -57,31 +81,41 @@
                         <mat-icon>cancel</mat-icon>
                     </button>
                 </mat-chip>
-                <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag" (matChipInputTokenEnd)="addTag($event)" />
+                <input placeholder="{{'TITLE.key_word' | translate}}+" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlurTag"
+                    (matChipInputTokenEnd)="addTag($event)" />
             </mat-chip-grid>
         </mat-form-field>
 
         <!-- SpecialIdendity Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['specialIdendity']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.specialIdendity" name="dataModel.specialIdendity" #SpecialIdendity type="text" placeholder="32323" minlength="0" maxlength="500" [disabled]="!fieldsInfo['specialIdendity']?.accessAddField" />
-            <mat-icon matSuffix *ngIf="dataModel.specialIdendity" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.specialIdendity = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.specialIdendity" name="dataModel.specialIdendity" #SpecialIdendity
+                type="text" placeholder="32323" minlength="0" maxlength="500"
+                [disabled]="!fieldsInfo['specialIdendity']?.accessAddField" />
+            <mat-icon matSuffix *ngIf="dataModel.specialIdendity" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.specialIdendity = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ SpecialIdendity.value.length }} / 500</mat-hint>
         </mat-form-field>
         <!-- SpecialUrlParameter Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['specialUrlParameter']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.specialUrlParameter" name="dataModel.specialUrlParameter" #SpecialUrlParameter type="text" placeholder="esfahan" minlength="0" maxlength="500" [disabled]="!fieldsInfo['specialUrlParameter']?.accessAddField" />
-            <mat-icon matSuffix *ngIf="dataModel.specialUrlParameter" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.specialUrlParameter = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.specialUrlParameter" name="dataModel.specialUrlParameter"
+                #SpecialUrlParameter type="text" placeholder="esfahan" minlength="0" maxlength="500"
+                [disabled]="!fieldsInfo['specialUrlParameter']?.accessAddField" />
+            <mat-icon matSuffix *ngIf="dataModel.specialUrlParameter" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.specialUrlParameter = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ SpecialUrlParameter.value.length }} / 500</mat-hint>
         </mat-form-field>
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text" placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+                placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="500" rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.description = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Description.value.length }} / 500</mat-hint>
             <mat-error *ngIf="Description.errors?.required">

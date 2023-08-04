@@ -4,10 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreUserClaimCheckModel,
-  CoreUserClaimContentService,
-  EnumRecordStatus,
-  ErrorExceptionResult,
-  FilterModel
+  CoreUserClaimContentService, ErrorExceptionResult,
+  FilterModel, RecordStatusEnum
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -110,7 +108,7 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModelResult = ret;
-          if (this.dataModelResult.listItems.find(x => x.recordStatus !== EnumRecordStatus.Pending && !x.isApproved)) {
+          if (this.dataModelResult.listItems.find(x => x.recordStatus !== RecordStatusEnum.Pending && !x.isApproved)) {
             this.baseColor = 'warnning';
             this.cssClass = `bg-${this.baseColor} ${this.cssClass}`;
             this.textInverseCSSClass = `text-inverse-${this.baseColor}`;

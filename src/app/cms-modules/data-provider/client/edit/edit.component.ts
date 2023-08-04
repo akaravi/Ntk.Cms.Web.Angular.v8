@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, DataProviderClientModel,
   DataProviderClientService, DataProviderPlanClientModel,
-  DataProviderPlanClientService, DataProviderPlanModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
+  DataProviderPlanClientService, DataProviderPlanModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
@@ -72,7 +72,7 @@ export class DataProviderClientEditComponent implements OnInit {
   dataModel: DataProviderClientModel = new DataProviderClientModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -102,7 +102,7 @@ export class DataProviderClientEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.dataProviderClientService.setAccessLoad();
-    this.dataProviderClientService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.dataProviderClientService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.dataProviderClientService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

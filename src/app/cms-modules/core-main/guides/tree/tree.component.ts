@@ -16,9 +16,8 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreGuideModel,
-  CoreGuideService,
-  EnumSortType, ErrorExceptionResult,
-  FilterModel
+  CoreGuideService, ErrorExceptionResult,
+  FilterModel, SortTypeEnum
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -45,7 +44,7 @@ export class CoreGuideTreeComponent implements OnInit, OnDestroy {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.filterModel.sortColumn = 'ShowInMenuOrder';
-    this.filterModel.sortType = EnumSortType.Ascending;
+    this.filterModel.sortType = SortTypeEnum.Ascending;
   }
   @Input() set optionSelectForce(x: number | CoreGuideModel) {
     this.onActionSelectForce(x);

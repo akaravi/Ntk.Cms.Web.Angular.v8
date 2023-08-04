@@ -9,8 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyModel,
-  EstatePropertyService, FormInfoModel, TokenInfoModel
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateContractModel, EstateContractTypeModel, EstateContractTypeService, EstatePropertyModel,
+  EstatePropertyService, FormInfoModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -64,7 +64,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
   propertyTypeLanduse: string = '';
   contractType: string = '';
   propertyDetails: Map<string, string> = new Map<string, string>();
-  enumInputDataType = EnumInputDataType;
+  enumInputDataType = InputDataTypeEnum;
 
 
   cmsApiStoreSubscribe: Subscription;
@@ -111,7 +111,7 @@ export class EstatePropertyQuickViewComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.estatePropertyService.setAccessLoad();
-    this.estatePropertyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estatePropertyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estatePropertyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

@@ -10,7 +10,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreUserClaimGroupDetailModel,
-  CoreUserClaimGroupDetailService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel
+  CoreUserClaimGroupDetailService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -56,8 +56,8 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
   dataModel: CoreUserClaimTypeModel = new CoreUserClaimTypeModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumUserClaimKindsResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumUserClaimKindsResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataCoreUserClaimTypeModels: CoreUserClaimTypeModel[];
@@ -80,7 +80,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     this.getEnumUserClaimKinds();
   }
   getEnumUserClaimKinds(): void {
-    this.coreEnumService.ServiceEnumUserClaimKinds().subscribe((next) => {
+    this.coreEnumService.ServiceUserClaimKindsEnum().subscribe((next) => {
       this.dataModelEnumUserClaimKindsResult = next;
     });
   }
@@ -99,7 +99,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreUserClaimTypeService.setAccessLoad();
-    this.coreUserClaimTypeService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreUserClaimTypeService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreUserClaimTypeService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

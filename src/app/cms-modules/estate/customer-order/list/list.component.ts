@@ -8,12 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel,
-  DataFieldInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateContractTypeModel, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
+  DataFieldInfoModel, ErrorExceptionResult, EstateContractTypeModel, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
 
   EstateCustomerOrderService, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel,
-  FilterModel,
-  TokenInfoModel
+  FilterModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 
 import { Subscription } from 'rxjs';
@@ -61,7 +59,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     };
 
     this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
-    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
+    this.recordStatus = RecordStatusEnum[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
     if (this.recordStatus) {
       this.optionsSearch.data.show = true;
       this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';
@@ -69,10 +67,10 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     }
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
 
   }
-  recordStatus: EnumRecordStatus;
+  recordStatus: RecordStatusEnum;
   responsibleUserId = 0;
   searchInResponsible = false;
   searchInResponsibleChecked = false;
@@ -88,7 +86,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
   optionsStatist: ComponentOptionStatistModel = new ComponentOptionStatistModel();
   dataModelPropertyDetailGroups: EstatePropertyDetailGroupModel[] = [];
-  enumInputDataType = EnumInputDataType;
+  enumInputDataType = InputDataTypeEnum;
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
   tableRowsSelected: Array<EstateCustomerOrderModel> = [];
@@ -275,7 +273,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
         });
       filterModel.propertyDetailValues = propertyDetailValues;
       // ** Save Value */
-      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
       this.contentService.ServiceGetAll(filterModel).subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -305,17 +303,17 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -515,7 +513,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
@@ -648,7 +646,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

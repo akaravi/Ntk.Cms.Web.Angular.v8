@@ -5,9 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  FormInfoModel, PollingCategoryModel, PollingContentModel,
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, InfoEnumModel, PollingCategoryModel, PollingContentModel,
   PollingContentService, PollingOptionModel,
   PollingOptionService
 } from 'ntk-cms-api';
@@ -54,12 +53,12 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
   dataModel = new PollingContentModel();
   dataAccessModel: AccessModel;
   dataModelResult: ErrorExceptionResult<PollingContentModel> = new ErrorExceptionResult<PollingContentModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionSelected: PollingOptionModel = new PollingOptionModel();
   optionDataModel = new Array<PollingOptionModel>();
   optionTabledataSource = new MatTableDataSource<PollingOptionModel>();
   dataOptionModelResult: ErrorExceptionResult<PollingOptionModel> = new ErrorExceptionResult<PollingOptionModel>();
-  optionActionTitle ='';
+  optionActionTitle = '';
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 

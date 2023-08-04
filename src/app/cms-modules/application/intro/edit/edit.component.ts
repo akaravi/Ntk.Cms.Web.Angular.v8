@@ -7,9 +7,8 @@ import {
   AccessModel, ApplicationEnumService,
   ApplicationIntroModel,
   ApplicationIntroService, ApplicationSourceModel, CoreEnumService,
-  DataFieldInfoModel,
-  EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -43,8 +42,8 @@ export class ApplicationIntroEditComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new ApplicationIntroModel();
   dataModelResult: ErrorExceptionResult<ApplicationIntroModel> = new ErrorExceptionResult<ApplicationIntroModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypeMainVideo = ['mp4'];
   fileManagerOpenForm = false;
@@ -81,7 +80,7 @@ export class ApplicationIntroEditComponent implements OnInit {
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_from_the_server'));
     /*َAccess Field*/
     this.applicationIntroService.setAccessLoad();
-    this.applicationIntroService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.applicationIntroService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.applicationIntroService
       .ServiceGetOneById(requestId)
       .subscribe({

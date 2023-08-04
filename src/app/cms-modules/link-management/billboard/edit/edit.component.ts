@@ -4,8 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, DataFieldInfoModel, EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel,
-  LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementBillboardTargetCategoryModel, LinkManagementBillboardTargetCategoryService, LinkManagementMemberModel
+  AccessModel, ClauseTypeEnum, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementBillboardTargetCategoryModel, LinkManagementBillboardTargetCategoryService, LinkManagementMemberModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -47,9 +46,9 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardModel> = new ErrorExceptionResult<LinkManagementBillboardModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionActionTitle = '';
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
@@ -126,7 +125,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
 
     /*َAccess Field*/
     this.linkManagementBillboardService.setAccessLoad();
-    this.linkManagementBillboardService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.linkManagementBillboardService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.linkManagementBillboardService
       .ServiceGetOneById(this.requestId)
       .subscribe({
@@ -220,7 +219,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkManagementBillboardId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
 
 

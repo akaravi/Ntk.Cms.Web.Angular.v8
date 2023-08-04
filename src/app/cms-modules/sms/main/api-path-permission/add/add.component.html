@@ -9,7 +9,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
@@ -23,31 +25,46 @@
 
 
         <!-- LinkCoreUserId Field -->
-        <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkCoreUserId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        <app-cms-user-selector (optionChange)="onActionSelectorCmsUser($event)" [(optionLoading)]="loading"
+            [optionDisabled]="!fieldsInfo['linkCoreUserId']?.accessAddField"
+            [optionSelectForce]="dataModel.linkCoreUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
         </app-cms-user-selector>
         <!-- LinkCoreSiteId Field -->
-        <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)" [(optionLoading)]="loading" [optionDisabled]="!fieldsInfo['linkCoreSiteId']?.accessAddField" [optionSelectForce]="dataModel.linkCoreSiteId" [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
+        <app-cms-site-selector (optionChange)="onActionSelectorCmsSite($event)" [(optionLoading)]="loading"
+            [optionDisabled]="!fieldsInfo['linkCoreSiteId']?.accessAddField"
+            [optionSelectForce]="dataModel.linkCoreSiteId" [optionPlaceholder]="this.translate.instant('TITLE.SITE')">
         </app-cms-site-selector>
         <!-- LinkCoreUserGroupId Field -->
-        <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)" [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkCoreUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
+        <app-cms-usergroup-selector (optionChange)="onActionSelectorCoreUserGroup($event)"
+            [optionDisabled]="!fieldsInfo['linkCoreUserGroupId']?.accessAddField" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkCoreUserGroupId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Type_Usage')">
         </app-cms-usergroup-selector>
         <!-- LinkCoreSiteCategoryId Field -->
-        <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)" [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkCoreSiteCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Site_Type')">
+        <app-cms-sitecategory-selector (optionChange)="onActionSelectorCoreSiteCategory($event)"
+            [optionDisabled]="!fieldsInfo['linkCoreSiteCategoryId']?.accessAddField" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkCoreSiteCategoryId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Site_Type')">
         </app-cms-sitecategory-selector>
 
         <!-- LinkApiPathId Field -->
-        <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkApiPathId" [optionPlaceholder]="this.translate.instant('TITLE.Direction')">
+        <app-sms-apipath-selector (optionChange)="onActionSelectorSelectLinkApiPathId($event)"
+            [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkApiPathId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Direction')">
         </app-sms-apipath-selector>
 
         <!-- HasInherits Field -->
         <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.hasInherits" *ngIf="fieldsInfo['hasInherits']?.accessWatchField" [disabled]="!fieldsInfo['hasInherits']?.accessEditField" name="dataModel.hasInherits">
+            <mat-slide-toggle [(ngModel)]="dataModel.hasInherits" *ngIf="fieldsInfo['hasInherits']?.accessWatchField"
+                [disabled]="!fieldsInfo['hasInherits']?.accessEditField" name="dataModel.hasInherits">
                 {{fieldsInfo['hasInherits']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
         <!-- AccessStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{'TITLE.Status_Type' | translate}}" [(ngModel)]="dataModel.accessStatus" name="dataModel.accessStatus" #AccessStatus="ngModel" panelClass="recordStatus-{{ dataModel.accessStatus }}" required>
+            <mat-select placeholder="{{'TITLE.Status_Type' | translate}}" [(ngModel)]="dataModel.accessStatus"
+                name="dataModel.accessStatus" #AccessStatus="ngModel"
+                panelClass="recordStatus-{{ dataModel.accessStatus }}" required>
                 <mat-option *ngFor="
                         let item of dataModelEnumApiPathPermissionAccessStatusResult.listItems;
                         index as i
@@ -61,7 +78,8 @@
 
         <!-- Action Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{'TITLE.Type_of_Activity' | translate}}" [(ngModel)]="dataModel.action" name="dataModel.action" #Action="ngModel" panelClass="recordStatus-{{ dataModel.action }}" required>
+            <mat-select placeholder="{{'TITLE.Type_of_Activity' | translate}}" [(ngModel)]="dataModel.action"
+                name="dataModel.action" #Action="ngModel" panelClass="recordStatus-{{ dataModel.action }}" required>
                 <mat-option *ngFor="
                             let item of dataModelEnumApiPathPermissionActionResult.listItems;
                             index as i
@@ -78,7 +96,8 @@
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
             <input matInput [matDatepicker]="FromDate" [(ngModel)]="dataModel.fromDate" name="dataModel.fromDate" />
-            <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
+            <mat-icon matSuffix *ngIf="dataModel.fromDate && fieldsInfo['fromDate']?.accessEditField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.fromDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #FromDate></mat-datepicker>
         </mat-form-field>
@@ -86,8 +105,10 @@
         <!-- ExpireDate Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
             <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-            <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate"
+                name="dataModel.expireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>

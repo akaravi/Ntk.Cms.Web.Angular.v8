@@ -1,25 +1,24 @@
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, isDevMode, NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-import { ClipboardModule } from 'ngx-clipboard';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
-// #fake-start#
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { MAT_CHIPS_DEFAULT_OPTIONS } from '@angular/material/chips';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+import { ClipboardModule } from 'ngx-clipboard';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
-// #fake-end#
 function appInitializer(authService: CmsAuthService) {
   return () => {
     return new Promise((resolve) => {
@@ -43,7 +42,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
 
     SharedModule.forRoot(),
@@ -69,30 +68,17 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ClipboardModule,
     InlineSVGModule.forRoot(),
     CmsStoreModule.forRoot(),
-    // #fake-start#
-    // environment.isMockEnabled
-    //   ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-    //     passThruUnknownUrl: true,
-    //     dataEncapsulation: false,
-    //   })
-    //   : [],
-    // #fake-end#
-
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      //enabled: !isDevMode(),
+      enabled: true,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    // ServiceWorkerModule.register('ngsw-worker.js', {
-    //   enabled: environment.production,
-    //   // Register the ServiceWorker as soon as the app is stable
-    //   // or after 30 seconds (whichever comes first).
-    //   registrationStrategy: 'registerWhenStable:30000'
-    // }),
+    RouterModule,
   ],
   providers: [
     CoreAuthService,

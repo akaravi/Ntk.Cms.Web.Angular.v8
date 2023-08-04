@@ -2,7 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { EnumDeviceType, EnumOperatingSystemType } from 'ntk-cms-api';
+import { DeviceTypeEnum, OperatingSystemTypeEnum } from 'ntk-cms-api';
 
 export const environment = {
   production: false,
@@ -15,12 +15,12 @@ export const environment = {
   mainTitle: 'سامانه مدیریتی محتوا',
   cmsServerConfig: {
     configApiRetry: 1,
-    //configApiServerPath: 'https://apicms.ir/api/v2/',
-    configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
+    configApiServerPath: 'https://apicms.ir/api/v2/',
+    //configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:7130/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:44342/api/v2/', // Test Api Docer
-    //configHubServerPath: 'https://apicms.ir/hub/',
-    configHubServerPath: 'https://localhost:2390/hub/',
+    configHubServerPath: 'https://apicms.ir/hub/',
+    //configHubServerPath: 'https://localhost:2390/hub/',
     configMvcServerPath: 'https://ntkcms.ir/',
     //configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
     configHtmlBuilderServerPath: 'http://localhost:5000/',
@@ -32,8 +32,8 @@ export const environment = {
   cmsTokenConfig: {
     SecurityKey: '123456789',
     ClientMACAddress: '',
-    OSType: EnumOperatingSystemType.Windows,
-    DeviceType: EnumDeviceType.WebSite,
+    OSType: OperatingSystemTypeEnum.Windows,
+    DeviceType: DeviceTypeEnum.WebSite,
     PackageName: '',
   },
   cmsViewConfig: {

@@ -1,2 +1,7 @@
 <router-outlet></router-outlet>
-<div *ngIf="dataSupportModelResult && dataSupportModelResult.isSuccess && dataSupportModelResult.item.supportHtmlBody?.length>0 " [innerHtml]="dataSupportModelResult.item.supportHtmlBody | safeHtml" runScripts></div>
+<!-- <button class="button button-primary" (click)="subscribeToNotifications()">
+  Subscribe
+</button> -->
+<div
+  *ngIf="dataSupportModelResult && dataSupportModelResult.isSuccess && dataSupportModelResult.item.supportHtmlBody?.length>0 "
+  [innerHtml]="dataSupportModelResult.item.supportHtmlBody | safeHtml" runScripts></div>

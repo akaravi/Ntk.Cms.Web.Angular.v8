@@ -8,9 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel,
-  CoreUserClaimTypeModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  CoreUserClaimTypeModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -63,7 +62,7 @@ export class CoreUserClaimGroupDetailAddComponent implements OnInit {
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -80,7 +79,7 @@ export class CoreUserClaimGroupDetailAddComponent implements OnInit {
   DataGetAccess(): void {
     const pName = this.constructor.name + 'DataGetAccess';
     this.loading.Start(pName);
-	
+
     this.coreUserClaimGroupDetailService
       .ServiceViewModel()
       .subscribe({

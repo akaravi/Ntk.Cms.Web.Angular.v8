@@ -11,8 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyService, EstateAccountAgencyUserModel,
-  EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel, FilterModel, FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLocationModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyService, EstateAccountAgencyUserModel,
+  EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -67,7 +67,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
   dataModel: EstateAccountAgencyModel = new EstateAccountAgencyModel();
   dataEstateAccountAgencyUserModel: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   loadingOption = new ProgressSpinnerModel();
 
@@ -126,7 +126,7 @@ export class EstateAccountAgencyEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateAccountAgencyService.setAccessLoad();
-    this.estateAccountAgencyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estateAccountAgencyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estateAccountAgencyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

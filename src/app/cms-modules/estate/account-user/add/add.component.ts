@@ -10,8 +10,7 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   CoreEnumService, CoreLocationModel,
-  CoreUserModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, EstateAccountUserModel, EstateAccountUserService, FormInfoModel, TokenInfoModel
+  CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountUserModel, EstateAccountUserService, FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -55,7 +54,7 @@ export class EstateAccountUserAddComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   dataModel: EstateAccountUserModel = new EstateAccountUserModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
 

@@ -3,14 +3,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateBillboardModel,
-  EstateBillboardService, FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstateBillboardModel,
+  EstateBillboardService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
-import { Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -86,14 +82,14 @@ export class EstateBillboardSelectorComponent implements OnInit {
     if (text && text.length > 0) {
       filter.propertyName = 'Title';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
       filterModel.filters.push(filter);
       /* */
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
 

@@ -12,8 +12,8 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   CoreEnumService, CoreLocationModel,
-  CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyUserModel, EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel,
-  FilterModel, FormInfoModel, TokenInfoModel
+  CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyUserModel, EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel,
+  FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -67,7 +67,7 @@ export class EstateAccountUserEditComponent implements OnInit {
   dataEstateAccountAgencyUserModel: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   loadingOption = new ProgressSpinnerModel();
   optionTabledataSource = new MatTableDataSource<EstateAccountAgencyUserModel>();
@@ -124,7 +124,7 @@ export class EstateAccountUserEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateAccountUserService.setAccessLoad();
-    this.estateAccountUserService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estateAccountUserService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estateAccountUserService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

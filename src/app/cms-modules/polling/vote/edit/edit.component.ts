@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, PollingVoteModel, PollingVoteService
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, PollingVoteModel, PollingVoteService
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ComponentActionEnum } from 'src/app/core/models/component-action-enum';
@@ -53,7 +53,7 @@ export class PollingVoteEditComponent implements OnInit {
   ComponentAction = ComponentActionEnum.none;
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   selected: any;
   openFormFileManager = false;
@@ -91,7 +91,7 @@ export class PollingVoteEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.pollingVoteService.setAccessLoad();
-    this.pollingVoteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.pollingVoteService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.pollingVoteService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

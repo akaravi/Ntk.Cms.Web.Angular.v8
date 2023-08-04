@@ -3,11 +3,8 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
-  EstateCustomerOrderService, FilterDataModel
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstateCustomerOrderFilterModel, EstateCustomerOrderModel,
+  EstateCustomerOrderService, FilterDataModel, FilterDataModelSearchTypesEnum
 } from 'ntk-cms-api';
 
 import { firstValueFrom, Observable } from 'rxjs';
@@ -86,14 +83,14 @@ export class EstateCustomerOrderSelectorComponent implements OnInit {
     if (text && text.length > 0) {
       filter.propertyName = 'Title';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
       filterModel.filters.push(filter);
       /* */
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
 

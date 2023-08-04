@@ -9,7 +9,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['recordStatus']?.accessWatchField">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                [disabled]="!fieldsInfo['recordStatus']?.accessEditField" name="dataModel.recordStatus"
+                #RecordStatus="ngModel" ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
@@ -22,7 +24,9 @@
         </mat-form-field>
         <!-- BankStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['bankStatus']?.accessWatchField">
-            <mat-select placeholder="{{fieldsInfo['bankStatus']?.fieldTitle}}" [(ngModel)]="dataModel.bankStatus" [disabled]="!fieldsInfo['bankStatus']?.accessEditField" name="dataModel.bankStatus" #BankStatus="ngModel" panelClass="BankStatus-{{ dataModel.bankStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['bankStatus']?.fieldTitle}}" [(ngModel)]="dataModel.bankStatus"
+                [disabled]="!fieldsInfo['bankStatus']?.accessEditField" name="dataModel.bankStatus"
+                #BankStatus="ngModel" panelClass="BankStatus-{{ dataModel.bankStatus }}" required>
                 <mat-option *ngFor="
                     let item of dataModelEnumTransactionBankStatusResult.listItems;
                     index as i
@@ -35,7 +39,10 @@
         </mat-form-field>
         <!-- TransactionStatus Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['transactionStatus']?.accessWatchField">
-            <mat-select placeholder="{{fieldsInfo['transactionStatus']?.fieldTitle}}" [(ngModel)]="dataModel.transactionStatus" [disabled]="!fieldsInfo['transactionStatus']?.accessEditField" name="dataModel.recordStatus" #TransactionStatus="ngModel" panelClass="TransactionStatus-{{ dataModel.transactionStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['transactionStatus']?.fieldTitle}}"
+                [(ngModel)]="dataModel.transactionStatus" [disabled]="!fieldsInfo['transactionStatus']?.accessEditField"
+                name="dataModel.recordStatus" #TransactionStatus="ngModel"
+                panelClass="TransactionStatus-{{ dataModel.transactionStatus }}" required>
                 <mat-option *ngFor="
               let item of dataModelEnumTransactionRecordStatusResult.listItems;
               index as i
@@ -47,10 +54,14 @@
             </mat-error>
         </mat-form-field>
         <!-- LinkPrivateSiteConfigId Field -->
-        <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true" [(optionLoading)]="loading" [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId" [optionPlaceholder]="this.translate.instant('TITLE.Account')">
+        <app-bankpayment-privatesiteconfig-selector [optionDisabled]="true" [(optionLoading)]="loading"
+            [optionSelectForce]=" this.dataModel.linkPrivateSiteConfigId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Account')">
         </app-bankpayment-privatesiteconfig-selector>
         <!-- LinkUserId Field -->
-        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
+        <app-cms-user-selector [optionDisabled]="true" [optionSelectForce]=" this.dataModel.linkUserId"
+            [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.USER')"></app-cms-user-selector>
         <!-- LinkUserId Field -->
         <app-cms-json-list [dataModel]="dataModel" [optionMethod]="1"></app-cms-json-list>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

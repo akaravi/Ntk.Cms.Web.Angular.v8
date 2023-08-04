@@ -6,10 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreModuleTagCategoryModel,
   CoreModuleTagCategoryService,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -67,7 +66,7 @@ export class CoreModuleTagCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreModuleTagCategoryService.setAccessLoad();
-    this.coreModuleTagCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleTagCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleTagCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

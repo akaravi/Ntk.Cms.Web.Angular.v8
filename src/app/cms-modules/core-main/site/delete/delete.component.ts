@@ -5,8 +5,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteModel,
-  CoreSiteService, DataFieldInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreSiteService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -55,7 +55,7 @@ export class CoreSiteDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.coreSiteService.setAccessLoad();
-    this.coreSiteService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreSiteService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreSiteService
       .ServiceGetOneById(this.requestId)
       .subscribe({

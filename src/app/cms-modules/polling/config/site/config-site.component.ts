@@ -7,8 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel,
   CoreEnumService,
-  DataFieldInfoModel, EnumInfoModel, ErrorExceptionResult, FormInfoModel,
-  PollingConfigurationService,
+  DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, InfoEnumModel, PollingConfigurationService,
   PollingModuleConfigSiteAccessValuesModel,
   PollingModuleConfigSiteValuesModel,
   PollingModuleSiteStorageValuesModel,
@@ -54,7 +53,7 @@ export class PollingConfigSiteComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';

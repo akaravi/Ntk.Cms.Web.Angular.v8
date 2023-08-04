@@ -10,12 +10,10 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FormInfoModel,
   LinkManagementAccountingModel,
-  LinkManagementAccountingService
+  LinkManagementAccountingService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -66,7 +64,7 @@ export class LinkManagementAccountingDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.linkManagementAccountingService.setAccessLoad();
-    this.linkManagementAccountingService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.linkManagementAccountingService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.linkManagementAccountingService
       .ServiceGetOneById(this.requestId)
       .subscribe({

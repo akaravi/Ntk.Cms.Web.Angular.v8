@@ -9,14 +9,9 @@ import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, DataFieldInfoModel,
-  EnumClauseType,
-  EnumInputDataType,
-  EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, TokenInfoModel
+  ClauseTypeEnum, CoreCurrencyModel, DataFieldInfoModel, ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
-import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
 import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/componentOptionStatistModel";
 import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
@@ -28,6 +23,7 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { EstatePropertyHistoryAddComponent } from "../../property-history/add/add.component";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
@@ -106,7 +102,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
     this.responsibleUserId = +this.activatedRoute.snapshot.paramMap.get('ResponsibleUserId');
-    this.recordStatus = EnumRecordStatus[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
+    this.recordStatus = RecordStatusEnum[this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''];
     if (this.recordStatus) {
       this.optionsSearch.data.show = true;
       this.optionsSearch.data.defaultQuery = '{"condition":"and","rules":[{"field":"RecordStatus","type":"select","operator":"equal","value":"' + this.recordStatus + '"}]}';
@@ -114,7 +110,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     }
     /*filter Sort*/
     this.filteModelContent.sortColumn = "CreatedDate";
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
     if (
       this.requestLinkPropertyTypeLanduseId &&
       this.requestLinkPropertyTypeLanduseId.length > 0
@@ -195,7 +191,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     }
   }
   // SubjectTitle : string
-  recordStatus: EnumRecordStatus;
+  recordStatus: RecordStatusEnum;
   responsibleUserId = 0;
   link: string;
   comment: string;
@@ -255,7 +251,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     DataFieldInfoModel
   >();
   propertyDetails: Map<string, string> = new Map<string, string>();
-  enumInputDataType = EnumInputDataType;
+  enumInputDataType = InputDataTypeEnum;
   // ** Accardon */
   step = 0;
   cmsApiStoreSubscribe: Subscription;
@@ -308,9 +304,9 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     }
     if (this.optionsortType && this.optionsortType.length > 0) {
       if (this.optionsortType == 'asc') {
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       }
     }
 
@@ -336,13 +332,13 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     if (this.searchInChecking) {
       const filter1 = new FilterDataModel();
       filter1.propertyName = "RecordStatus";
-      filter1.value = EnumRecordStatus.Pending;
-      //filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filter1.value = RecordStatusEnum.Pending;
+      //filter1.searchType = FilterDataModelSearchTypesEnum.NotEqual;
       filterModel.filters.push(filter1);
       // const filter2 = new FilterDataModel();
       // filter2.propertyName = "RecordStatus";
-      // filter2.value = EnumRecordStatus.DeniedConfirmed;
-      // filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      // filter2.value = RecordStatusEnum.DeniedConfirmed;
+      // filter2.searchType = FilterDataModelSearchTypesEnum.NotEqual;
       // filterModel.filters.push(filter2);
     }
 
@@ -373,7 +369,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     } else if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
       this.actionbuttonExportOn = false;
-      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
       this.contentService
         .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
         .subscribe({
@@ -402,7 +398,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     ) {
       // **requestLinkCustomerOrderId*/
       this.actionbuttonExportOn = false;
-      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
       this.contentService
         .ServiceGetAllWithCoverCustomerOrderId(
           this.requestLinkCustomerOrderId,
@@ -434,7 +430,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     ) {
       // **requestLinkCustomerOrderIdHaveHistory*/
       this.actionbuttonExportOn = false;
-      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
       this.contentService
         .ServiceGetAllWithCoverCustomerOrderIdHaveHistory(
           this.requestLinkCustomerOrderIdHaveHistory,
@@ -476,7 +472,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
         });
       filterModel.propertyDetailValues = propertyDetailValues;
       // ** Save Value */
-      this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+      this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
       this.contentService.ServiceGetAll(filterModel).subscribe({
         next: (ret) => {
           this.actionbuttonExportOn = true;
@@ -555,17 +551,17 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       if (this.tableSource.sort.start === "asc") {
         sort.start = "desc";
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === "desc") {
         sort.start = "asc";
         this.filteModelContent.sortColumn = "";
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = "desc";
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     if (this.filteModelContent.sortColumn == "AdsActive")
       this.filteModelContent.sortColumn = "AdsExpireDate";
@@ -879,7 +875,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = "RecordStatus";
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
 
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
@@ -907,7 +903,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     const pName = this.constructor.name + "main";
     this.loading.Start(pName, this.translate.instant('ACTION.ActionSendSmsToCustomerOrder'));
     // ** */
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceActionSendSmsToCustomerOrder(model.id)
       .subscribe({
@@ -941,26 +937,26 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       const filter = new FilterDataModel();
       filter.propertyName = "linkCmsUserId";
       filter.value = model.linkCmsUserId;
-      filter.clauseType = EnumClauseType.Or
+      filter.clauseType = ClauseTypeEnum.Or
       this.filteModelContent.filters.push(filter);
 
       const filter2 = new FilterDataModel();
       filter2.propertyName = "createdBy";
       filter2.value = model.linkCmsUserId;
-      filter2.clauseType = EnumClauseType.Or
+      filter2.clauseType = ClauseTypeEnum.Or
       this.filteModelContent.filters.push(filter);
     }
     if (model.createdBy && model.createdBy > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = "linkCmsUserId";
       filter.value = model.createdBy;
-      filter.clauseType = EnumClauseType.Or
+      filter.clauseType = ClauseTypeEnum.Or
       this.filteModelContent.filters.push(filter);
 
       const filter2 = new FilterDataModel();
       filter2.propertyName = "createdBy";
       filter2.value = model.createdBy;
-      filter2.clauseType = EnumClauseType.Or
+      filter2.clauseType = ClauseTypeEnum.Or
       this.filteModelContent.filters.push(filter);
     }
     this.DataGetAll();
@@ -1073,7 +1069,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
@@ -1082,7 +1078,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({

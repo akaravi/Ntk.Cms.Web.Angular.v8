@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreUserModel,
-  DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   EstateAccountAgencyFilterModel,
   EstateAccountAgencyModel,
   EstateAccountAgencyService,
@@ -24,7 +23,7 @@ import {
   EstatePropertyHistoryModel,
   EstatePropertyHistoryService,
   EstatePropertyModel,
-  EstatePropertyService
+  EstatePropertyService, InfoEnumModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -70,7 +69,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
   dataModelAccountUserResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   dataModelAccountAgencyResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   cmsApiStoreSubscribe: Subscription;
   checkingOnDayRange = new FormGroup({
     start: new FormControl<Date | null>(null),

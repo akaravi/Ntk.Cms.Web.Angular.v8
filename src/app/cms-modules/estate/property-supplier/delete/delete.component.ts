@@ -1,18 +1,17 @@
 
 import {
-    ChangeDetectorRef,
-    Component,
-    Inject,
-    OnInit,
-    ViewChild
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-    DataFieldInfoModel,
-    EnumManageUserAccessDataTypes, ErrorExceptionResult, EstatePropertySupplierModel,
-    EstatePropertySupplierService, FormInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, EstatePropertySupplierModel,
+  EstatePropertySupplierService, FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -62,7 +61,7 @@ export class EstatePropertySupplierDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'fieldInfoConvertor';
     this.loading.Start(pName);
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

@@ -9,8 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel,
   DataProviderPlanCategoryModel, DataProviderPlanClientModel,
-  DataProviderPlanClientService, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataProviderPlanClientService, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -54,7 +54,7 @@ export class DataProviderPlanClientEditComponent implements OnInit {
   dataModel: DataProviderPlanClientModel = new DataProviderPlanClientModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -85,7 +85,7 @@ export class DataProviderPlanClientEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.DataProviderPlanClientService.setAccessLoad();
-    this.DataProviderPlanClientService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.DataProviderPlanClientService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.DataProviderPlanClientService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

@@ -7,12 +7,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult, EstatePropertyProjectModel,
-  EstatePropertyProjectService, FormInfoModel, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, EstatePropertyProjectModel,
+  EstatePropertyProjectService, FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -69,7 +68,7 @@ export class EstatePropertyProjectDeleteComponent implements OnInit {
     const pName = this.constructor.name + 'fieldInfoConvertor';
     this.loading.Start(pName);
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

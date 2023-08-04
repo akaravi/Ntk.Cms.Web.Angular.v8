@@ -11,9 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, BiographyCategoryModel, BiographyContentModel, BiographyContentOtherInfoModel, BiographyContentOtherInfoService, BiographyContentService, BiographyContentSimilarModel, BiographyContentSimilarService, BiographyContentTagModel, BiographyContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  AccessModel, BiographyCategoryModel, BiographyContentModel, BiographyContentOtherInfoModel, BiographyContentOtherInfoService, BiographyContentService, BiographyContentSimilarModel, BiographyContentSimilarService, BiographyContentTagModel, BiographyContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom, of } from 'rxjs';
@@ -54,7 +53,7 @@ export class BiographyContentAddComponent implements OnInit, AfterViewInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataModel = new BiographyContentModel();
   dataModelResult: ErrorExceptionResult<BiographyContentModel> = new ErrorExceptionResult<BiographyContentModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypePodcast = ['mp3'];
   selectFileTypeMovie = ['mp4', 'webm'];

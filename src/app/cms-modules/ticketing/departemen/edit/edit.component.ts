@@ -6,8 +6,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TicketingDepartemenModel, TicketingDepartemenService
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingDepartemenModel, TicketingDepartemenService
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +47,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<TicketingDepartemenModel> = new ErrorExceptionResult<TicketingDepartemenModel>();
   dataModel: TicketingDepartemenModel = new TicketingDepartemenModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
@@ -78,7 +78,7 @@ export class TicketingDepartemenEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.ticketingDepartemenService.setAccessLoad();
-    this.ticketingDepartemenService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.ticketingDepartemenService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.ticketingDepartemenService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

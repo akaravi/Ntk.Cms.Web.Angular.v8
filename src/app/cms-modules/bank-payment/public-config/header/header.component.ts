@@ -4,8 +4,7 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BankPaymentPublicConfigModel, BankPaymentPublicConfigService, CoreEnumService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult
+  BankPaymentPublicConfigModel, BankPaymentPublicConfigService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, InfoEnumModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -31,7 +30,7 @@ export class BankPaymentPublicConfigHeaderComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<BankPaymentPublicConfigModel> = new ErrorExceptionResult<BankPaymentPublicConfigModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   ngOnInit(): void {
     if (this.optionId > 0) {
       this.DataGetOneContent();

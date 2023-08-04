@@ -4,12 +4,9 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
-  FormInfoModel,
-  PollingCategoryModel,
+  FormInfoModel, ManageUserAccessDataTypesEnum, PollingCategoryModel,
   PollingCategoryService
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -67,7 +64,7 @@ export class PollingCategoryDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.pollingCategoryService.setAccessLoad();
-    this.pollingCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.pollingCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.pollingCategoryService
       .ServiceGetOneById(this.requestId)
       .subscribe({

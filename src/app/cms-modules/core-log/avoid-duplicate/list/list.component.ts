@@ -7,10 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreLogAvoidDuplicateDataEntryModel, CoreLogAvoidDuplicateDataEntryService, CoreSiteModel, DataFieldInfoModel,
-  EnumInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  TokenInfoModel
+  CoreLogAvoidDuplicateDataEntryModel, CoreLogAvoidDuplicateDataEntryService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, InfoEnumModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -56,7 +53,7 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'CreatedDate';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
   }
   comment: string;
   author: string;
@@ -86,14 +83,14 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   expandedElement: CoreSiteModel | null;
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
     this.filteModelContent.sortColumn = 'CreatedDate';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -108,13 +105,13 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
   }
 
   getEnumManageUserAccessAreaTypes(): void {
-    // this.coreEnumService.ServiceEnumManageUserAccessAreaTypes().subscribe((next) => {
+    // this.coreEnumService.ServiceManageUserAccessAreaTypesEnum().subscribe((next) => {
     //   this.dataModelEnumManageUserAccessAreaTypesResult = next;
     // });
   }
   // {{row.userAccessAreaType | enums : dataModelEnumManageUserAccessAreaTypesResult.listItems}}
   getEnumManageUserAccessUserTypes(): void {
-    // this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
+    // this.coreEnumService.ServiceManageUserAccessUserTypesEnum().subscribe((next) => {
     //   this.dataModelEnumManageUserAccessUserTypesResult = next;
     // });
   }
@@ -162,17 +159,17 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -294,7 +291,7 @@ export class CoreLogAvoidDuplicateDataEntryListComponent implements OnInit, OnDe
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {

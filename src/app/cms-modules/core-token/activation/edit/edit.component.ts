@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreTokenActivationModel, CoreTokenActivationService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreTokenActivationModel, CoreTokenActivationService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,9 +52,9 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
   dataModel: CoreTokenActivationModel = new CoreTokenActivationModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManageUserAccessUserTypesResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
   fileManagerOpenForm = false;
@@ -83,12 +83,12 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
   }
 
   getEnumManageUserAccessAreaTypes(): void {
-    this.coreEnumService.ServiceEnumManageUserAccessAreaTypes().subscribe((next) => {
+    this.coreEnumService.ServiceManageUserAccessAreaTypesEnum().subscribe((next) => {
       this.dataModelEnumManageUserAccessAreaTypesResult = next;
     });
   }
   getEnumManageUserAccessUserTypes(): void {
-    this.coreEnumService.ServiceEnumManageUserAccessUserTypes().subscribe((next) => {
+    this.coreEnumService.ServiceManageUserAccessUserTypesEnum().subscribe((next) => {
       this.dataModelEnumManageUserAccessUserTypesResult = next;
     });
   }
@@ -112,7 +112,7 @@ export class CoreTokenActivationEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreTokenActivationService.setAccessLoad();
-    this.coreTokenActivationService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreTokenActivationService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreTokenActivationService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

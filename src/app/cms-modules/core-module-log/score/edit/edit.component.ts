@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogScoreModel, CoreModuleLogScoreService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreModuleLogScoreModel, CoreModuleLogScoreService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -95,7 +94,7 @@ export class CoreModuleLogScoreEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreModuleLogScoreService.setAccessLoad();
-    this.coreModuleLogScoreService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleLogScoreService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleLogScoreService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

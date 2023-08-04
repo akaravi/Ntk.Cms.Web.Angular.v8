@@ -7,9 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreDeviceModel, CoreDeviceService, CoreEnumService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  CoreDeviceModel, CoreDeviceService, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,13 +45,13 @@ export class CoreDeviceAddComponent implements OnInit {
 
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreDeviceModel> = new ErrorExceptionResult<CoreDeviceModel>();
-  dataModelEnumDeviceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumDeviceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModel: CoreDeviceModel = new CoreDeviceModel();
 
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -63,16 +62,16 @@ export class CoreDeviceAddComponent implements OnInit {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
     this.getEnumRecordStatus();
     this.DataGetAccess();
-    this.getServiceEnumDeviceType();
-    this.getServiceEnumOperatingSystemType();
+    this.getServiceDeviceTypeEnum();
+    this.getServiceOperatingSystemTypeEnum();
   }
-  getServiceEnumDeviceType(): void {
-    this.coreEnumService.ServiceEnumDeviceType().subscribe((next) => {
+  getServiceDeviceTypeEnum(): void {
+    this.coreEnumService.ServiceDeviceTypeEnum().subscribe((next) => {
       this.dataModelEnumDeviceTypeResult = next;
     });
   }
-  getServiceEnumOperatingSystemType(): void {
-    this.coreEnumService.ServiceEnumOperatingSystemType().subscribe((next) => {
+  getServiceOperatingSystemTypeEnum(): void {
+    this.coreEnumService.ServiceOperatingSystemTypeEnum().subscribe((next) => {
       this.dataModelEnumOperatingSystemTypeResult = next;
     });
   }

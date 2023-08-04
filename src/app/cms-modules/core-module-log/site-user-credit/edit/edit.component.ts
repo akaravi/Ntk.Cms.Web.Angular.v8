@@ -5,12 +5,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogSiteUserCreditModel, CoreModuleLogSiteUserCreditService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreModuleLogSiteUserCreditModel, CoreModuleLogSiteUserCreditService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -98,7 +97,7 @@ export class CoreModuleLogSiteUserCreditEditComponent implements OnInit, OnDestr
 
     /*َAccess Field*/
     this.coreModuleLogSiteUserCreditService.setAccessLoad();
-    this.coreModuleLogSiteUserCreditService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleLogSiteUserCreditService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleLogSiteUserCreditService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

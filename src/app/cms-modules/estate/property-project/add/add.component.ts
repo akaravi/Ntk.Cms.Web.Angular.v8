@@ -10,8 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, EstatePropertyCompanyModel, EstatePropertyProjectModel, EstatePropertyProjectService, FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyCompanyModel, EstatePropertyProjectModel, EstatePropertyProjectService, FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,7 +45,7 @@ export class EstatePropertyProjectAddComponent implements OnInit, AfterViewInit 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new EstatePropertyProjectModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataFileModelImgaes = new Map<number, string>();
   dataFileModelFiles = new Map<number, string>();
   loading = new ProgressSpinnerModel();

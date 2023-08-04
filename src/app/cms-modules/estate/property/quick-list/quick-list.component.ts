@@ -2,18 +2,15 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit
 } from "@angular/core";
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumClauseType, EnumFilterDataModelSearchTypes,
-  EnumManageUserAccessDataTypes, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, EstatePropertyModel,
-  EstatePropertyService, EstatePropertyTypeLanduseModel, FilterDataModel,
-  FilterModel, FormInfoModel, TokenInfoModel
+  ClauseTypeEnum, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyModel,
+  EstatePropertyService, EstatePropertyTypeLanduseModel, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, FormInfoModel, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
@@ -99,7 +96,7 @@ export class EstatePropertyQuickListComponent
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = "CreatedDate";
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
     if (
       this.requestLinkPropertyTypeLanduseId &&
       this.requestLinkPropertyTypeLanduseId.length > 0
@@ -144,7 +141,7 @@ export class EstatePropertyQuickListComponent
       const filter = new FilterDataModel();
       filter.propertyName = "Title";
       filter.value = this.requestSearchTitle;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains
       this.filteModelContent.filters.push(filter);
     }
     if (this.requestSearchCaseCode && this.requestSearchCaseCode.length > 0) {
@@ -159,15 +156,15 @@ export class EstatePropertyQuickListComponent
       const filterClild1 = new FilterDataModel();
       filterClild1.propertyName = "aboutCustomerTel";
       filterClild1.value = this.requestSearchCustomerTel;
-      filterClild1.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filterClild1.clauseType = EnumClauseType.Or;
+      filterClild1.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filterClild1.clauseType = ClauseTypeEnum.Or;
       filter.filters.push(filterClild1);
 
       const filterClild2 = new FilterDataModel();
       filterClild2.propertyName = "aboutCustomerMobile";
       filterClild2.value = this.requestSearchCustomerTel;
-      filterClild2.searchType = EnumFilterDataModelSearchTypes.Contains
-      filterClild2.clauseType = EnumClauseType.Or;
+      filterClild2.searchType = FilterDataModelSearchTypesEnum.Contains
+      filterClild2.clauseType = ClauseTypeEnum.Or;
       filter.filters.push(filterClild2);
 
       this.filteModelContent.filters.push(filter);
@@ -295,13 +292,13 @@ export class EstatePropertyQuickListComponent
     if (this.searchInChecking) {
       const filter1 = new FilterDataModel();
       filter1.propertyName = "RecordStatus";
-      filter1.value = EnumRecordStatus.Available;
-      filter1.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filter1.value = RecordStatusEnum.Available;
+      filter1.searchType = FilterDataModelSearchTypesEnum.NotEqual;
       filterModel.filters.push(filter1);
       const filter2 = new FilterDataModel();
       filter2.propertyName = "RecordStatus";
-      filter2.value = EnumRecordStatus.DeniedConfirmed;
-      filter2.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filter2.value = RecordStatusEnum.DeniedConfirmed;
+      filter2.searchType = FilterDataModelSearchTypesEnum.NotEqual;
       filterModel.filters.push(filter2);
     }
 
@@ -398,17 +395,17 @@ export class EstatePropertyQuickListComponent
       if (this.tableSource.sort.start === "asc") {
         sort.start = "desc";
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === "desc") {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = "";
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = "desc";
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -647,7 +644,7 @@ export class EstatePropertyQuickListComponent
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = "RecordStatus";
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
@@ -794,7 +791,7 @@ export class EstatePropertyQuickListComponent
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
@@ -803,7 +800,7 @@ export class EstatePropertyQuickListComponent
 
     const pName = this.constructor.name + "ServiceGetOneById";
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.tableRowSelected.id)
       .subscribe({

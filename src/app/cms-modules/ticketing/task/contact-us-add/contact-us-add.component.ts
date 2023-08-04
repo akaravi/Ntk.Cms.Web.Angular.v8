@@ -4,9 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ApplicationSourceModel, CaptchaModel, CoreAuthService, CoreEnumService,
-  DataFieldInfoModel, EnumFormSubmitedStatus, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, TicketingTaskDtoModel, TicketingTaskModel,
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, FormSubmitedStatusEnum, InfoEnumModel, TicketingTaskDtoModel, TicketingTaskModel,
   TicketingTaskService, TicketingTemplateModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -61,8 +60,8 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
   dataAccessModel: AccessModel;
   dataModel = new TicketingTaskDtoModel();
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';
@@ -73,7 +72,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
   captchaModel: CaptchaModel = new CaptchaModel();
   expireDate: Date;
   aoutoCaptchaOrder = 1;
-  enumFormSubmitedStatus = EnumFormSubmitedStatus;
+  enumFormSubmitedStatus = FormSubmitedStatusEnum;
   onCaptchaOrderInProcess = false;
   ngOnInit(): void {
     this.requestLinkDepartemenId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkDepartemenId'));
@@ -134,11 +133,11 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
           this.formInfo.formSubmitAllow = !next.isSuccess;
           this.dataModelResult = next;
           if (next.isSuccess) {
-            this.formInfo.formSubmitedStatus = EnumFormSubmitedStatus.Success;
+            this.formInfo.formSubmitedStatus = FormSubmitedStatusEnum.Success;
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessAdd();
           } else {
-            this.formInfo.formSubmitedStatus = EnumFormSubmitedStatus.Error;
+            this.formInfo.formSubmitedStatus = FormSubmitedStatusEnum.Error;
             this.cmsToastrService.typeErrorAdd(next.errorMessage);
           }
           this.loading.Stop(pName);

@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreTokenUserBadLoginModel, CoreTokenUserBadLoginService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreTokenUserBadLoginModel, CoreTokenUserBadLoginService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -51,8 +51,8 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
   dataModel: CoreTokenUserBadLoginModel = new CoreTokenUserBadLoginModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumManageUserAccessAreaTypesResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
 
   fileManagerOpenForm = false;
@@ -80,7 +80,7 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
   }
 
   getEnumManageUserAccessAreaTypes(): void {
-    this.coreEnumService.ServiceEnumManageUserAccessAreaTypes().subscribe((next) => {
+    this.coreEnumService.ServiceManageUserAccessAreaTypesEnum().subscribe((next) => {
       this.dataModelEnumManageUserAccessAreaTypesResult = next;
     });
   }
@@ -105,7 +105,7 @@ export class CoreTokenUserBadLoginEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreTokenUserBadLoginService.setAccessLoad();
-    this.coreTokenUserBadLoginService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreTokenUserBadLoginService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreTokenUserBadLoginService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

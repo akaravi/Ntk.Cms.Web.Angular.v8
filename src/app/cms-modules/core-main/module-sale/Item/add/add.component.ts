@@ -7,9 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleModel, CoreModuleSaleHeaderModel, CoreModuleSaleItemModel, CoreModuleSaleItemService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel
+  CoreEnumService, CoreModuleModel, CoreModuleSaleHeaderModel, CoreModuleSaleItemModel, CoreModuleSaleItemService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -57,8 +56,8 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -73,7 +72,7 @@ export class CoreModuleSaleItemAddComponent implements OnInit {
     this.getEnumCmsModuleSaleItemType();
   }
   getEnumCmsModuleSaleItemType(): void {
-    this.coreEnumService.ServiceEnumCmsModuleSaleItemType().subscribe((next) => {
+    this.coreEnumService.ServiceCmsModuleSaleItemTypeEnum().subscribe((next) => {
       this.dataModelEnumCmsModuleSaleItemTypeResult = next;
     });
   }

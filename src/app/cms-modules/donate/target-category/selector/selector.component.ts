@@ -3,14 +3,11 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DonateTargetCategoryModel,
-  DonateTargetCategoryService, EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult,
-  FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreEnumService, DonateTargetCategoryModel,
+  DonateTargetCategoryService, ErrorExceptionResult,
+  FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
-import { Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -83,15 +80,15 @@ export class DonateTargetCategorySelectorComponent implements OnInit {
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
-    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.clauseType = EnumClauseType.Or;
+    filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+    filter.clauseType = ClauseTypeEnum.Or;
     filterModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
 

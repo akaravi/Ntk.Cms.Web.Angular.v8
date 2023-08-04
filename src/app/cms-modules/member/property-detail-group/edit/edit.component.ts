@@ -7,9 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel,
-  MemberPropertyDetailGroupModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, MemberPropertyDetailGroupModel,
   MemberPropertyDetailGroupService, MemberPropertyTypeModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -50,7 +49,7 @@ export class MemberPropertyDetailGroupEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<MemberPropertyDetailGroupModel> = new ErrorExceptionResult<MemberPropertyDetailGroupModel>();
   dataModel: MemberPropertyDetailGroupModel = new MemberPropertyDetailGroupModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
   ngOnInit(): void {
@@ -75,7 +74,7 @@ export class MemberPropertyDetailGroupEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.memberPropertyDetailGroupService.setAccessLoad();
-    this.memberPropertyDetailGroupService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.memberPropertyDetailGroupService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.memberPropertyDetailGroupService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

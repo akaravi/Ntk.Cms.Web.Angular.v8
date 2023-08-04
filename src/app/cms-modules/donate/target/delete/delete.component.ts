@@ -11,9 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DonateTargetModel,
-  DonateTargetService,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DonateTargetService, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -64,7 +63,7 @@ export class DonateTargetDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetService.setAccessLoad();
-    this.donateTargetService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.donateTargetService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.donateTargetService
       .ServiceGetOneById(this.requestId)
       .subscribe({

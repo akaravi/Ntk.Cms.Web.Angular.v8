@@ -4,7 +4,7 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  BankPaymentEnumService, BankPaymentTransactionModel, BankPaymentTransactionService, EnumInfoModel, EnumTransactionRecordStatus, ErrorExceptionResult
+  BankPaymentEnumService, BankPaymentTransactionModel, BankPaymentTransactionService, ErrorExceptionResult, InfoEnumModel, TransactionRecordStatusEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -43,7 +43,7 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
     this.loading = value;
   }
   dataModelResult: ErrorExceptionResult<BankPaymentTransactionModel> = new ErrorExceptionResult<BankPaymentTransactionModel>();
-  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   ngOnInit(): void {
     if (this.requestId <= 0) {
@@ -55,11 +55,11 @@ export class CmsBankpaymentTransactionInfoComponent implements OnInit {
     this.getEnumTransactionRecordStatus();
   }
   getEnumTransactionRecordStatus(): void {
-    this.bankPaymentEnumService.ServiceEnumTransactionRecordStatus().subscribe((next) => {
+    this.bankPaymentEnumService.ServiceTransactionRecordStatusEnum().subscribe((next) => {
       this.dataModelEnumTransactionRecordStatusResult = next;
     });
   }
-  TransactionSuccessful = EnumTransactionRecordStatus.TransactionSuccessful;
+  TransactionSuccessful = TransactionRecordStatusEnum.TransactionSuccessful;
   DataGeOne(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);

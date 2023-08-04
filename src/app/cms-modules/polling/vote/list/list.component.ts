@@ -8,10 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, FilterDataModel, FilterModel, PollingVoteModel,
-  PollingVoteService,
-  TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, PollingVoteModel,
+  PollingVoteService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -56,8 +54,8 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Descending;
-  }
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
+  } SortTypeEnum
   comment: string;
   author: string;
   dataSource: any;
@@ -165,18 +163,19 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
+        SortTypeEnum
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
-    }
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+    } SortTypeEnum
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
     this.DataGetAll();
@@ -322,7 +321,7 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {

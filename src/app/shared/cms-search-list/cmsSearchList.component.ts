@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { QueryBuilderFieldMap, Rule, RuleSet } from 'ngx-ntk-query-builder';
-import { AccessModel, EnumClauseType, FilterDataModel } from 'ntk-cms-api';
+import { AccessModel, ClauseTypeEnum, FilterDataModel } from 'ntk-cms-api';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -92,7 +92,7 @@ export class CmsSearchListComponent implements OnInit {
               { name: 'خیر', value: false },
             ],
           };
-        } else if (column.fieldTypeString.indexOf('.EnumRecordStatus') > 0) {
+        } else if (column.fieldTypeString.indexOf('.RecordStatusEnum') > 0) {
           this.fieldMap[column.fieldName] = {
             name: column.fieldTitle,
             type: 'select',
@@ -124,10 +124,10 @@ export class CmsSearchListComponent implements OnInit {
   }
   getRules(): void {
     this.filters = new Array<FilterDataModel>();
-    let clauseType: EnumClauseType = EnumClauseType.And;
+    let clauseType: ClauseTypeEnum = ClauseTypeEnum.And;
     if (!this.query || !this.query.condition) { return; }
 
-    if (this.query.condition === 'or') { clauseType = EnumClauseType.Or; }
+    if (this.query.condition === 'or') { clauseType = ClauseTypeEnum.Or; }
     this.query.rules.forEach((column) => {
       const ruleSet = column as RuleSet;
       const rule = column as Rule;
@@ -158,8 +158,8 @@ export class CmsSearchListComponent implements OnInit {
   }
   getRulesSetChild(ruleSetInput: RuleSet): Array<FilterDataModel> {
     const Filters = new Array<FilterDataModel>();
-    let clauseType: EnumClauseType = EnumClauseType.And;
-    if (ruleSetInput.condition === 'or') { clauseType = EnumClauseType.Or; }
+    let clauseType: ClauseTypeEnum = ClauseTypeEnum.And;
+    if (ruleSetInput.condition === 'or') { clauseType = ClauseTypeEnum.Or; }
     ruleSetInput.rules.forEach((column) => {
       const ruleSet = column as RuleSet;
       const rule = column as Rule;

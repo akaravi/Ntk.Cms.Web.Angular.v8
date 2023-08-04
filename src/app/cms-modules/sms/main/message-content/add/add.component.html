@@ -11,7 +11,9 @@
 
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
             let item of dataModelEnumRecordStatusResult.listItems;
             index as i
@@ -24,13 +26,17 @@
         </mat-form-field>
 
         <!-- LinkCategoryId Field -->
-        <app-sms-main-message-category-selector (optionChange)="onActionSelectCategory($event)" [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkCategoryId" [optionPlaceholder]="this.translate.instant('TITLE.Category')"></app-sms-main-message-category-selector>
+        <app-sms-main-message-category-selector (optionChange)="onActionSelectCategory($event)"
+            [(optionLoading)]="loading" [optionSelectForce]="this.dataModel.linkCategoryId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Category')"></app-sms-main-message-category-selector>
 
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+                placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
             <mat-error *ngIf="Title.errors?.required">
@@ -40,8 +46,11 @@
         <!-- messageBody Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['messageBody']?.fieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.messageBody" name="dataModel.messageBody" #messageBody type="text" placeholder="{{fieldsInfo['messageBody']?.fieldTitle}}" minlength="1" maxlength="5000" rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.messageBody" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.messageBody = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.messageBody" name="dataModel.messageBody" #messageBody type="text"
+                placeholder="{{fieldsInfo['messageBody']?.fieldTitle}}" minlength="1" maxlength="5000"
+                rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.messageBody" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.messageBody = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ messageBody.value.length }} / 5000</mat-hint>
             <mat-error *ngIf="messageBody.errors?.required">

@@ -11,9 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, BiographyCategoryModel, BiographyContentCategoryModel, BiographyContentCategoryService, BiographyContentModel, BiographyContentOtherInfoModel, BiographyContentOtherInfoService, BiographyContentService, BiographyContentSimilarModel, BiographyContentSimilarService, BiographyContentTagModel, BiographyContentTagService, CoreEnumService, CoreLocationModel, DataFieldInfoModel,
-  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
-  FormInfoModel
+  AccessModel, BiographyCategoryModel, BiographyContentCategoryModel, BiographyContentCategoryService, BiographyContentModel, BiographyContentOtherInfoModel, BiographyContentOtherInfoService, BiographyContentService, BiographyContentSimilarModel, BiographyContentSimilarService, BiographyContentTagModel, BiographyContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { map, of } from 'rxjs';
@@ -56,7 +55,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     new ErrorExceptionResult<BiographyContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<BiographyContentOtherInfoModel> =
     new ErrorExceptionResult<BiographyContentOtherInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   similarDataModel = new Array<BiographyContentModel>();
   otherInfoDataModel = new Array<BiographyContentOtherInfoModel>();
@@ -144,7 +143,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService
       .ServiceGetOneById(this.requestId)
       .subscribe({
@@ -489,7 +488,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
     const filter = new FilterDataModel();
     filter.propertyName = 'LinkContentId';
     filter.value = this.requestId;
-    filter.clauseType = EnumClauseType.And;
+    filter.clauseType = ClauseTypeEnum.And;
     filterModel.filters.push(filter);
     this.tagIdsData = [];
     this.contentCategoryService

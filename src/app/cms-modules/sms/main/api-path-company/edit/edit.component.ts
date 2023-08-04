@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, SmsMainApiPathCompanyModel, SmsMainApiPathCompanyService
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsMainApiPathCompanyModel, SmsMainApiPathCompanyService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +52,7 @@ export class SmsMainApiPathCompanyEditComponent implements OnInit {
   dataModel: SmsMainApiPathCompanyModel = new SmsMainApiPathCompanyModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   dataSmsMainApiPathCompanyModel: SmsMainApiPathCompanyModel[];
   ngOnInit(): void {
@@ -82,7 +82,7 @@ export class SmsMainApiPathCompanyEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathCompanyService.setAccessLoad();
-    this.smsMainApiPathCompanyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsMainApiPathCompanyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsMainApiPathCompanyService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

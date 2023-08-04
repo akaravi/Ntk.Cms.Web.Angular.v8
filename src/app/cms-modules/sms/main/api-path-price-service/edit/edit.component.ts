@@ -9,8 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteCategoryModel,
   CoreSiteModel,
-  CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, SmsEnumService, SmsMainApiPathModel, SmsMainApiPathPriceServiceModel, SmsMainApiPathPriceServiceService
+  CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainApiPathModel, SmsMainApiPathPriceServiceModel, SmsMainApiPathPriceServiceService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -54,9 +54,9 @@ export class SmsMainApiPathPriceServiceEditComponent implements OnInit {
   dataModel: SmsMainApiPathPriceServiceModel = new SmsMainApiPathPriceServiceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelSmsMessageTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelSmsOutBoxTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataSmsMainApiPathPriceServiceModel: SmsMainApiPathPriceServiceModel[];
@@ -100,7 +100,7 @@ export class SmsMainApiPathPriceServiceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathPriceServiceService.setAccessLoad();
-    this.smsMainApiPathPriceServiceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsMainApiPathPriceServiceService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsMainApiPathPriceServiceService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

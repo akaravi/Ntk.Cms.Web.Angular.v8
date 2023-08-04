@@ -9,7 +9,9 @@
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
               let item of dataModelEnumRecordStatusResult.listItems;
               index as i
@@ -24,8 +26,10 @@
         <!-- Number Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['number']?.accessWatchField">
             <mat-label>{{ fieldsInfo['number']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.number" [disabled]="!fieldsInfo['number']?.accessAddField" name="dataModel.number" #Number type="text" placeholder="123" />
-            <mat-icon matSuffix *ngIf="dataModel.number && fieldsInfo['number']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.number = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.number" [disabled]="!fieldsInfo['number']?.accessAddField"
+                name="dataModel.number" #Number type="text" placeholder="123" />
+            <mat-icon matSuffix *ngIf="dataModel.number && fieldsInfo['number']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.number = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['number']?.accessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ Number.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -33,8 +37,10 @@
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['description']?.accessWatchField">
             <mat-label>{{ fieldsInfo['description']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.description" [disabled]="!fieldsInfo['description']?.accessAddField" name="dataModel.description" #Description type="text" placeholder="123" />
-            <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['description']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.description" [disabled]="!fieldsInfo['description']?.accessAddField"
+                name="dataModel.description" #Description type="text" placeholder="123" />
+            <mat-icon matSuffix *ngIf="dataModel.description && fieldsInfo['description']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['description']?.accessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ Description.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -42,24 +48,30 @@
         <!-- Debtor Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['debtor']?.accessWatchField">
             <mat-label>{{ fieldsInfo['debtor']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.debtor" [disabled]="!fieldsInfo['debtor']?.accessEditField" name="dataModel.debtor" #Debtor type="number" placeholder="1" />
-            <mat-icon matSuffix *ngIf="dataModel.debtor && fieldsInfo['debtor']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.debtor = 1">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.debtor" [disabled]="!fieldsInfo['debtor']?.accessEditField"
+                name="dataModel.debtor" #Debtor type="number" placeholder="1" />
+            <mat-icon matSuffix *ngIf="dataModel.debtor && fieldsInfo['debtor']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.debtor = 1">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['debtor']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- Creditor Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['creditor']?.accessWatchField">
             <mat-label>{{ fieldsInfo['creditor']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.creditor" [disabled]="!fieldsInfo['creditor']?.accessEditField" name="dataModel.creditor" #Creditor type="number" placeholder="1" />
-            <mat-icon matSuffix *ngIf="dataModel.creditor && fieldsInfo['creditor']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.creditor = 1">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.creditor" [disabled]="!fieldsInfo['creditor']?.accessEditField"
+                name="dataModel.creditor" #Creditor type="number" placeholder="1" />
+            <mat-icon matSuffix *ngIf="dataModel.creditor && fieldsInfo['creditor']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.creditor = 1">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['creditor']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- AcceptDate Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['acceptDate']?.fieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="AcceptDate" [(ngModel)]="dataModel.acceptDate" name="dataModel.acceptDate" />
-            <mat-icon matSuffix *ngIf="dataModel.acceptDate && fieldsInfo['acceptDate']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.acceptDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="AcceptDate" [(ngModel)]="dataModel.acceptDate"
+                name="dataModel.acceptDate" />
+            <mat-icon matSuffix *ngIf="dataModel.acceptDate && fieldsInfo['acceptDate']?.accessEditField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.acceptDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="AcceptDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #AcceptDate></mat-datepicker>
         </mat-form-field>
@@ -67,21 +79,27 @@
         <!-- UserAcceptor Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['userAcceptor']?.accessWatchField">
             <mat-label>{{ fieldsInfo['userAcceptor']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.userAcceptor" [disabled]="!fieldsInfo['userAcceptor']?.accessEditField" name="dataModel.userAcceptor" #UserAcceptor type="number" placeholder="1" />
-            <mat-icon matSuffix *ngIf="dataModel.userAcceptor && fieldsInfo['userAcceptor']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.userAcceptor = 1">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.userAcceptor"
+                [disabled]="!fieldsInfo['userAcceptor']?.accessEditField" name="dataModel.userAcceptor" #UserAcceptor
+                type="number" placeholder="1" />
+            <mat-icon matSuffix *ngIf="dataModel.userAcceptor && fieldsInfo['userAcceptor']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.userAcceptor = 1">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['userAcceptor']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- IsAccepted Field -->
         <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.isAccepted" *ngIf="fieldsInfo['isAccepted']?.accessWatchField" [disabled]="!fieldsInfo['isAccepted']?.accessEditField" name="dataModel.isAccepted">
+            <mat-slide-toggle [(ngModel)]="dataModel.isAccepted" *ngIf="fieldsInfo['isAccepted']?.accessWatchField"
+                [disabled]="!fieldsInfo['isAccepted']?.accessEditField" name="dataModel.isAccepted">
                 {{fieldsInfo['isAccepted']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
 
         <!-- IsBankAccepted Field -->
         <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.isBankAccepted" *ngIf="fieldsInfo['isBankAccepted']?.accessWatchField" [disabled]="!fieldsInfo['isBankAccepted']?.accessEditField" name="dataModel.isBankAccepted">
+            <mat-slide-toggle [(ngModel)]="dataModel.isBankAccepted"
+                *ngIf="fieldsInfo['isBankAccepted']?.accessWatchField"
+                [disabled]="!fieldsInfo['isBankAccepted']?.accessEditField" name="dataModel.isBankAccepted">
                 {{fieldsInfo['isBankAccepted']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
@@ -89,8 +107,10 @@
         <!-- BankAcceptDate Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['bankAcceptDate']?.fieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="BankAcceptDate" [(ngModel)]="dataModel.bankAcceptDate" name="dataModel.bankAcceptDate" />
-            <mat-icon matSuffix *ngIf="dataModel.bankAcceptDate && fieldsInfo['bankAcceptDate']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.bankAcceptDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="BankAcceptDate" [(ngModel)]="dataModel.bankAcceptDate"
+                name="dataModel.bankAcceptDate" />
+            <mat-icon matSuffix *ngIf="dataModel.bankAcceptDate && fieldsInfo['bankAcceptDate']?.accessEditField"
+                matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.bankAcceptDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="BankAcceptDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #BankAcceptDate></mat-datepicker>
         </mat-form-field>
@@ -98,16 +118,21 @@
         <!-- UserBankAcceptor Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['userBankAcceptor']?.accessWatchField">
             <mat-label>{{ fieldsInfo['userBankAcceptor']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.userBankAcceptor" [disabled]="!fieldsInfo['userBankAcceptor']?.accessEditField" name="dataModel.userBankAcceptor" #UserBankAcceptor type="number" placeholder="1" />
-            <mat-icon matSuffix *ngIf="dataModel.userBankAcceptor && fieldsInfo['userBankAcceptor']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.userBankAcceptor = 1">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.userBankAcceptor"
+                [disabled]="!fieldsInfo['userBankAcceptor']?.accessEditField" name="dataModel.userBankAcceptor"
+                #UserBankAcceptor type="number" placeholder="1" />
+            <mat-icon matSuffix *ngIf="dataModel.userBankAcceptor && fieldsInfo['userBankAcceptor']?.accessAddField"
+                matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.userBankAcceptor = 1">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['userBankAcceptor']?.accessEditField" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- CardNumber Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['cardNumber']?.accessWatchField">
             <mat-label>{{ fieldsInfo['cardNumber']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.cardNumber" [disabled]="!fieldsInfo['cardNumber']?.accessAddField" name="dataModel.cardNumber" #CardNumber type="text" placeholder="123" />
-            <mat-icon matSuffix *ngIf="dataModel.cardNumber && fieldsInfo['cardNumber']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.cardNumber = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.cardNumber" [disabled]="!fieldsInfo['cardNumber']?.accessAddField"
+                name="dataModel.cardNumber" #CardNumber type="text" placeholder="123" />
+            <mat-icon matSuffix *ngIf="dataModel.cardNumber && fieldsInfo['cardNumber']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.cardNumber = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['cardNumber']?.accessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ CardNumber.value.length }} / 100</mat-hint>
         </mat-form-field>
@@ -115,8 +140,11 @@
         <!-- AccountNumber Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['accountNumber']?.accessWatchField">
             <mat-label>{{ fieldsInfo['accountNumber']?.fieldTitle }}</mat-label>
-            <input matInput [(ngModel)]="dataModel.accountNumber" [disabled]="!fieldsInfo['accountNumber']?.accessAddField" name="dataModel.accountNumber" #AccountNumber type="text" placeholder="123" />
-            <mat-icon matSuffix *ngIf="dataModel.accountNumber && fieldsInfo['accountNumber']?.accessAddField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.accountNumber = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.accountNumber"
+                [disabled]="!fieldsInfo['accountNumber']?.accessAddField" name="dataModel.accountNumber" #AccountNumber
+                type="text" placeholder="123" />
+            <mat-icon matSuffix *ngIf="dataModel.accountNumber && fieldsInfo['accountNumber']?.accessAddField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.accountNumber = ''">close</mat-icon>
             <mat-icon *ngIf="fieldsInfo['accountNumber']?.accessAddField" matSuffix>mode_edit</mat-icon>
             <mat-hint align="start">{{ AccountNumber.value.length }} / 100</mat-hint>
         </mat-form-field>

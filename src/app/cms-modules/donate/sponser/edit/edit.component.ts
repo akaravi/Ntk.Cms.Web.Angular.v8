@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, DonateSponsorModel, DonateSponsorService, DonateTargetCategoryModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreEnumService, DataFieldInfoModel, DonateSponsorModel, DonateSponsorService, DonateTargetCategoryModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +52,7 @@ export class DonateSponserEditComponent implements OnInit {
   dataModel: DonateSponsorModel = new DonateSponsorModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -83,7 +83,7 @@ export class DonateSponserEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateSponsorService.setAccessLoad();
-    this.donateSponsorService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.donateSponsorService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.donateSponsorService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

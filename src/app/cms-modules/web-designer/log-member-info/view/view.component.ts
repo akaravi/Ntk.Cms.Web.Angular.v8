@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel, WebDesignerLogMemberInfoModel,
+  CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, TokenInfoModel, WebDesignerLogMemberInfoModel,
   WebDesignerLogMemberInfoService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -47,7 +46,7 @@ export class WebDesignerLogMemberInfoViewComponent implements OnInit, OnDestroy 
   dataModel: WebDesignerLogMemberInfoModel = new WebDesignerLogMemberInfoModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendSmsStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
   cmsApiStoreSubscribe: Subscription;
@@ -68,7 +67,7 @@ export class WebDesignerLogMemberInfoViewComponent implements OnInit, OnDestroy 
     this.getEnumSendSmsStatusType();
   }
   getEnumSendSmsStatusType(): void {
-    this.coreEnumService.ServiceEnumSendSmsStatusType().subscribe((next) => {
+    this.coreEnumService.ServiceSendSmsStatusTypeEnum().subscribe((next) => {
       this.dataModelEnumSendSmsStatusTypeResult = next;
     });
   }

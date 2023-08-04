@@ -8,8 +8,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel,
-  DonateTargetCategoryModel, DonateTargetModel, DonateTargetService, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DonateTargetCategoryModel, DonateTargetModel, DonateTargetService, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,7 +53,7 @@ export class DonateTargetEditComponent implements OnInit {
   dataModel: DonateTargetModel = new DonateTargetModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
 
@@ -91,7 +91,7 @@ export class DonateTargetEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.donateTargetService.setAccessLoad();
-    this.donateTargetService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.donateTargetService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.donateTargetService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

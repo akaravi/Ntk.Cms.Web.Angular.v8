@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLogMemberModel, CoreLogMemberService, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLogMemberModel, CoreLogMemberService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +46,7 @@ export class CoreLogMemberViewComponent implements OnInit, OnDestroy {
   dataModelResult: ErrorExceptionResult<CoreLogMemberModel> = new ErrorExceptionResult<CoreLogMemberModel>();
   dataModel: CoreLogMemberModel = new CoreLogMemberModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendMemberStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendMemberStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   fileManagerOpenForm = false;
 
@@ -71,7 +70,7 @@ export class CoreLogMemberViewComponent implements OnInit, OnDestroy {
   }
 
   // getEnumSendMemberStatusType(): void {
-  //   this.coreEnumService.ServiceEnumSendMemberStatusType().subscribe((next) => {
+  //   this.coreEnumService.ServiceSendMemberStatusTypeEnum().subscribe((next) => {
   //     this.dataModelEnumSendMemberStatusTypeResult = next;
   //   });
   // }

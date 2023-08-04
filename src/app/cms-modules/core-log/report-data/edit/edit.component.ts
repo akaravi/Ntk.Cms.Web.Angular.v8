@@ -8,8 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLogReportDataModel, CoreLogReportDataService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLogReportDataModel, CoreLogReportDataService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -50,7 +50,7 @@ export class CoreLogReportDataEditComponent implements OnInit, OnDestroy {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumSendReportDataStatusTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumSendReportDataStatusTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
 
@@ -78,7 +78,7 @@ export class CoreLogReportDataEditComponent implements OnInit, OnDestroy {
   }
 
   // getEnumSendReportDataStatusType(): void {
-  //   this.coreEnumService.ServiceEnumSendReportDataStatusType().subscribe((next) => {
+  //   this.coreEnumService.ServiceSendReportDataStatusTypeEnum().subscribe((next) => {
   //     this.dataModelEnumSendReportDataStatusTypeResult = next;
   //   });
   // }
@@ -101,7 +101,7 @@ export class CoreLogReportDataEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreLogReportDataService.setAccessLoad();
-    this.coreLogReportDataService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreLogReportDataService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreLogReportDataService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

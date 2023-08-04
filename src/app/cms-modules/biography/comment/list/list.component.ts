@@ -9,10 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   BiographyCommentModel,
-  BiographyCommentService, BiographyContentService, DataFieldInfoModel,
-  EnumFilterDataModelSearchTypes, EnumRecordStatus,
-  EnumSortType,
-  ErrorExceptionResult, FilterDataModel, FilterModel, TokenInfoModel
+  BiographyCommentService, BiographyContentService, DataFieldInfoModel, RecordStatusEnum,
+  SortTypeEnum,
+  ErrorExceptionResult, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -62,7 +61,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
   }
   comment: string;
   author: string;
@@ -139,8 +138,8 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     if (this.searchInChecking) {
       const filter = new FilterDataModel();
       filter.propertyName = "RecordStatus";
-      filter.value = EnumRecordStatus.Available;
-      filter.searchType = EnumFilterDataModelSearchTypes.NotEqual;
+      filter.value = RecordStatusEnum.Available;
+      filter.searchType = FilterDataModelSearchTypesEnum.NotEqual;
       filterModel.filters.push(filter);
     }
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
@@ -171,17 +170,17 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -317,7 +316,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
@@ -471,7 +470,7 @@ export class BiographyCommentListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
-    if (model.recordStatus != EnumRecordStatus.Available) {
+    if (model.recordStatus != RecordStatusEnum.Available) {
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }

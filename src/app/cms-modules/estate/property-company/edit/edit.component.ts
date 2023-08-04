@@ -11,11 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreLocationModel, DataFieldInfoModel,
-  EnumClauseType, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstatePropertyCompanyModel,
+  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyCompanyModel,
   EstatePropertyCompanyService,
   FilterDataModel, FilterModel,
-  FormInfoModel
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,7 +47,7 @@ export class EstatePropertyCompanyEditComponent implements OnInit, AfterViewInit
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new EstatePropertyCompanyModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyCompanyModel> = new ErrorExceptionResult<EstatePropertyCompanyModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   dataFileModelImgaes = new Map<number, string>();
   dataFileModelFiles = new Map<number, string>();
@@ -136,7 +135,7 @@ export class EstatePropertyCompanyEditComponent implements OnInit, AfterViewInit
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
     /*َAccess Field*/
     this.contentService.setAccessLoad();
-    this.contentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.contentService.ServiceGetOneById(this.requestId)
       .subscribe({
         next: (ret) => {
@@ -210,7 +209,7 @@ export class EstatePropertyCompanyEditComponent implements OnInit, AfterViewInit
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
-        filter.clauseType = EnumClauseType.Or;
+        filter.clauseType = ClauseTypeEnum.Or;
         filterModel.filters.push(filter);
       }
     });

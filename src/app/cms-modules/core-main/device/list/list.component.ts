@@ -8,9 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreDeviceModel,
-  CoreDeviceService, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumRecordStatus, EnumSortType,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  TokenInfoModel
+  CoreDeviceService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, InfoEnumModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -51,7 +49,7 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
 
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = EnumSortType.Descending;
+    this.filteModelContent.sortType = SortTypeEnum.Descending;
 
     this.requestLinkSiteId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkSiteId'));
     if (this.requestLinkSiteId > 0) {
@@ -78,8 +76,8 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
   tableRowSelected: CoreDeviceModel = new CoreDeviceModel();
   tableSource: MatTableDataSource<CoreDeviceModel> = new MatTableDataSource<CoreDeviceModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumDeviceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumDeviceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   tabledisplayedColumns: string[] = [];
   tabledisplayedColumnsSource: string[] = [
@@ -112,16 +110,16 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
       this.tokenInfo = next;
       this.DataGetAll();
     });
-    this.getServiceEnumDeviceType();
-    this.getServiceEnumOperatingSystemType();
+    this.getServiceDeviceType();
+    this.getServiceOperatingSystemTypeEnum();
   }
-  getServiceEnumDeviceType(): void {
-    this.coreEnumService.ServiceEnumDeviceType().subscribe((next) => {
+  getServiceDeviceType(): void {
+    this.coreEnumService.ServiceDeviceTypeEnum().subscribe((next) => {
       this.dataModelEnumDeviceTypeResult = next;
     });
   }
-  getServiceEnumOperatingSystemType(): void {
-    this.coreEnumService.ServiceEnumOperatingSystemType().subscribe((next) => {
+  getServiceOperatingSystemTypeEnum(): void {
+    this.coreEnumService.ServiceOperatingSystemTypeEnum().subscribe((next) => {
       this.dataModelEnumOperatingSystemTypeResult = next;
     });
   }
@@ -167,17 +165,17 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
       if (this.tableSource.sort.start === 'asc') {
         sort.start = 'desc';
         this.filteModelContent.sortColumn = sort.active;
-        this.filteModelContent.sortType = EnumSortType.Descending;
+        this.filteModelContent.sortType = SortTypeEnum.Descending;
       } else if (this.tableSource.sort.start === 'desc') {
         sort.start = 'asc';
         this.filteModelContent.sortColumn = '';
-        this.filteModelContent.sortType = EnumSortType.Ascending;
+        this.filteModelContent.sortType = SortTypeEnum.Ascending;
       } else {
         sort.start = 'desc';
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = EnumSortType.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Ascending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -329,7 +327,7 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'RecordStatus';
-    fastfilter.value = EnumRecordStatus.Available;
+    fastfilter.value = RecordStatusEnum.Available;
     filterStatist1.filters.push(fastfilter);
     this.contentService.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {

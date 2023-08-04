@@ -9,8 +9,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, CoreEnumService, CoreGuideModel, CoreGuideService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  AccessModel, CoreEnumService, CoreGuideModel, CoreGuideService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +52,7 @@ export class CoreGuideEditComponent implements OnInit {
   dataModel: CoreGuideModel = new CoreGuideModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataAccessModel: AccessModel;
 
   selectFileTypePodcast = ['mp3'];
@@ -101,7 +101,7 @@ export class CoreGuideEditComponent implements OnInit {
 
     /*َAccess Field*/
     this.coreGuideService.setAccessLoad();
-    this.coreGuideService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreGuideService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreGuideService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

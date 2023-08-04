@@ -6,8 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel,
   CoreEnumService,
-  DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, FormInfoModel, TokenInfoModel, WebDesignerConfigurationService,
+  DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, InfoEnumModel, TokenInfoModel, WebDesignerConfigurationService,
   WebDesignerModuleConfigSiteAccessValuesModel,
   WebDesignerModuleConfigSiteValuesModel,
   WebDesignerModuleSiteStorageValuesModel
@@ -48,7 +47,7 @@ export class WebDesignerConfigSiteComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';

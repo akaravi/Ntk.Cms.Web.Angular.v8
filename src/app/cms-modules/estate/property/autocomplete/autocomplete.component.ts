@@ -5,9 +5,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes, EstatePropertyFilterModel, EstatePropertyService, FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, EstatePropertyFilterModel, EstatePropertyService, FilterDataModel, FilterDataModelSearchTypesEnum
 } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
@@ -61,23 +59,23 @@ export class EstatePropertyCompleteComponent implements OnInit {
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
-    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.clauseType = EnumClauseType.Or;
+    filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+    filter.clauseType = ClauseTypeEnum.Or;
     filterModel.filters.push(filter);
     if (text && typeof text === 'string') {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'caseCode';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
     return this.service.ServiceGetAll(filterModel).pipe(
@@ -162,7 +160,7 @@ export class EstatePropertyCompleteComponent implements OnInit {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
-        filter.clauseType = EnumClauseType.Or;
+        filter.clauseType = ClauseTypeEnum.Or;
         filterModel.filters.push(filter);
       }
     });

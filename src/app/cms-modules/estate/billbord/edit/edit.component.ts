@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +52,7 @@ export class EstateBillboardEditComponent implements OnInit {
   dataModel: EstateBillboardModel = new EstateBillboardModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   optionloadComponent = false;
   resultSortArrowIcon = true;
@@ -81,7 +81,7 @@ export class EstateBillboardEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estateBillboardService.setAccessLoad();
-    this.estateBillboardService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estateBillboardService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estateBillboardService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

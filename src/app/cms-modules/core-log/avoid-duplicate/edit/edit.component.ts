@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreLogAvoidDuplicateDataEntryModel, CoreLogAvoidDuplicateDataEntryService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreLogAvoidDuplicateDataEntryModel, CoreLogAvoidDuplicateDataEntryService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -94,7 +93,7 @@ export class CoreLogAvoidDuplicateDataEntryEditComponent implements OnInit, OnDe
 
     /*َAccess Field*/
     this.coreLogAvoidDuplicateDataEntryService.setAccessLoad();
-    this.coreLogAvoidDuplicateDataEntryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreLogAvoidDuplicateDataEntryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreLogAvoidDuplicateDataEntryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

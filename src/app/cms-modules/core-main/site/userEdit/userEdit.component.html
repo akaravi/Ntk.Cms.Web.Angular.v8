@@ -10,7 +10,9 @@
 
 
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
@@ -22,19 +24,27 @@
             </mat-error>
         </mat-form-field>
         <!-- LinkCmsSiteId Field -->
-        <app-core-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkSiteId" [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
+        <app-core-site-selector (optionChange)="onActionSelectorSiteSelect($event)" [optionDisabled]="false"
+            [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkSiteId"
+            [optionPlaceholder]="this.translate.instant('TITLE.WEBSITE')"></app-core-site-selector>
         <!-- LinkuserId Field -->
-        <app-core-user-selector (optionChange)="onActionSelectorUserSelect($event)" [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        <app-core-user-selector (optionChange)="onActionSelectorUserSelect($event)" [optionDisabled]="false"
+            [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkUserId"
+            [optionPlaceholder]="this.translate.instant('TITLE.USER')">
         </app-core-user-selector>
         <!-- LinkUserGroupId Field -->
-        <app-core-usercategory-selector (optionChange)="onActionSelectorUserGroupSelect($event)" [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkUserGroupId" [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
+        <app-core-usercategory-selector (optionChange)="onActionSelectorUserGroupSelect($event)"
+            [optionDisabled]="false" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkUserGroupId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Account_Type')">
         </app-core-usercategory-selector>
 
         <!-- ExpireDate Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDate']?.accessWatchField">
             <mat-label>{{fieldsInfo['expireDate']?.fieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate" name="dataModel.expireDate" />
-            <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
+            <input matInput [matDatepicker]="ExpireDate" [(ngModel)]="dataModel.expireDate"
+                name="dataModel.expireDate" />
+            <mat-icon matSuffix *ngIf="dataModel.expireDate && fieldsInfo['expireDate']?.accessEditField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.expireDate = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="ExpireDate"></mat-datepicker-toggle>
             <mat-datepicker touchUi #ExpireDate></mat-datepicker>
         </mat-form-field>

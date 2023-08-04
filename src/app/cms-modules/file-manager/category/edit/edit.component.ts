@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FileCategoryModel, FileCategoryService, FormInfoModel
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FileCategoryModel, FileCategoryService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -59,7 +59,7 @@ export class FileCategoryEditComponent implements OnInit {
   ComponentAction = ComponentActionEnum.none;
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   onActionFileSelected(model: NodeInterface): void {
@@ -100,7 +100,7 @@ export class FileCategoryEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.fileCategoryService.setAccessLoad();
-    this.fileCategoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.fileCategoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.fileCategoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

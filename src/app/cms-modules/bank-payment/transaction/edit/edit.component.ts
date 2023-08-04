@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  AccessModel, BankPaymentEnumService, BankPaymentTransactionModel, BankPaymentTransactionService, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  AccessModel, BankPaymentEnumService, BankPaymentTransactionModel, BankPaymentTransactionService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,12 +47,12 @@ export class BankPaymentTransactionEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<BankPaymentTransactionModel> = new ErrorExceptionResult<BankPaymentTransactionModel>();
   dataModel: BankPaymentTransactionModel = new BankPaymentTransactionModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumTransactionBankStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumTransactionRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumTransactionBankStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   ngOnInit(): void {
     if (this.requestId <= 0) {
       this.cmsToastrService.typeErrorComponentAction();
@@ -65,12 +65,12 @@ export class BankPaymentTransactionEditComponent implements OnInit {
     this.getEnumTransactionBankStatus();
   }
   getEnumTransactionRecordStatus(): void {
-    this.bankPaymentEnumService.ServiceEnumTransactionRecordStatus().subscribe((next) => {
+    this.bankPaymentEnumService.ServiceTransactionRecordStatusEnum().subscribe((next) => {
       this.dataModelEnumTransactionRecordStatusResult = next;
     });
   }
   getEnumTransactionBankStatus(): void {
-    this.bankPaymentEnumService.ServiceEnumTransactionBankStatus().subscribe((next) => {
+    this.bankPaymentEnumService.ServiceTransactionBankStatusEnum().subscribe((next) => {
       this.dataModelEnumTransactionBankStatusResult = next;
     });
   }
@@ -84,7 +84,7 @@ export class BankPaymentTransactionEditComponent implements OnInit {
     this.loading.Start(pName);
     /*َAccess Field*/
     this.bankPaymentTransactionService.setAccessLoad();
-    this.bankPaymentTransactionService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.bankPaymentTransactionService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.bankPaymentTransactionService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

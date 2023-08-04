@@ -20,7 +20,7 @@ node --max-old-space-size=32768 index.js #increase to 32gb
 See the current value of max-old-space-size (in MB)
 node -e 'console.log(v8.getHeapStatistics().heap_size_limit/(1024*1024))'
 
-setx NODE_OPTIONS "--max-old-space-size=8384" 
+setx NODE_OPTIONS "--max-old-space-size=8384"
 # formula:
 export NODE_OPTIONS="--max-old-space-size=(X * 1024)" # Increase to X GB
 
@@ -142,3 +142,12 @@ depcheck
 
 ENDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
 http://localhost:4200/#/estate/property/edit/63fcd99b5513193e755bd4ad
+
+
+=============================================================================================================================
+https://blog.angular-university.io/angular-push-notifications/
+ web-push generate-vapid-keys --json
+{
+  "publicKey":"BOr78Ceadeel4AyuayJxgsPXC5Eo3yIpSq__q6uPF6losigIi9HTSFHnp-Itqhq4UGfujxeTf0PxScyyJO3lfng",
+  "privateKey":"VKfr1tI3yvJaO1B1B8J15XaZnLVQcwCyT_szcXOrQtU"
+}

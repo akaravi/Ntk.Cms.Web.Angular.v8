@@ -10,7 +10,9 @@
 
         <!-- RecordStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus" name="dataModel.recordStatus" #RecordStatus="ngModel" ngClass="cms-EnumRecordStatus-selector-{{ dataModel.recordStatus }}" required>
+            <mat-select placeholder="{{fieldsInfo['recordStatus']?.fieldTitle}}" [(ngModel)]="dataModel.recordStatus"
+                name="dataModel.recordStatus" #RecordStatus="ngModel"
+                ngClass="cms-RecordStatusEnum-selector-{{ dataModel.recordStatus }}" required>
                 <mat-option *ngFor="
                 let item of dataModelEnumRecordStatusResult.listItems;
                 index as i
@@ -24,8 +26,10 @@
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="20" required />
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+                placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="20" required />
+            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Title.value.length }} / 20</mat-hint>
             <mat-error *ngIf="Title.errors?.required">
@@ -34,15 +38,18 @@
         </mat-form-field>
         <!-- isDefault Field -->
         <div class="ntk-full-width">
-            <mat-slide-toggle [(ngModel)]="dataModel.isDefault" *ngIf="fieldsInfo['isDefault']?.accessWatchField" [disabled]="!fieldsInfo['isDefault']?.accessEditField" name="dataModel.isDefault">
+            <mat-slide-toggle [(ngModel)]="dataModel.isDefault" *ngIf="fieldsInfo['isDefault']?.accessWatchField"
+                [disabled]="!fieldsInfo['isDefault']?.accessEditField" name="dataModel.isDefault">
                 {{fieldsInfo['isDefault']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
         <!-- Symbol Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['symbol']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.symbol" name="dataModel.symbol" #Symbol type="text" placeholder="{{fieldsInfo['symbol']?.fieldTitle}}" minlength="1" maxlength="20" required />
-            <mat-icon matSuffix *ngIf="dataModel.symbol" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.symbol = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.symbol" name="dataModel.symbol" #Symbol type="text"
+                placeholder="{{fieldsInfo['symbol']?.fieldTitle}}" minlength="1" maxlength="20" required />
+            <mat-icon matSuffix *ngIf="dataModel.symbol" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.symbol = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Symbol.value.length }} / 20</mat-hint>
             <mat-error *ngIf="Symbol.errors?.required">
@@ -52,8 +59,10 @@
         <!-- ExchangeBuyRatio Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['exchangeBuyRatio']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.exchangeBuyRatio" name="dataModel.exchangeBuyRatio" #ExchangeBuyRatio type="number" placeholder="{{fieldsInfo['exchangeBuyRatio']?.fieldTitle}}" required step="0.001" />
-            <mat-icon matSuffix *ngIf="dataModel.exchangeBuyRatio" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.exchangeBuyRatio = 1">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.exchangeBuyRatio" name="dataModel.exchangeBuyRatio" #ExchangeBuyRatio
+                type="number" placeholder="{{fieldsInfo['exchangeBuyRatio']?.fieldTitle}}" required step="0.001" />
+            <mat-icon matSuffix *ngIf="dataModel.exchangeBuyRatio" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.exchangeBuyRatio = 1">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error *ngIf="ExchangeBuyRatio.errors?.required">
                 ExchangeBuyRatio is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -62,8 +71,11 @@
         <!-- ExchangeSaleRatio Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['exchangeSaleRatio']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.exchangeSaleRatio" name="dataModel.exchangeSaleRatio" #ExchangeSaleRatio type="number" placeholder="{{fieldsInfo['exchangeSaleRatio']?.fieldTitle}}" required step="0.001" />
-            <mat-icon matSuffix *ngIf="dataModel.exchangeSaleRatio" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.exchangeSaleRatio = 1">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.exchangeSaleRatio" name="dataModel.exchangeSaleRatio"
+                #ExchangeSaleRatio type="number" placeholder="{{fieldsInfo['exchangeSaleRatio']?.fieldTitle}}" required
+                step="0.001" />
+            <mat-icon matSuffix *ngIf="dataModel.exchangeSaleRatio" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.exchangeSaleRatio = 1">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error *ngIf="ExchangeSaleRatio.errors?.required">
                 ExchangeSaleRatio is <strong>{{'MESSAGE.required' | translate}}</strong>
@@ -72,18 +84,27 @@
         <!-- LinkMainImageId Field -->
         <div class="mb-3">
             <a href="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" target="_blank">
-                <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50" width="50" />
+                <img *ngIf="dataModel?.linkMainImageIdSrc?.length>0" style="vertical-align:middle;"
+                    class="ntk-hover-zoom" aria-hidden src="{{dataModel.linkMainImageIdSrc | cmsthumbnail}}" height="50"
+                    width="50" />
             </a>
         </div>
         <div class="mb-9">
             <mat-form-field class="ntk-full-width">
                 <mat-label (click)="fileManagerOpenForm = true"> {{'TITLE.Icon_File' | translate}}
                 </mat-label>
-                <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId" #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}al_File_ID' | translate}}" autocomplete="off" (click)="fileManagerOpenForm = true" />
-                <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.linkMainImageId = null">close</mat-icon>
+                <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId"
+                    #LinkMainImageId type="text"
+                    placeholder="{{'TITLE.Original_File_ID' | translate}}al_File_ID' | translate}}" autocomplete="off"
+                    (click)="fileManagerOpenForm = true" />
+                <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
+                    (click)="dataModel.linkMainImageId = null">close</mat-icon>
                 <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
             </mat-form-field>
-            <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true" [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'" [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage" [openFilemanagerButtonView]="false">
+            <cms-file-manager (itemSelected)="onActionFileSelected($event)" [language]="appLanguage" [isPopup]="true"
+                [(openForm)]="fileManagerOpenForm" [tree]="fileManagerTree" [openFilemanagerButtonLabelKey]="'select'"
+                [openDirectUploadView]="true" [selectFileType]="selectFileTypeMainImage"
+                [openFilemanagerButtonView]="false">
             </cms-file-manager>
         </div>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

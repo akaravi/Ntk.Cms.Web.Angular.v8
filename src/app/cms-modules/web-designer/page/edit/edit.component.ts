@@ -8,8 +8,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreSiteCategoryModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, WebDesignerEnumService, WebDesignerMainPageDependencyModel, WebDesignerMainPageModel, WebDesignerMainPageService, WebDesignerMainPageTemplateModel
+  CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerEnumService, WebDesignerMainPageDependencyModel, WebDesignerMainPageModel, WebDesignerMainPageService, WebDesignerMainPageTemplateModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,8 +48,8 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   dataModelResult: ErrorExceptionResult<WebDesignerMainPageModel> = new ErrorExceptionResult<WebDesignerMainPageModel>();
   dataModel: WebDesignerMainPageModel = new WebDesignerMainPageModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumPageAbilityTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumPageAbilityTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
     if (this.requestId.length > 0) {
@@ -64,7 +64,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.getEnumPageAbilityType();
   }
   getEnumPageAbilityType(): void {
-    this.webDesignerEnumService.ServiceEnumPageAbilityType().subscribe((next) => {
+    this.webDesignerEnumService.ServicePageAbilityTypeEnum().subscribe((next) => {
       this.dataModelEnumPageAbilityTypeResult = next;
     });
   }
@@ -77,7 +77,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     const pName = this.constructor.name + 'webDesignerMainPageService.ServiceGetOneById';
     this.loading.Start(pName);
     this.webDesignerMainPageService.setAccessLoad();
-    this.webDesignerMainPageService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.webDesignerMainPageService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.webDesignerMainPageService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

@@ -7,8 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, CoreConfigurationService, CoreEnumService, CoreModuleConfigSiteAccessValuesModel,
   CoreModuleConfigSiteValuesModel,
-  CoreModuleSiteStorageValuesModel, DataFieldInfoModel, EnumInfoModel,
-  ErrorExceptionResult, FormInfoModel, TokenInfoModel
+  CoreModuleSiteStorageValuesModel, DataFieldInfoModel, ErrorExceptionResult, FormInfoModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
@@ -27,7 +26,7 @@ export class CoreConfigSiteComponent implements OnInit {
   requestLinkSiteId = 0;
   constructor(
     private configService: CoreConfigurationService,
-     private tokenHelper: TokenHelper,
+    private tokenHelper: TokenHelper,
     public publicHelper: PublicHelper,
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
@@ -53,7 +52,7 @@ export class CoreConfigSiteComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;

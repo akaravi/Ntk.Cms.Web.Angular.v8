@@ -5,12 +5,8 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreLocationModel,
-  CoreLocationService,
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreLocationModel,
+  CoreLocationService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
 import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
@@ -90,15 +86,15 @@ export class CmsLocationCompleteComponent implements OnInit {
     let filter = new FilterDataModel();
     filter.propertyName = 'Title';
     filter.value = text;
-    filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-    filter.clauseType = EnumClauseType.Or;
+    filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+    filter.clauseType = ClauseTypeEnum.Or;
     filterModel.filters.push(filter);
     if (text && typeof +text === 'number' && +text > 0) {
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
 
@@ -192,7 +188,7 @@ export class CmsLocationCompleteComponent implements OnInit {
         const filter = new FilterDataModel();
         filter.propertyName = 'Id';
         filter.value = item;
-        filter.clauseType = EnumClauseType.Or;
+        filter.clauseType = ClauseTypeEnum.Or;
         filterModel.filters.push(filter);
       }
     });

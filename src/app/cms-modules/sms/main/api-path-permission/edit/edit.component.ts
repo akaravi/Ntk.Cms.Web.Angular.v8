@@ -9,8 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteCategoryModel,
   CoreSiteModel,
-  CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, SmsEnumService, SmsMainApiPathModel, SmsMainApiPathPermissionModel, SmsMainApiPathPermissionService
+  CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainApiPathModel, SmsMainApiPathPermissionModel, SmsMainApiPathPermissionService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -54,9 +54,9 @@ export class SmsMainApiPathPermissionEditComponent implements OnInit {
   dataModel: SmsMainApiPathPermissionModel = new SmsMainApiPathPermissionModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiPathPermissionAccessStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumApiPathPermissionActionResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiPathPermissionAccessStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumApiPathPermissionActionResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   dataSmsMainApiPathPermissionModel: SmsMainApiPathPermissionModel[];
@@ -99,7 +99,7 @@ export class SmsMainApiPathPermissionEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.smsMainApiPathPermissionService.setAccessLoad();
-    this.smsMainApiPathPermissionService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.smsMainApiPathPermissionService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.smsMainApiPathPermissionService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

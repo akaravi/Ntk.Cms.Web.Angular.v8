@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreDeviceModel, CoreDeviceService, CoreEnumService, CoreSiteModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreDeviceModel, CoreDeviceService, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,9 +53,9 @@ export class CoreDeviceEditComponent implements OnInit {
   dataModel: CoreDeviceModel = new CoreDeviceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumDeviceTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
-  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumDeviceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumOperatingSystemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
 
 
@@ -71,16 +71,16 @@ export class CoreDeviceEditComponent implements OnInit {
     }
 
     this.getEnumRecordStatus();
-    this.getServiceEnumDeviceType();
-    this.getServiceEnumOperatingSystemType();
+    this.getServiceDeviceTypeEnum();
+    this.getServiceOperatingSystemTypeEnum();
   }
-  getServiceEnumDeviceType(): void {
-    this.coreEnumService.ServiceEnumDeviceType().subscribe((next) => {
+  getServiceDeviceTypeEnum(): void {
+    this.coreEnumService.ServiceDeviceTypeEnum().subscribe((next) => {
       this.dataModelEnumDeviceTypeResult = next;
     });
   }
-  getServiceEnumOperatingSystemType(): void {
-    this.coreEnumService.ServiceEnumOperatingSystemType().subscribe((next) => {
+  getServiceOperatingSystemTypeEnum(): void {
+    this.coreEnumService.ServiceOperatingSystemTypeEnum().subscribe((next) => {
       this.dataModelEnumOperatingSystemTypeResult = next;
     });
   }
@@ -99,7 +99,7 @@ export class CoreDeviceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.coreDeviceService.setAccessLoad();
-    this.coreDeviceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreDeviceService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreDeviceService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

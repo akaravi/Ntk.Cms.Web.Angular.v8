@@ -7,9 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreModuleCheckSerialForSiteDtoModel, CoreModuleModel, CoreModuleSaleHeaderModel, CoreModuleSaleInvoiceDetailModel,
   CoreModuleSaleInvoiceModel, CoreModuleSaleItemModel,
-  CoreModuleSaleSerialService, CoreModuleService, DataFieldInfoModel, EnumInfoModel, ErrorExceptionResult,
-  FilterModel,
-  TokenInfoModel
+  CoreModuleSaleSerialService, CoreModuleService, DataFieldInfoModel, ErrorExceptionResult,
+  FilterModel, InfoEnumModel, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -55,7 +54,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
   tableSource: MatTableDataSource<CoreModuleSaleInvoiceDetailModel> = new MatTableDataSource<CoreModuleSaleInvoiceDetailModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   categoryModelSelected: CoreModuleSaleHeaderModel = new CoreModuleSaleHeaderModel();
-  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumCmsModuleSaleItemTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelCoreModuleResult: ErrorExceptionResult<CoreModuleModel> = new ErrorExceptionResult<CoreModuleModel>();
 
   tabledisplayedColumns: string[] = [
@@ -96,7 +95,7 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
     });
   }
   getEnumCmsModuleSaleItemType(): void {
-    this.coreEnumService.ServiceEnumCmsModuleSaleItemType().subscribe((next) => {
+    this.coreEnumService.ServiceCmsModuleSaleItemTypeEnum().subscribe((next) => {
       this.dataModelEnumCmsModuleSaleItemTypeResult = next;
     });
   }

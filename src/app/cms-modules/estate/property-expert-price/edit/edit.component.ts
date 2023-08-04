@@ -4,12 +4,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, CoreLocationModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateEnumService, EstatePropertyExpertPriceModel,
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstateEnumService, EstatePropertyExpertPriceModel,
   EstatePropertyExpertPriceService, EstatePropertyTypeLanduseModel,
-  EstatePropertyTypeUsageModel, FormInfoModel, TokenInfoModel
+  EstatePropertyTypeUsageModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -57,9 +57,9 @@ export class EstatePropertyExpertPriceEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
   dataModel: EstatePropertyExpertPriceModel = new EstatePropertyExpertPriceModel();
-  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   fileManagerOpenForm = false;
@@ -97,7 +97,7 @@ export class EstatePropertyExpertPriceEditComponent implements OnInit {
     this.loading.Start(pName);
 
     this.estatePropertyExpertPriceService.setAccessLoad();
-    this.estatePropertyExpertPriceService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estatePropertyExpertPriceService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estatePropertyExpertPriceService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

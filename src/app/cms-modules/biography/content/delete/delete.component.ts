@@ -12,9 +12,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   BiographyContentModel,
   BiographyContentService,
-  DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -64,7 +63,7 @@ export class BiographyContentDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.biographyContentService.setAccessLoad();
-    this.biographyContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.biographyContentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.biographyContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

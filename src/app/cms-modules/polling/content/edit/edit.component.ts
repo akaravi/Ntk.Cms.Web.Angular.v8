@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult, FilterDataModel, FilterModel,
-  FormInfoModel, PollingCategoryModel, PollingContentModel,
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, PollingCategoryModel, PollingContentModel,
   PollingContentService, PollingOptionModel,
   PollingOptionService
 } from 'ntk-cms-api';
@@ -52,7 +52,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelResult: ErrorExceptionResult<PollingContentModel> = new ErrorExceptionResult<PollingContentModel>();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionSelected: PollingOptionModel = new PollingOptionModel();
   optionDataModel = new Array<PollingOptionModel>();
   optionTabledataSource = new MatTableDataSource<PollingOptionModel>();
@@ -136,7 +136,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
 
     /*َAccess Field*/
     this.pollingContentService.setAccessLoad();
-    this.pollingContentService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.pollingContentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.pollingContentService
       .ServiceGetOneById(this.requestId)
       .subscribe({

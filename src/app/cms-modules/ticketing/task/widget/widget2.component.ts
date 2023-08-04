@@ -1,7 +1,7 @@
 
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { EnumTicketStatus, FilterDataModel, FilterModel, TicketingTaskService } from 'ntk-cms-api';
+import { FilterDataModel, FilterModel, TicketingTaskService, TicketStatusEnum } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -78,12 +78,12 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     const filterStatist1 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter = new FilterDataModel();
     fastfilter.propertyName = 'ticketStatus';
-    fastfilter.value = EnumTicketStatus.Read;
+    fastfilter.value = TicketStatusEnum.Read;
     filterStatist1.filters.push(fastfilter);
     this.service.ServiceGetCount(filterStatist1).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.widgetInfoModel.set(new WidgetContentInfoModel('Read', 1, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + EnumTicketStatus.Read));
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Read', 1, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + TicketStatusEnum.Read));
         }
         this.loading.Stop(this.constructor.name + 'Read');
       }
@@ -96,12 +96,12 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter2 = new FilterDataModel();
     fastfilter2.propertyName = 'ticketStatus';
-    fastfilter2.value = EnumTicketStatus.Unread;
+    fastfilter2.value = TicketStatusEnum.Unread;
     filterStatist2.filters.push(fastfilter2);
     this.service.ServiceGetCount(filterStatist2).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.widgetInfoModel.set(new WidgetContentInfoModel('Unread', 0, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + EnumTicketStatus.Unread));
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Unread', 0, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + TicketStatusEnum.Unread));
         }
         this.loading.Stop(this.constructor.name + 'Unread');
       }
@@ -114,12 +114,12 @@ export class TicketingTaskWidget2Component implements OnInit, OnDestroy {
     const filterStatist3 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastfilter3 = new FilterDataModel();
     fastfilter3.propertyName = 'ticketStatus';
-    fastfilter3.value = EnumTicketStatus.Answered;
+    fastfilter3.value = TicketStatusEnum.Answered;
     filterStatist3.filters.push(fastfilter3);
     this.service.ServiceGetCount(filterStatist3).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
-          this.widgetInfoModel.set(new WidgetContentInfoModel('Answered', 2, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + EnumTicketStatus.Answered));
+          this.widgetInfoModel.set(new WidgetContentInfoModel('Answered', 2, ret.totalRowCount, '/ticketing/task/listTicketStatus/' + TicketStatusEnum.Answered));
         }
         this.loading.Stop(this.constructor.name + 'Answered');
       }

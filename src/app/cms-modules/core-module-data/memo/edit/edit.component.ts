@@ -5,12 +5,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleDataMemoModel, CoreModuleDataMemoService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreModuleDataMemoModel, CoreModuleDataMemoService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -96,7 +95,7 @@ export class CoreModuleDataMemoEditComponent implements OnInit, OnDestroy {
 
     /*َAccess Field*/
     this.coreModuleDataMemoService.setAccessLoad();
-    this.coreModuleDataMemoService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleDataMemoService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleDataMemoService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

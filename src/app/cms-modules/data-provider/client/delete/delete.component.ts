@@ -11,9 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DataProviderClientModel,
-  DataProviderClientService,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  DataProviderClientService, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -65,7 +64,7 @@ export class DataProviderClientDeleteComponent implements OnInit {
     this.loading.Start(pName);
 
     this.dataProviderClientService.setAccessLoad();
-    this.dataProviderClientService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.dataProviderClientService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.dataProviderClientService
       .ServiceGetOneById(this.requestId)
       .subscribe({

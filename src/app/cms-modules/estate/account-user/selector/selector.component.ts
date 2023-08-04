@@ -3,14 +3,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel,
-  EstateAccountUserService, FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel,
+  EstateAccountUserService, FilterDataModel, FilterDataModelSearchTypesEnum
 } from 'ntk-cms-api';
-import { Observable, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -88,15 +84,15 @@ export class EstateAccountUserSelectorComponent implements OnInit {
     if (typeof text === 'string' && text.length > 0) {
       filter.propertyName = 'Title';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
       /* */
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
     /* */
@@ -104,8 +100,8 @@ export class EstateAccountUserSelectorComponent implements OnInit {
       filter = new FilterDataModel();
       filter.propertyName = 'LinkCmsUserId';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterModel.filters.push(filter);
     }
 
@@ -172,7 +168,7 @@ export class EstateAccountUserSelectorComponent implements OnInit {
       const filter = new FilterDataModel();
       filter.propertyName = 'LinkCmsUserId';
       filter.value = id;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
       filterModel.filters.push(filter);
 
       this.categoryService.ServiceGetAll(filterModel).subscribe({

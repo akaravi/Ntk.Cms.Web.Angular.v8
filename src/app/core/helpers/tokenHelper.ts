@@ -2,15 +2,12 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   CoreAuthService,
-  EnumDeviceType,
-  EnumManageUserAccessUserTypes,
-  EnumOperatingSystemType,
-  NtkCmsApiStoreService,
-  SET_TOKEN_INFO,
+  DeviceTypeEnum,
+  ManageUserAccessUserTypesEnum, NtkCmsApiStoreService, OperatingSystemTypeEnum, SET_TOKEN_INFO,
   TokenDeviceClientInfoDtoModel,
   TokenInfoModel
 } from 'ntk-cms-api';
-import { Observable, Subscription, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable, Subscription } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
@@ -90,11 +87,11 @@ export class TokenHelper implements OnDestroy {
     this.coreAuthService.CurrentTokenInfoRenew();
   }
   CheckIsAdmin(): boolean {
-    if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminCpSite
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.AdminMainCms
+    if (this.tokenInfo.userAccessUserType === ManageUserAccessUserTypesEnum.AdminCpSite
+      || this.tokenInfo.userAccessUserType === ManageUserAccessUserTypesEnum.AdminMainCms
 
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+      || this.tokenInfo.userAccessUserType === ManageUserAccessUserTypesEnum.SupportCpSite
+      || this.tokenInfo.userAccessUserType === ManageUserAccessUserTypesEnum.SupportMainCms
     ) {
       this.isAdminSite = true;
       return true;
@@ -103,8 +100,8 @@ export class TokenHelper implements OnDestroy {
     return false;
   }
   CheckIsSupport(): boolean {
-    if (this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportCpSite
-      || this.tokenInfo.userAccessUserType === EnumManageUserAccessUserTypes.SupportMainCms
+    if (this.tokenInfo.userAccessUserType === ManageUserAccessUserTypesEnum.SupportCpSite
+      || this.tokenInfo.userAccessUserType === ManageUserAccessUserTypesEnum.SupportMainCms
     ) {
       this.isSupportSite = true;
       return true;
@@ -118,8 +115,8 @@ export class TokenHelper implements OnDestroy {
       const model: TokenDeviceClientInfoDtoModel = {
         securityKey: environment.cmsTokenConfig.SecurityKey,
         clientMACAddress: '',
-        oSType: EnumOperatingSystemType.none,
-        deviceType: EnumDeviceType.WebSite,
+        oSType: OperatingSystemTypeEnum.none,
+        deviceType: DeviceTypeEnum.WebSite,
         packageName: '',
         appBuildVer: 0,
         appSourceVer: '',

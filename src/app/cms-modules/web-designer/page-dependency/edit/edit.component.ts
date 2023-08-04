@@ -6,8 +6,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleModel, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, WebDesignerMainPageDependencyModel, WebDesignerMainPageDependencyService
+  CoreEnumService, CoreModuleModel, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerMainPageDependencyModel, WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -46,7 +46,7 @@ export class WebDesignerMainPageDependencyEditComponent implements OnInit {
     = new ErrorExceptionResult<WebDesignerMainPageDependencyModel>();
   dataModel: WebDesignerMainPageDependencyModel = new WebDesignerMainPageDependencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   ngOnInit(): void {
     if (this.requestId.length > 0) {
@@ -68,7 +68,7 @@ export class WebDesignerMainPageDependencyEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.webDesignerMainPageDependencyService.setAccessLoad();
-    this.webDesignerMainPageDependencyService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.webDesignerMainPageDependencyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.webDesignerMainPageDependencyService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);

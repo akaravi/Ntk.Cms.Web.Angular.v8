@@ -8,9 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogReportAbuseModel, CoreModuleLogReportAbuseService, DataFieldInfoModel,
-  EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel, TokenInfoModel
+  CoreEnumService, CoreModuleLogReportAbuseModel, CoreModuleLogReportAbuseService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -96,7 +95,7 @@ export class CoreModuleLogReportAbuseEditComponent implements OnInit, OnDestroy 
 
     /*َAccess Field*/
     this.coreModuleLogReportAbuseService.setAccessLoad();
-    this.coreModuleLogReportAbuseService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleLogReportAbuseService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleLogReportAbuseService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

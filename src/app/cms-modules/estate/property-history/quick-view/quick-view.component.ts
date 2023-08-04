@@ -9,9 +9,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, EnumInputDataType, EnumManageUserAccessDataTypes, ErrorExceptionResult, EstateContractModel, EstateContractTypeModel,
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateContractModel, EstateContractTypeModel,
   EstatePropertyHistoryModel,
-  EstatePropertyHistoryService, FormInfoModel, TokenInfoModel
+  EstatePropertyHistoryService, FormInfoModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -59,7 +59,7 @@ export class EstatePropertyHistoryQuickViewComponent implements OnInit, OnDestro
   optionTabledisplayedColumns = ['LinkEstateContractTypeId', 'Price'];// 'SalePrice', 'DepositPrice', 'RentPrice', 'PeriodPrice'];
   fileManagerOpenForm = false;
   errorMessage: string = '';
-  enumInputDataType = EnumInputDataType;
+  enumInputDataType = InputDataTypeEnum;
 
 
   cmsApiStoreSubscribe: Subscription;
@@ -93,7 +93,7 @@ export class EstatePropertyHistoryQuickViewComponent implements OnInit, OnDestro
 
     /*َAccess Field*/
     this.estatePropertyHistoryService.setAccessLoad();
-    this.estatePropertyHistoryService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.estatePropertyHistoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estatePropertyHistoryService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         /*َAccess Field*/

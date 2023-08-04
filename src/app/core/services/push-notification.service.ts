@@ -18,6 +18,7 @@ export class PushNotificationsService {
       });
     }
   }
+
   create(title: string, options?: PushNotification): any {
     let self = this;
     return new Observable(function (obs) {

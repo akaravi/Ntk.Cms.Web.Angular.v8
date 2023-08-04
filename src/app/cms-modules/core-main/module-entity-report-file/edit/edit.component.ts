@@ -7,8 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleEntityModel, CoreModuleEntityReportFileModel, CoreModuleEntityReportFileService, DataFieldInfoModel, EnumInfoModel, EnumManageUserAccessDataTypes, ErrorExceptionResult,
-  FormInfoModel
+  CoreEnumService, CoreModuleEntityModel, CoreModuleEntityReportFileModel, CoreModuleEntityReportFileService, DataFieldInfoModel, ErrorExceptionResult,
+  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -53,9 +53,9 @@ export class CoreModuleEntityReportFileEditComponent implements OnInit {
   loading = new ProgressSpinnerModel();
   dataModelResult: ErrorExceptionResult<CoreModuleEntityReportFileModel> = new ErrorExceptionResult<CoreModuleEntityReportFileModel>();
   dataModel: CoreModuleEntityReportFileModel = new CoreModuleEntityReportFileModel();
-  dataModelReportFileTypeEnumResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelReportFileTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<EnumInfoModel> = new ErrorExceptionResult<EnumInfoModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   fileManagerOpenForm = false;
   fileManagerOpenFormReport = false;
@@ -92,7 +92,7 @@ export class CoreModuleEntityReportFileEditComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.coreModuleEntityReportFileService.setAccessLoad();
-    this.coreModuleEntityReportFileService.setAccessDataType(EnumManageUserAccessDataTypes.Editor);
+    this.coreModuleEntityReportFileService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.coreModuleEntityReportFileService.ServiceGetOneById(this.requestId).subscribe({
       next: (ret) => {
         this.dataModel = ret.item;

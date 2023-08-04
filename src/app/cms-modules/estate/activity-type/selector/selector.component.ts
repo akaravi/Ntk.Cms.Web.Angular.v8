@@ -3,14 +3,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, O
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService,
-  EnumClauseType,
-  EnumFilterDataModelSearchTypes,
-  ErrorExceptionResult, EstateActivityTypeModel,
-  EstateActivityTypeService, FilterDataModel,
-  FilterModel
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstateActivityTypeModel,
+  EstateActivityTypeService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
-import { Observable, Subscription, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -99,15 +95,15 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
     if (text && text.length > 0) {
       filter.propertyName = 'Title';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Contains;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Contains;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterChild.filters.push(filter);
 
       filter = new FilterDataModel();
       filter.propertyName = 'Id';
       filter.value = text;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.Or;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.Or;
       filterChild.filters.push(filter);
       filterModel.filters.push(filterChild);
     }
@@ -117,8 +113,8 @@ export class EstateActivityTypeSelectorComponent implements OnInit, OnDestroy {
       filter.propertyName = 'PropertyTypes';
       filter.propertyAnyName = 'LinkPropertyTypeUsageId';
       filter.value = this.typeUsageId;
-      filter.searchType = EnumFilterDataModelSearchTypes.Equal;
-      filter.clauseType = EnumClauseType.And;
+      filter.searchType = FilterDataModelSearchTypesEnum.Equal;
+      filter.clauseType = ClauseTypeEnum.And;
       filterModel.filters.push(filter);
     }
 
