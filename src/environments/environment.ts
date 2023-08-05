@@ -3,11 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 import { DeviceTypeEnum, OperatingSystemTypeEnum } from 'ntk-cms-api';
+declare var require: any;
 
 export const environment = {
   production: false,
   checkAccess: false,
-  appVersion: '15.1.0000.0',
+  appVersion: require('../../package.json').version,
+  appName: require('../../package.json').name,
   authKey: 'authf649fc9a5f55',
   loadDemoTheme: false,
   ProgressConsoleLog: false,
@@ -15,12 +17,12 @@ export const environment = {
   mainTitle: 'سامانه مدیریتی محتوا',
   cmsServerConfig: {
     configApiRetry: 1,
-    configApiServerPath: 'https://apicms.ir/api/v2/',
-    //configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
+    //configApiServerPath: 'https://apicms.ir/api/v2/',
+    configApiServerPath: 'https://localhost:2390/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:7130/api/v2/', // Test Api
     //configApiServerPath: 'https://localhost:44342/api/v2/', // Test Api Docer
-    configHubServerPath: 'https://apicms.ir/hub/',
-    //configHubServerPath: 'https://localhost:2390/hub/',
+    //configHubServerPath: 'https://apicms.ir/hub/',
+    configHubServerPath: 'https://localhost:2390/hub/',
     configMvcServerPath: 'https://ntkcms.ir/',
     //configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
     configHtmlBuilderServerPath: 'http://localhost:5000/',
@@ -39,20 +41,16 @@ export const environment = {
   cmsViewConfig: {
     tableRowMouseEnter: true
   },
-  // appVersion: 'v8.1.7',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
   apiUrl: 'api',
   appThemeName: 'Metronic',
   appPurchaseUrl: 'https://1.envato.market/EA4JP',
-  appHTMLIntegration:
-    'https://preview.keenthemes.com/metronic8/demo6/documentation/base/helpers/flex-layouts.html',
+  appHTMLIntegration: 'https://preview.keenthemes.com/metronic8/demo6/documentation/base/helpers/flex-layouts.html',
   appPreviewUrl: 'https://preview.keenthemes.com/metronic8/angular/demo6/',
-  appPreviewAngularUrl:
-    'https://preview.keenthemes.com/metronic8/angular/demo6',
+  appPreviewAngularUrl: 'https://preview.keenthemes.com/metronic8/angular/demo6',
   appPreviewDocsUrl: 'https://preview.keenthemes.com/metronic8/angular/docs',
-  appPreviewChangelogUrl:
-    'https://preview.keenthemes.com/metronic8/angular/docs/changelog',
+  appPreviewChangelogUrl: 'https://preview.keenthemes.com/metronic8/angular/docs/changelog',
   appDemos: {
     demo1: {
       title: 'Demo 1',

@@ -8,7 +8,6 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { firstValueFrom, Observable, Subscription } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -117,9 +116,9 @@ export class TokenHelper implements OnDestroy {
         clientMACAddress: '',
         oSType: OperatingSystemTypeEnum.none,
         deviceType: DeviceTypeEnum.WebSite,
-        packageName: '',
+        packageName: environment.appName,
         appBuildVer: 0,
-        appSourceVer: '',
+        appSourceVer: environment.appVersion,
         country: '',
         deviceBrand: '',
         language: this.translationService.getSelectedLanguage(),
@@ -127,7 +126,6 @@ export class TokenHelper implements OnDestroy {
         locationLong: '',
         simCard: '',
         notificationId: ''
-
       };
       this.translationService.setLanguage(this.translationService.getSelectedLanguage());
       this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
