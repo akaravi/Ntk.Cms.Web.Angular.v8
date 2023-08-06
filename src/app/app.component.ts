@@ -7,18 +7,18 @@ import {
 //start change title when route happened
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, Subscription } from 'rxjs';
+import { Subscription, filter, map } from 'rxjs';
 //end change title when route happened
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SwPush } from '@angular/service-worker';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, ErrorExceptionResult } from 'ntk-cms-api';
+import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, ErrorExceptionResult, TokenDeviceSetNotificationIdDtoModel } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
+import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { CmsSignalrService } from './core/services/cmsSignalr.service';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
-import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -91,7 +91,6 @@ export class AppComponent implements OnInit {
       });
     }
 
-    //this.subscribeToNotifications();
   }
   cmsApiStoreSubscribe: Subscription;
   dataSupportModelResult: ErrorExceptionResult<CoreSiteSupportModel>;
@@ -123,20 +122,38 @@ export class AppComponent implements OnInit {
     }
     this.tokenHelper.getDeviceToken();
     this.publicHelper.getEnumRecordStatus();
+    this.coreAuthService.ServiceCurrentDeviceToken().subscribe({
+      next: (ret) => {
+        if (ret.isSuccess && ret.item.notificationFCMPublicKey.length > 0)
+          this.subscribeToNotifications();
+      },
+      error: (er) => {
+
+      }
+    });
+
   }
   subscribeToNotifications() {
-    this.httpClient.get(`${environment.cmsServerConfig.configApiServerPath}/backgroundPush/subscriptions/key`, { responseType: 'text' })
-      .subscribe(publicKey => {
-        this.swPush.requestSubscription({
-          serverPublicKey: this.VAPID_PUBLIC_KEY
-        })
-          .then(sub => {
-            //this.newsletterService.addPushSubscriber(sub).subscribe()
-            console.log('ooooooooooooooook')
-          })
-          .catch(err => console.error("Could not subscribe to notifications", err));
-      });
+
+    this.swPush.requestSubscription({ serverPublicKey: this.VAPID_PUBLIC_KEY })
+      .then(sub => {
+        var model = new TokenDeviceSetNotificationIdDtoModel();
+        this.pushSubscription = sub;
+        model.notificationId = sub.getKey + "",
+          model.ClientMACAddress = ''
+        this.coreAuthService.ServiceSetTokenDeviceNotificationId(model).subscribe({
+          next: (ret) => {
+
+          },
+          error: (er) => {
+
+          }
+        });
+      })
+      .catch(err => console.error("Could not subscribe to notifications", err));
+
   }
+  pushSubscription: PushSubscription;
   getSupport() {
     this.coreSiteService.ServiceSupportSite()
       .subscribe({

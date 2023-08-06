@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import {
   CoreAuthService,
   DeviceTypeEnum,
-  ManageUserAccessUserTypesEnum, NtkCmsApiStoreService, OperatingSystemTypeEnum, SET_TOKEN_INFO,
+  ManageUserAccessUserTypesEnum, NtkCmsApiStoreService, OperatingSystemTypeEnum, SET_DEVICE_TOKEN_INFO, SET_TOKEN_INFO,
   TokenDeviceClientInfoDtoModel,
+  TokenDeviceModel,
   TokenInfoModel
 } from 'ntk-cms-api';
-import { firstValueFrom, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TranslationService } from '../i18n/translation.service';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -27,6 +28,7 @@ export class TokenHelper implements OnDestroy {
   }
 
   tokenInfo: TokenInfoModel = new TokenInfoModel();
+  deviceTokenInfo: TokenDeviceModel = new TokenDeviceModel();
   cmsApiStoreSubscribe: Subscription;
   isAdminSite = false;
   isSupportSite = false;
@@ -51,6 +53,20 @@ export class TokenHelper implements OnDestroy {
         if (this.tokenInfo)
           this.setDirectionThemeBylanguage(this.tokenInfo.language);
         this.CheckIsAdmin();
+        return ret.item;
+      });
+  }
+  async getCurrentDeviceToken(): Promise<TokenDeviceModel> {
+    const storeSnapshot = this.cmsApiStore.getStateSnapshot();
+    if (storeSnapshot?.ntkCmsAPiState?.deviceTokenInfo) {
+      this.deviceTokenInfo = storeSnapshot.ntkCmsAPiState.deviceTokenInfo;
+
+      return storeSnapshot.ntkCmsAPiState.deviceTokenInfo;
+    }
+    return await firstValueFrom(this.coreAuthService.ServiceCurrentDeviceToken())
+      .then((ret) => {
+        this.cmsApiStore.setState({ type: SET_DEVICE_TOKEN_INFO, payload: ret.item });
+        this.deviceTokenInfo = ret.item;
         return ret.item;
       });
   }
@@ -131,6 +147,7 @@ export class TokenHelper implements OnDestroy {
       this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
     }
   }
+
   CheckRouteByToken(): void {
     const storeSnapshot = this.cmsApiStore.getStateSnapshot();
     if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
