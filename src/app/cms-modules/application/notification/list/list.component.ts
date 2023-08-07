@@ -396,7 +396,10 @@ export class ApplicationLogNotificationListComponent implements OnInit, OnDestro
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationLogNotificationModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/application/app/']);

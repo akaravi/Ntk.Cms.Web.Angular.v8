@@ -354,6 +354,9 @@ export class ApiTelegramMemberInfoListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApiTelegramMemberInfoModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 }

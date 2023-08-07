@@ -61,7 +61,7 @@ export class TicketingTaskContactUsAddComponent implements OnInit {
   dataModel = new TicketingTaskDtoModel();
   dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';

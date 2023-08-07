@@ -43,7 +43,7 @@ export class ApplicationIntroEditComponent implements OnInit {
   dataModel = new ApplicationIntroModel();
   dataModelResult: ErrorExceptionResult<ApplicationIntroModel> = new ErrorExceptionResult<ApplicationIntroModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypeMainVideo = ['mp4'];
   fileManagerOpenForm = false;

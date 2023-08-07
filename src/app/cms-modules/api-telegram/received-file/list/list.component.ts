@@ -311,7 +311,10 @@ export class ApiTelegramReceivedFileListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApiTelegramReceivedFileModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

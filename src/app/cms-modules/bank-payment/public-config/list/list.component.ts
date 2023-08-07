@@ -390,6 +390,9 @@ export class BankPaymentPublicConfigListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: BankPaymentPublicConfigModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 }

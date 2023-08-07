@@ -459,7 +459,10 @@ export class BankPaymentPrivateSiteConfigListComponent implements OnInit, OnDest
     this.DataGetAll();
   }
   onActionTableRowSelect(row: BankPaymentPrivateSiteConfigModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/bankpayment/publicconfig/']);

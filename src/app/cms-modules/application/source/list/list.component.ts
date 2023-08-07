@@ -405,7 +405,10 @@ export class ApplicationSourceListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationSourceModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

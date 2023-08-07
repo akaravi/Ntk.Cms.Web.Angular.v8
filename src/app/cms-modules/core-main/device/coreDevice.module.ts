@@ -14,6 +14,7 @@ import { CoreDeviceSelectorComponent } from './selector/selector.component';
 import { CoreDeviceTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 
 
 
@@ -48,6 +49,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   providers: [
     CoreDeviceService,
     CoreModuleService,
+    CmsConfirmationDialogService,
   ]
 })
 export class CoreDeviceModule {

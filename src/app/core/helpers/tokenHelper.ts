@@ -124,29 +124,29 @@ export class TokenHelper implements OnDestroy {
     this.isSupportSite = false;
     return false;
   }
-  getDeviceToken(): void {
-    const DeviceToken = this.coreAuthService.getDeviceToken();
-    if (!DeviceToken || DeviceToken.length === 0) {
-      const model: TokenDeviceClientInfoDtoModel = {
-        securityKey: environment.cmsTokenConfig.SecurityKey,
-        clientMACAddress: '',
-        oSType: OperatingSystemTypeEnum.none,
-        deviceType: DeviceTypeEnum.WebSite,
-        packageName: environment.appName,
-        appBuildVer: 0,
-        appSourceVer: environment.appVersion,
-        country: '',
-        deviceBrand: '',
-        language: this.translationService.getSelectedLanguage(),
-        locationLat: '',
-        locationLong: '',
-        simCard: '',
-        notificationId: ''
-      };
-      this.translationService.setLanguage(this.translationService.getSelectedLanguage());
-      this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
-    }
-  }
+  // getDeviceToken(): void {
+  //   const DeviceToken = this.coreAuthService.getDeviceToken();
+  //   if (!DeviceToken || DeviceToken.length === 0) {
+  //     const model: TokenDeviceClientInfoDtoModel = {
+  //       securityKey: environment.cmsTokenConfig.SecurityKey,
+  //       clientMACAddress: '',
+  //       oSType: OperatingSystemTypeEnum.none,
+  //       deviceType: DeviceTypeEnum.WebSite,
+  //       packageName: environment.appName,
+  //       appBuildVer: 0,
+  //       appSourceVer: environment.appVersion,
+  //       country: '',
+  //       deviceBrand: '',
+  //       language: this.translationService.getSelectedLanguage(),
+  //       locationLat: '',
+  //       locationLong: '',
+  //       simCard: '',
+  //       notificationId: ''
+  //     };
+  //     this.translationService.setLanguage(this.translationService.getSelectedLanguage());
+  //     this.coreAuthService.ServiceGetTokenDevice(model).toPromise();
+  //   }
+  // }
 
   CheckRouteByToken(): void {
     const storeSnapshot = this.cmsApiStore.getStateSnapshot();

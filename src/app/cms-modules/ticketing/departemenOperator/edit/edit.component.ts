@@ -45,7 +45,7 @@ export class TicketingDepartemenOperatorEditComponent implements OnInit {
   dataModel = new TicketingDepartemenOperatorModel();
   dataModelResult: ErrorExceptionResult<TicketingDepartemenOperatorModel> = new ErrorExceptionResult<TicketingDepartemenOperatorModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';

@@ -358,7 +358,10 @@ export class ApiTelegramUploadedFileListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApiTelegramUploadedFileModel): void {
-    this.onActionTableRowSelect(row);
+    this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

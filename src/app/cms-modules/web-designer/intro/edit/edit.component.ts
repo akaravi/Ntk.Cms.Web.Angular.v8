@@ -43,7 +43,7 @@ export class WebDesignerMainIntroEditComponent implements OnInit {
   dataModel = new WebDesignerMainIntroModel();
   dataModelResult: ErrorExceptionResult<WebDesignerMainIntroModel> = new ErrorExceptionResult<WebDesignerMainIntroModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   selectFileTypeMainVideo = ['mp4'];
   fileManagerOpenForm = false;

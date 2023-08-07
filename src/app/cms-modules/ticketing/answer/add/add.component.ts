@@ -53,7 +53,7 @@ export class TicketingAnswerAddComponent implements OnInit {
   dataModel = new TicketingAnswerModel();
   dataModelResult: ErrorExceptionResult<TicketingAnswerModel> = new ErrorExceptionResult<TicketingAnswerModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
-  dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerOpenForm = false;
   appLanguage = 'fa';

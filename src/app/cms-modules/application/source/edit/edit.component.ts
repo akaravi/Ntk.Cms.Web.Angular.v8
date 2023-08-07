@@ -78,7 +78,7 @@ export class ApplicationSourceEditComponent implements OnInit {
     this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   getEnumOsType(): void {
-    this.applicationEnumService.ServiceOSTypeEnum().subscribe((res) => {
+    this.coreEnumService.ServiceOperatingSystemTypeEnum().subscribe((res) => {
       this.dataModelEnumOsTypeResult = res;
     });
   }
