@@ -165,7 +165,7 @@ export class AppComponent implements OnInit {
       const model: TokenDeviceClientInfoDtoModel = {
         securityKey: environment.cmsTokenConfig.SecurityKey,
         clientMACAddress: '',
-        oSType: OperatingSystemTypeEnum.none,
+        osType: OperatingSystemTypeEnum.none,
         deviceType: DeviceTypeEnum.WebSite,
         packageName: environment.appName,
         appBuildVer: 0,

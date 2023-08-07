@@ -84,7 +84,7 @@ export class CoreDeviceListComponent implements OnInit, OnDestroy {
     'Id',
     'LinkSiteId',
     'RecordStatus',
-    'OSType',
+    'osType',
     'DeviceType',
     'PackageName',
     'LinkApplicationId',

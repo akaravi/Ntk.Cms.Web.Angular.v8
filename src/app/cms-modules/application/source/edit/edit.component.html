@@ -56,12 +56,12 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- oSType Field -->
-        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['oSType']?.accessWatchField">
-          <mat-label>{{fieldsInfo['oSType']?.fieldTitle}}</mat-label>
-          <mat-select placeholder="{{fieldsInfo['oSType']?.fieldTitle}}" [(ngModel)]="dataModel.oSType"
-            [disabled]="!fieldsInfo['oSType']?.accessEditField" name="dataModel.oSType" #oSType="ngModel"
-            panelClass="oSType-{{ dataModel.oSType }}" required>
+        <!-- osType Field -->
+        <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['osType']?.accessWatchField">
+          <mat-label>{{fieldsInfo['osType']?.fieldTitle}}</mat-label>
+          <mat-select placeholder="{{fieldsInfo['osType']?.fieldTitle}}" [(ngModel)]="dataModel.osType"
+            [disabled]="!fieldsInfo['osType']?.accessEditField" name="dataModel.osType" #osType="ngModel"
+            panelClass="osType-{{ dataModel.osType }}" required>
             <mat-option *ngFor="
                       let item of dataModelEnumOsTypeResult.listItems;
                       index as i
@@ -69,10 +69,10 @@
           </mat-select>
           <mat-hint align="start">
             <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-            <strong class="info-field-text">{{fieldsInfo['oSType']?.fieldDescription}}</strong>
+            <strong class="info-field-text">{{fieldsInfo['osType']?.fieldDescription}}</strong>
           </mat-hint>
-          <mat-error *ngIf="oSType.errors?.required">
-            {{ fieldsInfo['oSType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
+          <mat-error *ngIf="osType.errors?.required">
+            {{ fieldsInfo['osType']?.fieldTitle }} is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
         <!-- ClassName Field -->

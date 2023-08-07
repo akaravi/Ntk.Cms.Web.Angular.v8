@@ -29,7 +29,7 @@ export const environment = {
   cmsTokenConfig: {
     SecurityKey: '123456789',
     ClientMACAddress: '',
-    OSType: OperatingSystemTypeEnum.Windows,
+    osType: OperatingSystemTypeEnum.Windows,
     DeviceType: DeviceTypeEnum.WebSite,
     PackageName: '',
   },
