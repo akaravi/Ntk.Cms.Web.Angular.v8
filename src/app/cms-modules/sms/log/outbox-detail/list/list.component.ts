@@ -379,7 +379,6 @@ export class SmsLogOutBoxDetailListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: SmsLogOutBoxDetailModel): void {
     this.tableRowSelected = row;
-
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]

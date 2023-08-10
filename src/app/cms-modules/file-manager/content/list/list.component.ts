@@ -7,11 +7,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult, FileCategoryModel,
+  DataFieldInfoModel, ErrorExceptionResult, FileCategoryModel,
   FileContentModel,
   FileContentService, FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -337,6 +336,9 @@ export class FileContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: FileContentModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onClickDownload(row: FileContentModel): void {
     this.router.navigate(['/file/comment/']);

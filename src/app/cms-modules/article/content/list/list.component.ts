@@ -403,11 +403,10 @@ export class ArticleContentListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ArticleContentModel): void {
-    this.onActionTableRowSelect(row);
-
+    this.tableRowSelected = row;
     if (!row["expanded"])
       row["expanded"] = false;
-    row["expanded"] = !row["expanded"]
+    row["expanded"] = !row["expanded"];
   }
   onActionTableRowMouseEnter(row: ArticleContentModel): void {
     this.onActionTableRowSelect(row);

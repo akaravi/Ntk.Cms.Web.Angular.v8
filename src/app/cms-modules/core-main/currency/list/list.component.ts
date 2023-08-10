@@ -391,6 +391,9 @@ export class CoreCurrencyListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreCurrencyModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

@@ -189,6 +189,9 @@ export class CoreModuleSaleSerialCheckListComponent implements OnInit, OnDestroy
 
   onActionTableRowSelect(row: CoreModuleSaleInvoiceDetailModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/modulesale/serial']);

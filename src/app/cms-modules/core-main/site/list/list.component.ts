@@ -487,6 +487,9 @@ export class CoreSiteListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreSiteModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParentUserList(): void {
     this.router.navigate(['/core/user/']);

@@ -380,6 +380,9 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstateContractTypeModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

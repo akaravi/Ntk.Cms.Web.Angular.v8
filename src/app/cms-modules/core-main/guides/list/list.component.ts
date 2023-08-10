@@ -423,6 +423,9 @@ export class CoreGuideListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreGuideModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

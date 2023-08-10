@@ -8,10 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DonateTransactionModel,
-  DonateTransactionService, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DonateTransactionService, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -308,5 +307,8 @@ export class DonateTransactionListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DonateTransactionModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 }

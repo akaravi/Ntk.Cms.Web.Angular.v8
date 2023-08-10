@@ -455,6 +455,9 @@ export class CoreTokenNotificationLogListComponent implements OnInit, OnDestroy 
   }
   onActionTableRowSelect(row: CoreTokenNotificationLogModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);

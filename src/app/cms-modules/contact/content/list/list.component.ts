@@ -373,6 +373,9 @@ export class ContactContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: ContactContentModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionSelectorSelect(model: ContactCategoryModel | null): void {
     /*filter */

@@ -517,6 +517,9 @@ export class SmsLogOutBoxQueueListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: SmsLogOutBoxQueueModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     // this.router.navigate(['/sms/main/api-path-company']);

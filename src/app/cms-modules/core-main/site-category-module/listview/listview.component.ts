@@ -157,6 +157,9 @@ export class CoreSiteCategoryCmsModuleListViewComponent implements OnInit, OnDes
 
   onActionTableRowSelect(row: CoreSiteCategoryCmsModuleModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

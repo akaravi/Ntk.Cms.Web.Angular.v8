@@ -8,10 +8,9 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DonateSponsorModel,
-  DonateSponsorService, DonateTargetCategoryModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DonateSponsorService, DonateTargetCategoryModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -369,6 +368,9 @@ export class DonateSponserListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DonateSponsorModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
   onActionbuttonTargetPeriodSponserRow(model: DonateSponsorModel = this.tableRowSelected): void {

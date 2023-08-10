@@ -10,13 +10,10 @@ import {
   ApplicationAppModel,
   ApplicationMemberInfoModel,
   ApplicationMemberInfoService,
-  DataFieldInfoModel,
-  RecordStatusEnum,
-  SortTypeEnum,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel,
-  TokenInfoModel
+  FilterModel, RecordStatusEnum,
+  SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -437,11 +434,10 @@ export class ApplicationMemberInfoListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: ApplicationMemberInfoModel): void {
-    this.onActionTableRowSelect(row);
-
+    this.tableRowSelected = row;
     if (!row["expanded"])
       row["expanded"] = false;
-    row["expanded"] = !row["expanded"]
+    row["expanded"] = !row["expanded"];
   }
   onActionTableRowMouseEnter(row: ApplicationMemberInfoModel): void {
     this.onActionTableRowSelect(row);

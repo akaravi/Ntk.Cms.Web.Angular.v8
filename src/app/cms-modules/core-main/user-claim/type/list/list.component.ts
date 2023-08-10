@@ -430,6 +430,9 @@ export class CoreUserClaimTypeListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreUserClaimTypeModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

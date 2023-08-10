@@ -452,6 +452,9 @@ export class MemberPropertyDetailListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: MemberPropertyDetailModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   // onActionBackToParent(): void {
   //   this.router.navigate(['/estate/property-type-landuse/']);

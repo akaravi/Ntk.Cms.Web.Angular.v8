@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreModuleModel,
-  CoreModuleService, CoreModuleSiteCreditModel, CoreModuleSiteCreditService, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum, ErrorExceptionResult, FilterDataModel, FilterModel, TokenInfoModel
+  CoreModuleService, CoreModuleSiteCreditModel, CoreModuleSiteCreditService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -379,6 +379,9 @@ export class CoreModuleSiteCreditListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreModuleSiteCreditModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

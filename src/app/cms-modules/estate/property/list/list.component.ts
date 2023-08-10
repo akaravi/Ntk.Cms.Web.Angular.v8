@@ -1033,32 +1033,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  // onActionTableRowSelect(row: EstatePropertyModel): void {
-  //   this.tableRowSelected = row;
-  //   this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, row.viewContentHidden, '', row.urlViewContent));
-  //   row["expanded"] = true;
-  // }
-  // onActionTableRowMouseClick(row: EstatePropertyModel): void {
-  //   if (this.tableRowSelected.id === row.id) {
-  //     row["expanded"] = false;
-  //     this.onActionTableRowSelect(new EstatePropertyModel());
-  //     this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
-  //   } else {
-  //     this.onActionTableRowSelect(row);
-  //     row["expanded"] = true;
-  //   }
-  // }
-  // onActionTableRowMouseEnter(row: EstatePropertyModel): void {
-  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
-  //     return;
-  //   row["expanded"] = true;
-  // }
-  // onActionTableRowMouseLeave(row: EstatePropertyModel): void {
-  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
-  //     return;
-  //   if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
-  //     row["expanded"] = false;
-  // }
+
   onActionBackToParent(): void {
     this.router.navigate(["/ticketing/departemen/"]);
   }

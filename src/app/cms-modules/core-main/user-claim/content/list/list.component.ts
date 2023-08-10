@@ -486,6 +486,9 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreUserClaimContentModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/userclaim/type/']);

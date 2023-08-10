@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreModuleTagCategoryModel, CoreModuleTagModel,
-  CoreModuleTagService, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum, ErrorExceptionResult, FilterDataModel, FilterModel, TokenInfoModel
+  CoreModuleTagService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -411,6 +411,9 @@ export class CoreModuleTagListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreModuleTagModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

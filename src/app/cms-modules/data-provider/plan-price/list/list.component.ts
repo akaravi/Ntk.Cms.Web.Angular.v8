@@ -8,10 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, DataProviderPlanPriceModel,
-  DataProviderPlanPriceService, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DataProviderPlanPriceService, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -365,6 +364,9 @@ export class DataProviderPlanPriceListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderPlanPriceModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/data-provider/plan/']);

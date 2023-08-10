@@ -7,13 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
   MemberPropertyAliasModel,
-  MemberPropertyAliasService,
-  TokenInfoModel
+  MemberPropertyAliasService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -339,7 +337,6 @@ export class MemberPropertyAliasListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: MemberPropertyAliasModel): void {
     this.tableRowSelected = row;
-
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]

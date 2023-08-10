@@ -416,6 +416,9 @@ export class CoreModuleSaleInvoiceListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreModuleSaleInvoiceModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

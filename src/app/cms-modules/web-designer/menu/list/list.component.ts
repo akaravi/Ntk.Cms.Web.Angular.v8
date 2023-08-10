@@ -384,5 +384,8 @@ export class WebDesignerMainMenuListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: WebDesignerMainMenuModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 }

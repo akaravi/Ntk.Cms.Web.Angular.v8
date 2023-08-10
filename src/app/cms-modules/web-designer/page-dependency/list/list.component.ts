@@ -443,5 +443,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   onActionTableRowSelect(row: WebDesignerMainPageDependencyModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 }

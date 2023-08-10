@@ -410,6 +410,9 @@ export class MemberPropertyDetailGroupListComponent implements OnInit, OnDestroy
   }
   onActionTableRowSelect(row: MemberPropertyDetailGroupModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

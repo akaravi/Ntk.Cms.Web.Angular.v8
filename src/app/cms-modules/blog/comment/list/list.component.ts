@@ -417,6 +417,9 @@ export class BlogCommentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: BlogCommentModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/blog/content/']);

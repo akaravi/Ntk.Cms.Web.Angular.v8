@@ -6,9 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-    CoreModuleModel, DataFieldInfoModel, SortTypeEnum,
-    ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, TokenInfoModel, WebDesignerMainPageTemplateModel,
-    WebDesignerMainPageTemplateService
+  CoreModuleModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel, WebDesignerMainPageTemplateModel,
+  WebDesignerMainPageTemplateService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -348,5 +347,8 @@ export class WebDesignerMainPageTemplateListComponent implements OnInit, OnDestr
   }
   onActionTableRowSelect(row: WebDesignerMainPageTemplateModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 }

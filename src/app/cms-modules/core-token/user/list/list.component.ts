@@ -478,6 +478,9 @@ export class CoreTokenUserListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: CoreTokenUserModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);

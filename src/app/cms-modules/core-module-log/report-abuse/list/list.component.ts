@@ -7,9 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleLogReportAbuseModel, CoreModuleLogReportAbuseService, CoreSiteModel, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  TokenInfoModel
+  CoreEnumService, CoreModuleLogReportAbuseModel, CoreModuleLogReportAbuseService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -459,6 +457,9 @@ export class CoreModuleLogReportAbuseListComponent implements OnInit, OnDestroy 
   }
   onActionTableRowSelect(row: CoreModuleLogReportAbuseModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/core/site/']);

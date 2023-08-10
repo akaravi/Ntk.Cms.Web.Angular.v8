@@ -504,6 +504,9 @@ export class ApiTelegramBotConfigListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: ApiTelegramBotConfigModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"];
   }
   onActionbuttonLinkTo(model: ApiTelegramBotConfigModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id === 0) {

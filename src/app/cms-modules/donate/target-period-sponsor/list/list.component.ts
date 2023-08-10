@@ -9,10 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel,
   DonateTargetCategoryModel, DonateTargetPeriodSponsorModel,
-  DonateTargetPeriodSponsorService, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DonateTargetPeriodSponsorService, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -401,6 +400,9 @@ export class DonateTargetPeriodSponserListComponent implements OnInit, OnDestroy
   }
   onActionTableRowSelect(row: DonateTargetPeriodSponsorModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

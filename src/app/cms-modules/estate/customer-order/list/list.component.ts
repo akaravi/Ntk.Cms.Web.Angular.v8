@@ -613,32 +613,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     this.filteModelContent.filters = model;
     this.DataGetAll();
   }
-  // onActionTableRowSelect(row: EstateCustomerOrderModel): void {
-  //   this.tableRowSelected = row;
-  //   this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', row.urlViewContent));
-  //   row["expanded"] = true;
-  // }
-  // onActionTableRowMouseClick(row: EstateCustomerOrderModel): void {
-  //   if (this.tableRowSelected.id === row.id) {
-  //     row["expanded"] = false;
-  //     this.onActionTableRowSelect(new EstateCustomerOrderModel());
-  //     this.pageInfo.updateContentInfo(new ContentInfoModel('', '', false, '', ''));
-  //   } else {
-  //     this.onActionTableRowSelect(row);
-  //     row["expanded"] = true;
-  //   }
-  // }
-  // onActionTableRowMouseEnter(row: EstateCustomerOrderModel): void {
-  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
-  //     return;
-  //   row["expanded"] = true;
-  // }
-  // onActionTableRowMouseLeave(row: EstateCustomerOrderModel): void {
-  //   if (!environment.cmsViewConfig.tableRowMouseEnter)
-  //     return;
-  //   if (!this.tableRowSelected || this.tableRowSelected.id !== row.id)
-  //     row["expanded"] = false;
-  // }
+
   onActionbuttonLinkTo(
     model: EstateCustomerOrderModel = this.tableRowSelected
   ): void {

@@ -389,6 +389,9 @@ export class EstateAdsTypeListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstateAdsTypeModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

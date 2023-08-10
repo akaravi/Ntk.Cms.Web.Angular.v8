@@ -398,6 +398,9 @@ export class PollingVoteListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: PollingVoteModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/polling/content/']);

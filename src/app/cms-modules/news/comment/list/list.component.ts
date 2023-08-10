@@ -8,10 +8,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, RecordStatusEnum,
-  SortTypeEnum,
-  ErrorExceptionResult, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, NewsCommentModel,
-  NewsCommentService, NewsContentService, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, NewsCommentModel,
+  NewsCommentService, NewsContentService, RecordStatusEnum,
+  SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -405,6 +404,9 @@ export class NewsCommentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: NewsCommentModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/news/content/']);

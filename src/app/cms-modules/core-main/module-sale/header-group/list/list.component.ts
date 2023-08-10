@@ -446,6 +446,9 @@ export class CoreModuleSaleHeaderGroupListComponent implements OnInit, OnDestroy
   }
   onActionTableRowSelect(row: CoreModuleSaleHeaderGroupModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

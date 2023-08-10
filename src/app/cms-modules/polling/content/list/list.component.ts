@@ -342,7 +342,6 @@ export class PollingContentListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: PollingContentModel): void {
     this.tableRowSelected = row;
-
     if (!row["expanded"])
       row["expanded"] = false;
     row["expanded"] = !row["expanded"]

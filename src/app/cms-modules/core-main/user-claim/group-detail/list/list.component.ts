@@ -9,9 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreUserClaimGroupDetailModel,
   CoreUserClaimGroupDetailService, CoreUserClaimGroupModel,
-  CoreUserClaimGroupService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  TokenInfoModel
+  CoreUserClaimGroupService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -432,6 +430,9 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
   }
   onActionTableRowSelect(row: CoreUserClaimGroupDetailModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParentType(): void {
     this.router.navigate(['/core/userclaim/type/']);

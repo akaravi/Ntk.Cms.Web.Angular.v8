@@ -7,9 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-    DataFieldInfoModel, SortTypeEnum,
-    ErrorExceptionResult, EstateAccountAgencyUserModel,
-    EstateAccountAgencyUserService, FilterDataModel, FilterModel, RecordStatusEnum, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyUserModel,
+  EstateAccountAgencyUserService, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -318,6 +317,9 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstateAccountAgencyUserModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

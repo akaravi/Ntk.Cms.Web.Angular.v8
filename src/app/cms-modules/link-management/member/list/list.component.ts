@@ -7,12 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-    DataFieldInfoModel, SortTypeEnum,
-    ErrorExceptionResult,
-    FilterDataModel,
-    FilterModel,
-    LinkManagementMemberModel,
-    LinkManagementMemberService, RecordStatusEnum, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel,
+  LinkManagementMemberModel,
+  LinkManagementMemberService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -330,7 +329,6 @@ export class LinkManagementMemberListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
   onActionTableRowSelect(row: LinkManagementMemberModel): void {
-    this.tableRowSelected = row;
     this.tableRowSelected = row;
     if (!row["expanded"])
       row["expanded"] = false;

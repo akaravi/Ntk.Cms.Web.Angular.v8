@@ -320,6 +320,9 @@ export class ApiTelegramLogInputListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: ApiTelegramLogInputModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+    row["expanded"] = false;
+  row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['api-telegram/bot-config']);

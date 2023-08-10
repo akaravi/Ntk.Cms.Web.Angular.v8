@@ -9,10 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel,
   DataProviderPlanCategoryModel, DataProviderPlanClientModel,
-  DataProviderPlanClientService, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DataProviderPlanClientService, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -387,6 +386,9 @@ export class DataProviderPlanClientListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: DataProviderPlanClientModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

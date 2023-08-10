@@ -601,6 +601,9 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   onActionTableRowSelect(row: EstatePropertyHistoryModel): void {
     this.pageInfo.updateContentInfo(new ContentInfoModel(row.id, row.title, false, '', ''));
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionTableRowMouseEnter(row: EstatePropertyHistoryModel): void {
     this.onActionTableRowSelect(row);

@@ -346,6 +346,9 @@ export class TicketingDepartemenLogListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: TicketingDepartemenLogModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     if (this.requestOperatorId > 0)

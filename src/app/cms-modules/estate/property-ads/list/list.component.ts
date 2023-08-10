@@ -361,6 +361,9 @@ export class EstatePropertyAdsListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstatePropertyAdsModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionBackToParent(): void {
     this.router.navigate(['/estate/property/']);

@@ -420,6 +420,9 @@ export class SmsMainApiPathPublicConfigListComponent implements OnInit, OnDestro
   }
   onActionTableRowSelect(row: SmsMainApiPathPublicConfigModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }

@@ -364,6 +364,9 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: EstatePropertyTypeUsageModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
   onActionbuttonContentDetailList(model: EstatePropertyTypeUsageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {

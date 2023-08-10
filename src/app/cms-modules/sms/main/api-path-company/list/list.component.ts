@@ -383,6 +383,9 @@ export class SmsMainApiPathCompanyListComponent implements OnInit, OnDestroy {
   }
   onActionTableRowSelect(row: SmsMainApiPathCompanyModel): void {
     this.tableRowSelected = row;
+    if (!row["expanded"])
+      row["expanded"] = false;
+    row["expanded"] = !row["expanded"];
   }
 
 }
