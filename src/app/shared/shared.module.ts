@@ -2,7 +2,7 @@
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,11 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-  MatNativeDateModule,
-  MatRippleModule
+  DateAdapter, MatNativeDateModule,
+  MatRippleModule, MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -58,7 +56,10 @@ import {
   CoreGuideService,
   CoreLocationService,
   CoreLogMemberService,
+  CoreModuleDataCommentService,
   CoreModuleDataMemoService,
+  CoreModuleDataPinService,
+  CoreModuleDataTaskService,
   CoreModuleSiteCreditService,
   CoreModuleSiteUserCreditService,
   CoreSiteCategoryService,
@@ -136,7 +137,11 @@ import { CmsLinkToComponent } from './cms-link-to/cms-link-to.component';
 import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-location-autocomplete.component';
 import { CmsLocationSelectorComponent } from './cms-location-selector/cms-location-selector.component';
 import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelector.component';
-import { CmsMemoComponent } from './cms-memo/cms-memo.component';
+
+import { CmsDataCommentComponent } from './cms-data-comment/cms-data-comment.component';
+import { CmsDataMemoComponent } from './cms-data-memo/cms-data-memo.component';
+import { CmsDataPinComponent } from './cms-data-pin/cms-data-pin.component';
+import { CmsDataTaskComponent } from './cms-data-task/cms-data-task.component';
 import { CmsModuleSelectorComponent } from './cms-module-selector/cms-module-selector.component';
 import { CmsQDocComponent } from './cms-qdoc/cms-qdoc.component';
 import { CmsShowKeyComponent } from './cms-show-key/cms-show-key.component';
@@ -261,7 +266,10 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CmsQDocComponent,
     CmsViewComponent,
     CmsLinkToComponent,
-    CmsMemoComponent,
+    CmsDataMemoComponent,
+    CmsDataPinComponent,
+    CmsDataTaskComponent,
+    CmsDataCommentComponent,
     CmsShowKeyComponent,
     CmsMapComponent,
     CmsTagAutocompleteComponent,
@@ -400,7 +408,10 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CmsQDocComponent,
     CmsViewComponent,
     CmsLinkToComponent,
-    CmsMemoComponent,
+    CmsDataMemoComponent,
+    CmsDataPinComponent,
+    CmsDataTaskComponent,
+    CmsDataCommentComponent,
     CmsShowKeyComponent,
     CmsTagAutocompleteComponent,
     ProgressSpinnerComponent,
@@ -469,6 +480,9 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     CoreModuleSiteCreditService,
     CoreModuleSiteUserCreditService,
     CoreModuleDataMemoService,
+    CoreModuleDataTaskService,
+    CoreModuleDataPinService,
+    CoreModuleDataCommentService,
     SmsMainApiPathService,
     SmsMainApiNumberService,
   ]

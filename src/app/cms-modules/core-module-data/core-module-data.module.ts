@@ -10,6 +10,8 @@ import { CoreModuleDataRoutes } from './core-module-data.routing';
 import {
   CoreModuleDataCommentService,
   CoreModuleDataMemoService,
+  CoreModuleDataPinService,
+  CoreModuleDataTaskService,
   CoreModuleService, CoreModuleSiteCreditService,
   CoreModuleSiteUserCreditService, CoreModuleTagCategoryService, CoreModuleTagService
 } from 'ntk-cms-api';
@@ -23,6 +25,14 @@ import { CoreModuleDataMemoAddComponent } from './memo/add/add.component';
 import { CoreModuleDataMemoEditComponent } from './memo/edit/edit.component';
 import { CoreModuleDataMemoListComponent } from './memo/list/list.component';
 import { CoreModuleDataMemoViewComponent } from './memo/view/view.component';
+import { CoreModuleDataPinAddComponent } from './pin/add/add.component';
+import { CoreModuleDataPinEditComponent } from './pin/edit/edit.component';
+import { CoreModuleDataPinListComponent } from './pin/list/list.component';
+import { CoreModuleDataPinViewComponent } from './pin/view/view.component';
+import { CoreModuleDataTaskAddComponent } from './task/add/add.component';
+import { CoreModuleDataTaskEditComponent } from './task/edit/edit.component';
+import { CoreModuleDataTaskListComponent } from './task/list/list.component';
+import { CoreModuleDataTaskViewComponent } from './task/view/view.component';
 
 
 @NgModule({
@@ -44,6 +54,16 @@ import { CoreModuleDataMemoViewComponent } from './memo/view/view.component';
     CoreModuleDataMemoEditComponent,
     CoreModuleDataMemoAddComponent,
     CoreModuleDataMemoViewComponent,
+    /**Pin */
+    CoreModuleDataPinListComponent,
+    CoreModuleDataPinEditComponent,
+    CoreModuleDataPinAddComponent,
+    CoreModuleDataPinViewComponent,
+    /**Task */
+    CoreModuleDataTaskListComponent,
+    CoreModuleDataTaskEditComponent,
+    CoreModuleDataTaskAddComponent,
+    CoreModuleDataTaskViewComponent,
     /**Comment */
     CoreModuleDataCommentListComponent,
     CoreModuleDataCommentEditComponent,
@@ -58,7 +78,17 @@ import { CoreModuleDataMemoViewComponent } from './memo/view/view.component';
     CoreModuleDataMemoEditComponent,
     CoreModuleDataMemoAddComponent,
     CoreModuleDataMemoViewComponent,
-    /**Data */
+    /**Pin */
+    CoreModuleDataPinListComponent,
+    CoreModuleDataPinEditComponent,
+    CoreModuleDataPinAddComponent,
+    CoreModuleDataPinViewComponent,
+    /**Task */
+    CoreModuleDataTaskListComponent,
+    CoreModuleDataTaskEditComponent,
+    CoreModuleDataTaskAddComponent,
+    CoreModuleDataTaskViewComponent,
+    /**Comment */
     CoreModuleDataCommentListComponent,
     CoreModuleDataCommentEditComponent,
     CoreModuleDataCommentAddComponent,
@@ -73,6 +103,8 @@ import { CoreModuleDataMemoViewComponent } from './memo/view/view.component';
     CoreModuleSiteUserCreditService,
     CoreModuleDataCommentService,
     CoreModuleDataMemoService,
+    CoreModuleDataPinService,
+    CoreModuleDataTaskService,
     CmsConfirmationDialogService
   ]
 })

@@ -23,6 +23,8 @@
   "ACTION.BUY": "Buy",
   "ACTION.PRICE": "Price",
   "ACTION.DATA": "Data",
+  "ACTION.TASK": "Task",
+  "ACTION.PIN": "Pin",
   "ACTION.SUBMIT_BUTTON": "SUBMIT",
   "ACTION.CLIENT": "Client",
   "ACTION.SOURCE": "Source",

@@ -1,10 +1,13 @@
 import { MatDialog } from "@angular/material/dialog";
 import { BaseModuleEntity, IApiCmsServerBase } from "ntk-cms-api";
 import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
-import { CmsMemoComponent } from "src/app/shared/cms-memo/cms-memo.component";
 import { environment } from "src/environments/environment";
 import { ContentInfoModel } from "../models/contentInfoModel";
 import { ProgressSpinnerModel } from "../models/progressSpinnerModel";
+import { CmsDataMemoComponent } from "src/app/shared/cms-data-memo/cms-data-memo.component";
+import { CmsDataPinComponent } from "src/app/shared/cms-data-pin/cms-data-pin.component";
+import { CmsDataTaskComponent } from "src/app/shared/cms-data-task/cms-data-task.component";
+import { CmsDataCommentComponent } from "src/app/shared/cms-data-comment/cms-data-comment.component";
 //IApiCmsServerBase
 export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extends BaseModuleEntity<TKey>, TKey> {
   constructor(baseService: TService, public item: TModel, public pageInfo: PageInfoService, public dialog: MatDialog,) {
@@ -43,7 +46,7 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
   }
   onActionbuttonMemo(model: TModel = this.tableRowSelected): void {
     //open popup
-    const dialogRef = this.dialog.open(CmsMemoComponent, {
+    const dialogRef = this.dialog.open(CmsDataMemoComponent, {
       height: "70%",
       width: "50%",
       data: {
@@ -60,5 +63,63 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
     });
     //open popup
   }
+  onActionbuttonPin(model: TModel = this.tableRowSelected): void {
+    //open popup
+    const dialogRef = this.dialog.open(CmsDataPinComponent, {
+      height: "70%",
+      width: "50%",
+      data: {
+        service: this.baseService,
+        id: this.tableRowSelected ? this.tableRowSelected.id : '',
+        title: this.tableRowSelected ? this.tableRowSelected['title'] : ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+    //open popup
+  }
+  onActionbuttonTask(model: TModel = this.tableRowSelected): void {
+    //open popup
+    const dialogRef = this.dialog.open(CmsDataTaskComponent, {
+      height: "70%",
+      width: "50%",
+      data: {
+        service: this.baseService,
+        id: this.tableRowSelected ? this.tableRowSelected.id : '',
+        title: this.tableRowSelected ? this.tableRowSelected['title'] : ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+    //open popup
+  }
+  onActionbuttonComment(model: TModel = this.tableRowSelected): void {
+    //open popup
+    const dialogRef = this.dialog.open(CmsDataCommentComponent, {
+      height: "70%",
+      width: "50%",
+      data: {
+        service: this.baseService,
+        id: this.tableRowSelected ? this.tableRowSelected.id : '',
+        title: this.tableRowSelected ? this.tableRowSelected['title'] : ''
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+        // this.DataGetAll();
+      }
+    });
+    //open popup
+  }
+
 
 }

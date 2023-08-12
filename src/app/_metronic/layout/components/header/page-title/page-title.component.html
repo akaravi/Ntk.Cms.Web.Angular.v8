@@ -31,9 +31,21 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="contentService">
+      <button (click)="onActionbuttonPin()" type="button"
+        class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
+        <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.PIN' | translate}}">pin</mat-icon>
+      </button>
       <button (click)="onActionbuttonMemo()" type="button"
         class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
         <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.MEMO' | translate}}">description</mat-icon>
+      </button>
+      <button (click)="onActionbuttonComment()" type="button"
+        class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
+        <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.COMMENT' | translate}}">comment</mat-icon>
+      </button>
+      <button (click)="onActionbuttonTask()" type="button"
+        class="btn box-shadow-button btn-outline-secondary BTN-icon box-shadow-button">
+        <mat-icon style="font-size: 20px;margin: -11px;" title="{{'ACTION.TASK' | translate}}">task</mat-icon>
       </button>
       <button (click)="onActionbuttonShowKey()"
         *ngIf=" this.contentInfo?.id?.length>0 && this.contentInfo?.contentHidden" type="button"

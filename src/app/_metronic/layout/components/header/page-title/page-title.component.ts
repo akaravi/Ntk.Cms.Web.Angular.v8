@@ -3,7 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { IApiCmsServerBase } from 'ntk-cms-api';
 import { Observable, Subscription } from 'rxjs';
 import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
-import { CmsMemoComponent } from 'src/app/shared/cms-memo/cms-memo.component';
+import { CmsDataCommentComponent } from 'src/app/shared/cms-data-comment/cms-data-comment.component';
+import { CmsDataMemoComponent } from 'src/app/shared/cms-data-memo/cms-data-memo.component';
+import { CmsDataPinComponent } from 'src/app/shared/cms-data-pin/cms-data-pin.component';
+import { CmsDataTaskComponent } from 'src/app/shared/cms-data-task/cms-data-task.component';
 import { CmsShowKeyComponent } from 'src/app/shared/cms-show-key/cms-show-key.component';
 import { LayoutService } from '../../../core/layout.service';
 import { PageInfoService, PageLink } from '../../../core/page-info.service';
@@ -60,7 +63,61 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   }
   onActionbuttonMemo(): void {
     //open popup
-    const dialogRef = this.dialog.open(CmsMemoComponent, {
+    const dialogRef = this.dialog.open(CmsDataMemoComponent, {
+      height: "70%",
+      width: "90%",
+      data: {
+        service: this.contentService,
+        id: this.contentInfo?.id,
+        title: this.contentInfo?.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+    //open popup
+  }
+  onActionbuttonPin(): void {
+    //open popup
+    const dialogRef = this.dialog.open(CmsDataPinComponent, {
+      height: "70%",
+      width: "90%",
+      data: {
+        service: this.contentService,
+        id: this.contentInfo?.id,
+        title: this.contentInfo?.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+    //open popup
+  }
+  onActionbuttonTask(): void {
+    //open popup
+    const dialogRef = this.dialog.open(CmsDataTaskComponent, {
+      height: "70%",
+      width: "90%",
+      data: {
+        service: this.contentService,
+        id: this.contentInfo?.id,
+        title: this.contentInfo?.title
+      },
+    }
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result && result.dialogChangedDate) {
+      }
+    });
+    //open popup
+  }
+  onActionbuttonComment(): void {
+    //open popup
+    const dialogRef = this.dialog.open(CmsDataCommentComponent, {
       height: "70%",
       width: "90%",
       data: {

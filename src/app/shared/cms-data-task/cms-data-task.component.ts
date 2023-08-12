@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreModuleDataMemoModel, CoreModuleMemoDtoModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
+import { CoreModuleDataTaskDtoModel, CoreModuleDataTaskModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -11,17 +11,17 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-cms-memo',
-  templateUrl: './cms-memo.component.html',
-  styleUrls: ['./cms-memo.component.scss']
+  selector: 'app-cms-data-task',
+  templateUrl: './cms-data-task.component.html',
+  styleUrls: ['./cms-data-task.component.scss']
 })
-export class CmsMemoComponent implements OnInit {
+export class CmsDataTaskComponent implements OnInit {
   static nextId = 0;
-  id = ++CmsMemoComponent.nextId;
+  id = ++CmsDataTaskComponent.nextId;
   requestService: IApiCmsServerBase;
   constructor(private cmsToastrService: CmsToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<CmsMemoComponent>,
+    private dialogRef: MatDialogRef<CmsDataTaskComponent>,
     public http: HttpClient,
     public publicHelper: PublicHelper,
     public translate: TranslateService,
@@ -46,9 +46,9 @@ export class CmsMemoComponent implements OnInit {
 
   loading = new ProgressSpinnerModel();
 
-  dataModelResult: ErrorExceptionResult<CoreModuleDataMemoModel> = new ErrorExceptionResult<CoreModuleDataMemoModel>();
+  dataModelResult: ErrorExceptionResult<CoreModuleDataTaskModel> = new ErrorExceptionResult<CoreModuleDataTaskModel>();
   dataModelResultBase: ErrorExceptionResultBase = new ErrorExceptionResultBase();
-  dataModel: CoreModuleMemoDtoModel = new CoreModuleMemoDtoModel();
+  dataModel: CoreModuleDataTaskDtoModel = new CoreModuleDataTaskDtoModel();
   formInfo: FormInfoModel = new FormInfoModel();
 
 
@@ -66,7 +66,7 @@ export class CmsMemoComponent implements OnInit {
 
     /*filter CLone*/
     if (this.dataModel.moduleEntityId && this.dataModel.moduleEntityId.length > 0) {
-      this.requestService.ServiceMemoGetAllEntity(this.dataModel.moduleEntityId).subscribe({
+      this.requestService.ServiceTaskGetAllEntity(this.dataModel.moduleEntityId).subscribe({
         next: (ret) => {
           this.dataModelResult = ret;
           if (ret.listItems?.length > 0)
@@ -85,7 +85,7 @@ export class CmsMemoComponent implements OnInit {
       );
     }
     else {
-      this.requestService.ServiceMemoGetAll().subscribe({
+      this.requestService.ServiceTaskGetAll().subscribe({
         next: (ret) => {
           this.dataModelResult = ret;
           if (ret.listItems?.length > 0)
@@ -111,7 +111,7 @@ export class CmsMemoComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.requestService.ServiceMemoAdd(this.dataModel).subscribe({
+    this.requestService.ServiceTaskAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         // this.dataModelResultBase = ret;
@@ -142,7 +142,7 @@ export class CmsMemoComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.requestService.ServiceMemoDelete(id).subscribe({
+    this.requestService.ServiceTaskDelete(id).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         // this.dataModelResultBase = ret;

@@ -22,6 +22,8 @@
   "ACTION.BUY": "خرید",
   "ACTION.PRICE": "قیمت",
   "ACTION.DATA": "داده ها",
+  "ACTION.TASK": "وظایف",
+  "ACTION.PIN": "سنجاق",
   "ACTION.CLIENT": "مشتری",
   "ACTION.SOURCE": "منبع",
   "ACTION.VIEW_STATISTICS": "مشاهده امار",
