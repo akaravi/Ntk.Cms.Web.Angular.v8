@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreModuleDataPinDtoModel, CoreModuleDataPinModel, ErrorExceptionResult, ErrorExceptionResultBase, FormInfoModel, IApiCmsServerBase } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -110,7 +110,7 @@ export class CmsDataPinComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
-    this.requestService.ServicePinAdd(this.dataModel).subscribe({
+    this.requestService.ServicePinAdd(this.dataModel.moduleEntityId).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;
         // this.dataModelResultBase = ret;

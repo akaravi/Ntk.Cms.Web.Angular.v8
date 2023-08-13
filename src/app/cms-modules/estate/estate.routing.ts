@@ -35,6 +35,8 @@ import { EstatePropertyTypeUsageListComponent } from './property-type-usage/list
 import { EstatePropertyAddComponent } from './property/add/add.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyListComponent } from './property/list/list.component';
+import { EstateCategoryRackListComponent } from './category-rack/list/list.component';
+import { EstateCategoryZoneListComponent } from './category-zone/list/list.component';
 
 const routes: Routes = [
   {
@@ -337,6 +339,16 @@ const routes: Routes = [
         path: 'property-project/edit/:id',
         component: EstatePropertyProjectEditComponent,
         data: { title: 'ROUTE.ESTATE.PROJECT' },
+      },
+      {
+        path: 'category-zone',
+        component: EstateCategoryZoneListComponent,
+        data: { title: 'ROUTE.ESTATE.CATEGORY.ZONE' },
+      },
+      {
+        path: 'category-rack',
+        component: EstateCategoryRackListComponent,
+        data: { title: 'ROUTE.ESTATE.CATEGORY.RACK' },
       },
       {
         path: 'customer-order',

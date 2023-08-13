@@ -305,7 +305,7 @@ export class EstatePropertyQuickListComponent
     if (this.requestLinkBillboardId && this.requestLinkBillboardId.length > 0) {
       // ** */
       this.contentService
-        .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
+        .ServiceGetAllWithCoverBillboardId(this.requestLinkBillboardId, filterModel)
         .subscribe({
           next: (ret) => {
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

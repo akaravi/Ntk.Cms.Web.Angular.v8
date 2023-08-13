@@ -371,7 +371,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.actionbuttonExportOn = false;
       this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
       this.contentService
-        .ServiceGetAllWithBillboardId(this.requestLinkBillboardId, filterModel)
+        .ServiceGetAllWithCoverBillboardId(this.requestLinkBillboardId, filterModel)
         .subscribe({
           next: (ret) => {
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);

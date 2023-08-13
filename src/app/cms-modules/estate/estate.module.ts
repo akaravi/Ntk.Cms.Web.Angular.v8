@@ -10,7 +10,7 @@ import {
   CoreEnumService, CoreModuleService, CoreModuleTagService, EstateAccountAgencyAdsService, EstateAccountAgencyService,
   EstateAccountAgencyUserService,
   EstateAccountAgencyWorkAreaService,
-  EstateAccountUserService, EstateAccountUserWorkAreaService, EstateActivityTypeService, EstateAdsTypeService, EstateBillboardService, EstateConfigurationService, EstateContractService, EstateContractTypeService, EstateCustomerCategoryService, EstateCustomerOrderResultService, EstateCustomerOrderService, EstateEnumService,
+  EstateAccountUserService, EstateAccountUserWorkAreaService, EstateActivityTypeService, EstateAdsTypeService, EstateBillboardService, EstateCategoryRackService, EstateCategoryZoneService, EstateConfigurationService, EstateContractService, EstateContractTypeService, EstateCustomerCategoryService, EstateCustomerOrderResultService, EstateCustomerOrderService, EstateEnumService,
   EstatePropertyAccountTypeUserService, EstatePropertyAdsService, EstatePropertyCompanyService, EstatePropertyDetailGroupService, EstatePropertyDetailService, EstatePropertyExpertPriceService, EstatePropertyHistoryService, EstatePropertyProjectService, EstatePropertyService, EstatePropertyShareAgencyService,
   EstatePropertyShareAgentService,
   EstatePropertyShareSiteService, EstatePropertySupplierCategoryService, EstatePropertySupplierService, EstatePropertyTypeLanduseService, EstatePropertyTypeService, EstatePropertyTypeUsageService, FileCategoryService
@@ -127,6 +127,16 @@ import { EstateAccountUserWorkAreaAddComponent } from './account-user-work-area/
 import { EstateAccountUserWorkAreaListComponent } from './account-user-work-area/list/list.component';
 import { EstateAccountUserHeaderComponent } from './account-user/header/header.component';
 import { EstateAccountUserSelectionlistComponent } from './account-user/selectionlist/selectionlist.component';
+import { EstateCategoryRackAddComponent } from './category-rack/add/add.component';
+import { EstateCategoryRackEditComponent } from './category-rack/edit/edit.component';
+import { EstateCategoryRackListComponent } from './category-rack/list/list.component';
+import { EstateCategoryRackSelectorComponent } from './category-rack/selector/selector.component';
+import { EstateCategoryRackTreeComponent } from './category-rack/tree/tree.component';
+import { EstateCategoryZoneAddComponent } from './category-zone/add/add.component';
+import { EstateCategoryZoneEditComponent } from './category-zone/edit/edit.component';
+import { EstateCategoryZoneListComponent } from './category-zone/list/list.component';
+import { EstateCategoryZoneSelectorComponent } from './category-zone/selector/selector.component';
+import { EstateCategoryZoneTreeComponent } from './category-zone/tree/tree.component';
 import { EstateContractTypeHeaderComponent } from './contract-type/header/header.component';
 import { EstateCustomerCategoryAddComponent } from './customer-category/add/add.component';
 import { EstateCustomerCategoryEditComponent } from './customer-category/edit/edit.component';
@@ -361,6 +371,18 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstateCustomerCategorySelectorComponent,
     EstateCustomerCategoryTreeComponent,
     /* */
+    EstateCategoryZoneAddComponent,
+    EstateCategoryZoneEditComponent,
+    EstateCategoryZoneSelectorComponent,
+    EstateCategoryZoneTreeComponent,
+    EstateCategoryZoneListComponent,
+    /* */
+    EstateCategoryRackAddComponent,
+    EstateCategoryRackEditComponent,
+    EstateCategoryRackSelectorComponent,
+    EstateCategoryRackTreeComponent,
+    EstateCategoryRackListComponent,
+    /* */
   ],
   imports: [
     CommonModule,
@@ -397,6 +419,8 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstateEnumService,
     EstateBillboardService,
     EstateCustomerCategoryService,
+    EstateCategoryZoneService,
+    EstateCategoryRackService,
     EstateCustomerOrderService,
     EstateCustomerOrderResultService,
     EstatePropertyService,
