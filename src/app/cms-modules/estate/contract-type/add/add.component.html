@@ -36,6 +36,36 @@
             </mat-error>
         </mat-form-field>
 
+<hr>
+ <!-- orderTitle Field -->
+ <mat-form-field class="ntk-full-width">
+  <mat-label>{{fieldsInfo['orderTitle']?.fieldTitle}}</mat-label>
+  <input matInput [(ngModel)]="dataModel.orderTitle" name="dataModel.orderTitle" #orderTitle type="text" placeholder="{{fieldsInfo['orderTitle']?.fieldTitle}}" minlength="3" maxlength="100" required />
+  <mat-icon matSuffix *ngIf="dataModel.orderTitle" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.orderTitle = ''">close</mat-icon>
+  <mat-icon matSuffix>mode_edit</mat-icon>
+  <mat-hint align="end">{{ orderTitle.value.length }} / 100</mat-hint>
+  <mat-error *ngIf="orderTitle.errors?.required">
+      orderTitle is <strong>{{'MESSAGE.required' | translate}}</strong>
+  </mat-error>
+</mat-form-field>
+<!-- orderTitleML Field -->
+<mat-form-field class="ntk-full-width">
+  <mat-label> {{fieldsInfo['title']?.fieldTitle}}</mat-label>
+  <input matInput [(ngModel)]="dataModel.orderTitleML" name="dataModel.orderTitleML" type="text" [disabled]="true" />
+</mat-form-field>
+<!-- orderTitleResourceLanguage Field -->
+<mat-form-field class="ntk-full-width">
+  <mat-label>{{fieldsInfo['orderTitleResourceLanguage']?.fieldTitle}}</mat-label>
+  <input matInput [(ngModel)]="dataModel.orderTitleResourceLanguage" name="dataModel.orderTitleResourceLanguage" #orderTitleResourceLanguage type="text" placeholder="{{fieldsInfo['orderTitleResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" required />
+  <mat-icon matSuffix *ngIf="dataModel.orderTitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.orderTitleResourceLanguage = ''">close</mat-icon>
+  <mat-icon matSuffix>mode_edit</mat-icon>
+  <mat-hint align="end">{{ orderTitleResourceLanguage.value.length }} / 100</mat-hint>
+  <mat-error *ngIf="orderTitleResourceLanguage.errors?.required">
+      orderTitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+  </mat-error>
+</mat-form-field>
+
+
 
         <!-- TitleSoldIt Field -->
         <mat-form-field class="ntk-full-width">

@@ -37,6 +37,36 @@
             </mat-form-field>
 
 
+            <hr>
+            <!-- orderTitle Field -->
+            <mat-form-field class="ntk-full-width">
+             <mat-label>{{fieldsInfo['orderTitle']?.fieldTitle}}</mat-label>
+             <input matInput [(ngModel)]="dataModel.orderTitle" name="dataModel.orderTitle" #orderTitle type="text" placeholder="{{fieldsInfo['orderTitle']?.fieldTitle}}" minlength="3" maxlength="100" required />
+             <mat-icon matSuffix *ngIf="dataModel.orderTitle" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.orderTitle = ''">close</mat-icon>
+             <mat-icon matSuffix>mode_edit</mat-icon>
+             <mat-hint align="end">{{ orderTitle.value.length }} / 100</mat-hint>
+             <mat-error *ngIf="orderTitle.errors?.required">
+                 orderTitle is <strong>{{'MESSAGE.required' | translate}}</strong>
+             </mat-error>
+           </mat-form-field>
+           <!-- orderTitleML Field -->
+           <mat-form-field class="ntk-full-width">
+             <mat-label> {{fieldsInfo['title']?.fieldTitle}}</mat-label>
+             <input matInput [(ngModel)]="dataModel.orderTitleML" name="dataModel.orderTitleML" type="text" [disabled]="true" />
+           </mat-form-field>
+           <!-- orderTitleResourceLanguage Field -->
+           <mat-form-field class="ntk-full-width">
+             <mat-label>{{fieldsInfo['orderTitleResourceLanguage']?.fieldTitle}}</mat-label>
+             <input matInput [(ngModel)]="dataModel.orderTitleResourceLanguage" name="dataModel.orderTitleResourceLanguage" #orderTitleResourceLanguage type="text" placeholder="{{fieldsInfo['orderTitleResourceLanguage']?.fieldTitle}}" minlength="1" maxlength="100" required />
+             <mat-icon matSuffix *ngIf="dataModel.orderTitleResourceLanguage" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.orderTitleResourceLanguage = ''">close</mat-icon>
+             <mat-icon matSuffix>mode_edit</mat-icon>
+             <mat-hint align="end">{{ orderTitleResourceLanguage.value.length }} / 100</mat-hint>
+             <mat-error *ngIf="orderTitleResourceLanguage.errors?.required">
+                 orderTitleResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
+             </mat-error>
+           </mat-form-field>
+
+
             <!-- TitleSoldIt Field -->
             <mat-form-field class="ntk-full-width">
                 <mat-label>{{fieldsInfo['titleSoldIt']?.fieldTitle}}</mat-label>
@@ -73,25 +103,25 @@
 
             <div class="ntk-full-width">
                 <!-- HasSalePrice Field -->
-                <mat-slide-toggle [(ngModel)]="dataModel.hasSalePrice" *ngIf="fieldsInfo['hasSalePrice']?.accessWatchField" [disabled]="!fieldsInfo['hasSalePrice']?.accessAddField" name="dataModel.hasSalePrice">
+                <mat-slide-toggle [(ngModel)]="dataModel.hasSalePrice" *ngIf="fieldsInfo['hasSalePrice']?.accessWatchField" [disabled]="!fieldsInfo['hasSalePrice']?.accessEditField" name="dataModel.hasSalePrice">
                     {{fieldsInfo['hasSalePrice']?.fieldTitle}}
                 </mat-slide-toggle>
             </div>
             <div class="ntk-full-width">
                 <!-- HasRentPrice Field -->
-                <mat-slide-toggle [(ngModel)]="dataModel.hasRentPrice" *ngIf="fieldsInfo['hasRentPrice']?.accessWatchField" [disabled]="!fieldsInfo['hasRentPrice']?.accessAddField" name="dataModel.hasRentPrice">
+                <mat-slide-toggle [(ngModel)]="dataModel.hasRentPrice" *ngIf="fieldsInfo['hasRentPrice']?.accessWatchField" [disabled]="!fieldsInfo['hasRentPrice']?.accessEditField" name="dataModel.hasRentPrice">
                     {{fieldsInfo['hasRentPrice']?.fieldTitle}}
                 </mat-slide-toggle>
             </div>
             <div class="ntk-full-width">
                 <!-- HasDepositPrice Field -->
-                <mat-slide-toggle [(ngModel)]="dataModel.hasDepositPrice" *ngIf="fieldsInfo['hasDepositPrice']?.accessWatchField" [disabled]="!fieldsInfo['hasDepositPrice']?.accessAddField" name="dataModel.hasDepositPrice">
+                <mat-slide-toggle [(ngModel)]="dataModel.hasDepositPrice" *ngIf="fieldsInfo['hasDepositPrice']?.accessWatchField" [disabled]="!fieldsInfo['hasDepositPrice']?.accessEditField" name="dataModel.hasDepositPrice">
                     {{fieldsInfo['hasDepositPrice']?.fieldTitle}}
                 </mat-slide-toggle>
             </div>
             <div class="ntk-full-width">
                 <!-- HasPeriodPrice Field -->
-                <mat-slide-toggle [(ngModel)]="dataModel.hasPeriodPrice" *ngIf="fieldsInfo['hasPeriodPrice']?.accessWatchField" [disabled]="!fieldsInfo['hasPeriodPrice']?.accessAddField" name="dataModel.hasPeriodPrice">
+                <mat-slide-toggle [(ngModel)]="dataModel.hasPeriodPrice" *ngIf="fieldsInfo['hasPeriodPrice']?.accessWatchField" [disabled]="!fieldsInfo['hasPeriodPrice']?.accessEditField" name="dataModel.hasPeriodPrice">
                     {{fieldsInfo['hasPeriodPrice']?.fieldTitle}}
                 </mat-slide-toggle>
             </div>
@@ -112,7 +142,7 @@
         <hr *ngIf="dataModel.hasSalePrice">
         <div class="ntk-full-width" *ngIf="dataModel.hasSalePrice">
             <!-- SalePriceAllowAgreement Field -->
-            <mat-slide-toggle [(ngModel)]="dataModel.salePriceAllowAgreement" *ngIf="fieldsInfo['salePriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['salePriceAllowAgreement']?.accessAddField" name="dataModel.salePriceAllowAgreement">
+            <mat-slide-toggle [(ngModel)]="dataModel.salePriceAllowAgreement" *ngIf="fieldsInfo['salePriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['salePriceAllowAgreement']?.accessEditField" name="dataModel.salePriceAllowAgreement">
                 {{fieldsInfo['salePriceAllowAgreement']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
@@ -143,7 +173,7 @@
         <hr *ngIf="dataModel.hasRentPrice">
         <div class="ntk-full-width" *ngIf="dataModel.hasRentPrice">
             <!-- RentPriceAllowAgreement Field -->
-            <mat-slide-toggle [(ngModel)]="dataModel.rentPriceAllowAgreement" *ngIf="fieldsInfo['rentPriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['rentPriceAllowAgreement']?.accessAddField" name="dataModel.rentPriceAllowAgreement">
+            <mat-slide-toggle [(ngModel)]="dataModel.rentPriceAllowAgreement" *ngIf="fieldsInfo['rentPriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['rentPriceAllowAgreement']?.accessEditField" name="dataModel.rentPriceAllowAgreement">
                 {{fieldsInfo['rentPriceAllowAgreement']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
@@ -198,7 +228,7 @@
         <div class="backgroundColor">
             <div class="ntk-full-width" *ngIf="dataModel.hasDepositPrice">
                 <!-- DepositPriceAllowAgreement Field -->
-                <mat-slide-toggle [(ngModel)]="dataModel.depositPriceAllowAgreement" *ngIf="fieldsInfo['depositPriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['depositPriceAllowAgreement']?.accessAddField" name="dataModel.depositPriceAllowAgreement">
+                <mat-slide-toggle [(ngModel)]="dataModel.depositPriceAllowAgreement" *ngIf="fieldsInfo['depositPriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['depositPriceAllowAgreement']?.accessEditField" name="dataModel.depositPriceAllowAgreement">
                     {{fieldsInfo['depositPriceAllowAgreement']?.fieldTitle}}
                 </mat-slide-toggle>
             </div>
@@ -230,7 +260,7 @@
         <hr *ngIf="dataModel.hasPeriodPrice">
         <div class="ntk-full-width" *ngIf="dataModel.hasPeriodPrice">
             <!-- PeriodPriceAllowAgreement Field -->
-            <mat-slide-toggle [(ngModel)]="dataModel.periodPriceAllowAgreement" *ngIf="fieldsInfo['periodPriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['periodPriceAllowAgreement']?.accessAddField" name="dataModel.periodPriceAllowAgreement">
+            <mat-slide-toggle [(ngModel)]="dataModel.periodPriceAllowAgreement" *ngIf="fieldsInfo['periodPriceAllowAgreement']?.accessWatchField" [disabled]="!fieldsInfo['periodPriceAllowAgreement']?.accessEditField" name="dataModel.periodPriceAllowAgreement">
                 {{fieldsInfo['periodPriceAllowAgreement']?.fieldTitle}}
             </mat-slide-toggle>
         </div>
