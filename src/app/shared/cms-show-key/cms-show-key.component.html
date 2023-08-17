@@ -46,22 +46,25 @@
             <!-- SubjectTitle Field -->
             <mat-form-field class="ntk-full-width">
                 <mat-label>SubjectTitle</mat-label>
-                <input matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle type="text" placeholder="SubjectTitle" required>
-                <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.subjectTitle = null">close</mat-icon>
+                <input matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle
+                    type="text" placeholder="SubjectTitle" required>
+                <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="dataModel.subjectTitle = null">close</mat-icon>
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
 
 
             <!-- Priority Field -->
             <mat-form-field class="ntk-full-width">
-                <mat-select placeholder="{{'minLive'|translate}}" [(ngModel)]="dataModel.minLive" name="dataModel.minLive" #Priority="ngModel" panelClass="minLive-{{ dataModel.minLive }}">
+                <mat-select placeholder="{{'minLive'|translate}}" [(ngModel)]="dataModel.minLive"
+                    name="dataModel.minLive" #Priority="ngModel" panelClass="minLive-{{ dataModel.minLive }}">
                     <mat-option *ngFor="
               let number of numbers;
             " [value]="number">{{ number }}</mat-option>
                 </mat-select>
                 <mat-hint align="start">
                     <mat-icon matSuffix class="info-field-icon">info</mat-icon>
-                    <strong class="info-field-text">مدت زمان را به دقیقه وارد کنید</strong>
+                    <strong class="info-field-text">{{'MESSAGE.Enter_Time_Duration_In_Minutes' | translate}}</strong>
                 </mat-hint>
             </mat-form-field>
 
@@ -82,11 +85,13 @@
 <div class="ntk-cms-html-card-footer">
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
-        <button type="submit" *ngIf="showFormAdd" (click)="onFormSubmit()" class="btn btn-success btn-lg btn-block" [disabled]="!formGroup?.valid">
+        <button type="submit" *ngIf="showFormAdd" (click)="onFormSubmit()" class="btn btn-success btn-lg btn-block"
+            [disabled]="!formGroup?.valid">
             <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
         </button>
-        <button type="button" *ngIf="!showFormAdd" class="btn btn-success btn-lg btn-block" (click)="onActionAdd()">{{'ACTION.SHOW_KEY'
-      |translate}}</button>
+        <button type="button" *ngIf="!showFormAdd" class="btn btn-success btn-lg btn-block"
+            (click)="onActionAdd()">{{'ACTION.SHOW_KEY'
+            |translate}}</button>
         <button type="button" (click)="onFormCancel()" class="btn btn-light btn-lg btn-block">
             <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
         </button>

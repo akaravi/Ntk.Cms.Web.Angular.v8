@@ -521,7 +521,7 @@
                 <mat-slide-toggle
                     *ngIf="fieldsInfo['linkCmsUserId']?.accessWatchField &&dataModel.aboutCustomerMobile && dataModel.aboutCustomerMobile.length>0 &&(this.dataModel.linkCmsUserId===null ||this.dataModel.linkCmsUserId<=0)"
                     [(ngModel)]="this.dataModel.actionCreateCmsUserId" name="dataModel.actionCreateCmsUserId">
-                    ساخت حساب کاربری
+                    {{'TITLE.Create_New_Account' | translate}}
                 </mat-slide-toggle>
 
                 <div *ngIf="formInfo.formSubmitAllow && !loading?.display" class="ntk-button-row">

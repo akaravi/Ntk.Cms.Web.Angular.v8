@@ -3,26 +3,25 @@
     <!--begin::tree-->
     <div class="ntk-cms-html-tree-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">ذخیره
-        محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">حذف محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بارگزاری مجدد
-        محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بارگزاری پیش فرض
-        محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بارگزاری پیش فرض
-        محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">درون ریزی
-        محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">بررون ریزی
-        محتوا</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">تاریخچه تغییرات
-        محتوا</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.SAVE_CONTENT' | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.DELETE_CONTENT' | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.LOADING_CONTENT' | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.ASSUMPTION_CONTENT' | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.INTERNALIZATION_CONTENT' | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.OUTFLOW_CONTENT' | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'ACTION.HISTORY_CONTENT' | translate}}</button>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-action-->
     </div>
     <div class="ntk-cms-html-tree-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      سایز نمایش
+      {{'TITLE.DISPLAY_SIZE' | translate}}
       <br>
       <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">lg</button>
       <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">md</button>
@@ -32,11 +31,12 @@
     </div>
     <div class="ntk-cms-html-tree-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-      نمایش
+      {{'TITLE.DISPLAY' | translate}}
       <br>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">پیش نمایش</button>
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">پیش نمایش با صفحه
-        مادر</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary" style="width:98%">{{'TITLE.Preview'
+        | translate}}</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary"
+        style="width:98%">{{'TITLE.Preview_MOTHER' | translate}}</button>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
     </div>
     <div class="ntk-cms-html-tree-body">
@@ -48,25 +48,13 @@
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
     <!--end::tree-->
   </div>
   <div Class="col-xl-10">
     <!--begin::Header-->
     <div class="ntk-cms-html-list-header">
-      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">ایجاد
-        ردیف</button>
+      <button (click)="onActionAdd()" type="button" class="btn btn-outline-primary">{{'TITLE.CREATE_ROW' |
+        translate}}</button>
 
     </div>
     <!--end::Header-->
