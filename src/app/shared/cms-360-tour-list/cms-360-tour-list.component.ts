@@ -42,8 +42,8 @@ export class Cms360TourListComponent implements OnInit {
     if (!model) {
       model = new File360TourModel();
     }
-    if (!model.Default)
-      model.Default = new File360TourDefaultModel();
+    if (!model.defaultValue)
+      model.defaultValue = new File360TourDefaultModel();
     if (!model.scenes)
       model.scenes = new Map<string, File360TourScenesModel>();
     this.scenesList = [];
@@ -123,7 +123,7 @@ export class Cms360TourListComponent implements OnInit {
   actionPannellumTourLoad(): void {
     this.actionPrivateDataModelOptimaze();
     const defaultOptions = {};
-    defaultOptions['default'] = this.privateDataModel.Default;
+    defaultOptions['default'] = this.privateDataModel.defaultValue;
     if (this.privateDataModel && this.privateDataModel.scenes) {
       defaultOptions['scenes'] = this.privateDataModel.scenes;
     }
@@ -192,8 +192,8 @@ export class Cms360TourListComponent implements OnInit {
     this.onActionPannellumDestroy();
   }
   actionPrivateDataModelOptimaze() {
-    if (!this.privateDataModel.Default)
-      this.privateDataModel.Default = new File360TourDefaultModel();
+    if (!this.privateDataModel.defaultValue)
+      this.privateDataModel.defaultValue = new File360TourDefaultModel();
     this.privateDataModel.scenes = new Map<string, File360TourScenesModel>;
     if (!this.scenesList)
       this.scenesList = [];
@@ -212,10 +212,10 @@ export class Cms360TourListComponent implements OnInit {
       }
     });
 
-    if (!this.privateDataModel.Default.firstScene || this.privateDataModel.Default.firstScene.length == 0) {
+    if (!this.privateDataModel.defaultValue.firstScene || this.privateDataModel.defaultValue.firstScene.length == 0) {
       if (this.privateDataModel.scenes && this.scenesList && this.scenesList.length > 0)
-        this.privateDataModel.Default.firstScene = this.scenesList[0].linkFileId + "";
-      this.privateDataModel.Default.sceneFadeDuration = 1000;
+        this.privateDataModel.defaultValue.firstScene = this.scenesList[0].linkFileId + "";
+      this.privateDataModel.defaultValue.sceneFadeDuration = 1000;
     }
   }
   onActionCancellView360(): void {
