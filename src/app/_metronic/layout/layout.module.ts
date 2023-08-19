@@ -9,7 +9,6 @@ import {
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CoreConfigurationService, CoreCpMainMenuService } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { Routing } from '../../pages/routing';
 import { DrawersModule, DropdownMenusModule, EngagesModule, ModalsModule } from '../partials';
 import { EngagesComponent } from "../partials/layout/engages/engages.component";
 import { ExtrasModule } from '../partials/layout/extras/extras.module';
@@ -25,12 +24,13 @@ import { ScriptsInitComponent } from './components/scripts-init/scripts-init.com
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { LayoutComponent } from './layout.component';
+import { LayoutRouting } from './layout.routing';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: Routing,
+    children: LayoutRouting,
   },
 ];
 
