@@ -20,8 +20,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EstateComponent } from './estate.component';
 import { EstateRoutes } from './estate.routing';
 
+import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ColorPickerModule } from 'ngx-color-picker';
 import { IconPickerModule } from 'ngx-icon-picker';
 import { EstateAccountAgencyUserAddComponent } from './account-agency-user/add/add.component';
 import { EstateAccountAgencyUserListComponent } from './account-agency-user/list/list.component';
@@ -397,8 +397,9 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     MatStepperModule,
     IconPickerModule,
     DragDropModule,
-    ColorPickerModule,
+    NgxMatColorPickerModule,
     InlineSVGModule,
+    NgxMatColorPickerModule,
   ],
   providers: [
     CoreModuleService,

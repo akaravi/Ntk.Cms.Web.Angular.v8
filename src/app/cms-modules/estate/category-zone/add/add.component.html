@@ -58,18 +58,17 @@
         (click)="dataModel.iconFont = ''">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
     </mat-form-field>
-    <!-- IconColor Field -->
+    <!-- iconColor Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['iconColor']?.accessWatchField">
       <mat-label> {{fieldsInfo['iconColor']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #IconColor
-        [value]="dataModel.iconColor" [style.background]="dataModel.iconColor" [(colorPicker)]="dataModel.iconColor"
-        type="text" [disabled]="!fieldsInfo['iconColor']?.accessAddField"
-        placeholder="{{fieldsInfo['iconColor']?.fieldTitle}}" />
+      <input matInput [(ngModel)]="dataModel.iconColor" name="dataModel.iconColor" #iconColor
+        [style.background]="dataModel.iconColor" [ngxMatColorPicker]="iconColorPicker" type="text"
+        [disabled]="!fieldsInfo['iconColor']?.accessAddField" placeholder="{{fieldsInfo['iconColor']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.iconColor = ''">close</mat-icon>
-      <mat-icon matSuffix>mode_edit</mat-icon>
+      <ngx-mat-color-toggle matSuffix [for]="iconColorPicker"></ngx-mat-color-toggle>
+      <ngx-mat-color-picker #iconColorPicker [touchUi]="true" [color]="'primary'"></ngx-mat-color-picker>
     </mat-form-field>
-    
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>

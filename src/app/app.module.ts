@@ -1,3 +1,4 @@
+import { MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app.routing';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
 import { CmsAuthService } from './core/services/cmsAuth.service';
 import { SharedModule } from './shared/shared.module';
+
 function appInitializer(authService: CmsAuthService) {
   return () => {
     return new Promise((resolve) => {
@@ -78,6 +80,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+
     RouterModule,
   ],
   providers: [
@@ -98,6 +101,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       }
     },
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+
   ],
   bootstrap: [AppComponent],
 })

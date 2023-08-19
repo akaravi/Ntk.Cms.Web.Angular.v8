@@ -1,3 +1,4 @@
+import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -6,7 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-import { ColorPickerModule } from 'ngx-color-picker';
 import { IconPickerModule } from 'ngx-icon-picker';
 import {
   CoreAuthService,
@@ -67,7 +67,7 @@ import { WebDesignerBuilderRoutes } from './web-designer-builder.routing';
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
-    ColorPickerModule,
+    NgxMatColorPickerModule,
     IconPickerModule,
     DragDropModule,
     CoreModuleModule,

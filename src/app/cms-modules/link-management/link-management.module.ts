@@ -6,10 +6,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LinkManagementComponent } from './link-management.component';
 import { LinkManagementRoutes } from './link-management.routing';
 
+import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
-import { ColorPickerModule } from 'ngx-color-picker';
 import {
   CoreAuthService,
   CoreEnumService, CoreModuleService, LinkManagementAccountingDetailService, LinkManagementAccountingService, LinkManagementBillboardPatternService,
@@ -170,7 +170,7 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
     MatIconModule,
     MatFormFieldModule,
     MatStepperModule,
-    ColorPickerModule,
+    NgxMatColorPickerModule,
 
   ],
   providers: [
