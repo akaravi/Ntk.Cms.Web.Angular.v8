@@ -12,6 +12,7 @@ import {
   ClauseTypeEnum, CoreCurrencyModel, DataFieldInfoModel, ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
+import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
 import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/componentOptionStatistModel";
 import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
@@ -23,7 +24,6 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { EstatePropertyHistoryAddComponent } from "../../property-history/add/add.component";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
 import { EstatePropertyQuickViewComponent } from "../quick-view/quick-view.component";
@@ -63,7 +63,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     public translate: TranslateService,
     public pageInfo: PageInfoService,
   ) {
-    super(contentService, new EstatePropertyModel(), pageInfo, dialog);
+    super(contentService, new EstatePropertyModel(), pageInfo,publicHelper, dialog);
 
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -675,8 +675,14 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     }
     var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelResult.listItems, this.tableRowSelected);
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelResult.listItems, this.tableRowSelected);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         id: this.tableRowSelected.id,
         perviousItem: perviousItem,
@@ -704,9 +710,14 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       this.link = "/#/estate/property/add/";
       window.open(this.link, "_blank");
     }
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
 
       }
@@ -725,8 +736,14 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       return;
     }
     this.onActionTableRowSelect(model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         linkActivityTypeId: null,
         linkPropertyId: model.id,
@@ -976,9 +993,14 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -995,9 +1017,14 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
   actionbuttonExportOn = false;
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -1060,9 +1087,14 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
         next: (ret) => {
           if (ret.isSuccess) {
             //open popup
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'fullscreen-dialog';
+               else
+              panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               height: "90%",
-              width: "90%",
+              panelClass: panelClass,
               data: {
                 title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,

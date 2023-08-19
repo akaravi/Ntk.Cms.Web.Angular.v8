@@ -165,8 +165,14 @@ export class EstateAccountAgencyWorkAreaListComponent implements OnInit, OnDestr
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyWorkAreaAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -292,9 +298,14 @@ export class EstateAccountAgencyWorkAreaListComponent implements OnInit, OnDestr
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,

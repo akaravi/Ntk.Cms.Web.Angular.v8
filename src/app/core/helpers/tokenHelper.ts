@@ -2,14 +2,13 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   CoreAuthService,
-  DeviceTypeEnum,
-  ManageUserAccessUserTypesEnum, NtkCmsApiStoreService, OperatingSystemTypeEnum, SET_DEVICE_TOKEN_INFO, SET_TOKEN_INFO,
-  TokenDeviceClientInfoDtoModel,
+  ManageUserAccessUserTypesEnum, NtkCmsApiStoreService,
+  SET_DEVICE_TOKEN_INFO, SET_TOKEN_INFO,
   TokenDeviceModel,
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Observable, Subscription, firstValueFrom } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { getViewPort, isMobileDevice } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { TranslationService } from '../i18n/translation.service';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 
@@ -26,7 +25,16 @@ export class TokenHelper implements OnDestroy {
   ) {
 
   }
-
+  get innerWidth() {
+    return getViewPort().width
+  };
+  get isMobile() {
+    if (this.innerWidth < 1000)
+      return true;
+    if (isMobileDevice())
+      return true;
+    return false;
+  };
   tokenInfo: TokenInfoModel = new TokenInfoModel();
   deviceTokenInfo: TokenDeviceModel = new TokenDeviceModel();
   cmsApiStoreSubscribe: Subscription;
@@ -37,6 +45,7 @@ export class TokenHelper implements OnDestroy {
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
+
   async getCurrentToken(): Promise<TokenInfoModel> {
     const storeSnapshot = this.cmsApiStore.getStateSnapshot();
     if (storeSnapshot?.ntkCmsAPiState?.tokenInfo) {
@@ -187,3 +196,7 @@ export class TokenHelper implements OnDestroy {
   }
 
 }
+function HostListener(arg0: string, arg1: string[]): (target: TokenHelper, propertyKey: "onResize", descriptor: TypedPropertyDescriptor<(event: any) => void>) => void | TypedPropertyDescriptor<(event: any) => void> {
+  throw new Error('Function not implemented.');
+}
+

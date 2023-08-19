@@ -1,6 +1,6 @@
 {
   "name": "ntk-cms-web",
-  "version": "15.2.0528.1",
+  "version": "15.2.0528.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,7 +20,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-material-components/color-picker": "^16.0.1",
+    "@angular-material-components/color-picker": "^15.0.0",
     "@angular/animations": "^15.1.0",
     "@angular/cdk": "^15.1.0",
     "@angular/common": "^15.1.0",

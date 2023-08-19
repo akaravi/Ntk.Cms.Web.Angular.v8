@@ -211,8 +211,14 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -237,8 +243,14 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserEditComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -420,9 +432,14 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -450,9 +467,14 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

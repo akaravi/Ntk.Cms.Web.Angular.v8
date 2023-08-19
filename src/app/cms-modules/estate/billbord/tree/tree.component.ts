@@ -118,10 +118,16 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionAdd(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateBillboardAddComponent, {
       height: '90%',
       data: {}
     });
+
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
@@ -139,8 +145,14 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateBillboardEditComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

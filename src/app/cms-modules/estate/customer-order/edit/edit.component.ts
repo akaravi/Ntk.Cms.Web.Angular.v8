@@ -205,8 +205,13 @@ export class EstateCustomerOrderEditComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           this.optionReload();
           if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'fullscreen-dialog';
+               else
+              panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-              // height: '90%',
+              panelClass: panelClass,
               data: { model: this.dataModel }
             });
             dialogRef.afterClosed().subscribe(result => {
@@ -449,8 +454,14 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   }
 
   onActionbuttonQuickHistoryAddRow(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         linkActivityTypeId: null,
         linkPropertyId: null,

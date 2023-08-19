@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { IApiCmsServerBase } from 'ntk-cms-api';
 import { Observable, Subscription } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
 import { CmsDataCommentComponent } from 'src/app/shared/cms-data-comment/cms-data-comment.component';
 import { CmsDataMemoComponent } from 'src/app/shared/cms-data-memo/cms-data-memo.component';
@@ -33,7 +34,7 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     private layout: LayoutService,
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-
+    private publicHelper: PublicHelper,
   ) {
 
   }
@@ -63,9 +64,14 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   }
   onActionbuttonMemo(): void {
     //open popup
+    var panelClass = '';
+    if (this.publicHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-wide';
     const dialogRef = this.dialog.open(CmsDataMemoComponent, {
       height: "70%",
-      width: "90%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -81,9 +87,15 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   }
   onActionbuttonPin(): void {
     //open popup
+    var panelClass = '';
+    if (this.publicHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-wide';
+
     const dialogRef = this.dialog.open(CmsDataPinComponent, {
       height: "70%",
-      width: "90%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -98,10 +110,16 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     //open popup
   }
   onActionbuttonTask(): void {
+
     //open popup
+    var panelClass = '';
+    if (this.publicHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-wide';
     const dialogRef = this.dialog.open(CmsDataTaskComponent, {
       height: "70%",
-      width: "90%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -117,9 +135,14 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   }
   onActionbuttonComment(): void {
     //open popup
+    var panelClass = '';
+    if (this.publicHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-wide';
     const dialogRef = this.dialog.open(CmsDataCommentComponent, {
       height: "70%",
-      width: "90%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -137,9 +160,15 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     if (!this.contentInfo || this.contentInfo.id?.length == 0)
       return;
     //open popup
+
+    var panelClass = '';
+    if (this.publicHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsShowKeyComponent, {
       height: "70%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,

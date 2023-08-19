@@ -83,8 +83,13 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     //**بررسی تراکنش از قبل */
     const transactionId = + localStorage.getItem('TransactionId') | 0;
     if (transactionId > 0) {
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'fullscreen-dialog';
+         else
+        panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
-        // height: "90%",
+        panelClass: panelClass,
         data: {
           id: transactionId,
         },
@@ -154,9 +159,14 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
 
   onActionbuttonBuy(model: EstateAdsTypeModel): void {
     this.tableRowSelected = model;
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyAdsSalePaymentComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         linkAccountAgencyId: this.requestLinkAccountAgencyId,
         linkAdsTypeId: model.id

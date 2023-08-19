@@ -11,6 +11,7 @@ import {
   DataFieldInfoModel, ErrorExceptionResult, EstateActivityTypeModel, EstateActivityTypeService, EstateEnumService, EstatePropertyHistoryFilterModel, EstatePropertyHistoryModel, EstatePropertyHistoryService, FilterDataModel, FilterModel, InfoEnumModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -21,7 +22,6 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 import { EstatePropertyHistoryAddComponent } from '../add/add.component';
 import { EstatePropertyHistoryEditComponent } from '../edit/edit.component';
@@ -331,8 +331,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         linkActivityTypeId: this.categoryModelSelected?.id,
         linkPropertyId: this.requestLinkPropertyId,
@@ -363,8 +369,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryEditComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -476,9 +488,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -506,9 +523,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -534,8 +556,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id: id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -561,8 +589,14 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
     }
     var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelResult.listItems, this.tableRowSelected);
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelResult.listItems, this.tableRowSelected);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         id: this.tableRowSelected.id,
         perviousItem: perviousItem,

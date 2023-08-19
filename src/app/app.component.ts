@@ -17,12 +17,13 @@ import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, DeviceTypeEnum, ErrorExceptionResult, OperatingSystemTypeEnum, TokenDeviceClientInfoDtoModel, TokenDeviceSetNotificationIdDtoModel } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
+import { getViewPort } from './_metronic/kt/_utils/DomHelpers';
+import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { TranslationService } from './core/i18n/translation.service';
 import { CmsSignalrService } from './core/services/cmsSignalr.service';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
-import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -96,6 +97,7 @@ export class AppComponent implements OnInit {
       });
     }
 
+    console.log('windows innerWidth size:', getViewPort());
   }
   cmsApiStoreSubscribe: Subscription;
   dataSupportModelResult: ErrorExceptionResult<CoreSiteSupportModel>;
@@ -245,3 +247,5 @@ export class AppComponent implements OnInit {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
 }
+
+

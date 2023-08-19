@@ -272,8 +272,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
           this.cmsToastrService.typeSuccessEdit();
           if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite)
             && (forcePopupMessageAction || (this.dataModel.recordStatus == RecordStatusEnum.Available && this.dataModel.recordStatus != this.lastRecordStatus))) {
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'fullscreen-dialog';
+            else
+              panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
               height: '90%',
+              panelClass: panelClass,
               data: { model: this.dataModel }
             });
             dialogRef.afterClosed().subscribe(result => {
@@ -650,7 +656,11 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       linkContractTypeId: this.contractDataModel.linkEstateContractTypeId,
     };
 
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -661,8 +671,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchTitle: this.dataModel.title }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -673,8 +689,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchCustomerTel: this.dataModel.aboutCustomerTel }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -685,8 +707,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchCustomerTel: this.dataModel.aboutCustomerMobile }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -697,8 +725,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchCaseCode: this.dataModel.caseCode }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -741,8 +775,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   }
 
   onActionbuttonQuickHistoryAddRow(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         linkActivityTypeId: null,
         linkPropertyId: this.dataModel.id,

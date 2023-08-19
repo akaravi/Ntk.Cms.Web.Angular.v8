@@ -129,8 +129,14 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   }
 
   onActionAdd(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyDetailGroupAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { linkPropertyTypeLanduseId: this.requestLinkPropertyTypeLanduseId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -150,8 +156,15 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyDetailGroupEditComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
