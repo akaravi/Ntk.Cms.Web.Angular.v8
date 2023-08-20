@@ -1,9 +1,9 @@
-import {OffsetModel} from './models/OffsetModel'
-import {ViewPortModel} from './models/ViewPortModel'
-import {ElementStyleUtil} from './_ElementStyleUtil'
-import {DataUtil} from './_DataUtil'
-import {ElementAnimateUtil} from './ElementAnimateUtil'
-import {getObjectPropertyValueByKey, toJSON} from './_TypesHelpers'
+import { ElementAnimateUtil } from './ElementAnimateUtil'
+import { DataUtil } from './_DataUtil'
+import { ElementStyleUtil } from './_ElementStyleUtil'
+import { getObjectPropertyValueByKey, toJSON } from './_TypesHelpers'
+import { OffsetModel } from './models/OffsetModel'
+import { ViewPortModel } from './models/ViewPortModel'
 
 function getCSS(el: HTMLElement, styleProp: string) {
   const defaultView = (el.ownerDocument || document).defaultView
@@ -98,7 +98,7 @@ function getElementOffset(el: HTMLElement): OffsetModel {
   // Running getBoundingClientRect on a
   // disconnected node in IE throws an error
   if (!el.getClientRects().length) {
-    return {top: 0, left: 0}
+    return { top: 0, left: 0 }
   }
 
   // Get document-relative position by adding viewport scroll to viewport-relative gBCR
@@ -120,7 +120,7 @@ function getElementParents(element: Element, selector: string) {
     Element.prototype.matches = function (s) {
       const matches = (document || this.ownerDocument).querySelectorAll(s)
       let i = matches.length
-      while (--i >= 0 && matches.item(i) !== this) {}
+      while (--i >= 0 && matches.item(i) !== this) { }
       return i > -1
     }
   }
@@ -176,6 +176,7 @@ function getScrollTop(): number {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth
 function getViewPort(): ViewPortModel {
+  //console.log('windows width :', window.innerWidth, ' height :', window.innerHeight);
   return {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -449,13 +450,12 @@ function colorDarken(color: string, amount: number) {
 }
 
 export {
-  getBreakpoint,
+  colorDarken, colorLighten, getAttributeValueByBreakpoint, getBreakpoint,
   getCSS,
   getCSSVariableValue,
   getElementActualCss,
   getElementActualHeight,
-  getElementActualWidth,
-  getElementIndex,
+  getElementActualWidth, getElementChild, getElementChildren, getElementIndex,
   getElementMatches,
   getElementOffset,
   getElementParents,
@@ -463,16 +463,6 @@ export {
   getScrollTop,
   getViewPort,
   insertAfterElement,
-  isElementHasClasses,
-  isVisibleElement,
-  throttle,
-  getElementChildren,
-  getElementChild,
-  isMobileDevice,
-  slide,
-  slideUp,
-  slideDown,
-  getAttributeValueByBreakpoint,
-  colorLighten,
-  colorDarken,
+  isElementHasClasses, isMobileDevice, isVisibleElement, slide, slideDown, slideUp, throttle
 }
+

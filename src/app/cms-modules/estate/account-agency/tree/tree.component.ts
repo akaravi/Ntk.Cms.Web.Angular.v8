@@ -110,8 +110,14 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
 
   }
   onActionAdd(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -131,8 +137,14 @@ export class EstateAccountAgencyTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyEditComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

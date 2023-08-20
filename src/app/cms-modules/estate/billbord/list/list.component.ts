@@ -345,9 +345,14 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -375,9 +380,14 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -450,9 +460,14 @@ export class EstateBillboardListComponent implements OnInit, OnDestroy {
         next: (ret) => {
           if (ret.isSuccess) {
             //open popup
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'fullscreen-dialog';
+               else
+              panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               height: "90%",
-              width: "90%",
+              panelClass: panelClass,
               data: {
                 title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,

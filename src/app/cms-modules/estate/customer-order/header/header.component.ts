@@ -80,9 +80,14 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.publicHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       height: "90%",
-      width: "90%",
+      panelClass: panelClass,
       data: {
         title: model.title,
         urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,

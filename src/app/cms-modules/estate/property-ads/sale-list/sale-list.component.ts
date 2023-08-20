@@ -82,8 +82,14 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
     this.DataGetCurrency();
     const transactionId = + localStorage.getItem('TransactionId');
     if (transactionId > 0) {
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'fullscreen-dialog';
+      else
+        panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
         // height: "90%",
+        panelClass: panelClass,
         data: {
           id: transactionId,
         },
@@ -147,9 +153,14 @@ export class EstatePropertyAdsSaleListComponent implements OnInit, OnDestroy {
 
   onActionButtonBuy(model: EstateAdsTypeModel): void {
     this.tableRowSelected = model;
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyAdsSalePaymentComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         linkPropertyId: this.requestLinkPropertyId,
         linkAdsTypeId: model.id,

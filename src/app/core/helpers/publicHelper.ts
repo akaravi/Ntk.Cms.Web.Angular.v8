@@ -17,8 +17,9 @@ import {
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
-import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
+import { getViewPort, isMobileDevice } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
+import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
 import { ComponentLocalStorageModel } from '../models/componentLocalStorageModel';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -42,10 +43,18 @@ export class PublicHelper {
     private pageInfo: PageInfoService
   ) {
     this.fileManagerTreeConfig = new TreeModel(this.treefileConfig);
-    this.innerWidth = + window.innerWidth;
     this.appClientVersion = environment.appVersion;
   }
-  public innerWidth = 0;
+  get innerWidth() {
+    return getViewPort().width
+  };
+  get isMobile() {
+    if (this.innerWidth < 1000)
+      return true;
+    if (isMobileDevice())
+      return true;
+    return false;
+  };
 
   appClientVersion = environment.appVersion;
   appServerVersion = '';

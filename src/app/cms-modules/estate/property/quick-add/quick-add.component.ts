@@ -524,8 +524,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchTitle: this.dataModel.title }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -538,8 +544,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchCustomerTel: this.dataModel.aboutCustomerTel }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -552,8 +564,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchCustomerTel: this.dataModel.aboutCustomerMobile }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -566,8 +584,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
       this.cmsToastrService.typeErrorSelectedRow();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { searchCaseCode: this.dataModel.caseCode }
     });
     dialogRef.afterClosed().subscribe(result => {

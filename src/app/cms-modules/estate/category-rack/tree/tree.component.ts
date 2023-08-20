@@ -118,8 +118,14 @@ export class EstateCategoryRackTreeComponent implements OnInit, OnDestroy {
   }
 
   onActionAdd(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCategoryRackAddComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -139,8 +145,14 @@ export class EstateCategoryRackTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCategoryRackEditComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

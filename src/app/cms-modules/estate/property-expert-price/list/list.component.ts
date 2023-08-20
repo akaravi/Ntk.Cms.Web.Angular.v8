@@ -280,7 +280,11 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90%';
     dialogConfig.data = {};
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -311,7 +315,11 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     dialogConfig.height = '90%';
     dialogConfig.data = { id: this.tableRowSelected.id };
 
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceEditComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
@@ -425,9 +433,14 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -455,9 +468,14 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -521,7 +539,11 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     dialogConfig.height = '90%';
     dialogConfig.data = { id: this.tableRowSelected.id };
 
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryCalculateComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.dialogChangedDate) {
@@ -546,7 +568,11 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     dialogConfig.height = '90%';
     dialogConfig.data = { id: this.tableRowSelected.id };
 
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

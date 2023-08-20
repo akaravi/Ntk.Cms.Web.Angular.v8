@@ -2,6 +2,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreConfigurationService } from 'ntk-cms-api';
+import { getViewPort } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -22,11 +23,11 @@ export class AuthComponent implements OnInit {
   }
   loading = new ProgressSpinnerModel();
   today: Date = new Date();
-  public innerWidth = 0;
+  get innerWidth() {
+    return getViewPort().width
+  };
   showSplashModel = true;
   ngOnInit(): void {
-    this.innerWidth = + window.innerWidth;
-    console.log('windows innerWidth size:',this.innerWidth);
     if (this.innerWidth < 860) {
       setTimeout(() => {
         this.showSplashModel = false;

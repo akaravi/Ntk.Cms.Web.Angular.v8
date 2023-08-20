@@ -308,8 +308,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     }
     var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelPropertyResult.listItems, model);
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelPropertyResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -331,8 +337,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
 
     var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelCustomerOrderResult.listItems, model);
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCustomerOrderQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -355,8 +367,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
 
     var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelHistoryResult.listItems, model);
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelHistoryResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+	     else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: {
         id: model.id,
         perviousItem: perviousItem,

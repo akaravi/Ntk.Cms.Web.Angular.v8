@@ -2,7 +2,7 @@
 import {
   AfterViewInit, ChangeDetectorRef, Component, Inject, Input, OnDestroy, OnInit
 } from "@angular/core";
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { PageEvent } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
@@ -507,8 +507,14 @@ export class EstatePropertyQuickListComponent
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
+      panelClass: panelClass,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -707,9 +713,14 @@ export class EstatePropertyQuickListComponent
 
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -736,9 +747,14 @@ export class EstatePropertyQuickListComponent
       return;
     }
     //open popup
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
-      width: "50%",
+      panelClass: panelClass,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -807,9 +823,14 @@ export class EstatePropertyQuickListComponent
         next: (ret) => {
           if (ret.isSuccess) {
             //open popup
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'fullscreen-dialog';
+            else
+              panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               height: "90%",
-              width: "90%",
+              panelClass: panelClass,
               data: {
                 title: ret.item.title,
                 urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
