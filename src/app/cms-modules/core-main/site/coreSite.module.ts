@@ -26,6 +26,7 @@ import { CoreSiteTreeComponent } from './tree/tree.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+import { NgxMatColorPickerModule } from 'ngx-ntk-mat-color-picker';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreSharedModule } from '../core.shared.module';
 import { CoreModuleModule } from '../module/coreModule.module';
@@ -42,7 +43,6 @@ import { CoreSiteResellerChartComponent } from './reseller-chart/reseller-chart.
 import { CoreSiteUserAddComponent } from './userAdd/userAdd.component';
 import { CoreSiteUserEditComponent } from './userEdit/userEdit.component';
 import { CoreSiteUserListComponent } from './userList/userList.component';
-import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 
 
 @NgModule({

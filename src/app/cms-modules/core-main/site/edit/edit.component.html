@@ -323,8 +323,9 @@
             placeholder="{{fieldsInfo['pwaThemeColor']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.pwaThemeColor" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.pwaThemeColor = ''">close</mat-icon>
-          <ngx-mat-color-toggle matSuffix [for]="pwaThemeColorPicker"></ngx-mat-color-toggle>
-          <ngx-mat-color-picker #pwaThemeColorPicker [touchUi]="true" [color]="'primary'"></ngx-mat-color-picker>
+          <ngx-ntk-mat-color-toggle matSuffix [for]="pwaThemeColorPicker"></ngx-ntk-mat-color-toggle>
+          <ngx-ntk-mat-color-picker #pwaThemeColorPicker [touchUi]="true"
+            [color]="'primary'"></ngx-ntk-mat-color-picker>
         </mat-form-field>
 
 
@@ -338,9 +339,9 @@
             placeholder="{{fieldsInfo['pwaThemeBackgroundColor']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.pwaThemeBackgroundColor" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.pwaThemeBackgroundColor = ''">close</mat-icon>
-          <ngx-mat-color-toggle matSuffix [for]="pwaThemeBackgroundColorPicker"></ngx-mat-color-toggle>
-          <ngx-mat-color-picker #pwaThemeBackgroundColorPicker [touchUi]="true"
-            [color]="'primary'"></ngx-mat-color-picker>
+          <ngx-ntk-mat-color-toggle matSuffix [for]="pwaThemeBackgroundColorPicker"></ngx-ntk-mat-color-toggle>
+          <ngx-ntk-mat-color-picker #pwaThemeBackgroundColorPicker [touchUi]="true"
+            [color]="'primary'"></ngx-ntk-mat-color-picker>
         </mat-form-field>
 
 

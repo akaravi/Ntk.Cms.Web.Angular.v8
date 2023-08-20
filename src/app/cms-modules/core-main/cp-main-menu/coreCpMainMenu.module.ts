@@ -1,10 +1,10 @@
-import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { IconPickerModule } from 'ngx-icon-picker';
+import { NgxMatColorPickerModule } from 'ngx-ntk-mat-color-picker';
 import {
   CoreCpMainMenuCmsUserGroupService, CoreCpMainMenuService, CoreEnumService, CoreModuleService, CoreSiteUserService
 } from 'ntk-cms-api';

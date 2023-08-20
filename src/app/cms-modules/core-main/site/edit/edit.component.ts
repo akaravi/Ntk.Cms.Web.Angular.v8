@@ -184,6 +184,10 @@ export class CoreSiteEditComponent implements OnInit, OnDestroy {
       );
   }
   DataEditContent(): void {
+    //! for convert color to hex
+    this.dataModel.pwaThemeColor = this.dataModel.pwaThemeColor?.toString();
+    //! for convert color to hex
+    this.dataModel.pwaThemeBackgroundColor = this.dataModel.pwaThemeBackgroundColor?.toString();
     this.formInfo.formSubmitAllow = false;
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';

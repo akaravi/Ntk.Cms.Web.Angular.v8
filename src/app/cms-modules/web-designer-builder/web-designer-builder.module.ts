@@ -1,4 +1,3 @@
-import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -8,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { IconPickerModule } from 'ngx-icon-picker';
+import { NgxMatColorPickerModule } from 'ngx-ntk-mat-color-picker';
 import {
   CoreAuthService,
   CoreEnumService,

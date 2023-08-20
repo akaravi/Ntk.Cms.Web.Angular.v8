@@ -175,7 +175,8 @@ export class CoreCpMainMenuEditComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
-
+    //! for convert color to hex
+    this.dataModel.color = this.dataModel.color?.toString();
     this.coreCpMainMenuService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.formInfo.formSubmitAllow = true;

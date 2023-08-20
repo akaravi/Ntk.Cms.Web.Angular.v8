@@ -92,8 +92,8 @@
             [disabled]="!fieldsInfo['color']?.accessEditField" placeholder="{{fieldsInfo['color']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.color" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.color = ''">close</mat-icon>
-          <ngx-mat-color-toggle matSuffix [for]="colorPicker"></ngx-mat-color-toggle>
-          <ngx-mat-color-picker #colorPicker [touchUi]="true" [color]="'primary'"></ngx-mat-color-picker>
+          <ngx-ntk-mat-color-toggle matSuffix [for]="colorPicker"></ngx-ntk-mat-color-toggle>
+          <ngx-ntk-mat-color-picker #colorPicker [touchUi]="true" [color]="'primary'"></ngx-ntk-mat-color-picker>
         </mat-form-field>
         <!-- Icon Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['icon']?.accessWatchField">

@@ -155,6 +155,8 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   }
 
   DataEditContent(): void {
+    //! for convert color to hex
+    this.dataModel.bgColor = this.dataModel.bgColor?.toString();
     this.formInfo.formSubmitAllow = false;
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';

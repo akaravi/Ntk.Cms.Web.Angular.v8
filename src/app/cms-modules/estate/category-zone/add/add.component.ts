@@ -4,7 +4,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateCategoryZoneModel, EstateCategoryZoneService, FormInfoModel, InfoEnumModel
@@ -87,7 +87,8 @@ export class EstateCategoryZoneAddComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    //! for convert color to hex
+    this.dataModel.iconColor = this.dataModel.iconColor?.toString();
     this.estateCategoryZoneService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;

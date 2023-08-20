@@ -146,6 +146,11 @@ export class CoreSiteAddComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
+
+    //! for convert color to hex
+    this.dataModel.pwaThemeColor = this.dataModel.pwaThemeColor?.toString();
+    //! for convert color to hex
+    this.dataModel.pwaThemeBackgroundColor = this.dataModel.pwaThemeBackgroundColor?.toString();
     this.coreSiteService
       .ServiceAdd(this.dataModel)
       .subscribe({

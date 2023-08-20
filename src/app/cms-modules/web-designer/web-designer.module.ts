@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { IconPickerModule } from 'ngx-icon-picker';
+import { NgxMatColorPickerModule } from 'ngx-ntk-mat-color-picker';
 import {
   CoreAuthService,
   CoreEnumService,
@@ -60,7 +61,6 @@ import { WebDesignerMainPageListGridComponent } from './page/list-grid/list-grid
 import { WebDesignerMainPageListComponent } from './page/list/list.component';
 import { WebDesignerMainPageSelectorComponent } from './page/selector/selector.component';
 import { WebDesignerMainPageTreeComponent } from './page/tree/tree.component';
-import { NgxMatColorPickerModule } from '@angular-material-components/color-picker';
 @NgModule({
   declarations: [
     WebDesignerComponent,

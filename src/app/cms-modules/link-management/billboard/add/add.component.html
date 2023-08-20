@@ -60,8 +60,8 @@
             [disabled]="!fieldsInfo['bgColor']?.accessAddField" placeholder="{{fieldsInfo['bgColor']?.fieldTitle}}" />
           <mat-icon matSuffix *ngIf="dataModel.bgColor" matSuffix mat-icon-button aria-label="Clear"
             (click)="dataModel.bgColor = ''">close</mat-icon>
-          <ngx-mat-color-toggle matSuffix [for]="bgColorPicker"></ngx-mat-color-toggle>
-          <ngx-mat-color-picker #bgColorPicker [touchUi]="true" [color]="'primary'"></ngx-mat-color-picker>
+          <ngx-ntk-mat-color-toggle matSuffix [for]="bgColorPicker"></ngx-ntk-mat-color-toggle>
+          <ngx-ntk-mat-color-picker #bgColorPicker [touchUi]="true" [color]="'primary'"></ngx-ntk-mat-color-picker>
         </mat-form-field>
 
 

@@ -105,6 +105,8 @@ export class EstatePropertyDetailAddComponent implements OnInit {
       );
   }
   DataAddContent(): void {
+    //! for convert color to hex
+    this.dataModel.iconColor = this.dataModel.iconColor?.toString();
     this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';

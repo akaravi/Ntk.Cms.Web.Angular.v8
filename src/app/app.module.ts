@@ -1,4 +1,3 @@
-import { MAT_COLOR_FORMATS, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
@@ -13,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { InlineSVGModule } from 'ng-inline-svg-2';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
 import { ClipboardModule } from 'ngx-clipboard';
+import { MatColorFormats, MAT_COLOR_FORMATS } from 'ngx-ntk-mat-color-picker';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
 import { AppComponent } from './app.component';
@@ -31,6 +31,11 @@ function appInitializer(authService: CmsAuthService) {
 }
 export function CreateTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
+export const CUSTOM_MAT_COLOR_FORMATS: MatColorFormats = {
+  display: {
+    colorInput: 'hex'
+  }
 }
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "right",
@@ -101,7 +106,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
       }
     },
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
-    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+    { provide: MAT_COLOR_FORMATS, useValue: CUSTOM_MAT_COLOR_FORMATS },
 
   ],
   bootstrap: [AppComponent],

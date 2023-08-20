@@ -46,8 +46,8 @@
         [disabled]="!fieldsInfo['iconColor']?.accessAddField" placeholder="{{fieldsInfo['iconColor']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.iconColor" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.iconColor = ''">close</mat-icon>
-      <ngx-mat-color-toggle matSuffix [for]="iconColorPicker"></ngx-mat-color-toggle>
-      <ngx-mat-color-picker #iconColorPicker [touchUi]="true" [color]="'primary'"></ngx-mat-color-picker>
+      <ngx-ntk-mat-color-toggle matSuffix [for]="iconColorPicker"></ngx-ntk-mat-color-toggle>
+      <ngx-ntk-mat-color-picker #iconColorPicker [touchUi]="true" [color]="'primary'"></ngx-ntk-mat-color-picker>
     </mat-form-field>
 
     <!-- ShowInFormOrder Field -->
