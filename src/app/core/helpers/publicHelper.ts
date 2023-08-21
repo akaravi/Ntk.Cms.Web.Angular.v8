@@ -17,9 +17,9 @@ import {
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
 import { firstValueFrom } from 'rxjs';
+import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { getViewPort, isMobileDevice } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
-import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
 import { ComponentLocalStorageModel } from '../models/componentLocalStorageModel';
 import { CmsStoreService } from '../reducers/cmsStore.service';
@@ -404,7 +404,7 @@ export class PublicHelper {
     while (this.getEnumRecordStatusActionIndo) {
       //**indo */
       setTimeout(() => {
-      }, 10000);
+      }, 100000);
       i++
       if (i == 100)
         this.getEnumRecordStatusActionIndo = false;
@@ -415,7 +415,7 @@ export class PublicHelper {
     }
 
     this.getEnumRecordStatusActionIndo = true;
-    return await firstValueFrom(this.coreEnumService.ServiceRecordStatusEnum())
+    return await firstValueFrom(this.coreEnumService.ServiceRecordStatusEnum(1000000))
       .then((response) => {
         this.getEnumRecordStatusActionIndo = false;
         this.cmsStoreService.setState({ EnumRecordStatusResultStore: response });

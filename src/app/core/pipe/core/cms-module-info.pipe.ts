@@ -11,7 +11,7 @@ export class CmsModuleInfoPipe implements PipeTransform {
     if (!value || value <= 0) {
       return new Observable<string>();
     }
-    return this.service.ServiceGetOneById(value)
+    return this.service.ServiceGetOneById(value,1000000)
       .pipe(
         map((ret) => {
           var retOut = '';
