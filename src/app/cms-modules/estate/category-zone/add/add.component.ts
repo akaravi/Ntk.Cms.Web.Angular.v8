@@ -126,6 +126,9 @@ export class EstateCategoryZoneAddComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
+  onActionSelectorLocation(model: number[] | null): void {
 
+    this.dataModel.linkLocationIds = model;
+  }
 
 }

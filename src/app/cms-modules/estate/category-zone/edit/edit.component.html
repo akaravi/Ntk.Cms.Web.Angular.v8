@@ -69,7 +69,12 @@
       <ngx-ntk-mat-color-toggle matSuffix [for]="iconColorPicker"></ngx-ntk-mat-color-toggle>
       <ngx-ntk-mat-color-picker #iconColorPicker [touchUi]="true" [color]="'primary'"></ngx-ntk-mat-color-picker>
     </mat-form-field>
-
+    {{'TITLE.Geographical_Areas' | translate}} :
+    <!-- LinkLocationIds Field -->
+    <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)"
+      [optionDisabled]="!fieldsInfo['linkLocationIds']?.accessEditField" [(optionLoading)]="loading"
+      [optionSelectForce]="dataModel.linkLocationIds" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+    </app-cms-location-autocomplete>
     <!-- Description Field -->
     <mat-form-field class="ntk-full-width">
       <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>

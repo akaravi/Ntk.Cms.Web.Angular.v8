@@ -1,6 +1,6 @@
 {
   "name": "ntk-cms-web",
-  "version": "15.2.0528.2",
+  "version": "15.2.0529.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -59,8 +59,9 @@
     "ng-apexcharts": "^1.7.5",
     "ng-inline-svg-2": "^15.0.1",
     "ng2-currency-mask": "^13.0.3",
+    "ngx-awesome-uploader": "^15.0.0",
     "ngx-clipboard": "^15.1.0",
-    "ngx-icon-picker": "^1.10.0",
+    "ngx-icon-picker": "1.10.0",
     "ngx-material-timepicker": "^13.0.3",
     "ngx-ntk-cron-editor": "^1.0.15",
     "ngx-ntk-mat-color-picker": "^15.0.5",
