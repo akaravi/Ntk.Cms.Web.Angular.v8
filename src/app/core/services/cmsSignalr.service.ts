@@ -74,7 +74,14 @@ export class CmsSignalrService {
       }
       // web-push generate-vapid-keys --json
       //{"publicKey":"BKxkwx4CTSU2psDIs5LDX08P7hEwsbgDZa2hjJqLjUj_gmjg0cOD1vSkqMtBfBZ52RvFXl1R55FIVrj5eUMbx1Q","privateKey":"El0I7GEeskNmXn5qrPppzz80_LCEF0zkcCt76_R_SEo"}
+      if (notification.contentJson?.length > 0) {
+        var actionConfig = JSON.parse(notification.contentJson);
+        if (actionConfig && actionConfig.action?.length>0) {
+          if (actionConfig.action == 'UpadteOnlineList') {
 
+          }
+        }
+      }
 
       if (!xFunc)
         xFunc;
