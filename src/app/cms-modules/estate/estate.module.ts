@@ -98,6 +98,7 @@ import { EstatePropertyTypeUsageSelectionlistComponent } from './property-type-u
 import { EstatePropertyTypeUsageSelectorComponent } from './property-type-usage/selector/selector.component';
 import { EstatePropertyTypeUsageTreeComponent } from './property-type-usage/tree/tree.component';
 import { EstatePropertyAddComponent } from './property/add/add.component';
+import { EstatePropertyAddMobileComponent } from './property/add/add.mobile.component';
 import { EstatePropertyCompleteComponent } from './property/autocomplete/autocomplete.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyHeaderComponent } from './property/header/header.component';
@@ -262,6 +263,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyTypeUsageHeaderComponent,
     /* */
     EstatePropertyAddComponent,
+    EstatePropertyAddMobileComponent,
     EstatePropertyQuickAddComponent,
     EstatePropertyEditComponent,
     EstatePropertyListComponent,
