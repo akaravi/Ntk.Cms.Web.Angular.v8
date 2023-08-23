@@ -10,7 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import {
   CoreLogAvoidDuplicateDataEntryService, CoreLogCurrencyService,
-  CoreLogErrorService, CoreLogMemberService, CoreLogReportDataService, CoreLogSmsService, CoreModuleService
+  CoreLogErrorService, CoreLogMemberService, CoreLogNotificationService, CoreLogReportDataService, CoreLogSmsService, CoreModuleService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CoreLogAvoidDuplicateDataEntryEditComponent } from './avoid-duplicate/edit/edit.component';
@@ -22,13 +22,15 @@ import { CoreLogErrorListComponent } from './error/list/list.component';
 import { CoreLogMemberEditComponent } from './member/edit/edit.component';
 import { CoreLogMemberListComponent } from './member/list/list.component';
 import { CoreLogMemberViewComponent } from './member/view/view.component';
+import { CoreLogNotificationEditComponent } from './notification/edit/edit.component';
+import { CoreLogNotificationListComponent } from './notification/list/list.component';
+import { CoreLogNotificationViewComponent } from './notification/view/view.component';
 import { CoreLogReportDataEditComponent } from './report-data/edit/edit.component';
 import { CoreLogReportDataListComponent } from './report-data/list/list.component';
 import { CoreLogReportDataViewComponent } from './report-data/view/view.component';
 import { CoreLogSmsEditComponent } from './sms/edit/edit.component';
 import { CoreLogSmsListComponent } from './sms/list/list.component';
 import { CoreLogSmsViewComponent } from './sms/view/view.component';
-
 
 
 @NgModule({
@@ -49,6 +51,10 @@ import { CoreLogSmsViewComponent } from './sms/view/view.component';
     CoreLogSmsListComponent,
     CoreLogSmsEditComponent,
     CoreLogSmsViewComponent,
+    /** */
+    CoreLogNotificationListComponent,
+    CoreLogNotificationEditComponent,
+    CoreLogNotificationViewComponent,
     /** */
     CoreLogMemberListComponent,
     CoreLogMemberEditComponent,
@@ -74,6 +80,10 @@ import { CoreLogSmsViewComponent } from './sms/view/view.component';
     CoreLogSmsEditComponent,
     CoreLogSmsViewComponent,
     /** */
+    CoreLogNotificationListComponent,
+    CoreLogNotificationEditComponent,
+    CoreLogNotificationViewComponent,
+    /** */
     CoreLogMemberListComponent,
     CoreLogMemberEditComponent,
     CoreLogMemberViewComponent,
@@ -95,6 +105,7 @@ import { CoreLogSmsViewComponent } from './sms/view/view.component';
     CoreModuleService,
     CoreLogErrorService,
     CoreLogSmsService,
+    CoreLogNotificationService,
     CoreLogMemberService,
     CoreLogCurrencyService,
     CoreLogAvoidDuplicateDataEntryService,

@@ -1,5 +1,8 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { LayoutService } from '../../../../../layout';
+import { ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { CoreLogNotificationModel, CoreLogNotificationService, CoreTokenUserLogModel, CoreTokenUserLogService, ErrorExceptionResult } from 'ntk-cms-api';
+import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
+import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 export type NotificationsTabsType =
   | 'kt_topbar_notifications_1'
@@ -18,12 +21,67 @@ export class NotificationsInnerComponent implements OnInit {
   activeTabId: NotificationsTabsType = 'kt_topbar_notifications_2';
   alerts: Array<AlertModel> = defaultAlerts;
   logs: Array<LogModel> = defaultLogs;
-  constructor() {}
+  constructor(
+    public coreLogNotificationService: CoreLogNotificationService,
+    public coreTokenUserLogService: CoreTokenUserLogService,
+    private cdr: ChangeDetectorRef,
+    private cmsToastrService: CmsToastrService,
+    public translate: TranslateService,
+  ) {
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.CoreTokenUserLogDataGetAll();
+    this.CoreLogNotificationDataGetAll();
+  }
 
   setActiveTabId(tabId: NotificationsTabsType) {
     this.activeTabId = tabId;
+  }
+  loading = new ProgressSpinnerModel();
+  coreTokenUserLogDataModelResult: ErrorExceptionResult<CoreTokenUserLogModel> = new ErrorExceptionResult<CoreTokenUserLogModel>();
+  coreLogNotificationDataModelResult: ErrorExceptionResult<CoreLogNotificationModel> = new ErrorExceptionResult<CoreLogNotificationModel>();
+  CoreLogNotificationDataGetAll(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.coreLogNotificationService.ServiceGetAllEditor(null).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.coreLogNotificationDataModelResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+  CoreTokenUserLogDataGetAll(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.coreTokenUserLogService.ServiceGetAllEditor(null).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.coreTokenUserLogDataModelResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+
+        this.loading.Stop(pName);
+      }
+    }
+    );
   }
 }
 
