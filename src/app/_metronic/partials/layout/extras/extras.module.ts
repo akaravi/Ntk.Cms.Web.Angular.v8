@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
 import { NgbTooltipModule } from "@ng-bootstrap/ng-bootstrap";
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { CoreTokenUserLogService } from 'ntk-cms-api';
+import { CoreLogNotificationService, CoreTokenUserLogService } from 'ntk-cms-api';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NotificationsInnerComponent } from './dropdown-inner/notifications-inner/notifications-inner.component';
 import { QuickLinksInnerComponent } from './dropdown-inner/quick-links-inner/quick-links-inner.component';
@@ -29,7 +29,8 @@ import { LayoutScrollTopComponent } from './scroll-top/scroll-top.component';
     UserInnerComponent,
     LayoutScrollTopComponent,
   ], providers: [
-    CoreTokenUserLogService
+    CoreTokenUserLogService,
+    CoreLogNotificationService,
   ]
 })
 export class ExtrasModule {
