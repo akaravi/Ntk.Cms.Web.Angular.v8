@@ -160,6 +160,10 @@
             <!-- begin::Text-->
             <div class="fw-mormal timeline-content text-muted ps-3">
               {{item.title}}
+              <br>
+              <p>
+                {{item.createdBy| cmsuserinfo |async}}
+              </p>
             </div>
             <!-- end::Text-->
           </div>
