@@ -36,7 +36,7 @@
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width mb-1">
             <mat-label>{{'TITLE.DESCRIPTION' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataDetailModel.description" name="dataDetailModel.description" #Description type="text" placeholder="{{'TITLE.DESCRIPTION' | translate}}" minlength="3" maxlength="100" required />
+            <input matInput [(ngModel)]="dataDetailModel.description" name="dataDetailModel.description" #Description type="text" placeholder="{{'TITLE.DESCRIPTION' | translate}}" minlength="3" maxlength="100"  />
             <mat-icon matSuffix *ngIf="dataDetailModel.description" class="pointer" matSuffix mat-icon-button aria-label="Clear" (click)="dataDetailModel.description = ''">close</mat-icon>
             <mat-icon class="pointer" matSuffix>mode_edit</mat-icon>
         </mat-form-field>
