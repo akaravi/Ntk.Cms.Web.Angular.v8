@@ -11,7 +11,7 @@ import {
   CoreModuleService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel, WebDesignerMainPageDependencyModel,
   WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -84,6 +84,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     'ClassActionName',
     'Action'
   ];
+  tabledisplayedColumnsMobileSource: string[] = [
+    'Title',
+    'Action',
+  ];
   expandedElement: WebDesignerMainPageDependencyModel | null;
   cmsApiStoreSubscribe: Subscription;
 
@@ -110,7 +114,8 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
+    //this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
+    this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, ['Id', 'RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new WebDesignerMainPageDependencyModel());
     const pName = this.constructor.name + 'main';
