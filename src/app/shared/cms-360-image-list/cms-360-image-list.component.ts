@@ -58,7 +58,7 @@ export class Cms360ImageListComponent implements OnInit {
   tabledataSource = new MatTableDataSource<File360ViewModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
   tabledisplayedColumns = ['panorama', 'Title', 'Description', 'Action'];
-  tableHotspotDisplayedColumns = ['sceneId', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tableHotspotDisplayedColumns = ['type', 'sceneId', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 

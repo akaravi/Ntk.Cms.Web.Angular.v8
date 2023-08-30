@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult, EstatePropertySupplierCategoryModel, EstatePropertySupplierModel,
   EstatePropertySupplierService, FilterDataModel,
-  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
+  FilterModel, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -21,6 +21,7 @@ import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { EstatePropertySupplierDeleteComponent } from '../delete/delete.component';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 @Component({
   selector: 'app-estate-property-supplier-list',
   templateUrl: './list.component.html',
@@ -70,6 +71,7 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     'Title',
     'CreatedDate',
     'Action',
+    'LinkTo',
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   cmsApiStoreSubscribe: Subscription;
@@ -402,5 +404,61 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     this.tableSource.data.forEach(row => {
       row['expanded'] = flag;
     })
+  }
+
+  onActionbuttonLinkTo(
+    model: EstatePropertySupplierModel = this.tableRowSelected
+  ): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (model.recordStatus != RecordStatusEnum.Available) {
+      this.cmsToastrService.typeWarningRecordStatusNoAvailable();
+      return;
+    }
+    this.onActionTableRowSelect(model);
+
+
+    const pName = this.constructor.name + "ServiceGetOneById";
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_state_information'));
+    this.contentService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
+    this.contentService
+      .ServiceGetOneById(this.tableRowSelected.id)
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            //open popup
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'fullscreen-dialog';
+            else
+              panelClass = 'dialog-min';
+            const dialogRef = this.dialog.open(CmsLinkToComponent, {
+              height: "90%",
+              panelClass: panelClass,
+              data: {
+                title: ret.item.title,
+                urlViewContentQRCodeBase64: ret.item.urlViewContentQRCodeBase64,
+                urlViewContent: ret.item.urlViewContent,
+              },
+            });
+            dialogRef.afterClosed().subscribe((result) => {
+              if (result && result.dialogChangedDate) {
+                this.DataGetAll();
+              }
+            });
+            //open popup
+          } else {
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+      );
   }
 }

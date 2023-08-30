@@ -80,7 +80,7 @@ export class Cms360TourListComponent implements OnInit {
   tabledataSource = new MatTableDataSource<File360TourScenesModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
   tabledisplayedColumns = ['linkFileId', 'panorama', 'Title', 'Action'];
-  tableHotspotDisplayedColumns = ['sceneIdSelector', 'type', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tableHotspotDisplayedColumns = ['type', 'sceneIdSelector', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
