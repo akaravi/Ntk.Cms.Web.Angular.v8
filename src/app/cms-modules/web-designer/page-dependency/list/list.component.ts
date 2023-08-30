@@ -114,7 +114,6 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     this.cmsApiStoreSubscribe.unsubscribe();
   }
   DataGetAll(): void {
-    //this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, ['RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
     this.tabledisplayedColumns = this.publicHelper.TableDisplayedColumns(this.tabledisplayedColumnsSource, this.tabledisplayedColumnsMobileSource, ['Id', 'RecordStatus', 'Title', 'CmsModuleClassName', 'ClassActionName'], this.tokenInfo);
     this.tableRowsSelected = [];
     this.onActionTableRowSelect(new WebDesignerMainPageDependencyModel());
