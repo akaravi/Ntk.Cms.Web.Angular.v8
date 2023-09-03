@@ -41,6 +41,8 @@ export class Cms360ImageListComponent implements OnInit {
     this.privateDataModel.forEach(element => {
       if (!element.hotSpots)
         element.hotSpots = [];
+      debugger
+      element.hotSpots = this.uniqByReduce(element.hotSpots);
       element.hotSpots.forEach(h => {
         h.guid = this.getGuid();
       });
@@ -50,6 +52,15 @@ export class Cms360ImageListComponent implements OnInit {
   }
   get dataModel(): File360ViewModel[] {
     return this.privateDataModel;
+  }
+  uniqByReduce<T>(array: T[]) {
+    const result: T[] = [];
+    array.forEach((item) => {
+      if (!result.includes(item) && result.filter(x => x['pitch'] == item['pitch'] && x['yaw'] == item['yaw']).length == 0) {
+        result.push(item);
+      }
+    })
+    return result;
   }
 
   formInfo: FormInfoModel = new FormInfoModel();
@@ -113,7 +124,7 @@ export class Cms360ImageListComponent implements OnInit {
         if (elementHotspot.type && elementHotspot.type.length > 0)
           hotSpots.push(elementHotspot);
       });
-      element.hotSpots = hotSpots;
+      element.hotSpots = this.uniqByReduce(hotSpots);
 
     });
 
@@ -197,7 +208,7 @@ export class Cms360ImageListComponent implements OnInit {
     hotspot.type = "info";
     hotspot.guid = this.getGuid();
     this.dataDetailModel.hotSpots.push(hotspot);
-    this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     this.editROw(hotspot);
     this.onActionPannellumClickLastPoint();
   }
@@ -229,7 +240,7 @@ export class Cms360ImageListComponent implements OnInit {
     this.actionPannellumImageLoad(this.dataDetailModel.panorama, this.dataDetailModel.hotSpots);
     this.oldHotspot = new File360TourHotSpotModel();
     this.editHotspot = new File360TourHotSpotModel();
-    this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     this.selectIndex = index;
     this.showAddView360 = !this.showAddView360;
   }
@@ -244,7 +255,7 @@ export class Cms360ImageListComponent implements OnInit {
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.guid == usr.guid);
     if (indexId >= 0) {
       this.dataDetailModel.hotSpots.splice(indexId, 1);
-      this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+      this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     }
   }
   updateEdit() {
@@ -263,7 +274,7 @@ export class Cms360ImageListComponent implements OnInit {
     if (this.oldHotspot && this.oldHotspot.guid) {
       if (!this.dataDetailModel.hotSpots)
         this.dataDetailModel.hotSpots = [];
-      this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+      this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     }
   }
 }

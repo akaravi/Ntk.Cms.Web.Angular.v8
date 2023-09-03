@@ -103,6 +103,15 @@ export class Cms360TourListComponent implements OnInit {
   ngAfterViewInit(): void {
     this.container.nativeElement.style.display = 'none';
   }
+  uniqByReduce<T>(array: T[]) {
+    const result: T[] = [];
+    array.forEach((item) => {
+      if (!result.includes(item) && result.filter(x => x['pitch'] == item['pitch'] && x['yaw'] == item['yaw']).length == 0) {
+        result.push(item);
+      }
+    })
+    return result;
+  }
   actionPannellumImageLoad(str: string, hotSpots: File360TourHotSpotModel[]): void {
     const defaultOptions = {
       "type": "equirectangular",//equirectangular, cubemap, or multires.
@@ -112,7 +121,7 @@ export class Cms360TourListComponent implements OnInit {
       "crossOrigin": "anonymous"
     };
     if (hotSpots && hotSpots.length > 0) {
-      defaultOptions['hotSpots'] = hotSpots;
+      defaultOptions['hotSpots'] = this.uniqByReduce(hotSpots);
     }
     const combinedOptions = Object.assign({}, defaultOptions, this.options);
     if (this.viewer)
@@ -120,7 +129,9 @@ export class Cms360TourListComponent implements OnInit {
     this.viewer = pannellum.viewer(this.container.nativeElement, combinedOptions);
     this.container.nativeElement.style.display = 'block';
   }
+  actionPannellumTourLoadClick = false;
   actionPannellumTourLoad(): void {
+    this.actionPannellumTourLoadClick = true;
     this.actionPrivateDataModelOptimaze();
     const defaultOptions = {};
     defaultOptions['default'] = this.privateDataModel.defaultValue;
@@ -136,6 +147,10 @@ export class Cms360TourListComponent implements OnInit {
   onActionPannellumClick(e): void {
     if (!this.viewer)
       return;
+    if (this.actionPannellumTourLoadClick) {
+      this.actionPannellumTourLoadClick = false;
+      return;
+    }
     this.postionView = new PostionViewModel();
     this.postionView.viewerGetYaw = this.viewer.getYaw();
     this.postionView.viewerGetPitch = this.viewer.getPitch();
@@ -206,7 +221,7 @@ export class Cms360TourListComponent implements OnInit {
           if (elementHotspot.type && elementHotspot.type.length > 0)
             hotSpots.push(elementHotspot);
         });
-        element.hotSpots = hotSpots;
+        element.hotSpots = this.uniqByReduce(hotSpots);
         this.privateDataModel.scenes[element.linkFileId] = element;
         this.privateDataModel.scenes[element.linkFileId].hfov = 110;
       }
@@ -240,7 +255,7 @@ export class Cms360TourListComponent implements OnInit {
     hotspot.guid = this.getGuid();
 
     this.dataDetailModel.hotSpots.push(hotspot);
-    this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     this.editROw(hotspot);
     this.onActionPannellumClickLastPoint();
   }
@@ -272,7 +287,7 @@ export class Cms360TourListComponent implements OnInit {
     this.actionPannellumImageLoad(this.dataDetailModel.panorama, this.dataDetailModel.hotSpots);
     this.oldHotspot = new File360TourHotSpotModel();
     this.editHotspot = new File360TourHotSpotModel();
-    this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+    this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     this.selectIndex = index;
     this.showAddView360 = !this.showAddView360;
   }
@@ -287,7 +302,7 @@ export class Cms360TourListComponent implements OnInit {
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.guid == usr.guid);
     if (indexId >= 0) {
       this.dataDetailModel.hotSpots.splice(indexId, 1);
-      this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+      this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     }
   }
   updateEdit() {
@@ -306,7 +321,7 @@ export class Cms360TourListComponent implements OnInit {
     if (this.oldHotspot && this.oldHotspot.guid) {
       if (!this.dataDetailModel.hotSpots)
         this.dataDetailModel.hotSpots = [];
-      this.tableHotSpotdataSource.data = this.dataDetailModel.hotSpots;
+      this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
     }
   }
   onActionImportFile360View(): void {
@@ -318,7 +333,7 @@ export class Cms360TourListComponent implements OnInit {
           scense.guid = this.getGuid();
           scense.linkFileId = element.linkFileId;
           scense.title = element.title
-          scense.hotSpots = element.hotSpots;
+          scense.hotSpots = this.uniqByReduce(element.hotSpots);
           scense.panorama = element.panorama;
           scense.preview = element.preview;
           scense.hfov = 110;
