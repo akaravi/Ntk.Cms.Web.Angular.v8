@@ -1,23 +1,4 @@
 <!-- <p>نمایش تور یافت نشد...</p> -->
-<div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
-  style="height: 380px; width: 100%;direction: ltr;">
-</div>
-<table *ngIf="postionView" class="grid-row-ltr-center">
-  <tr>
-    <td>viewer Yaw</td>
-    <td>viewer Pitch</td>
-    <td>click Yaw</td>
-    <td>click Pitch</td>
-  </tr>
-  <tr>
-    <td>{{postionView.viewerGetYaw}}</td>
-    <td>{{postionView.viewerGetPitch}}</td>
-    <td>{{postionView.clickGetYaw}}</td>
-    <td>{{postionView.clickGetPitch}}</td>
-  </tr>
-</table>
-
-<br>
 
 <button (click)="onActionShowView360Add()" *ngIf="!showAddView360" type="button" mat-button
   class="btn btn-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
@@ -65,9 +46,26 @@
       <img *ngIf="dataDetailModel?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
         src="{{dataDetailModel.panorama | cmsthumbnail}}" height="50" width="50" />
     </a>
-
     <hr>
-    <h5>تنظیمات تور</h5>
+    <div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
+      style="height: 380px; width: 100%;direction: ltr;">
+    </div>
+    <table *ngIf="postionView" class="grid-row-ltr-center">
+      <tr>
+        <td>viewer Yaw</td>
+        <td>viewer Pitch</td>
+        <td>click Yaw</td>
+        <td>click Pitch</td>
+      </tr>
+      <tr>
+        <td>{{postionView.viewerGetYaw}}</td>
+        <td>{{postionView.viewerGetPitch}}</td>
+        <td>{{postionView.clickGetYaw}}</td>
+        <td>{{postionView.clickGetPitch}}</td>
+      </tr>
+    </table>
+    <hr>
+    <h5>تنظیمات </h5>
     <p>در ورود این تنظیمات با مدیریت سامانه هماهنگ باشید</p>
     <div style="background-color: bisque;padding:5px">
       <div class="form-actions" style="direction:ltr">
@@ -201,9 +199,10 @@
               </ng-container>
               <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
                 <button type="button" mat-raised-button color="accent" class="mb-2" [disabled]="editdisabled"
-                  (click)="updateEdit()">Update</button>
+                  *ngIf="this.editHotspot.pitch !==postionView?.clickGetPitch && this.editHotspot.yaw!==postionView?.clickGetYaw"
+                  (click)="updateEdit()">{{'ACTION.Update' | translate}}</button>
                 <button type="button" mat-raised-button color="warn" [disabled]="editdisabled"
-                  (click)="cancelEdit()">Cancel</button>
+                  (click)="cancelEdit()">{{'ACTION.CANCEL' | translate}}</button>
 
                 <button type="button" *ngIf="postionView" mat-raised-button color="warn"
                   matTooltip="ثبت آخرین نقطه کلیک شده" [disabled]="editdisabled"

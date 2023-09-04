@@ -69,7 +69,7 @@ export class Cms360ImageListComponent implements OnInit {
   tabledataSource = new MatTableDataSource<File360ViewModel>();
   tableHotSpotdataSource = new MatTableDataSource<File360TourHotSpotModel>();
   tabledisplayedColumns = ['panorama', 'Title', 'Description', 'Action'];
-  tableHotspotDisplayedColumns = ['type', 'sceneId', 'text', 'url', 'pitch', 'yaw', 'Action'];
+  tableHotspotDisplayedColumns = ['type', 'text', 'url', 'pitch', 'yaw', 'Action'];
 
   selectFileTypeReport = ['jpeg', 'jpg'];
 
@@ -264,6 +264,8 @@ export class Cms360ImageListComponent implements OnInit {
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.guid == this.oldHotspot.guid);
     if (indexId >= 0)
       this.dataDetailModel.hotSpots[indexId] = this.editHotspot;
+
+
     this.editdisabled = false;
     this.oldHotspot = new File360TourHotSpotModel();
     this.editHotspot = new File360TourHotSpotModel();

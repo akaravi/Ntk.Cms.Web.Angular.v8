@@ -202,12 +202,7 @@
                     </app-cms-files-selector>
                     <br>
                 </div>
-                <h3>{{'TITLE.image_360' | translate}}</h3>
-                <app-cms-360-image-list [(dataModel)]="dataModel.file360Views"></app-cms-360-image-list>
-                <br>
-                <h3>{{'TITLE.virtual_tour' | translate}}</h3>
-                <app-cms-360-tour-list [(dataModel)]="dataModel.file360Tour"
-                    [dataImageModel]="dataModel.file360Views"></app-cms-360-tour-list>
+
                 <!-- LinkFilePodcastIdSrc Field -->
                 <div class="mb-3">
                     <audio *ngIf="dataModel?.linkFilePodcastIdSrc?.length>0" controls>
@@ -252,6 +247,12 @@
                         [openFilemanagerButtonLabelKey]="'select'" [selectFileType]="selectFileTypeMovie"
                         [openFilemanagerButtonView]="false"></cms-file-manager>
                 </div>
+                <h3>{{'TITLE.image_360' | translate}}</h3>
+                <app-cms-360-image-list [(dataModel)]="dataModel.file360Views"></app-cms-360-image-list>
+                <br>
+                <h3>{{'TITLE.virtual_tour' | translate}}</h3>
+                <app-cms-360-tour-list [(dataModel)]="dataModel.file360Tour"
+                    [dataImageModel]="dataModel.file360Views"></app-cms-360-tour-list>
                 <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{'ACTION.BEFOR' | translate}}

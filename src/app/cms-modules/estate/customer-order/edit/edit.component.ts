@@ -151,7 +151,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
             this.dataModel.propertyDetailGroups.forEach(itemGroup => {
               itemGroup.propertyDetails.forEach(element => {
                 this.propertyDetails[element.id] = 0;
-
                 if (this.dataModel.propertyDetailValues) {
                   const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
                   if (value) {
@@ -170,7 +169,6 @@ export class EstateCustomerOrderEditComponent implements OnInit {
                 } else {
                   this.cmsToastrService.typeErrorMessage(ret.errorMessage);
                 }
-                this.cdr.detectChanges();
               }
             });
           }
@@ -208,7 +206,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
             var panelClass = '';
             if (this.tokenHelper.isMobile)
               panelClass = 'fullscreen-dialog';
-               else
+            else
               panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
               panelClass: panelClass,
@@ -266,11 +264,11 @@ export class EstateCustomerOrderEditComponent implements OnInit {
                   }
                 });
               });
-            this.cdr.detectChanges();
             /** load Value */
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
+          this.cdr.detectChanges();
           this.loading.Stop(pName);
         },
         error: (er) => {
@@ -457,7 +455,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
