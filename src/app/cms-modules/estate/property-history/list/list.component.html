@@ -84,16 +84,16 @@
         <mat-error *ngIf="checkingOnDayRange.controls.end.hasError('matEndDateInvalid')">{{'MESSAGE.InvalidEndDate' |
           translate}}</mat-error>
       </mat-form-field>
-      <button type="button" (click)="onActionNext()"    class="btn btn-light">
+      <button type="button" (click)="onActionNext()" class="btn btn-light">
         <i class="ft-x"></i>
         < </button>
-          <button type="button" (click)="onActionPervious()"      class="btn btn-light">
+          <button type="button" (click)="onActionPervious()" class="btn btn-light">
             <i class="ft-x"></i>
             > </button>
 
-      <br>
-      <a href="javascript:void(0)" (click)="onActionbuttonInCheckingOnDateSearch()"
-        class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
+          <br>
+          <a href="javascript:void(0)" (click)="onActionbuttonInCheckingOnDateSearch()"
+            class="btn btn-raised mr-1 shadow-z-3 btn-success">{{'ACTION.SEARCH' | translate}}</a>
     </div>
     <app-cms-search-list [(options)]="optionsSearch"></app-cms-search-list>
     <app-cms-statist-list [(options)]="optionsStatist"></app-cms-statist-list>
@@ -115,8 +115,8 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row" [ngClass]="row.recordStatus|statusCellClass"> <i
             [ngClass]="row.recordStatus|statusIconClass"></i>
-          <select matNativeControl cmsRecordStatusSelfSave [contentService]="contentService" [row]="row"
-            style="background: none; border: none;"
+          <select matNativeControl cmsRecordStatusSelfSave *ngIf="dataModelResult.access.accessEditRow"
+            [contentService]="contentService" [row]="row" style="background: none; border: none;"
             [ngStyle]="{'display': row.id === tableRowSelected.id ? '' : 'none' }">
           </select>
         </mat-cell>
