@@ -479,8 +479,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header class="form-label"> {{'TITLE.Is_Special' |
           translate}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <i [style.color]="row.adsActive ? '#f7db25' : '#ff0000'"
-            [ngClass]="row.adsActive | boolclass"></i> </mat-cell>
+        <mat-cell *matCellDef="let row"> <i [ngClass]="row.adsActive | boolclass"></i> </mat-cell>
       </ng-container>
       <!-- CaseCode Column -->
       <ng-container matColumnDef="CaseCode">
