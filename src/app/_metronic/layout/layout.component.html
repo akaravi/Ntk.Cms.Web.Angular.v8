@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-root">
-  <div class="page d-flex flex-row flex-column-fluid">
+  <div class="page d-flex flex-row flex-column-fluid" style="padding-bottom: 50px;">
     <app-aside *ngIf="asideDisplay" id="kt_aside" data-kt-drawer="true" data-kt-drawer-name="aside"
       data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
       data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle" class="aside"
@@ -18,9 +18,10 @@
         </div>
       </div>
 
-      <app-footer class="footer py-4 d-flex flex-lg-column" id="kt_footer"></app-footer>
+
     </div>
   </div>
+  <app-footer class="footer py-4 d-flex flex-lg-column" id="kt_footer"></app-footer>
 </div>
 
 <app-scripts-init></app-scripts-init>

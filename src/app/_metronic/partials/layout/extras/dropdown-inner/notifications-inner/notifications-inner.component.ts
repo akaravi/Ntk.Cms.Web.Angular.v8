@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreLogNotificationModel, CoreLogNotificationService, CoreTokenUserLogModel, CoreTokenUserLogService, ErrorExceptionResult } from 'ntk-cms-api';
+import { CoreLogNotificationModel, CoreLogNotificationService, CoreTokenUserLogModel, CoreTokenUserLogService, CoreTokenUserModel, CoreTokenUserService, ErrorExceptionResult, FilterModel, SortTypeEnum } from 'ntk-cms-api';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -24,6 +24,7 @@ export class NotificationsInnerComponent implements OnInit {
   constructor(
     public coreLogNotificationService: CoreLogNotificationService,
     public coreTokenUserLogService: CoreTokenUserLogService,
+    public coreTokenUserService: CoreTokenUserService,
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
@@ -34,6 +35,7 @@ export class NotificationsInnerComponent implements OnInit {
 
   ngOnInit(): void {
     this.CoreTokenUserLogDataGetAll();
+    this.CoreTokenUserDataGetAll();
     this.CoreLogNotificationDataGetAll();
   }
 
@@ -42,6 +44,7 @@ export class NotificationsInnerComponent implements OnInit {
   }
   loading = new ProgressSpinnerModel();
   coreTokenUserLogDataModelResult: ErrorExceptionResult<CoreTokenUserLogModel> = new ErrorExceptionResult<CoreTokenUserLogModel>();
+  coreTokenUserDataModelResult: ErrorExceptionResult<CoreTokenUserModel> = new ErrorExceptionResult<CoreTokenUserModel>();
   coreLogNotificationDataModelResult: ErrorExceptionResult<CoreLogNotificationModel> = new ErrorExceptionResult<CoreLogNotificationModel>();
   CoreLogNotificationDataGetAll(): void {
     const pName = this.constructor.name + 'main';
@@ -63,13 +66,47 @@ export class NotificationsInnerComponent implements OnInit {
     }
     );
   }
+
   CoreTokenUserLogDataGetAll(): void {
-    const pName = this.constructor.name + 'main';
+    const pName = this.constructor.name + 'CoreTokenUserLogDataGetAll';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
-    this.coreTokenUserLogService.ServiceGetAllEditor(null).subscribe({
+
+    /*filter Sort*/
+    var filteModelContent = new FilterModel();
+    filteModelContent.sortColumn = 'Id';
+    filteModelContent.sortType = SortTypeEnum.Descending;
+    this.coreTokenUserLogService.ServiceGetAllEditor(filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.coreTokenUserLogDataModelResult = ret;
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
+
+
+
+  CoreTokenUserDataGetAll(): void {
+    const pName = this.constructor.name + 'CoreTokenUserDataGetAll';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+
+    /*filter Sort*/
+    var filteModelContent = new FilterModel();
+    filteModelContent.sortColumn = 'Id';
+    filteModelContent.sortType = SortTypeEnum.Descending;
+    this.coreTokenUserService.ServiceGetAllEditor(filteModelContent).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.coreTokenUserDataModelResult = ret;
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
