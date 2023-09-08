@@ -14,7 +14,7 @@
           cursor-pointer
         " data-bs-toggle="tab" [ngClass]="activeTabId === 'kt_topbar_notifications_1' ? 'active' : ''"
         (click)="setActiveTabId('kt_topbar_notifications_1')">
-        Alerts
+        پیام ها
       </a>
     </li>
 
@@ -41,7 +41,7 @@
           cursor-pointer
         " data-bs-toggle="tab" [ngClass]="activeTabId === 'kt_topbar_notifications_3' ? 'active' : ''"
         (click)="setActiveTabId('kt_topbar_notifications_3')">
-        لاگ
+        لاگ ها
       </a>
     </li>
   </ul>
@@ -51,30 +51,30 @@
   <div class="tab-pane fade" id="kt_topbar_notifications_1" role="tabpanel"
     [ngClass]="activeTabId === 'kt_topbar_notifications_1' ? 'show active' : ''">
     <div class="scroll-y mh-325px my-5 px-8">
-      <div *ngFor="let alert of alerts" class="d-flex flex-stack py-4">
+      <div *ngFor="let alert of coreLogNotificationDataModelResult.listItems" class="d-flex flex-stack py-4">
         <div class="d-flex align-items-center">
           <div class="symbol symbol-35px me-4">
-            <span class="symbol-label" [ngClass]="'bg-light-' + alert.state">
+            <!-- <span class="symbol-label" [ngClass]="'bg-light-' + alert.state">
               <span [inlineSVG]="'./assets/media/' + alert.icon" class="svg-icon svg-icon-2"
-                [ngClass]="'svg-icon-' + alert.state"></span>
-            </span>
+                [ngClass]="'svg-icon-' + alert.state"></span> -->
+            <!-- </span> -->
           </div>
 
           <div class="mb-0 me-2">
             <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bolder">
               {{ alert.title }}
             </a>
-            <div class="text-gray-400 fs-7">{{ alert.description }}</div>
+            <div class="text-gray-400 fs-7">{{ alert.createdDate |persianDateFull }}</div>
           </div>
         </div>
 
-        <span class="badge badge-light fs-8">{{ alert.time }}</span>
+        <span class="badge badge-light fs-8">{{ alert.content }}</span>
       </div>
     </div>
 
     <div class="py-3 text-center border-top">
       <a routerLink="/crafted/pages/profile" class="btn btn-color-gray-600 btn-active-color-primary">
-        View All
+        مشاهده همه
         <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr064.svg'" class="svg-icon svg-icon-5"></span>
       </a>
     </div>
@@ -104,7 +104,7 @@
       </div>
     </div>
     <div class="py-3 text-center border-top">
-      <a routerLink="/coretoken/userlog" class="btn btn-color-gray-600 btn-active-color-primary">
+      <a routerLink="/coretoken/user" class="btn btn-color-gray-600 btn-active-color-primary">
         مشاهده همه
         <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr064.svg'" class="svg-icon svg-icon-5"></span>
       </a>
