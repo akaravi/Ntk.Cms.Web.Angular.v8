@@ -31,6 +31,11 @@
         <td>{{dataModel.linkEstateUserId}}</td>
       </tr>
       <tr>
+        <td>{{fieldsInfo['recordStatus']?.fieldTitle}}:</td>
+        <td [ngClass]="dataModel.recordStatus|statusCellClass"><i
+            [ngClass]="dataModel.recordStatus|statusIconClass"></i></td>
+      </tr>
+      <tr>
         <td>{{fieldsInfo['title']?.fieldTitle}}:</td>
         <td>{{dataModel.title}}</td>
       </tr>
