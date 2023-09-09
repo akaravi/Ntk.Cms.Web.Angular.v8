@@ -5,9 +5,9 @@ import { EstateAccountAgencyListComponent } from './account-agency/list/list.com
 import { EstateAccountUserListComponent } from './account-user/list/list.component';
 import { EstateActivityTypeListComponent } from './activity-type/list/list.component';
 import { EstateAdsTypeListComponent } from './ads-type/list/list.component';
-import { EstateBillboardAddComponent } from './billbord/add/add.component';
-import { EstateBillboardEditComponent } from './billbord/edit/edit.component';
-import { EstateBillboardListComponent } from './billbord/list/list.component';
+import { EstateBillboardAddComponent } from './billboard/add/add.component';
+import { EstateBillboardEditComponent } from './billboard/edit/edit.component';
+import { EstateBillboardListComponent } from './billboard/list/list.component';
 import { EstateCategoryRackListComponent } from './category-rack/list/list.component';
 import { EstateCategoryZoneListComponent } from './category-zone/list/list.component';
 import { EstateContractTypeListComponent } from './contract-type/list/list.component';
