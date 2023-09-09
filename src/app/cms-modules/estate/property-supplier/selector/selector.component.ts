@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstatePropertySupplierModel,
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstatePropertySupplierFilterModel, EstatePropertySupplierModel,
   EstatePropertySupplierService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
 } from 'ntk-cms-api';
 import { firstValueFrom, Observable } from 'rxjs';
@@ -68,7 +68,7 @@ export class EstatePropertySupplierSelectorComponent implements OnInit {
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertySupplierModel[]> {
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertySupplierFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;

@@ -11,10 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyCompanyModel,
+  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyCompanyFilterModel, EstatePropertyCompanyModel,
   EstatePropertyCompanyService,
-  FilterDataModel, FilterModel,
-  FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
+  FilterDataModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -203,7 +202,7 @@ export class EstatePropertyCompanyEditComponent implements OnInit, AfterViewInit
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertyCompanyFilterModel();
     ids.forEach(item => {
       if (item > 0) {
         const filter = new FilterDataModel();

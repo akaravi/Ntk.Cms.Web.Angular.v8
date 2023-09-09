@@ -155,6 +155,7 @@ import { EstatePropertyCompanyDeleteComponent } from './property-company/delete/
 import { EstatePropertyCompanyEditComponent } from './property-company/edit/edit.component';
 import { EstatePropertyCompanyHeaderComponent } from './property-company/header/header.component';
 import { EstatePropertyCompanyListComponent } from './property-company/list/list.component';
+import { EstatePropertyCompanyQuickViewComponent } from './property-company/quick-view/quick-view.component';
 import { EstatePropertyCompanySelectorComponent } from './property-company/selector/selector.component';
 import { EstatePropertyCompanyTreeComponent } from './property-company/tree/tree.component';
 import { EstatePropertyExpertPriceAddComponent } from './property-expert-price/add/add.component';
@@ -169,6 +170,7 @@ import { EstatePropertyProjectDeleteComponent } from './property-project/delete/
 import { EstatePropertyProjectEditComponent } from './property-project/edit/edit.component';
 import { EstatePropertyProjectHeaderComponent } from './property-project/header/header.component';
 import { EstatePropertyProjectListComponent } from './property-project/list/list.component';
+import { EstatePropertyProjectQuickViewComponent } from './property-project/quick-view/quick-view.component';
 import { EstatePropertyProjectSelectorComponent } from './property-project/selector/selector.component';
 import { EstatePropertyProjectTreeComponent } from './property-project/tree/tree.component';
 import { EstatePropertySupplierCategoryAddComponent } from './property-supplier-category/add/add.component';
@@ -181,6 +183,7 @@ import { EstatePropertySupplierDeleteComponent } from './property-supplier/delet
 import { EstatePropertySupplierEditComponent } from './property-supplier/edit/edit.component';
 import { EstatePropertySupplierHeaderComponent } from './property-supplier/header/header.component';
 import { EstatePropertySupplierListComponent } from './property-supplier/list/list.component';
+import { EstatePropertySupplierQuickViewComponent } from './property-supplier/quick-view/quick-view.component';
 import { EstatePropertySupplierSelectorComponent } from './property-supplier/selector/selector.component';
 import { EstatePropertySupplierTreeComponent } from './property-supplier/tree/tree.component';
 import { EstatePropertyTypeUsageHeaderComponent } from './property-type-usage/header/header.component';
@@ -230,6 +233,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyProjectDeleteComponent,
     EstatePropertyProjectTreeComponent,
     EstatePropertyProjectHeaderComponent,
+    EstatePropertyProjectQuickViewComponent,
     /* */
     EstatePropertyCompanyAddComponent,
     EstatePropertyCompanyEditComponent,
@@ -238,6 +242,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyCompanyDeleteComponent,
     EstatePropertyCompanyTreeComponent,
     EstatePropertyCompanyHeaderComponent,
+    EstatePropertyCompanyQuickViewComponent,
     /* */
     EstatePropertySupplierAddComponent,
     EstatePropertySupplierEditComponent,
@@ -247,6 +252,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertySupplierTreeComponent,
     EstatePropertySupplierCategoryTreeSelectorComponent,
     EstatePropertySupplierHeaderComponent,
+    EstatePropertySupplierQuickViewComponent,
     /* */
     EstatePropertySupplierCategoryAddComponent,
     EstatePropertySupplierCategoryEditComponent,
@@ -278,6 +284,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstatePropertyHistoryEditComponent,
     EstatePropertyHistoryListComponent,
     EstatePropertyHistoryQuickViewComponent,
+
     /* */
     EstatePropertyAdsAddComponent,
     EstatePropertyAdsEditComponent,

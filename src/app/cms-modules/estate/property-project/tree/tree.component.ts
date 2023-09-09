@@ -16,7 +16,7 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
-  ErrorExceptionResult, EstatePropertyProjectModel,
+  ErrorExceptionResult, EstatePropertyProjectFilterModel, EstatePropertyProjectModel,
   EstatePropertyProjectService, FilterModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -49,7 +49,7 @@ export class EstatePropertyProjectTreeComponent implements OnInit, OnDestroy {
   }
   dataModelSelect: EstatePropertyProjectModel = new EstatePropertyProjectModel();
   dataModelResult: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
-  filterModel = new FilterModel();
+  filterModel = new EstatePropertyProjectFilterModel();
   loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get optionLoading(): ProgressSpinnerModel {
     return this.loading;

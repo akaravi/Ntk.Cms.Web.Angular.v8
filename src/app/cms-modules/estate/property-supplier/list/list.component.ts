@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult, EstatePropertySupplierCategoryModel, EstatePropertySupplierModel,
@@ -28,10 +28,12 @@ import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.compo
   styleUrls: ["./list.component.scss"],
 })
 export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
+  requestLinkProjectId='';
   constructor(
     public publicHelper: PublicHelper,
     public contentService: EstatePropertySupplierService,
     private cmsToastrService: CmsToastrService,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -43,7 +45,16 @@ export class EstatePropertySupplierListComponent implements OnInit, OnDestroy {
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
     };
+    this.requestLinkProjectId = this.activatedRoute.snapshot.paramMap.get(
+      "LinkProjectId"
+    );
 
+    if (this.requestLinkProjectId && this.requestLinkProjectId.length > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = "linkPropertyProjectId";
+      filter.value = this.requestLinkProjectId;
+      this.filteModelContent.filters.push(filter);
+    }
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = SortTypeEnum.Descending;

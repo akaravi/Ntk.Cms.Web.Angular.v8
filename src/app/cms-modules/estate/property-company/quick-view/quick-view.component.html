@@ -1,0 +1,80 @@
+<div class="ntk-cms-html-card-header">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  {{ formInfo.formTitle }}
+  <button type="button" (click)="onActionNext()" *ngIf="requestNextItem&& requestNextItem?.id?.length>0"
+    class="btn btn-light">
+    <i class="ft-x"></i>
+    < </button> <button type="button" (click)="onActionPervious()"
+        *ngIf="requestPerviousItem&& requestPerviousItem?.id?.length>0" class="btn btn-light">
+        <i class="ft-x"></i>
+        >
+      </button>
+      <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+</div>
+<div class="ntk-cms-html-card-body" dir="rtl">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+
+
+  <table class="table table-striped">
+    <tbody>
+
+      <tr>
+        <td>{{fieldsInfo['recordStatus']?.fieldTitle}}:</td>
+        <td><i [ngClass]="dataModel.recordStatus|statusIconClass"></i></td>
+      </tr>
+      <tr>
+        <td>{{fieldsInfo['title']?.fieldTitle}}:</td>
+        <td>{{dataModel.title}}</td>
+      </tr>
+
+      <tr>
+        <td>{{fieldsInfo['createdBy']?.fieldTitle}}:</td>
+        <td>{{dataModel.createdBy| cmsuserinfo |async}}</td>
+      </tr>
+      <tr *ngIf="dataModel.updatedBy">
+        <td>{{fieldsInfo['updatedBy']?.fieldTitle}}:</td>
+        <td>{{dataModel.updatedBy| cmsuserinfo |async}}</td>
+      </tr>
+      <tr *ngIf="dataModel.linkCmsUserId>0">
+        <td>{{fieldsInfo['linkCmsUserId']?.fieldTitle}}:</td>
+        <td>{{dataModel.linkCmsUserId|cmsuserinfo |async}}</td>
+      </tr>
+
+      <tr *ngIf="dataModel.description?.length>0">
+        <td>{{'TITLE.General_Description' | translate}}:</td>
+        <td>{{dataModel.description}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+</div>
+<div class="ntk-cms-html-card-message">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  <div class="form-actions">
+    <small class="form-text text-muted">{{ formInfo.formAlert }} </small>
+    <small class="form-text text-muted danger">{{ formInfo.formError }}
+    </small>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+</div>
+<div class="ntk-cms-html-card-footer">
+  <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+
+  <div class="form-actions" *ngIf="formInfo.formSubmitAllow  && !loading?.display">
+    <button type="button" (click)="onFormCancel()" class="btn btn-light">
+      <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
+    </button>
+    <button type="button" (click)="onActionNext()" *ngIf="requestNextItem&& requestNextItem?.id?.length>0"
+      class="btn btn-light">
+      <i class="ft-x"></i>
+      < </button> <button type="button" (click)="onActionPervious()"
+          *ngIf="requestPerviousItem&& requestPerviousItem?.id?.length>0" class="btn btn-light">
+          <i class="ft-x"></i>
+          >
+        </button>
+  </div>
+  <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+</div>

@@ -3,8 +3,8 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstatePropertyProjectModel,
-  EstatePropertyProjectService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel
+  ClauseTypeEnum, CoreEnumService, ErrorExceptionResult, EstatePropertyProjectFilterModel, EstatePropertyProjectModel,
+  EstatePropertyProjectService, FilterDataModel, FilterDataModelSearchTypesEnum
 } from 'ntk-cms-api';
 import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
@@ -68,7 +68,7 @@ export class EstatePropertyProjectSelectorComponent implements OnInit {
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<EstatePropertyProjectModel[]> {
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertyProjectFilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
     // this.loading.backdropEnabled = false;

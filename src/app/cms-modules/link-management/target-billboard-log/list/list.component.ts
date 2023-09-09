@@ -246,7 +246,7 @@ export class LinkManagementTargetBillboardLogListComponent implements OnInit, On
       }
     });
   }
-  onActionbuttonViewRowLinkBillbordId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected, event?: MouseEvent): void {
+  onActionbuttonViewRowLinkbillboardId(model: LinkManagementTargetBillboardLogModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       const emessage = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorSelectedRow');
       this.cmsToastrService.typeErrorSelected(emessage); return;

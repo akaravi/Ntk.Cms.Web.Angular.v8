@@ -18,6 +18,7 @@ import {
   EstateCustomerOrderFilterModel,
   EstateCustomerOrderModel,
   EstateCustomerOrderService,
+  EstatePropertyCompanyFilterModel,
   EstatePropertyCompanyModel,
   EstatePropertyCompanyService,
   EstatePropertyFilterModel,
@@ -25,9 +26,10 @@ import {
   EstatePropertyHistoryModel,
   EstatePropertyHistoryService,
   EstatePropertyModel,
+  EstatePropertyProjectFilterModel,
   EstatePropertyProjectModel,
   EstatePropertyProjectService,
-  EstatePropertyService, EstatePropertySupplierModel, EstatePropertySupplierService, InfoEnumModel
+  EstatePropertyService, EstatePropertySupplierFilterModel, EstatePropertySupplierModel, EstatePropertySupplierService, InfoEnumModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -36,7 +38,10 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
+import { EstatePropertyCompanyQuickViewComponent } from '../../property-company/quick-view/quick-view.component';
 import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/quick-view/quick-view.component';
+import { EstatePropertyProjectQuickViewComponent } from '../../property-project/quick-view/quick-view.component';
+import { EstatePropertySupplierQuickViewComponent } from '../../property-supplier/quick-view/quick-view.component';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 @Component({
   selector: 'app-estate-overview-events',
@@ -413,7 +418,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
@@ -442,7 +447,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCustomerOrderQuickViewComponent, {
       height: '90%',
@@ -472,7 +477,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
@@ -517,6 +522,93 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
       this.router.navigate(['/estate/account-user/LinkCustomerOrderId/', model.id]);
     }
   }
+
+  onActionbuttonPropertyProject(model: EstatePropertyProjectModel, event?: MouseEvent): void {
+    if (!model || !model.id || model.id.length === 0) {
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(EstatePropertyProjectQuickViewComponent, {
+      height: '90%',
+      panelClass: panelClass,
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonPropertyProject(result.onActionOpenItem)
+      }
+    });
+  }
+  onActionbuttonPropertySupplier(model: EstatePropertySupplierModel, event?: MouseEvent): void {
+    if (!model || !model.id || model.id.length === 0) {
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(EstatePropertySupplierQuickViewComponent, {
+      height: '90%',
+      panelClass: panelClass,
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonPropertySupplier(result.onActionOpenItem)
+      }
+    });
+  }
+  onActionbuttonPropertyCompany(model: EstatePropertyCompanyModel, event?: MouseEvent): void {
+    if (!model || !model.id || model.id.length === 0) {
+      const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'fullscreen-dialog';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(EstatePropertyCompanyQuickViewComponent, {
+      height: '90%',
+      panelClass: panelClass,
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonPropertyCompany(result.onActionOpenItem)
+      }
+    });
+
+  }
 }
-
-

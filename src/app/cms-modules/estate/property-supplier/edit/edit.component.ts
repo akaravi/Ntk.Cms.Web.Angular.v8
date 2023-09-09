@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertySupplierModel,
+  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertySupplierFilterModel, EstatePropertySupplierModel,
   EstatePropertySupplierService,
   FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
@@ -203,7 +203,7 @@ export class EstatePropertySupplierEditComponent implements OnInit, AfterViewIni
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.get_other_information_from_the_server'));
-    const filterModel = new FilterModel();
+    const filterModel = new EstatePropertySupplierFilterModel();
     ids.forEach(item => {
       if (item > 0) {
         const filter = new FilterDataModel();
