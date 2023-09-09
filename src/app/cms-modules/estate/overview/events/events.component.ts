@@ -18,12 +18,16 @@ import {
   EstateCustomerOrderFilterModel,
   EstateCustomerOrderModel,
   EstateCustomerOrderService,
+  EstatePropertyCompanyModel,
+  EstatePropertyCompanyService,
   EstatePropertyFilterModel,
   EstatePropertyHistoryFilterModel,
   EstatePropertyHistoryModel,
   EstatePropertyHistoryService,
   EstatePropertyModel,
-  EstatePropertyService, InfoEnumModel
+  EstatePropertyProjectModel,
+  EstatePropertyProjectService,
+  EstatePropertyService, EstatePropertySupplierModel, EstatePropertySupplierService, InfoEnumModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -43,6 +47,9 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
   constructor(
     public estatePropertyService: EstatePropertyService,
     public estatePropertyHistoryService: EstatePropertyHistoryService,
+    public estatePropertyCompanyService: EstatePropertyCompanyService,
+    public estatePropertySupplierService: EstatePropertySupplierService,
+    public estatePropertyProjectService: EstatePropertyProjectService,
     public estateCustomerOrderService: EstateCustomerOrderService,
     public estateAccountUserService: EstateAccountUserService,
     public estateAccountAgencyService: EstateAccountAgencyService,
@@ -68,6 +75,9 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
   dataModelHistoryResult: ErrorExceptionResult<EstatePropertyHistoryModel> = new ErrorExceptionResult<EstatePropertyHistoryModel>();
   dataModelAccountUserResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
   dataModelAccountAgencyResult: ErrorExceptionResult<EstateAccountAgencyModel> = new ErrorExceptionResult<EstateAccountAgencyModel>();
+  dataModelPropertyCompanyResult: ErrorExceptionResult<EstatePropertyCompanyModel> = new ErrorExceptionResult<EstatePropertyCompanyModel>();
+  dataModelPropertySupplierResult: ErrorExceptionResult<EstatePropertySupplierModel> = new ErrorExceptionResult<EstatePropertySupplierModel>();
+  dataModelPropertyProjectResult: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   cmsApiStoreSubscribe: Subscription;
@@ -188,7 +198,96 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     }
     );
   }
+  DataGetAllPropertyCompany(): void {
+    const pName = this.constructor.name + 'DataGetAllPropertyCompany';
 
+    let filterModelOnDay = new EstatePropertyCompanyFilterModel();
+    // filterModelOnDay = filterModel;
+    if (!this.checkingOnDayRange.controls.start?.value)
+      this.checkingOnDayRange.controls.start.setValue(new Date());
+    if (!this.checkingOnDayRange.controls.end?.value)
+      this.checkingOnDayRange.controls.end.setValue(new Date());
+    filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
+    filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    this.loading.Start(pName);
+    /** Search On Select Day */
+    this.estatePropertyCompanyService.ServiceGetAll(filterModelOnDay).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
+          this.dataModelPropertyCompanyResult = ret;
+          this.loading.Stop(pName);
+        }
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+    }
+    );
+  }
+  DataGetAllPropertySupplier(): void {
+    const pName = this.constructor.name + 'DataGetAllPropertySupplier';
+
+    let filterModelOnDay = new EstatePropertySupplierFilterModel();
+    // filterModelOnDay = filterModel;
+    if (!this.checkingOnDayRange.controls.start?.value)
+      this.checkingOnDayRange.controls.start.setValue(new Date());
+    if (!this.checkingOnDayRange.controls.end?.value)
+      this.checkingOnDayRange.controls.end.setValue(new Date());
+    filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
+    filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    this.loading.Start(pName);
+    /** Search On Select Day */
+    this.estatePropertySupplierService.ServiceGetAll(filterModelOnDay).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
+          this.dataModelPropertySupplierResult = ret;
+          this.loading.Stop(pName);
+        }
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+    }
+    );
+  }
+  DataGetAllPropertyProject(): void {
+    const pName = this.constructor.name + 'DataGetAllPropertyProject';
+
+    let filterModelOnDay = new EstatePropertyProjectFilterModel();
+    // filterModelOnDay = filterModel;
+    if (!this.checkingOnDayRange.controls.start?.value)
+      this.checkingOnDayRange.controls.start.setValue(new Date());
+    if (!this.checkingOnDayRange.controls.end?.value)
+      this.checkingOnDayRange.controls.end.setValue(new Date());
+    filterModelOnDay.onDateTimeFrom = this.checkingOnDayRange.controls.start.value;
+    filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
+    filterModelOnDay.countLoad = true;
+    filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    this.loading.Start(pName);
+    /** Search On Select Day */
+    this.estatePropertyProjectService.ServiceGetAll(filterModelOnDay).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+        if (ret.isSuccess) {
+          this.dataModelPropertyProjectResult = ret;
+          this.loading.Stop(pName);
+        }
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        }
+      }
+    }
+    );
+  }
   DataGetAllAccountUser(): void {
     const pName = this.constructor.name + 'DataGetAllAccountUser';
 
@@ -261,6 +360,9 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     this.DataGetAllPropertyHistory();
     this.DataGetAllAccountUser();
     this.DataGetAllAccountAgency();
+    this.DataGetAllPropertyCompany();
+    this.DataGetAllPropertySupplier();
+    this.DataGetAllPropertyProject();
 
   }
   linkCmsUserId = 0;

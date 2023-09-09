@@ -18,20 +18,20 @@
 
   <table class="table table-striped">
     <tbody>
-      <tr>
-        <td><b> {{fieldsInfo['linkActivityTypeId']?.fieldTitle}}:</b></td>
-        <td><b>{{dataModel.linkActivityTypeId}}</b></td>
-      </tr>
 
       <tr>
         <td>{{fieldsInfo['recordStatus']?.fieldTitle}}:</td>
-        <td [ngClass]="dataModel.recordStatus|statusCellClass"><i
-            [ngClass]="dataModel.recordStatus|statusIconClass"></i></td>
+        <td><i [ngClass]="dataModel.recordStatus|statusIconClass"></i></td>
       </tr>
       <tr>
         <td>{{fieldsInfo['title']?.fieldTitle}}:</td>
         <td>{{dataModel.title}}</td>
       </tr>
+      <tr>
+        <td><b> {{fieldsInfo['linkActivityTypeId']?.fieldTitle}}:</b></td>
+        <td><b>{{dataModel.linkActivityTypeId}}</b></td>
+      </tr>
+
       <tr *ngIf="dataModel.appointmentDateFrom">
         <td>{{fieldsInfo['appointmentDateFrom']?.fieldTitle}}:</td>
         <td>{{ publicHelper.LocaleDateTime(dataModel.appointmentDateFrom)}}</td>

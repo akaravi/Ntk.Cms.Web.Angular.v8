@@ -70,7 +70,7 @@
             <!-- end::Label-->
             <!-- begin::Badge-->
             <div class="timeline-badge">
-              <i class="fa fa-genderless text-warning fs-1" (click)="onActionbuttonProperty(item,$event)"></i>
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonProperty(item,$event)"></i>
             </div>
             <!-- end::Badge-->
             <!-- begin::Text-->
@@ -112,7 +112,7 @@
             <!-- end::Label-->
             <!-- begin::Badge-->
             <div class="timeline-badge">
-              <i class="fa fa-genderless text-warning fs-1" (click)="onActionbuttonCustomerOrder(item,$event)"></i>
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonCustomerOrder(item,$event)"></i>
             </div>
             <!-- end::Badge-->
             <!-- begin::Text-->
@@ -154,7 +154,7 @@
             <!-- end::Label-->
             <!-- begin::Badge-->
             <div class="timeline-badge">
-              <i class="fa fa-genderless text-warning fs-1" (click)="onActionbuttonHistory(item,$event)"></i>
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonHistory(item,$event)"></i>
             </div>
             <!-- end::Badge-->
             <!-- begin::Text-->
@@ -196,7 +196,7 @@
             <!-- end::Label-->
             <!-- begin::Badge-->
             <div class="timeline-badge">
-              <i class="fa fa-genderless text-warning fs-1" (click)="onActionbuttonAccountAgency(item,$event)"></i>
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonAccountAgency(item,$event)"></i>
             </div>
             <!-- end::Badge-->
             <!-- begin::Text-->
@@ -238,7 +238,182 @@
             <!-- end::Label-->
             <!-- begin::Badge-->
             <div class="timeline-badge">
-              <i class="fa fa-genderless text-warning fs-1" (click)="onActionbuttonAccountUser(item,$event)"></i>
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonAccountUser(item,$event)"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              {{item.title}}
+              <br>
+              <p>
+                {{item.createdBy| cmsuserinfo |async}}
+              </p>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
+    </div>
+  </div>
+  <div class="col-xl-4 card-body-3d">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property_expert'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelPropertyCompanyResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelPropertyCompanyResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonAccountUser(item,$event)"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              {{item.title}}
+              <br>
+              <p>
+                {{item.createdBy| cmsuserinfo |async}}
+              </p>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
+    </div>
+  </div>
+
+
+  <div class="col-xl-4 card-body-3d">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property_expert'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelPropertyCompanyResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelPropertyCompanyResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonAccountUser(item,$event)"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              {{item.title}}
+              <br>
+              <p>
+                {{item.createdBy| cmsuserinfo |async}}
+              </p>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
+    </div>
+  </div>
+
+
+
+  <div class="col-xl-4 card-body-3d">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property_expert'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelPropertySupplierResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelPropertySupplierResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonAccountUser(item,$event)"></i>
+            </div>
+            <!-- end::Badge-->
+            <!-- begin::Text-->
+            <div class="fw-mormal timeline-content text-muted ps-3">
+              {{item.title}}
+              <br>
+              <p>
+                {{item.createdBy| cmsuserinfo |async}}
+              </p>
+            </div>
+            <!-- end::Text-->
+          </div>
+          <!-- end::Item-->
+        </div>
+        <!-- end::Timeline-->
+      </div>
+      <!-- end: Card Body-->
+    </div>
+  </div>
+
+
+  <div class="col-xl-4 card-body-3d">
+    <div class="card card-xl-stretch mb-xl-8">
+      <!-- begin::Header-->
+      <div class="card-header align-items-center border-0 mt-4">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="fw-bolder mb-2 text-dark">{{'TITLE.Property_expert'| translate}}</span>
+          <span class="text-muted fw-bold fs-7">{{dataModelPropertyProjectResult.totalRowCount}} {{'TITLE.Number'|
+            translate}}</span>
+        </h3>
+      </div>
+      <!-- end::Header-->
+      <!-- begin::Body-->
+      <div class="card-body pt-5">
+        <!-- begin::Timeline-->
+        <div class="timeline-label">
+          <!-- begin::Item-->
+          <div *ngFor="let item of dataModelPropertyProjectResult.listItems" class="timeline-item">
+            <!-- begin::Label-->
+            <div class="timeline-label fw-bolder text-gray-800 fs-6">{{ publicHelper.getTime(item.createdDate)}}</div>
+            <!-- end::Label-->
+            <!-- begin::Badge-->
+            <div class="timeline-badge">
+              <i [ngClass]="item.recordStatus|statusIconClass" (click)="onActionbuttonAccountUser(item,$event)"></i>
             </div>
             <!-- end::Badge-->
             <!-- begin::Text-->
