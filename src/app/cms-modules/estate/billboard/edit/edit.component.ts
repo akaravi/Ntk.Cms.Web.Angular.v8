@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SortTypeEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -55,7 +55,8 @@ export class EstateBillboardEditComponent implements OnInit {
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   optionloadComponent = false;
-  resultSortArrowIcon = true;
+
+  loadResult = '';
 
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.Edit');
@@ -193,6 +194,7 @@ export class EstateBillboardEditComponent implements OnInit {
     this.estatePropertyList.DataGetAll();
   }
   onFormLoadResult(): void {
+    this.loadResult = 'estatePropertyList';
     this.estatePropertyList.optionloadComponent = true;
     this.estatePropertyList.DataGetAll();
   }
@@ -205,5 +207,15 @@ export class EstateBillboardEditComponent implements OnInit {
     }
     this.dataModelCorCurrencySelector = model;
     this.dataModel.linkCoreCurrencyId = model.id;
+  }
+  onActionSortArrow() {
+    if (this.dataModel.resultSortType == SortTypeEnum.Ascending)
+      this.dataModel.resultSortType = SortTypeEnum.Descending;
+    else if (this.dataModel.resultSortType == SortTypeEnum.Descending)
+      this.dataModel.resultSortType = SortTypeEnum.Random;
+    else if (this.dataModel.resultSortType == SortTypeEnum.Random)
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
+    else
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
   }
 }

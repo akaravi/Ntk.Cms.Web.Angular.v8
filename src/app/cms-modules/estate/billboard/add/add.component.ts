@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, FormInfoModel, InfoEnumModel
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, FormInfoModel, InfoEnumModel, SortTypeEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -41,7 +41,7 @@ export class EstateBillboardAddComponent implements OnInit {
   @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-
+  dataFieldInfoModel: DataFieldInfoModel[];
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
@@ -77,6 +77,7 @@ export class EstateBillboardAddComponent implements OnInit {
           if (ret.isSuccess) {
             // this.dataAccessModel = next.access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+            this.dataFieldInfoModel = ret.access.fieldsInfo;
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
@@ -244,5 +245,15 @@ export class EstateBillboardAddComponent implements OnInit {
     }
     this.dataModelCorCurrencySelector = model;
     this.dataModel.linkCoreCurrencyId = model.id;
+  }
+  onActionSortArrow() {
+    if (this.dataModel.resultSortType == SortTypeEnum.Ascending)
+      this.dataModel.resultSortType = SortTypeEnum.Descending;
+    else if (this.dataModel.resultSortType == SortTypeEnum.Descending)
+      this.dataModel.resultSortType = SortTypeEnum.Random;
+    else if (this.dataModel.resultSortType == SortTypeEnum.Random)
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
+    else
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
   }
 }

@@ -2,7 +2,7 @@
 import { PlatformModule } from '@angular/cdk/platform';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,9 +12,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {
-  DateAdapter, MatNativeDateModule,
-  MatRippleModule, MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  MatRippleModule
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -138,6 +140,7 @@ import { CmsLocationCompleteComponent } from './cms-location-autocomplete/cms-lo
 import { CmsLocationSelectorComponent } from './cms-location-selector/cms-location-selector.component';
 import { CmsMemberSelectorComponent } from './cms-member-selector/cmsMemberSelector.component';
 
+import { SortTypeIconClassPipe } from '../core/pipe/sortTypeIconClass.pipe';
 import { CmsDataCommentComponent } from './cms-data-comment/cms-data-comment.component';
 import { CmsDataMemoComponent } from './cms-data-memo/cms-data-memo.component';
 import { CmsDataPinComponent } from './cms-data-pin/cms-data-pin.component';
@@ -239,6 +242,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     PrettyjsonPipe,
     RecordStatusIconClassPipe,
     RecordStatusCellClassPipe,
+    SortTypeIconClassPipe,
     ReplaceTextPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,
@@ -382,6 +386,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     PrettyjsonPipe,
     RecordStatusIconClassPipe,
     RecordStatusCellClassPipe,
+    SortTypeIconClassPipe,
     ReplaceTextPipe,
     BoolStatusClassPipe,
     ValueArrayPipe,

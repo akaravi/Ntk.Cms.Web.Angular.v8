@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
-  EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, TokenInfoModel
+  EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -80,7 +80,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
   // ** Accardon */
   step = 0;
   hidden = true;
-  resultSortArrowIcon = true;
+
   areaAddressView = false;
   ngOnInit(): void {
     this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
@@ -392,5 +392,15 @@ export class EstateCustomerOrderAddComponent implements OnInit {
       return;
     }
     this.dataModel.linkCmsUserId = model.id;
+  }
+  onActionSortArrow() {
+    if (this.dataModel.resultSortType == SortTypeEnum.Ascending)
+      this.dataModel.resultSortType = SortTypeEnum.Descending;
+    else if (this.dataModel.resultSortType == SortTypeEnum.Descending)
+      this.dataModel.resultSortType = SortTypeEnum.Random;
+    else if (this.dataModel.resultSortType == SortTypeEnum.Random)
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
+    else
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
   }
 }

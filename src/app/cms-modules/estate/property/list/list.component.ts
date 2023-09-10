@@ -63,7 +63,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     public translate: TranslateService,
     public pageInfo: PageInfoService,
   ) {
-    super(contentService, new EstatePropertyModel(), pageInfo,publicHelper, dialog);
+    super(contentService, new EstatePropertyModel(), pageInfo, publicHelper, dialog);
 
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -172,7 +172,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
   }
   @Input() optionloadComponent = true;
   @Input() optionloadByRoute = true;
-  @Input() optionsortType = '';
+  @Input() optionsortType = SortTypeEnum.Descending;
 
 
   @Input() set optionLinkCustomerOrderId(id: string) {
@@ -302,12 +302,8 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     } else if (this.responsibleUserId > 0) {
       setResponsibleUserId = this.responsibleUserId;
     }
-    if (this.optionsortType && this.optionsortType.length > 0) {
-      if (this.optionsortType == 'asc') {
-        this.filteModelContent.sortType = SortTypeEnum.Ascending;
-      } else {
-        this.filteModelContent.sortType = SortTypeEnum.Descending;
-      }
+    if (this.optionsortType) {
+      this.filteModelContent.sortType = this.optionsortType;
     }
 
     this.tableRowsSelected = [];
@@ -678,7 +674,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
@@ -713,7 +709,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickAddComponent, {
       height: '90%',
@@ -739,7 +735,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
@@ -996,7 +992,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
@@ -1020,7 +1016,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
@@ -1090,7 +1086,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
             var panelClass = '';
             if (this.tokenHelper.isMobile)
               panelClass = 'fullscreen-dialog';
-               else
+            else
               panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               height: "90%",
