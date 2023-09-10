@@ -102,7 +102,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     'UpdatedDate',
     'RenewDate',
     'HasBuyed',
-    'ExpireDate',
+    'expireDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -369,7 +369,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
     );
     const filterStatist2 = JSON.parse(JSON.stringify(this.filteModelContent));
     const fastFilter2 = new FilterDataModel();
-    fastFilter2.propertyName = 'ExpireDate';
+    fastFilter2.propertyName = 'expireDate';
     fastFilter2.value = new Date();
     fastFilter2.searchType = FilterDataModelSearchTypesEnum.GreaterThan;
     filterStatist2.filters.push(fastFilter2);

@@ -56,8 +56,9 @@
     <!-- SpeedView Field -->
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['speedView']?.accessWatchField">
       <mat-label> {{fieldsInfo['speedView']?.fieldTitle}}</mat-label>
-      <input matInput [(ngModel)]="dataModel.speedView" name="dataModel.speedView" #SpeedView type="number"
-        [disabled]="!fieldsInfo['speedView']?.accessAddField" placeholder="{{fieldsInfo['speedView']?.fieldTitle}}" />
+      <input matInput [(ngModel)]="dataModel.speedView" name="dataModel.speedView" #SpeedView type="number" min="1"
+        max="10" [disabled]="!fieldsInfo['speedView']?.accessAddField"
+        placeholder="{{fieldsInfo['speedView']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.speedView" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.speedView = 1">close</mat-icon>
       <mat-icon matSuffix>mode_edit</mat-icon>
@@ -66,7 +67,7 @@
     <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['reloadViewPerMin']?.accessWatchField">
       <mat-label> {{fieldsInfo['reloadViewPerMin']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.reloadViewPerMin" name="dataModel.reloadViewPerMin" #ReloadViewPerMin
-        type="number" [disabled]="!fieldsInfo['reloadViewPerMin']?.accessAddField"
+        type="number" min="1" max="10" [disabled]="!fieldsInfo['reloadViewPerMin']?.accessAddField"
         placeholder="{{fieldsInfo['reloadViewPerMin']?.fieldTitle}}" />
       <mat-icon matSuffix *ngIf="dataModel.reloadViewPerMin" matSuffix mat-icon-button aria-label="Clear"
         (click)="dataModel.reloadViewPerMin = 1">close</mat-icon>

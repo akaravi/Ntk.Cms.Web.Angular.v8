@@ -220,26 +220,45 @@ export class PublicHelper {
     return [];
   }
   LocaleDate(model): string {
-    if (model) {
+    if (!model)
+      return '';
+    try {
       const d = new Date(model);
-      var duration = (new Date()).valueOf() - d.valueOf();
-      if (duration < 100000)
-        return '';
+      // var duration = (new Date()).valueOf() - d.valueOf();
+      // if (duration < 100000)
+      //   return duration + '';
       return d.toLocaleDateString('fa-Ir');
+    }
+    catch {
     }
     return '';
   }
   getTime(model): string {
-    if (model) {
+    if (!model)
+      return '';
+    try {
       const d = new Date(model);
+      // var duration = (new Date()).valueOf() - d.valueOf();
+      // if (duration < 100000)
+      //   return duration + '';
       return d.getHours() + ':' + d.getMinutes();
     }
+    catch {
+    }
     return '';
+
   }
   LocaleDateTime(model): string {
-    if (model) {
+    if (!model)
+      return '';
+    try {
       const d = new Date(model);
-      return d.toLocaleDateString('fa-Ir') + ' ' + d.getHours() + ':' + d.getMinutes();;
+      // var duration = (new Date()).valueOf() - d.valueOf();
+      // if (duration < 100000)
+      //   return duration + '';
+      return d.toLocaleDateString('fa-Ir') + ' ' + d.getHours() + ':' + d.getMinutes();
+    }
+    catch {
     }
     return '';
   }
