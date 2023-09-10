@@ -147,7 +147,7 @@ export class EstateCategoryRackListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -173,7 +173,7 @@ export class EstateCategoryRackListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCategoryRackAddComponent, {
       height: '90%',
@@ -205,7 +205,7 @@ export class EstateCategoryRackListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCategoryRackEditComponent, {
       height: '90%',
@@ -355,7 +355,7 @@ export class EstateCategoryRackListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
@@ -390,7 +390,7 @@ export class EstateCategoryRackListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",

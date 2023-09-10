@@ -78,7 +78,6 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -142,7 +141,7 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -168,7 +167,7 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyUserAddComponent, {
       height: '90%',
@@ -301,7 +300,7 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",

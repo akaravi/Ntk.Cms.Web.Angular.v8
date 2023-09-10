@@ -163,7 +163,7 @@ export class CoreModuleDataCommentListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

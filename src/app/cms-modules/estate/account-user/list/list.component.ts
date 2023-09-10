@@ -7,8 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, SortTypeEnum,
-  ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel, EstateAccountUserService, FilterDataModel, ManageUserAccessDataTypesEnum, RecordStatusEnum, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel, EstateAccountUserService, FilterDataModel, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -181,7 +180,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -214,7 +213,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserAddComponent, {
       height: '90%',
@@ -246,7 +245,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserEditComponent, {
       height: '90%',
@@ -435,7 +434,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
@@ -470,7 +469,7 @@ export class EstateAccountUserListComponent implements OnInit, OnDestroy {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",

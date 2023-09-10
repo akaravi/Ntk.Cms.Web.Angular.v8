@@ -7,11 +7,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
   FilterModel, HyperShopCategoryModel, HyperShopContentModel,
-  HyperShopContentService, TokenInfoModel
+  HyperShopContentService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -170,7 +169,7 @@ export class HyperShopContentListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

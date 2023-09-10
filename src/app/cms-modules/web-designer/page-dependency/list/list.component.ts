@@ -11,7 +11,7 @@ import {
   CoreModuleService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel, WebDesignerMainPageDependencyModel,
   WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
-import { Subscription, firstValueFrom } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -164,7 +164,7 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     } SortTypeEnum
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

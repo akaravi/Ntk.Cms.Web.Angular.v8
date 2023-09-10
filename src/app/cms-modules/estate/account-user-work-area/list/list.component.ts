@@ -142,7 +142,7 @@ export class EstateAccountUserWorkAreaListComponent implements OnInit, OnDestroy
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -168,7 +168,7 @@ export class EstateAccountUserWorkAreaListComponent implements OnInit, OnDestroy
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserWorkAreaAddComponent, {
       height: '90%',
@@ -301,7 +301,7 @@ export class EstateAccountUserWorkAreaListComponent implements OnInit, OnDestroy
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",

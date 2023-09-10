@@ -11,7 +11,6 @@ import {
   DataFieldInfoModel, ErrorExceptionResult, EstateActivityTypeModel, EstateActivityTypeService, EstateEnumService, EstatePropertyHistoryFilterModel, EstatePropertyHistoryModel, EstatePropertyHistoryService, FilterDataModel, FilterModel, InfoEnumModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -22,6 +21,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 import { EstatePropertyHistoryAddComponent } from '../add/add.component';
 import { EstatePropertyHistoryEditComponent } from '../edit/edit.component';
@@ -303,7 +303,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

@@ -9,10 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel,
   DataProviderPlanModel, DataProviderSourceModel,
-  DataProviderSourceService, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult,
+  DataProviderSourceService, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, TokenInfoModel
+  FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -155,7 +154,7 @@ export class DataProviderSourceListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

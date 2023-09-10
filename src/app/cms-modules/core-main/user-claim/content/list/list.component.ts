@@ -9,9 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreUserClaimContentModel,
   CoreUserClaimContentService, CoreUserClaimTypeModel,
-  CoreUserClaimTypeService, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult, FilterDataModel, FilterModel,
-  TokenInfoModel
+  CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -201,7 +199,7 @@ export class CoreUserClaimContentListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

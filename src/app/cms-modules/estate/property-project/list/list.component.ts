@@ -17,11 +17,11 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/comp
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { EstatePropertyProjectDeleteComponent } from '../delete/delete.component';
-import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
 @Component({
   selector: 'app-estate-property-project-list',
   templateUrl: './list.component.html',
@@ -146,7 +146,7 @@ export class EstatePropertyProjectListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

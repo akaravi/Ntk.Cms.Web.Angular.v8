@@ -7,12 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-    DataFieldInfoModel, SortTypeEnum,
-    ErrorExceptionResult,
-    FilterDataModel,
-    FilterModel,
-    LinkManagementAccountingDetailModel,
-    LinkManagementAccountingDetailService, RecordStatusEnum, TokenInfoModel
+  DataFieldInfoModel, ErrorExceptionResult,
+  FilterDataModel,
+  FilterModel,
+  LinkManagementAccountingDetailModel,
+  LinkManagementAccountingDetailService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -151,7 +150,7 @@ export class LinkManagementAccountingDetailListComponent implements OnInit, OnDe
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;

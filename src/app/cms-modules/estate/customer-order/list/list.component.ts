@@ -50,7 +50,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     public pageInfo: PageInfoService) {
-    super(contentService, new EstateCustomerOrderModel(), pageInfo,publicHelper, dialog);
+    super(contentService, new EstateCustomerOrderModel(), pageInfo, publicHelper, dialog);
 
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
@@ -313,7 +313,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
@@ -538,7 +538,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
@@ -578,7 +578,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
@@ -648,7 +648,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
             var panelClass = '';
             if (this.tokenHelper.isMobile)
               panelClass = 'fullscreen-dialog';
-               else
+            else
               panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(CmsLinkToComponent, {
               height: "90%",
@@ -785,7 +785,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
     var panelClass = '';
     if (this.tokenHelper.isMobile)
       panelClass = 'fullscreen-dialog';
-	     else
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',

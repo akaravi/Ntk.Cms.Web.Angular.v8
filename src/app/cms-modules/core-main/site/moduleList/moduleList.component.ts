@@ -7,9 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreModuleModel, CoreModuleService, CoreModuleSiteModel, CoreModuleSiteService, DataFieldInfoModel, RecordStatusEnum, SortTypeEnum,
-  ErrorExceptionResult, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel,
-  TokenInfoModel
+  CoreModuleModel, CoreModuleService, CoreModuleSiteModel, CoreModuleSiteService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -115,7 +113,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Title';
+    this.filteModelContent.sortColumn = 'CreatedDate';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -189,7 +187,7 @@ export class CoreSiteModuleListComponent implements OnInit, OnDestroy {
       }
     } else {
       this.filteModelContent.sortColumn = sort.active;
-      this.filteModelContent.sortType = SortTypeEnum.Ascending;
+      this.filteModelContent.sortType = SortTypeEnum.Descending;
     }
     this.tableSource.sort = sort;
     this.filteModelContent.currentPageNumber = 0;
