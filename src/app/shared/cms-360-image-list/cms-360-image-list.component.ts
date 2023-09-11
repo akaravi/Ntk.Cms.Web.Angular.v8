@@ -41,7 +41,6 @@ export class Cms360ImageListComponent implements OnInit {
     this.privateDataModel.forEach(element => {
       if (!element.hotSpots)
         element.hotSpots = [];
-      debugger
       element.hotSpots = this.uniqByReduce(element.hotSpots);
       element.hotSpots.forEach(h => {
         h.guid = this.getGuid();

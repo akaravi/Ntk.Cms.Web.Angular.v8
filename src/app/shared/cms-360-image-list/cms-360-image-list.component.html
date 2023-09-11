@@ -4,7 +4,9 @@
   class="btn btn-primary font-size-h6 px-3 py-2" style="margin: 10px 0px;">
   {{'ACTION.Add_To_List' | translate}}
 </button>
-
+<div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
+  style="height: 380px; width: 100%;direction: ltr;">
+</div>
 <div *ngIf="showAddView360" class="example-container mat-elevation-z8">
   <div class="m-2">
 
@@ -46,10 +48,13 @@
       <img *ngIf="dataDetailModel?.panorama?.length>0" style="vertical-align:middle;" class="ntk-hover-zoom" aria-hidden
         src="{{dataDetailModel.panorama | cmsthumbnail}}" height="50" width="50" />
     </a>
+
+
     <hr>
-    <div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
-      style="height: 380px; width: 100%;direction: ltr;">
-    </div>
+
+
+
+
     <table *ngIf="postionView" class="grid-row-ltr-center">
       <tr>
         <td>viewer Yaw</td>

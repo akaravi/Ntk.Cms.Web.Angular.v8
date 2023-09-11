@@ -11,6 +11,9 @@
   type="button" mat-button class="btn btn-primary font-size-h6 px-3 py-2" style="margin: 10px ">
   نمایش تور
 </button>
+<div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
+  style="height: 380px; width: 100%;direction: ltr;">
+</div>
 <div *ngIf="showAddView360" class="example-container mat-elevation-z8">
   <div class="m-2">
 
@@ -45,9 +48,7 @@
         src="{{dataDetailModel.panorama | cmsthumbnail}}" height="50" width="50" />
     </a>
     <hr>
-    <div [id]="id" class="container" #container (click)="onActionPannellumClick($event)"
-      style="height: 380px; width: 100%;direction: ltr;">
-    </div>
+
     <table *ngIf="postionView" class="grid-row-ltr-center">
       <tr>
         <td>viewer Yaw</td>
