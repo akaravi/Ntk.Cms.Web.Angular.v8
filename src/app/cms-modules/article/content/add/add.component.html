@@ -294,8 +294,7 @@
                   translate}}
                 </small>|
                 <small (click)="onActionContentOtherInfoRemoveFromLIst(i)">
-                  <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE'
-                  | translate}}
+                  <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE'| translate}}
                 </small>
               </mat-cell>
             </ng-container>
@@ -322,7 +321,7 @@
           <button *ngIf="contentSimilarSelected && contentSimilarSelected.id"
             (click)="onActionContentSimilarAddToLIst()" type="button" mat-button
             class="btn btn-primary font-weight-bold text-uppercase px-9 py-4">
-            {{'ACTION.ACTION.Add_To_List' | translate}} ...
+            {{'ACTION.Add_To_List' | translate}} ...
           </button>
         </app-article-content-selector>
         <!-- TABLE  -->
@@ -363,8 +362,7 @@
               <mat-header-cell *matHeaderCellDef> {{'TITLE.OPTION' | translate}} </mat-header-cell>
               <mat-cell *matCellDef="let row; let i = index" class='Action'>
                 <small (click)="onActionContentSimilarRemoveFromLIst(row)">
-                  <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE'
-                  | translate}}
+                  <mat-icon aria-hidden="false" style="color: red;">delete</mat-icon>{{'ACTION.DELETE'| translate}}
                 </small>
               </mat-cell>
             </ng-container>
