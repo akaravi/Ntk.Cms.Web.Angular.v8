@@ -55,6 +55,8 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
     const dialogRef = this.dialog.open(CmsDataMemoComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.baseService,
         id: this.tableRowSelected ? this.tableRowSelected.id : '',
@@ -79,6 +81,8 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
     const dialogRef = this.dialog.open(CmsDataPinComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.baseService,
         id: this.tableRowSelected ? this.tableRowSelected.id : '',
@@ -104,6 +108,8 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
       height: "70%",
 
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.baseService,
         id: this.tableRowSelected ? this.tableRowSelected.id : '',
@@ -128,6 +134,8 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
     const dialogRef = this.dialog.open(CmsDataCommentComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.baseService,
         id: this.tableRowSelected ? this.tableRowSelected.id : '',

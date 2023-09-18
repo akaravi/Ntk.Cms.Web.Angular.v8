@@ -13,6 +13,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -82,12 +83,14 @@ export class EstateCustomerOrderHeaderComponent implements OnInit {
     //open popup
     var panelClass = '';
     if (this.publicHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
-	     else
+      panelClass = 'dialog-fullscreen';
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       height: "90%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         title: model.title,
         urlViewContentQRCodeBase64: model.urlViewContentQRCodeBase64,

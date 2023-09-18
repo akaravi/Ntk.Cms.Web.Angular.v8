@@ -39,7 +39,9 @@ export const environment = {
     PackageName: '',
   },
   cmsViewConfig: {
-    tableRowMouseEnter: true
+    tableRowMouseEnter: true,
+    enterAnimationDuration: '1500ms',
+    exitAnimationDuration: '1000ms'
   },
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,

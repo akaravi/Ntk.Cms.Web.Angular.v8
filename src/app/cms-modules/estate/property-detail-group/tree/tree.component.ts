@@ -27,6 +27,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { EstatePropertyDetailGroupAddComponent } from '../add/add.component';
 import { EstatePropertyDetailGroupEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-property-detail-group-tree',
   templateUrl: './tree.component.html'
@@ -131,12 +132,14 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
   onActionAdd(): void {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyDetailGroupAddComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { linkPropertyTypeLanduseId: this.requestLinkPropertyTypeLanduseId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -159,12 +162,14 @@ export class EstatePropertyDetailGroupTreeComponent implements OnInit, OnDestroy
 
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyDetailGroupEditComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

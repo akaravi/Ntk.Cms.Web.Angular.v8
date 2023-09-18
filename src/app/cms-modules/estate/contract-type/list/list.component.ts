@@ -22,6 +22,7 @@ import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { EstateContractTypeAddComponent } from '../add/add.component';
 import { EstateContractTypeEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-contract-type-list',
   templateUrl: './list.component.html',
@@ -173,12 +174,14 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateContractTypeAddComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -205,12 +208,14 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateContractTypeEditComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -340,12 +345,14 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     //open popup
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -375,12 +382,14 @@ export class EstateContractTypeListComponent implements OnInit, OnDestroy {
     //open popup
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

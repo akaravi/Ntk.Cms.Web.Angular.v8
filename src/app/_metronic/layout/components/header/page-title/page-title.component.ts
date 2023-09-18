@@ -11,6 +11,7 @@ import { CmsDataTaskComponent } from 'src/app/shared/cms-data-task/cms-data-task
 import { CmsShowKeyComponent } from 'src/app/shared/cms-show-key/cms-show-key.component';
 import { LayoutService } from '../../../core/layout.service';
 import { PageInfoService, PageLink } from '../../../core/page-info.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-page-title',
@@ -72,6 +73,8 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsDataMemoComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -96,6 +99,8 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsDataPinComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -120,6 +125,8 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsDataTaskComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -143,6 +150,8 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsDataCommentComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,
@@ -169,6 +178,8 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(CmsShowKeyComponent, {
       height: "70%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.contentInfo?.id,

@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   ErrorExceptionResult, EstateAccountUserFilterModel, EstateAccountUserModel,
-  EstateAccountUserService, FilterModel
+  EstateAccountUserService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -26,6 +26,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { EstateAccountUserAddComponent } from '../add/add.component';
 import { EstateAccountUserEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-account-user-tree',
   templateUrl: './tree.component.html',
@@ -120,12 +121,14 @@ export class EstateAccountUserTreeComponent implements OnInit, OnDestroy {
   onActionAdd(): void {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
-	     else
+      panelClass = 'dialog-fullscreen';
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserAddComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -147,12 +150,14 @@ export class EstateAccountUserTreeComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
-	     else
+      panelClass = 'dialog-fullscreen';
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountUserEditComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

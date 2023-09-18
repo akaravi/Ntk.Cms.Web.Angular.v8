@@ -26,6 +26,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { EstateCustomerCategoryAddComponent } from '../add/add.component';
 import { EstateCustomerCategoryEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-customer-category-tree',
   templateUrl: './tree.component.html',
@@ -120,12 +121,14 @@ export class EstateCustomerCategoryTreeComponent implements OnInit, OnDestroy {
   onActionAdd(): void {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
-	     else
+      panelClass = 'dialog-fullscreen';
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCustomerCategoryAddComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -147,12 +150,14 @@ export class EstateCustomerCategoryTreeComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
-	     else
+      panelClass = 'dialog-fullscreen';
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCustomerCategoryEditComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -13,6 +13,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsBankpaymentTransactionInfoComponent } from 'src/app/shared/cms-bankpayment-transaction-info/cms-bankpayment-transaction-info.component';
 import { EstateAccountAgencyAdsSalePaymentComponent } from '../sale-payment/sale-payment.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-account-agency-ads-salelist',
@@ -85,11 +86,13 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     if (transactionId > 0) {
       var panelClass = '';
       if (this.tokenHelper.isMobile)
-        panelClass = 'fullscreen-dialog';
-         else
+        panelClass = 'dialog-fullscreen';
+      else
         panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
         panelClass: panelClass,
+        enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
         data: {
           id: transactionId,
         },
@@ -161,12 +164,14 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
     this.tableRowSelected = model;
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
-	     else
+      panelClass = 'dialog-fullscreen';
+    else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyAdsSalePaymentComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         linkAccountAgencyId: this.requestLinkAccountAgencyId,
         linkAdsTypeId: model.id
