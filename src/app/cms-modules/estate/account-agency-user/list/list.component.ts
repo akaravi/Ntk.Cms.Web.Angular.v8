@@ -20,6 +20,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { EstateAccountAgencyUserAddComponent } from '../add/add.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-account-agency-type-user-list',
   templateUrl: './list.component.html',
@@ -166,12 +167,14 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateAccountAgencyUserAddComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -299,12 +302,14 @@ export class EstateAccountAgencyUserListComponent implements OnInit, OnDestroy {
     //open popup
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,

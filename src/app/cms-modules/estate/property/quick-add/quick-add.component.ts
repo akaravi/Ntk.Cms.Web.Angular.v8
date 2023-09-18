@@ -19,6 +19,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-property-quick-add',
   templateUrl: './quick-add.component.html',
@@ -526,12 +527,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchTitle: this.dataModel.title }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -546,12 +549,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchCustomerTel: this.dataModel.aboutCustomerTel }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -566,12 +571,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchCustomerTel: this.dataModel.aboutCustomerMobile }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -586,12 +593,14 @@ export class EstatePropertyQuickAddComponent implements OnInit {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchCaseCode: this.dataModel.caseCode }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -154,7 +154,7 @@ import { EstatePropertyCompanyAddComponent } from './property-company/add/add.co
 import { EstatePropertyCompanyDeleteComponent } from './property-company/delete/delete.component';
 import { EstatePropertyCompanyEditComponent } from './property-company/edit/edit.component';
 import { EstatePropertyCompanyHeaderComponent } from './property-company/header/header.component';
-import { EstatePropertyCompanyListComponent } from './property-company/list/list.component';
+import { EstatePropertyCompanyListComponent } from './property-company/list/EstatePropertyCompanyListComponent';
 import { EstatePropertyCompanyQuickViewComponent } from './property-company/quick-view/quick-view.component';
 import { EstatePropertyCompanySelectorComponent } from './property-company/selector/selector.component';
 import { EstatePropertyCompanyTreeComponent } from './property-company/tree/tree.component';

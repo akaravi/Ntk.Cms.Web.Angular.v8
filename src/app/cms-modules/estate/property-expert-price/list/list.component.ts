@@ -25,6 +25,7 @@ import { EstatePropertyExpertPriceAddComponent } from '../add/add.component';
 import { EstatePropertyExpertPriceEditComponent } from '../edit/edit.component';
 import { EstatePropertyExpertPriceInquiryCalculateComponent } from '../inquiry-calculate/inquiry-calculate.component';
 import { EstatePropertyExpertPriceInquiryListComponent } from '../inquiry-list/inquiry-list.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-property-expert-price-list',
@@ -282,7 +283,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     dialogConfig.data = {};
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceAddComponent, dialogConfig);
@@ -317,7 +318,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
 
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceEditComponent, dialogConfig);
@@ -435,12 +436,14 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     //open popup
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -470,12 +473,14 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
     //open popup
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -541,7 +546,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
 
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryCalculateComponent, dialogConfig);
@@ -570,7 +575,7 @@ export class EstatePropertyExpertPriceListComponent implements OnInit, OnDestroy
 
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);

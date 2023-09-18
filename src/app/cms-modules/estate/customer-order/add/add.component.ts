@@ -20,6 +20,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { EstateCustomerOrderActionComponent } from '../action/action.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-customer-order-add',
@@ -155,11 +156,13 @@ export class EstateCustomerOrderAddComponent implements OnInit {
           if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
             var panelClass = '';
             if (this.tokenHelper.isMobile)
-              panelClass = 'fullscreen-dialog';
-               else
+              panelClass = 'dialog-fullscreen';
+            else
               panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
               panelClass: panelClass,
+              enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
               data: { model: ret.item }
             });
             dialogRef.afterClosed().subscribe(result => {

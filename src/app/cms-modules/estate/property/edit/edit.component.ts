@@ -29,6 +29,7 @@ import { EstatePropertyHistoryAddComponent } from '../../property-history/add/ad
 import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
@@ -274,12 +275,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
             && (forcePopupMessageAction || (this.dataModel.recordStatus == RecordStatusEnum.Available && this.dataModel.recordStatus != this.lastRecordStatus))) {
             var panelClass = '';
             if (this.tokenHelper.isMobile)
-              panelClass = 'fullscreen-dialog';
+              panelClass = 'dialog-fullscreen';
             else
               panelClass = 'dialog-min';
             const dialogRef = this.dialog.open(EstatePropertyActionComponent, {
               height: '90%',
               panelClass: panelClass,
+              enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+              exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
               data: { model: this.dataModel }
             });
             dialogRef.afterClosed().subscribe(result => {
@@ -658,7 +661,7 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
 
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyExpertPriceInquiryListComponent, dialogConfig);
@@ -673,12 +676,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchTitle: this.dataModel.title }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -691,12 +696,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchCustomerTel: this.dataModel.aboutCustomerTel }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -709,12 +716,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchCustomerTel: this.dataModel.aboutCustomerMobile }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -727,12 +736,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     }
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickListComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { searchCaseCode: this.dataModel.caseCode }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -777,12 +788,14 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
   onActionbuttonQuickHistoryAddRow(): void {
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryAddComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         linkActivityTypeId: null,
         linkPropertyId: this.dataModel.id,

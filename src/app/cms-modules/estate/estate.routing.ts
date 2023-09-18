@@ -22,7 +22,7 @@ import { EstatePropertyAdsListComponent } from './property-ads/list/list.compone
 import { EstatePropertyAdsSaleListComponent } from './property-ads/sale-list/sale-list.component';
 import { EstatePropertyCompanyAddComponent } from './property-company/add/add.component';
 import { EstatePropertyCompanyEditComponent } from './property-company/edit/edit.component';
-import { EstatePropertyCompanyListComponent } from './property-company/list/list.component';
+import { EstatePropertyCompanyListComponent } from './property-company/list/EstatePropertyCompanyListComponent';
 import { EstatePropertyDetailGroupListComponent } from './property-detail-group/list/list.component';
 import { EstatePropertyDetailListComponent } from './property-detail/list/list.component';
 import { EstatePropertyExpertPriceListComponent } from './property-expert-price/list/list.component';

@@ -43,6 +43,7 @@ import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/
 import { EstatePropertyProjectQuickViewComponent } from '../../property-project/quick-view/quick-view.component';
 import { EstatePropertySupplierQuickViewComponent } from '../../property-supplier/quick-view/quick-view.component';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-overview-events',
   templateUrl: './events.component.html',
@@ -417,12 +418,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelPropertyResult.listItems, model);
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -446,12 +449,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateCustomerOrderQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -476,12 +481,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelHistoryResult.listItems, model);
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyHistoryQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -534,12 +541,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyProjectQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -563,12 +572,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertySupplierQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: model.id,
         perviousItem: perviousItem,
@@ -592,12 +603,14 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelCustomerOrderResult.listItems, model);
     var panelClass = '';
     if (this.tokenHelper.isMobile)
-      panelClass = 'fullscreen-dialog';
+      panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstatePropertyCompanyQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: model.id,
         perviousItem: perviousItem,
