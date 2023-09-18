@@ -697,7 +697,6 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
 
 
   onActionbuttonQuickAddRow(event?: MouseEvent): void {
-    debugger
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
