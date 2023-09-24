@@ -297,7 +297,7 @@
   "AUTH.REGISTER.AGREE_TERMS": "آیا شرایط و ضوابط را می پذیرید؟",
   "AUTH.REGISTER.CREATE_AN_ACCOUNT": "ایجاد حساب کاربری",
   "AUTH.REGISTER.DESC": "برای ایجاد حساب کاربری خود ، جزئیات خود را وارد کنید",
-  "AUTH.REGISTER.RETURN_TO_LOGIN": "بازگشت به صفحه ورود",
+  "AUTH.REGISTER.RETURN_TO_LOGIN": "پسورد ورود دارم",
   "AUTH.REGISTER.SIGNUP": "ثبت نام",
   "AUTH.REGISTER.SUCCESS": "حساب شما با موفقیت ثبت شد.",
   "AUTH.REGISTER.TITLE": "ساخت حساب",

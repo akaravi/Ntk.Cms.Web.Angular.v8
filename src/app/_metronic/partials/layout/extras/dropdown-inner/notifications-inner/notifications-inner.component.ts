@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { CoreLogNotificationModel, CoreLogNotificationService, CoreTokenUserLogModel, CoreTokenUserLogService, CoreTokenUserModel, CoreTokenUserService, ErrorExceptionResult, FilterModel, SortTypeEnum } from 'ntk-cms-api';
+import { CoreLogNotificationModel, CoreLogNotificationService, CoreTokenUserLogModel, CoreTokenUserLogService, CoreTokenUserModel, CoreTokenUserService, ErrorExceptionResult, FilterDataModel, FilterModel, SortTypeEnum, TokenInfoModel } from 'ntk-cms-api';
+import { Subscription } from 'rxjs';
+import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
@@ -28,15 +30,32 @@ export class NotificationsInnerComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private cmsToastrService: CmsToastrService,
     public translate: TranslateService,
+    private tokenHelper: TokenHelper,
+
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.tokenHelper.getCurrentToken().then((value) => {
+      this.tokenInfo = value;
+      this.CoreTokenUserLogDataGetAll();
+      this.CoreTokenUserDataGetAll();
+      this.CoreLogNotificationDataGetAll();
+    });
+
+    this.cmsApiStoreSubscribe = this.tokenHelper.getCurrentTokenOnChange().subscribe((next) => {
+      this.tokenInfo = next;
+      this.CoreTokenUserLogDataGetAll();
+      this.CoreTokenUserDataGetAll();
+      this.CoreLogNotificationDataGetAll();
+    });
   }
+  tokenInfo = new TokenInfoModel();
+  cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.CoreTokenUserLogDataGetAll();
-    this.CoreTokenUserDataGetAll();
-    this.CoreLogNotificationDataGetAll();
+    // this.CoreTokenUserLogDataGetAll();
+    // this.CoreTokenUserDataGetAll();
+    // this.CoreLogNotificationDataGetAll();
   }
 
   setActiveTabId(tabId: NotificationsTabsType) {
@@ -103,6 +122,13 @@ export class NotificationsInnerComponent implements OnInit {
     var filteModelContent = new FilterModel();
     filteModelContent.sortColumn = 'Id';
     filteModelContent.sortType = SortTypeEnum.Descending;
+    if (this.tokenInfo?.userId > 0) {
+      var filterData = new FilterDataModel();
+      filterData.propertyName = 'linkUserId';
+      filterData.value = this.tokenInfo.userId;
+      filteModelContent.filters = [];
+      filteModelContent.filters.push(filterData);
+    }
     this.coreTokenUserService.ServiceGetAllEditor(filteModelContent).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -119,6 +145,9 @@ export class NotificationsInnerComponent implements OnInit {
       }
     }
     );
+  }
+  ngOnDestroy(): void {
+    this.cmsApiStoreSubscribe.unsubscribe();
   }
 }
 
