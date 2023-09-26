@@ -220,16 +220,15 @@
                 <mat-icon (click)="removeROw(row)">delete</mat-icon>
               </ng-container>
               <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
-                <button type="button" mat-raised-button color="accent" class="mb-2" [disabled]="editdisabled"
-                  *ngIf="this.editHotspot.pitch !==postionView?.clickGetPitch && this.editHotspot.yaw!==postionView?.clickGetYaw"
+                <button type="button" mat-raised-button color="accent" class="mb-2"
+                  [disabled]="editdisabled || !editHotspot.text||editHotspot.text.length==0" *ngIf="postionView"
                   (click)="updateEdit()">{{'ACTION.Update' | translate}}</button>
                 <button type="button" mat-raised-button color="warn" [disabled]="editdisabled"
                   (click)="cancelEdit()">{{'ACTION.CANCEL' | translate}}</button>
-
-                <button type="button" *ngIf="postionView" mat-raised-button color="warn"
-                  matTooltip="ثبت آخرین نقطه کلیک شده" [disabled]="editdisabled"
-                  (click)="onActionPannellumClickLastPoint()">ثبت نقطه</button>
-
+                <button type="button" mat-raised-button color="warn" matTooltip="ثبت آخرین نقطه کلیک شده"
+                  [disabled]="editdisabled"
+                  *ngIf="this.editHotspot.pitch !==postionView?.clickGetPitch && this.editHotspot.yaw!==postionView?.clickGetYaw"
+                  (click)="onActionPannellumClickLastPoint()">نقطه</button>
               </ng-container>
             </span>
 

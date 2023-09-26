@@ -242,7 +242,7 @@ export class Cms360TourListComponent implements OnInit {
     this.showAddView360 = !this.showAddView360;
     this.tableHotSpotdataSource.data = [];
   }
-
+  inAddhotspotGuid = '';
   onActionShowHotspotAdd(): void {
 
     if (!this.dataDetailModel)
@@ -253,10 +253,10 @@ export class Cms360TourListComponent implements OnInit {
     const hotspot = new File360TourHotSpotModel();
 
     hotspot.guid = this.getGuid();
-
+    this.inAddhotspotGuid = hotspot.guid;
     this.dataDetailModel.hotSpots.push(hotspot);
     this.tableHotSpotdataSource.data = this.uniqByReduce(this.dataDetailModel.hotSpots);
-    this.editROw(hotspot);
+    this.newROw(hotspot);
     this.onActionPannellumClickLastPoint();
   }
   onActionOptionRemoveView360(index: number): void {
@@ -292,11 +292,16 @@ export class Cms360TourListComponent implements OnInit {
     this.showAddView360 = !this.showAddView360;
   }
   editHotspot: File360TourHotSpotModel; oldHotspot: File360TourHotSpotModel; editdisabled: boolean
-
+  newROw(usr: File360TourHotSpotModel) {
+    //console.log(usr)
+    this.editHotspot = usr && usr.guid ? usr : new File360TourHotSpotModel();
+    this.oldHotspot = { ...this.editHotspot };
+  }
   editROw(usr: File360TourHotSpotModel) {
     //console.log(usr)
     this.editHotspot = usr && usr.guid ? usr : new File360TourHotSpotModel();
     this.oldHotspot = { ...this.editHotspot };
+    this.inAddhotspotGuid = '';
   }
   removeROw(usr: File360TourHotSpotModel) {
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.guid == usr.guid);
@@ -307,6 +312,7 @@ export class Cms360TourListComponent implements OnInit {
   }
   updateEdit() {
     //updateEdit
+    this.inAddhotspotGuid = '';
     this.editdisabled = true;
     const indexId = this.dataDetailModel.hotSpots.findIndex(x => x.guid == this.oldHotspot.guid);
     if (indexId >= 0)
@@ -317,6 +323,9 @@ export class Cms360TourListComponent implements OnInit {
   }
   cancelEdit() {
     //cancel
+    if (this.inAddhotspotGuid?.length > 0) {
+      this.dataDetailModel.hotSpots = this.dataDetailModel.hotSpots.filter(x => x.guid != this.inAddhotspotGuid);
+    }
     this.editHotspot = new File360TourHotSpotModel();
     if (this.oldHotspot && this.oldHotspot.guid) {
       if (!this.dataDetailModel.hotSpots)
