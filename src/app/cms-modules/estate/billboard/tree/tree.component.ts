@@ -126,6 +126,9 @@ export class EstateBillboardTreeComponent implements OnInit, OnDestroy {
       panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(EstateBillboardAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
 

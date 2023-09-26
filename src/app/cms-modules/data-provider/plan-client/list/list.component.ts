@@ -25,6 +25,7 @@ import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { DataProviderPlanClientAddComponent } from '../add/add.component';
 import { DataProviderPlanClientDeleteComponent } from '../delete/delete.component';
 import { DataProviderPlanClientEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-data-provider-plan-client-list',
@@ -270,7 +271,17 @@ export class DataProviderPlanClientListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessDelete();
       return;
     }
-    const dialogRef = this.dialog.open(DataProviderPlanClientDeleteComponent, { height: '40%', data: { id: this.tableRowSelected.id } });
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(DataProviderPlanClientDeleteComponent, { 
+      height: '40%', 
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+      data: { id: this.tableRowSelected.id } });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -330,10 +341,18 @@ export class DataProviderPlanClientListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -360,10 +379,18 @@ export class DataProviderPlanClientListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

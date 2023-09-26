@@ -305,6 +305,8 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
             panelClass = 'dialog-min';
         const dialogRef = this.dialog.open(CmsExportListComponent, {
             height: "50%",
+            enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+            exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
             panelClass: panelClass,
             data: {
                 service: this.contentService,
@@ -338,6 +340,8 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
             panelClass = 'dialog-min';
         const dialogRef = this.dialog.open(CmsExportEntityComponent, {
             height: "50%",
+            enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+            exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
             panelClass: panelClass,
             data: {
                 service: this.contentService,
@@ -430,6 +434,8 @@ export class EstatePropertyCompanyListComponent implements OnInit, OnDestroy {
                             panelClass = 'dialog-min';
                         const dialogRef = this.dialog.open(CmsLinkToComponent, {
                             height: "90%",
+                            enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+                            exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
                             panelClass: panelClass,
                             data: {
                                 title: ret.item.title,

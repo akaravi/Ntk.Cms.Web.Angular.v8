@@ -23,6 +23,7 @@ import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CoreUserClaimGroupDetailAddComponent } from '../add/add.component';
 import { CoreUserClaimGroupDetailEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-core-userclaimgroupdetail-list',
   templateUrl: './list.component.html',
@@ -215,8 +216,16 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         linkUserClaimGroupId: this.requestLinkUserClaimGroupId,
         linkUserClaimTypeId: this.requestLinkUserClaimTypeId,
@@ -245,8 +254,16 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CoreUserClaimGroupDetailEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { model: this.tableRowSelected }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -374,10 +391,18 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
   }
 
   onActionbuttonExport(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -404,10 +429,18 @@ export class CoreUserClaimGroupDetailListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

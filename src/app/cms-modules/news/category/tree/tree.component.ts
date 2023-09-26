@@ -28,6 +28,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { NewsCategoryAddComponent } from '../add/add.component';
 import { NewsCategoryDeleteComponent } from '../delete/delete.component';
 import { NewsCategoryEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -139,8 +140,16 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(NewsCategoryEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -159,8 +168,16 @@ export class NewsCategoryTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(NewsCategoryDeleteComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { Id: id }
     });
     dialogRef.afterClosed().subscribe(result => {

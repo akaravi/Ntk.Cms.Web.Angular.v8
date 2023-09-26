@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-core-userclaimcontent-checklist',
@@ -175,9 +176,16 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
   }
 
   onActionbuttonNewRow(): void {
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -194,8 +202,16 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
     }
     this.onActionTableRowSelect(model);
     if (model.linkContentId && model.linkContentId > 0) {
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'dialog-fullscreen';
+      else
+        panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
         height: '90%',
+        panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
         data: { id: this.tableRowSelected.linkContentId }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -204,8 +220,16 @@ export class CoreUserClaimContentCheckListComponent implements OnInit, OnDestroy
         }
       });
     } else {
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'dialog-fullscreen';
+      else
+        panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
         height: '90%',
+        panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
         data: { linkUserClaimTypeId: this.tableRowSelected.linkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {

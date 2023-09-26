@@ -26,6 +26,7 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { DonateTargetPeriodSponserAddComponent } from '../add/add.component';
 import { DonateTargetPeriodSponserDeleteComponent } from '../delete/delete.component';
 import { DonateTargetPeriodSponserEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-donate-target-period-sponser-tree',
@@ -147,8 +148,16 @@ export class DonateTargetPeriodSponserTreeComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(DonateTargetPeriodSponserEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -173,8 +182,16 @@ export class DonateTargetPeriodSponserTreeComponent implements OnInit, OnDestroy
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(DonateTargetPeriodSponserDeleteComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {

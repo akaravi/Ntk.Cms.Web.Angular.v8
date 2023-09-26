@@ -22,6 +22,7 @@ import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CoreModuleEntityReportFileAddComponent } from '../add/add.component';
 import { CoreModuleEntityReportFileEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-core-module-entity-report-file-list',
   templateUrl: './list.component.html',
@@ -192,9 +193,16 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
 
 
   onActionbuttonNewRow(): void {
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CoreModuleEntityReportFileAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { linkModuleEntityId: this.requestLinkModuleEntityId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -219,8 +227,16 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CoreModuleEntityReportFileEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -340,10 +356,18 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
     this.router.navigate(['corelog/report-data/LinkModuleEntityReportFileId/', model.id]);
   }
   onActionbuttonExport(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -370,10 +394,18 @@ export class CoreModuleEntityReportFileListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

@@ -256,7 +256,7 @@ export class EstatePropertyAddComponent implements OnInit {
               height: '90%',
               panelClass: panelClass,
               enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+              exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
               data: { model: this.dataModelResult.item }
             });
             dialogRef.afterClosed().subscribe(result => {

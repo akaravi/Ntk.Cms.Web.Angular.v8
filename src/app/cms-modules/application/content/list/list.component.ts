@@ -32,6 +32,7 @@ import { ApplicationLogNotificationActionSendComponent } from '../../notificatio
 import { ApplicationAppDownloadComponent } from '../download/download.component';
 import { ApplicationAppUploadAppComponent } from '../uploadApp/uploadApp.component';
 import { ApplicationAppUploadUpdateComponent } from '../uploadUpdate/uploadUpdate.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-application-app-list',
@@ -352,10 +353,18 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
 
   }
   onActionbuttonExport(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -382,10 +391,18 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -423,9 +440,17 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     this.onActionTableRowSelect(mode);
     const dialogRef = this.dialog.open(ApplicationAppUploadAppComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: this.tableRowSelected,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -440,9 +465,17 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     this.onActionTableRowSelect(mode);
     const dialogRef = this.dialog.open(ApplicationAppUploadUpdateComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: this.tableRowSelected,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -483,9 +516,17 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     this.onActionTableRowSelect(mode);
     const dialogRef = this.dialog.open(ApplicationAppDownloadComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: this.tableRowSelected,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -508,8 +549,16 @@ export class ApplicationAppListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(ApplicationLogNotificationActionSendComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { linkApplicationId: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {

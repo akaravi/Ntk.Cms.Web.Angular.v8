@@ -15,6 +15,7 @@ import { WidgetInfoModel } from 'src/app/core/models/widget-info-model';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CoreUserClaimContentAddComponent } from '../add/add.component';
 import { CoreUserClaimContentEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-core-userclaimcontent-widget-status',
@@ -79,8 +80,16 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
       return;
     }
     if (model.linkContentId && model.linkContentId > 0) {
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'dialog-fullscreen';
+      else
+        panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CoreUserClaimContentEditComponent, {
         height: '90%',
+        panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
         data: { id: model.linkContentId }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -89,8 +98,16 @@ export class CoreUserClaimContentWidgetStatusComponent implements OnInit, OnDest
         }
       });
     } else {
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'dialog-fullscreen';
+      else
+        panelClass = 'dialog-min';
       const dialogRef = this.dialog.open(CoreUserClaimContentAddComponent, {
         height: '90%',
+        panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
         data: { linkUserClaimTypeId: model.linkTypeId }
       });
       dialogRef.afterClosed().subscribe(result => {
