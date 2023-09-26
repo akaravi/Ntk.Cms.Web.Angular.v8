@@ -22,6 +22,7 @@ import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerMod
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { CoreModuleSiteUserCreditChargeDirectComponent } from '../charge-direct/charge-direct.component';
 import { CoreModuleSiteUserCreditEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-coremodule-site-user-credit-list',
   templateUrl: './list.component.html',
@@ -294,10 +295,18 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
 
   }
   onActionbuttonExport(): void {
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -324,10 +333,18 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeErrorAccessWatch();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
@@ -365,11 +382,18 @@ export class CoreModuleSiteUserCreditListComponent implements OnInit, OnDestroy 
       return;
     }
     this.onActionTableRowSelect(model);
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CoreModuleSiteUserCreditChargeDirectComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         model: model
       },

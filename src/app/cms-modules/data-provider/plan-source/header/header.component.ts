@@ -14,6 +14,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsLinkToComponent } from 'src/app/shared/cms-link-to/cms-link-to.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-data-provider-plan-source-header',
   templateUrl: './header.component.html',
@@ -86,10 +87,18 @@ export class DataProviderPlanSourceHeaderComponent implements OnInit, OnDestroy 
       this.cmsToastrService.typeWarningRecordStatusNoAvailable();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     //open popup
     const dialogRef = this.dialog.open(CmsLinkToComponent, {
       height: "90%",
       width: "90%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         // title: model.title,
         urlViewContentQRCodeBase64: '',

@@ -70,6 +70,7 @@ export class DataProviderClientChargeComponent implements OnInit {
     onActionbuttonBuy(): void {
         const dialogRef = this.dialog.open(DataProviderClientChargePaymentComponent, {
             height: '90%',
+            
             data: {
                 LinkPlanPriceId: this.dataModelCalculate.linkPlanPriceId,
                 LinkClientId: this.dataModelCalculate.linkClientId,

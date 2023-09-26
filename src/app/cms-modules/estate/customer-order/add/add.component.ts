@@ -162,7 +162,7 @@ export class EstateCustomerOrderAddComponent implements OnInit {
             const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
               panelClass: panelClass,
               enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+              exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
               data: { model: ret.item }
             });
             dialogRef.afterClosed().subscribe(result => {

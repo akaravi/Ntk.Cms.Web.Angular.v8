@@ -92,7 +92,7 @@ export class EstateAccountAgencyAdsSaleListComponent implements OnInit, OnDestro
       const dialogRef = this.dialog.open(CmsBankpaymentTransactionInfoComponent, {
         panelClass: panelClass,
         enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+        exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
         data: {
           id: transactionId,
         },
