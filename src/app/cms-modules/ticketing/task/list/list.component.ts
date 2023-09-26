@@ -24,6 +24,7 @@ import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExport
 import { TicketingTaskAddComponent } from '../add/add.component';
 import { TicketingTaskEditComponent } from '../edit/edit.component';
 import { TicketingTaskViewComponent } from '../view/view.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-ticketing-task-list',
   templateUrl: './list.component.html'
@@ -226,8 +227,16 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
     if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
       parentId = this.categoryModelSelected.id;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(TicketingTaskAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { linkDepartemenId: parentId }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -246,9 +255,16 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
 
     this.tableRowSelected = mode;
 
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(TicketingTaskViewComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -285,9 +301,16 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
-
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(TicketingTaskEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -412,9 +435,17 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -442,9 +473,17 @@ export class TicketingTaskListComponent implements OnInit, OnDestroy {
       return;
     }
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

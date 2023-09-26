@@ -199,9 +199,17 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
     }
   }
   onActionCopyHeaderKey(keyTemplate: any, event?: MouseEvent): void {
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     if (event?.ctrlKey && event?.altKey) {
       const dialogRef = this.dialog.open(keyTemplate, {
         width: '15%',
+        panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {

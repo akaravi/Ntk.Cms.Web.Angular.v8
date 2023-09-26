@@ -22,6 +22,7 @@ import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { SmsMainApiNumberAddComponent } from '../add/add.component';
 import { SmsMainApiNumberEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sms-api-number-list',
@@ -206,9 +207,17 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
     let linkApiPathId = this.requestLinkApiPathId;
     if (this.categoryModelSelected && this.categoryModelSelected.id && this.categoryModelSelected.id.length > 0)
       linkApiPathId = this.categoryModelSelected.id;
+      var panelClass = '';
+      if (this.tokenHelper.isMobile)
+        panelClass = 'dialog-fullscreen';
+      else
+        panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(SmsMainApiNumberAddComponent, {
       height: '90%',
       width: '60%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         linkApiPathId: linkApiPathId
       }
@@ -236,8 +245,16 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(SmsMainApiNumberEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -393,9 +410,17 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -423,9 +448,17 @@ export class SmsMainApiNumberListComponent implements OnInit, OnDestroy {
       return;
     }
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,
