@@ -19,13 +19,13 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/comp
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { environment } from 'src/environments/environment';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { LinkManagementBillboardPatternAddComponent } from '../add/add.component';
 import { LinkManagementBillboardPatternDeleteComponent } from '../delete/delete.component';
 import { LinkManagementBillboardPatternEditComponent } from '../edit/edit.component';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-linkmanagement-billboard-pattern-list',
@@ -56,7 +56,6 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
 
   }
   filteModelContent = new FilterModel();
-  categoryModelSelected: LinkManagementBillboardPatternModel;
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardPatternModel> = new ErrorExceptionResult<LinkManagementBillboardPatternModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -105,12 +104,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     /*filter CLone*/
     const filterModel = JSON.parse(JSON.stringify(this.filteModelContent));
     /*filter CLone*/
-    if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
-      const filter = new FilterDataModel();
-      filter.propertyName = 'LinkCategoryId';
-      filter.value = this.categoryModelSelected.id;
-      filterModel.filters.push(filter);
-    }
+
     this.contentService.setAccessLoad();
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
@@ -165,18 +159,6 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: LinkManagementBillboardPatternModel | null): void {
-    /*filter */
-    var sortColumn = this.filteModelContent.sortColumn;
-    var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new FilterModel();
-    this.filteModelContent.sortColumn = sortColumn;
-    this.filteModelContent.sortType = sortType;
-    /*filter */
-    this.categoryModelSelected = model;
-
-    this.DataGetAll();
-  }
 
   onActionbuttonNewRow(): void {
     if (
@@ -255,18 +237,45 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
       panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
-    const dialogRef = this.dialog.open(LinkManagementBillboardPatternDeleteComponent, { 
-      height: '90%', 
+    const dialogRef = this.dialog.open(LinkManagementBillboardPatternDeleteComponent, {
+      height: '90%',
       panelClass: panelClass,
       enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
       exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
-      data: { id: this.tableRowSelected.id } });
+      data: { id: this.tableRowSelected.id }
+    });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
         this.DataGetAll();
       }
     });
+  }
+  onActionButtonRowTarget(model: LinkManagementBillboardPatternModel = this.tableRowSelected, event?: MouseEvent): void {
+    if (!model || !model.id || model.id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.onActionTableRowSelect(model);
+    if (event?.ctrlKey) {
+      var link = "/#/linkmanagement/target/list/LinkBillboardPatternId/" + model.id;
+      window.open(link, "_blank");
+    } else {
+      this.router.navigate(["/linkmanagement/target/list/LinkBillboardPatternId/", model.id,]);
+    }
+  }
+  onActionButtonRowBillboard(model: LinkManagementBillboardPatternModel = this.tableRowSelected, event?: MouseEvent): void {
+    if (!model || !model.id || model.id === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    this.onActionTableRowSelect(model);
+    if (event?.ctrlKey) {
+      var link = "/#/linkmanagement/billboard/list/LinkBillboardPatternId/" + model.id;
+      window.open(link, "_blank");
+    } else {
+      this.router.navigate(["/linkmanagement/billboard/list/LinkBillboardPatternId/", model.id,]);
+    }
   }
   onActionbuttonStatist(): void {
     this.optionsStatist.data.show = !this.optionsStatist.data.show;

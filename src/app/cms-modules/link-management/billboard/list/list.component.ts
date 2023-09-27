@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult,
@@ -18,29 +18,32 @@ import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/comp
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { environment } from 'src/environments/environment';
 import { PublicHelper } from '../../../../core/helpers/publicHelper';
 import { ProgressSpinnerModel } from '../../../../core/models/progressSpinnerModel';
 import { CmsToastrService } from '../../../../core/services/cmsToastr.service';
 import { LinkManagementBillboardDeleteComponent } from '../delete/delete.component';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-linkmanagement-Billboard-list',
   templateUrl: './list.component.html',
 })
 export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
-
+  requestLinkBillboardPatternId = 0;
   constructor(
     public publicHelper: PublicHelper,
     public contentService: LinkManagementBillboardService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
     public dialog: MatDialog,
     public translate: TranslateService,
   ) {
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.requestLinkBillboardPatternId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkBillboardPatternId'));
 
     this.optionsSearch.parentMethods = {
       onSubmit: (model) => this.onSubmitOptionsSearch(model),
@@ -49,7 +52,12 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = SortTypeEnum.Descending;
-
+    if (this.requestLinkBillboardPatternId > 0) {
+      const fastfilter = new FilterDataModel();
+      fastfilter.propertyName = 'LinkBillboardPatternId';
+      fastfilter.value = this.requestLinkBillboardPatternId;
+      this.filteModelContent.filters.push(fastfilter);
+    }
   }
   filteModelContent = new FilterModel();
   categoryModelSelected: LinkManagementBillboardPatternModel;
@@ -229,12 +237,13 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
       panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
-    const dialogRef = this.dialog.open(LinkManagementBillboardDeleteComponent, { 
+    const dialogRef = this.dialog.open(LinkManagementBillboardDeleteComponent, {
       height: '90%',
       panelClass: panelClass,
       enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
       exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
-      data: { id: this.tableRowSelected.id } });
+      data: { id: this.tableRowSelected.id }
+    });
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {

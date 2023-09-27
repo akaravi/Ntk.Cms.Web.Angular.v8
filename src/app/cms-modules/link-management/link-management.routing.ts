@@ -36,6 +36,11 @@ const routes: Routes = [
         data: { title: 'ROUTE.LINKMANAGMENT.TARGET' },
       },
       {
+        path: 'target/list/LinkBillboardPatternId/:LinkBillboardPatternId',
+        component: LinkManagementTargetListComponent,
+        data: { title: 'ROUTE.LINKMANAGMENT.TARGET' },
+      },
+      {
         path: 'target/add/:CategoryId',
         component: LinkManagementTargetAddComponent,
         data: { title: 'ROUTE.LINKMANAGMENT.TARGET' },
@@ -47,6 +52,11 @@ const routes: Routes = [
       },
       {
         path: 'billboard',
+        component: LinkManagementBillboardListComponent,
+        data: { title: 'ROUTE.LINKMANAGMENT.BILLBOARD' },
+      },
+      {
+        path: 'billboard/list/LinkBillboardPatternId/:LinkBillboardPatternId',
         component: LinkManagementBillboardListComponent,
         data: { title: 'ROUTE.LINKMANAGMENT.BILLBOARD' },
       },
@@ -113,4 +123,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LinkManagementRoutes {}
+export class LinkManagementRoutes { }
