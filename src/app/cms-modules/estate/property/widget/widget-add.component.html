@@ -1,24 +1,29 @@
 <!--begin::Mixed Widget 14-->
-<div class="card card-custom bgi-no-repeat bgi-size-cover" [ngClass]="cssClass" style="background-image: url('./assets/media/stock-600x600/img-2.jpg')">
+<div class="card card-custom bgi-no-repeat bgi-size-cover" [ngClass]="cssClass">
     <!--begin::Body-->
     <div class="card-body d-flex flex-column align-items-start justify-content-start">
 
         <div class="ntk-cms-html-widget-header">
             <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
             <div class="p-1 flex-grow-1">
-                <a routerLink="/estate/property/add" routerLinkActive="active">
-                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                <a routerLink="/estate/property/add" class="text-dark text-hover-primary fw-bolder fs-3"
+                    routerLinkActive="active">
+                    <h3>
                         {{widgetInfoModel.title}}
                     </h3>
                 </a>
-                <a routerLink="/estate/property" routerLinkActive="active" *ngIf="rowExist">
-                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
+                <a routerLink="/estate/property" class="text-dark text-hover-primary fw-bolder fs-3"
+                    routerLinkActive="active" *ngIf="rowExist">
+                    <h3>
                         {{widgetInfoModel.description}}
                     </h3>
                 </a>
-                <a routerLink="/estate/property/InChecking/true" routerLinkActive="active" *ngIf="this.modelData.get('InChecking') && this.modelData.get('InChecking')>0">
-                    <h3 class="text-black font-weight-bolder line-height-lg mb-5">
-                        {{'TITLE.Number_of_rows_in_the_confirmation_queue' | translate}} : {{this.modelData.get('InChecking')}}
+                <a routerLink="/estate/property/InChecking/true" class="text-dark text-hover-primary fw-bolder fs-3"
+                    routerLinkActive="active"
+                    *ngIf="this.modelData.get('InChecking') && this.modelData.get('InChecking')>0">
+                    <h3>
+                        {{'TITLE.Number_of_rows_in_the_confirmation_queue' | translate}} :
+                        {{this.modelData.get('InChecking')}}
                     </h3>
                 </a>
             </div>
@@ -27,13 +32,17 @@
         <div class="ntk-cms-html-widget-body">
             <app-progress-spinner [options]="loading"> </app-progress-spinner>
             <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-            <a routerLink="/estate/property/add" routerLinkActive="active" class="btn btn-link btn-link-light font-weight-bold">
+            <a routerLink="/estate/property/add" routerLinkActive="active"
+                class="text-dark text-hover-primary fw-bolder fs-3">
                 {{widgetInfoModel.title}}
-                <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'" class="svg-icon ssvg-icon-lg svg-icon-secondary"></span>
+                <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'"
+                    class="svg-icon ssvg-icon-lg svg-icon-secondary svg-icon-white"></span>
             </a>
-            <a routerLink="/estate/property/Action/quick-add" routerLinkActive="active" class="btn btn-link btn-link-light font-weight-bold">
+            <a routerLink="/estate/property/Action/quick-add" routerLinkActive="active"
+                class="text-dark text-hover-primary fw-bolder fs-3">
                 {{'ACTION.QUICK_ADD' |translate}}
-                <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'" class="svg-icon ssvg-icon-lg svg-icon-secondary"></span>
+                <span [inlineSVG]="'./assets/media/svg/icons/Navigation/Arrow-right.svg'"
+                    class="svg-icon ssvg-icon-lg svg-icon-secondary"></span>
             </a>
 
             <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->

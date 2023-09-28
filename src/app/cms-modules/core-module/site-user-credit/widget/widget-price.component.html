@@ -1,22 +1,23 @@
 <!--begin::Tiles Widget 11-->
-<div class="card card-custom bg- height background" [ngClass]="cssClass">
+<div class="card card-custom">
   <div class="card-body">
     <div class="ntk-cms-html-widget-header">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/Shopping/Dollar.svg'"
-        style="filter: invert(1);" class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
+        style="filter: invert(0.7);" class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-widget-body">
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
 
-      <h4 style="color: white;">{{'ACTION.CREDIT_USER' | translate}}</h4>
+      <h4 class="text-dark text-hover-primary fw-bolder fs-3">{{'ACTION.CREDIT_USER' | translate}}</h4>
 
       <div *ngFor="let item of dataModelResult.listItems" [ngClass]="textInverseCSSClass"
         class="row font-weight-bolder font-size-h4 mt-3">
-        <div class="col-6">{{ item.linkModuleId | cmstitle : dataModelCoreModuleResult.listItems}} :</div>
-        <div class="col-4">{{ item.credit }}</div>
+        <div class="col-6 text-dark fw-bolder fs-3">{{ item.linkModuleId | cmstitle :
+          dataModelCoreModuleResult.listItems}} :</div>
+        <div class="col-4 fw-bolder fs-3 text-primary">{{ item.credit }}</div>
       </div>
       <!--end::cms-body-->
     </div>

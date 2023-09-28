@@ -1,25 +1,27 @@
 <!--begin::Tiles Widget 11-->
-<div class="card card-custom bg- height background" [ngClass]="cssClass">
+<div class="card card-custom height">
   <div class="card-body">
-    <div class="ntk-cms-html-widget-header">
+    <div class="ntk-cms-html-widget-header pb-2">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
       <span [ngClass]="svgCSSClass" [inlineSVG]="'./assets/media/svg/icons/Shopping/Chart-bar2.svg'"
-        style="filter: invert(1);" class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
+        style="filter: invert(0.7);" class="svg-icon svg-icon-3x svg-icon-white ml-n2"></span>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
     </div>
     <div class="ntk-cms-html-widget-body">
       <app-progress-spinner [options]="loading"> </app-progress-spinner>
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
       <div *ngFor="let item of modelData| keyvalue ; index as i" [ngClass]="textInverseCSSClass"
-        class="font-weight-bolder font-size-h3 mt-3">
-        {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
+        class="text-dark text-hover-primary fw-bolder fs-3">
+        <h4>
+          {{translateHelp('TITLE.',item.key)|translate}} : {{item.value}}
+        </h4>
       </div>
       <!--end::cms-body-->
     </div>
     <div class="ntk-cms-html-widget-footer">
       <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
       <a routerLink="{{widgetInfoModel.link}}" routerLinkActive="active" [ngClass]="textInverseCSSClass"
-        class="font-weight-bold font-size-lg mt-1">{{widgetInfoModel.title}}</a>
+        class="text-dark text-hover-primary fw-bolder fs-3">{{widgetInfoModel.title}}</a>
       <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
     </div>
   </div>
