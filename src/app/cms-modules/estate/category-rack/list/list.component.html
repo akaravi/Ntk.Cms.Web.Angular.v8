@@ -10,6 +10,16 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
+
+    <div class="divhs">
+      <div class="divChildkhs" *ngFor="let row of this.dataModelResult.listItems" [style.color]="row.iconColor">
+        {{row.title}}
+
+        <br>
+        {{row.description}}
+      </div>
+
+    </div>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button *ngIf="dataModelResult.access.accessAddRow " (click)="onActionbuttonNewRow()" type="button"
       class="btn box-shadow-button btn-outline-primary" id="openModalButton" data-toggle="modal"

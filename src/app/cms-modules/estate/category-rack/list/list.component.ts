@@ -20,12 +20,13 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
+import { environment } from 'src/environments/environment';
 import { EstateCategoryRackAddComponent } from '../add/add.component';
 import { EstateCategoryRackEditComponent } from '../edit/edit.component';
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-category-rack-list',
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
+  styleUrls: ['list.component.scss']
 })
 export class EstateCategoryRackListComponent implements OnInit, OnDestroy {
   constructor(
