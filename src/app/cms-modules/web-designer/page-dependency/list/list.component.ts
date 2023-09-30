@@ -184,8 +184,16 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { linkModuleId: this.categoryModelSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -203,8 +211,16 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         linkModuleId: this.categoryModelSelected.id
       }
@@ -247,8 +263,16 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -382,9 +406,17 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -412,9 +444,17 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

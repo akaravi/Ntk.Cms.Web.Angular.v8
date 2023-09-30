@@ -22,6 +22,7 @@ import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-e
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { SmsMainApiNumberPermissionAddComponent } from '../add/add.component';
 import { SmsMainApiNumberPermissionEditComponent } from '../edit/edit.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-sms-api-number-permission-list',
   templateUrl: './list.component.html'
@@ -175,8 +176,16 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(SmsMainApiNumberPermissionAddComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -201,8 +210,16 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       this.cmsToastrService.typeErrorAccessEdit();
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(SmsMainApiNumberPermissionEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id: this.tableRowSelected.id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -337,9 +354,17 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
   }
   onActionbuttonExport(): void {
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         filterModel: this.filteModelContent,
@@ -367,9 +392,17 @@ export class SmsMainApiNumberPermissionListComponent implements OnInit, OnDestro
       return;
     }
     //open popup
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         service: this.contentService,
         id: this.tableRowSelected.id,

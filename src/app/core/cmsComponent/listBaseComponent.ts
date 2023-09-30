@@ -52,6 +52,7 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
       panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
+    
     const dialogRef = this.dialog.open(CmsDataMemoComponent, {
       height: "70%",
       panelClass: panelClass,

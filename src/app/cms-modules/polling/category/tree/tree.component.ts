@@ -30,6 +30,7 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { PollingCategoryAddComponent } from '../add/add.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -153,8 +154,16 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(PollingCategoryEditComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -179,8 +188,16 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
+    var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(PollingCategoryDeleteComponent, {
       height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: { id }
     });
     dialogRef.afterClosed().subscribe(result => {
