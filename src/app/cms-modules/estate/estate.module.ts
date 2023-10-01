@@ -191,6 +191,7 @@ import { EstatePropertyActionComponent } from './property/action/action.componen
 import { EstatePropertyQuickAddComponent } from './property/quick-add/quick-add.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
+import { EstateCategoryRackListMobileComponent } from './category-rack/list/list.mobile.component';
 
 
 @NgModule({
@@ -391,6 +392,7 @@ import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-vi
     EstateCategoryRackSelectorComponent,
     EstateCategoryRackTreeComponent,
     EstateCategoryRackListComponent,
+    EstateCategoryRackListMobileComponent,
     /* */
   ],
   imports: [

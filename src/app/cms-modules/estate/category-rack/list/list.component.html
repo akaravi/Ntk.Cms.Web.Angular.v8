@@ -10,54 +10,17 @@
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
   </ng-container>
   <ng-container cms-action>
-    <div class="box-rack">
-      <div class="box-rack-child">
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
+    <div class="box-rack" id="box-rack">
+      <div class="box-rack-child" id="box-rack-child" *ngFor="let row of this.dataModelResult.listItems">
+        <div class="box-rack-child-title" id="box-rack-child-title" [style.background]="row.iconColor">
+          {{row.title}}
         </div>
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
-        </div>
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
-        </div>
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
-        </div>
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
-        </div>
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
-        </div>
-        <div class="items">
-          <div class="box-rack-child-title"></div>
-          <div class="box-rack-child-item">
-            <div class="box-rack-child-door"></div>
-          </div>
+        <div class="box-rack-child-open" id="box-rack-child-open">
+          <!-- {{row.description}} -->
+          <div class="box-rack-child-open-icon" id="box-rack-child-open-icon"></div>
         </div>
       </div>
     </div>
-    <div class="bottom-bar">jsjsjsj</div>
-    
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
     <button
       *ngIf="dataModelResult.access.accessAddRow"
