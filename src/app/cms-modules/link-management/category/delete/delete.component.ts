@@ -7,8 +7,8 @@ import {
   DataFieldInfoModel, ErrorExceptionResult,
   FilterModel,
   FormInfoModel,
-  LinkManagementTargetCategoryModel,
-  LinkManagementTargetCategoryService, ManageUserAccessDataTypesEnum
+  LinkManagementCategoryModel,
+  LinkManagementCategoryService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
@@ -16,17 +16,17 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-linkmanagement-target-category-delete',
+  selector: 'app-linkmanagement-category-delete',
   templateUrl: './delete.component.html',
   styleUrls: ['./delete.component.scss']
 })
-export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
+export class LinkManagementCategoryDeleteComponent implements OnInit {
   requestId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<LinkManagementTargetCategoryDeleteComponent>,
+    private dialogRef: MatDialogRef<LinkManagementCategoryDeleteComponent>,
     private publicHelper: PublicHelper,
-    private categoryService: LinkManagementTargetCategoryService,
+    private categoryService: LinkManagementCategoryService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
     private cmsToastrService: CmsToastrService
@@ -40,8 +40,8 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   loading = new ProgressSpinnerModel();
-  dataModelResultCategory: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
-  dataModelResultCategoryAllData: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
+  dataModelResultCategory: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
+  dataModelResultCategoryAllData: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
   dataModel: any = {};
   formInfo: FormInfoModel = new FormInfoModel();
   ngOnInit(): void {
@@ -187,7 +187,7 @@ export class LinkManagementTargetCategoryDeleteComponent implements OnInit {
       );
 
   }
-  onFormChangeNewCatId(model: LinkManagementTargetCategoryModel): void {
+  onFormChangeNewCatId(model: LinkManagementCategoryModel): void {
     this.formInfo.formAlert = '';
     if (this.requestId === 0 || !model || model.id <= 0) {
       this.cmsToastrService.typeErrorDeleteRowIsNull();

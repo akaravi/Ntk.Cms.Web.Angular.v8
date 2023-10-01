@@ -38,7 +38,7 @@
             Title is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
         </mat-form-field>
-        <!-- LinkTargetCategoryId Field -->
+        <!-- LinkCategoryId Field -->
         <app-linkmanagement-member-selector (optionChange)="onActionSelectorSelectLinkManagementMemberId($event)"
           [optionSelectForce]="dataModel.linkManagementMemberId" [(optionLoading)]="loading"
           [optionPlaceholder]="this.translate.instant('TITLE.User_Account')">
@@ -113,9 +113,9 @@
         </div>
       </mat-step>
       <mat-step label="{{'TITLE.TARGET_SELECTION' | translate}}" state="seo">
-        <app-linkmanagement-target-category-treeselector [(optionModel)]="dataContentCategoryModel"
+        <app-linkmanagement-category-treeselector [(optionModel)]="dataContentCategoryModel"
           (optionSelectChecked)="onActionCategorySelectChecked($event)"
-          (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-linkmanagement-target-category-treeselector>
+          (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-linkmanagement-category-treeselector>
         <br>
         <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
           <button type="button" mat-raised-button color="accent" matStepperPrevious>

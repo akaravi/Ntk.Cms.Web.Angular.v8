@@ -5,9 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
-  FormInfoModel, InfoEnumModel, LinkManagementBillboardModel,
-  LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementBillboardTargetCategoryModel,
-  LinkManagementBillboardTargetCategoryService, LinkManagementMemberModel
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardCategoryModel,
+  LinkManagementBillboardCategoryService, LinkManagementBillboardModel,
+  LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementMemberModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -27,11 +27,12 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   ]
 })
 export class LinkManagementBillboardAddComponent implements OnInit, AfterViewInit {
-  requestCategoryId = 0;
+
+  requestLinkBillboardPatternId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
-    private contentCategoryService: LinkManagementBillboardTargetCategoryService,
+    private contentCategoryService: LinkManagementBillboardCategoryService,
     public publicHelper: PublicHelper,
     private linkManagementBillboardService: LinkManagementBillboardService,
     private cmsToastrService: CmsToastrService,
@@ -81,12 +82,13 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
 
   ngOnInit(): void {
-    this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
-    if (this.requestCategoryId === 0) {
+    this.requestLinkBillboardPatternId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkBillboardPatternId'));
+    if (this.requestLinkBillboardPatternId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
-    this.dataModel.linkBillboardPatternId = this.requestCategoryId;
+
+    this.dataModel.linkBillboardPatternId = this.requestLinkBillboardPatternId;
 
     this.DataGetAccess();
     this.getEnumRecordStatus();
@@ -107,7 +109,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
 
 
   onFormSubmit(): void {
-    if (this.requestCategoryId <= 0) {
+    if (this.requestLinkBillboardPatternId <= 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
@@ -274,8 +276,8 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
       return;
     }
     if (this.dataModel.id > 0) {
-      const entity = new LinkManagementBillboardTargetCategoryModel();
-      entity.linkTargetCategoryId = model;
+      const entity = new LinkManagementBillboardCategoryModel();
+      entity.linkCategoryId = model;
       entity.linkManagementBillboardId = this.dataModel.id;
       this.contentCategoryService.ServiceAdd(entity).subscribe({
         next: (ret) => {
@@ -306,8 +308,8 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    const entity = new LinkManagementBillboardTargetCategoryModel();
-    entity.linkTargetCategoryId = model;
+    const entity = new LinkManagementBillboardCategoryModel();
+    entity.linkCategoryId = model;
     entity.linkManagementBillboardId = this.dataModel.id;
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {

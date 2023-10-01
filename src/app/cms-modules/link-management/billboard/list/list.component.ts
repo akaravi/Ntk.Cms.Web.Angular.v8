@@ -111,7 +111,7 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'LinkCategoryId';
+      filter.propertyName = 'linkBillboardPatternId';
       filter.value = this.categoryModelSelected.id;
       filterModel.filters.push(filter);
     }

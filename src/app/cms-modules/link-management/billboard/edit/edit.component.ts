@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementBillboardTargetCategoryModel, LinkManagementBillboardTargetCategoryService, LinkManagementMemberModel, ManageUserAccessDataTypesEnum
+  AccessModel, ClauseTypeEnum, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, LinkManagementBillboardCategoryModel, LinkManagementBillboardCategoryService, LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementMemberModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -28,7 +28,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   constructor(
     private activatedRoute: ActivatedRoute,
     public publicHelper: PublicHelper,
-    private contentCategoryService: LinkManagementBillboardTargetCategoryService,
+    private contentCategoryService: LinkManagementBillboardCategoryService,
     private linkManagementBillboardService: LinkManagementBillboardService,
     private cmsToastrService: CmsToastrService,
     private router: Router,
@@ -233,7 +233,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
 
           const itemList = [];
           ret.listItems.forEach(element => {
-            itemList.push(element.linkTargetCategoryId);
+            itemList.push(element.linkCategoryId);
           });
           this.dataContentCategoryModel = itemList;
           this.formInfo.formSubmitAllow = true;
@@ -254,8 +254,8 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    const entity = new LinkManagementBillboardTargetCategoryModel();
-    entity.linkTargetCategoryId = model;
+    const entity = new LinkManagementBillboardCategoryModel();
+    entity.linkCategoryId = model;
     entity.linkManagementBillboardId = this.dataModel.id;
     this.contentCategoryService.ServiceAdd(entity).subscribe({
       next: (ret) => {
@@ -284,8 +284,8 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
-    const entity = new LinkManagementBillboardTargetCategoryModel();
-    entity.linkTargetCategoryId = model;
+    const entity = new LinkManagementBillboardCategoryModel();
+    entity.linkCategoryId = model;
     entity.linkManagementBillboardId = this.dataModel.id;
     this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
       next: (ret) => {

@@ -18,29 +18,29 @@ import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
-  LinkManagementTargetCategoryModel,
-  LinkManagementTargetCategoryService
+  LinkManagementCategoryModel,
+  LinkManagementCategoryService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { LinkManagementTargetCategoryAddComponent } from '../add/add.component';
-import { LinkManagementTargetCategoryDeleteComponent } from '../delete/delete.component';
-import { LinkManagementTargetCategoryEditComponent } from '../edit/edit.component';
 import { environment } from 'src/environments/environment';
+import { LinkManagementCategoryAddComponent } from '../add/add.component';
+import { LinkManagementCategoryDeleteComponent } from '../delete/delete.component';
+import { LinkManagementCategoryEditComponent } from '../edit/edit.component';
 
 
 @Component({
-  selector: 'app-linkmanagement-target-category-tree',
+  selector: 'app-linkmanagement-category-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
 })
-export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDestroy {
+export class LinkManagementCategoryTreeComponent implements OnInit, OnDestroy {
   constructor(
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
-    public categoryService: LinkManagementTargetCategoryService,
+    public categoryService: LinkManagementCategoryService,
     public dialog: MatDialog,
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
@@ -48,11 +48,11 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
   ) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
   }
-  @Input() set optionSelectForce(x: number | LinkManagementTargetCategoryModel) {
+  @Input() set optionSelectForce(x: number | LinkManagementCategoryModel) {
     this.onActionSelectForce(x);
   }
-  dataModelSelect: LinkManagementTargetCategoryModel = new LinkManagementTargetCategoryModel();
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
+  dataModelSelect: LinkManagementCategoryModel = new LinkManagementCategoryModel();
+  dataModelResult: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
   filterModel = new FilterModel();
   loading: ProgressSpinnerModel = new ProgressSpinnerModel();
   get optionLoading(): ProgressSpinnerModel {
@@ -61,13 +61,13 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
   @Input() set optionLoading(value: ProgressSpinnerModel) {
     this.loading = value;
   }
-  treeControl = new NestedTreeControl<LinkManagementTargetCategoryModel>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<LinkManagementTargetCategoryModel>();
-  @Output() optionChange = new EventEmitter<LinkManagementTargetCategoryModel>();
+  treeControl = new NestedTreeControl<LinkManagementCategoryModel>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<LinkManagementCategoryModel>();
+  @Output() optionChange = new EventEmitter<LinkManagementCategoryModel>();
   cmsApiStoreSubscribe: Subscription;
   @Input() optionReload = () => this.onActionReload();
 
-  hasChild = (_: number, node: LinkManagementTargetCategoryModel) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: LinkManagementCategoryModel) => !!node.children && node.children.length > 0;
 
 
   ngOnInit(): void {
@@ -104,7 +104,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
     }
     );
   }
-  onActionSelect(model: LinkManagementTargetCategoryModel): void {
+  onActionSelect(model: LinkManagementCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
   }
@@ -115,10 +115,10 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
     else {
       this.onActionSelect(null);
     }
-    this.dataModelSelect = new LinkManagementTargetCategoryModel();
+    this.dataModelSelect = new LinkManagementCategoryModel();
     this.DataGetAll();
   }
-  onActionSelectForce(id: number | LinkManagementTargetCategoryModel): void {
+  onActionSelectForce(id: number | LinkManagementCategoryModel): void {
 
   }
 
@@ -134,7 +134,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
     dialogConfig.data = { parentId };
 
 
-    const dialogRef = this.dialog.open(LinkManagementTargetCategoryAddComponent, dialogConfig);
+    const dialogRef = this.dialog.open(LinkManagementCategoryAddComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result && result.dialogChangedDate) {
@@ -158,7 +158,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
       panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
-    const dialogRef = this.dialog.open(LinkManagementTargetCategoryEditComponent, {
+    const dialogRef = this.dialog.open(LinkManagementCategoryEditComponent, {
       height: '90%',
       panelClass: panelClass,
       enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
@@ -192,7 +192,7 @@ export class LinkManagementTargetCategoryTreeComponent implements OnInit, OnDest
       panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
-    const dialogRef = this.dialog.open(LinkManagementTargetCategoryDeleteComponent, {
+    const dialogRef = this.dialog.open(LinkManagementCategoryDeleteComponent, {
       height: '90%',
       panelClass: panelClass,
       enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,

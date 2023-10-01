@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   ClauseTypeEnum, CoreEnumService, ErrorExceptionResult,
   FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel,
-  LinkManagementTargetCategoryModel,
-  LinkManagementTargetCategoryService
+  LinkManagementCategoryModel,
+  LinkManagementCategoryService
 } from 'ntk-cms-api';
 import { firstValueFrom, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
@@ -15,29 +15,29 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-linkmanagement-target-category-selector',
+  selector: 'app-linkmanagement-category-selector',
   templateUrl: './selector.component.html',
   styleUrls: ['./selector.component.scss']
 })
-export class LinkManagementTargetCategorySelectorComponent implements OnInit {
+export class LinkManagementCategorySelectorComponent implements OnInit {
   constructor(
     public coreEnumService: CoreEnumService,
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
-    public categoryService: LinkManagementTargetCategoryService) {
+    public categoryService: LinkManagementCategoryService) {
     this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
   }
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
-  dataModelSelect: LinkManagementTargetCategoryModel = new LinkManagementTargetCategoryModel();
+  dataModelResult: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
+  dataModelSelect: LinkManagementCategoryModel = new LinkManagementCategoryModel();
   formControl = new FormControl();
-  filteredOptions: Observable<LinkManagementTargetCategoryModel[]>;
+  filteredOptions: Observable<LinkManagementCategoryModel[]>;
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
-  @Output() optionChange = new EventEmitter<LinkManagementTargetCategoryModel>();
+  @Output() optionChange = new EventEmitter<LinkManagementCategoryModel>();
   @Input() optionReload = () => this.onActionReload();
-  @Input() set optionSelectForce(x: number | LinkManagementTargetCategoryModel) {
+  @Input() set optionSelectForce(x: number | LinkManagementCategoryModel) {
     this.onActionSelectForce(x);
   }
 
@@ -68,13 +68,13 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
       );
   }
 
-  displayFn(model?: LinkManagementTargetCategoryModel): string | undefined {
+  displayFn(model?: LinkManagementCategoryModel): string | undefined {
     return model ? model.title : undefined;
   }
-  displayOption(model?: LinkManagementTargetCategoryModel): string | undefined {
+  displayOption(model?: LinkManagementCategoryModel): string | undefined {
     return model ? model.title : undefined;
   }
-  async DataGetAll(text: string | number | any): Promise<LinkManagementTargetCategoryModel[]> {
+  async DataGetAll(text: string | number | any): Promise<LinkManagementCategoryModel[]> {
     const filterModel = new FilterModel();
     filterModel.rowPerPage = 20;
     filterModel.accessLoad = true;
@@ -115,7 +115,7 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
           return response.listItems;
         });
   }
-  onActionSelect(model: LinkManagementTargetCategoryModel): void {
+  onActionSelect(model: LinkManagementCategoryModel): void {
     this.dataModelSelect = model;
     this.optionChange.emit(this.dataModelSelect);
 
@@ -125,7 +125,7 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
     this.formControl.setValue(null);
     this.optionChange.emit(null);
   }
-  push(newvalue: LinkManagementTargetCategoryModel): Observable<LinkManagementTargetCategoryModel[]> {
+  push(newvalue: LinkManagementCategoryModel): Observable<LinkManagementCategoryModel[]> {
     return this.filteredOptions.pipe(map(items => {
       if (items.find(x => x.id === newvalue.id)) {
         return items;
@@ -135,7 +135,7 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
     }));
 
   }
-  onActionSelectForce(id: number | LinkManagementTargetCategoryModel): void {
+  onActionSelectForce(id: number | LinkManagementCategoryModel): void {
     if (typeof id === 'number' && id > 0) {
       if (this.dataModelSelect && this.dataModelSelect.id === id) {
         return;
@@ -160,9 +160,9 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
       });
       return;
     }
-    if (typeof id === typeof LinkManagementTargetCategoryModel) {
-      this.filteredOptions = this.push((id as LinkManagementTargetCategoryModel));
-      this.dataModelSelect = (id as LinkManagementTargetCategoryModel);
+    if (typeof id === typeof LinkManagementCategoryModel) {
+      this.filteredOptions = this.push((id as LinkManagementCategoryModel));
+      this.dataModelSelect = (id as LinkManagementCategoryModel);
       this.formControl.setValue(id);
       return;
     }
@@ -170,7 +170,7 @@ export class LinkManagementTargetCategorySelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    this.dataModelSelect = new LinkManagementTargetCategoryModel();
+    this.dataModelSelect = new LinkManagementCategoryModel();
     this.loadOptions();
   }
 }
