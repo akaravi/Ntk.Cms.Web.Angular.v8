@@ -39,8 +39,9 @@ import { EstatePropertyAddComponent } from './property/add/add.component';
 import { EstatePropertyAddMobileComponent } from './property/add/add.mobile.component';
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyListComponent } from './property/list/list.component';
+import { EstateCategoryRackListMobileComponent } from './category-rack/list/list.mobile.component';
 
-const routes: Routes = [
+const routesNormal: Routes = [
   {
     path: '',
     component: EstateComponent,
@@ -75,7 +76,7 @@ const routes: Routes = [
       },
       {
         path: 'property/Action/:Action',
-        component: EstatePropertyListComponent
+        component: EstatePropertyListComponent,
       },
       {
         path: 'property/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
@@ -229,7 +230,7 @@ const routes: Routes = [
       {
         path: 'property-history',
         component: EstatePropertyHistoryListComponent,
-        data: { title: 'ROUTE.ESTATE.HISTORY' }
+        data: { title: 'ROUTE.ESTATE.HISTORY' },
       },
       {
         path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
@@ -460,7 +461,7 @@ const routesMobile: Routes = [
       },
       {
         path: 'property/Action/:Action',
-        component: EstatePropertyListComponent
+        component: EstatePropertyListComponent,
       },
       {
         path: 'property/LinkPropertyTypeLanduseId/:LinkPropertyTypeLanduseId',
@@ -614,7 +615,7 @@ const routesMobile: Routes = [
       {
         path: 'property-history',
         component: EstatePropertyHistoryListComponent,
-        data: { title: 'ROUTE.ESTATE.HISTORY' }
+        data: { title: 'ROUTE.ESTATE.HISTORY' },
       },
       {
         path: 'property-history/InCheckingOnDay/:InCheckingOnDay',
@@ -734,7 +735,7 @@ const routesMobile: Routes = [
       },
       {
         path: 'category-rack',
-        component: EstateCategoryRackListComponent,
+        component: EstateCategoryRackListMobileComponent,
         data: { title: 'ROUTE.ESTATE.CATEGORY.RACK' },
       },
       {
@@ -810,7 +811,9 @@ const routesMobile: Routes = [
   },
 ];
 @NgModule({
-  imports: [RouterModule.forChild(isMobileDevice() ? routesMobile : routes)],
+  imports: [
+    RouterModule.forChild(isMobileDevice() ? routesMobile : routesNormal),
+  ],
   exports: [RouterModule],
 })
-export class EstateRoutes { }
+export class EstateRoutes {}
