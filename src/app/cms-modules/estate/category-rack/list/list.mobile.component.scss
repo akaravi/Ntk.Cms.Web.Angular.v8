@@ -24,7 +24,6 @@
 
 .box-rack-child-open {
   width: 200px;
-  height: 100%;
   background: linear-gradient(90deg, rgba(134, 93, 58, 1) 0%, rgba(99, 50, 7, 1) 100%);
   text-align: center;
   border-radius: 10px;
@@ -42,3 +41,67 @@
   margin-right: 10px;
   margin-top: 200px;
 }
+
+.box-rack-child-items {
+  display: flex;
+  width: 200px;
+  background-color: #5d4037;
+  text-align: center;
+  border-radius: 10px;
+  border: 10px solid #6d4c41;
+  height: 500px;
+}
+
+.box-rack-child-items-item {
+  width: 60px;
+  height: 150px;
+  background-color: blue;
+  border-radius: 10px;
+  margin:4px;
+  padding: 1px;
+  transform: rotate(0deg);
+}
+
+.box-rack-child-items-item-title {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.1);
+  margin: 2.5px;
+}
+
+.box-rack-child-items-item-icon {
+  background-color: grey;
+  border-radius: 100%;
+  border: 2px solid #546e7a;
+  width: 15px;
+  height: 15px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box-rack-child-items-item-title-info1 {
+  text-align: center;
+  color: black;
+  margin-top: 5px;
+}
+
+.box-rack-child-items-item-title-info2 {
+  text-align: center;
+  color: blue;
+  margin-top: 5px;
+}
+
+.box-rack-child-items-item-title-number {
+  text-align: center;
+  color: black;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* .rack-shelf {
+  margin-top: 6px;
+  width: 100%;
+  height: 10px;
+  background-color: #3e2723;
+} */

@@ -430,5 +430,13 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
       row["expanded"] = false;
     row["expanded"] = !row["expanded"];
   }
+  // box-rack
+  rackvalidation: boolean = false;
+  public OpenItemsRack() {
+    this.rackvalidation = true;
+  }
 
+  public CloseItemsRack() {
+    this.rackvalidation = false;
+  }
 }

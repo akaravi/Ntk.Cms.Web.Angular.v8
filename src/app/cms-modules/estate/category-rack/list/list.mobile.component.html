@@ -3,9 +3,41 @@
     <div class="box-rack-child-title" [style.background]="row.iconColor">
       {{row.title}}
     </div>
-    <div class="box-rack-child-open">
-      {{row.description}}
-      <div class="box-rack-child-open-icon"></div>
+    <!-- <div [class]="rackvalidation?'box-rack-child-items': 'box-rack-child-open'"(click)="rackvalidation?CloseItemsRack():OpenItemsRack()"> -->
+    <div (click)="rackvalidation?CloseItemsRack():OpenItemsRack()">
+      <div [hidden]="rackvalidation" class="box-rack-child-open">
+        {{row.description}}
+        <div class="box-rack-child-open-icon"></div>
+      </div>
+      <div [hidden]="!rackvalidation" class="box-rack-child-items">
+        <div class="box-rack-child-items-item" [style.background]="row.iconColor">
+          <div class="box-rack-child-items-item-title">
+            <div class="box-rack-child-items-item-title-info1" >فروش</div>
+            <div class="box-rack-child-items-item-title-info2">کلنگی</div>
+            <hr/>
+            <div class="box-rack-child-items-item-title-number">۳۰</div>
+          </div>
+          <div class="box-rack-child-items-item-icon"></div>
+        </div>
+        <div class="box-rack-child-items-item" [style.background]="row.iconColor">
+          <div class="box-rack-child-items-item-title">
+            <div class="box-rack-child-items-item-title-info1">فروش</div>
+            <div class="box-rack-child-items-item-title-info2">کلنگی</div>
+            <hr/>
+            <div class="box-rack-child-items-item-title-number">۳۰</div>
+          </div>
+          <div class="box-rack-child-items-item-icon"></div>
+        </div>
+        <div class="box-rack-child-items-item" [style.background]="row.iconColor">
+          <div class="box-rack-child-items-item-title">
+            <div class="box-rack-child-items-item-title-info1">فروش</div>
+            <div class="box-rack-child-items-item-title-info2">کلنگی</div>
+            <hr/>
+            <div class="box-rack-child-items-item-title-number">۳۰</div>
+          </div>
+          <div class="box-rack-child-items-item-icon"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
