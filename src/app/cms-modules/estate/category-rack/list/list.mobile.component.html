@@ -6,15 +6,20 @@
     <!-- <div [class]="rackvalidation?'box-rack-child-items': 'box-rack-child-open'"(click)="rackvalidation?CloseItemsRack():OpenItemsRack()"> -->
     <div (click)="rackvalidation?CloseItemsRack():OpenItemsRack()">
       <div [hidden]="rackvalidation" class="box-rack-child-open">
-        {{row.description}}
+        <div class="box-rack-child-open-title" [style.border-color]="row.iconColor"
+          [style.outline-color]="row.iconColor">
+          {{row.description}}
+        </div>
+        <img class="box-rack-child-open-img" [style.border-color]="row.iconColor"
+          src="https://mahyarniknaddaf.ir/assets/img/img-my.JPG" alt="img">
         <div class="box-rack-child-open-icon"></div>
       </div>
       <div [hidden]="!rackvalidation" class="box-rack-child-items">
         <div class="box-rack-child-items-item" [style.background]="row.iconColor">
           <div class="box-rack-child-items-item-title">
-            <div class="box-rack-child-items-item-title-info1" >فروش</div>
+            <div class="box-rack-child-items-item-title-info1">فروش</div>
             <div class="box-rack-child-items-item-title-info2">کلنگی</div>
-            <hr/>
+            <div class="box-rack-child-items-item-title-icon"></div>
             <div class="box-rack-child-items-item-title-number">۳۰</div>
           </div>
           <div class="box-rack-child-items-item-icon"></div>
@@ -23,7 +28,7 @@
           <div class="box-rack-child-items-item-title">
             <div class="box-rack-child-items-item-title-info1">فروش</div>
             <div class="box-rack-child-items-item-title-info2">کلنگی</div>
-            <hr/>
+            <div class="box-rack-child-items-item-title-icon"></div>
             <div class="box-rack-child-items-item-title-number">۳۰</div>
           </div>
           <div class="box-rack-child-items-item-icon"></div>
@@ -32,11 +37,12 @@
           <div class="box-rack-child-items-item-title">
             <div class="box-rack-child-items-item-title-info1">فروش</div>
             <div class="box-rack-child-items-item-title-info2">کلنگی</div>
-            <hr/>
+            <div class="box-rack-child-items-item-title-icon"></div>
             <div class="box-rack-child-items-item-title-number">۳۰</div>
           </div>
           <div class="box-rack-child-items-item-icon"></div>
         </div>
+
       </div>
     </div>
   </div>
