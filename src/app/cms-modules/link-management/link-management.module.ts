@@ -12,10 +12,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMatColorPickerModule } from 'ngx-ntk-mat-color-picker';
 import {
   CoreAuthService,
-  CoreEnumService, CoreModuleService, LinkManagementAccountingDetailService, LinkManagementAccountingService, LinkManagementBillboardPatternService,
-  LinkManagementBillboardService, LinkManagementBillboardTargetCategoryService, LinkManagementConfigurationService, LinkManagementEnumService, LinkManagementMemberService,
-  LinkManagementTargetBillboardLogService, LinkManagementTargetCategoryService,
-  LinkManagementTargetService
+  CoreEnumService, CoreModuleService, LinkManagementAccountingDetailService, LinkManagementAccountingService, LinkManagementBillboardCategoryService, LinkManagementBillboardPatternService,
+  LinkManagementBillboardService, LinkManagementCategoryService, LinkManagementConfigurationService, LinkManagementEnumService, LinkManagementMemberService,
+  LinkManagementTargetBillboardLogService, LinkManagementTargetCategoryService, LinkManagementTargetService
 } from 'ntk-cms-api';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { LinkManagementAccountingDetailAddComponent } from './accounting-detail/add/add.component';
@@ -38,6 +37,13 @@ import { LinkManagementBillboardAddComponent } from './billboard/add/add.compone
 import { LinkManagementBillboardDeleteComponent } from './billboard/delete/delete.component';
 import { LinkManagementBillboardEditComponent } from './billboard/edit/edit.component';
 import { LinkManagementBillboardListComponent } from './billboard/list/list.component';
+import { LinkManagementCategoryAddComponent } from './category/add/add.component';
+import { LinkManagementCategoryDeleteComponent } from './category/delete/delete.component';
+import { LinkManagementCategoryEditComponent } from './category/edit/edit.component';
+import { LinkManagementCategorySelectorComponent } from './category/selector/selector.component';
+import { LinkManagementCategoryTreeSelectorComponent } from './category/tree-selector/tree-selector.component';
+import { LinkManagementCategoryTreeComponent } from './category/tree/tree.component';
+
 import { LinkManagementMemberAddComponent } from './member/add/add.component';
 import { LinkManagementMemberDeleteComponent } from './member/delete/delete.component';
 import { LinkManagementMemberEditComponent } from './member/edit/edit.component';
@@ -46,12 +52,6 @@ import { LinkManagementMemberSelectorComponent } from './member/selector/selecto
 import { LinkManagementTargetBillboardLogDeleteComponent } from './target-billboard-log/delete/delete.component';
 import { LinkManagementTargetBillboardLogEditComponent } from './target-billboard-log/edit/edit.component';
 import { LinkManagementTargetBillboardLogListComponent } from './target-billboard-log/list/list.component';
-import { LinkManagementTargetCategoryAddComponent } from './target-category/add/add.component';
-import { LinkManagementTargetCategoryDeleteComponent } from './target-category/delete/delete.component';
-import { LinkManagementTargetCategoryEditComponent } from './target-category/edit/edit.component';
-import { LinkManagementTargetCategorySelectorComponent } from './target-category/selector/selector.component';
-import { LinkManagementTargetCategoryTreeSelectorComponent } from './target-category/tree-selector/tree-selector.component';
-import { LinkManagementTargetCategoryTreeComponent } from './target-category/tree/tree.component';
 import { LinkManagementTargetAddComponent } from './target/add/add.component';
 import { LinkManagementTargetDeleteComponent } from './target/delete/delete.component';
 import { LinkManagementTargetEditComponent } from './target/edit/edit.component';
@@ -61,12 +61,12 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
   declarations: [
     LinkManagementComponent,
     /** */
-    LinkManagementTargetCategoryTreeComponent,
-    LinkManagementTargetCategorySelectorComponent,
-    LinkManagementTargetCategoryAddComponent,
-    LinkManagementTargetCategoryEditComponent,
-    LinkManagementTargetCategoryDeleteComponent,
-    LinkManagementTargetCategoryTreeSelectorComponent,
+    LinkManagementCategoryTreeComponent,
+    LinkManagementCategorySelectorComponent,
+    LinkManagementCategoryAddComponent,
+    LinkManagementCategoryEditComponent,
+    LinkManagementCategoryDeleteComponent,
+    LinkManagementCategoryTreeSelectorComponent,
     /** */
     LinkManagementTargetAddComponent,
     LinkManagementTargetEditComponent,
@@ -110,12 +110,12 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
   ],
   exports: [
     /** */
-    LinkManagementTargetCategoryTreeComponent,
-    LinkManagementTargetCategorySelectorComponent,
-    LinkManagementTargetCategoryAddComponent,
-    LinkManagementTargetCategoryEditComponent,
-    LinkManagementTargetCategoryDeleteComponent,
-    LinkManagementTargetCategoryTreeSelectorComponent,
+    LinkManagementCategoryTreeComponent,
+    LinkManagementCategorySelectorComponent,
+    LinkManagementCategoryAddComponent,
+    LinkManagementCategoryEditComponent,
+    LinkManagementCategoryDeleteComponent,
+    LinkManagementCategoryTreeSelectorComponent,
     /** */
     LinkManagementTargetAddComponent,
     LinkManagementTargetEditComponent,
@@ -186,11 +186,12 @@ import { LinkManagementTargetListComponent } from './target/list/list.component'
     LinkManagementAccountingDetailService,
     LinkManagementBillboardService,
     LinkManagementBillboardPatternService,
-    LinkManagementBillboardTargetCategoryService,
+    LinkManagementBillboardCategoryService,
     LinkManagementMemberService,
     LinkManagementTargetService,
-    LinkManagementTargetBillboardLogService,
     LinkManagementTargetCategoryService,
+    LinkManagementTargetBillboardLogService,
+    LinkManagementCategoryService,
   ]
 })
 export class LinkManagementModule { }

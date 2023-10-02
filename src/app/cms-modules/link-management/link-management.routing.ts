@@ -41,7 +41,7 @@ const routes: Routes = [
         data: { title: 'ROUTE.LINKMANAGMENT.TARGET' },
       },
       {
-        path: 'target/add/:CategoryId',
+        path: 'target/add/:LinkBillboardPatternId',
         component: LinkManagementTargetAddComponent,
         data: { title: 'ROUTE.LINKMANAGMENT.TARGET' },
       },
@@ -61,7 +61,7 @@ const routes: Routes = [
         data: { title: 'ROUTE.LINKMANAGMENT.BILLBOARD' },
       },
       {
-        path: 'billboard/add/:CategoryId',
+        path: 'billboard/add/:LinkBillboardPatternId',
         component: LinkManagementBillboardAddComponent,
         data: { title: 'ROUTE.LINKMANAGMENT.BILLBOARD' },
       },

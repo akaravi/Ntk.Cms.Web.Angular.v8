@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, LinkManagementTargetCategoryModel, LinkManagementTargetModel,
+  FilterModel, LinkManagementBillboardPatternModel, LinkManagementTargetModel,
   LinkManagementTargetService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -64,7 +64,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
   }
   categorySelected: string = '';
   filteModelContent = new FilterModel();
-  categoryModelSelected: LinkManagementTargetCategoryModel;
+  categoryModelSelected: LinkManagementBillboardPatternModel;
   dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -118,7 +118,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     /*filter CLone*/
     if (this.categoryModelSelected && this.categoryModelSelected.id > 0) {
       const filter = new FilterDataModel();
-      filter.propertyName = 'LinkTargetCategoryId';
+      filter.propertyName = 'linkBillboardPatternId';
       filter.value = this.categoryModelSelected.id;
       filterModel.filters.push(filter);
     }
@@ -174,7 +174,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: LinkManagementTargetCategoryModel | null): void {
+  onActionSelectorSelect(model: LinkManagementBillboardPatternModel | null): void {
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;

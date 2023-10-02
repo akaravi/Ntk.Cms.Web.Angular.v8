@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
-  FormInfoModel, InfoEnumModel, LinkManagementTargetCategoryModel, LinkManagementTargetCategoryService
+  FormInfoModel, InfoEnumModel, LinkManagementCategoryModel, LinkManagementCategoryService
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -16,17 +16,17 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 @Component({
-  selector: 'app-linkmanagement-target-category-add',
+  selector: 'app-linkmanagement-category-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class LinkManagementTargetCategoryAddComponent implements OnInit {
+export class LinkManagementCategoryAddComponent implements OnInit {
   requestParentId = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<LinkManagementTargetCategoryAddComponent>,
+    private dialogRef: MatDialogRef<LinkManagementCategoryAddComponent>,
     public coreEnumService: CoreEnumService,
-    public categoryService: LinkManagementTargetCategoryService,
+    public categoryService: LinkManagementCategoryService,
     private cmsToastrService: CmsToastrService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
@@ -50,8 +50,8 @@ export class LinkManagementTargetCategoryAddComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
-  dataModel: LinkManagementTargetCategoryModel = new LinkManagementTargetCategoryModel();
+  dataModelResult: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
+  dataModel: LinkManagementCategoryModel = new LinkManagementCategoryModel();
 
 
   formInfo: FormInfoModel = new FormInfoModel();

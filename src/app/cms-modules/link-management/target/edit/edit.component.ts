@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
-  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService,
-  LinkManagementTargetCategoryModel, LinkManagementTargetModel,
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService, LinkManagementTargetModel,
   LinkManagementTargetService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -210,14 +209,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
       );
   }
 
-  onActionSelectorSelect(model: LinkManagementTargetCategoryModel | null): void {
-    if (!model || model.id <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.linkTargetCategoryId = model.id;
-  }
+
   onActionSelectorSelectLinkBillboardPatternId(model: LinkManagementBillboardPatternModel | null): void {
     if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Category_of_billboard_information_is_not_clear');

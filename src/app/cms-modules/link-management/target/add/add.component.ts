@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
-  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel,
-  LinkManagementEnumService, LinkManagementTargetCategoryModel, LinkManagementTargetModel,
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService, LinkManagementTargetModel,
   LinkManagementTargetService
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -27,7 +26,7 @@ import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
   ]
 })
 export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
-  requestCategoryId = 0;
+  requestLinkBillboardPatternId = 0;
   constructor(
     private activatedRoute: ActivatedRoute,
     public coreEnumService: CoreEnumService,
@@ -56,7 +55,7 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionActionTitle = '';
   optionActionButtomEnable = true;
-  dataProfessional = false;
+  dataProfessional = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
 
   loading = new ProgressSpinnerModel();
@@ -82,12 +81,12 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    this.requestCategoryId = + Number(this.activatedRoute.snapshot.paramMap.get('CategoryId'));
-    if (this.requestCategoryId === 0) {
+    this.requestLinkBillboardPatternId = + Number(this.activatedRoute.snapshot.paramMap.get('LinkBillboardPatternId'));
+    if (this.requestLinkBillboardPatternId === 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
-    this.dataModel.linkTargetCategoryId = this.requestCategoryId;
+    this.dataModel.linkBillboardPatternId = this.requestLinkBillboardPatternId;
 
     this.DataGetAccess();
     this.getEnumRecordStatus();
@@ -118,7 +117,7 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
 
 
   onFormSubmit(): void {
-    if (this.requestCategoryId <= 0) {
+    if (this.requestLinkBillboardPatternId <= 0) {
       this.cmsToastrService.typeErrorAddRowParentIsNull();
       return;
     }
@@ -258,14 +257,6 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
       );
   }
 
-  onActionSelectorSelect(model: LinkManagementTargetCategoryModel | null): void {
-    if (!model || model.id <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
-      this.cmsToastrService.typeErrorSelected(message);
-      return;
-    }
-    this.dataModel.linkTargetCategoryId = model.id;
-  }
   onActionSelectorSelectLinkBillboardPatternId(model: LinkManagementBillboardPatternModel | null): void {
     if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Category_of_billboard_information_is_not_clear');

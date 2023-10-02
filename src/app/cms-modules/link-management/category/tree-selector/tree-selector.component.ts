@@ -19,8 +19,8 @@ import {
   CoreEnumService,
   ErrorExceptionResult,
   FilterModel,
-  LinkManagementTargetCategoryModel,
-  LinkManagementTargetCategoryService
+  LinkManagementCategoryModel,
+  LinkManagementCategoryService
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -29,15 +29,15 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 
 
 @Component({
-  selector: 'app-linkmanagement-target-category-treeselector',
+  selector: 'app-linkmanagement-category-treeselector',
   templateUrl: './tree-selector.component.html',
   styleUrls: ['./tree-selector.component.scss'],
 })
-export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit, OnDestroy {
+export class LinkManagementCategoryTreeSelectorComponent implements OnInit, OnDestroy {
   constructor(
     private cmsToastrService: CmsToastrService,
     public coreEnumService: CoreEnumService,
-    public categoryService: LinkManagementTargetCategoryService,
+    public categoryService: LinkManagementCategoryService,
     private cdr: ChangeDetectorRef,
     private tokenHelper: TokenHelper,
     public translate: TranslateService,
@@ -72,22 +72,22 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
   }
 
   dataModelSelect: number[] = [];
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetCategoryModel> = new ErrorExceptionResult<LinkManagementTargetCategoryModel>();
+  dataModelResult: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
   filterModel = new FilterModel();
   loading = new ProgressSpinnerModel();
-  treeControl = new NestedTreeControl<LinkManagementTargetCategoryModel>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<LinkManagementTargetCategoryModel>();
+  treeControl = new NestedTreeControl<LinkManagementCategoryModel>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<LinkManagementCategoryModel>();
   runComplate = false;
   @Output() optionSelectChecked = new EventEmitter<number>();
   @Output() optionSelectDisChecked = new EventEmitter<number>();
   @Output() optionModelChange = new EventEmitter<number[]>();
   cmsApiStoreSubscribe: Subscription;
 
-  checklistSelection = new SelectionModel<LinkManagementTargetCategoryModel>(true /* multiple */);
+  checklistSelection = new SelectionModel<LinkManagementCategoryModel>(true /* multiple */);
 
 
-  hasChild = (_: number, node: LinkManagementTargetCategoryModel) => !!node.children && node.children.length > 0;
-  hasNoContent = (_: number, nodeData: LinkManagementTargetCategoryModel) => nodeData.children;
+  hasChild = (_: number, node: LinkManagementCategoryModel) => !!node.children && node.children.length > 0;
+  hasNoContent = (_: number, nodeData: LinkManagementCategoryModel) => nodeData.children;
 
 
   ngOnInit(): void {
@@ -99,7 +99,7 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
   }
-  loadCheked(model: LinkManagementTargetCategoryModel[] = this.treeControl.dataNodes): void {
+  loadCheked(model: LinkManagementCategoryModel[] = this.treeControl.dataNodes): void {
     this.runComplate = false;
     if (this.treeControl.dataNodes && this.dataModelSelect && this.dataModelSelect.length > 0) {
       model.forEach(element => {
@@ -148,18 +148,18 @@ export class LinkManagementTargetCategoryTreeSelectorComponent implements OnInit
   }
 
   /** Whether all the descendants of the node are selected */
-  descendantsAllSelected(node: LinkManagementTargetCategoryModel): boolean {
+  descendantsAllSelected(node: LinkManagementCategoryModel): boolean {
     const descendants = this.treeControl.getDescendants(node);
     return descendants.every(child => this.checklistSelection.isSelected(child));
   }
   /** Whether part of the descendants are selected */
-  descendantsPartiallySelected(node: LinkManagementTargetCategoryModel): boolean {
+  descendantsPartiallySelected(node: LinkManagementCategoryModel): boolean {
     const descendants = this.treeControl.getDescendants(node);
     const result = descendants.some(child => this.checklistSelection.isSelected(child));
     return result && !this.descendantsAllSelected(node);
   }
   /** Toggle the to-do item selection. Select/deselect all the descendants node */
-  todoItemSelectionToggle(node: LinkManagementTargetCategoryModel): void {
+  todoItemSelectionToggle(node: LinkManagementCategoryModel): void {
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
     this.checklistSelection.isSelected(node)
