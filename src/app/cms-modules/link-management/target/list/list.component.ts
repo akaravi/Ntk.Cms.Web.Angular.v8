@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel, LinkManagementBillboardPatternModel, LinkManagementTargetModel,
+  LinkManagementTargetFilterModel, LinkManagementBillboardPatternModel, LinkManagementCategoryModel, LinkManagementTargetModel,
   LinkManagementTargetService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -63,8 +63,9 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     }
   }
   categorySelected: string = '';
-  filteModelContent = new FilterModel();
-  categoryModelSelected: LinkManagementBillboardPatternModel;
+  filteModelContent = new LinkManagementTargetFilterModel();
+  categoryModelSelected: LinkManagementCategoryModel;
+  categoryPatternModelSelected: LinkManagementBillboardPatternModel;
   dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -122,6 +123,13 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       filter.value = this.categoryModelSelected.id;
       filterModel.filters.push(filter);
     }
+    if (this.categoryPatternModelSelected && this.categoryPatternModelSelected.id > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'TargetCategories';
+      filter.propertyAnyName = 'linkCategoryId';
+      filter.value = this.categoryPatternModelSelected.id;
+      filterModel.filters.push(filter);
+    }
     this.contentService.setAccessLoad();
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
@@ -174,23 +182,34 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: LinkManagementBillboardPatternModel | null): void {
+  onActionSelectorSelectPattern(model: LinkManagementBillboardPatternModel | null): void {
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new FilterModel();
+    this.filteModelContent = new LinkManagementTargetFilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
+    this.categoryPatternModelSelected = model;
+    this.categorySelected = this.categoryModelSelected.title
+    this.DataGetAll();
+  }
+  onActionSelectorSelectCategory(model: LinkManagementCategoryModel | null): void {
+    /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent = new LinkManagementTargetFilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
     this.categoryModelSelected = model;
-    this.categorySelected = this.categoryModelSelected.title
+
     this.DataGetAll();
   }
-
   onActionbuttonNewRow(): void {
     if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.id === 0
+      this.categoryPatternModelSelected == null ||
+      this.categoryPatternModelSelected.id === 0
     ) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
@@ -204,7 +223,7 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/linkmanagement/target/add', this.categoryModelSelected.id]);
+    this.router.navigate(['/linkmanagement/target/add', this.categoryPatternModelSelected.id]);
   }
 
   onActionbuttonEditRow(model: LinkManagementTargetModel = this.tableRowSelected): void {

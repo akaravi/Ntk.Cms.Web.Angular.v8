@@ -29,8 +29,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { PollingCategoryAddComponent } from '../add/add.component';
 import { environment } from 'src/environments/environment';
+import { PollingCategoryAddComponent } from '../add/add.component';
 
 
 @Component({
@@ -110,12 +110,8 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
+
     this.dataModelSelect = new PollingCategoryModel();
     this.DataGetAll();
   }
@@ -155,10 +151,10 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(PollingCategoryEditComponent, {
       height: '90%',
       panelClass: panelClass,
@@ -189,10 +185,10 @@ export class PollingCategoryTreeComponent implements OnInit, OnDestroy {
       return;
     }
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(PollingCategoryDeleteComponent, {
       height: '90%',
       panelClass: panelClass,

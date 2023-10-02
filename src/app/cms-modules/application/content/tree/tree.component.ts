@@ -98,12 +98,7 @@ export class ApplicationAppTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
     this.dataModelSelect = new ApplicationAppModel();
     this.DataGetAll();
   }

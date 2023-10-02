@@ -9,8 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
-  FilterModel,
-  LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
+  LinkManagementBillboardFilterModel,
+  LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementCategoryModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -59,8 +59,9 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
       this.filteModelContent.filters.push(fastfilter);
     }
   }
-  filteModelContent = new FilterModel();
-  categoryModelSelected: LinkManagementBillboardPatternModel;
+  filteModelContent = new LinkManagementBillboardFilterModel();
+  categoryModelSelected: LinkManagementCategoryModel;
+  categoryPatternModelSelected: LinkManagementBillboardPatternModel;
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardModel> = new ErrorExceptionResult<LinkManagementBillboardModel>();
 
   optionsSearch: ComponentOptionSearchModel = new ComponentOptionSearchModel();
@@ -115,6 +116,14 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
       filter.value = this.categoryModelSelected.id;
       filterModel.filters.push(filter);
     }
+    if (this.categoryPatternModelSelected && this.categoryPatternModelSelected.id > 0) {
+      const filter = new FilterDataModel();
+      filter.propertyName = 'billboardCategories';
+      filter.propertyAnyName = 'linkCategoryId';
+      filter.value = this.categoryPatternModelSelected.id;
+      filterModel.filters.push(filter);
+    }
+
     this.contentService.setAccessLoad();
     this.contentService.ServiceGetAllEditor(filterModel).subscribe({
       next: (ret) => {
@@ -168,11 +177,23 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
     this.DataGetAll();
   }
 
-  onActionSelectorSelect(model: LinkManagementBillboardPatternModel | null): void {
+  onActionSelectorSelectPattern(model: LinkManagementBillboardPatternModel | null): void {
     /*filter */
     var sortColumn = this.filteModelContent.sortColumn;
     var sortType = this.filteModelContent.sortType;
-    this.filteModelContent = new FilterModel();
+    this.filteModelContent = new LinkManagementBillboardFilterModel();
+    this.filteModelContent.sortColumn = sortColumn;
+    this.filteModelContent.sortType = sortType;
+    /*filter */
+    this.categoryPatternModelSelected = model;
+
+    this.DataGetAll();
+  }
+  onActionSelectorSelectCategory(model: LinkManagementCategoryModel | null): void {
+    /*filter */
+    var sortColumn = this.filteModelContent.sortColumn;
+    var sortType = this.filteModelContent.sortType;
+    this.filteModelContent = new LinkManagementBillboardFilterModel();
     this.filteModelContent.sortColumn = sortColumn;
     this.filteModelContent.sortType = sortType;
     /*filter */
@@ -180,11 +201,10 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
 
     this.DataGetAll();
   }
-
   onActionbuttonNewRow(): void {
     if (
-      this.categoryModelSelected == null ||
-      this.categoryModelSelected.id === 0
+      this.categoryPatternModelSelected == null ||
+      this.categoryPatternModelSelected.id === 0
     ) {
       const message = this.translate.instant('ERRORMESSAGE.MESSAGE.typeErrorCategoryNotSelected');
       this.cmsToastrService.typeErrorSelected(message);
@@ -198,7 +218,7 @@ export class LinkManagementBillboardListComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
-    this.router.navigate(['/linkmanagement/billboard/add', this.categoryModelSelected.id]);
+    this.router.navigate(['/linkmanagement/billboard/add', this.categoryPatternModelSelected.id]);
   }
 
   onActionbuttonEditRow(model: LinkManagementBillboardModel = this.tableRowSelected): void {

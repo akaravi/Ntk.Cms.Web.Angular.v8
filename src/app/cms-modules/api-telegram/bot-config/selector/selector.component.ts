@@ -165,9 +165,7 @@ export class ApiTelegramBotConfigSelectorComponent implements OnInit {
   }
 
   onActionReload(): void {
-    // if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-    //   this.onActionSelect(null);
-    // }
+
     this.dataModelSelect = new ApiTelegramBotConfigModel();
     // this.optionsData.Select = new ApiTelegramBotConfigModel();
     this.loadOptions();

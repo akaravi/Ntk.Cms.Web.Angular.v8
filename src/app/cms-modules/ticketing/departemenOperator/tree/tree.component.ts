@@ -102,12 +102,8 @@ export class TicketingDepartemenOperatorTreeComponent implements OnInit, OnDestr
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
+
     this.dataModelSelect = new TicketingDepartemenOperatorModel();
     this.DataGetAll();
   }

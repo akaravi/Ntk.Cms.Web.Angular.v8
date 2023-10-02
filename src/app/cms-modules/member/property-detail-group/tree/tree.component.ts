@@ -116,12 +116,7 @@ export class MemberPropertyDetailGroupTreeComponent implements OnInit, OnDestroy
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
     this.dataModelSelect = new MemberPropertyDetailGroupModel();
     this.DataGetAll();
   }

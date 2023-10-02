@@ -372,7 +372,8 @@ karavi tooltip guid
   padding: 10px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
@@ -394,8 +395,8 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  //background: white;
-  background-color: var(--bs-page-bg);
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
   box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
     0 3px 14px 2px color(0 0 0 0.12);
@@ -417,11 +418,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  // background: white;
-  background-color: var(--bs-page-bg);
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),   0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-tree-footer {
@@ -433,14 +433,15 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-table {
-  background-color: var(--bs-page-bg);
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
 }
 
 .ntk-cms-html-list-header {
@@ -452,11 +453,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  //background: white;
-  background-color: var(--bs-page-bg);
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-list-header button {
@@ -475,10 +475,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-list-footer {
@@ -490,10 +490,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-header {
@@ -505,10 +505,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-body {
@@ -520,10 +520,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-message {
@@ -535,10 +535,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-cms-html-card-footer {
@@ -550,10 +550,10 @@ karavi tooltip guid
   padding: 1px;
   padding-right: 8px;
   border-radius: 5px;
-  background: white;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
   /*box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.1);*/
-  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),
-    0 3px 14px 2px color(0 0 0 0.12);
+  box-shadow: 0 5px 5px -3px color(0 0 0 0.2), 0 8px 10px 1px color(0 0 0 0.14),    0 3px 14px 2px color(0 0 0 0.12);
 }
 
 .ntk-pull-right {
@@ -607,14 +607,35 @@ body {
   font-family: IRANSans, Roboto, "Helvetica Neue", sans-serif !important;
 }
 
-.mat-tree {
+// mat-tree {
+//   font-family: IRANSans !important;
+//   color: var(--#{$prefix}primary);
+//   background-color: var(--#{$prefix}body-bg);
+// }
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input,
+.mat-stepper-horizontal,
+ .mat-stepper-vertical,
+ .mat-tree ,
+ .mat-mdc-table,
+ .mat-mdc-paginator
+  {
   font-family: IRANSans, Roboto, sans-serif !important;
+  color: var(--#{$prefix}primary);
+  background-color: var(--#{$prefix}body-bg);
 }
 
-mat-tree {
+
+.mat-mdc-slide-toggle .mdc-form-field,
+.mat-step-header .mat-step-label.mat-step-label-active,
+.mat-mdc-checkbox .mdc-form-field,
+.mat-tree-node ,
+ .mat-mdc-paginator,
+ .mdc-data-table__cell,
+ .mdc-data-table__header-cell{
   font-family: IRANSans !important;
+  color: var(--#{$prefix}primary)  !important;;
 }
-
 table {
   font-family: IRANSans !important;
 }

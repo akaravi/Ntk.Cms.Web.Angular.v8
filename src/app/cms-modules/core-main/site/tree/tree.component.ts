@@ -23,10 +23,10 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { environment } from 'src/environments/environment';
 import { CoreSiteAddComponent } from '../add/add.component';
 import { CoreSiteDeleteComponent } from '../delete/delete.component';
 import { CoreSiteEditComponent } from '../edit/edit.component';
-import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -106,12 +106,8 @@ export class CoreSiteTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
+
     this.dataModelSelect = new CoreSiteModel();
     this.DataGetAll();
   }

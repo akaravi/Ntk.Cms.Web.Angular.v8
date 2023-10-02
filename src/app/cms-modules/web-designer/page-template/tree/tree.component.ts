@@ -95,12 +95,7 @@ export class WebDesignerMainPageTemplateTreeComponent implements OnInit, OnDestr
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id?.length > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
     this.dataModelSelect = new WebDesignerMainPageTemplateModel();
     this.DataGetAll();
   }

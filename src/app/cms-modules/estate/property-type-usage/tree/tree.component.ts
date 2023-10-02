@@ -24,9 +24,9 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
+import { environment } from 'src/environments/environment';
 import { EstatePropertyTypeUsageAddComponent } from '../add/add.component';
 import { EstatePropertyTypeUsageEditComponent } from '../edit/edit.component';
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-property-type-usage-tree',
   templateUrl: './tree.component.html'
@@ -105,12 +105,8 @@ export class EstatePropertyTypeUsageTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id && this.dataModelSelect.id.length > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
+
     this.dataModelSelect = new EstatePropertyTypeUsageModel();
     this.DataGetAll();
   }

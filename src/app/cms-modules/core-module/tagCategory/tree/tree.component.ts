@@ -23,9 +23,9 @@ import { Subscription } from 'rxjs';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { environment } from 'src/environments/environment';
 import { CoreModuleTagCategoryDeleteComponent } from '../delete/delete.component';
 import { CoreModuleTagCategoryEditComponent } from '../edit/edit.component';
-import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -107,12 +107,8 @@ export class CoreModuleTagCategoryTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
+
     this.dataModelSelect = new CoreModuleTagCategoryModel();
     this.DataGetAll();
   }

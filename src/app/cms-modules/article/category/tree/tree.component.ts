@@ -99,12 +99,7 @@ export class ArticleCategoryTreeComponent implements OnInit, OnDestroy {
     this.optionChange.emit(this.dataModelSelect);
   }
   onActionReload(): void {
-    if (this.dataModelSelect && this.dataModelSelect.id > 0) {
-      this.onActionSelect(this.dataModelSelect);
-    }
-    else {
-      this.onActionSelect(null);
-    }
+    this.onActionSelect(null);
     this.dataModelSelect = new ArticleCategoryModel();
     this.DataGetAll();
   }

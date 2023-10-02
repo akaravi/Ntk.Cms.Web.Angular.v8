@@ -2,7 +2,9 @@
     <ng-container cms-tree>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-tree-->
         <app-linkmanagement-billboard-pattern-tree
-            (optionChange)="onActionSelectorSelect($event)"></app-linkmanagement-billboard-pattern-tree>
+            (optionChange)="onActionSelectorSelectPattern($event)"></app-linkmanagement-billboard-pattern-tree>
+            <app-linkmanagement-category-tree
+            (optionChange)="onActionSelectorSelectCategory($event)"></app-linkmanagement-category-tree>
         <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
     </ng-container>
     <ng-container cms-header>
@@ -12,7 +14,7 @@
     </ng-container>
     <ng-container cms-action>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-action-->
-        <button *ngIf="dataModelResult.access.accessAddRow && this.categoryModelSelected?.id>0"
+        <button *ngIf="dataModelResult.access.accessAddRow && this.categoryPatternModelSelected?.id>0"
             (click)="onActionbuttonNewRow()" type="button" class="btn box-shadow-button btn-outline-primary"
             id="openModalButton" data-toggle="modal" data-target="#categoryModal">{{'ACTION.ADD' | translate}}</button>
         <button *ngIf="dataModelResult.access.accessEditRow && tableRowSelected.id>0" (click)="onActionbuttonEditRow()"
