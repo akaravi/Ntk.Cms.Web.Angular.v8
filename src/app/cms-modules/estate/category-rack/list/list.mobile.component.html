@@ -4,17 +4,17 @@
       {{row.title}}
     </div>
     <!-- <div [class]="rackvalidation?'box-rack-child-items': 'box-rack-child-open'"(click)="rackvalidation?CloseItemsRack():OpenItemsRack()"> -->
-    <div (click)="rackvalidation?CloseItemsRack():OpenItemsRack()">
-      <div [hidden]="rackvalidation" class="box-rack-child-open">
+    <div (click)="onActionClickRackDoor(row)">
+      <div *ngIf="!row['rackOpen']||row['rackOpen']==false" class="box-rack-child-open">
         <div class="box-rack-child-open-title" [style.border-color]="row.iconColor"
           [style.outline-color]="row.iconColor">
           {{row.description}}
         </div>
-        <img class="box-rack-child-open-img" [style.border-color]="row.iconColor"
-          src="https://mahyarniknaddaf.ir/assets/img/img-my.JPG" alt="img">
+        <img *ngIf="row?.linkMainImageIdSrc?.length>0" class="box-rack-child-open-img"
+          [style.border-color]="row.iconColor" src="{{row.linkMainImageIdSrc | cmsthumbnail}}" alt="img">
         <div class="box-rack-child-open-icon"></div>
       </div>
-      <div [hidden]="!rackvalidation" class="box-rack-child-items">
+      <div *ngIf="row['rackOpen']&&row['rackOpen']==true" class="box-rack-child-items">
         <div class="box-rack-child-items-item" [style.background]="row.iconColor">
           <div class="box-rack-child-items-item-title">
             <div class="box-rack-child-items-item-title-info1">فروش</div>

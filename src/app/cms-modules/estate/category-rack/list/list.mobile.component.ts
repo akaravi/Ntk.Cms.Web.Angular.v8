@@ -439,4 +439,10 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
   public CloseItemsRack() {
     this.rackvalidation = false;
   }
+  public onActionClickRackDoor(model: EstateCategoryRackModel): void {
+    if (model['rackOpen'] && model['rackOpen'] == true)
+      model['rackOpen'] = false;
+    else
+      model['rackOpen'] = true;
+  }
 }

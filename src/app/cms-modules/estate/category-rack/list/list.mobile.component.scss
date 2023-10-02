@@ -41,7 +41,8 @@
   outline-offset: 2px;
   border-radius: 2px;
 }
-.box-rack-child-open-img{
+
+.box-rack-child-open-img {
   border-radius: 100%;
   width: 70px;
   height: 70px;
@@ -50,6 +51,7 @@
   margin-right: 50px;
   margin-top: 20px;
 }
+
 .box-rack-child-open-icon {
   float: right;
   background-color: white;
@@ -90,6 +92,7 @@
   background-color: grey;
   border-radius: 100%;
   border: 2px solid #546e7a;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.6) inset;
   width: 20px;
   height: 20px;
   margin-top: 15px;
