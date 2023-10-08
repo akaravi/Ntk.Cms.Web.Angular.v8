@@ -15,30 +15,21 @@
         <div class="box-rack-child-open-icon"></div>
       </div>
       <div *ngIf="row['rackOpen']&&row['rackOpen']==true" class="box-rack-child-items">
-        <div class="box-rack-child-items-item" [style.background]="row.iconColor">
+        <div class="box-rack-child-items-item" [style.background]="row.iconColor"
+          *ngFor="let  items of dataModelResult.listItems">
           <div class="box-rack-child-items-item-title">
-            <div class="box-rack-child-items-item-title-info1">فروش</div>
-            <div class="box-rack-child-items-item-title-info2">کلنگی</div>
+            <div class="box-rack-child-items-item-title-info1"> {{row.title}}</div>
+            <div class="box-rack-child-items-item-title-info2"> {{row.title}}</div>
             <div class="box-rack-child-items-item-title-icon"></div>
-            <div class="box-rack-child-items-item-title-number">۳۰</div>
+            <div class="box-rack-child-items-item-title-number"> {{row.title}}</div>
           </div>
           <div class="box-rack-child-items-item-icon"></div>
         </div>
+
+
         <div class="box-rack-child-items-item" [style.background]="row.iconColor">
-          <div class="box-rack-child-items-item-title">
-            <div class="box-rack-child-items-item-title-info1">فروش</div>
-            <div class="box-rack-child-items-item-title-info2">کلنگی</div>
-            <div class="box-rack-child-items-item-title-icon"></div>
-            <div class="box-rack-child-items-item-title-number">۳۰</div>
-          </div>
-          <div class="box-rack-child-items-item-icon"></div>
-        </div>
-        <div class="box-rack-child-items-item" [style.background]="row.iconColor">
-          <div class="box-rack-child-items-item-title">
-            <div class="box-rack-child-items-item-title-info1">فروش</div>
-            <div class="box-rack-child-items-item-title-info2">کلنگی</div>
-            <div class="box-rack-child-items-item-title-icon"></div>
-            <div class="box-rack-child-items-item-title-number">۳۰</div>
+          <div class="box-rack-child-items-item-add">
+            <div class="box-rack-child-items-item-add-txt">+</div>
           </div>
           <div class="box-rack-child-items-item-icon"></div>
         </div>
