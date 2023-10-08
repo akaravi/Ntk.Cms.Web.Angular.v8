@@ -8,7 +8,9 @@ import {
   FormInfoModel
 } from 'ntk-cms-api';
 import { Observable } from 'rxjs';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
+import { ConnectionStatusModel } from 'src/app/core/models/connectionStatusModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 enum ErrorStates {
@@ -34,11 +36,16 @@ export class AuthSingInBySmsComponent implements OnInit {
     private router: Router,
     private translationService: TranslationService,
     private cdr: ChangeDetectorRef,
+    private publicHelper:PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.RePasswordModel = '';
+    this.publicHelper.getReducerCmsStoreOnChange().subscribe((value) => {
+      this.connectionStatus = value.connectionStatus;
+    });
   }
+  connectionStatus = new ConnectionStatusModel();
   errorState: ErrorStates = ErrorStates.NotSubmitted;
   errorStates = ErrorStates;
   isLoading$: Observable<boolean>;

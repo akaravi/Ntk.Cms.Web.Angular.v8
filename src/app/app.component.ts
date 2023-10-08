@@ -22,7 +22,10 @@ import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switche
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
 import { TranslationService } from './core/i18n/translation.service';
+import { ConnectionStatusModel } from './core/models/connectionStatusModel';
+import { CmsStoreService } from './core/reducers/cmsStore.service';
 import { CmsSignalrService } from './core/services/cmsSignalr.service';
+import { CmsToastrService } from './core/services/cmsToastr.service';
 import { SplashScreenService } from './shared/splash-screen/splash-screen.service';
 
 @Component({
@@ -48,6 +51,8 @@ export class AppComponent implements OnInit {
     private translationService: TranslationService,
     private singlarService: CmsSignalrService,
     private swPush: SwPush,
+    private cmsToastrService: CmsToastrService,
+    private cmsStoreService: CmsStoreService,
     private httpClient: HttpClient
   ) {
     /**singlarService */
@@ -243,6 +248,36 @@ export class AppComponent implements OnInit {
       else localStorage.setItem('KeyboardEventF9', 'F9');
     }
   }
+  firstOnonline: boolean = true;
+  toastId = 0;
+  @HostListener('window:online', ['$event'])
+  ononline() {
+    var model = new ConnectionStatusModel();
+    model.internetConnection = true;
+    model.serverConnection = true;
+    this.cmsStoreService.setState({ connectionStatus: model });
+    if (this.firstOnonline) {
+      this.firstOnonline = false;
+      return;
+    }
+    if (this.toastId > 0) {
+      this.cmsToastrService.toastr.clear(this.toastId);
+    }
+    this.cmsToastrService.toastr.success(this.translate.instant('ERRORMESSAGE.TITLE.Youhavesuccessfullyconnectedtotheserver'), this.translate.instant('ERRORMESSAGE.TITLE.Internetaccesswasconnected'));
+  }
+  @HostListener('window:offline', ['$event'])
+  onoffline() {
+    var model = new ConnectionStatusModel();
+    model.internetConnection = false;
+    model.serverConnection = false;
+    this.cmsStoreService.setState({ connectionStatus: model });
+    this.firstOnonline = false;
+    this.toastId = this.cmsToastrService.toastr.error(this.translate.instant('ERRORMESSAGE.TITLE.Pleasecheckyourinternetconnection'), this.translate.instant('ERRORMESSAGE.TITLE.Internetaccesswasinterrupted'), {
+      disableTimeOut: true
+    }).toastId;
+
+  }
+
   ngOnDestroy() {
     this.cmsApiStoreSubscribe.unsubscribe();
   }

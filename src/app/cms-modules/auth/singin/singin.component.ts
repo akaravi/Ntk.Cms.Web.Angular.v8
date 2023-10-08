@@ -3,7 +3,9 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthUserSignInModel, CaptchaModel, CoreAuthService, FormInfoModel } from 'ntk-cms-api';
+import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TranslationService } from 'src/app/core/i18n/translation.service';
+import { ConnectionStatusModel } from 'src/app/core/models/connectionStatusModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 @Component({
@@ -20,11 +22,16 @@ export class AuthSingInComponent implements OnInit {
     private translationService: TranslationService,
     public translate: TranslateService,
     private cdr: ChangeDetectorRef,
+    private publicHelper: PublicHelper,
   ) {
     this.loading.cdr = this.cdr;
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.firstRun = true;
+    this.publicHelper.getReducerCmsStoreOnChange().subscribe((value) => {
+      this.connectionStatus = value.connectionStatus;
+    });
   }
+  connectionStatus = new ConnectionStatusModel();
   firstRun = true;
   hidePassword = true;
   loading = new ProgressSpinnerModel();

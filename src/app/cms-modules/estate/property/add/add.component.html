@@ -1095,7 +1095,8 @@
                         matStepperNext>
                         {{ "ACTION.NEXT" | translate }}
                     </button>
-                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+                    <button type="submit" mat-raised-button color="success"
+                        [disabled]="!vform.form.valid  || !connectionStatus.internetConnection">
                         {{ "ACTION.SAVE" | translate }}
                     </button>
                 </div>
@@ -1114,7 +1115,8 @@
                     <button type="button" mat-raised-button color="accent" matStepperPrevious>
                         {{ "ACTION.BEFOR" | translate }}
                     </button>
-                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+                    <button type="submit" mat-raised-button color="success"
+                        [disabled]="!vform.form.valid  || !connectionStatus.internetConnection">
                         {{ "ACTION.SAVE" | translate }}
                     </button>
                 </div>

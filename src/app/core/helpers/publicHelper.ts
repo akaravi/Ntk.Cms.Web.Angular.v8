@@ -16,13 +16,15 @@ import {
   ErrorExceptionResultBase, InfoEnumModel, TicketStatusEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
-import { firstValueFrom } from 'rxjs';
-import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
+import { Observable, firstValueFrom } from 'rxjs';
 import { getViewPort, isMobileDevice } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
+import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
 import { environment } from 'src/environments/environment';
 import { ComponentLocalStorageModel } from '../models/componentLocalStorageModel';
+import { ConnectionStatusModel } from '../models/connectionStatusModel';
 import { CmsStoreService } from '../reducers/cmsStore.service';
+import { ReducerCmsStore } from '../reducers/reducer.factory';
 import { CmsToastrService } from '../services/cmsToastr.service';
 // import { ProviderAst } from '@angular/compiler';
 
@@ -463,6 +465,15 @@ export class PublicHelper {
         this.cmsStoreService.setState({ CoreModuleResultStore: response });
         return response;
       });
+  }
+  async getConnectionStatus(): Promise<ConnectionStatusModel> {
+    const storeSnapshot = this.cmsStoreService.getStateSnapshot();
+    if (storeSnapshot?.connectionStatus)
+      return storeSnapshot.connectionStatus;
+    return new ConnectionStatusModel();
+  }
+  getReducerCmsStoreOnChange(): Observable<ReducerCmsStore> {
+    return this.cmsStoreService.getState();
   }
   StringRandomGenerator(passwordLength = 10, onlynumber = false): string {
     // const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ';
