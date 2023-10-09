@@ -4,7 +4,7 @@
       {{row.title}}
     </div>
     <div (click)="onActionClickRackDoor(row)">
-      <div *ngIf="!row['rackOpen']||row['rackOpen']==false" class="box-rack-child-open">
+      <div *ngIf="!row['rackOpen']||row['rackOpen']===false" class="box-rack-child-open">
         <div class="box-rack-child-open-title" [style.border-color]="row.iconColor"
           [style.outline-color]="row.iconColor">
           {{row.description}}
@@ -13,7 +13,7 @@
           [style.border-color]="row.iconColor" src="{{row.linkMainImageIdSrc | cmsthumbnail}}" alt="img">
         <div class="box-rack-child-open-icon"></div>
       </div>
-      <div *ngIf="row['rackOpen']&&row['rackOpen']==true" class="box-rack-child-items">
+      <div *ngIf="row['rackOpen']&&row['rackOpen']===true" class="box-rack-child-items">
         <div class="box-rack-child-items-item" [style.background]="row.iconColor"
           *ngFor="let  items of dataModelResult.listItems">
           <div class="box-rack-child-items-item-title">
@@ -28,7 +28,7 @@
 
         <div class="box-rack-child-items-item" [style.background]="row.iconColor">
           <div class="box-rack-child-items-item-add">
-            <div class="box-rack-child-items-item-add-txt" >+</div>
+            <div class="box-rack-child-items-item-add-txt" (click)="onActionbuttonNewRow()">+</div>
           </div>
           <div class="box-rack-child-items-item-icon"></div>
         </div>
