@@ -5,13 +5,13 @@
     </div>
     <div (click)="onActionClickRackDoor(row)">
       <div *ngIf="!row['rackOpen']||row['rackOpen']===false" class="box-rack-child-open">
-        <div class="box-rack-child-open-title" [style.border-color]="row.iconColor"
-          [style.outline-color]="row.iconColor">
+        <div class="box-rack-child-open-title" [style.border-color]="row.iconColor" [hidden]="!row.description">
           {{row.description}}
         </div>
         <img *ngIf="row?.linkMainImageIdSrc?.length>0" class="box-rack-child-open-img"
-          [style.border-color]="row.iconColor" src="{{row.linkMainImageIdSrc | cmsthumbnail}}" alt="img">
-        <div class="box-rack-child-open-icon"></div>
+          [style.border-color]="row.iconColor" [style.margin-top.px]="!row.description?110:0"
+          src="{{row.linkMainImageIdSrc | cmsthumbnail}}" alt="img">
+        <div class="box-rack-child-open-icon" [style.margin-top.px]="!row.description?210:100"></div>
       </div>
       <div *ngIf="row['rackOpen']&&row['rackOpen']===true" class="box-rack-child-items">
         <div class="box-rack-child-items-item" [style.background]="row.iconColor"
