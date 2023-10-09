@@ -3,7 +3,6 @@
     <div class="box-rack-child-title" [style.background]="row.iconColor">
       {{row.title}}
     </div>
-    <!-- <div [class]="rackvalidation?'box-rack-child-items': 'box-rack-child-open'"(click)="rackvalidation?CloseItemsRack():OpenItemsRack()"> -->
     <div (click)="onActionClickRackDoor(row)">
       <div *ngIf="!row['rackOpen']||row['rackOpen']==false" class="box-rack-child-open">
         <div class="box-rack-child-open-title" [style.border-color]="row.iconColor"
