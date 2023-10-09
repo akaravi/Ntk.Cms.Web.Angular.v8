@@ -29,7 +29,7 @@ import {
   EstatePropertyProjectFilterModel,
   EstatePropertyProjectModel,
   EstatePropertyProjectService,
-  EstatePropertyService, EstatePropertySupplierFilterModel, EstatePropertySupplierModel, EstatePropertySupplierService, InfoEnumModel
+  EstatePropertyService, EstatePropertySupplierFilterModel, EstatePropertySupplierModel, EstatePropertySupplierService, FilterDataModel, InfoEnumModel, RecordStatusEnum
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -72,9 +72,12 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
 
+    const filterChildrecordStatus = new FilterDataModel();
+    filterChildrecordStatus.propertyName = 'recordStatus';
+    filterChildrecordStatus.value = RecordStatusEnum.Available;
 
   }
-
+  filterChildrecordStatus:FilterDataModel;
   loading = new ProgressSpinnerModel();
   dataModelPropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModelCustomerOrderResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
@@ -128,6 +131,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertyService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -157,6 +161,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estateCustomerOrderService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -187,6 +192,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertyHistoryService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -217,6 +223,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertyCompanyService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -247,6 +254,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertySupplierService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -277,6 +285,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estatePropertyProjectService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -307,6 +316,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estateAccountUserService.ServiceGetAll(filterModelOnDay).subscribe({
@@ -338,6 +348,7 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     filterModelOnDay.onDateTimeTo = this.checkingOnDayRange.controls.end.value;
     filterModelOnDay.countLoad = true;
     filterModelOnDay.linkResponsibleUserId = this.linkCmsUserId;
+    filterModelOnDay.filters.push(this.filterChildrecordStatus);
     this.loading.Start(pName);
     /** Search On Select Day */
     this.estateAccountAgencyService.ServiceGetAll(filterModelOnDay).subscribe({
