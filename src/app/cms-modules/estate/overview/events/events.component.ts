@@ -37,13 +37,13 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { environment } from 'src/environments/environment';
 import { EstateCustomerOrderQuickViewComponent } from '../../customer-order/quick-view/quick-view.component';
 import { EstatePropertyCompanyQuickViewComponent } from '../../property-company/quick-view/quick-view.component';
 import { EstatePropertyHistoryQuickViewComponent } from '../../property-history/quick-view/quick-view.component';
 import { EstatePropertyProjectQuickViewComponent } from '../../property-project/quick-view/quick-view.component';
 import { EstatePropertySupplierQuickViewComponent } from '../../property-supplier/quick-view/quick-view.component';
 import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-overview-events',
   templateUrl: './events.component.html',
@@ -72,12 +72,12 @@ export class EstateOverviewEventsComponent implements OnInit, OnDestroy {
     this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
 
 
-    const filterChildrecordStatus = new FilterDataModel();
-    filterChildrecordStatus.propertyName = 'recordStatus';
-    filterChildrecordStatus.value = RecordStatusEnum.Available;
+    this.filterChildrecordStatus = new FilterDataModel();
+    this.filterChildrecordStatus.propertyName = 'recordStatus';
+    this.filterChildrecordStatus.value = RecordStatusEnum.Available;
 
   }
-  filterChildrecordStatus:FilterDataModel;
+  filterChildrecordStatus: FilterDataModel;
   loading = new ProgressSpinnerModel();
   dataModelPropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModelCustomerOrderResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
