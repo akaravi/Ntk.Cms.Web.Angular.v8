@@ -5,7 +5,7 @@
       (optionChange)="onActionSelectorSelectPattern($event)"></app-linkmanagement-billboard-pattern-tree>
     <app-linkmanagement-category-tree
       (optionChange)="onActionSelectorSelectCategory($event)"></app-linkmanagement-category-tree>
-      <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-tree-->
   </ng-container>
   <ng-container cms-header>
     <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -167,10 +167,7 @@
                     width="80" /></th>
                 <th>{{fieldsInfo['id']?.fieldTitle}} : {{row.id}}</th>
               </tr>
-              <tr>
-                <td></td>
-                <td>{{'TITLE.Category' | translate}} : {{ categorySelected }}</td>
-              </tr>
+
               <tr *ngIf="row.title">
                 <td></td>
                 <td>{{fieldsInfo['title']?.fieldTitle}} : {{row.title}}</td>
