@@ -45,7 +45,7 @@
 
         <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
             <button (click)="onFormCancel()" type="button" mat-raised-button>{{'ACTION.BACK' | translate}}</button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
                 <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
             </button>
         </div>

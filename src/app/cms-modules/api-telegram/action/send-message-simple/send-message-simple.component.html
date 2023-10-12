@@ -7,13 +7,17 @@
     <div class="ntk-cms-html-card-body">
         <app-progress-spinner [options]="loading"> </app-progress-spinner>
         <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <app-api-telegram-bot-config-selector (optionChange)="onActionSelectorSelect($event)" [optionSelectForce]="dataModel.botId" [(optionLoading)]="loading" [optionPlaceholder]="this.translate.instant('TITLE.Telegram_Bot')">
+        <app-api-telegram-bot-config-selector (optionChange)="onActionSelectorSelect($event)"
+            [optionSelectForce]="dataModel.botId" [(optionLoading)]="loading"
+            [optionPlaceholder]="this.translate.instant('TITLE.Telegram_Bot')">
         </app-api-telegram-bot-config-selector>
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{'TITLE.title' | translate}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text" placeholder="{{'TITLE.Message_Title' | translate}}" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #title type="text"
+                placeholder="{{'TITLE.Message_Title' | translate}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ title.value.length }} / 100</mat-hint>
             <mat-error *ngIf="title.errors?.required">
@@ -24,8 +28,10 @@
         <!-- text Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{'MESSAGE.Message_Text' | translate}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.text" name="dataModel.text" #text type="text" placeholder="{{'MESSAGE.Message_Text' | translate}}" row="10" required></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.text" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.text = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.text" name="dataModel.text" #text type="text"
+                placeholder="{{'MESSAGE.Message_Text' | translate}}" row="10" required></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.text" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.text = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ text.value.length }} / 1000</mat-hint>
             <mat-error *ngIf="text.errors?.required">
@@ -36,8 +42,10 @@
         <!-- chatId Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{'TITLE.Receivers' | translate}}</mat-label>
-            <textarea matInput [(ngModel)]="compModel.ChatIds" name="compModel.ChatIds" #ChatIds type="text" placeholder="{{'TITLE.Chat_ID' | translate}}" row="10" required></textarea>
-            <mat-icon matSuffix *ngIf="compModel.ChatIds" matSuffix mat-icon-button aria-label="Clear" (click)="compModel.ChatIds = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="compModel.ChatIds" name="compModel.ChatIds" #ChatIds type="text"
+                placeholder="{{'TITLE.Chat_ID' | translate}}" row="10" required></textarea>
+            <mat-icon matSuffix *ngIf="compModel.ChatIds" matSuffix mat-icon-button aria-label="Clear"
+                (click)="compModel.ChatIds = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ ChatIds.value.length }} / 1000</mat-hint>
             <mat-error *ngIf="ChatIds.errors?.required">
@@ -65,7 +73,7 @@
             <button type="button" (click)="onFormCancel()" class="btn btn-light">
                 <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
             </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
                 <i class="fa fa-check-square-o"></i> {{'ACTION.Send_Message' | translate}}
             </button>
         </div>

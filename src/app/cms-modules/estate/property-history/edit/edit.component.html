@@ -11,8 +11,10 @@
         <!-- Title Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['title']?.fieldTitle}}</mat-label>
-            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text" placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
-            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.title = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.title" name="dataModel.title" #Title type="text"
+                placeholder="{{fieldsInfo['title']?.fieldTitle}}" minlength="3" maxlength="100" required />
+            <mat-icon matSuffix *ngIf="dataModel.title" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.title = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Title.value.length }} / 100</mat-hint>
             <mat-error *ngIf="Title.errors?.required">
@@ -22,8 +24,11 @@
         <!-- Description Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>{{fieldsInfo['description']?.fieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text" placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="1000" rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.description = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.description" name="dataModel.description" #Description type="text"
+                placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="1" maxlength="1000"
+                rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.description" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.description = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ Description.value.length }} / 1000</mat-hint>
             <mat-error *ngIf="Description.errors?.required">
@@ -34,8 +39,12 @@
         <!-- DescriptionHidden Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField">
             <mat-label>{{fieldsInfo['descriptionHidden']?.fieldTitle}}</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden" #DescriptionHidden disabled="!fieldsInfo['descriptionHidden']?.accessEditField" type="text" placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="0" maxlength="1000" rows=5></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.descriptionHidden = ''">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
+                #DescriptionHidden disabled="!fieldsInfo['descriptionHidden']?.accessEditField" type="text"
+                placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="0" maxlength="1000"
+                rows=5></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.descriptionHidden" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.descriptionHidden = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-hint align="end">{{ DescriptionHidden.value.length }} / 1000</mat-hint>
             <mat-error *ngIf="DescriptionHidden.errors?.required">
@@ -44,7 +53,8 @@
         </mat-form-field>
         <!-- activityStatus Field -->
         <mat-form-field class="ntk-full-width">
-            <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.activityStatus" name="dataModel.activityStatus" #activityStatus="ngModel">
+            <mat-select placeholder="{{'TITLE.TypeId' | translate}}" [(ngModel)]="dataModel.activityStatus"
+                name="dataModel.activityStatus" #activityStatus="ngModel">
                 <mat-option *ngFor="
                       let item of dataModelEstateActivityStatusEnumResult.listItems;
                       index as i
@@ -52,22 +62,34 @@
             </mat-select>
         </mat-form-field>
         <!-- LinkCategoryId Field -->
-        <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkActivityTypeId" [optionPlaceholder]="this.translate.instant('TITLE.Category')">
+        <app-estate-activity-type-selector (optionChange)="onActionSelectorSelect($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkActivityTypeId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Category')">
         </app-estate-activity-type-selector>
 
         <!-- LinkEstateUserId Field -->
-        <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)" [(optionLoading)]="loading" *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField" [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
+        <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
+            [(optionLoading)]="loading" *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')">
         </app-estate-account-user-selector>
 
         <!-- linkEstateAgencyId Field -->
-        <app-estate-account-agency-selector *ngIf="fieldsInfo['linkEstateAgencyId']?.accessWatchField" (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
+        <app-estate-account-agency-selector *ngIf="fieldsInfo['linkEstateAgencyId']?.accessWatchField"
+            (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Property_agency')">
         </app-estate-account-agency-selector>
 
         <!-- LinkPropertyId Field -->
-        <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(optionLoading)]="loading" *ngIf="fieldsInfo['linkPropertyId']?.accessWatchField" [optionSelectForce]="dataModel.linkPropertyId" [optionPlaceholder]="this.translate.instant('TITLE.Property')"></app-estate-property-selector>
+        <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(optionLoading)]="loading"
+            *ngIf="fieldsInfo['linkPropertyId']?.accessWatchField" [optionSelectForce]="dataModel.linkPropertyId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Property')"></app-estate-property-selector>
 
         <!-- linkCustomerOrderId Field -->
-        <app-estate-customer-order-selector (optionChange)="onActionSelectorCustomerOrderId($event)" [(optionLoading)]="loading" *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField" [optionSelectForce]="dataModel.linkCustomerOrderId" [optionPlaceholder]="this.translate.instant('TITLE.Customer')"></app-estate-customer-order-selector>
+        <app-estate-customer-order-selector (optionChange)="onActionSelectorCustomerOrderId($event)"
+            [(optionLoading)]="loading" *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkCustomerOrderId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Customer')"></app-estate-customer-order-selector>
 
 
         <div class="row">
@@ -75,8 +97,12 @@
                 <!-- AppointmentDateFrom Field -->
                 <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField">
                     <mat-label>{{fieldsInfo['appointmentDateFrom']?.fieldTitle}}</mat-label>
-                    <input matInput [matDatepicker]="AppointmentDateFrom" [(ngModel)]="dataModel.appointmentDateFrom" [formControl]="date" name="dataModel.appointmentDateFrom" />
-                    <mat-icon matSuffix *ngIf="dataModel.appointmentDateFrom && fieldsInfo['appointmentDateFrom']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateFrom = null">close</mat-icon>
+                    <input matInput [matDatepicker]="AppointmentDateFrom" [(ngModel)]="dataModel.appointmentDateFrom"
+                        [formControl]="date" name="dataModel.appointmentDateFrom" />
+                    <mat-icon matSuffix
+                        *ngIf="dataModel.appointmentDateFrom && fieldsInfo['appointmentDateFrom']?.accessEditField"
+                        matSuffix mat-icon-button aria-label="Clear"
+                        (click)="dataModel.appointmentDateFrom = null">close</mat-icon>
                     <mat-datepicker-toggle matSuffix [for]="AppointmentDateFrom"></mat-datepicker-toggle>
                     <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
                 </mat-form-field>
@@ -86,8 +112,12 @@
                 <!-- AppointmentDateTo Field -->
                 <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField">
                     <mat-label>{{fieldsInfo['appointmentDateTo']?.fieldTitle}}</mat-label>
-                    <input matInput [matDatepicker]="AppointmentDateTo" [(ngModel)]="dataModel.appointmentDateTo" [value]="date.value" name="dataModel.appointmentDateTo" />
-                    <mat-icon matSuffix *ngIf="dataModel.appointmentDateTo && fieldsInfo['appointmentDateTo']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateTo = null">close</mat-icon>
+                    <input matInput [matDatepicker]="AppointmentDateTo" [(ngModel)]="dataModel.appointmentDateTo"
+                        [value]="date.value" name="dataModel.appointmentDateTo" />
+                    <mat-icon matSuffix
+                        *ngIf="dataModel.appointmentDateTo && fieldsInfo['appointmentDateTo']?.accessEditField"
+                        matSuffix mat-icon-button aria-label="Clear"
+                        (click)="dataModel.appointmentDateTo = null">close</mat-icon>
                     <mat-datepicker-toggle matSuffix [for]="AppointmentDateTo"></mat-datepicker-toggle>
                     <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
                 </mat-form-field>
@@ -115,7 +145,7 @@
             <button type="button" (click)="onFormCancel()" class="btn btn-light">
                 <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
             </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
                 <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
             </button>
         </div>

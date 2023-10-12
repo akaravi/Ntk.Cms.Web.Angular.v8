@@ -132,7 +132,7 @@
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
-          <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+          <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
             <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
           </button>
         </div>
@@ -158,7 +158,11 @@
     <hr>
     کد html:
     <br>
-    {{dataModel.billboardScript}}
+    <div>
+      <pre>
+    {{dataModel.billboardScript}}</pre>
+    </div>
+    <div [innerHtml]=dataModel.billboardScript></div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">
