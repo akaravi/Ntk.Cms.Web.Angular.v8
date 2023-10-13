@@ -5,10 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   ClauseTypeEnum, CoreEnumService, ErrorExceptionResult,
   FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel,
+  InfoEnumModel,
   LinkManagementBillboardPatternModel,
-  LinkManagementBillboardPatternService
+  LinkManagementBillboardPatternService,
+  LinkManagementEnumService
 } from 'ntk-cms-api';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -24,14 +26,22 @@ export class LinkManagementBillboardPatternSelectorComponent implements OnInit {
     private cmsToastrService: CmsToastrService,
     private cdr: ChangeDetectorRef,
     public translate: TranslateService,
+    private linkManagementEnumService: LinkManagementEnumService,
     public categoryService: LinkManagementBillboardPatternService) {
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
-
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.getManagementContentSettingTypeEnum();
   }
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardPatternModel> = new ErrorExceptionResult<LinkManagementBillboardPatternModel>();
   dataModelSelect: LinkManagementBillboardPatternModel = new LinkManagementBillboardPatternModel();
   formControl = new FormControl();
   filteredOptions: Observable<LinkManagementBillboardPatternModel[]>;
+  dataModelManagementContentSettingTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  getManagementContentSettingTypeEnum(): void {
+    this.linkManagementEnumService.ServiceManagementContentSettingTypeEnum().subscribe((next) => {
+      this.dataModelManagementContentSettingTypeEnumResult = next;
+    });
+  }
   @Input() optionPlaceholder = '';
   @Input() optionSelectFirstItem = false;
   @Output() optionChange = new EventEmitter<LinkManagementBillboardPatternModel>();
@@ -50,6 +60,7 @@ export class LinkManagementBillboardPatternSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOptions();
+
   }
   loadOptions(): void {
     this.filteredOptions = this.formControl.valueChanges
@@ -68,9 +79,19 @@ export class LinkManagementBillboardPatternSelectorComponent implements OnInit {
   }
 
   displayFn(model?: LinkManagementBillboardPatternModel): string | undefined {
+    if (this.dataModelManagementContentSettingTypeEnumResult?.listItems && this.dataModelManagementContentSettingTypeEnumResult.listItems.length > 0) {
+      const find = this.dataModelManagementContentSettingTypeEnumResult.listItems.find(x => x.key === model.settingType.toString() || x.value === model.settingType);
+      if (find)
+        return model ? model.title + '-' + find.description : undefined;
+    }
     return model ? model.title : undefined;
   }
   displayOption(model?: LinkManagementBillboardPatternModel): string | undefined {
+    if (this.dataModelManagementContentSettingTypeEnumResult?.listItems && this.dataModelManagementContentSettingTypeEnumResult.listItems.length > 0) {
+      const find = this.dataModelManagementContentSettingTypeEnumResult.listItems.find(x => x.key === model.settingType.toString() || x.value === model.settingType);
+      if (find)
+        return model ? model.title + '-' + find.description : undefined;
+    }
     return model ? model.title : undefined;
   }
   async DataGetAll(text: string | number | any): Promise<LinkManagementBillboardPatternModel[]> {
