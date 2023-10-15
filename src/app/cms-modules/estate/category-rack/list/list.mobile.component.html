@@ -14,11 +14,21 @@
         <div class="box-rack-child-open-icon" [style.margin-top.px]="!row.description?210:100"></div>
       </div>
       <div *ngIf="row['rackOpen']&&row['rackOpen']===true" class="box-rack-child-items">
-        <div class="box-rack-child-items-item" [style.background]="row.iconColor"
-          *ngFor="let  items of dataModelResult.listItems">
+        <div *ngFor="let  item of row.rackFolderOrders" class="box-rack-child-items-item"
+          [style.background]="item.iconColor" (click)="onActionbuttonEditFolderOrder(row,item)">
           <div class="box-rack-child-items-item-title">
-            <div class="box-rack-child-items-item-title-info1"> {{row.title}}</div>
-            <div class="box-rack-child-items-item-title-info2"> {{row.title}}</div>
+            <div class="box-rack-child-items-item-title-info1"> {{item.caseCode}}</div>
+            <div class="box-rack-child-items-item-title-info2"> {{item.uid}}</div>
+            <div class="box-rack-child-items-item-title-icon"></div>
+            <div class="box-rack-child-items-item-title-number"> {{row.title}}</div>
+          </div>
+          <div class="box-rack-child-items-item-icon"></div>
+        </div>
+        <div *ngFor="let  item of row.rackFolderProperties" class="box-rack-child-items-item"
+          [style.background]="item.iconColor" (click)="onActionbuttonEditFolderProperty(row,item)">
+          <div class="box-rack-child-items-item-title">
+            <div class="box-rack-child-items-item-title-info1"> {{item.caseCode}}</div>
+            <div class="box-rack-child-items-item-title-info2"> {{item.uid}}</div>
             <div class="box-rack-child-items-item-title-icon"></div>
             <div class="box-rack-child-items-item-title-number"> {{row.title}}</div>
           </div>
@@ -44,7 +54,7 @@
 </div>
 
 <div class="add-rack" (click)="onActionbuttonNewRow()">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="add">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
     <path
       d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
   </svg>

@@ -10,7 +10,7 @@
 
 .box-rack-child-title {
   color: white;
-  width: 150px;
+  width: 180px;
   overflow-x: scroll;
   border-radius: 10px;
   margin-left: 25px;
@@ -24,7 +24,7 @@
 
 .box-rack-child-open {
   /* display: none; */
-  width: 200px;
+  width: 230px;
   background: linear-gradient(90deg, rgba(134, 93, 58, 1) 0%, rgba(99, 50, 7, 1) 100%);
   text-align: center;
   border-radius: 10px;
@@ -34,7 +34,7 @@
 }
 
 .box-rack-child-open-title {
-  overflow-x: scroll;
+  overflow-y: scroll;
   padding: 5px;
   margin: 40px;
   height: 30px;
@@ -64,9 +64,11 @@
 .box-rack-child-items {
   /* display: none; */
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   overflow-y: scroll;
-  overflow-x: scroll;
-  width: 200px;
+  width: 230px;
   background-color: #5d4037;
   text-align: center;
   border-radius: 10px;
@@ -87,6 +89,7 @@
 }
 
 .box-rack-child-items-item-title {
+  overflow-y: scroll;
   background-color: white;
   height: 100px;
   border-radius: 10px;
@@ -110,7 +113,6 @@
 .box-rack-child-items-item-title-info2,
 .box-rack-child-items-item-title-number {
   color: black;
-  overflow-x: scroll;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -121,6 +123,7 @@
 .box-rack-child-items-item-title-icon {
   width: 50px;
   height: 2px;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   background-color: black;
@@ -157,5 +160,5 @@
   border-radius: 100%;
   width: 40px;
   height: 40px;
-  background-color:#3b3b64;
+  background-color: #3b3b64;
 }
