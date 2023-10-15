@@ -2,13 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
-  isDevMode,
   OnInit
 } from '@angular/core';
 //start change title when route happened
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, Subscription } from 'rxjs';
+import { Subscription, filter, map } from 'rxjs';
 //end change title when route happened
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SwPush } from '@angular/service-worker';
@@ -159,9 +158,8 @@ export class AppComponent implements OnInit {
       appId: "1:893852902485:web:b58b55c1510532e9d2e0dc",
       measurementId: "G-45G43ESXQJ"
     };
-
     // Initialize Firebase
-    if (!isDevMode()) {
+    if (!environment.production) {
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
     }
