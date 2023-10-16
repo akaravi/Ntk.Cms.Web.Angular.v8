@@ -586,4 +586,13 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
     else
       model['rackOpen'] = true;
   }
+  onActionbuttoncheck: boolean = false;
+  public onActionbuttonmenu() {
+    this.onActionbuttoncheck = true;
+  }
+
+  public onActionbuttonclose() {
+    this.onActionbuttoncheck = false;
+  }
 }
+
