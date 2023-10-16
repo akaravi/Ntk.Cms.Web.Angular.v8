@@ -40,6 +40,7 @@ import { EstatePropertyAddMobileComponent } from './property/add/add.mobile.comp
 import { EstatePropertyEditComponent } from './property/edit/edit.component';
 import { EstatePropertyListComponent } from './property/list/list.component';
 import { EstateCategoryRackListMobileComponent } from './category-rack/list/list.mobile.component';
+import { EstateCustomerOrderAddMobileComponent } from './customer-order/add/add.mobile.component';
 
 const routesNormal: Routes = [
   {
@@ -760,7 +761,7 @@ const routesMobile: Routes = [
       },
       {
         path: 'customer-order/add',
-        component: EstateCustomerOrderAddComponent,
+        component: EstateCustomerOrderAddMobileComponent,
         data: { title: 'ROUTE.ESTATE.CUSTOMER.ORDER' },
       },
       {
