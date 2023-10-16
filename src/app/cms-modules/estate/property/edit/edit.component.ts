@@ -16,11 +16,13 @@ import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
+import { ConnectionStatusModel } from 'src/app/core/models/connectionStatusModel';
 import { PoinModel } from 'src/app/core/models/pointModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsFormsErrorStateMatcher } from 'src/app/core/pipe/cmsFormsErrorStateMatcher';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { CmsMapComponent } from 'src/app/shared/cms-map/cms-map.component';
+import { environment } from 'src/environments/environment';
 import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
 import { EstateCustomerOrderListComponent } from '../../customer-order/list/list.component';
@@ -29,7 +31,6 @@ import { EstatePropertyHistoryAddComponent } from '../../property-history/add/ad
 import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
-import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-estate-property-edit',
   templateUrl: './edit.component.html',
@@ -56,7 +57,11 @@ export class EstatePropertyEditComponent implements OnInit, OnDestroy {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
+    this.publicHelper.getReducerCmsStoreOnChange().subscribe((value) => {
+      this.connectionStatus = value.connectionStatus;
+    });
   }
+  connectionStatus = new ConnectionStatusModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;

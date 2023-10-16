@@ -27,6 +27,7 @@ import { EstatePropertyExpertPriceInquiryListComponent } from '../../property-ex
 import { EstatePropertyActionComponent } from '../action/action.component';
 import { EstatePropertyQuickListComponent } from '../quick-list/quick-list.component';
 import { environment } from 'src/environments/environment';
+import { ConnectionStatusModel } from 'src/app/core/models/connectionStatusModel';
 @Component({
   selector: 'app-estate-property-add-mobile',
   templateUrl: './add.mobile.component.html',
@@ -68,7 +69,11 @@ export class EstatePropertyAddMobileComponent implements OnInit {
       this.tokenInfo = value;
 
     });
+    this.publicHelper.getReducerCmsStoreOnChange().subscribe((value) => {
+      this.connectionStatus = value.connectionStatus;
+    });
   }
+  connectionStatus = new ConnectionStatusModel();
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   @ViewChild(CmsMapComponent) childMap: CmsMapComponent;

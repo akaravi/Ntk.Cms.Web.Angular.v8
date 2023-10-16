@@ -93,7 +93,8 @@ export class Cms360ImageListComponent implements OnInit {
     this.container.nativeElement.style.display = 'none';
   }
   getGuid(): string {
-    return Math.floor(Math.random() * 1000) + "";
+    return Math.floor(Math.random() * new Date().getTime()).toString()
+    //return Math.floor(Math.random() * 1000) + "";
   }
   actionPannellumImageLoad(str: string, hotSpots: File360TourHotSpotModel[]): void {
     const defaultOptions = {

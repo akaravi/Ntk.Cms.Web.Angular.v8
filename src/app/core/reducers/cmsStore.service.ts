@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CmsStore, CoreCurrencyModel, CoreModuleModel, CoreSiteModel, ErrorExceptionResult, InfoEnumModel } from 'ntk-cms-api';
+import { ConnectionStatusModel } from '../models/connectionStatusModel';
 import { ProcessInfoModel } from '../models/progressSpinnerModel';
 import { ReducerCmsStore } from './reducer.factory';
 const initialState: ReducerCmsStore = {
@@ -7,7 +8,8 @@ const initialState: ReducerCmsStore = {
     CoreModuleResultStore: new ErrorExceptionResult<CoreModuleModel>(),
     EnumRecordStatusResultStore: new ErrorExceptionResult<InfoEnumModel>(),
     CurrencyResultStore: new ErrorExceptionResult<CoreCurrencyModel>(),
-    processInfo: new Map<string, ProcessInfoModel>()
+    processInfo: new Map<string, ProcessInfoModel>(),
+    connectionStatus: new ConnectionStatusModel()
 };
 @Injectable({
     providedIn: 'root',
