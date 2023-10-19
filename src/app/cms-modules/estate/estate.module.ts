@@ -131,6 +131,7 @@ import { EstateAccountUserSelectionlistComponent } from './account-user/selectio
 import { EstateCategoryRackAddComponent } from './category-rack/add/add.component';
 import { EstateCategoryRackEditComponent } from './category-rack/edit/edit.component';
 import { EstateCategoryRackListComponent } from './category-rack/list/list.component';
+import { EstateCategoryRackListMobileComponent } from './category-rack/list/list.mobile.component';
 import { EstateCategoryRackSelectorComponent } from './category-rack/selector/selector.component';
 import { EstateCategoryRackTreeComponent } from './category-rack/tree/tree.component';
 import { EstateCategoryZoneAddComponent } from './category-zone/add/add.component';
@@ -191,7 +192,7 @@ import { EstatePropertyActionComponent } from './property/action/action.componen
 import { EstatePropertyQuickAddComponent } from './property/quick-add/quick-add.component';
 import { EstatePropertyQuickListComponent } from './property/quick-list/quick-list.component';
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
-import { EstateCategoryRackListMobileComponent } from './category-rack/list/list.mobile.component';
+import { EstateCustomerOrderAddMobileComponent } from './customer-order/add/add.mobile.component';
 
 
 @NgModule({
@@ -314,6 +315,7 @@ import { EstateCategoryRackListMobileComponent } from './category-rack/list/list
     EstateBillboardHeaderComponent,
     /* */
     EstateCustomerOrderAddComponent,
+    EstateCustomerOrderAddMobileComponent,
     EstateCustomerOrderEditComponent,
     EstateCustomerOrderListComponent,
     EstateCustomerOrderSelectorComponent,

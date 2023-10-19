@@ -1,0 +1,64 @@
+<div  class="box">
+  <ng-container *ngIf="stepContent==='mobile'">
+    …mobile
+    <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
+  </ng-container>
+  <ng-container *ngIf="stepContent==='orderType'">
+    orderType
+    <button (click)="onActoinSelectStepBefor('mobile')">قبلی</button>
+    <button (click)="onActoinSelectStepNext('selectTypeLandUse')">بعدی</button>
+
+  </ng-container>
+  <ng-container *ngIf="stepContent==='selectTypeLandUse'">
+    selectTypeLandUse
+
+    <button (click)="onActoinSelectStepBefor('orderType')">قبلی</button>
+    <button (click)="onActoinSelectStepNext('selectTypeProperty')">بعدی</button>
+
+  </ng-container>
+  <ng-container *ngIf="stepContent==='selectTypeProperty'">
+    selectTypeProperty
+
+    <button (click)="onActoinSelectStepBefor('selectTypeLandUse')">قبلی</button>
+    <button (click)="onActoinSelectStepNext('selectYear')">بعدی</button>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent==='selectYear'">
+    selectYear
+
+    <button (click)="onActoinSelectStepBefor('selectTypeProperty')">قبلی</button>
+    <button (click)="onActoinSelectStepNext('result1')">بعدی</button>
+  </ng-container>
+  <ng-container *ngIf="stepContent==='result1'">
+    result1
+
+    <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
+    <button (click)="onActoinSubmit()">ثبت</button>
+    <button (click)="onActoinSelectStepNext('selectLocation')">بعدی</button>
+  </ng-container>
+  <ng-container *ngIf="stepContent==='selectLocation'">
+    selectLocation
+
+    <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
+    <button (click)="onActoinSelectStepNext('result2')">بعدی</button>
+  </ng-container>
+  <ng-container *ngIf="stepContent==='result2'">
+    result2
+
+    <button (click)="onActoinSelectStepBefor('selectLocation')">قبلی</button>
+    <button (click)="onActoinSubmit()">ثبت</button>
+    <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
+  </ng-container>
+  <ng-container *ngIf="stepContent==='selectPrice'">
+    selectPrice
+
+    <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
+    <button (click)="onActoinSelectStepNext('result3')">بعدی</button>
+  </ng-container>
+  <ng-container *ngIf="stepContent==='result3'">
+    result3
+
+    <button (click)="onActoinSelectStepBefor('selectPrice')">قبلی</button>
+    <button (click)="onActoinSubmit()">ثبت</button>
+  </ng-container>
+</div>
