@@ -1,7 +1,11 @@
 <div  class="box">
   <ng-container *ngIf="stepContent==='mobile'">
-    …mobile
-    <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
+    <form action="#" class="form-container">
+      <p class="form-container-title">جهت ثبت سفارش ابتدا شماره تلفن خود را وارد کنید.</p>
+      <label class="form-container-txt" for="phone"><b>تلفن همراه</b></label>
+      <input class="form-container-input" type="text" id="phone" placeholder="تلفن همراه" required> 
+      <button class="form-container-btn" (click)="onActoinSelectStepNext('orderType')">بعدی</button>
+    </form>
   </ng-container>
   <ng-container *ngIf="stepContent==='orderType'">
     orderType
