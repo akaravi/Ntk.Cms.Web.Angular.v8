@@ -1,6 +1,7 @@
 .box{
     background-image: url('/assets/media/illustrations/dozzy-1/1-dark.png');
     background-repeat: no-repeat;
+    background-position: center;
     background-size:cover;
     background-color: white;
     box-shadow: 0px 0px 100px 20px black;
@@ -9,9 +10,18 @@
     margin: auto;
     border-radius: 10px;
     margin-top: 100px;
+    position: relative;
 }
 .form-container{
     padding:16px;
+    position: absolute;
+    color: #fff;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.13);
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px) ;
 }
 .form-container-input{
     padding: 15px;
@@ -19,6 +29,11 @@
     display: block;
     outline: none;
     border: none;
+    color: #fff;
+    background-color:rgba(255,255,255,0.07);
+    width: 100%;
+    font-size: 14px;
+    font-weight: 300;
 }
 .form-container-input:focus{
     outline: none;
