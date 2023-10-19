@@ -1,26 +1,43 @@
-<div  class="box">
-  <ng-container *ngIf="stepContent==='mobile'">
-    …mobile
-    <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
+<div class="box">
+
+
+  <!-- mobile -->
+  <ng-container *ngIf="stepContent==='mobile'" class="mobile">
+    <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
+    <label for="phoneid" class="mobile-lable">شماره تلفن</label>
+    <input type="number" id="phoneid" class="mobile-input">
+    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='orderType'">
-    orderType
-    <button (click)="onActoinSelectStepBefor('mobile')">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectTypeLandUse')">بعدی</button>
 
+
+  <!-- ordertype -->
+  <ng-container *ngIf="stepContent==='orderType'" class="ordertype">
+    <div class="ordertype-title">لطفا نوع ملک خود را مشخص نمایید</div>
+    <button class="ordertype-option1">می خواهم ملک بخرم</button>
+    <button class="ordertype-option2">می خواهم ملک اجاره کنم</button>
+    <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-buttonbefor">قبلی</button>
+    <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-buttonnext">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='selectTypeLandUse'">
-    selectTypeLandUse
 
-    <button (click)="onActoinSelectStepBefor('orderType')">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectTypeProperty')">بعدی</button>
 
+  <!-- selecttypelanduse -->
+  <ng-container *ngIf="stepContent==='selectTypeLandUse'" class="selecttypelanduse">
+    <div class="selecttypelanduse-title">لطفا نوع کاربردی ملک خود را مشخص نمایید</div>
+    <button class="selecttypelanduse-option1">مسکونی</button>
+    <button class="selecttypelanduse-option2">تجاری</button>
+    <button class="selecttypelanduse-option1">اداری</button>
+    <button (click)="onActoinSelectStepBefor('orderType')" class="selecttypelanduse-buttonbefor">قبلی</button>
+    <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-buttonnext">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='selectTypeProperty'">
-    selectTypeProperty
 
-    <button (click)="onActoinSelectStepBefor('selectTypeLandUse')">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectYear')">بعدی</button>
+
+  <!-- selecttypeproperty -->
+  <ng-container *ngIf="stepContent==='selectTypeProperty'" class="selecttypeproperty">
+    <div class="selecttypeproperty-title">لطفا نوع  ملک خود را مشخص نمایید</div>
+    <button class="selecttypeproperty-option1">آپارتمانی</button>
+    <button class="selecttypeproperty-option2">ویلایی</button>
+    <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-buttonbefor">قبلی</button>
+    <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-buttonnext">بعدی</button>
   </ng-container>
 
   <ng-container *ngIf="stepContent==='selectYear'">
