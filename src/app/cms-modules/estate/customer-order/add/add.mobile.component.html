@@ -1,7 +1,12 @@
-<div  class="box">
-  <ng-container *ngIf="stepContent==='mobile'">
-    …mobile
-    <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
+<div class="box">
+
+
+  <!-- mobile -->
+  <ng-container *ngIf="stepContent==='mobile'" class="mobile">
+    <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
+    <label for="phoneid" class="mobile-lable">شماره تلفن</label>
+    <input type="number" id="phoneid" class="mobile-input">
+    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
   </ng-container>
 
 
@@ -28,7 +33,7 @@
 
   <!-- selecttypeproperty -->
   <ng-container *ngIf="stepContent==='selectTypeProperty'" class="selecttypeproperty">
-    <div class="selecttypeproperty-title">لطفا نوع  ملک خود را مشخص نمایید</div>
+    <div class="selecttypeproperty-title">لطفا نوع ملک خود را مشخص نمایید</div>
     <button class="selecttypeproperty-option1">آپارتمانی</button>
     <button class="selecttypeproperty-option2">ویلایی</button>
     <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-buttonbefor">قبلی</button>
