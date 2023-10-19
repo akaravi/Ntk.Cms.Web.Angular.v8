@@ -1,78 +1,133 @@
 <div class="box">
-
-
   <!-- mobile -->
-  <ng-container *ngIf="stepContent==='mobile'" class="mobile">
-    <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
-    <label for="phoneid" class="mobile-lable">شماره تلفن</label>
-    <input type="number" id="phoneid" class="mobile-input">
-    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
+  <ng-container *ngIf="stepContent === 'mobile'" class="mobile">
+    <div class="container">
+    <form action="#" class="form-container">
+      <div class="form-wrapper">
+        <p class="mobile-title">
+          برای ثبت سفارش، ابتدا شماره تلفن خود را وارد کنید.
+        </p>
+        <div class="form-input-container">
+          <label for="phoneid" class="mobile-lable">شماره تلفن</label>
+          <input type="number" id="phoneid" class="mobile-input" />
+        </div>
+        <button
+          (click)="onActoinSelectStepNext('orderType')"
+          class="mobile-buttonnext"
+        >
+          <div class="btn-txticon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="step-arrow">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </div>
+        </button>
+      </div>
+    </form>
+  </div>
   </ng-container>
-
 
   <!-- ordertype -->
-  <ng-container *ngIf="stepContent==='orderType'" class="ordertype">
-    <div class="ordertype-title">لطفا نوع ملک خود را مشخص نمایید</div>
-    <button class="ordertype-option1">می خواهم ملک بخرم</button>
-    <button class="ordertype-option2">می خواهم ملک اجاره کنم</button>
-    <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-buttonnext">بعدی</button>
+  <ng-container *ngIf="stepContent === 'orderType'" class="ordertype">
+    <div class="ordertype-title">لطفا نوع ملک خود را مشخص نمایید.</div>
+    <button class="ordertype-option1">می خواهم ملک بخرم.</button>
+    <button class="ordertype-option2">می خواهم ملک اجاره کنم.</button>
+    <button
+      (click)="onActoinSelectStepBefor('mobile')"
+      class="ordertype-buttonbefor"
+    >
+      قبلی
+    </button>
+    <button
+      (click)="onActoinSelectStepNext('selectTypeLandUse')"
+      class="ordertype-buttonnext"
+    >
+      بعدی
+    </button>
   </ng-container>
 
-
   <!-- selecttypelanduse -->
-  <ng-container *ngIf="stepContent==='selectTypeLandUse'" class="selecttypelanduse">
-    <div class="selecttypelanduse-title">لطفا نوع کاربردی ملک خود را مشخص نمایید</div>
+  <ng-container
+    *ngIf="stepContent === 'selectTypeLandUse'"
+    class="selecttypelanduse"
+  >
+    <div class="selecttypelanduse-title">
+      لطفا نوع کاربردی ملک خود را مشخص نمایید
+    </div>
     <button class="selecttypelanduse-option1">مسکونی</button>
     <button class="selecttypelanduse-option2">تجاری</button>
     <button class="selecttypelanduse-option1">اداری</button>
-    <button (click)="onActoinSelectStepBefor('orderType')" class="selecttypelanduse-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-buttonnext">بعدی</button>
+    <button
+      (click)="onActoinSelectStepBefor('orderType')"
+      class="selecttypelanduse-buttonbefor"
+    >
+      قبلی
+    </button>
+    <button
+      (click)="onActoinSelectStepNext('selectTypeProperty')"
+      class="selecttypelanduse-buttonnext"
+    >
+      بعدی
+    </button>
   </ng-container>
 
-
   <!-- selecttypeproperty -->
-  <ng-container *ngIf="stepContent==='selectTypeProperty'" class="selecttypeproperty">
+  <ng-container
+    *ngIf="stepContent === 'selectTypeProperty'"
+    class="selecttypeproperty"
+  >
     <div class="selecttypeproperty-title">لطفا نوع ملک خود را مشخص نمایید</div>
     <button class="selecttypeproperty-option1">آپارتمانی</button>
     <button class="selecttypeproperty-option2">ویلایی</button>
-    <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-buttonnext">بعدی</button>
+    <button
+      (click)="onActoinSelectStepBefor('selectTypeLandUse')"
+      class="selecttypeproperty-buttonbefor"
+    >
+      قبلی
+    </button>
+    <button
+      (click)="onActoinSelectStepNext('selectYear')"
+      class="selecttypeproperty-buttonnext"
+    >
+      بعدی
+    </button>
   </ng-container>
 
-  <ng-container *ngIf="stepContent==='selectYear'">
+  <ng-container *ngIf="stepContent === 'selectYear'">
     selectYear
 
-    <button (click)="onActoinSelectStepBefor('selectTypeProperty')">قبلی</button>
+    <button (click)="onActoinSelectStepBefor('selectTypeProperty')">
+      قبلی
+    </button>
     <button (click)="onActoinSelectStepNext('result1')">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='result1'">
+  <ng-container *ngIf="stepContent === 'result1'">
     result1
 
     <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
     <button (click)="onActoinSubmit()">ثبت</button>
     <button (click)="onActoinSelectStepNext('selectLocation')">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='selectLocation'">
+  <ng-container *ngIf="stepContent === 'selectLocation'">
     selectLocation
 
     <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
     <button (click)="onActoinSelectStepNext('result2')">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='result2'">
+  <ng-container *ngIf="stepContent === 'result2'">
     result2
 
     <button (click)="onActoinSelectStepBefor('selectLocation')">قبلی</button>
     <button (click)="onActoinSubmit()">ثبت</button>
     <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='selectPrice'">
+  <ng-container *ngIf="stepContent === 'selectPrice'">
     selectPrice
 
     <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
     <button (click)="onActoinSelectStepNext('result3')">بعدی</button>
   </ng-container>
-  <ng-container *ngIf="stepContent==='result3'">
+  <ng-container *ngIf="stepContent === 'result3'">
     result3
 
     <button (click)="onActoinSelectStepBefor('selectPrice')">قبلی</button>
