@@ -6,7 +6,9 @@
     <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
     <label for="1" class="mobile-lable">شماره تلفن</label>
     <input type="number" id="1" class="mobile-input">
-    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
+    <div class="mobile-box">
+      <button (click)="onActoinSelectStepNext('orderType')" class="mobile-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -15,8 +17,10 @@
     <div class="ordertype-title">لطفا نوع ملک خود را مشخص نمایید</div>
     <button class="ordertype-option1">می خواهم ملک بخرم</button>
     <button class="ordertype-option2">می خواهم ملک اجاره کنم</button>
-    <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-buttonnext">بعدی</button>
+    <div class="ordertype-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -26,8 +30,11 @@
     <button class="selecttypelanduse-option1">مسکونی</button>
     <button class="selecttypelanduse-option2">تجاری</button>
     <button class="selecttypelanduse-option1">اداری</button>
-    <button (click)="onActoinSelectStepBefor('orderType')" class="selecttypelanduse-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-buttonnext">بعدی</button>
+    <div class="selecttypelanduse-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="selecttypelanduse-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')"
+        class="selecttypelanduse-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -36,8 +43,11 @@
     <div class="selecttypeproperty-title">لطفا نوع ملک خود را مشخص نمایید</div>
     <button class="selecttypeproperty-option1">آپارتمانی</button>
     <button class="selecttypeproperty-option2">ویلایی</button>
-    <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-buttonnext">بعدی</button>
+    <div class="selecttypeproperty-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="selecttypeproperty-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')"
+        class="selecttypeproperty-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -47,8 +57,10 @@
     <input type="number" id="1" class="selectyear-input1">
     <label for="2" class="selectyear-lable2">پارتیشن</label>
     <input type="number" id="2" class="selectyear-input2">
-    <button (click)="onActoinSelectStepBefor('selectTypeProperty')" class="selectyear-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('result1')" class="selectyear-buttonnext">بعدی</button>
+    <div class="selectyear-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="selectyear-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="selectyear-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -56,9 +68,11 @@
   <ng-container *ngIf="stepContent==='result1'" class="result1">
     <div class="result1-title">نتیجه</div>
     <div class="result1-result">تعداد ملک انتخابی شما</div>
-    <button (click)="onActoinSelectStepBefor('selectYear')" class="result1-buttonbefor">قبلی</button>
-    <button (click)="onActoinSubmit()">ثبت</button>
-    <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-buttonnext">بعدی</button>
+    <div class="result1-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="result1-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSubmit()" class="result1-box-submit">ثبت</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="result1-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -67,8 +81,10 @@
     <div class="selectlocation-title">لطفا منطقه مورد نظر خود را مشخص کنید</div>
     <label for="1" class="selectlocation-lable1">منطقه</label>
     <input type="number" id="1" class="selectlocation-input1">
-    <button (click)="onActoinSelectStepBefor('selectYear')" class="selectLocation-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('result2')" class="selectLocation-buttonnext">بعدی</button>
+    <div class="selectlocation-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="selectlocation-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="selectlocation-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -76,9 +92,11 @@
   <ng-container *ngIf="stepContent==='result2'" class="result2">
     <div class="result2-title">نتیجه</div>
     <div class="result2-result">تعداد ملک انتخابی شما</div>
-    <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-buttonbefor">قبلی</button>
-    <button (click)="onActoinSubmit()" class="result2-buttonsubmit">ثبت</button>
-    <button (click)="onActoinSelectStepNext('orderType')" class="result2-buttonnext">بعدی</button>
+    <div class="result2-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="result2-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSubmit()" class="result2-box-submit">ثبت</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="result2-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -89,8 +107,10 @@
     <input type="number" id="1" class="selectprice-input1">
     <label for="2" class="selectprice-lable2">حداکثر قیمت</label>
     <input type="number" id="2" class="selectprice-input2">
-    <button (click)="onActoinSelectStepBefor('selectYear')" class="selectPrice-buttonbefor">قبلی</button>
-    <button (click)="onActoinSelectStepNext('result3')" class="selectPrice-buttonnext">بعدی</button>
+    <div class="selectprice-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="selectprice-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="selectprice-box-buttonnext">بعدی</button>
+    </div>
   </ng-container>
 
 
@@ -98,8 +118,10 @@
   <ng-container *ngIf="stepContent==='result3'" class="result3">
     <div class="result3-title">نتیجه</div>
     <div class="result3-result">تعداد ملک انتخابی شما</div>
-    <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-buttonbefor">قبلی</button>
-    <button (click)="onActoinSubmit()" class="result3-buttonsubmit">ثبت</button>
+    <div class="result3-box">
+      <button (click)="onActoinSelectStepBefor('mobile')" class="result3-box-buttonbefor">قبلی</button>
+      <button (click)="onActoinSubmit()" class="result3-box-buttonsubmit">ثبت</button>
+    </div>
   </ng-container>
 
 
