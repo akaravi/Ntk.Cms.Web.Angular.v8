@@ -27,13 +27,6 @@
     </form>
   </div>
 
-  <ng-container *ngIf="stepContent==='mobile'" class="mobile">
-    <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
-    <label for="1" class="mobile-lable">شماره تلفن</label>
-    <input type="number" id="1" class="mobile-input">
-    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
-  </ng-container>
-
   <!-- ordertype -->
   <ng-container *ngIf="stepContent === 'orderType'" class="ordertype">
     <div class="ordertype-title">لطفا نوع ملک خود را مشخص نمایید.</div>
