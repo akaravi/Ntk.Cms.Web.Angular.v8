@@ -1,11 +1,26 @@
 <div class="box">
-  <!-- mobile -->
-  <ng-container *ngIf="stepContent==='mobile'" class="mobile">
-    <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
-    <label for="1" class="mobile-lable">شماره تلفن</label>
-    <input type="number" id="1" class="mobile-input">
-    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
-  </ng-container>
+  <div class="box-filter">
+
+
+    <!-- mobile -->
+    <ng-container *ngIf="stepContent==='mobile'" class="mobile">
+      <div class="mobile-header">
+        <div class="mobile-header-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
+        <label for="1" class="mobile-header-lable">شماره تلفن</label>
+        <input type="number" id="1" class="mobile-header-input">
+      </div>
+      <div class="mobile-box">
+        <button (click)="onActoinSelectStepNext('orderType')" class="mobile-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- mobile -->
+
 
     <!-- ordertype -->
     <ng-container *ngIf="stepContent==='orderType'" class="ordertype">
@@ -255,5 +270,5 @@
     <!-- result3 -->
 
 
+  </div>
 </div>
->>>>>>> 524a00ee4a296ed77763ec399ef5989bf14aaf8e
