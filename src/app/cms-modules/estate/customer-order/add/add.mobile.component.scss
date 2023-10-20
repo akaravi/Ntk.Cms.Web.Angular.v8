@@ -60,6 +60,7 @@
 .selectlocation-box-buttonnext,
 .selectprice-box-buttonnext {
     width: 45%;
+    height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     border: none;
@@ -73,6 +74,7 @@
 .selectlocation-box-buttonbefor,
 .selectprice-box-buttonbefor {
     width: 45%;
+    height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     border: none;
@@ -81,6 +83,7 @@
 
 .mobile-box-buttonnext {
     width: 90%;
+    height: 40%;
     margin-left: 5%;
     margin-right: 5%;
     border: none;
@@ -91,6 +94,7 @@
 .result1-box-buttonbefor,
 .result1-box-submit {
     width: 30%;
+    height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
     border: none;
@@ -101,6 +105,7 @@
 .result2-box-buttonbefor,
 .result2-box-submit {
     width: 30%;
+    height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
     border: none;
@@ -110,19 +115,34 @@
 .result3-box-buttonbefor,
 .result3-box-submit {
     width: 45%;
+    height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     border: none;
     border-radius: 10px;
 }
 
-// tag-style
-button {
-    border: none;
+// class-style
+.mobile-header-title {
+    text-align: center;
 }
 
+.mobile-header-lable {}
+
+.mobile-header-input {}
+
+// tag-style
 input {
+    width: 80%;
+    height: 10%;
+    border-radius: 10px;
+}
+
+button {
     border: none;
+    width: 80%;
+    height: 10%;
+    border-radius: 10px;
 }
 
 svg {
@@ -130,7 +150,11 @@ svg {
     height: 15px;
 }
 
+button:hover {
+    background-color: orange;
+    color: white;
+}
+
 input:focus {
-    border: 3px solid red;
-    color: blue;
+    border: 3px solid black;
 }
