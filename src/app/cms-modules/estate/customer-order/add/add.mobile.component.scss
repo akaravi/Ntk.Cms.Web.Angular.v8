@@ -21,6 +21,22 @@
     backdrop-filter: blur(2px);
 }
 
+.mobile-header,
+.ordertype-header,
+.selecttypelanduse-header,
+.selecttypeproperty-header,
+.selectyear-header,
+.result1-header,
+.selectlocation-header,
+.result2-header,
+.selectprice-header,
+.result3-header {
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 .mobile-box,
 .ordertype-box,
 .selecttypelanduse-box,
@@ -32,6 +48,7 @@
 .selectprice-box,
 .result3-box {
     width: 90%;
+    height: 20%;
     margin-left: 5%;
     margin-right: 5%;
 }
@@ -111,4 +128,9 @@ input {
 svg {
     width: 15px;
     height: 15px;
+}
+
+input:focus {
+    border: 3px solid red;
+    color: blue;
 }
