@@ -1,145 +1,274 @@
 <div class="box">
-  <!-- mobile -->
-<<<<<<< HEAD
-  <ng-container *ngIf="stepContent === 'mobile'" class="mobile">
-    <div class="container">
-    <form action="#" class="form-container">
-      <div class="form-wrapper">
-        <p class="mobile-title">
-          برای ثبت سفارش، ابتدا شماره تلفن خود را وارد کنید.
-        </p>
-        <div class="form-input-container">
-          <label for="phoneid" class="mobile-lable">شماره تلفن</label>
-          <input type="number" id="phoneid" class="mobile-input" />
-        </div>
-        <button
-          (click)="onActoinSelectStepNext('orderType')"
-          class="mobile-buttonnext"
-        >
-          <div class="btn-txticon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="step-arrow">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>بعدی</span>
-          </div>
+  <div class="box-filter">
+
+
+    <!-- mobile -->
+    <ng-container *ngIf="stepContent==='mobile'" class="mobile">
+      <div class="mobile-header">
+        <div class="mobile-header-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
+        <label for="1" class="mobile-header-lable">شماره تلفن</label>
+        <input type="number" id="1" class="mobile-header-input">
+      </div>
+      <div class="mobile-box">
+        <button (click)="onActoinSelectStepNext('orderType')" class="mobile-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
         </button>
       </div>
-    </form>
+    </ng-container>
+    <!-- mobile -->
+
+
+    <!-- ordertype -->
+    <ng-container *ngIf="stepContent==='orderType'" class="ordertype">
+      <div class="ordertype-header">
+        <div class="ordertype-header-title">لطفا نوع ملک خود را مشخص نمایید</div>
+        <button class="ordertype-header-option1">می خواهم ملک بخرم</button>
+        <button class="ordertype-header-option2">می خواهم ملک اجاره کنم</button>
+      </div>
+      <div class="ordertype-box">
+        <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- ordertype -->
+
+
+    <!-- selecttypelanduse -->
+    <ng-container *ngIf="stepContent==='selectTypeLandUse'" class="selecttypelanduse">
+      <div class="selecttypelanduse-header">
+        <div class="selecttypelanduse-header-title">لطفا نوع کاربردی ملک خود را مشخص نمایید</div>
+        <button class="selecttypelanduse-header-option1">مسکونی</button>
+        <button class="selecttypelanduse-header-option2">تجاری</button>
+        <button class="selecttypelanduse-header-option1">اداری</button>
+      </div>
+      <div class="selecttypelanduse-box">
+        <button (click)="onActoinSelectStepBefor('orderType')" class="selecttypelanduse-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- selecttypelanduse -->
+
+
+    <!-- selecttypeproperty -->
+    <ng-container *ngIf="stepContent==='selectTypeProperty'" class="selecttypeproperty">
+      <div class="selecttypeproperty-header">
+        <div class="selecttypeproperty-header-title">لطفا نوع ملک خود را مشخص نمایید</div>
+        <button class="selecttypeproperty-header-option1">آپارتمانی</button>
+        <button class="selecttypeproperty-header-option2">ویلایی</button>
+      </div>
+      <div class="selecttypeproperty-box">
+        <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg></button>
+        <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- selecttypeproperty -->
+
+
+    <!-- selectyear -->
+    <ng-container *ngIf="stepContent==='selectYear'" class="selectyear">
+      <div class="selectyear-header">
+        <label for="1" class="selectyear-header-lable1">سال ساخت </label>
+        <input type="number" id="1" class="selectyear-header-input1">
+        <label for="2" class="selectyear-header-lable2">پارتیشن</label>
+        <input type="number" id="2" class="selectyear-header-input2">
+      </div>
+      <div class="selectyear-box">
+        <button (click)="onActoinSelectStepBefor('selectTypeProperty')" class="selectyear-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSelectStepNext('result1')" class="selectyear-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- selectyear -->
+
+
+    <!-- result1 -->
+    <ng-container *ngIf="stepContent==='result1'" class="result1">
+      <div class="result1-header">
+        <div class="result1-header-title">نتیجه</div>
+        <div class="result1-header-result">تعداد ملک انتخابی شما</div>
+      </div>
+      <div class="result1-box">
+        <button (click)="onActoinSelectStepBefor('selectYear')" class="result1-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSubmit()" class="result1-box-submit">ثبت</button>
+        <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- result1 -->
+
+
+    <!-- selectlocation -->
+    <ng-container *ngIf="stepContent==='selectLocation'" class="selectlocation">
+      <div class="selectlocation-header">
+        <div class="selectlocation-header-title">لطفا منطقه مورد نظر خود را مشخص کنید</div>
+        <label for="1" class="selectlocation-header-lable1">منطقه</label>
+        <input type="number" id="1" class="selectlocation-header-input1">
+      </div>
+      <div class="selectlocation-box">
+        <button (click)="onActoinSelectStepBefor('result1')" class="selectlocation-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- selectlocation -->
+
+
+    <!-- result2 -->
+    <ng-container *ngIf="stepContent==='result2'" class="result2">
+      <div class="result2-header">
+        <div class="result2-header-title">نتیجه</div>
+        <div class="result2-header-result">تعداد ملک انتخابی شما</div>
+      </div>
+      <div class="result2-box">
+        <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSubmit()" class="result2-box-submit">ثبت</button>
+        <button (click)="onActoinSelectStepNext('selectPrice')" class="result2-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- result2 -->
+
+
+    <!-- selectprice -->
+    <ng-container *ngIf="stepContent==='selectPrice'" class="selectprice">
+      <div class="selectprice-header">
+        <div>لطفا قیمت ملک خود را وارد نمایید</div>
+        <label for="1" class="selectprice-header-lable1">حداقل قیمت</label>
+        <input type="number" id="1" class="selectprice-header-input1">
+        <label for="2" class="selectprice-header-lable2">حداکثر قیمت</label>
+        <input type="number" id="2" class="selectprice-header-input2">
+      </div>
+      <div class="selectprice-box">
+        <button (click)="onActoinSelectStepBefor('result2')" class="selectprice-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSelectStepNext('result3')" class="selectprice-box-buttonnext">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+          <span>بعدی</span>
+        </button>
+      </div>
+    </ng-container>
+    <!-- selectprice -->
+
+
+    <!-- result3 -->
+    <ng-container *ngIf="stepContent==='result3'" class="result3">
+      <div class="result3-header">
+        <div class="result3-header-title">نتیجه</div>
+        <div class="result3-header-result">تعداد ملک انتخابی شما</div>
+      </div>
+      <div class="result3-box">
+        <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-box-buttonbefor">
+          <span>قبلی</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </button>
+        <button (click)="onActoinSubmit()" class="result3-box-submit">ثبت</button>
+      </div>
+    </ng-container>
+    <!-- result3 -->
+
+
   </div>
-=======
-  <ng-container *ngIf="stepContent==='mobile'" class="mobile">
-    <div class="mobile-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
-    <label for="1" class="mobile-lable">شماره تلفن</label>
-    <input type="number" id="1" class="mobile-input">
-    <button (click)="onActoinSelectStepNext('orderType')" class="mobile-buttonnext">بعدی</button>
->>>>>>> 524a00ee4a296ed77763ec399ef5989bf14aaf8e
-  </ng-container>
-
-  <!-- ordertype -->
-  <ng-container *ngIf="stepContent === 'orderType'" class="ordertype">
-    <div class="ordertype-title">لطفا نوع ملک خود را مشخص نمایید.</div>
-    <button class="ordertype-option1">می خواهم ملک بخرم.</button>
-    <button class="ordertype-option2">می خواهم ملک اجاره کنم.</button>
-    <button
-      (click)="onActoinSelectStepBefor('mobile')"
-      class="ordertype-buttonbefor"
-    >
-      قبلی
-    </button>
-    <button
-      (click)="onActoinSelectStepNext('selectTypeLandUse')"
-      class="ordertype-buttonnext"
-    >
-      بعدی
-    </button>
-  </ng-container>
-
-  <!-- selecttypelanduse -->
-  <ng-container
-    *ngIf="stepContent === 'selectTypeLandUse'"
-    class="selecttypelanduse"
-  >
-    <div class="selecttypelanduse-title">
-      لطفا نوع کاربردی ملک خود را مشخص نمایید
-    </div>
-    <button class="selecttypelanduse-option1">مسکونی</button>
-    <button class="selecttypelanduse-option2">تجاری</button>
-    <button class="selecttypelanduse-option1">اداری</button>
-    <button
-      (click)="onActoinSelectStepBefor('orderType')"
-      class="selecttypelanduse-buttonbefor"
-    >
-      قبلی
-    </button>
-    <button
-      (click)="onActoinSelectStepNext('selectTypeProperty')"
-      class="selecttypelanduse-buttonnext"
-    >
-      بعدی
-    </button>
-  </ng-container>
-
-  <!-- selecttypeproperty -->
-  <ng-container
-    *ngIf="stepContent === 'selectTypeProperty'"
-    class="selecttypeproperty"
-  >
-    <div class="selecttypeproperty-title">لطفا نوع ملک خود را مشخص نمایید</div>
-    <button class="selecttypeproperty-option1">آپارتمانی</button>
-    <button class="selecttypeproperty-option2">ویلایی</button>
-    <button
-      (click)="onActoinSelectStepBefor('selectTypeLandUse')"
-      class="selecttypeproperty-buttonbefor"
-    >
-      قبلی
-    </button>
-    <button
-      (click)="onActoinSelectStepNext('selectYear')"
-      class="selecttypeproperty-buttonnext"
-    >
-      بعدی
-    </button>
-  </ng-container>
-
-  <ng-container *ngIf="stepContent==='selectYear'">
-    selectYear
-
-    <button (click)="onActoinSelectStepBefor('selectTypeProperty')">قبلی</button>
-    <button (click)="onActoinSelectStepNext('result1')">بعدی</button>
-  </ng-container>
-  <ng-container *ngIf="stepContent==='result1'">
-    result1
-
-    <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
-    <button (click)="onActoinSubmit()">ثبت</button>
-    <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-buttonnext">بعدی</button>
-  </ng-container>
-  <ng-container *ngIf="stepContent==='selectLocation'">
-    selectLocation
-
-    <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
-    <button (click)="onActoinSelectStepNext('result2')">بعدی</button>
-  </ng-container>
-  <ng-container *ngIf="stepContent==='result2'">
-    result2
-
-    <button (click)="onActoinSelectStepBefor('selectLocation')">قبلی</button>
-    <button (click)="onActoinSubmit()">ثبت</button>
-    <button (click)="onActoinSelectStepNext('orderType')">بعدی</button>
-  </ng-container>
-  <ng-container *ngIf="stepContent==='selectPrice'">
-    selectPrice
-
-    <button (click)="onActoinSelectStepBefor('selectYear')">قبلی</button>
-    <button (click)="onActoinSelectStepNext('result3')">بعدی</button>
-  </ng-container>
-  <ng-container *ngIf="stepContent==='result3'">
-    result3
-
-    <button (click)="onActoinSelectStepBefor('selectPrice')">قبلی</button>
-    <button (click)="onActoinSubmit()">ثبت</button>
-  </ng-container>
-
-
 </div>
->>>>>>> 524a00ee4a296ed77763ec399ef5989bf14aaf8e
