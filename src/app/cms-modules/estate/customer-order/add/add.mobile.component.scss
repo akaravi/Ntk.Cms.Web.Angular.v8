@@ -1,0 +1,136 @@
+.box {
+    background-image: url('https://wallpaperset.com/w/full/1/5/1/64893.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-shadow: 0px 0px 100px 20px black;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    border-radius: 10px;
+    margin-top: 100px;
+}
+
+.box-filter {
+    width: 90%;
+    height: 100%;
+    margin: 5%;
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.mobile-header,
+.ordertype-header,
+.selecttypelanduse-header,
+.selecttypeproperty-header,
+.selectyear-header,
+.result1-header,
+.selectlocation-header,
+.result2-header,
+.selectprice-header,
+.result3-header {
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.mobile-box,
+.ordertype-box,
+.selecttypelanduse-box,
+.selecttypeproperty-box,
+.selectyear-box,
+.result1-box,
+.selectlocation-box,
+.result2-box,
+.selectprice-box,
+.result3-box {
+    width: 90%;
+    height: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.ordertype-box-buttonnext,
+.selecttypelanduse-box-buttonnext,
+.selecttypeproperty-box-buttonnext,
+.selectyear-box-buttonnext,
+.selectlocation-box-buttonnext,
+.selectprice-box-buttonnext {
+    width: 45%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border: none;
+    border-radius: 10px;
+}
+
+.ordertype-box-buttonbefor,
+.selecttypelanduse-box-buttonbefor,
+.selecttypeproperty-box-buttonbefor,
+.selectyear-box-buttonbefor,
+.selectlocation-box-buttonbefor,
+.selectprice-box-buttonbefor {
+    width: 45%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border: none;
+    border-radius: 10px;
+}
+
+.mobile-box-buttonnext {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: none;
+    border-radius: 10px;
+}
+
+.result1-box-buttonnext,
+.result1-box-buttonbefor,
+.result1-box-submit {
+    width: 30%;
+    margin-left: 1.6%;
+    margin-right: 1.6%;
+    border: none;
+    border-radius: 10px;
+}
+
+.result2-box-buttonnext,
+.result2-box-buttonbefor,
+.result2-box-submit {
+    width: 30%;
+    margin-left: 1.6%;
+    margin-right: 1.6%;
+    border: none;
+    border-radius: 10px;
+}
+
+.result3-box-buttonbefor,
+.result3-box-submit {
+    width: 45%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border: none;
+    border-radius: 10px;
+}
+
+// tag-style
+button {
+    border: none;
+}
+
+input {
+    border: none;
+}
+
+svg {
+    width: 15px;
+    height: 15px;
+}
+
+input:focus {
+    border: 3px solid red;
+    color: blue;
+}
