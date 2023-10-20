@@ -416,10 +416,10 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     }
     if (step === 'result1' || step === 'result2' || step === 'result3') {
       if (!this.dataModel.id || this.dataModel.id.length === 0) {
-        this.DataAddContent();
+        // this.DataAddContent();
       }
       else {
-        this.DataEditContent();
+        // this.DataEditContent();
       }
     }
     this.stepContent = step;
