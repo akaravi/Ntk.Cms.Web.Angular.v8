@@ -5,9 +5,9 @@
     <!-- mobile -->
     <ng-container *ngIf="stepContent==='mobile'" class="mobile">
       <div class="mobile-header">
-        <div class="mobile-header-title">لطفا شماره تلفن همراه خود را وارد نمایید</div>
+        <div class="mobile-header-title">برای ثبت سفارش ابتدا شماره تلفن خود را وارد کنید.</div>
         <label for="1" class="mobile-header-lable">شماره تلفن</label>
-        <input type="number" id="1" class="mobile-header-input">
+        <input type="text" id="1" class="mobile-header-input">
       </div>
       <div class="mobile-box">
         <button (click)="onActoinSelectStepNext('orderType')" class="mobile-box-buttonnext">

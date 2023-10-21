@@ -124,18 +124,24 @@
   
   // class-style
   .mobile-header-title {
-    text-align: center;
+   color: #fff;
   }
   
-  .mobile-header-lable {}
+  .mobile-header-lable {
+    display: block;
+    color: #fff;
+  }
   
-  .mobile-header-input {}
+  .mobile-header-input {
+    text-align: center;
+    color: #fff;
+  }
   
   // tag-style
   input {
     width: 80%;
     height: 10%;
-    border-radius: 10px;
+    border-radius: 16px;
   }
   
   button {
