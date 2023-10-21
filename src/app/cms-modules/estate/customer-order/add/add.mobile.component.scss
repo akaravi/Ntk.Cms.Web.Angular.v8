@@ -9,6 +9,7 @@
     margin: auto;
     border-radius: 10px;
     margin-top: 100px;
+    text-align: center;
 }
 
 .box-filter {
@@ -123,13 +124,14 @@
 }
 
 // class-style
-.mobile-header-title {
-    text-align: center;
-}
+.mobile-header-title {}
 
 .mobile-header-lable {}
 
-.mobile-header-input {}
+.mobile-header-input {
+    margin-top: 50%;
+
+}
 
 // tag-style
 input {
@@ -156,5 +158,5 @@ button:hover {
 }
 
 input:focus {
-    border: 3px solid black;
+    border: none;
 }
