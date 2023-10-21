@@ -1,8 +1,4 @@
 .box {
-    background-image: url('/assets/media/background/skyscraper.webp');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     box-shadow: 0px 0px 100px 20px black;
     width: 80%;
     height: 80%;
@@ -10,16 +6,19 @@
     border-radius: 10px;
     margin-top: 100px;
     text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .box-filter {
-  width: 90%;
-  height: 100%;
-  margin: 5%;
-  background-color: rgba(255, 255, 255, 0.13);
-  border: 2px solid rgba(255, 255, 255, 0.13);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
+    width: 90%;
+    height: 100%;
+    margin: 5%;
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
 }
 
 .mobile,
@@ -46,34 +45,35 @@
 .result2-header,
 .selectprice-header,
 .result3-header {
-  width: 90%;
-  height: 80%;
-  margin-left: 5%;
-  margin-right: 5%;
+    width: 90%;
+    height: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.mobile-box,
-.ordertype-box,
-.selecttypelanduse-box,
-.selecttypeproperty-box,
-.selectyear-box,
-.result1-box,
-.selectlocation-box,
-.result2-box,
-.selectprice-box,
-.result3-box {
+.mobile-footer,
+.ordertype-footer,
+.selecttypelanduse-footer,
+.selecttypeproperty-footer,
+.selectyear-footer,
+.result1-footer,
+.selectlocation-footer,
+.result2-footer,
+.selectprice-footer,
+.result3-footer {
     width: 90%;
     height: 20%;
     margin-left: 5%;
     margin-right: 5%;
 }
 
-.ordertype-box-buttonnext,
-.selecttypelanduse-box-buttonnext,
-.selecttypeproperty-box-buttonnext,
-.selectyear-box-buttonnext,
-.selectlocation-box-buttonnext,
-.selectprice-box-buttonnext {
+.ordertype-footer-buttonnext,
+.selecttypelanduse-footer-buttonnext,
+.selecttypelanduse-bofooterx-buttonnext,
+.selecttypeproperty-footer-buttonnext,
+.selectyear-footer-buttonnext,
+.selectlocation-footer-buttonnext,
+.selectprice-footer-buttonnext {
     width: 45%;
     height: 40%;
     margin-left: 2.5%;
@@ -82,12 +82,12 @@
     border-radius: 10px;
 }
 
-.ordertype-box-buttonbefor,
-.selecttypelanduse-box-buttonbefor,
-.selecttypeproperty-box-buttonbefor,
-.selectyear-box-buttonbefor,
-.selectlocation-box-buttonbefor,
-.selectprice-box-buttonbefor {
+.ordertype-footer-buttonbefor,
+.selecttypelanduse-footer-buttonbefor,
+.selecttypeproperty-footer-buttonbefor,
+.selectyear-footer-buttonbefor,
+.selectlocation-footer-buttonbefor,
+.selectprice-footer-buttonbefor {
     width: 45%;
     height: 40%;
     margin-left: 2.5%;
@@ -96,7 +96,7 @@
     border-radius: 10px;
 }
 
-.mobile-box-buttonnext {
+.mobile-footer-buttonnext {
     width: 90%;
     height: 40%;
     margin-left: 5%;
@@ -105,9 +105,9 @@
     border-radius: 10px;
 }
 
-.result1-box-buttonnext,
-.result1-box-buttonbefor,
-.result1-box-submit {
+.result1-footer-buttonnext,
+.result1-footer-buttonbefor,
+.result1-footer-submit {
     width: 30%;
     height: 40%;
     margin-left: 1.6%;
@@ -116,9 +116,9 @@
     border-radius: 10px;
 }
 
-.result2-box-buttonnext,
-.result2-box-buttonbefor,
-.result2-box-submit {
+.result2-footer-buttonnext,
+.result2-footer-buttonbefor,
+.result2-footer-submit {
     width: 30%;
     height: 40%;
     margin-left: 1.6%;
@@ -127,8 +127,8 @@
     border-radius: 10px;
 }
 
-.result3-box-buttonbefor,
-.result3-box-submit {
+.result3-footer-buttonbefor,
+.result3-footer-submit {
     width: 45%;
     height: 40%;
     margin-left: 2.5%;
@@ -142,31 +142,31 @@
 
 // tag-style
 input {
-  width: 80%;
-  height: 10%;
-  border-radius: 10px;
+    width: 80%;
+    height: 10%;
+    border-radius: 10px;
 }
 
 button {
-  border: none;
-  width: 80%;
-  height: 10%;
-  border-radius: 10px;
+    border: none;
+    width: 80%;
+    height: 10%;
+    border-radius: 10px;
 }
 
 svg {
-  width: 15px;
-  height: 15px;
+    width: 15px;
+    height: 15px;
 }
 
 button:hover {
-  background-color: orange;
-  color: white;
+    background-color: orange;
+    color: white;
 }
 
 input:focus {
-  border: none;
-  outline: none;
+    border: none;
+    outline: none;
 }
 
 // background
