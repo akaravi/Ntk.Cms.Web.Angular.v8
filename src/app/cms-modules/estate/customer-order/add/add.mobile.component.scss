@@ -1,5 +1,5 @@
 .box {
-    background-image: url('https://wallpaperset.com/w/full/1/5/1/64893.jpg');
+    background-image: url('/assets/media/background/skyscraper.webp');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -124,14 +124,7 @@
 }
 
 // class-style
-.mobile-header-title {}
 
-.mobile-header-lable {}
-
-.mobile-header-input {
-    margin-top: 50%;
-
-}
 
 // tag-style
 input {
@@ -159,4 +152,5 @@ button:hover {
 
 input:focus {
     border: none;
+    outline: none;
 }
