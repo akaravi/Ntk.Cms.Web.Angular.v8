@@ -8,10 +8,17 @@
     height: 80%;
     margin: auto;
     border-radius: 10px;
-    margin-top: 99px;
+    margin-top: 100px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .box-filter {
+=========
+    text-align: center;
+}
+
+.box-filter {
+>>>>>>>>> Temporary merge branch 2
     width: 90%;
     height: 100%;
     margin: 5%;
@@ -19,6 +26,7 @@
     border: 2px solid rgba(255, 255, 255, 0.13);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(2px);
+<<<<<<<<< Temporary merge branch 1
   }
   
   .mobile-header,
@@ -31,10 +39,25 @@
   .result2-header,
   .selectprice-header,
   .result3-header {
+=========
+}
+
+.mobile-header,
+.ordertype-header,
+.selecttypelanduse-header,
+.selecttypeproperty-header,
+.selectyear-header,
+.result1-header,
+.selectlocation-header,
+.result2-header,
+.selectprice-header,
+.result3-header {
+>>>>>>>>> Temporary merge branch 2
     width: 90%;
     height: 80%;
     margin-left: 5%;
     margin-right: 5%;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .mobile-box,
@@ -47,10 +70,25 @@
   .result2-box,
   .selectprice-box,
   .result3-box {
+=========
+}
+
+.mobile-box,
+.ordertype-box,
+.selecttypelanduse-box,
+.selecttypeproperty-box,
+.selectyear-box,
+.result1-box,
+.selectlocation-box,
+.result2-box,
+.selectprice-box,
+.result3-box {
+>>>>>>>>> Temporary merge branch 2
     width: 90%;
     height: 20%;
     margin-left: 5%;
     margin-right: 5%;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .ordertype-box-buttonnext,
@@ -59,12 +97,23 @@
   .selectyear-box-buttonnext,
   .selectlocation-box-buttonnext,
   .selectprice-box-buttonnext {
+=========
+}
+
+.ordertype-box-buttonnext,
+.selecttypelanduse-box-buttonnext,
+.selecttypeproperty-box-buttonnext,
+.selectyear-box-buttonnext,
+.selectlocation-box-buttonnext,
+.selectprice-box-buttonnext {
+>>>>>>>>> Temporary merge branch 2
     width: 45%;
     height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     border: none;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .ordertype-box-buttonbefor,
@@ -73,82 +122,139 @@
   .selectyear-box-buttonbefor,
   .selectlocation-box-buttonbefor,
   .selectprice-box-buttonbefor {
+=========
+}
+
+.ordertype-box-buttonbefor,
+.selecttypelanduse-box-buttonbefor,
+.selecttypeproperty-box-buttonbefor,
+.selectyear-box-buttonbefor,
+.selectlocation-box-buttonbefor,
+.selectprice-box-buttonbefor {
+>>>>>>>>> Temporary merge branch 2
     width: 45%;
     height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     border: none;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .mobile-box-buttonnext {
+=========
+}
+
+.mobile-box-buttonnext {
+>>>>>>>>> Temporary merge branch 2
     width: 90%;
     height: 40%;
     margin-left: 5%;
     margin-right: 5%;
     border: none;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .result1-box-buttonnext,
   .result1-box-buttonbefor,
   .result1-box-submit {
+=========
+}
+
+.result1-box-buttonnext,
+.result1-box-buttonbefor,
+.result1-box-submit {
+>>>>>>>>> Temporary merge branch 2
     width: 30%;
     height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
     border: none;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .result2-box-buttonnext,
   .result2-box-buttonbefor,
   .result2-box-submit {
+=========
+}
+
+.result2-box-buttonnext,
+.result2-box-buttonbefor,
+.result2-box-submit {
+>>>>>>>>> Temporary merge branch 2
     width: 30%;
     height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
     border: none;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   .result3-box-buttonbefor,
   .result3-box-submit {
+=========
+}
+
+.result3-box-buttonbefor,
+.result3-box-submit {
+>>>>>>>>> Temporary merge branch 2
     width: 45%;
     height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     border: none;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   // class-style
   .mobile-header-title {
-   color: #fff;
-  }
-  
-  .mobile-header-lable {
-    display: block;
-    color: #fff;
-  }
-  
-  .mobile-header-input {
     text-align: center;
-    color: #fff;
   }
+  
+  .mobile-header-lable {}
+  
+  .mobile-header-input {}
   
   // tag-style
   input {
     width: 80%;
     height: 10%;
-    border-radius: 16px;
+    border-radius: 10px;
   }
   
   button {
+=========
+}
+
+// class-style
+.mobile-header-title {}
+
+.mobile-header-lable {}
+
+.mobile-header-input {
+    margin-top: 50%;
+
+}
+
+// tag-style
+input {
+    width: 80%;
+    height: 10%;
+    border-radius: 10px;
+}
+
+button {
+>>>>>>>>> Temporary merge branch 2
     border: none;
     width: 80%;
     height: 10%;
     border-radius: 10px;
+<<<<<<<<< Temporary merge branch 1
   }
   
   svg {
@@ -164,3 +270,20 @@
   input:focus {
     border: 3px solid black;
   }
+=========
+}
+
+svg {
+    width: 15px;
+    height: 15px;
+}
+
+button:hover {
+    background-color: orange;
+    color: white;
+}
+
+input:focus {
+    border: none;
+}
+>>>>>>>>> Temporary merge branch 2
