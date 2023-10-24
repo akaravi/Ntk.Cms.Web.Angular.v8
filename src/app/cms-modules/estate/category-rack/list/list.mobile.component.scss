@@ -1,8 +1,7 @@
 .box-rack {
+  width: 100%;
   display: flex;
   overflow-x: scroll;
-  margin: 10px;
-  padding: 10px;
 }
 
 .box-rack-child {
@@ -11,19 +10,21 @@
 
 .box-rack-child-title {
   color: white;
-  width: 150px;
+  width: 180px;
+  overflow-x: scroll;
   border-radius: 10px;
   margin-left: 25px;
   margin-right: 25px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #3b3b64;
+  background-color: orange;
   text-align: center;
   box-shadow: 5px 5px 5px white;
 }
 
 .box-rack-child-open {
-  width: 200px;
+  /* display: none; */
+  width: 230px;
   background: linear-gradient(90deg, rgba(134, 93, 58, 1) 0%, rgba(99, 50, 7, 1) 100%);
   text-align: center;
   border-radius: 10px;
@@ -33,29 +34,26 @@
 }
 
 .box-rack-child-open-title {
-  margin-top: 20px;
-  margin-left: 40px;
-  margin-right: 40px;
+  overflow-y: scroll;
+  padding: 5px;
+  margin: 40px;
+  height: 30px;
   border: 2px solid;
-  outline: 2px solid;
-  outline-offset: 2px;
   border-radius: 2px;
+  text-align: center;
 }
 
 .box-rack-child-open-img {
   border-radius: 100%;
   width: 70px;
   height: 70px;
-  border: 3px solid;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 20px;
-
+  border: 2px solid;
+  margin-left: 20px;
 }
 
 .box-rack-child-open-icon {
-  float: right;
   background-color: white;
+  float: right;
   width: 10px;
   height: 100px;
   border-radius: 10px;
@@ -64,10 +62,13 @@
 }
 
 .box-rack-child-items {
+  /* display: none; */
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   overflow-y: scroll;
-  overflow-x: scroll;
-  width: 200px;
+  width: 230px;
   background-color: #5d4037;
   text-align: center;
   border-radius: 10px;
@@ -76,16 +77,21 @@
 }
 
 .box-rack-child-items-item {
+  background-color: orange;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   width: 60px;
-  height: 25%;
-  background-color: blue;
+  height: 150px;
   border-radius: 10px;
   margin: 4px;
   padding: 1px;
 }
 
 .box-rack-child-items-item-title {
+  overflow-y: scroll;
   background-color: white;
+  height: 100px;
   border-radius: 10px;
   box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.1);
   margin: 2.5px;
@@ -98,35 +104,45 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.6) inset;
   width: 20px;
   height: 20px;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.box-rack-child-items-item-title-info1 {
-  text-align: center;
+.box-rack-child-items-item-menu {
+  margin-right: -5px;
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  background-color: orange;
+  color: white;
+  width: 60px;
+  height: 20px;
+  border-radius: 2px;
+}
+
+.box-rack-child-items-item-menu-delete,
+.box-rack-child-items-item-menu-edit,
+.box-rack-child-items-item-menu-close {
   color: black;
-  margin-top: 5px;
-  font-weight: bold;
+  width: 60px;
+  height: 60px;
 }
 
-.box-rack-child-items-item-title-info2 {
-  text-align: center;
-  color: blue;
-  margin-top: 5px;
-  font-weight: bold;
-}
-
+.box-rack-child-items-item-title-info1,
+.box-rack-child-items-item-title-info2,
 .box-rack-child-items-item-title-number {
-  text-align: center;
   color: black;
-  margin-top: 5px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
 .box-rack-child-items-item-title-icon {
-  width: 40px;
-  height: 1px;
+  width: 50px;
+  height: 2px;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   background-color: black;
@@ -134,30 +150,34 @@
 
 .box-rack-child-items-item-add {
   background-color: white;
-  padding: 5px;
-  border-radius: 6px;
+  height: 100px;
+  border-radius: 10px;
   box-shadow: 2px 2px 18px rgba(0, 0, 0, 0.1);
-  margin: 2px;
+  margin: 2.5px;
+  padding: 5px;
 }
 
 .box-rack-child-items-item-add-txt {
-  text-align: center;
-  color: black;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: green;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 20px;
   border-radius: 100%;
-  padding-left: 3px;
-  padding-right: 3px;
-  padding-top: 1.5px;
-  padding-bottom: 1.5px;
+  width: 40px;
+  height: 40px;
+
 }
 
-//  .box-rack-items-icon{
-//   width: 160px;
-//   height: 10px;
-//   margin-left: auto;
-//   margin-right: auto;
-//   background-color: black;
-// } 
+.add-rack {
+  position: fixed;
+  right: 10%;
+  bottom: 15%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background-color: #3b3b64;
+}

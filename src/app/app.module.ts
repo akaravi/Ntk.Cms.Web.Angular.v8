@@ -10,11 +10,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { InlineSVGModule } from 'ng-inline-svg-2';
-import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
 import { ClipboardModule } from 'ngx-clipboard';
-import { MatColorFormats, MAT_COLOR_FORMATS } from 'ngx-ntk-mat-color-picker';
+import { MAT_COLOR_FORMATS, MatColorFormats } from 'ngx-ntk-mat-color-picker';
 import { ToastrModule } from 'ngx-toastr';
 import { CoreAuthService, CoreEnumService, CoreModuleService } from 'ntk-cms-api';
+import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { CmsStoreModule } from './core/reducers/cmsStore.module';
@@ -79,8 +80,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     InlineSVGModule.forRoot(),
     NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      //enabled: !isDevMode(),
-      enabled: true,
+      enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'

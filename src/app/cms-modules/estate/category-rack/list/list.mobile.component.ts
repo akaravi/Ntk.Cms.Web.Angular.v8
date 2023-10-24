@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  DataFieldInfoModel, ErrorExceptionResult, EstateCategoryRackModel,
+  DataFieldInfoModel, ErrorExceptionResult, EstateCategoryRackFolderOrderModel, EstateCategoryRackFolderPropertyModel, EstateCategoryRackModel,
   EstateCategoryRackService, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -112,6 +112,35 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
         if (ret.isSuccess) {
           this.dataModelResult = ret;
+          /** */
+          var orders: EstateCategoryRackFolderOrderModel[] = [];
+          var orderItem = new EstateCategoryRackFolderOrderModel();
+          orderItem.area = 200;
+          orderItem.caseCode = "222";
+          orderItem.uid = this.publicHelper.getGuid();
+          orders.push(orderItem);
+          orderItem.uid = this.publicHelper.getGuid();
+          orders.push(orderItem);
+
+          var properties: EstateCategoryRackFolderPropertyModel[] = [];
+          var propertItem = new EstateCategoryRackFolderPropertyModel();
+          propertItem.area = 200;
+          propertItem.caseCode = "333";
+          propertItem.uid = this.publicHelper.getGuid();
+          properties.push(propertItem);
+          propertItem.uid = this.publicHelper.getGuid();
+          properties.push(propertItem);
+          propertItem.uid = this.publicHelper.getGuid();
+          properties.push(propertItem);
+          for (let index = 0; index < this.dataModelResult.listItems.length; index++) {
+            this.dataModelResult.listItems[index].rackFolderOrders = orders;
+            this.dataModelResult.listItems[index].rackFolderProperties = properties;
+          }
+
+          /** */
+
+
+
           this.tableSource.data = ret.listItems;
 
           if (this.optionsSearch.childMethods) {
@@ -274,6 +303,124 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
       );
 
   }
+
+
+  statusFolderClick = false;
+  onActionbuttonEditFolderOrder(model: EstateCategoryRackModel = this.tableRowSelected, folder: EstateCategoryRackFolderOrderModel): void {
+    this.statusFolderClick = true;
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (!folder || !folder.uid || folder.uid.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    var findRow = model.rackFolderOrders.findIndex(x => x.uid == folder.uid);
+    if (findRow < 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    console.log(model.rackFolderOrders[findRow]);
+
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(EstateCategoryRackEditComponent, {
+      height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+      data: { model: model, folder: folder }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        model.rackFolderOrders[findRow] = result.folder;
+        const pName = this.constructor.name + 'onActionbuttonEditFolderProperty';
+        this.loading.Start(pName);
+        this.contentService.ServiceEdit(model).subscribe({
+          next: (ret) => {
+            if (ret.isSuccess) {
+              model = ret.item;
+            } else {
+              this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+            }
+            this.loading.Stop(pName);
+          },
+          error: (er) => {
+            this.cmsToastrService.typeError(er);
+
+            this.loading.Stop(pName);
+          }
+        });
+      }
+    });
+    setTimeout(() => {
+      this.statusFolderClick = false;
+    }, 1000);
+
+  }
+  onActionbuttonEditFolderProperty(model: EstateCategoryRackModel = this.tableRowSelected, folder: EstateCategoryRackFolderPropertyModel): void {
+    this.statusFolderClick = true;
+
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    if (!folder || !folder.uid || folder.uid.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    var findRow = model.rackFolderProperties.findIndex(x => x.uid == folder.uid);
+    if (findRow < 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
+    console.log(model.rackFolderProperties[findRow]);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(EstateCategoryRackEditComponent, {
+      height: '90%',
+      panelClass: panelClass,
+      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+      data: { model: model, folder: folder }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate) {
+        model.rackFolderProperties[findRow] = result.folder;
+        const pName = this.constructor.name + 'onActionbuttonEditFolderProperty';
+        this.loading.Start(pName);
+        this.contentService.ServiceEdit(model).subscribe({
+          next: (ret) => {
+            if (ret.isSuccess) {
+              model = ret.item;
+            } else {
+              this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+            }
+            this.loading.Stop(pName);
+          },
+          error: (er) => {
+            this.cmsToastrService.typeError(er);
+
+            this.loading.Stop(pName);
+          }
+        });
+      }
+    });
+
+    setTimeout(() => {
+      this.statusFolderClick = false;
+    }, 1000);
+  }
+
+
   onActionbuttonContentDetailList(model: EstateCategoryRackModel = this.tableRowSelected, event?: MouseEvent): void {
     if (!model || !model.id || model.id.length === 0) {
       const message = this.translate.instant('MESSAGE.no_row_selected_to_display');
@@ -429,19 +576,22 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
       row["expanded"] = false;
     row["expanded"] = !row["expanded"];
   }
-  // box-rack
-  rackvalidation: boolean = false;
-  public OpenItemsRack() {
-    this.rackvalidation = true;
-  }
-
-  public CloseItemsRack() {
-    this.rackvalidation = false;
-  }
   public onActionClickRackDoor(model: EstateCategoryRackModel): void {
+    if (this.statusFolderClick)
+      return;
+
     if (model['rackOpen'] && model['rackOpen'] == true)
       model['rackOpen'] = false;
     else
       model['rackOpen'] = true;
   }
+  onActionbuttoncheck: boolean = false;
+  public onActionbuttonmenu() {
+    this.onActionbuttoncheck = true;
+  }
+
+  public onActionbuttonclose() {
+    this.onActionbuttoncheck = false;
+  }
 }
+

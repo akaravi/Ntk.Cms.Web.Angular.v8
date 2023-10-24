@@ -188,7 +188,10 @@ export class PublicHelper {
     this.fileManagerTreeConfig.config.baseUploadURL = environment.cmsServerConfig.configFileServerPath;
     return this.fileManagerTreeConfig;
   }
-
+  getGuid(): string {
+    return Math.floor(Math.random() * new Date().getTime()).toString()
+    //return Math.floor(Math.random() * 1000) + "";
+  }
   CheckError(model: any): any {
     if (!model) {
       return 'Error';
