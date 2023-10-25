@@ -186,6 +186,7 @@
 
 // class-style
 
+//mobile
 .mobile-header-title {
     color: white;
     margin-top: 100px;
@@ -215,13 +216,59 @@
     text-align: center;
 }
 
+// ordertype
+.ordertype-header-title {
+    color: white;
+    margin-top: 100px;
+}
+
+.ordertype-header-form {
+    margin-top: 50px;
+    margin-bottom: -100px;
+}
+
+.ordertype-header-form-option1,
+.ordertype-header-form-option2 {
+    width: 90%;
+    height: 50px;
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    border: 2px solid #BDC3C7;
+
+}
+
+// selecttypelanduse
+.selecttypelanduse-header-title {
+    color: white;
+    margin-top: 100px;
+}
+
+.selecttypelanduse-header-form {
+    margin-top: 50px;
+    margin-bottom: -100px;
+}
+
+.selecttypelanduse-header-form-option1,
+.selecttypelanduse-header-form-option2,
+.selecttypelanduse-header-form-option3 {
+    width: 90%;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    border: 2px solid #BDC3C7;
+
+}
+
+// ****************************************************************************
+
 // tag-style
 
 button {
     border: none;
-    width: 80%;
-    height: 10%;
-    border-radius: 10px;
 }
 
 svg {

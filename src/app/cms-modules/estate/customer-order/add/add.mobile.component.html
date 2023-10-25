@@ -37,8 +37,10 @@
           <div class="ordertype-header-title">
             لطفا نوع ملک خود را مشخص نمایید
           </div>
-          <button class="ordertype-header-option1">می خواهم ملک بخرم</button>
-          <button class="ordertype-header-option2">می خواهم ملک اجاره کنم</button>
+          <div class="ordertype-header-form">
+            <button class="ordertype-header-form-option1">می خواهم ملک بخرم</button>
+            <button class="ordertype-header-form-option2">می خواهم ملک اجاره کنم</button>
+          </div>
         </div>
         <div class="ordertype-footer">
           <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-footer-buttonnext">
@@ -71,9 +73,11 @@
           <div class="selecttypelanduse-header-title">
             لطفا نوع کاربردی ملک خود را مشخص نمایید
           </div>
-          <button class="selecttypelanduse-header-option1">مسکونی</button>
-          <button class="selecttypelanduse-header-option2">تجاری</button>
-          <button class="selecttypelanduse-header-option1">اداری</button>
+          <div class="selecttypelanduse-header-form">
+            <button class="selecttypelanduse-header-form-option1">مسکونی</button>
+            <button class="selecttypelanduse-header-form-option2">تجاری</button>
+            <button class="selecttypelanduse-header-form-option1">اداری</button>
+          </div>
         </div>
         <div class="selecttypelanduse-footer">
           <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-footer-buttonnext">
