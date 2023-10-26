@@ -11,7 +11,7 @@
           </div>
           <div class="mobile-header-form">
             <label for="1" class="mobile-header-form-label">شماره تلفن</label>
-            <input type="text" id="1" class="mobile-header-form-input" />
+            <input type="text" id="1" class="mobile-header-form-input" maxlength="11" />
           </div>
         </div>
         <div class="mobile-footer">
@@ -35,11 +35,11 @@
       <div class="ordertype-filter">
         <div class="ordertype-header">
           <div class="ordertype-header-title">
-            لطفا نوع ملک خود را مشخص نمایید
+            لطفا نوع ملک خود را مشخص نمایید.
           </div>
           <div class="ordertype-header-form">
-            <button class="ordertype-header-form-option1">می خواهم ملک بخرم</button>
-            <button class="ordertype-header-form-option2">می خواهم ملک اجاره کنم</button>
+            <button class="ordertype-header-form-option1">می خواهم ملک بخرم.</button>
+            <button class="ordertype-header-form-option2">می خواهم ملک اجاره کنم.</button>
           </div>
         </div>
         <div class="ordertype-footer">
@@ -71,7 +71,7 @@
       <div class="selecttypelanduse-filter">
         <div class="selecttypelanduse-header">
           <div class="selecttypelanduse-header-title">
-            لطفا نوع کاربردی ملک خود را مشخص نمایید
+          لطفا نوع کاربری ملک خود را مشخص نمایید.
           </div>
           <div class="selecttypelanduse-header-form">
             <button class="selecttypelanduse-header-form-option1">مسکونی</button>
@@ -108,10 +108,12 @@
       <div class="selecttypeproperty-filter">
         <div class="selecttypeproperty-header">
           <div class="selecttypeproperty-header-title">
-            لطفا نوع ملک خود را مشخص نمایید
+            لطفا نوع ملک خود را مشخص نمایید.
           </div>
-          <button class="selecttypeproperty-header-option1">آپارتمانی</button>
-          <button class="selecttypeproperty-header-option2">ویلایی</button>
+          <div class="selecttypeproperty-header-form">
+            <button class="selecttypeproperty-header-option1">آپارتمانی</button>
+            <button class="selecttypeproperty-header-option2">ویلایی</button>
+          </div>  
         </div>
         <div class="selecttypeproperty-footer">
           <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-footer-buttonnext">

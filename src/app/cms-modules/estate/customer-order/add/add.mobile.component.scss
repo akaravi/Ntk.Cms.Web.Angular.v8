@@ -21,9 +21,10 @@
     background-size: cover;
     background-color: #fff;
     box-shadow: 0 0 10px 0px #212121;
-    width: 100%;
+    width: 90%;
     height: 100%;
     border-radius: 10px;
+    position: relative;
 }
 
 .mobile {
@@ -31,15 +32,15 @@
 }
 
 .ordertype {
-    background-image: url('/assets/media/bg/bg-8.jpg');
+    background-image: url('/assets/media/bg/skyscraper2.webp');
 }
 
 .selecttypelanduse {
-    background-image: url('/assets/media/bg/skyscraper1.webp');
+    background-image: url('/assets/media/bg/skyscraper3.webp');
 }
 
 .selecttypeproperty {
-    background-image: url('/assets/media/bg/bg-8.jpg');
+    background-image: url('/assets/media/bg/skyscraper4.webp');
 }
 
 .selectyear {
@@ -76,13 +77,16 @@
 .result2-filter,
 .selectprice-filter,
 .result3-filter {
+    height: 100%;
+    width: 90%;
     background-color: rgba(255, 255, 255, 0.13);
     border: 2px solid rgba(255, 255, 255, 0.13);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    margin: auto;
-    width: 90%;
-    height: 100%;
+    backdrop-filter: blur(2px);
+    position: absolute;
+    padding: 3px 13px;
+    margin-right: 6%;
+    margin-left: 6%;
 }
 
 .mobile-header,
@@ -95,10 +99,7 @@
 .result2-header,
 .selectprice-header,
 .result3-header {
-    width: 90%;
-    height: 80%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-bottom: 26px;
 }
 
 .mobile-footer,
@@ -111,12 +112,11 @@
 .result2-footer,
 .selectprice-footer,
 .result3-footer {
-    width: 90%;
-    height: 20%;
-    margin-left: 5%;
-    margin-right: 5%;
-    font-weight: bold;
-    text-align: center;
+    width: 100%;
+    margin-top: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ordertype-footer-buttonnext,
@@ -127,10 +127,14 @@
 .selectlocation-footer-buttonnext,
 .selectprice-footer-buttonnext {
     width: 45%;
-    height: 40%;
+    padding: 15px 0;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    border-radius: 10px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .ordertype-footer-buttonbefor,
@@ -140,19 +144,25 @@
 .selectlocation-footer-buttonbefor,
 .selectprice-footer-buttonbefor {
     width: 45%;
-    height: 40%;
+    padding: 15px 0;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    border-radius: 10px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .mobile-footer-buttonnext {
-    width: 90%;
-    height: 40%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
+    padding: 15px 0;
     border-radius: 25px;
-
+    margin-top: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .result1-footer-buttonnext,
@@ -186,53 +196,62 @@
 
 // class-style
 
-//mobile
-.mobile-header-title {
+//mobile,ordertype,selecttypelanduse,selecttypeproperty
+.mobile-header-title,
+.ordertype-header-title,
+.selecttypelanduse-header-title,
+.selecttypeproperty-header-title
+ {
     color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 100px;
+    font-size: 16px;
+    margin-top: 30px;
 }
 
 .mobile-header-form {
-    margin-top: 100px;
-    margin-bottom: -100px;
+    margin-top: 26px;
 }
 
 .mobile-header-form-label {
     color: white;
+    font-size: 16px;
 }
 
 .mobile-header-form-input {
-    width: 90%;
+    width: 100%;
     height: 50px;
-    margin-top: 50px;
-    margin-left: 5%;
-    margin-right: 5%;
-    border-radius: 10px;
+    margin-top: 16px;
+    border-radius: 16px;
     display: block;
     outline: none;
     color: #fff;
     background-color: rgba(255, 255, 255, 0.07);
     border: 2px solid #BDC3C7;
     text-align: center;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-// ordertype
-.ordertype-header-title {
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 100px;
-}
+// ordertype,selecttypelanduse,selecttypeproperty
+// .ordertype-header-title {
+//     color: white;
+//     font-size: 12px;
+//     font-weight: bold;
+//     margin-top: 100px;
+// }
 
-.ordertype-header-form {
+.ordertype-header-form,
+.selecttypelanduse-header-form,
+.selecttypeproperty-header-form
+ {
     margin-top: 50px;
-    margin-bottom: -100px;
 }
 
 .ordertype-header-form-option1,
-.ordertype-header-form-option2 {
+.ordertype-header-form-option2,
+.selecttypeproperty-header-option1,
+.selecttypeproperty-header-option2
+ {
     width: 90%;
     height: 50px;
     margin-top: 50px;
@@ -244,17 +263,16 @@
 }
 
 // selecttypelanduse
-.selecttypelanduse-header-title {
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 100px;
-}
+// .selecttypelanduse-header-title {
+//     color: white;
+//     font-size: 12px;
+//     font-weight: bold;
+//     margin-top: 100px;
+// }
 
-.selecttypelanduse-header-form {
-    margin-top: 50px;
-    margin-bottom: -100px;
-}
+// .selecttypelanduse-header-form {
+//     margin-top: 50px;
+// }
 
 .selecttypelanduse-header-form-option1,
 .selecttypelanduse-header-form-option2,
