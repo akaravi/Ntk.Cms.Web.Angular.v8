@@ -3,55 +3,10 @@
     justify-content: center;
     align-items: center;
     height: 100%;
+    font-size: 20px;
 }
 
-.mobile{
-    background-image: url('/assets/media/bg/skyscraper1.webp');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-color: #fff;  
-    box-shadow: 0 0 10px 0px #212121;	   
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
-.mobile-container{
-    background-color: rgba(255, 255, 255, 0.13);
-    border: 2px solid rgba(255, 255, 255, 0.13) ;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-    margin-right: 7%;
-}
-.mobile-container-wrapper{
-    margin-top: 8%;
-}
-.mobile-header-title{
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-.mobile-input{
-    margin-bottom: 26px;
-}
-.mobile-header-label{
-    font-size: 16px;
-}
-.mobile-header-input{
-    padding: 15px;
-    border-radius: 16px;
-    display: block;
-    outline: none;
-    color: #fff;
-    background-color: rgba(255, 255, 255, 0.07);
-    border: 2px solid #BDC3C7;
-    width: 100%;
-    height: 50px;
-    margin-top: 16px;
-    font-size: 14px;
-    font-weight: 400;
-    text-align: center;
-}
-
+.mobile,
 .ordertype,
 .selecttypelanduse,
 .selecttypeproperty,
@@ -61,10 +16,76 @@
 .result2,
 .selectprice,
 .result3 {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0px #212121;
     width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.mobile {
+    background-image: url('/assets/media/bg/skyscraper1.webp');
+}
+
+.ordertype {
+    background-image: url('/assets/media/bg/bg-8.jpg');
+}
+
+.selecttypelanduse {
+    background-image: url('/assets/media/bg/skyscraper1.webp');
+}
+
+.selecttypeproperty {
+    background-image: url('/assets/media/bg/bg-8.jpg');
+}
+
+.selectyear {
+    background-image: url('/assets/media/bg/skyscraper1.webp');
+}
+
+.result1 {
+    background-image: url('/assets/media/bg/bg-8.jpg');
+}
+
+.selectlocation {
+    background-image: url('/assets/media/bg/skyscraper1.webp');
+}
+
+.result2 {
+    background-image: url('/assets/media/bg/bg-8.jpg');
+}
+
+.selectprice {
+    background-image: url('/assets/media/bg/skyscraper1.webp');
+}
+
+.result3 {
+    background-image: url('/assets/media/bg/bg-8.jpg');
+}
+
+.mobile-filter,
+.ordertype-filter,
+.selecttypelanduse-filter,
+.selecttypeproperty-filter,
+.selectyear-filter,
+.result1-filter,
+.selectlocation-filter,
+.result2-filter,
+.selectprice-filter,
+.result3-filter {
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    margin: auto;
+    width: 90%;
     height: 100%;
 }
 
+.mobile-header,
 .ordertype-header,
 .selecttypelanduse-header,
 .selecttypeproperty-header,
@@ -80,6 +101,7 @@
     margin-right: 5%;
 }
 
+.mobile-footer,
 .ordertype-footer,
 .selecttypelanduse-footer,
 .selecttypeproperty-footer,
@@ -93,6 +115,8 @@
     height: 20%;
     margin-left: 5%;
     margin-right: 5%;
+    font-weight: bold;
+    text-align: center;
 }
 
 .ordertype-footer-buttonnext,
@@ -106,7 +130,6 @@
     height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    border: none;
     border-radius: 10px;
 }
 
@@ -120,22 +143,16 @@
     height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    border: none;
     border-radius: 10px;
 }
 
 .mobile-footer-buttonnext {
-    display: block;
     width: 90%;
     height: 40%;
     margin-left: 5%;
     margin-right: 5%;
-    padding: 15px 0;
-    border: none;
     border-radius: 25px;
-    font-weight: bold;
-    text-align: center;
-    font-size: 18px;
+
 }
 
 .result1-footer-buttonnext,
@@ -145,7 +162,6 @@
     height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
-    border: none;
     border-radius: 10px;
 }
 
@@ -156,7 +172,6 @@
     height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
-    border: none;
     border-radius: 10px;
 }
 
@@ -166,25 +181,100 @@
     height: 40%;
     margin-left: 2.5%;
     margin-right: 2.5%;
-    border: none;
     border-radius: 10px;
 }
 
 // class-style
 
+//mobile
+.mobile-header-title {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.mobile-header-form {
+    margin-top: 100px;
+    margin-bottom: -100px;
+}
+
+.mobile-header-form-label {
+    color: white;
+}
+
+.mobile-header-form-input {
+    width: 90%;
+    height: 50px;
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    display: block;
+    outline: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 2px solid #BDC3C7;
+    text-align: center;
+}
+
+// ordertype
+.ordertype-header-title {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.ordertype-header-form {
+    margin-top: 50px;
+    margin-bottom: -100px;
+}
+
+.ordertype-header-form-option1,
+.ordertype-header-form-option2 {
+    width: 90%;
+    height: 50px;
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    border: 2px solid #BDC3C7;
+
+}
+
+// selecttypelanduse
+.selecttypelanduse-header-title {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
+.selecttypelanduse-header-form {
+    margin-top: 50px;
+    margin-bottom: -100px;
+}
+
+.selecttypelanduse-header-form-option1,
+.selecttypelanduse-header-form-option2,
+.selecttypelanduse-header-form-option3 {
+    width: 90%;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+    border: 2px solid #BDC3C7;
+
+}
+
+// ****************************************************************************
 
 // tag-style
-input {
-    width: 80%;
-    height: 10%;
-    border-radius: 10px;
-}
 
 button {
     border: none;
-    width: 80%;
-    height: 10%;
-    border-radius: 10px;
 }
 
 svg {
