@@ -44,27 +44,27 @@
 }
 
 .selectyear {
-    background-image: url('/assets/media/bg/skyscraper1.webp');
+    background-image: url('/assets/media/bg/skyscraper5.webp');
 }
 
 .result1 {
-    background-image: url('/assets/media/bg/bg-8.jpg');
+    background-image: url('/assets/media/bg/skyscraper6.webp');
 }
 
 .selectlocation {
-    background-image: url('/assets/media/bg/skyscraper1.webp');
+    background-image: url('/assets/media/bg/skyscraper7.webp');
 }
 
 .result2 {
-    background-image: url('/assets/media/bg/bg-8.jpg');
+    background-image: url('/assets/media/bg/skyscraper8.webp');
 }
 
 .selectprice {
-    background-image: url('/assets/media/bg/skyscraper1.webp');
+    background-image: url('/assets/media/bg/skyscraper9.webp');
 }
 
 .result3 {
-    background-image: url('/assets/media/bg/bg-8.jpg');
+    background-image: url('/assets/media/bg/skyscraper10.webp');
 }
 
 .mobile-filter,
@@ -85,8 +85,8 @@
     backdrop-filter: blur(2px);
     position: absolute;
     padding: 3px 13px;
-    margin-right: 6%;
-    margin-left: 6%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .mobile-header,
@@ -167,31 +167,24 @@
 
 .result1-footer-buttonnext,
 .result1-footer-buttonbefor,
-.result1-footer-submit {
-    width: 30%;
-    height: 40%;
-    margin-left: 1.6%;
-    margin-right: 1.6%;
-    border-radius: 10px;
-}
-
+.result1-footer-submit,
 .result2-footer-buttonnext,
 .result2-footer-buttonbefor,
-.result2-footer-submit {
+.result2-footer-submit,
+.result3-footer-submit,
+.result3-footer-buttonbefor
+ {
     width: 30%;
     height: 40%;
     margin-left: 1.6%;
     margin-right: 1.6%;
     border-radius: 10px;
-}
-
-.result3-footer-buttonbefor,
-.result3-footer-submit {
-    width: 45%;
-    height: 40%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    border-radius: 10px;
+    padding: 15px 0;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 // class-style
@@ -200,23 +193,46 @@
 .mobile-header-title,
 .ordertype-header-title,
 .selecttypelanduse-header-title,
-.selecttypeproperty-header-title
+.selecttypeproperty-header-title,
+.result1-header-title,
+.result1-header-result,
+.selectlocation-header-title,
+.result2-header-title,
+.result2-header-result,
+.selectprice-header-title,
+.result3-header-title,
+.result3-header-result
  {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     margin-top: 30px;
 }
 
-.mobile-header-form {
+.mobile-header-form,
+.selectlocation-header-form,
+.selectprice-header-form
+ {
     margin-top: 26px;
 }
 
-.mobile-header-form-label {
+.mobile-header-form-label,
+.selectyear-header-label1,
+.selectyear-header-label2,
+.selectlocation-header-label1,
+.selectprice-header-label1,
+.selectprice-header-label2
+ {
     color: white;
     font-size: 16px;
 }
 
-.mobile-header-form-input {
+.mobile-header-form-input,
+.selectyear-header-input1,
+.selectyear-header-input2,
+.selectlocation-header-input1,
+.selectprice-header-input1,
+.selectprice-header-input2
+ {
     width: 100%;
     height: 50px;
     margin-top: 16px;
@@ -228,17 +244,9 @@
     border: 2px solid #BDC3C7;
     text-align: center;
     padding: 0 10px;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 400;
 }
-
-// ordertype,selecttypelanduse,selecttypeproperty
-// .ordertype-header-title {
-//     color: white;
-//     font-size: 12px;
-//     font-weight: bold;
-//     margin-top: 100px;
-// }
 
 .ordertype-header-form,
 .selecttypelanduse-header-form,
@@ -262,18 +270,6 @@
 
 }
 
-// selecttypelanduse
-// .selecttypelanduse-header-title {
-//     color: white;
-//     font-size: 12px;
-//     font-weight: bold;
-//     margin-top: 100px;
-// }
-
-// .selecttypelanduse-header-form {
-//     margin-top: 50px;
-// }
-
 .selecttypelanduse-header-form-option1,
 .selecttypelanduse-header-form-option2,
 .selecttypelanduse-header-form-option3 {
@@ -285,6 +281,17 @@
     border-radius: 10px;
     border: 2px solid #BDC3C7;
 
+}
+
+//selectyear,selectprice
+
+.selectyear-header{
+    margin-top: 15%;
+}
+.selectyear-header-label2,
+.selectprice-header-label2
+{
+    margin-top: 5%;
 }
 
 // ****************************************************************************

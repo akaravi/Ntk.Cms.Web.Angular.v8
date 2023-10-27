@@ -144,7 +144,7 @@
       <div class="selectyear-filter">
         <div class="selectyear-header">
           <label for="1" class="selectyear-header-label1">سال ساخت </label>
-          <input type="text" id="1" class="selectyear-header-input1" />
+          <input type="text" id="1" class="selectyear-header-input1"/>
           <label for="2" class="selectyear-header-label2">پارتیشن</label>
           <input type="text" id="2" class="selectyear-header-input2" />
         </div>
@@ -211,10 +211,12 @@
       <div class="selectlocation-filter">
         <div class="selectlocation-header">
           <div class="selectlocation-header-title">
-            لطفا منطقه مورد نظر خود را مشخص کنید
+            لطفا منطقه مورد نظر خود را مشخص کنید.
           </div>
-          <label for="1" class="selectlocation-header-label1">منطقه</label>
-          <input type="text" id="1" class="selectlocation-header-input1" />
+          <div class="selectlocation-header-form">
+            <label for="1" class="selectlocation-header-label1">منطقه</label>
+            <input type="text" id="1" class="selectlocation-header-input1" />
+          </div>
         </div>
         <div class="selectlocation-footer">
           <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
@@ -278,11 +280,13 @@
     <div class="selectprice">
       <div class="selectprice-filter">
         <div class="selectprice-header">
-          <div>لطفا قیمت ملک خود را وارد نمایید</div>
-          <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
-          <input type="text" id="1" class="selectprice-header-input1" />
-          <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-          <input type="number" id="2" class="selectprice-header-input2" />
+          <div class="selectprice-header-title">لطفا قیمت ملک خود را وارد نمایید.</div>
+          <div class="selectprice-header-form">
+            <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
+            <input type="text" id="1" class="selectprice-header-input1" />
+            <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
+            <input type="number" id="2" class="selectprice-header-input2" />
+          </div>
         </div>
         <div class="selectprice-footer">
           <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
