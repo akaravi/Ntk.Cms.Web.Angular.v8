@@ -89,7 +89,8 @@
           </div>
         </div>
         <div class="selectPropertyTypeUsage-footer">
-          <button (click)="onActoinSelectStepNext('selectPropertyTypeLanduse')"
+          <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0"
+            (click)="onActoinSelectStepNext('selectPropertyTypeLanduse')"
             class="selectPropertyTypeUsage-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor">
@@ -97,8 +98,7 @@
             </svg>
             <span>بعدی</span>
           </button>
-          <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0" (click)="onActoinSelectStepBefor('orderType')"
-            class="selectPropertyTypeUsage-footer-buttonbefor">
+          <button (click)="onActoinSelectStepBefor('orderType')" class="selectPropertyTypeUsage-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd"
