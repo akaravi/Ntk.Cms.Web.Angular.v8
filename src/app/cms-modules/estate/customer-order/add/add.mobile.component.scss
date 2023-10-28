@@ -1,7 +1,4 @@
 .box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
     font-size: 20px;
 }
@@ -126,7 +123,7 @@
 }
 
 .selectyear-footer {
-    margin-top: -80px;
+    margin-top: -60px;
 }
 
 .ordertype-footer-buttonnext,
@@ -224,9 +221,13 @@
     color: white;
     font-size: 14px;
     margin-top: 30px;
+    font-weight: bold;
 }
 
-.mobile-header-form,
+.mobile-header-form {
+    margin-top: 130px;
+}
+
 .selectlocation-header-form,
 .selectprice-header-form {
     margin-top: 26px;
@@ -240,6 +241,7 @@
 .selectprice-header-label2 {
     color: white;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .mobile-header-form-input,
