@@ -271,6 +271,7 @@
           <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
             [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
             [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading"
+            [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId"
             [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
 
             <mat-icon matSuffix

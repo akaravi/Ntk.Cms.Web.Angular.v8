@@ -47,7 +47,7 @@
       </mat-slide-toggle>
     </div>
     <!-- TitleCreatedYaer Field -->
-    <mat-form-field class="ntk-full-width">
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.createdYearActive">
       <mat-label>{{fieldsInfo['titleCreatedYaer']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleCreatedYaer" name="dataModel.titleCreatedYaer" #TitleCreatedYaer
         type="text" placeholder="{{fieldsInfo['titleCreatedYaer']?.fieldTitle}}" minlength="3" maxlength="100"
@@ -61,7 +61,7 @@
       </mat-error>
     </mat-form-field>
     <!-- TitleCreatedYaerML Field -->
-    <mat-form-field class="ntk-full-width">
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.createdYearActive">
       <mat-label>TitleCreatedYaerML</mat-label>
       <input matInput [(ngModel)]="dataModel.titleCreatedYaerML" name="dataModel.titleCreatedYaerML" type="text"
         [disabled]="true" />
@@ -69,7 +69,8 @@
 
 
     <!-- TitleCreatedYaerResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titleCreatedYaerResourceLanguage']?.accessWatchField">
+    <mat-form-field class="ntk-full-width"
+      *ngIf="fieldsInfo['titleCreatedYaerResourceLanguage']?.accessWatchField && dataModel.createdYearActive">
       <mat-label> {{fieldsInfo['titleCreatedYaerResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titleCreatedYaerResourceLanguage"
         name="dataModel.titleCreatedYaerResourceLanguage" #TitleCreatedYaerResourceLanguage type="text"
@@ -84,9 +85,15 @@
         TitleCreatedYaerResourceLanguage is <strong>{{'MESSAGE.required' | translate}}</strong>
       </mat-error>
     </mat-form-field>
-
+    <div class="ntk-full-width">
+      <!-- partitionActive Field -->
+      <mat-slide-toggle [(ngModel)]="dataModel.partitionActive" *ngIf="fieldsInfo['partitionActive']?.accessWatchField"
+        [disabled]="!fieldsInfo['partitionActive']?.accessEditField" name="dataModel.partitionActive">
+        {{fieldsInfo['partitionActive']?.fieldTitle}}
+      </mat-slide-toggle>
+    </div>
     <!-- TitlePartition Field -->
-    <mat-form-field class="ntk-full-width">
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.partitionActive">
       <mat-label>{{fieldsInfo['titlePartition']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titlePartition" name="dataModel.titlePartition" #TitlePartition type="text"
         placeholder="{{fieldsInfo['titlePartition']?.fieldTitle}}" minlength="3" maxlength="100" required />
@@ -99,7 +106,7 @@
       </mat-error>
     </mat-form-field>
     <!-- TitlePartitionML Field -->
-    <mat-form-field class="ntk-full-width">
+    <mat-form-field class="ntk-full-width" *ngIf="dataModel.partitionActive">
       <mat-label>TitlePartitionML</mat-label>
       <input matInput [(ngModel)]="dataModel.titlePartitionML" name="dataModel.titlePartitionML" type="text"
         [disabled]="true" />
@@ -107,7 +114,8 @@
 
 
     <!-- TitlePartitionResourceLanguage Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['titlePartitionResourceLanguage']?.accessWatchField">
+    <mat-form-field class="ntk-full-width"
+      *ngIf="fieldsInfo['titlePartitionResourceLanguage']?.accessWatchField && dataModel.partitionActive">
       <mat-label> {{fieldsInfo['titlePartitionResourceLanguage']?.fieldTitle}}</mat-label>
       <input matInput [(ngModel)]="dataModel.titlePartitionResourceLanguage"
         name="dataModel.titlePartitionResourceLanguage" #TitlePartitionResourceLanguage type="text"
