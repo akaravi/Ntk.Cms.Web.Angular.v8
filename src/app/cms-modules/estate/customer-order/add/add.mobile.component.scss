@@ -116,11 +116,11 @@
     height: 20%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: -50px;
+    margin-top: -10px;
 }
 
 .selectyear-footer {
-    margin-top: -70px;
+    margin-top: -30px;
 }
 
 .ordertype-footer-buttonnext,
@@ -309,4 +309,11 @@ input:focus {
 span {
     margin-left: 2.5px;
     margin-right: 2.5px;
+}
+option{
+    color: black;
+    overflow-y: scroll;
+}
+select{
+    overflow-y: scroll;
 }
