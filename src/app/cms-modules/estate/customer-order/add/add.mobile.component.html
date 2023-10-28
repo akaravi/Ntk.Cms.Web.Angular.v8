@@ -36,20 +36,21 @@
       <div class="ordertype-filter">
         <div class="ordertype-header">
           <div class="ordertype-header-title">
-            لطفا نوع ملک خود را مشخص نمایید.
+            لطفا درخواست خود را مشخص نمایید.
           </div>
 
           <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
               class="ordertype-header-form-option"
-              color="{{state.id===dataModel.linkContractTypeId ? 'primary' : ' #BDC3C7'}}"
+              color="{{state.id===dataModel.linkContractTypeId ? 'primary' : 'info'}}"
               (click)="dataModel.linkContractTypeId=state.id">{{ state.orderTitle }}</button>
           </div>
 
 
         </div>
         <div class="ordertype-footer">
-          <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-footer-buttonnext">
+          <button *ngIf="dataModel?.linkContractTypeId?.length>0"
+            (click)="onActoinSelectStepNext('selectPropertyTypeUsage')" class="ordertype-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -71,29 +72,33 @@
   <!-- ordertype -->
 
 
-  <!-- selecttypelanduse -->
-  <ng-container *ngIf="stepContent === 'selectTypeLandUse'">
-    <div class="selecttypelanduse">
-      <div class="selecttypelanduse-filter">
-        <div class="selecttypelanduse-header">
-          <div class="selecttypelanduse-header-title">
+  <!-- selectPropertyTypeUsage -->
+  <ng-container *ngIf="stepContent === 'selectPropertyTypeUsage'">
+    <div class="selectPropertyTypeUsage">
+      <div class="selectPropertyTypeUsage-filter">
+        <div class="selectPropertyTypeUsage-header">
+          <div class="selectPropertyTypeUsage-header-title">
             لطفا نوع کاربری ملک خود را مشخص نمایید.
           </div>
-          <div class="selecttypelanduse-header-form">
-            <button class="selecttypelanduse-header-form-option">مسکونی</button>
-            <button class="selecttypelanduse-header-form-option">تجاری</button>
-            <button class="selecttypelanduse-header-form-option">اداری</button>
+          <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0" class="ordertype-header-form">
+            <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
+              class="ordertype-header-form-option"
+              color="{{state.id===dataModel.linkPropertyTypeUsageId ? 'primary' : 'info'}}"
+              (click)="dataModel.linkPropertyTypeUsageId=state.id;this.DataGetAllPropertyTypeLanduse();">{{ state.title
+              }}</button>
           </div>
         </div>
-        <div class="selecttypelanduse-footer">
-          <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-footer-buttonnext">
+        <div class="selectPropertyTypeUsage-footer">
+          <button (click)="onActoinSelectStepNext('selectPropertyTypeLanduse')"
+            class="selectPropertyTypeUsage-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>بعدی</span>
           </button>
-          <button (click)="onActoinSelectStepBefor('orderType')" class="selecttypelanduse-footer-buttonbefor">
+          <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0" (click)="onActoinSelectStepBefor('orderType')"
+            class="selectPropertyTypeUsage-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd"
@@ -105,31 +110,35 @@
       </div>
     </div>
   </ng-container>
-  <!-- selecttypelanduse -->
+  <!-- selectPropertyTypeUsage -->
 
 
-  <!-- selecttypeproperty -->
-  <ng-container *ngIf="stepContent === 'selectTypeProperty'">
-    <div class="selecttypeproperty">
-      <div class="selecttypeproperty-filter">
-        <div class="selecttypeproperty-header">
-          <div class="selecttypeproperty-header-title">
+  <!-- selectPropertyTypeLanduse -->
+  <ng-container *ngIf="stepContent === 'selectPropertyTypeLanduse'">
+    <div class="selectPropertyTypeLanduse">
+      <div class="selectPropertyTypeLanduse-filter">
+        <div class="selectPropertyTypeLanduse-header">
+          <div class="selectPropertyTypeLanduse-header-title">
             لطفا نوع ملک خود را مشخص نمایید.
           </div>
-          <div class="selecttypeproperty-header-form">
-            <button class="selecttypeproperty-header-option">آپارتمانی</button>
-            <button class="selecttypeproperty-header-option">ویلایی</button>
+          <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0" class="ordertype-header-form">
+            <button *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems " type="button" mat-raised-button
+              class="ordertype-header-form-option"
+              color="{{state.id===dataModel.linkPropertyTypeLanduseId ? 'primary' : 'info'}}"
+              (click)="onActionSelectorSelectLanduse(state)">{{ state.title }}</button>
           </div>
         </div>
-        <div class="selecttypeproperty-footer">
-          <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-footer-buttonnext">
+        <div class="selectPropertyTypeLanduse-footer">
+          <button *ngIf="dataModel?.linkPropertyTypeLanduseId?.length>0" (click)="onActoinSelectStepNext('selectYear')"
+            class="selectPropertyTypeLanduse-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>بعدی</span>
           </button>
-          <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-footer-buttonbefor">
+          <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
+            class="selectPropertyTypeLanduse-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd"
@@ -141,7 +150,7 @@
       </div>
     </div>
   </ng-container>
-  <!-- selecttypeproperty -->
+  <!-- selectPropertyTypeLanduse -->
 
 
   <!-- selectyear -->
@@ -149,9 +158,11 @@
     <div class="selectyear">
       <div class="selectyear-filter">
         <div class="selectyear-header">
-          <label for="1" class="selectyear-header-label1">سال ساخت </label>
-          <!-- <input type="text" id="1" class="selectyear-header-input1" /> -->
-          <select id="1" class="selectyear-header-input1">
+          <label *ngIf="this.PropertyTypeSelected?.createdYearActive" for="createdYaer"
+            class="selectyear-header-label1">سال ساخت
+          </label>
+          <select *ngIf="this.PropertyTypeSelected?.createdYearActive" id="createdYaer"
+            [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" class="selectyear-header-input1">
             <option value="1402">1402</option>
             <option value="1401">1401</option>
             <option value="1400">1400</option>
@@ -166,9 +177,13 @@
             <option value="1391">1391</option>
             <option value="1390">1390</option>
           </select>
-          <label for="2" class="selectyear-header-label2">پارتیشن</label>
-          <input type="text" id="2" class="selectyear-header-input2" />
+          <label *ngIf="this.PropertyTypeSelected?.partitionActive" for="partition"
+            class="selectyear-header-label2">{{this.PropertyTypeSelected?.titlePartitionML}}</label>
+          <input *ngIf="this.PropertyTypeSelected?.partitionActive" type="text" id="partition"
+            [(ngModel)]="dataModel.partition" name="dataModel.partition" class="selectyear-header-input2"
+            autocomplete="off" />
         </div>
+
         <div class="selectyear-footer">
           <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -177,7 +192,7 @@
             </svg>
             <span>بعدی</span>
           </button>
-          <button (click)="onActoinSelectStepBefor('selectTypeProperty')" class="selectyear-footer-buttonbefor">
+          <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="selectyear-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
               <path fill-rule="evenodd"
@@ -236,7 +251,7 @@
           </div>
           <div class="selectlocation-header-form">
             <label for="1" class="selectlocation-header-label1">منطقه</label>
-            <input type="text" id="1" class="selectlocation-header-input1" />
+            <input type="text" id="1" class="selectlocation-header-input1" autocomplete="off" />
           </div>
         </div>
         <div class="selectlocation-footer">
@@ -304,9 +319,9 @@
           <div class="selectprice-header-title">لطفا قیمت ملک خود را وارد نمایید.</div>
           <div class="selectprice-header-form">
             <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
-            <input type="text" id="1" class="selectprice-header-input1" />
+            <input type="text" id="1" class="selectprice-header-input1" autocomplete="off" />
             <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-            <input type="text" id="2" class="selectprice-header-input2" />
+            <input type="text" id="2" class="selectprice-header-input2" autocomplete="off" />
           </div>
         </div>
         <div class="selectprice-footer">
