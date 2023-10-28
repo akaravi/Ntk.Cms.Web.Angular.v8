@@ -11,7 +11,8 @@
           </div>
           <div class="mobile-header-form">
             <label for="1" class="mobile-header-form-label">شماره تلفن</label>
-            <input type="text" id="1" class="mobile-header-form-input" maxlength="11" />
+            <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
+              class="mobile-header-form-input" maxlength="11" />
           </div>
         </div>
         <div class="mobile-footer">
@@ -37,10 +38,15 @@
           <div class="ordertype-header-title">
             لطفا نوع ملک خود را مشخص نمایید.
           </div>
-          <div class="ordertype-header-form">
-            <button class="ordertype-header-form-option1">می خواهم ملک بخرم.</button>
-            <button class="ordertype-header-form-option2">می خواهم ملک اجاره کنم.</button>
+
+          <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
+            <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
+              class="ordertype-header-form-option"
+              color="{{state.id===dataModel.linkContractTypeId ? 'primary' : ' #BDC3C7'}}"
+              (click)="dataModel.linkContractTypeId=state.id">{{ state.orderTitle }}</button>
           </div>
+
+
         </div>
         <div class="ordertype-footer">
           <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-footer-buttonnext">
@@ -74,9 +80,9 @@
             لطفا نوع کاربری ملک خود را مشخص نمایید.
           </div>
           <div class="selecttypelanduse-header-form">
-            <button class="selecttypelanduse-header-form-option1">مسکونی</button>
-            <button class="selecttypelanduse-header-form-option2">تجاری</button>
-            <button class="selecttypelanduse-header-form-option1">اداری</button>
+            <button class="selecttypelanduse-header-form-option">مسکونی</button>
+            <button class="selecttypelanduse-header-form-option">تجاری</button>
+            <button class="selecttypelanduse-header-form-option">اداری</button>
           </div>
         </div>
         <div class="selecttypelanduse-footer">
@@ -111,8 +117,8 @@
             لطفا نوع ملک خود را مشخص نمایید.
           </div>
           <div class="selecttypeproperty-header-form">
-            <button class="selecttypeproperty-header-option1">آپارتمانی</button>
-            <button class="selecttypeproperty-header-option2">ویلایی</button>
+            <button class="selecttypeproperty-header-option">آپارتمانی</button>
+            <button class="selecttypeproperty-header-option">ویلایی</button>
           </div>
         </div>
         <div class="selecttypeproperty-footer">
@@ -144,7 +150,22 @@
       <div class="selectyear-filter">
         <div class="selectyear-header">
           <label for="1" class="selectyear-header-label1">سال ساخت </label>
-          <input type="text" id="1" class="selectyear-header-input1" />
+          <!-- <input type="text" id="1" class="selectyear-header-input1" /> -->
+          <select id="1" class="selectyear-header-input1">
+            <option value="1402">1402</option>
+            <option value="1401">1401</option>
+            <option value="1400">1400</option>
+            <option value="1399">1399</option>
+            <option value="1398">1398</option>
+            <option value="1397">1397</option>
+            <option value="1396">1396</option>
+            <option value="1395">1395</option>
+            <option value="1394">1394</option>
+            <option value="1393">1393</option>
+            <option value="1392">1392</option>
+            <option value="1391">1391</option>
+            <option value="1390">1390</option>
+          </select>
           <label for="2" class="selectyear-header-label2">پارتیشن</label>
           <input type="text" id="2" class="selectyear-header-input2" />
         </div>
@@ -285,7 +306,7 @@
             <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
             <input type="text" id="1" class="selectprice-header-input1" />
             <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-            <input type="number" id="2" class="selectprice-header-input2" />
+            <input type="text" id="2" class="selectprice-header-input2" />
           </div>
         </div>
         <div class="selectprice-footer">
@@ -339,3 +360,4 @@
 
 
 </div>
+{{dataModel|json}}
