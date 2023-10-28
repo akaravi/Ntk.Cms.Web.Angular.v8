@@ -65,7 +65,7 @@
       <ng-container matColumnDef="Title">
         <mat-header-cell *matHeaderCellDef mat-sort-header> {{fieldsInfo['title']?.fieldTitle}}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} / {{row.orderTitle}} </mat-cell>
       </ng-container>
 
       <!-- HasSalePrice Column -->

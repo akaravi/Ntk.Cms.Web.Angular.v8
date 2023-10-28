@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -33,6 +33,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     private router: Router,
     public coreEnumService: CoreEnumService,
     public estateCustomerOrderService: EstateCustomerOrderService,
+    public estateContractTypeService: EstateContractTypeService,
     private estatePropertyService: EstatePropertyService,
     private cmsToastrService: CmsToastrService,
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
@@ -65,7 +66,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   tokenInfo = new TokenInfoModel();
   linkParentId = '';
   loading = new ProgressSpinnerModel();
-  // dataModelResult: ErrorExceptionResult<EstateCustomerOrderModel> = new ErrorExceptionResult<EstateCustomerOrderModel>();
+  dataModelContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -88,6 +89,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.DataGetAccessEstate();
+    this.DataGetAllContractType();
     this.dataModel.caseCode = this.publicHelper.StringRandomGenerator(5, true);
     if (this.requestId && this.requestId.length > 0) {
       this.DataGetOneContent();
@@ -146,7 +148,8 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-
+    if (!this.dataModel.title || this.dataModel.title.length == 0)
+      this.dataModel.title = this.dataModel.caseCode;
     this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -228,7 +231,29 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     }
     );
   }
-
+  DataGetAllContractType(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    const filterModel = new FilterModel();
+    this.estateContractTypeService.ServiceGetAll(filterModel).subscribe({
+      next: (ret) => {
+        this.dataModelContractTypeResult = ret;
+        if (!ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+  }
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
     const filter = new FilterDataModel();
@@ -305,18 +330,18 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.dataModel.linkEstateUserId = model.id;
   }
 
-  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
-    this.contractTypeSelected = null;
-    this.dataModel.linkContractTypeId = null;
-    if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
-      this.cmsToastrService.typeWarningSelected(message);
-      return;
-    }
-    this.contractTypeSelected = model;
-    this.dataModel.linkContractTypeId = model.id;
+  // onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
+  //   this.contractTypeSelected = null;
+  //   this.dataModel.linkContractTypeId = null;
+  //   if (!model || !model.id || model.id.length <= 0) {
+  //     const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
+  //     this.cmsToastrService.typeWarningSelected(message);
+  //     return;
+  //   }
+  //   this.contractTypeSelected = model;
+  //   this.dataModel.linkContractTypeId = model.id;
 
-  }
+  // }
   onActionSelectorLocation(model: number[] | null): void {
 
     this.dataModel.linkLocationIds = model;
