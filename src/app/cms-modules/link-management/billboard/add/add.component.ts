@@ -233,7 +233,7 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
           this.formInfo.formSubmitAllow = true;
           this.dataModelResult = ret;
           if (ret.isSuccess) {
-
+            this.dataModel = ret.item;
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
 

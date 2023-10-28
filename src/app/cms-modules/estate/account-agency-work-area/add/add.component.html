@@ -11,11 +11,16 @@
 
 
         <!-- linkEstateAccountAgencyId Field -->
-        <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkEstateAccountAgencyId" [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="'Agency'">
+        <app-estate-account-agency-selector (optionChange)="onActionSelectorAccountAgency($event)"
+            [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkEstateAccountAgencyId"
+            [optionSelectUserId]="this.tokenInfo.userId" [optionPlaceholder]="'Agency'">
         </app-estate-account-agency-selector>
 
         <!-- LinkLocationId Field -->
-        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)" [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [(optionLoading)]="loading" [optionSelectForce]="dataModel.linkCoreLocationId" [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+        <app-cms-location-selector (optionChange)="onActionSelectorLocation($event)"
+            [optionDisabled]="!fieldsInfo['linkLocationId']?.accessEditField" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkCoreLocationId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Region')">
         </app-cms-location-selector>
 
 
@@ -36,7 +41,7 @@
             <button type="button" (click)="onFormCancel()" class="btn btn-light">
                 <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
             </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
                 <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
             </button>
         </div>

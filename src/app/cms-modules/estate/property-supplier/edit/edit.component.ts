@@ -374,6 +374,10 @@ export class EstatePropertySupplierEditComponent implements OnInit, AfterViewIni
     }
     this.dataModel.linkLocationId = model.id;
   }
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
+
+    this.dataModel.linkLocationIds = model;
+  }
   /**
     * tag
     */

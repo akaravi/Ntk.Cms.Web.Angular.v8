@@ -98,7 +98,7 @@
       <button type="button" (click)="onFormCancel()" class="btn btn-light">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
-      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" *ngIf="!dataModelResultGotoBank"
+      <button type="submit" mat-raised-button (click)="onFormSubmit()" *ngIf="!dataModelResultGotoBank"
         [disabled]="!vform.valid">
         <i class="fa fa-check-square-o"></i> {{'ACTION.PAYMENT' | translate}}
       </button>

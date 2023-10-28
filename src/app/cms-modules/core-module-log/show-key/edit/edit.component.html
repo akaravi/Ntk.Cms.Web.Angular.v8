@@ -11,47 +11,59 @@
 
         <mat-form-field class="ntk-full-width">
             <mat-label>ModuleName</mat-label>
-            <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text" placeholder="ModuleName" />
-            <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.moduleName = ''">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.moduleName" name="dataModel.moduleName" #ModuleName type="text"
+                placeholder="ModuleName" />
+            <mat-icon matSuffix *ngIf="dataModel.moduleName" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.moduleName = ''">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- ModuleEntityName Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>ModuleEntityName</mat-label>
-            <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName type="text" placeholder="ModuleEntityName" />
-            <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.moduleEntityName = null">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.moduleEntityName" name="dataModel.moduleEntityName" #ModuleEntityName
+                type="text" placeholder="ModuleEntityName" />
+            <mat-icon matSuffix *ngIf="dataModel.moduleEntityName" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.moduleEntityName = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
         <!-- ModuleEntityId Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>ModuleEntityId</mat-label>
-            <input matInput [(ngModel)]="dataModel.moduleEntityId" name="dataModel.moduleEntityId" #ModuleEntityId type="text" placeholder="ModuleEntityId" />
-            <mat-icon matSuffix *ngIf="dataModel.moduleEntityId" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.moduleEntityId = null">close</mat-icon>
+            <input matInput [(ngModel)]="dataModel.moduleEntityId" name="dataModel.moduleEntityId" #ModuleEntityId
+                type="text" placeholder="ModuleEntityId" />
+            <mat-icon matSuffix *ngIf="dataModel.moduleEntityId" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.moduleEntityId = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- showKey Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>showKey</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.showKey" name="dataModel.showKey" #showKey type="text" placeholder="showKey"></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.showKey" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.showKey = null">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.showKey" name="dataModel.showKey" #showKey type="text"
+                placeholder="showKey"></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.showKey" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.showKey = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- SubjectTitle Field -->
         <mat-form-field class="ntk-full-width">
             <mat-label>SubjectTitle</mat-label>
-            <textarea matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle type="text" placeholder="SubjectTitle"></textarea>
-            <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.subjectTitle = null">close</mat-icon>
+            <textarea matInput [(ngModel)]="dataModel.subjectTitle" name="dataModel.subjectTitle" #SubjectTitle
+                type="text" placeholder="SubjectTitle"></textarea>
+            <mat-icon matSuffix *ngIf="dataModel.subjectTitle" matSuffix mat-icon-button aria-label="Clear"
+                (click)="dataModel.subjectTitle = null">close</mat-icon>
             <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field>
 
         <!-- expireDateTime Field -->
         <mat-form-field class="ntk-full-width" *ngIf="fieldsInfo['expireDateTime']?.accessWatchField">
             <mat-label>{{fieldsInfo['expireDateTime']?.fieldTitle}}</mat-label>
-            <input matInput [matDatepicker]="expireDateTime" [(ngModel)]="dataModel.expireDateTime" name="dataModel.expireDateTime" />
-            <mat-icon matSuffix *ngIf="dataModel.expireDateTime && fieldsInfo['expireDateTime']?.accessEditField" matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.expireDateTime = null">close</mat-icon>
+            <input matInput [matDatepicker]="expireDateTime" [(ngModel)]="dataModel.expireDateTime"
+                name="dataModel.expireDateTime" />
+            <mat-icon matSuffix *ngIf="dataModel.expireDateTime && fieldsInfo['expireDateTime']?.accessEditField"
+                matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.expireDateTime = null">close</mat-icon>
             <mat-datepicker-toggle matSuffix [for]="expireDateTime"></mat-datepicker-toggle>
             <mat-datepicker touchUi #expireDateTime></mat-datepicker>
         </mat-form-field>
@@ -76,7 +88,7 @@
             <button type="button" (click)="onFormCancel()" class="btn btn-light">
                 <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
             </button>
-            <button type="button" (click)="onFormSubmit()" class="btn btn-success">
+            <button type="submit" mat-raised-button (click)="onFormSubmit()">
                 <i class="ft-x"></i> {{'ACTION.SAVE' | translate}}
             </button>
 

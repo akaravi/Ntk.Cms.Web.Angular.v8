@@ -177,7 +177,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
 
-            setTimeout(() => this.router.navigate(['/linkmanagement/billboard']), 1000);
+            //setTimeout(() => this.router.navigate(['/linkmanagement/billboard']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(ret.errorMessage);
           }

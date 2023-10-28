@@ -94,9 +94,8 @@
                 <mat-label (click)="fileManagerOpenForm = true"> {{'TITLE.Icon_File' | translate}}
                 </mat-label>
                 <input matInput [(ngModel)]="dataModel.linkMainImageId" name="dataModel.linkMainImageId"
-                    #LinkMainImageId type="text"
-                    placeholder="{{'TITLE.Original_File_ID' | translate}}' | translate}}" autocomplete="off"
-                    (click)="fileManagerOpenForm = true" />
+                    #LinkMainImageId type="text" placeholder="{{'TITLE.Original_File_ID' | translate}}' | translate}}"
+                    autocomplete="off" (click)="fileManagerOpenForm = true" />
                 <mat-icon matSuffix *ngIf="dataModel.linkMainImageId " matSuffix mat-icon-button aria-label="Clear"
                     (click)="dataModel.linkMainImageId = null">close</mat-icon>
                 <mat-icon matSuffix (click)="fileManagerOpenForm = true">mode_edit</mat-icon>
@@ -124,7 +123,7 @@
             <button type="button" (click)="onFormCancel()" class="btn btn-light">
                 <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
             </button>
-            <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+            <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
                 <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
             </button>
         </div>
