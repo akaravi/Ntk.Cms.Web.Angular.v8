@@ -1,6 +1,4 @@
 <div class="box">
-
-
   <!-- mobile -->
   <ng-container *ngIf="stepContent === 'mobile'">
     <div class="mobile">
@@ -10,17 +8,38 @@
             برای ثبت سفارش، ابتدا شماره تلفن همراه خود را وارد نمایید.
           </div>
           <div class="mobile-header-form">
-            <label for="1" class="mobile-header-form-label"> شماره تلفن همراه </label>
-            <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
-              class="mobile-header-form-input" maxlength="11" />
+            <label for="1" class="mobile-header-form-label">
+              شماره تلفن همراه
+            </label>
+            <input
+              type="text"
+              [(ngModel)]="dataModel.contactMobiles"
+              name="dataModel.contactMobiles"
+              autocomplete="off"
+              class="mobile-header-form-input"
+              maxlength="11"
+            />
           </div>
         </div>
         <div class="mobile-footer">
-          <button (click)="onActoinSelectStepNext('orderType')" class="mobile-footer-buttonnext">
+          <button
+            (click)="onActoinSelectStepNext('orderType')"
+            class="mobile-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -28,7 +47,6 @@
     </div>
   </ng-container>
   <!-- mobile -->
-
 
   <!-- ordertype -->
   <ng-container *ngIf="stepContent === 'orderType'">
@@ -39,30 +57,68 @@
             لطفا درخواست خود را مشخص نمایید.
           </div>
 
-          <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
-            <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
+          <div
+            *ngIf="dataModelContractTypeResult?.listItems.length > 0"
+            class="ordertype-header-form"
+          >
+            <button
+              *ngFor="let state of dataModelContractTypeResult.listItems"
+              type="button"
+              mat-raised-button
               class="ordertype-header-form-option"
-              color="{{state.id===dataModel.linkContractTypeId ? 'primary' : 'info'}}"
-              (click)="dataModel.linkContractTypeId=state.id">{{ state.orderTitle }}</button>
+              color="{{
+                state.id === dataModel.linkContractTypeId ? 'primary' : 'info'
+              }}"
+              (click)="dataModel.linkContractTypeId = state.id"
+            >
+              {{ state.orderTitle }}
+            </button>
           </div>
-
-
         </div>
         <div class="ordertype-footer">
-          <button (click)="onActoinSelectStepBefor('mobile')"
-            [class]="dataModel?.linkContractTypeId?.length>0?'ordertype-footer-buttonbefor':'onestep'">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('mobile')"
+            [class]="
+              dataModel?.linkContractTypeId?.length > 0
+                ? 'ordertype-footer-buttonbefor'
+                : 'onestep'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
-          <button *ngIf="dataModel?.linkContractTypeId?.length>0"
-            (click)="onActoinSelectStepNext('selectPropertyTypeUsage')" class="ordertype-footer-buttonnext">
+          <button
+            *ngIf="dataModel?.linkContractTypeId?.length > 0"
+            (click)="onActoinSelectStepNext('selectPropertyTypeUsage')"
+            class="ordertype-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -70,7 +126,6 @@
     </div>
   </ng-container>
   <!-- ordertype -->
-
 
   <!-- selectPropertyTypeUsage -->
   <ng-container *ngIf="stepContent === 'selectPropertyTypeUsage'">
@@ -80,30 +135,73 @@
           <div class="selectPropertyTypeUsage-header-title">
             لطفا نوع کاربری ملک خود را مشخص نمایید.
           </div>
-          <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0" class="ordertype-header-form">
-            <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
+          <div
+            *ngIf="dataModelPropertyTypeUsageResult?.listItems.length > 0"
+            class="ordertype-header-form"
+          >
+            <button
+              *ngFor="let state of dataModelPropertyTypeUsageResult.listItems"
+              type="button"
+              mat-raised-button
               class="ordertype-header-form-option"
-              color="{{state.id===dataModel.linkPropertyTypeUsageId ? 'primary' : 'info'}}"
-              (click)="dataModel.linkPropertyTypeUsageId=state.id;this.DataGetAllPropertyTypeLanduse();">{{ state.title
-              }}</button>
+              color="{{
+                state.id === dataModel.linkPropertyTypeUsageId
+                  ? 'primary'
+                  : 'info'
+              }}"
+              (click)="
+                dataModel.linkPropertyTypeUsageId = state.id;
+                this.DataGetAllPropertyTypeLanduse()
+              "
+            >
+              {{ state.title }}
+            </button>
           </div>
         </div>
         <div class="selectPropertyTypeUsage-footer">
-          <button (click)="onActoinSelectStepBefor('orderType')"
-            [class]="dataModel?.linkPropertyTypeUsageId?.length>0?'selectPropertyTypeUsage-footer-buttonbefor':'onestep'">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('orderType')"
+            [class]="
+              dataModel?.linkPropertyTypeUsageId?.length > 0
+                ? 'selectPropertyTypeUsage-footer-buttonbefor'
+                : 'onestep'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
-          <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0"
+          <button
+            *ngIf="dataModel?.linkPropertyTypeUsageId?.length > 0"
             (click)="onActoinSelectStepNext('selectPropertyTypeLanduse')"
-            class="selectPropertyTypeUsage-footer-buttonnext">
+            class="selectPropertyTypeUsage-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -111,7 +209,6 @@
     </div>
   </ng-container>
   <!-- selectPropertyTypeUsage -->
-
 
   <!-- selectPropertyTypeLanduse -->
   <ng-container *ngIf="stepContent === 'selectPropertyTypeLanduse'">
@@ -121,28 +218,70 @@
           <div class="selectPropertyTypeLanduse-header-title">
             لطفا نوع ملک خود را مشخص نمایید.
           </div>
-          <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0" class="ordertype-header-form">
-            <button *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems " type="button" mat-raised-button
+          <div
+            *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length > 0"
+            class="ordertype-header-form"
+          >
+            <button
+              *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems"
+              type="button"
+              mat-raised-button
               class="ordertype-header-form-option"
-              color="{{state.id===dataModel.linkPropertyTypeLanduseId ? 'primary' : 'info'}}"
-              (click)="onActionSelectorSelectLanduse(state)">{{ state.title }}</button>
+              color="{{
+                state.id === dataModel.linkPropertyTypeLanduseId
+                  ? 'primary'
+                  : 'info'
+              }}"
+              (click)="onActionSelectorSelectLanduse(state)"
+            >
+              {{ state.title }}
+            </button>
           </div>
         </div>
         <div class="selectPropertyTypeLanduse-footer">
-          <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
-            [class]="dataModel?.linkPropertyTypeLanduseId?.length>0?'selectPropertyTypeLanduse-footer-buttonbefor':'onestep'">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
+            [class]="
+              dataModel?.linkPropertyTypeLanduseId?.length > 0
+                ? 'selectPropertyTypeLanduse-footer-buttonbefor'
+                : 'onestep'
+            "
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
-          <button *ngIf="dataModel?.linkPropertyTypeLanduseId?.length>0" (click)="onActoinSelectStepNext('selectYear')"
-            class="selectPropertyTypeLanduse-footer-buttonnext">
+          <button
+            *ngIf="dataModel?.linkPropertyTypeLanduseId?.length > 0"
+            (click)="onActoinSelectStepNext('selectYear')"
+            class="selectPropertyTypeLanduse-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -151,17 +290,24 @@
   </ng-container>
   <!-- selectPropertyTypeLanduse -->
 
-
   <!-- selectyear -->
   <ng-container *ngIf="stepContent === 'selectYear'">
     <div class="selectyear">
       <div class="selectyear-filter">
         <div class="selectyear-header">
-          <label *ngIf="this.PropertyTypeSelected?.createdYearActive" for="createdYaer"
-            class="selectyear-header-label1">سال ساخت
+          <label
+            *ngIf="this.PropertyTypeSelected?.createdYearActive"
+            for="createdYaer"
+            class="selectyear-header-label1"
+            >سال ساخت
           </label>
-          <select *ngIf="this.PropertyTypeSelected?.createdYearActive" id="createdYaer"
-            [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" class="selectyear-header-input1">
+          <select
+            *ngIf="this.PropertyTypeSelected?.createdYearActive"
+            id="createdYaer"
+            [(ngModel)]="dataModel.createdYaer"
+            name="dataModel.createdYaer"
+            class="selectyear-header-input1"
+          >
             <option value="1402">1402</option>
             <option value="1401">1401</option>
             <option value="1400">1400</option>
@@ -176,26 +322,62 @@
             <option value="1391">1391</option>
             <option value="1390">1390</option>
           </select>
-          <label *ngIf="this.PropertyTypeSelected?.partitionActive" for="partition"
-            class="selectyear-header-label2">{{this.PropertyTypeSelected?.titlePartitionML}}</label>
-          <input *ngIf="this.PropertyTypeSelected?.partitionActive" type="text" id="partition"
-            [(ngModel)]="dataModel.partition" name="dataModel.partition" class="selectyear-header-input2"
-            autocomplete="off" />
+          <label
+            *ngIf="this.PropertyTypeSelected?.partitionActive"
+            for="partition"
+            class="selectyear-header-label2"
+            >{{ this.PropertyTypeSelected?.titlePartitionML }}</label
+          >
+          <input
+            *ngIf="this.PropertyTypeSelected?.partitionActive"
+            type="text"
+            id="partition"
+            [(ngModel)]="dataModel.partition"
+            name="dataModel.partition"
+            class="selectyear-header-input2"
+            autocomplete="off"
+          />
         </div>
 
         <div class="selectyear-footer">
-          <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="selectyear-footer-buttonbefor">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')"
+            class="selectyear-footer-buttonbefor"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
-          <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
+          <button
+            (click)="onActoinSelectStepNext('result1')"
+            class="selectyear-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -203,7 +385,6 @@
     </div>
   </ng-container>
   <!-- selectyear -->
-
 
   <!-- result1 -->
   <ng-container *ngIf="stepContent === 'result1'">
@@ -214,21 +395,47 @@
           <div class="result1-header-result">تعداد ملک انتخابی شما</div>
         </div>
         <div class="result1-footer">
-          <button (click)="onActoinSelectStepBefor('selectYear')" class="result1-footer-buttonbefor">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('selectYear')"
+            class="result1-footer-buttonbefor"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
           <button (click)="onActoinSubmit()" class="result1-footer-submit">
             ثبت
           </button>
-          <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-footer-buttonnext">
+          <button
+            (click)="onActoinSelectStepNext('selectLocation')"
+            class="result1-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -236,7 +443,6 @@
     </div>
   </ng-container>
   <!-- result1 -->
-
 
   <!-- selectlocation -->
   <ng-container *ngIf="stepContent === 'selectLocation'">
@@ -248,22 +454,53 @@
           </div>
           <div class="selectlocation-header-form">
             <label for="1" class="selectlocation-header-label1">منطقه</label>
-            <input type="text" id="1" class="selectlocation-header-input1" autocomplete="off" />
+            <input
+              type="text"
+              id="1"
+              class="selectlocation-header-input1"
+              autocomplete="off"
+            />
           </div>
         </div>
         <div class="selectlocation-footer">
-          <button (click)="onActoinSelectStepBefor('result1')" class="selectlocation-footer-buttonbefor">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('result1')"
+            class="selectlocation-footer-buttonbefor"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
-          <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
+          <button
+            (click)="onActoinSelectStepNext('result2')"
+            class="selectlocation-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -271,7 +508,6 @@
     </div>
   </ng-container>
   <!-- selectlocation -->
-
 
   <!-- result2 -->
   <ng-container *ngIf="stepContent === 'result2'">
@@ -282,21 +518,47 @@
           <div class="result2-header-result">تعداد ملک انتخابی شما</div>
         </div>
         <div class="result2-footer">
-          <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-footer-buttonbefor">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('selectLocation')"
+            class="result2-footer-buttonbefor"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
           <button (click)="onActoinSubmit()" class="result2-footer-submit">
             ثبت
           </button>
-          <button (click)="onActoinSelectStepNext('selectPrice')" class="result2-footer-buttonnext">
+          <button
+            (click)="onActoinSelectStepNext('selectPrice')"
+            class="result2-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -305,33 +567,70 @@
   </ng-container>
   <!-- result2 -->
 
-
   <!-- selectprice -->
   <ng-container *ngIf="stepContent === 'selectPrice'">
     <div class="selectprice">
       <div class="selectprice-filter">
         <div class="selectprice-header">
-          <div class="selectprice-header-title">لطفا قیمت ملک خود را وارد نمایید.</div>
+          <div class="selectprice-header-title">
+            لطفا قیمت ملک خود را وارد نمایید.
+          </div>
           <div class="selectprice-header-form">
             <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
-            <input type="text" id="1" class="selectprice-header-input1" autocomplete="off" />
+            <input
+              type="text"
+              id="1"
+              class="selectprice-header-input1"
+              autocomplete="off"
+            />
             <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-            <input type="text" id="2" class="selectprice-header-input2" autocomplete="off" />
+            <input
+              type="text"
+              id="2"
+              class="selectprice-header-input2"
+              autocomplete="off"
+            />
           </div>
         </div>
         <div class="selectprice-footer">
-          <button (click)="onActoinSelectStepBefor('result2')" class="selectprice-footer-buttonbefor">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            (click)="onActoinSelectStepBefor('result2')"
+            class="selectprice-footer-buttonbefor"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
             <span>قبلی</span>
           </button>
-          <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
+          <button
+            (click)="onActoinSelectStepNext('result3')"
+            class="selectprice-footer-buttonnext"
+          >
             <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
           </button>
         </div>
@@ -339,7 +638,6 @@
     </div>
   </ng-container>
   <!-- selectprice -->
-
 
   <!-- result3 -->
   <ng-container *ngIf="stepContent === 'result3'">
@@ -350,12 +648,25 @@
           <div class="result3-header-result">تعداد ملک انتخابی شما</div>
         </div>
         <div class="result3-footer">
-          <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-footer-buttonbefor">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-              <span>قبلی</span>
+          <button
+            (click)="onActoinSelectStepBefor('selectPrice')"
+            class="result3-footer-buttonbefor"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+            <span>قبلی</span>
           </button>
           <button (click)="onActoinSubmit()" class="result3-footer-submit">
             ثبت
@@ -365,6 +676,4 @@
     </div>
   </ng-container>
   <!-- result3 -->
-
-
 </div>
