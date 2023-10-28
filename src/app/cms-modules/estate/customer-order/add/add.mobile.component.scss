@@ -81,7 +81,7 @@
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(2px);
     position: absolute;
-    padding: 3px 13px;
+    padding: 10px;
     margin-right: 5%;
     margin-left: 5%;
 }
@@ -182,7 +182,6 @@
     margin-left: 1.6%;
     margin-right: 1.6%;
     border-radius: 10px;
-    padding: 15px 0;
     border-radius: 25px;
     display: flex;
     justify-content: center;
@@ -260,7 +259,6 @@
     background-color: rgba(255, 255, 255, 0.07);
     border: 2px solid #BDC3C7;
     text-align: center;
-    padding: 0 10px;
     font-size: 20px;
     font-weight: 400;
 }
