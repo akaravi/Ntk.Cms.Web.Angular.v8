@@ -138,7 +138,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
 }
 
 .ordertype-footer-buttonbefor,
@@ -156,7 +155,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
 }
 
 .mobile-footer-buttonnext {
@@ -168,7 +166,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
 }
 
 .result1-footer-buttonnext,
@@ -176,9 +173,7 @@
 .result1-footer-submit,
 .result2-footer-buttonnext,
 .result2-footer-buttonbefor,
-.result2-footer-submit,
-.result3-footer-submit,
-.result3-footer-buttonbefor {
+.result2-footer-submit {
     width: 30%;
     height: 50%;
     margin-left: 1.6%;
@@ -189,7 +184,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+}
+
+.result3-footer-submit,
+.result3-footer-buttonbefor {
+    width: 45%;
+    height: 50%;
+    padding: 15px 0;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 // class-style
