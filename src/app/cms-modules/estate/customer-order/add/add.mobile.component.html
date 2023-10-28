@@ -49,6 +49,15 @@
 
         </div>
         <div class="ordertype-footer">
+          <button (click)="onActoinSelectStepBefor('mobile')"
+            [class]="dataModel?.linkContractTypeId?.length>0?'ordertype-footer-buttonbefor':'onestep'">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
           <button *ngIf="dataModel?.linkContractTypeId?.length>0"
             (click)="onActoinSelectStepNext('selectPropertyTypeUsage')" class="ordertype-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -56,14 +65,6 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-footer-buttonbefor">
-            <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
-            </svg>
           </button>
         </div>
       </div>
@@ -89,6 +90,15 @@
           </div>
         </div>
         <div class="selectPropertyTypeUsage-footer">
+          <button (click)="onActoinSelectStepBefor('orderType')"
+            [class]="dataModel?.linkPropertyTypeUsageId?.length>0?'selectPropertyTypeUsage-footer-buttonbefor':'onestep'">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
           <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0"
             (click)="onActoinSelectStepNext('selectPropertyTypeLanduse')"
             class="selectPropertyTypeUsage-footer-buttonnext">
@@ -97,14 +107,6 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('orderType')" class="selectPropertyTypeUsage-footer-buttonbefor">
-            <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
-            </svg>
           </button>
         </div>
       </div>
@@ -129,6 +131,15 @@
           </div>
         </div>
         <div class="selectPropertyTypeLanduse-footer">
+          <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
+            [class]="dataModel?.linkPropertyTypeLanduseId?.length>0?'selectPropertyTypeLanduse-footer-buttonbefor':'onestep'">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
           <button *ngIf="dataModel?.linkPropertyTypeLanduseId?.length>0" (click)="onActoinSelectStepNext('selectYear')"
             class="selectPropertyTypeLanduse-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -136,15 +147,6 @@
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
-            class="selectPropertyTypeLanduse-footer-buttonbefor">
-            <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
-            </svg>
           </button>
         </div>
       </div>
@@ -185,13 +187,6 @@
         </div>
 
         <div class="selectyear-footer">
-          <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>بعدی</span>
-          </button>
           <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="selectyear-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -199,6 +194,13 @@
                 d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
                 clip-rule="evenodd" />
             </svg>
+          </button>
+          <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
           </button>
         </div>
       </div>
@@ -216,16 +218,6 @@
           <div class="result1-header-result">تعداد ملک انتخابی شما</div>
         </div>
         <div class="result1-footer">
-          <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-footer-buttonnext">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSubmit()" class="result1-footer-submit">
-            ثبت
-          </button>
           <button (click)="onActoinSelectStepBefor('selectYear')" class="result1-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -233,6 +225,16 @@
                 d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
                 clip-rule="evenodd" />
             </svg>
+          </button>
+          <button (click)="onActoinSubmit()" class="result1-footer-submit">
+            ثبت
+          </button>
+          <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
           </button>
         </div>
       </div>
@@ -255,13 +257,6 @@
           </div>
         </div>
         <div class="selectlocation-footer">
-          <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>بعدی</span>
-          </button>
           <button (click)="onActoinSelectStepBefor('result1')" class="selectlocation-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -269,6 +264,13 @@
                 d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
                 clip-rule="evenodd" />
             </svg>
+          </button>
+          <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
           </button>
         </div>
       </div>
@@ -286,16 +288,6 @@
           <div class="result2-header-result">تعداد ملک انتخابی شما</div>
         </div>
         <div class="result2-footer">
-          <button (click)="onActoinSelectStepNext('selectPrice')" class="result2-footer-buttonnext">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSubmit()" class="result2-footer-submit">
-            ثبت
-          </button>
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -303,6 +295,16 @@
                 d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
                 clip-rule="evenodd" />
             </svg>
+          </button>
+          <button (click)="onActoinSubmit()" class="result2-footer-submit">
+            ثبت
+          </button>
+          <button (click)="onActoinSelectStepNext('selectPrice')" class="result2-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
           </button>
         </div>
       </div>
@@ -325,13 +327,6 @@
           </div>
         </div>
         <div class="selectprice-footer">
-          <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>بعدی</span>
-          </button>
           <button (click)="onActoinSelectStepBefor('result2')" class="selectprice-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -339,6 +334,13 @@
                 d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
                 clip-rule="evenodd" />
             </svg>
+          </button>
+          <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
           </button>
         </div>
       </div>
@@ -356,9 +358,6 @@
           <div class="result3-header-result">تعداد ملک انتخابی شما</div>
         </div>
         <div class="result3-footer">
-          <button (click)="onActoinSubmit()" class="result3-footer-submit">
-            ثبت
-          </button>
           <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-footer-buttonbefor">
             <span>قبلی</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -366,6 +365,9 @@
                 d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
                 clip-rule="evenodd" />
             </svg>
+          </button>
+          <button (click)="onActoinSubmit()" class="result3-footer-submit">
+            ثبت
           </button>
         </div>
       </div>
