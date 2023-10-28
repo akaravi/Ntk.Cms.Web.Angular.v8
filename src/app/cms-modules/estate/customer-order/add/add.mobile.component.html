@@ -8,10 +8,10 @@
         <div class="mobile-header">
           <div class="mobile-header-title">
             برای ثبت سفارش، ابتدا شماره تلفن خود را وارد نمایید.
-          </p>
-          <div class="mobile-input">
-            <label for="1" class="mobile-header-label">شماره تلفن</label>
-            <input type="text" id="1" class="mobile-header-input" />
+          </div>
+          <div class="mobile-header-form">
+            <label for="1" class="mobile-header-form-label">شماره تلفن</label>
+            <input type="text" id="1" class="mobile-header-form-input" maxlength="11" />
           </div>
         </div>
         <div class="mobile-footer">
@@ -32,50 +32,33 @@
   <!-- ordertype -->
   <ng-container *ngIf="stepContent === 'orderType'">
     <div class="ordertype">
-      <div class="ordertype-header">
-        <div class="ordertype-header-title">
-          لطفا نوع ملک خود را مشخص نمایید
+      <div class="ordertype-filter">
+        <div class="ordertype-header">
+          <div class="ordertype-header-title">
+            لطفا نوع ملک خود را مشخص نمایید.
+          </div>
+          <div class="ordertype-header-form">
+            <button class="ordertype-header-form-option1">می خواهم ملک بخرم.</button>
+            <button class="ordertype-header-form-option2">می خواهم ملک اجاره کنم.</button>
+          </div>
         </div>
-        <button class="ordertype-header-option1">می خواهم ملک بخرم</button>
-        <button class="ordertype-header-option2">می خواهم ملک اجاره کنم</button>
-      </div>
-      <div class="ordertype-footer">
-        <button
-          (click)="onActoinSelectStepNext('selectTypeLandUse')"
-          class="ordertype-footer-buttonnext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>بعدی</span>
-        </button>
-        <button
-          (click)="onActoinSelectStepBefor('mobile')"
-          class="ordertype-footer-buttonbefor"
-        >
-          <span>قبلی</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <div class="ordertype-footer">
+          <button (click)="onActoinSelectStepNext('selectTypeLandUse')" class="ordertype-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-footer-buttonbefor">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -85,51 +68,34 @@
   <!-- selecttypelanduse -->
   <ng-container *ngIf="stepContent === 'selectTypeLandUse'">
     <div class="selecttypelanduse">
-      <div class="selecttypelanduse-header">
-        <div class="selecttypelanduse-header-title">
-          لطفا نوع کاربردی ملک خود را مشخص نمایید
+      <div class="selecttypelanduse-filter">
+        <div class="selecttypelanduse-header">
+          <div class="selecttypelanduse-header-title">
+            لطفا نوع کاربری ملک خود را مشخص نمایید.
+          </div>
+          <div class="selecttypelanduse-header-form">
+            <button class="selecttypelanduse-header-form-option1">مسکونی</button>
+            <button class="selecttypelanduse-header-form-option2">تجاری</button>
+            <button class="selecttypelanduse-header-form-option1">اداری</button>
+          </div>
         </div>
-        <button class="selecttypelanduse-header-option1">مسکونی</button>
-        <button class="selecttypelanduse-header-option2">تجاری</button>
-        <button class="selecttypelanduse-header-option1">اداری</button>
-      </div>
-      <div class="selecttypelanduse-footer">
-        <button
-          (click)="onActoinSelectStepNext('selectTypeProperty')"
-          class="selecttypelanduse-footer-buttonnext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>بعدی</span>
-        </button>
-        <button
-          (click)="onActoinSelectStepBefor('orderType')"
-          class="selecttypelanduse-footer-buttonbefor"
-        >
-          <span>قبلی</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <div class="selecttypelanduse-footer">
+          <button (click)="onActoinSelectStepNext('selectTypeProperty')" class="selecttypelanduse-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button (click)="onActoinSelectStepBefor('orderType')" class="selecttypelanduse-footer-buttonbefor">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -139,50 +105,33 @@
   <!-- selecttypeproperty -->
   <ng-container *ngIf="stepContent === 'selectTypeProperty'">
     <div class="selecttypeproperty">
-      <div class="selecttypeproperty-header">
-        <div class="selecttypeproperty-header-title">
-          لطفا نوع ملک خود را مشخص نمایید
+      <div class="selecttypeproperty-filter">
+        <div class="selecttypeproperty-header">
+          <div class="selecttypeproperty-header-title">
+            لطفا نوع ملک خود را مشخص نمایید.
+          </div>
+          <div class="selecttypeproperty-header-form">
+            <button class="selecttypeproperty-header-option1">آپارتمانی</button>
+            <button class="selecttypeproperty-header-option2">ویلایی</button>
+          </div>
         </div>
-        <button class="selecttypeproperty-header-option1">آپارتمانی</button>
-        <button class="selecttypeproperty-header-option2">ویلایی</button>
-      </div>
-      <div class="selecttypeproperty-footer">
-        <button
-          (click)="onActoinSelectStepNext('selectYear')"
-          class="selecttypeproperty-footer-buttonnext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>بعدی</span>
-        </button>
-        <button
-          (click)="onActoinSelectStepBefor('selectTypeLandUse')"
-          class="selecttypeproperty-footer-buttonbefor"
-        >
-          <span>قبلی</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <div class="selecttypeproperty-footer">
+          <button (click)="onActoinSelectStepNext('selectYear')" class="selecttypeproperty-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button (click)="onActoinSelectStepBefor('selectTypeLandUse')" class="selecttypeproperty-footer-buttonbefor">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -192,49 +141,30 @@
   <!-- selectyear -->
   <ng-container *ngIf="stepContent === 'selectYear'">
     <div class="selectyear">
-      <div class="selectyear-header">
-        <label for="1" class="selectyear-header-label1">سال ساخت </label>
-        <input type="text" id="1" class="selectyear-header-input1" />
-        <label for="2" class="selectyear-header-label2">پارتیشن</label>
-        <input type="text" id="2" class="selectyear-header-input2" />
-      </div>
-      <div class="selectyear-footer">
-        <button
-          (click)="onActoinSelectStepNext('result1')"
-          class="selectyear-footer-buttonnext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>بعدی</span>
-        </button>
-        <button
-          (click)="onActoinSelectStepBefor('selectTypeProperty')"
-          class="selectyear-footer-buttonbefor"
-        >
-          <span>قبلی</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+      <div class="selectyear-filter">
+        <div class="selectyear-header">
+          <label for="1" class="selectyear-header-label1">سال ساخت </label>
+          <input type="text" id="1" class="selectyear-header-input1" />
+          <label for="2" class="selectyear-header-label2">پارتیشن</label>
+          <input type="text" id="2" class="selectyear-header-input2" />
+        </div>
+        <div class="selectyear-footer">
+          <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button (click)="onActoinSelectStepBefor('selectTypeProperty')" class="selectyear-footer-buttonbefor">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -278,50 +208,33 @@
   <!-- selectlocation -->
   <ng-container *ngIf="stepContent === 'selectLocation'">
     <div class="selectlocation">
-      <div class="selectlocation-header">
-        <div class="selectlocation-header-title">
-          لطفا منطقه مورد نظر خود را مشخص کنید
+      <div class="selectlocation-filter">
+        <div class="selectlocation-header">
+          <div class="selectlocation-header-title">
+            لطفا منطقه مورد نظر خود را مشخص کنید.
+          </div>
+          <div class="selectlocation-header-form">
+            <label for="1" class="selectlocation-header-label1">منطقه</label>
+            <input type="text" id="1" class="selectlocation-header-input1" />
+          </div>
         </div>
-        <label for="1" class="selectlocation-header-label1">منطقه</label>
-        <input type="text" id="1" class="selectlocation-header-input1" />
-      </div>
-      <div class="selectlocation-footer">
-        <button
-          (click)="onActoinSelectStepNext('result2')"
-          class="selectlocation-footer-buttonnext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>بعدی</span>
-        </button>
-        <button
-          (click)="onActoinSelectStepBefor('result1')"
-          class="selectlocation-footer-buttonbefor"
-        >
-          <span>قبلی</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+        <div class="selectlocation-footer">
+          <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button (click)="onActoinSelectStepBefor('result1')" class="selectlocation-footer-buttonbefor">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
@@ -365,50 +278,33 @@
   <!-- selectprice -->
   <ng-container *ngIf="stepContent === 'selectPrice'">
     <div class="selectprice">
-      <div class="selectprice-header">
-        <div>لطفا قیمت ملک خود را وارد نمایید</div>
-        <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
-        <input type="text" id="1" class="selectprice-header-input1" />
-        <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-        <input type="number" id="2" class="selectprice-header-input2" />
-      </div>
-      <div class="selectprice-footer">
-        <button
-          (click)="onActoinSelectStepNext('result3')"
-          class="selectprice-footer-buttonnext"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>بعدی</span>
-        </button>
-        <button
-          (click)="onActoinSelectStepBefor('result2')"
-          class="selectprice-footer-buttonbefor"
-        >
-          <span>قبلی</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
+      <div class="selectprice-filter">
+        <div class="selectprice-header">
+          <div class="selectprice-header-title">لطفا قیمت ملک خود را وارد نمایید.</div>
+          <div class="selectprice-header-form">
+            <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
+            <input type="text" id="1" class="selectprice-header-input1" />
+            <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
+            <input type="number" id="2" class="selectprice-header-input2" />
+          </div>
+        </div>
+        <div class="selectprice-footer">
+          <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button (click)="onActoinSelectStepBefor('result2')" class="selectprice-footer-buttonbefor">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </ng-container>
