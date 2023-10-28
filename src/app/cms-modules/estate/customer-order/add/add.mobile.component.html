@@ -42,7 +42,7 @@
           <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
               class="ordertype-header-form-option"
-              color="{{state.id===dataModel.linkContractTypeId ? 'primary' : ' #BDC3C7'}}"
+              color="{{state.id===dataModel.linkContractTypeId ? 'primary' : 'info'}}"
               (click)="dataModel.linkContractTypeId=state.id">{{ state.orderTitle }}</button>
           </div>
 
@@ -150,7 +150,6 @@
       <div class="selectyear-filter">
         <div class="selectyear-header">
           <label for="1" class="selectyear-header-label1">سال ساخت </label>
-          <!-- <input type="text" id="1" class="selectyear-header-input1" /> -->
           <select id="1" class="selectyear-header-input1">
             <option value="1402">1402</option>
             <option value="1401">1401</option>
@@ -167,7 +166,7 @@
             <option value="1390">1390</option>
           </select>
           <label for="2" class="selectyear-header-label2">پارتیشن</label>
-          <input type="text" id="2" class="selectyear-header-input2" />
+          <input type="text" id="2" class="selectyear-header-input2" autocomplete="off" />
         </div>
         <div class="selectyear-footer">
           <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
@@ -236,7 +235,7 @@
           </div>
           <div class="selectlocation-header-form">
             <label for="1" class="selectlocation-header-label1">منطقه</label>
-            <input type="text" id="1" class="selectlocation-header-input1" />
+            <input type="text" id="1" class="selectlocation-header-input1" autocomplete="off" />
           </div>
         </div>
         <div class="selectlocation-footer">
@@ -304,9 +303,9 @@
           <div class="selectprice-header-title">لطفا قیمت ملک خود را وارد نمایید.</div>
           <div class="selectprice-header-form">
             <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
-            <input type="text" id="1" class="selectprice-header-input1" />
+            <input type="text" id="1" class="selectprice-header-input1" autocomplete="off" />
             <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-            <input type="text" id="2" class="selectprice-header-input2" />
+            <input type="text" id="2" class="selectprice-header-input2" autocomplete="off" />
           </div>
         </div>
         <div class="selectprice-footer">
