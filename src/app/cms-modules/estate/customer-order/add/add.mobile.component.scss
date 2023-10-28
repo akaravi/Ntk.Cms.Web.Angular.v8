@@ -100,6 +100,7 @@
 .selectprice-header,
 .result3-header {
     margin-bottom: 26px;
+    height: 80%;
 }
 
 .mobile-footer,
@@ -113,10 +114,12 @@
 .selectprice-footer,
 .result3-footer {
     width: 100%;
-    margin-top: 40%;
+    height: 20%;
+    // margin-top: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -100px;
 }
 
 .ordertype-footer-buttonnext,
@@ -127,6 +130,7 @@
 .selectlocation-footer-buttonnext,
 .selectprice-footer-buttonnext {
     width: 45%;
+    height: 50%;
     padding: 15px 0;
     margin-left: 2.5%;
     margin-right: 2.5%;
@@ -144,6 +148,7 @@
 .selectlocation-footer-buttonbefor,
 .selectprice-footer-buttonbefor {
     width: 45%;
+    height: 50%;
     padding: 15px 0;
     margin-left: 2.5%;
     margin-right: 2.5%;
@@ -156,6 +161,7 @@
 
 .mobile-footer-buttonnext {
     width: 100%;
+    height: 50%;
     padding: 15px 0;
     border-radius: 25px;
     margin-top: 65px;
@@ -172,10 +178,9 @@
 .result2-footer-buttonbefor,
 .result2-footer-submit,
 .result3-footer-submit,
-.result3-footer-buttonbefor
- {
+.result3-footer-buttonbefor {
     width: 30%;
-    height: 40%;
+    height: 50%;
     margin-left: 1.6%;
     margin-right: 1.6%;
     border-radius: 10px;
@@ -201,8 +206,7 @@
 .result2-header-result,
 .selectprice-header-title,
 .result3-header-title,
-.result3-header-result
- {
+.result3-header-result {
     color: white;
     font-size: 14px;
     margin-top: 30px;
@@ -210,8 +214,7 @@
 
 .mobile-header-form,
 .selectlocation-header-form,
-.selectprice-header-form
- {
+.selectprice-header-form {
     margin-top: 26px;
 }
 
@@ -220,8 +223,7 @@
 .selectyear-header-label2,
 .selectlocation-header-label1,
 .selectprice-header-label1,
-.selectprice-header-label2
- {
+.selectprice-header-label2 {
     color: white;
     font-size: 16px;
 }
@@ -231,8 +233,7 @@
 .selectyear-header-input2,
 .selectlocation-header-input1,
 .selectprice-header-input1,
-.selectprice-header-input2
- {
+.selectprice-header-input2 {
     width: 100%;
     height: 50px;
     margin-top: 16px;
@@ -250,16 +251,14 @@
 
 .ordertype-header-form,
 .selecttypelanduse-header-form,
-.selecttypeproperty-header-form
- {
+.selecttypeproperty-header-form {
     margin-top: 50px;
 }
 
 .ordertype-header-form-option1,
 .ordertype-header-form-option2,
 .selecttypeproperty-header-option1,
-.selecttypeproperty-header-option2
- {
+.selecttypeproperty-header-option2 {
     width: 90%;
     height: 50px;
     margin-top: 50px;
@@ -285,12 +284,12 @@
 
 //selectyear,selectprice
 
-.selectyear-header{
+.selectyear-header {
     margin-top: 15%;
 }
+
 .selectyear-header-label2,
-.selectprice-header-label2
-{
+.selectprice-header-label2 {
     margin-top: 5%;
 }
 
