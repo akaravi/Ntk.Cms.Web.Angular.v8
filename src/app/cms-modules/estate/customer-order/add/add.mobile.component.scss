@@ -310,10 +310,16 @@ span {
     margin-left: 2.5px;
     margin-right: 2.5px;
 }
-option{
-    color: black;
+
+option {
     overflow-y: scroll;
+    background-color: #212121;
 }
-select{
+
+option:hover {
+    background-color: orange;
+}
+
+select {
     overflow-y: scroll;
 }
