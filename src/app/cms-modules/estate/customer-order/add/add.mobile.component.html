@@ -215,6 +215,12 @@
           <div class="result1-header-title">نتیجه</div>
           <div class="result1-header-result">تعداد ملک انتخابی شما</div>
         </div>
+        <div *ngIf="dataModelEstatePropertyResult?.listItems.length>0">
+          <div *ngFor="let state of dataModelEstatePropertyResult.listItems" class="ordertype-header-form">
+            {{ state.title }}
+          </div>
+        </div>
+
         <div class="result1-footer">
           <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-footer-buttonnext">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

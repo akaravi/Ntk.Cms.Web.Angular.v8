@@ -11,18 +11,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ClauseTypeEnum,
-  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeLanduseService,
-  EstatePropertyTypeUsageModel, EstatePropertyTypeUsageService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, FormInfoModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
+  EstatePropertyTypeUsageModel, EstatePropertyTypeUsageService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, FormInfoModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { environment } from 'src/environments/environment';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
-import { EstateCustomerOrderActionComponent } from '../action/action.component';
 
 @Component({
   selector: 'app-estate-customer-order-add-mobile',
@@ -39,6 +37,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     public estatePropertyTypeUsageService: EstatePropertyTypeUsageService,
     public estatePropertyTypeLanduseService: EstatePropertyTypeLanduseService,
     private estatePropertyService: EstatePropertyService,
+
     private cmsToastrService: CmsToastrService,
     public estatePropertyDetailGroupService: EstatePropertyDetailGroupService,
     public publicHelper: PublicHelper,
@@ -73,6 +72,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   dataModelContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
   dataModelPropertyTypeUsageResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
   dataModelPropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
+  dataModelEstatePropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();
@@ -161,6 +161,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
+          this.dataModel = ret.item;
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
 
@@ -170,17 +171,18 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
               panelClass = 'dialog-fullscreen';
             else
               panelClass = 'dialog-min';
-            const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-              panelClass: panelClass,
-              enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-              exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
-              data: { model: ret.item }
-            });
-            dialogRef.afterClosed().subscribe(result => {
-              this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
-            });
-          }
+            // const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+            //   panelClass: panelClass,
+            //   enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+            //   exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+            //   data: { model: ret.item }
+            // });
+            // dialogRef.afterClosed().subscribe(result => {
+            //   this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
+            // });
 
+          }
+          this.DataGetAllProperty();
 
 
         } else {
@@ -202,7 +204,54 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
 
   }
   DataEditContent(): void {
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
 
+    this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
+      next: (ret) => {
+        this.dataModel = ret.item;
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.cmsToastrService.typeSuccessEdit();
+          //this.optionReload();
+          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
+            var panelClass = '';
+            if (this.tokenHelper.isMobile)
+              panelClass = 'dialog-fullscreen';
+            else
+              panelClass = 'dialog-min';
+            // const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+            //   panelClass: panelClass,
+            //   enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+            //   exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+            //   data: { model: this.dataModel }
+            // });
+            // dialogRef.afterClosed().subscribe(result => {
+            //   this.formInfo.formSubmitAllow = true;
+            //   this.loading.Stop(pName);
+            // });
+          }
+          this.cdr.detectChanges();
+          this.DataGetAllProperty();
+
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+
+        this.formInfo.formSubmitAllow = true;
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
   }
   DataGetOneContent(): void {
     this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
@@ -361,6 +410,44 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       }
       );
   }
+  DataGetAllProperty() {
+    if (!this.dataModel || !this.dataModel.id || this.dataModel.id.length == 0)
+      return;
+    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formError = '';
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    const filterModel = new EstatePropertyFilterModel();
+    // **requestLinkCustomerOrderId*/
+    this.estatePropertyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
+    this.estatePropertyService
+      .ServiceGetAllWithCoverCustomerOrderId(
+        this.dataModel.id,
+        filterModel
+      )
+      .subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          if (ret.isSuccess) {
+            this.dataModelEstatePropertyResult = ret;
+            // this.tableSource.data = ret.listItems;
+            // if (this.optionsSearch.childMethods) {
+            //   this.optionsSearch.childMethods.setAccess(ret.access);
+            // }
+          } else {
+            this.cmsToastrService.typeErrorGetAll(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er)
+          this.loading.Stop(pName);
+        }
+      }
+      );
+    // **requestLinkCustomerOrderId*/
+  }
+
   onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
       const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
