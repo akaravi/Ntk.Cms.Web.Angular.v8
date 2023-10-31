@@ -5,7 +5,6 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,14 +12,16 @@ import {
   ClauseTypeEnum,
   CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeLanduseService,
-  EstatePropertyTypeUsageModel, EstatePropertyTypeUsageService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, FormInfoModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
+  EstatePropertyTypeUsageModel, EstatePropertyTypeUsageService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { environment } from 'src/environments/environment';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
+import { EstateCustomerOrderActionComponent } from '../action/action.component';
 
 @Component({
   selector: 'app-estate-customer-order-add-mobile',
@@ -58,7 +59,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.dataModel.partition = 3;
   }
 
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
+
   @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
@@ -76,7 +77,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   dataModelEstatePropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
-  formInfo: FormInfoModel = new FormInfoModel();
+
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
@@ -92,7 +93,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
 
   areaAddressView = false;
   ngOnInit(): void {
-    this.formInfo.formTitle = this.translate.instant('TITLE.ADD');
+
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.DataGetAccessEstate();
@@ -152,9 +153,8 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       );
 
   }
-  DataAddContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
+  DataAddContent(actionSubmit = false): void {
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     if (!this.dataModel.title || this.dataModel.title.length == 0)
@@ -163,40 +163,36 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       next: (ret) => {
         if (ret.isSuccess) {
           this.dataModel = ret.item;
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessAdd();
 
-          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
+          if (actionSubmit && (this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
             var panelClass = '';
             if (this.tokenHelper.isMobile)
               panelClass = 'dialog-fullscreen';
             else
               panelClass = 'dialog-min';
-            // const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-            //   panelClass: panelClass,
-            //   enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-            //   exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
-            //   data: { model: ret.item }
-            // });
-            // dialogRef.afterClosed().subscribe(result => {
-            //   this.router.navigate(['/estate/customer-order/edit', ret.item.id]);
-            // });
+            const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+              panelClass: panelClass,
+              enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+              exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+              data: { model: ret.item }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              this.router.navigate(['/estate/customer-order/']);
+            });
 
           }
           this.DataGetAllProperty();
 
 
         } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
+
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -204,50 +200,65 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     );
 
   }
-  DataEditContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
+  DataEditContent(actionSubmit = false): void {
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
-
+    this.estateCustomerOrderService.setAccessLoad
     this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
-        this.dataModel = ret.item;
         if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
           //this.optionReload();
-          if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
+          if (actionSubmit && (this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available) {
             var panelClass = '';
             if (this.tokenHelper.isMobile)
               panelClass = 'dialog-fullscreen';
             else
               panelClass = 'dialog-min';
-            // const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
-            //   panelClass: panelClass,
-            //   enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-            //   exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
-            //   data: { model: this.dataModel }
-            // });
-            // dialogRef.afterClosed().subscribe(result => {
-            //   this.formInfo.formSubmitAllow = true;
-            //   this.loading.Stop(pName);
-            // });
+            const dialogRef = this.dialog.open(EstateCustomerOrderActionComponent, {
+              panelClass: panelClass,
+              enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+              exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+              data: { model: this.dataModel }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              this.router.navigate(['/estate/customer-order/']);
+            });
           }
-          this.cdr.detectChanges();
-          this.DataGetAllProperty();
+
+          this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
+            next: (ret) => {
+              this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+              this.dataModel = ret.item;
+              if (ret.isSuccess) {
+
+                if (this.dataModel.linkPropertyTypeUsageId.length > 0)
+                  this.DataGetAllPropertyTypeLanduse();
+
+                this.DataGetAllProperty();
+                this.cdr.detectChanges();
+              } else {
+                this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+              }
+              this.loading.Stop(pName);
+
+            },
+            error: (er) => {
+              this.cmsToastrService.typeError(er);
+              this.loading.Stop(pName);
+            }
+          }
+          );
 
         } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
+
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
 
-        this.formInfo.formSubmitAllow = true;
       },
       error: (er) => {
-        this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
       }
@@ -255,8 +266,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     );
   }
   DataGetOneContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.formError = '';
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     // var id = '';
@@ -271,12 +281,16 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
         this.dataModel = ret.item;
+
         if (ret.isSuccess) {
-          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
-          this.formInfo.formAlert = '';
+          if (this.dataModel.linkPropertyTypeUsageId.length > 0)
+            this.DataGetAllPropertyTypeLanduse();
+          if (this.dataModel.linkContractTypeId.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
+            var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
+            this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
+          }
+
         } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -290,17 +304,20 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     );
   }
   DataGetAllContractType(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.formError = '';
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     const filterModel = new FilterModel();
     this.estateContractTypeService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.dataModelContractTypeResult = ret;
-        if (!ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
+        if (ret.isSuccess) {
+          if (this.dataModel.linkContractTypeId.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
+            var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
+            this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
+          }
+        }
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -314,8 +331,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   }
 
   DataGetAllPropertyTypeUsage(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.formError = '';
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     const filterModel = new FilterModel();
@@ -323,8 +339,6 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       next: (ret) => {
         this.dataModelPropertyTypeUsageResult = ret;
         if (!ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -337,8 +351,6 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     );
   }
   DataGetAllPropertyTypeLanduse(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     const filterModel = new FilterModel();
@@ -356,9 +368,15 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.estatePropertyTypeLanduseService.ServiceGetAll(filterModel).subscribe({
       next: (ret) => {
         this.dataModelPropertyTypeLanduseResult = ret;
-        if (!ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
+        if (ret.isSuccess) {
+          if (this.dataModel.linkPropertyTypeUsageId.length > 0) {
+            var state = this.dataModelPropertyTypeLanduseResult.listItems.findIndex(x => x.id == this.dataModel.linkPropertyTypeLanduseId);
+            if (state >= 0)
+              this.onActionSelectorSelectLanduse(this.dataModelPropertyTypeLanduseResult.listItems[state]);
+          }
+
+        } else {
+
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -414,8 +432,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   DataGetAllProperty() {
     if (!this.dataModel || !this.dataModel.id || this.dataModel.id.length == 0)
       return;
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
-    this.formInfo.formError = '';
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     this.dataModelEstatePropertyResult = new ErrorExceptionResult<EstatePropertyModel>();
@@ -489,18 +506,18 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.dataModel.linkEstateUserId = model.id;
   }
 
-  // onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
-  //   this.contractTypeSelected = null;
-  //   this.dataModel.linkContractTypeId = null;
-  //   if (!model || !model.id || model.id.length <= 0) {
-  //     const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
-  //     this.cmsToastrService.typeWarningSelected(message);
-  //     return;
-  //   }
-  //   this.contractTypeSelected = model;
-  //   this.dataModel.linkContractTypeId = model.id;
+  onActionSelectorContarctType(model: EstateContractTypeModel | null): void {
+    this.contractTypeSelected = null;
+    this.dataModel.linkContractTypeId = null;
+    if (!model || !model.id || model.id.length <= 0) {
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
+      this.cmsToastrService.typeWarningSelected(message);
+      return;
+    }
+    this.contractTypeSelected = model;
+    this.dataModel.linkContractTypeId = model.id;
 
-  // }
+  }
   onActionSelectorLocation(model: number[] | null): void {
 
     this.dataModel.linkLocationIds = model;
@@ -529,11 +546,8 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.step--;
   }
   // ** Accardon */
-  onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      return;
-    }
-    this.formInfo.formSubmitAllow = false;
+  onActoinSubmit(): void {
+
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
     if (this.dataModel.propertyDetailGroups)
@@ -547,7 +561,12 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       });
     // ** Save Value */
 
-    this.DataAddContent();
+    if (this.dataModel?.id?.length > 0) {
+      this.DataEditContent(true);
+    }
+    else {
+      this.DataAddContent(true);
+    }
 
   }
 
@@ -602,11 +621,12 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       }
     }
     if (step === 'result1' || step === 'result2' || step === 'result3') {
-      if (!this.dataModel.id || this.dataModel.id.length === 0) {
-        this.DataAddContent();
+
+      if (this.dataModel?.id?.length > 0) {
+        this.DataEditContent();
       }
       else {
-        this.DataEditContent();
+        this.DataAddContent();
       }
     }
     this.stepContent = step;
@@ -624,7 +644,5 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.stepContent = step;
 
   }
-  onActoinSubmit(): void {
 
-  }
 }

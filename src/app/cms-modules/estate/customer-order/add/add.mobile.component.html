@@ -7,21 +7,30 @@
       <div class="mobile-filter">
         <div class="mobile-header">
           <div class="mobile-header-title">
-            برای ثبت سفارش، ابتدا شماره تلفن خود را وارد نمایید.
+            برای ثبت سفارش، ابتدا شماره تلفن همراه خود را وارد نمایید.
           </div>
           <div class="mobile-header-form">
-            <label for="1" class="mobile-header-form-label">شماره تلفن</label>
+            <label for="1" class="mobile-header-form-label"> شماره تلفن همراه </label>
             <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
               class="mobile-header-form-input" maxlength="11" />
           </div>
         </div>
         <div class="mobile-footer">
-          <button (click)="onActoinSelectStepNext('orderType')" class="mobile-footer-buttonnext">
+          <button (click)="onFormCancel()"
+            [class]="dataModel?.linkContractTypeId?.length>0?'ordertype-footer-buttonbefor':'onestep'">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="step-arrow">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
+            <span>{{'ACTION.CANCEL' | translate}}</span>
+          </button>
+          <button *ngIf="dataModel?.linkContractTypeId?.length>0" (click)="onActoinSelectStepNext('orderType')"
+            class="ordertype-footer-buttonnext">
             <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
           </button>
         </div>
       </div>
@@ -43,26 +52,26 @@
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
               class="ordertype-header-form-option"
               color="{{state.id===dataModel.linkContractTypeId ? 'primary' : 'info'}}"
-              (click)="dataModel.linkContractTypeId=state.id">{{ state.orderTitle }}</button>
+              (click)="onActionSelectorContarctType(state)">{{ state.orderTitle }}</button>
           </div>
 
 
         </div>
         <div class="ordertype-footer">
-          <button *ngIf="dataModel?.linkContractTypeId?.length>0"
-            (click)="onActoinSelectStepNext('selectPropertyTypeUsage')" class="ordertype-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('mobile')"
+            [class]="dataModel?.linkContractTypeId?.length>0?'ordertype-footer-buttonbefor':'onestep'">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('mobile')" class="ordertype-footer-buttonbefor">
             <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          </button>
+          <button *ngIf="dataModel?.linkContractTypeId?.length>0"
+            (click)="onActoinSelectStepNext('selectPropertyTypeUsage')" class="ordertype-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -84,26 +93,27 @@
             <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
               class="ordertype-header-form-option"
               color="{{state.id===dataModel.linkPropertyTypeUsageId ? 'primary' : 'info'}}"
-              (click)="dataModel.linkPropertyTypeUsageId=state.id;">{{ state.title
+              (click)="dataModel.linkPropertyTypeUsageId=state.id;this.DataGetAllPropertyTypeLanduse();">{{ state.title
               }}</button>
           </div>
         </div>
+
         <div class="selectPropertyTypeUsage-footer">
-          <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0"
-            (click)="onActoinSelectStepNext('selectPropertyTypeLanduse');this.DataGetAllPropertyTypeLanduse();"
-            class="selectPropertyTypeUsage-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('orderType')"
+            [class]="dataModel?.linkPropertyTypeUsageId?.length>0?'selectPropertyTypeUsage-footer-buttonbefor':'onestep'">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('orderType')" class="selectPropertyTypeUsage-footer-buttonbefor">
             <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          </button>
+          <button *ngIf="dataModel?.linkPropertyTypeUsageId?.length>0"
+            (click)="onActoinSelectStepNext('selectPropertyTypeLanduse');"
+            class="selectPropertyTypeUsage-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -129,21 +139,20 @@
           </div>
         </div>
         <div class="selectPropertyTypeLanduse-footer">
-          <button *ngIf="dataModel?.linkPropertyTypeLanduseId?.length>0" (click)="onActoinSelectStepNext('selectYear')"
-            class="selectPropertyTypeLanduse-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
+            [class]="dataModel?.linkPropertyTypeLanduseId?.length>0?'selectPropertyTypeLanduse-footer-buttonbefor':'onestep'">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')"
-            class="selectPropertyTypeLanduse-footer-buttonbefor">
             <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          </button>
+          <button *ngIf="dataModel?.linkPropertyTypeLanduseId?.length>0" (click)="onActoinSelectStepNext('selectYear')"
+            class="selectPropertyTypeLanduse-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -185,19 +194,18 @@
         </div>
 
         <div class="selectyear-footer">
-          <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="selectyear-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="selectyear-footer-buttonbefor">
             <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          </button>
+          <button (click)="onActoinSelectStepNext('result1')" class="selectyear-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -215,30 +223,30 @@
           <div class="result1-header-title">نتیجه</div>
           <div class="result1-header-result">تعداد ملک انتخابی شما {{this.dataModelEstatePropertyResult .totalRowCount}}
           </div>
-        </div>
-        <div *ngIf="dataModelEstatePropertyResult?.listItems.length>0">
-          <div *ngFor="let state of dataModelEstatePropertyResult.listItems" class="ordertype-header-form">
-            {{ state.title }}
+          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0">
+            <div *ngFor="let state of dataModelEstatePropertyResult.listItems" class="ordertype-header-form">
+              {{ state.title }}
+            </div>
           </div>
         </div>
 
+
         <div class="result1-footer">
-          <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('selectYear')" class="result1-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
+            <span>قبلی</span>
           </button>
           <button (click)="onActoinSubmit()" class="result1-footer-submit">
             ثبت
           </button>
-          <button (click)="onActoinSelectStepBefor('selectYear')" class="result1-footer-buttonbefor">
-            <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          <button (click)="onActoinSelectStepNext('selectLocation')" class="result1-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -257,24 +265,28 @@
             لطفا منطقه مورد نظر خود را مشخص کنید.
           </div>
           <div class="selectlocation-header-form">
-            <label for="1" class="selectlocation-header-label1">منطقه</label>
-            <input type="text" id="1" class="selectlocation-header-input1" autocomplete="off" />
+            <label for="1" class="selectlocation-header-label1">{{'TITLE.Geographical_Areas' | translate}} :</label>
+
+            <!-- LinkLocationIds Field -->
+            <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
+              [optionSelectForce]="dataModel.linkLocationIds"
+              [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+            </app-cms-location-autocomplete>
           </div>
         </div>
         <div class="selectlocation-footer">
-          <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('result1')" class="selectlocation-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('selectYear')" class="selectlocation-footer-buttonbefor">
             <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          </button>
+          <button (click)="onActoinSelectStepNext('result2')" class="selectlocation-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -290,25 +302,30 @@
       <div class="result2-filter">
         <div class="result2-header">
           <div class="result2-header-title">نتیجه</div>
-          <div class="result2-header-result">تعداد ملک انتخابی شما</div>
+          <div class="result2-header-result">تعداد ملک انتخابی شما {{this.dataModelEstatePropertyResult .totalRowCount}}
+          </div>
+          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0">
+            <div *ngFor="let state of dataModelEstatePropertyResult.listItems" class="ordertype-header-form">
+              {{ state.title }}
+            </div>
+          </div>
         </div>
         <div class="result2-footer">
-          <button (click)="onActoinSelectStepNext('selectPrice')" class="result2-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
+            <span>قبلی</span>
           </button>
           <button (click)="onActoinSubmit()" class="result2-footer-submit">
             ثبت
           </button>
-          <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-footer-buttonbefor">
-            <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          <button (click)="onActoinSelectStepNext('selectPrice')" class="result2-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -325,26 +342,96 @@
         <div class="selectprice-header">
           <div class="selectprice-header-title">لطفا قیمت ملک خود را وارد نمایید.</div>
           <div class="selectprice-header-form">
-            <label for="1" class="selectprice-header-label1">حداقل قیمت</label>
-            <input type="text" id="1" class="selectprice-header-input1" autocomplete="off" />
-            <label for="2" class="selectprice-header-label2">حداکثر قیمت</label>
-            <input type="text" id="2" class="selectprice-header-input2" autocomplete="off" />
+
+            <!-- SalePriceMin Field -->
+            <label *ngIf=" contractTypeSelected?.hasSalePrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titleSalePriceML}} {{'TITLE.Minimum' |
+              translate}}</label>
+            <input *ngIf=" contractTypeSelected?.hasSalePrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.salePriceMin" name="dataModel.salePriceMin" #SalePriceMin type="text"
+              autocomplete="off" currencyMask />
+
+            <!-- RentPriceMin Field -->
+
+            <label *ngIf=" contractTypeSelected?.hasRentPrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titleRentPriceML}}
+              {{'TITLE.Minimum' |
+              translate}}</label>
+            <input *ngIf=" contractTypeSelected?.hasRentPrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.rentPriceMin" name="dataModel.rentPriceMin" #RentPriceMin type="text"
+              autocomplete="off" currencyMask />
+
+            <!-- DepositPriceMin Field -->
+            <label *ngIf="contractTypeSelected?.hasDepositPrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titleDepositPriceML}}
+              {{'TITLE.Minimum' |
+              translate}}</label>
+            <input *ngIf="contractTypeSelected?.hasDepositPrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.depositPriceMin" name="dataModel.depositPriceMin" #DepositPriceMin type="text"
+              autocomplete="off" currencyMask />
+            <!-- PeriodPriceMin Field -->
+            <label *ngIf=" contractTypeSelected?.hasDepositPrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titlePeriodPriceML}}
+              {{'TITLE.Minimum' |
+              translate}}</label>
+            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.periodPriceMin" name="dataModel.periodPriceMin" #PeriodPriceMin type="text"
+              autocomplete="off" currencyMask />
+
+
+            <!-- SalePriceMax Field -->
+            <label *ngIf="contractTypeSelected?.hasSalePrice" for="1" class="selectprice-header-label1">
+              {{contractTypeSelected.titleSalePriceML}}
+              {{'TITLE.Maximum' |
+              translate}}</label>
+            <input *ngIf="contractTypeSelected?.hasSalePrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.salePriceMax" name="dataModel.salePriceMax" #SalePriceMax type="text"
+              autocomplete="off" currencyMask />
+
+            <!-- RentPriceMax Field -->
+            <label *ngIf=" contractTypeSelected?.hasRentPrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titleRentPriceML}}
+              {{'TITLE.Maximum' |
+              translate}}</label>
+            <input *ngIf=" contractTypeSelected?.hasRentPrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.rentPriceMax" name="dataModel.rentPriceMax" #RentPriceMax type="text"
+              autocomplete="off" currencyMask />
+
+            <!-- DepositPriceMax Field -->
+            <label *ngIf=" contractTypeSelected?.hasDepositPrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titleDepositPriceML}}
+              {{'TITLE.Maximum' |
+              translate}}</label>
+            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.depositPriceMax" name="dataModel.depositPriceMax" #DepositPriceMax type="text"
+              autocomplete="off" currencyMask />
+
+            <!-- PeriodPriceMax Field -->
+            <label *ngIf=" contractTypeSelected?.hasDepositPrice" for="1"
+              class="selectprice-header-label1">{{contractTypeSelected.titlePeriodPriceML}}
+              {{'TITLE.Maximum' |
+              translate}}</label>
+            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="selectprice-header-input2"
+              [(ngModel)]="dataModel.periodPriceMax" name="dataModel.periodPriceMax" #PeriodPriceMax type="text"
+              autocomplete="off" currencyMask />
+
+
+
           </div>
         </div>
         <div class="selectprice-footer">
-          <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
+          <button (click)="onActoinSelectStepBefor('result2')" class="selectprice-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor">
+              stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-            <span>بعدی</span>
-          </button>
-          <button (click)="onActoinSelectStepBefor('selectLocation')" class="selectprice-footer-buttonbefor">
             <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
+          </button>
+          <button (click)="onActoinSelectStepNext('result3')" class="selectprice-footer-buttonnext">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -360,19 +447,24 @@
       <div class="result3-filter">
         <div class="result3-header">
           <div class="result3-header-title">نتیجه</div>
-          <div class="result3-header-result">تعداد ملک انتخابی شما</div>
+          <div class="result3-header-result">تعداد ملک انتخابی شما {{this.dataModelEstatePropertyResult .totalRowCount}}
+          </div>
+          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0">
+            <div *ngFor="let state of dataModelEstatePropertyResult.listItems" class="ordertype-header-form">
+              {{ state.title }}
+            </div>
+          </div>
         </div>
         <div class="result3-footer">
+          <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-footer-buttonbefor">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>قبلی</span>
+          </button>
           <button (click)="onActoinSubmit()" class="result3-footer-submit">
             ثبت
-          </button>
-          <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-footer-buttonbefor">
-            <span>قبلی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd"
-                d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z"
-                clip-rule="evenodd" />
-            </svg>
           </button>
         </div>
       </div>
