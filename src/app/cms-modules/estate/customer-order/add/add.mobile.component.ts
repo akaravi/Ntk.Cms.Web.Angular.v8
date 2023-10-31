@@ -55,6 +55,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
+    this.dataModel.partition = 3;
   }
 
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -157,7 +158,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     if (!this.dataModel.title || this.dataModel.title.length == 0)
-      this.dataModel.title = this.dataModel.caseCode;
+      this.dataModel.title = 'code:' + this.dataModel.caseCode;
     this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -417,7 +418,9 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
+    this.dataModelEstatePropertyResult = new ErrorExceptionResult<EstatePropertyModel>();
     const filterModel = new EstatePropertyFilterModel();
+    filterModel.countLoad = true;
     // **requestLinkCustomerOrderId*/
     this.estatePropertyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estatePropertyService
@@ -430,6 +433,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
           if (ret.isSuccess) {
             this.dataModelEstatePropertyResult = ret;
+
             // this.tableSource.data = ret.listItems;
             // if (this.optionsSearch.childMethods) {
             //   this.optionsSearch.childMethods.setAccess(ret.access);
