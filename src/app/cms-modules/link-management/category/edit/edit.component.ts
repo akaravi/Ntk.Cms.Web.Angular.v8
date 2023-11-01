@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, LinkManagementCategoryModel, LinkManagementCategoryService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -48,7 +49,7 @@ export class LinkManagementCategoryEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<LinkManagementCategoryModel> = new ErrorExceptionResult<LinkManagementCategoryModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: LinkManagementCategoryModel = new LinkManagementCategoryModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

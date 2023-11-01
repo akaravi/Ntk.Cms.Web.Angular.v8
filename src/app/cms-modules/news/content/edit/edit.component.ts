@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  AccessModel, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, NewsCategoryModel, NewsContentCategoryModel,
   NewsContentCategoryService, NewsContentModel, NewsContentOtherInfoModel, NewsContentOtherInfoService, NewsContentService, NewsContentSimilarModel, NewsContentSimilarService, NewsContentTagModel, NewsContentTagService
 } from 'ntk-cms-api';
@@ -49,7 +49,7 @@ export class NewsContentEditComponent implements OnInit, AfterViewInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new NewsContentModel();
-  dataModelResult: ErrorExceptionResult<NewsContentModel> = new ErrorExceptionResult<NewsContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataContentTagModelResult: ErrorExceptionResult<NewsContentTagModel> = new ErrorExceptionResult<NewsContentTagModel>();
   dataContentSimilarModelResult: ErrorExceptionResult<NewsContentSimilarModel> = new ErrorExceptionResult<NewsContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<NewsContentOtherInfoModel> = new ErrorExceptionResult<NewsContentOtherInfoModel>();

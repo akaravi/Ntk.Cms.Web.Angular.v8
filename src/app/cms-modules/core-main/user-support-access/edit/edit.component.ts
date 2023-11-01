@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreModuleEntityModel, CoreUserSupportAccessModel, CoreUserSupportAccessService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel,
+  CoreEnumService, CoreModuleEntityModel, CoreUserSupportAccessModel, CoreUserSupportAccessService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel,
   FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -55,7 +55,7 @@ export class CoreUserSupportAccessEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreUserSupportAccessModel> = new ErrorExceptionResult<CoreUserSupportAccessModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreUserSupportAccessModel = new CoreUserSupportAccessModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

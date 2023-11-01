@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SortTypeEnum
+  CoreCurrencyModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstateBillboardModel, EstateBillboardService, EstatePropertyDetailGroupService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SortTypeEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,7 +48,7 @@ export class EstateBillboardEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstateBillboardModel> = new ErrorExceptionResult<EstateBillboardModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: EstateBillboardModel = new EstateBillboardModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
   formInfo: FormInfoModel = new FormInfoModel();

@@ -9,7 +9,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyDetailGroupModel, EstatePropertyDetailModel, EstatePropertyDetailService, EstatePropertyTypeLanduseModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
+  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstatePropertyDetailGroupModel, EstatePropertyDetailModel, EstatePropertyDetailService, EstatePropertyTypeLanduseModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +47,7 @@ export class EstatePropertyDetailEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyDetailModel> = new ErrorExceptionResult<EstatePropertyDetailModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: EstatePropertyDetailModel = new EstatePropertyDetailModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();

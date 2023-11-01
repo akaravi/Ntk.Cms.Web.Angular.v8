@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreLogReportDataModel, CoreLogReportDataService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -45,7 +46,7 @@ export class CoreLogReportDataEditComponent implements OnInit, OnDestroy {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreLogReportDataModel> = new ErrorExceptionResult<CoreLogReportDataModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreLogReportDataModel = new CoreLogReportDataModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 

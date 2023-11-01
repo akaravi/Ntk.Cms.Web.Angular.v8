@@ -12,7 +12,7 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   CoreEnumService, CoreLocationModel,
-  CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountAgencyUserModel, EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel,
+  CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstateAccountAgencyModel, EstateAccountAgencyUserModel, EstateAccountAgencyUserService, EstateAccountUserModel, EstateAccountUserService, FilterDataModel,
   FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -62,7 +62,7 @@ export class EstateAccountUserEditComponent implements OnInit {
   appLanguage = 'fa';
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstateAccountUserModel> = new ErrorExceptionResult<EstateAccountUserModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: EstateAccountUserModel = new EstateAccountUserModel();
   dataEstateAccountAgencyUserModel: EstateAccountAgencyUserModel = new EstateAccountAgencyUserModel();
 

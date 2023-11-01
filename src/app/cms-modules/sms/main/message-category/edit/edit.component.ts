@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsMainMessageCategoryModel, SmsMainMessageCategoryService
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -48,7 +49,7 @@ export class SmsMainMessageCategoryEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsMainMessageCategoryModel> = new ErrorExceptionResult<SmsMainMessageCategoryModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: SmsMainMessageCategoryModel = new SmsMainMessageCategoryModel();
 
 

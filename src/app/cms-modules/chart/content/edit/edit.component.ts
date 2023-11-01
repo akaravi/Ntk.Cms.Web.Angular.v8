@@ -12,7 +12,7 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, ChartCategoryModel, ChartContentCategoryModel,
-  ChartContentCategoryService, ChartContentModel, ChartContentOtherInfoModel, ChartContentOtherInfoService, ChartContentService, ChartContentSimilarModel, ChartContentSimilarService, ChartContentTagModel, ChartContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  ChartContentCategoryService, ChartContentModel, ChartContentOtherInfoModel, ChartContentOtherInfoService, ChartContentService, ChartContentSimilarModel, ChartContentSimilarService, ChartContentTagModel, ChartContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -51,7 +51,7 @@ export class ChartContentEditComponent implements OnInit, AfterViewInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new ChartContentModel();
-  dataModelResult: ErrorExceptionResult<ChartContentModel> = new ErrorExceptionResult<ChartContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataContentTagModelResult: ErrorExceptionResult<ChartContentTagModel> = new ErrorExceptionResult<ChartContentTagModel>();
   dataContentSimilarModelResult: ErrorExceptionResult<ChartContentSimilarModel> = new ErrorExceptionResult<ChartContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<ChartContentOtherInfoModel>

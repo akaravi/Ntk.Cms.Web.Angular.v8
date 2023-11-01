@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertyCompanyModel, EstatePropertyProjectFilterModel, EstatePropertyProjectModel,
+  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstatePropertyCompanyModel, EstatePropertyProjectFilterModel, EstatePropertyProjectModel,
   EstatePropertyProjectService,
   FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
@@ -51,7 +51,7 @@ export class EstatePropertyProjectEditComponent implements OnInit, AfterViewInit
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new EstatePropertyProjectModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyProjectModel> = new ErrorExceptionResult<EstatePropertyProjectModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   dataFileModelImgaes = new Map<number, string>();

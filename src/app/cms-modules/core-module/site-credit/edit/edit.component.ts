@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreModuleSiteCreditModel, CoreModuleSiteCreditService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -50,7 +51,7 @@ export class CoreModuleSiteCreditEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleSiteCreditModel> = new ErrorExceptionResult<CoreModuleSiteCreditModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleSiteCreditModel = new CoreModuleSiteCreditModel();
 
   ComponentAction = ComponentActionEnum.none;

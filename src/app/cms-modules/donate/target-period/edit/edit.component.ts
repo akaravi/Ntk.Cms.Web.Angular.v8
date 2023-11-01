@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel,
   DonateTargetCategoryModel, DonateTargetPeriodModel, DonateTargetPeriodService, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -49,7 +50,7 @@ export class DonateTargetPeriodEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DonateTargetPeriodModel> = new ErrorExceptionResult<DonateTargetPeriodModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: DonateTargetPeriodModel = new DonateTargetPeriodModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

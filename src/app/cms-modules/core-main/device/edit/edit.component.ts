@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreDeviceModel, CoreDeviceService, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -49,7 +50,7 @@ export class CoreDeviceEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreDeviceModel> = new ErrorExceptionResult<CoreDeviceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreDeviceModel = new CoreDeviceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

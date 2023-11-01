@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService, LinkManagementTargetCategoryModel, LinkManagementTargetCategoryService, LinkManagementTargetModel,
   LinkManagementTargetService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
@@ -51,7 +52,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   dataModel = new LinkManagementTargetModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();

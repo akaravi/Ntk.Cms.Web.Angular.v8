@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, DataProviderPlanModel,
   DataProviderPlanSourceModel, DataProviderPlanSourceService, DataProviderSourceModel,
-  DataProviderSourceService, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
+  DataProviderSourceService, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -50,7 +50,7 @@ export class DataProviderSourceEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DataProviderSourceModel> = new ErrorExceptionResult<DataProviderSourceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: DataProviderSourceModel = new DataProviderSourceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

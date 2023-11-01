@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, LinkManagementBillboardModel, LinkManagementTargetBillboardLogModel, LinkManagementTargetBillboardLogService, LinkManagementTargetModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -49,7 +50,7 @@ export class LinkManagementTargetBillboardLogEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetBillboardLogModel> = new ErrorExceptionResult<LinkManagementTargetBillboardLogModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: LinkManagementTargetBillboardLogModel = new LinkManagementTargetBillboardLogModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

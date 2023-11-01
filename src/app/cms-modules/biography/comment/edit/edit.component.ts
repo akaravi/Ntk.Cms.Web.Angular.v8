@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   BiographyCommentModel, BiographyCommentService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +48,7 @@ export class BiographyCommentEditComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<BiographyCommentModel> = new ErrorExceptionResult<BiographyCommentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: BiographyCommentModel = new BiographyCommentModel();
   ComponentAction = ComponentActionEnum.none;
   formInfo: FormInfoModel = new FormInfoModel();

@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreTokenMicroServiceModel, CoreTokenMicroServiceService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -45,7 +46,7 @@ export class CoreTokenMicroServiceEditComponent implements OnInit, OnDestroy {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreTokenMicroServiceModel> = new ErrorExceptionResult<CoreTokenMicroServiceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreTokenMicroServiceModel = new CoreTokenMicroServiceModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 

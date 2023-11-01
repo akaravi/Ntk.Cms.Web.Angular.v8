@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreModuleLogFavoriteModel, CoreModuleLogFavoriteService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -45,7 +46,7 @@ export class CoreModuleLogFavoriteEditComponent implements OnInit, OnDestroy {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogFavoriteModel> = new ErrorExceptionResult<CoreModuleLogFavoriteModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleLogFavoriteModel = new CoreModuleLogFavoriteModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 

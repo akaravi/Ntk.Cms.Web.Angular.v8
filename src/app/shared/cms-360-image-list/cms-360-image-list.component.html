@@ -204,7 +204,7 @@
               </ng-container>
               <ng-container *ngIf="editHotspot.guid && row.guid && row.guid===editHotspot.guid">
                 <button type="button" mat-raised-button color="accent" class="mb-2"
-                  [disabled]="editdisabled || !editHotspot.text||editHotspot.text.length==0" *ngIf="postionView"
+                  [disabled]="editdisabled || !editHotspot.text||editHotspot.text.length===0" *ngIf="postionView"
                   (click)="updateEdit()">{{'ACTION.Update' | translate}}</button>
                 <button type="button" mat-raised-button color="warn" [disabled]="editdisabled"
                   (click)="cancelEdit()">{{'ACTION.CANCEL' | translate}}</button>

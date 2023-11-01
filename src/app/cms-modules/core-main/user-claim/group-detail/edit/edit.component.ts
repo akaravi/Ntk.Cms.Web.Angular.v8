@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel, CoreUserClaimTypeModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
+  CoreEnumService, CoreUserClaimGroupDetailModel, CoreUserClaimGroupDetailService, CoreUserClaimGroupModel, CoreUserClaimTypeModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -48,7 +48,7 @@ export class CoreUserClaimGroupDetailEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreUserClaimGroupDetailModel> = new ErrorExceptionResult<CoreUserClaimGroupDetailModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreUserClaimGroupDetailModel = new CoreUserClaimGroupDetailModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

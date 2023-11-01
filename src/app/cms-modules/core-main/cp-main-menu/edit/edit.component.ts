@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, CoreCpMainMenuCmsUserGroupModel,
   CoreCpMainMenuCmsUserGroupService, CoreCpMainMenuModel, CoreCpMainMenuService, CoreEnumService, CoreModuleModel,
-  CoreUserGroupModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
+  CoreUserGroupModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
@@ -54,7 +54,7 @@ export class CoreCpMainMenuEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreCpMainMenuModel> = new ErrorExceptionResult<CoreCpMainMenuModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreCpMainMenuModel = new CoreCpMainMenuModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

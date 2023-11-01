@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService,
   DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingDepartemenLogModel,
   TicketingDepartemenLogService, TokenInfoModel
 } from 'ntk-cms-api';
@@ -43,7 +44,7 @@ export class TicketingDepartemenLogEditComponent implements OnInit, OnDestroy {
 
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<TicketingDepartemenLogModel> = new ErrorExceptionResult<TicketingDepartemenLogModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: TicketingDepartemenLogModel = new TicketingDepartemenLogModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();

@@ -344,7 +344,7 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
         this.contentService.ServiceEdit(model).subscribe({
           next: (ret) => {
             if (ret.isSuccess) {
-              model = ret.item;
+              //model = ret.item;
             } else {
               this.cmsToastrService.typeErrorMessage(ret.errorMessage);
             }
@@ -400,7 +400,7 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
         this.contentService.ServiceEdit(model).subscribe({
           next: (ret) => {
             if (ret.isSuccess) {
-              model = ret.item;
+              //model = ret.item;
             } else {
               this.cmsToastrService.typeErrorMessage(ret.errorMessage);
             }

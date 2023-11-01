@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsLogOutBoxQueueModel,
   SmsLogOutBoxQueueService
 } from 'ntk-cms-api';
@@ -49,7 +50,7 @@ export class SmsLogOutBoxQueueEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsLogOutBoxQueueModel> = new ErrorExceptionResult<SmsLogOutBoxQueueModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: SmsLogOutBoxQueueModel = new SmsLogOutBoxQueueModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

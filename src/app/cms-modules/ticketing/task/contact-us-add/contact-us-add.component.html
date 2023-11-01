@@ -448,7 +448,7 @@
         </div>
       </div>
       <!--end::Section-->
-      <ng-container *ngIf="this.formInfo?.formSubmitedStatus != enumFormSubmitedStatus.Success">
+      <ng-container *ngIf="this.formInfo?.formSubmitedStatus !== enumFormSubmitedStatus.Success">
         <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
           <div class="ntk-cms-html-card-header">
             <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
@@ -519,7 +519,7 @@
                   <mat-error *ngIf="HtmlBody.errors?.required">
                     HtmlBody is <strong>{{'MESSAGE.required' | translate}}</strong>
                   </mat-error>
-                  
+
                 </div>
                 <!--end::ورودی-->
 
@@ -557,7 +557,7 @@
         </form>
       </ng-container>
 
-      <ng-container *ngIf="this.formInfo?.formSubmitedStatus == enumFormSubmitedStatus.Success">
+      <ng-container *ngIf="this.formInfo?.formSubmitedStatus === enumFormSubmitedStatus.Success">
         <!--begin::Row-->
         <div class="row">
           <div class="col-lg-12">

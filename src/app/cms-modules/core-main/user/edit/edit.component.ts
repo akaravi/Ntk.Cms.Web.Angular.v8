@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, CoreEnumService, CoreSiteModel, CoreUserModel, CoreUserService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -62,7 +63,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreUserModel> = new ErrorExceptionResult<CoreUserModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreUserModel = new CoreUserModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 
@@ -146,7 +147,7 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
         if (ret.isSuccess) {
           this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
           this.cmsToastrService.typeSuccessEdit();
-          if (ret.item.id === this.tokenInfo.userId) {
+          if (this.dataModel.id === this.tokenInfo.userId) {
             this.tokenHelper.getCurrentToken();
           }
         } else {
@@ -202,9 +203,8 @@ export class CoreUserEditComponent implements OnInit, OnDestroy {
   onActionbuttonChangePassword(): void {
     if (this.tokenInfo.userId != this.dataModel.id &&
       (
-        this.dataModelResult == null ||
-        this.dataModelResult.access == null ||
-        !this.dataModelResult.access.accessEditRow
+        this.dataAccessModel == null ||
+        !this.dataAccessModel.accessEditRow
       )) {
       this.cmsToastrService.typeErrorAccessEdit();
       return;

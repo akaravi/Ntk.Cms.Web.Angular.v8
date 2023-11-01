@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, LinkManagementBillboardCategoryModel, LinkManagementBillboardCategoryService, LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementMemberModel, ManageUserAccessDataTypesEnum
+  AccessModel, ClauseTypeEnum, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, LinkManagementBillboardCategoryModel, LinkManagementBillboardCategoryService, LinkManagementBillboardModel, LinkManagementBillboardPatternModel, LinkManagementBillboardService, LinkManagementMemberModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
@@ -45,7 +45,7 @@ export class LinkManagementBillboardEditComponent implements OnInit, AfterViewIn
   dataModel = new LinkManagementBillboardModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelResult: ErrorExceptionResult<LinkManagementBillboardModel> = new ErrorExceptionResult<LinkManagementBillboardModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();

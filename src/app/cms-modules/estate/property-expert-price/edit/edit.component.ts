@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreCurrencyModel, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstateEnumService, EstatePropertyExpertPriceModel,
+  CoreCurrencyModel, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstateEnumService, EstatePropertyExpertPriceModel,
   EstatePropertyExpertPriceService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeUsageModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
@@ -55,7 +55,7 @@ export class EstatePropertyExpertPriceEditComponent implements OnInit {
   appLanguage = 'fa';
   tokenInfo = new TokenInfoModel();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertyExpertPriceModel> = new ErrorExceptionResult<EstatePropertyExpertPriceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: EstatePropertyExpertPriceModel = new EstatePropertyExpertPriceModel();
   dataModelEstatePropertyExpertPriceTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   formInfo: FormInfoModel = new FormInfoModel();

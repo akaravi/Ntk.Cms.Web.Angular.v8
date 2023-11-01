@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, MemberPropertyDetailGroupModel,
   MemberPropertyDetailGroupService, MemberPropertyTypeModel
 } from 'ntk-cms-api';
@@ -46,7 +47,7 @@ export class MemberPropertyDetailGroupEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<MemberPropertyDetailGroupModel> = new ErrorExceptionResult<MemberPropertyDetailGroupModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: MemberPropertyDetailGroupModel = new MemberPropertyDetailGroupModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();

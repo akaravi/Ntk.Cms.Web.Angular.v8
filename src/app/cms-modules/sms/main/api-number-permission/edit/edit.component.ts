@@ -10,6 +10,7 @@ import {
   CoreSiteCategoryModel,
   CoreSiteModel,
   CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainApiNumberModel, SmsMainApiNumberPermissionModel, SmsMainApiNumberPermissionService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -50,7 +51,7 @@ export class SmsMainApiNumberPermissionEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsMainApiNumberPermissionModel> = new ErrorExceptionResult<SmsMainApiNumberPermissionModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: SmsMainApiNumberPermissionModel = new SmsMainApiNumberPermissionModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

@@ -10,7 +10,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreUserClaimGroupDetailModel,
-  CoreUserClaimGroupDetailService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
+  CoreUserClaimGroupDetailService, CoreUserClaimTypeModel, CoreUserClaimTypeService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +52,7 @@ export class CoreUserClaimTypeEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreUserClaimTypeModel> = new ErrorExceptionResult<CoreUserClaimTypeModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreUserClaimTypeModel = new CoreUserClaimTypeModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

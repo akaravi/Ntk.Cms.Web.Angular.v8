@@ -236,14 +236,34 @@ export class LinkManagementTargetAddComponent implements OnInit, AfterViewInit {
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
-
           this.formInfo.formSubmitAllow = true;
-          this.dataModelResult = ret;
           if (ret.isSuccess) {
-            this.dataModel = ret.item;
+            //**Get One */
+            this.linkManagementTargetService
+              .ServiceGetOneById(this.dataModel.id)
+              .subscribe({
+                next: (ret) => {
+                  this.loading.Stop(pName);
+                  this.formInfo.formSubmitAllow = true;
+                  this.dataModelResult = ret;
+                  if (ret.isSuccess) {
+                    this.dataModel = ret.item;
+                  } else {
+                    this.cmsToastrService.typeErrorEdit(ret.errorMessage);
+                  }
+                  this.loading.Stop(pName);
+                },
+                error: (er) => {
+                  this.loading.Stop(pName);
+                  this.formInfo.formSubmitAllow = true;
+                  this.cmsToastrService.typeError(er);;
+                }
+              }
+              );
+            //**Get One */
+
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
-
             setTimeout(() => this.router.navigate(['/linkmanagement/target']), 1000);
           } else {
             this.cmsToastrService.typeErrorEdit(ret.errorMessage);

@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { TranslateService } from '@ngx-translate/core';
 import {
   ApiTelegramBotConfigModel, ApiTelegramBotConfigService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -56,7 +57,7 @@ export class ApiTelegramBotConfigEditComponent implements OnInit {
   @Input() set optionLoading(value: ProgressSpinnerModel) {
     this.loading = value;
   }
-  dataModelResult: ErrorExceptionResult<ApiTelegramBotConfigModel> = new ErrorExceptionResult<ApiTelegramBotConfigModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: ApiTelegramBotConfigModel = new ApiTelegramBotConfigModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

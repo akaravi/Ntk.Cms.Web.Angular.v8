@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, DataProviderPlanCategoryModel,
   DataProviderPlanCategoryService, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -49,7 +50,7 @@ export class DataProviderPlanCategoryEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DataProviderPlanCategoryModel> = new ErrorExceptionResult<DataProviderPlanCategoryModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: DataProviderPlanCategoryModel = new DataProviderPlanCategoryModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel,
   HyperShopCategoryModel, HyperShopContentModel,
   HyperShopContentService, InfoEnumModel, ManageUserAccessDataTypesEnum
@@ -54,7 +55,7 @@ export class HyperShopContentEditComponent implements OnInit {
   formMatcher = new CmsFormsErrorStateMatcher();
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<HyperShopContentModel> = new ErrorExceptionResult<HyperShopContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: HyperShopContentModel = new HyperShopContentModel();
   dataFileModel = new Map<number, string>();
 

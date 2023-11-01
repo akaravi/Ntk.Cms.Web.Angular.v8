@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   BlogCommentModel, BlogCommentService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -52,7 +53,7 @@ export class BlogCommentEditComponent implements OnInit {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<BlogCommentModel> = new ErrorExceptionResult<BlogCommentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: BlogCommentModel = new BlogCommentModel();
 
   ComponentAction = ComponentActionEnum.none;

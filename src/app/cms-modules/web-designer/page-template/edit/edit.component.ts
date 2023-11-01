@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerMainPageTemplateModel, WebDesignerMainPageTemplateService, WebDesignerMainPageTemplateSiteCategoryModel,
+  CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerMainPageTemplateModel, WebDesignerMainPageTemplateService, WebDesignerMainPageTemplateSiteCategoryModel,
   WebDesignerMainPageTemplateSiteCategoryService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -43,7 +43,7 @@ export class WebDesignerMainPageTemplateEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<WebDesignerMainPageTemplateModel> = new ErrorExceptionResult<WebDesignerMainPageTemplateModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase;
   dataModel: WebDesignerMainPageTemplateModel = new WebDesignerMainPageTemplateModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
