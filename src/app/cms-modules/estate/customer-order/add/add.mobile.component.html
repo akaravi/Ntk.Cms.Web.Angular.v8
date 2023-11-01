@@ -55,8 +55,7 @@
 
           <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
-              class="ordertype-header-form-option"
-              color="{{state.id===dataModel.linkContractTypeId ? 'success' : 'success'}}"
+              [class]="state.id===dataModel.linkContractTypeId ? 'ordertype-header-form-option-select' : 'ordertype-header-form-option'"
               (click)="onActionSelectorContarctType(state)">{{ state.orderTitle }}</button>
           </div>
 
@@ -97,7 +96,7 @@
           <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
               class="selectPropertyTypeUsage-header-form-option"
-              color="{{state.id===dataModel.linkPropertyTypeUsageId ? 'primary' : 'info'}}"
+              [class]="state.id===dataModel.linkPropertyTypeUsageId ? 'selectPropertyTypeUsage-header-form-option-select' : 'selectPropertyTypeUsage-header-form-option'"
               (click)="dataModel.linkPropertyTypeUsageId=state.id;this.DataGetAllPropertyTypeLanduse();">{{ state.title
               }}</button>
           </div>
@@ -139,7 +138,7 @@
           <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems " type="button" mat-raised-button
               class="selectPropertyTypeLanduse-header-form-option"
-              color="{{state.id===dataModel.linkPropertyTypeLanduseId ? 'primary' : 'info'}}"
+              [class]="state.id===dataModel.linkPropertyTypeLanduseId ? 'selectPropertyTypeLanduse-header-form-option-select' : 'selectPropertyTypeLanduse-header-form-option'"
               (click)="onActionSelectorSelectLanduse(state)">{{ state.title }}</button>
           </div>
         </div>
