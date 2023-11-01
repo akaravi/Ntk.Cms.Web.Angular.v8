@@ -10,11 +10,17 @@
             برای ثبت سفارش، ابتدا شماره تلفن همراه خود را وارد نمایید.
           </div>
           <div class="mobile-header-form">
-            <label for="1" class="mobile-header-form-label"> شماره تلفن همراه </label>
+            <label for="contactMobiles" class="mobile-header-form-label"> شماره تلفن همراه </label>
             <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
-              class="mobile-header-form-input" maxlength="11" />
+              #contactMobiles class="mobile-header-form-input" maxlength="11" placeholder="09120000000"
+              pattern="09[0-9]{2}[0-9]{3}[0-9]{4}" />
+            <div *ngIf="dataModel?.contactMobiles?.length>0 && !regeMobile.test(dataModel.contactMobiles)">
+              فرمت شناره همراه صحیح نمی باشد
+            </div>
           </div>
         </div>
+
+
         <div class="mobile-footer">
           <button (click)="onFormCancel()"
             [class]="dataModel?.contactMobiles?.length>0?'mobile-footer-buttonbefor':'onestep'">
@@ -24,8 +30,8 @@
             </svg>
             <span>{{'ACTION.CANCEL' | translate}}</span>
           </button>
-          <button *ngIf="dataModel?.contactMobiles?.length>0" (click)="onActoinSelectStepNext('orderType')"
-            class="mobile-footer-buttonnext">
+          <button *ngIf="dataModel?.contactMobiles?.length>0 && regeMobile.test(dataModel.contactMobiles)"
+            (click)="onActoinSelectStepNext('orderType')" class="mobile-footer-buttonnext">
             <span>بعدی</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -270,8 +276,11 @@
             <!-- LinkLocationIds Field -->
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
               [optionSelectForce]="dataModel.linkLocationIds"
-              [optionPlaceholder]="this.translate.instant('TITLE.Region')">
+              [optionPlaceholder]="this.translate.instant('TITLE.Region')"
+              [optionCssClassInputText]="'mobile-header-form-input'">
             </app-cms-location-autocomplete>
+
+
           </div>
         </div>
         <div class="selectlocation-footer">

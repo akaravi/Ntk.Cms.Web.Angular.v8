@@ -85,7 +85,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   contractTypeSelected: EstateContractTypeModel;
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
-
+  regeMobile = new RegExp('09[0-9]{2}[0-9]{3}[0-9]{4}');
   stepContent = 'mobile';
   // ** Accardon */
   step = 0;
@@ -285,7 +285,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
         if (ret.isSuccess) {
           if (this.dataModel.linkPropertyTypeUsageId.length > 0)
             this.DataGetAllPropertyTypeLanduse();
-          if (this.dataModel.linkContractTypeId.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
+          if (this.dataModel.linkContractTypeId?.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
             var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
             this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
           }
@@ -312,7 +312,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       next: (ret) => {
         this.dataModelContractTypeResult = ret;
         if (ret.isSuccess) {
-          if (this.dataModel.linkContractTypeId.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
+          if (this.dataModel.linkContractTypeId?.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
             var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
             this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
           }
