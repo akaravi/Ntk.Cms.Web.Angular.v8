@@ -16,6 +16,7 @@
 .result2,
 .selectprice,
 .result3 {
+    background-image: url('/assets/media/bg/skyscraper5.webp');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -25,46 +26,6 @@
     height: 100%;
     border-radius: 10px;
     position: relative;
-}
-
-.mobile {
-    background-image: url('/assets/media/bg/skyscraper1.webp');
-}
-
-.ordertype {
-    background-image: url('/assets/media/bg/skyscraper2.webp');
-}
-
-.selectPropertyTypeUsage {
-    background-image: url('/assets/media/bg/skyscraper3.webp');
-}
-
-.selectPropertyTypeLanduse {
-    background-image: url('/assets/media/bg/skyscraper4.webp');
-}
-
-.selectyear {
-    background-image: url('/assets/media/bg/skyscraper5.webp');
-}
-
-.result1 {
-    background-image: url('/assets/media/bg/skyscraper6.webp');
-}
-
-.selectlocation {
-    background-image: url('/assets/media/bg/skyscraper7.webp');
-}
-
-.result2 {
-    background-image: url('/assets/media/bg/skyscraper8.webp');
-}
-
-.selectprice {
-    background-image: url('/assets/media/bg/skyscraper9.webp');
-}
-
-.result3 {
-    background-image: url('/assets/media/bg/skyscraper10.webp');
 }
 
 .mobile-filter,
@@ -103,24 +64,20 @@
     height: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.ordertype-header,
+.selectPropertyTypeUsage-header,
+.selectPropertyTypeLanduse-header,
+.selectyear-header,
+.selectlocation-header,
+.selectprice-header {
     overflow-y: scroll;
 }
 
-// .ordertype-header,
-// .selectprice-header,
-// .selectPropertyTypeLanduse-header {
-//     overflow-y: scroll;
-// }
-
 .mobile-footer,
-.ordertype-footer,
-.selectPropertyTypeUsage-footer,
-.selectPropertyTypeLanduse-footer,
-.selectyear-footer,
 .result1-footer,
-.selectlocation-footer,
 .result2-footer,
-.selectprice-footer,
 .result3-footer {
     width: 100%;
     height: 20%;
@@ -129,8 +86,17 @@
     margin-top: 30px;
 }
 
-.selectyear-footer {
-    margin-top: 15px;
+.ordertype-footer,
+.selectPropertyTypeUsage-footer,
+.selectPropertyTypeLanduse-footer,
+.selectyear-footer,
+.selectlocation-footer,
+.selectprice-footer {
+    width: 100%;
+    height: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
 }
 
 .mobile-footer-buttonnext,
@@ -161,7 +127,6 @@
     margin-right: 2.5%;
     border-radius: 25px;
 }
-
 
 .result1-footer-buttonnext,
 .result1-footer-buttonbefor,
@@ -202,54 +167,38 @@
 
 // class-style
 
-//mobile,ordertype,selectPropertyTypeUsage,selectPropertyTypeLanduse
 .mobile-header-title,
+.mobile-header-form-label,
+.mobile-header-form-message,
 .ordertype-header-title,
 .selectPropertyTypeUsage-header-title,
 .selectPropertyTypeLanduse-header-title,
+.selectyear-header-label1,
+.selectyear-header-label2,
 .result1-header-title,
 .result1-header-result,
 .selectlocation-header-title,
+.selectlocation-header-label,
 .result2-header-title,
 .result2-header-result,
 .selectprice-header-title,
+.selectprice-header-label,
 .result3-header-title,
 .result3-header-result {
     color: white;
     font-size: 14px;
+    font-weight: bold;
     margin-top: 30px;
-    font-weight: bold;
-}
-
-.mobile-header-form {
-    margin-top: 130px;
-}
-
-.selectlocation-header-form,
-.selectprice-header-form {
-    margin-top: 26px;
-}
-
-.mobile-header-form-label,
-.selectyear-header-label1,
-.selectyear-header-label2,
-.selectlocation-header-label1,
-.selectprice-header-label1,
-.selectprice-header-label2 {
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
+    margin-bottom: 30px;
 }
 
 .mobile-header-form-input,
 .selectyear-header-input1,
 .selectyear-header-input2,
-.selectlocation-header-input1,
-.selectprice-header-input1,
-.selectprice-header-input2 {
+.selectLocation-header-form-input,
+.selectprice-header-input {
     width: 100%;
     height: 50px;
-    margin-top: 16px;
     border-radius: 16px;
     display: block;
     outline: none;
@@ -258,50 +207,40 @@
     border: 2px solid #BDC3C7;
     text-align: center;
     font-size: 20px;
-    font-weight: 400;
-}
-
-.ordertype-header-form,
-.selectPropertyTypeUsage-header-form,
-.selectPropertyTypeLanduse-header-form {
-    //   margin-top: 50px;
 }
 
 .ordertype-header-form-option,
-.selectPropertyTypeLanduse-header-option {
-    width: 90%;
+.selectPropertyTypeUsage-header-form-option,
+.selectPropertyTypeLanduse-header-form-option {
+    width: 100%;
     height: 50px;
-    margin-top: 50px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-top: 30px;
     border-radius: 10px;
+    display: block;
+    outline: none;
+    color: #fff;
     border: 2px solid #BDC3C7;
-
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
 }
 
-.selectPropertyTypeUsage-header-form-option1,
-.selectPropertyTypeUsage-header-form-option2,
-.selectPropertyTypeUsage-header-form-option3 {
-    width: 90%;
-    height: 50px;
-    margin-top: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    border-radius: 10px;
-    border: 2px solid #BDC3C7;
-
+//result
+.result1-header-print,
+.result2-header-print,
+.result3-header-print {
+    background-color: rgba(255, 255, 255, 0.705);
+    width: 98%;
+    height: 80%;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 1%;
+    overflow-y: scroll;
 }
 
-//selectyear,selectprice
-
-.selectyear-header {
-    margin-top: 15%;
-}
-
-.selectyear-header-label2,
-.selectprice-header-label2 {
-    margin-top: 5%;
-}
+.result1-header-print-result,
+.result2-header-print-result,
+.result3-header-print-result {}
 
 // ****************************************************************************
 
