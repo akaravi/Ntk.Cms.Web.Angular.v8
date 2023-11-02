@@ -16,6 +16,7 @@ import { EstateCustomerOrderResultListComponent } from './customer-order-result/
 import { EstateCustomerOrderAddComponent } from './customer-order/add/add.component';
 import { EstateCustomerOrderAddMobileComponent } from './customer-order/add/add.mobile.component';
 import { EstateCustomerOrderEditComponent } from './customer-order/edit/edit.component';
+import { EstateCustomerOrderEditMobileComponent } from './customer-order/edit/edit.mobile.component';
 import { EstateCustomerOrderListComponent } from './customer-order/list/list.component';
 import { EstateComponent } from './estate.component';
 import { EstateOverviewEventsComponent } from './overview/events/events.component';
@@ -776,7 +777,7 @@ const routesMobile: Routes = [
       },
       {
         path: 'customer-order/edit/:id',
-        component: EstateCustomerOrderEditComponent,
+        component: EstateCustomerOrderEditMobileComponent,
         data: { title: 'ROUTE.ESTATE.CUSTOMER.ORDER' },
       },
       /**/

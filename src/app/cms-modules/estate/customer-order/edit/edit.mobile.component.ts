@@ -22,11 +22,11 @@ import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 
 @Component({
-  selector: 'app-estate-customer-order-add-mobile',
-  templateUrl: './add.mobile.component.html',
-  styleUrls: ['./add.mobile.component.scss'],
+  selector: 'app-estate-customer-order-edit-mobile',
+  templateUrl: './edit.mobile.component.html',
+  styleUrls: ['./edit.mobile.component.scss'],
 })
-export class EstateCustomerOrderAddMobileComponent implements OnInit {
+export class EstateCustomerOrderEditMobileComponent implements OnInit {
   requestId = '';
   constructor(
     private router: Router,
@@ -152,41 +152,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       );
 
   }
-  DataAddContent(actionSubmit = false): void {
 
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
-    if (!this.dataModel.title || this.dataModel.title.length == 0)
-      this.dataModel.title = 'code:' + this.dataModel.caseCode;
-    this.estateCustomerOrderService.ServiceAdd(this.dataModel).subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.dataModel = ret.item;
-          this.cmsToastrService.typeSuccessAdd();
-
-          if (actionSubmit) {
-            if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available)
-              this.DataSend();
-            setTimeout(() => this.router.navigate(['/estate/customer-order/']), 1000);
-          }
-          this.DataGetAllProperty();
-
-
-        } else {
-
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
-    );
-
-  }
   DataEditContent(actionSubmit = false): void {
 
     const pName = this.constructor.name + 'main';
@@ -201,8 +167,8 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
             if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available)
               this.DataSend();
             setTimeout(() => this.router.navigate(['/estate/customer-order/']), 1000);
-          }
-          else {
+          } else {
+
             this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
               next: (ret) => {
                 this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -227,6 +193,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
             }
             );
           }
+
         } else {
 
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
@@ -556,12 +523,9 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       });
     // ** Save Value */
 
-    if (this.dataModel?.id?.length > 0) {
-      this.DataEditContent(true);
-    }
-    else {
-      this.DataAddContent(true);
-    }
+
+    this.DataEditContent(true);
+
 
   }
 
@@ -616,13 +580,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       }
     }
     if (step === 'result1' || step === 'result2' || step === 'result3') {
-
-      if (this.dataModel?.id?.length > 0) {
-        this.DataEditContent();
-      }
-      else {
-        this.DataAddContent();
-      }
+      this.DataEditContent();
     }
     this.stepContent = step;
 

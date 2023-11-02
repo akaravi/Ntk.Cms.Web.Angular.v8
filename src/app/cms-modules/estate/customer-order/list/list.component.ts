@@ -15,7 +15,6 @@ import {
 } from 'ntk-cms-api';
 
 import { Subscription } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { ListBaseComponent } from 'src/app/core/cmsComponent/listBaseComponent';
@@ -27,8 +26,9 @@ import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
-import { EstatePropertyHistoryAddComponent } from '../../property-history/add/add.component';
+import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { environment } from 'src/environments/environment';
+import { EstatePropertyHistoryAddComponent } from '../../property-history/add/add.component';
 @Component({
   selector: 'app-estate-customer-order-list',
   templateUrl: './list.component.html',
@@ -396,7 +396,6 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       return;
     }
     this.onActionTableRowSelect(model);
-
     if (
       this.dataModelResult == null ||
       this.dataModelResult.access == null ||
@@ -412,7 +411,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
         if (confirmed) {
           const pName = this.constructor.name + 'main';
           this.loading.Start(pName);
-          this.contentService.ServiceDelete(this.tableRowSelected.id).subscribe({
+          this.contentService.ServiceDelete(model.id).subscribe({
             next: (ret) => {
               if (ret.isSuccess) {
                 this.cmsToastrService.typeSuccessRemove();
