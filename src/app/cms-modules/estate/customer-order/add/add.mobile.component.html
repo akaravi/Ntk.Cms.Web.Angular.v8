@@ -269,24 +269,26 @@
           <div class="result1-header-result">تعداد ملک انتخابی شما :
             {{this.dataModelEstatePropertyResult.totalRowCount}}
           </div>
-          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result1-header-print">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result1-header-print-table">
+          <div
+            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+            class="result3-header-print">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
               <tr>
                 <td colspan="3"> {{state.title}}</td>
               </tr>
               <tr>
-                <td colspan="1" style="width:30%">مساحت: </td>
-                <td colspan="1" style="width:40%">ثبت: </td>
-                <td colspan="1" style="width:30%">اتاق: </td>
+                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.createdDate}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">مبلغ کل قرار داد: </td>
+                <td colspan="3">مبلغ کل قرار داد:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">پرداخت در قرار داد: </td>
+                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
               </tr>
               <tr>
-                <td colspan="3">اقساط: </td>
+                <td colspan="3">اقساط:{{state.partition}} </td>
               </tr>
             </table>
           </div>
@@ -334,23 +336,23 @@
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
             class="result3-header-print">
-            <table *ngFor="let state of dataModelContractTypeResult.listItems" class="result3-header-print-table">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
               <tr>
                 <td colspan="3"> {{state.title}}</td>
               </tr>
               <tr>
-                <td colspan="1" style="width:30%">مساحت:{{state.title}} </td>
-                <td colspan="1" style="width:40%">ثبت: {{state.title}} </td>
-                <td colspan="1" style="width:30%">اتاق:{{state.title}} </td>
+                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.createdDate}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">مبلغ کل قرار داد:{{state.title}} </td>
+                <td colspan="3">مبلغ کل قرار داد:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">پرداخت در قرار داد: {{state.title}}</td>
+                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
               </tr>
               <tr>
-                <td colspan="3">اقساط:{{state.title}} </td>
+                <td colspan="3">اقساط:{{state.partition}} </td>
               </tr>
             </table>
           </div>
