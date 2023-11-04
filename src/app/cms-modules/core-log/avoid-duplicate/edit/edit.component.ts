@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreLogAvoidDuplicateDataEntryModel, CoreLogAvoidDuplicateDataEntryService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -45,7 +46,7 @@ export class CoreLogAvoidDuplicateDataEntryEditComponent implements OnInit, OnDe
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreLogAvoidDuplicateDataEntryModel> = new ErrorExceptionResult<CoreLogAvoidDuplicateDataEntryModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreLogAvoidDuplicateDataEntryModel = new CoreLogAvoidDuplicateDataEntryModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 

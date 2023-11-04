@@ -62,7 +62,6 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
       this.filteModelContent.filters.push(fastfilter);
     }
   }
-  categorySelected: string = '';
   filteModelContent = new LinkManagementTargetFilterModel();
   categoryModelSelected: LinkManagementCategoryModel;
   categoryPatternModelSelected: LinkManagementBillboardPatternModel;
@@ -191,7 +190,6 @@ export class LinkManagementTargetListComponent implements OnInit, OnDestroy {
     this.filteModelContent.sortType = sortType;
     /*filter */
     this.categoryPatternModelSelected = model;
-    this.categorySelected = this.categoryModelSelected.title
     this.DataGetAll();
   }
   onActionSelectorSelectCategory(model: LinkManagementCategoryModel | null): void {

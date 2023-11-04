@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FileCategoryModel, FileContentModel,
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FileCategoryModel, FileContentModel,
   FileContentService, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -43,7 +43,7 @@ export class FileContentEditComponent implements OnInit, AfterViewInit {
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   dataModel = new FileContentModel();
-  dataModelResult: ErrorExceptionResult<FileContentModel> = new ErrorExceptionResult<FileContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   similarDataModel = new Array<FileContentModel>();
   contentSimilarSelected: FileContentModel = new FileContentModel();

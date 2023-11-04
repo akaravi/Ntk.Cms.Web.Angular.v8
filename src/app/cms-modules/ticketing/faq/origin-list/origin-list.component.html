@@ -67,7 +67,7 @@
                                             <a [class]="faqItem.id===DataFaqLinkSelect? 'card-title collapsed text-dark':'card-title text-dark'"
                                                 data-toggle="collapse"
                                                 [attr.aria-expanded]="faqItem.id===DataFaqLinkSelect"
-                                                *ngIf="DataDepartemanLinkSelect==0 || DataDepartemanLinkSelect===faqItem.linkTicketingDepartemenId"
+                                                *ngIf="DataDepartemanLinkSelect===0 || DataDepartemanLinkSelect===faqItem.linkTicketingDepartemenId"
                                                 data-toggle="collapse" (click)="onActionbuttonFaqTitle(faqItem.id)"
                                                 role="button">
                                                 <span class="svg-icon svg-icon-primary">

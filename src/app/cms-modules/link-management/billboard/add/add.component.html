@@ -65,31 +65,7 @@
         </mat-form-field>
 
 
-        <!-- CurrentClickCount Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['currentClickCount']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.currentClickCount" name="dataModel.currentClickCount"
-            #CurrentClickCount type="number" placeholder="{{'TITLE.Number_of_click_so_far' | translate}}" min="0"
-            required />
-          <mat-icon matSuffix *ngIf="dataModel.currentClickCount" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.currentClickCount = 0">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="CurrentClickCount.errors?.required">
-            CurrentClickCount is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
-        <!-- CurrentViewCount Field -->
-        <mat-form-field class="ntk-full-width">
-          <mat-label>{{fieldsInfo['currentViewCount']?.fieldTitle}}</mat-label>
-          <input matInput [(ngModel)]="dataModel.currentViewCount" name="dataModel.currentViewCount" #CurrentViewCount
-            type="number" placeholder="{{'TITLE.Number_of_views_so_far' | translate}}" min="0" required />
-          <mat-icon matSuffix *ngIf="dataModel.currentViewCount" matSuffix mat-icon-button aria-label="Clear"
-            (click)="dataModel.currentViewCount = 0">close</mat-icon>
-          <mat-icon matSuffix>mode_edit</mat-icon>
-          <mat-error *ngIf="CurrentViewCount.errors?.required">
-            CurrentViewCount is <strong>{{'MESSAGE.required' | translate}}</strong>
-          </mat-error>
-        </mat-form-field>
+
         <!-- FromDate Field -->
         <mat-form-field class="ntk-full-width">
           <mat-label>{{fieldsInfo['fromDate']?.fieldTitle}}</mat-label>
@@ -110,21 +86,21 @@
           </button>
         </div>
       </mat-step>
-
       <mat-step label="{{'TITLE.TARGET_SELECTION' | translate}}" state="seo">
         <app-linkmanagement-category-treeselector [(optionModel)]="dataContentCategoryModel"
           (optionSelectChecked)="onActionCategorySelectChecked($event)"
           (optionSelectDisChecked)="onActionCategorySelectDisChecked($event)"></app-linkmanagement-category-treeselector>
         <br>
         <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
-          <button type="button" mat-raised-button (click)="onActionBackToParent()">
-            {{'ACTION.BACK' | translate}}
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
           </button>
           <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
             {{'ACTION.NEXT' | translate}}
           </button>
         </div>
       </mat-step>
+
       <mat-step label="{{'TITLE.ATTACH_FILES' | translate}}" state="file">
         <p>{{'TITLE.CONTENT_ATTACH_FILES' | translate}}</p>
         <div class="mb-3">
@@ -156,7 +132,7 @@
           <button type="button" mat-raised-button color="accent" matStepperPrevious>
             {{'ACTION.BEFOR' | translate}}
           </button>
-          <button type="submit" (click)="onFormSubmit()" class="btn btn-success" [disabled]="!vform.form.valid">
+          <button type="submit" mat-raised-button (click)="onFormSubmit()" [disabled]="!vform.form.valid">
             <i class="fa fa-check-square-o"></i> {{'ACTION.SAVE' | translate}}
           </button>
         </div>
@@ -179,7 +155,14 @@
       </ng-template>
 
     </mat-horizontal-stepper>
-
+    <hr>
+    کد html:
+    <br>
+    <div>
+      <pre>
+    {{dataModel.billboardScript}}</pre>
+    </div>
+    <div [innerHtml]=dataModel.billboardScript></div>
     <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
   </div>
   <div class="ntk-cms-html-card-message">

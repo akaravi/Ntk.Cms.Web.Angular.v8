@@ -43,6 +43,10 @@ export class CmsToastrService {
     // this.toastr.success('با موفقیت اضافه شد', this.now() + 'Success!');
     this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessAdd'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessAdd'));
   }
+  typeSuccessSend(): void {
+    // this.toastr.success('با موفقیت اضافه شد', this.now() + 'Success!');
+    this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessSend'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessSend'));
+  }
   typeSuccessAddSimilar(): void {
     // this.toastr.success('با موفقیت مطالب مشابه اضافه شد', this.now() + 'Success!');
     this.toastr.success(this.translate.instant('ERRORMESSAGE.MESSAGE.typeSuccessAddSimilar'), this.now() + this.translate.instant('ERRORMESSAGE.TITLE.typeSuccessAddSimilar'));

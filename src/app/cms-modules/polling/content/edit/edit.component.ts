@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  AccessModel, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, PollingCategoryModel, PollingContentModel,
   PollingContentService, PollingOptionModel,
   PollingOptionService
@@ -51,7 +51,7 @@ export class PollingContentEditComponent implements OnInit, AfterViewInit {
   dataModel = new PollingContentModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelResult: ErrorExceptionResult<PollingContentModel> = new ErrorExceptionResult<PollingContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionSelected: PollingOptionModel = new PollingOptionModel();
   optionDataModel = new Array<PollingOptionModel>();

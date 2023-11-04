@@ -265,7 +265,10 @@ export class EstatePropertyCompanyAddComponent implements OnInit, AfterViewInit 
     }
     this.dataModel.linkLocationId = model.id;
   }
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
 
+    this.dataModel.linkLocationIds = model;
+  }
   /**
 * tag
 */

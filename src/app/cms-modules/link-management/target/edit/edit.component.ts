@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, CoreEnumService, CoreSiteModel, DataFieldInfoModel, ErrorExceptionResult,
-  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService, LinkManagementTargetModel,
+  ErrorExceptionResultBase,
+  FormInfoModel, InfoEnumModel, LinkManagementBillboardPatternModel, LinkManagementEnumService, LinkManagementTargetCategoryModel, LinkManagementTargetCategoryService, LinkManagementTargetModel,
   LinkManagementTargetService, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -34,6 +35,7 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
     public publicHelper: PublicHelper,
     private linkManagementEnumService: LinkManagementEnumService,
     private linkManagementTargetService: LinkManagementTargetService,
+    private contentCategoryService: LinkManagementTargetCategoryService,
     private cmsToastrService: CmsToastrService,
     private tokenHelper: TokenHelper,
     private router: Router,
@@ -50,13 +52,14 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
   dataModel = new LinkManagementTargetModel();
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
-  dataModelResult: ErrorExceptionResult<LinkManagementTargetModel> = new ErrorExceptionResult<LinkManagementTargetModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumManagementContentSettingTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumSharingPriceTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   optionActionTitle = '';
   optionActionButtomEnable = true;
   optionTabledisplayedColumns = ['Id', 'Option', 'OptionAnswer', 'IsCorrectAnswer', 'NumberOfVotes', 'ScoreOfVotes', 'Action'];
+  dataContentCategoryModel: number[] = [];
 
 
   loading = new ProgressSpinnerModel();
@@ -218,7 +221,64 @@ export class LinkManagementTargetEditComponent implements OnInit, AfterViewInit 
     }
     this.dataModel.linkBillboardPatternId = model.id;
   }
+  onActionCategorySelectChecked(model: number): void {
 
+    if (!model || model <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    const entity = new LinkManagementTargetCategoryModel();
+    entity.linkCategoryId = model;
+    entity.linkManagementTargetId = this.dataModel.id;
+    this.contentCategoryService.ServiceAdd(entity).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+          this.cmsToastrService.typeSuccessEdit();
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+      }
+    }
+    );
+
+
+  }
+  onActionCategorySelectDisChecked(model: number): void {
+
+    if (!model || model <= 0) {
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      this.cmsToastrService.typeErrorSelected(message);
+      return;
+    }
+    const entity = new LinkManagementTargetCategoryModel();
+    entity.linkCategoryId = model;
+    entity.linkManagementTargetId = this.dataModel.id;
+    this.contentCategoryService.ServiceDeleteEntity(entity).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_in_this_group_was_successful');
+          this.cmsToastrService.typeSuccessEdit();
+        } else {
+          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formError = ret.errorMessage;
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+      },
+      error: (er) => {
+        this.formInfo.formSubmitAllow = true;
+        this.cmsToastrService.typeError(er);
+      }
+    }
+    );
+  }
   onStepClick(event: StepperSelectionEvent, stepper: MatStepper): void {
     if (event.previouslySelectedIndex < event.selectedIndex) {
       if (!this.formGroup.valid) {

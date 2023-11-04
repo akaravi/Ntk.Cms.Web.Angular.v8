@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreSiteDomainAliasModel, CoreSiteDomainAliasService, CoreSiteModel,
   DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -45,7 +46,7 @@ export class CoreSiteDomainAliasEditComponent implements OnInit {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreSiteDomainAliasModel> = new ErrorExceptionResult<CoreSiteDomainAliasModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreSiteDomainAliasModel = new CoreSiteDomainAliasModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

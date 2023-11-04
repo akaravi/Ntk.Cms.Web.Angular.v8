@@ -84,7 +84,6 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
   cmsApiStoreSubscribe: Subscription;
 
   ngOnInit(): void {
-    this.filteModelContent.sortColumn = 'Title';
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.DataGetAll();
@@ -345,7 +344,7 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
         this.contentService.ServiceEdit(model).subscribe({
           next: (ret) => {
             if (ret.isSuccess) {
-              model = ret.item;
+              //model = ret.item;
             } else {
               this.cmsToastrService.typeErrorMessage(ret.errorMessage);
             }
@@ -401,7 +400,7 @@ export class EstateCategoryRackListMobileComponent implements OnInit, OnDestroy 
         this.contentService.ServiceEdit(model).subscribe({
           next: (ret) => {
             if (ret.isSuccess) {
-              model = ret.item;
+              //model = ret.item;
             } else {
               this.cmsToastrService.typeErrorMessage(ret.errorMessage);
             }

@@ -10,8 +10,9 @@ import {
   DataFieldInfoModel, ErrorExceptionResult,
   FilterDataModel,
   FilterModel,
+  InfoEnumModel,
   LinkManagementBillboardPatternModel,
-  LinkManagementBillboardPatternService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
+  LinkManagementBillboardPatternService, LinkManagementEnumService, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
@@ -37,6 +38,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     public publicHelper: PublicHelper,
     public contentService: LinkManagementBillboardPatternService,
     private cmsToastrService: CmsToastrService,
+    private linkManagementEnumService: LinkManagementEnumService,
     private router: Router,
     private tokenHelper: TokenHelper,
     private cdr: ChangeDetectorRef,
@@ -53,7 +55,7 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     /*filter Sort*/
     this.filteModelContent.sortColumn = 'Id';
     this.filteModelContent.sortType = SortTypeEnum.Descending;
-
+    this.getManagementContentSettingTypeEnum();
   }
   filteModelContent = new FilterModel();
   dataModelResult: ErrorExceptionResult<LinkManagementBillboardPatternModel> = new ErrorExceptionResult<LinkManagementBillboardPatternModel>();
@@ -72,11 +74,13 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
     'Id',
     'RecordStatus',
     'Title',
+    'settingType',
     'CreatedDate',
     'UpdatedDate',
     'Action'
   ];
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+  dataModelManagementContentSettingTypeEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   cmsApiStoreSubscribe: Subscription;
   ngOnInit(): void {
@@ -93,6 +97,11 @@ export class LinkManagementBillboardPatternListComponent implements OnInit, OnDe
   }
   ngOnDestroy(): void {
     this.cmsApiStoreSubscribe.unsubscribe();
+  }
+  getManagementContentSettingTypeEnum(): void {
+    this.linkManagementEnumService.ServiceManagementContentSettingTypeEnum().subscribe((next) => {
+      this.dataModelManagementContentSettingTypeEnumResult = next;
+    });
   }
   DataGetAll(): void {
     this.tabledisplayedColumns = this.publicHelper.TabledisplayedColumnsCheckByAllDataAccess(this.tabledisplayedColumnsSource, [], this.tokenInfo);

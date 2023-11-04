@@ -7,6 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ApplicationSourceModel, CoreEnumService,
   DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingTaskModel,
   TicketingTaskService
 } from 'ntk-cms-api';
@@ -52,7 +53,7 @@ export class TicketingTaskEditComponent implements OnInit {
   formInfo: FormInfoModel = new FormInfoModel();
   dataAccessModel: AccessModel;
   dataModel = new TicketingTaskModel();
-  dataModelResult: ErrorExceptionResult<TicketingTaskModel> = new ErrorExceptionResult<TicketingTaskModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];

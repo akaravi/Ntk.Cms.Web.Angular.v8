@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, CoreModuleLogSiteCreditBlockedModel, CoreModuleLogSiteCreditBlockedService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, ManageUserAccessDataTypesEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
@@ -45,7 +46,7 @@ export class CoreModuleLogSiteCreditBlockedEditComponent implements OnInit, OnDe
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<CoreModuleLogSiteCreditBlockedModel> = new ErrorExceptionResult<CoreModuleLogSiteCreditBlockedModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: CoreModuleLogSiteCreditBlockedModel = new CoreModuleLogSiteCreditBlockedModel();
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
 

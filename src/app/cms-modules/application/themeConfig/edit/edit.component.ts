@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   AccessModel, ApplicationThemeConfigModel, ApplicationThemeConfigService, CoreEnumService, CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -45,7 +46,7 @@ export class ApplicationThemeConfigEditComponent implements OnInit {
 
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<ApplicationThemeConfigModel> = new ErrorExceptionResult<ApplicationThemeConfigModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: ApplicationThemeConfigModel = new ApplicationThemeConfigModel();
 
 

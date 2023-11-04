@@ -112,7 +112,7 @@
           <mat-error *ngIf="RePassword.errors?.required">
             RePassword is <strong>{{'MESSAGE.required' | translate}}</strong>
           </mat-error>
-          <mat-error *ngIf=" RePassword.value!=Password.value">
+          <mat-error *ngIf=" RePassword.value!==Password.value">
             {{'MESSAGE.Password_and_password_confirmation_are_different' | translate}}
           </mat-error>
         </mat-form-field>

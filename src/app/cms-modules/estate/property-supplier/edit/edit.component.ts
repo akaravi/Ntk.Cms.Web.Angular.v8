@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, EstatePropertySupplierFilterModel, EstatePropertySupplierModel,
+  AccessModel, ClauseTypeEnum, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstatePropertySupplierFilterModel, EstatePropertySupplierModel,
   EstatePropertySupplierService,
   FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
@@ -46,7 +46,7 @@ export class EstatePropertySupplierEditComponent implements OnInit, AfterViewIni
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new EstatePropertySupplierModel();
-  dataModelResult: ErrorExceptionResult<EstatePropertySupplierModel> = new ErrorExceptionResult<EstatePropertySupplierModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
   dataFileModelImgaes = new Map<number, string>();
@@ -373,6 +373,10 @@ export class EstatePropertySupplierEditComponent implements OnInit, AfterViewIni
       return;
     }
     this.dataModel.linkLocationId = model.id;
+  }
+  onActionSelectorLocationWorkArea(model: number[] | null): void {
+
+    this.dataModel.linkLocationIds = model;
   }
   /**
     * tag

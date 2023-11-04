@@ -12,7 +12,6 @@ import {
   ClauseTypeEnum, CoreCurrencyModel, DataFieldInfoModel, ErrorExceptionResult, EstateContractTypeModel, EstatePropertyDetailGroupModel, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel, EstatePropertyTypeUsageModel, FilterDataModel, FilterModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from "ntk-cms-api";
 import { Subscription } from "rxjs";
-import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { ComponentOptionSearchModel } from "src/app/core/cmsComponent/base/componentOptionSearchModel";
 import { ComponentOptionStatistModel } from "src/app/core/cmsComponent/base/componentOptionStatistModel";
 import { ListBaseComponent } from "src/app/core/cmsComponent/listBaseComponent";
@@ -24,6 +23,7 @@ import { CmsConfirmationDialogService } from "src/app/shared/cms-confirmation-di
 import { CmsExportEntityComponent } from "src/app/shared/cms-export-entity/cms-export-entity.component";
 import { CmsExportListComponent } from "src/app/shared/cms-export-list/cmsExportList.component";
 import { CmsLinkToComponent } from "src/app/shared/cms-link-to/cms-link-to.component";
+import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
 import { environment } from "src/environments/environment";
 import { EstatePropertyHistoryAddComponent } from "../../property-history/add/add.component";
 import { EstatePropertyQuickAddComponent } from "../quick-add/quick-add.component";
@@ -680,8 +680,8 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
     const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
       height: '90%',
       panelClass: panelClass,
-      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+      //enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      //exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       data: {
         id: this.tableRowSelected.id,
         perviousItem: perviousItem,
@@ -721,7 +721,7 @@ export class EstatePropertyListComponent extends ListBaseComponent<EstatePropert
       enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
       exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       panelClass: panelClass,
-      
+
       data: {
 
       }

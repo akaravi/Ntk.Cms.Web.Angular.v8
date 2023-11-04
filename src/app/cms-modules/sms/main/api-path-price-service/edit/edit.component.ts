@@ -10,6 +10,7 @@ import {
   CoreSiteCategoryModel,
   CoreSiteModel,
   CoreUserGroupModel, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, SmsEnumService, SmsMainApiPathModel, SmsMainApiPathPriceServiceModel, SmsMainApiPathPriceServiceService
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -50,7 +51,7 @@ export class SmsMainApiPathPriceServiceEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<SmsMainApiPathPriceServiceModel> = new ErrorExceptionResult<SmsMainApiPathPriceServiceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: SmsMainApiPathPriceServiceModel = new SmsMainApiPathPriceServiceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

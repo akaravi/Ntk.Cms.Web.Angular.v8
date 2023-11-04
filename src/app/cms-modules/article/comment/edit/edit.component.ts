@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ArticleCommentModel, ArticleCommentService, CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel
 } from 'ntk-cms-api';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -47,7 +48,7 @@ export class ArticleCommentEditComponent implements OnInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<ArticleCommentModel> = new ErrorExceptionResult<ArticleCommentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: ArticleCommentModel = new ArticleCommentModel();
   ComponentAction = ComponentActionEnum.none;
   formInfo: FormInfoModel = new FormInfoModel();

@@ -1,0 +1,304 @@
+.box {
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile,
+.ordertype,
+.selectPropertyTypeUsage,
+.selectPropertyTypeLanduse,
+.selectyear,
+.result1,
+.selectlocation,
+.result2,
+.selectprice,
+.result3 {
+    background-image: url('/assets/media/bg/skyscraper5.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-shadow: 0 0 10px 0px #212121;
+    width: 90%;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.mobile-filter,
+.ordertype-filter,
+.selectPropertyTypeUsage-filter,
+.selectPropertyTypeLanduse-filter,
+.selectyear-filter,
+.result1-filter,
+.selectlocation-filter,
+.result2-filter,
+.selectprice-filter,
+.result3-filter {
+    height: 100%;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    position: absolute;
+    padding: 10px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.mobile-header,
+.ordertype-header,
+.selectPropertyTypeUsage-header,
+.selectPropertyTypeLanduse-header,
+.selectyear-header,
+.result1-header,
+.selectlocation-header,
+.result2-header,
+.selectprice-header,
+.result3-header {
+    width: 100%;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ordertype-header,
+.selectPropertyTypeUsage-header,
+.selectPropertyTypeLanduse-header,
+.selectyear-header,
+.selectlocation-header,
+.selectprice-header {
+    overflow-y: scroll;
+}
+
+.mobile-footer {
+    width: 100%;
+    height: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.result1-footer,
+.result2-footer,
+.result3-footer {
+    width: 100%;
+    height: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2px;
+}
+
+.ordertype-footer,
+.selectPropertyTypeUsage-footer,
+.selectPropertyTypeLanduse-footer,
+.selectyear-footer,
+.selectlocation-footer,
+.selectprice-footer {
+    width: 100%;
+    height: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+}
+
+.mobile-footer-buttonnext,
+.ordertype-footer-buttonnext,
+.selectPropertyTypeUsage-footer-buttonnext,
+.selectPropertyTypeUsage-bofooterx-buttonnext,
+.selectPropertyTypeLanduse-footer-buttonnext,
+.selectyear-footer-buttonnext,
+.selectlocation-footer-buttonnext,
+.selectprice-footer-buttonnext {
+    width: 45%;
+    height: 70%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border-radius: 25px;
+}
+
+.mobile-footer-buttonbefor,
+.ordertype-footer-buttonbefor,
+.selectPropertyTypeUsage-footer-buttonbefor,
+.selectPropertyTypeLanduse-footer-buttonbefor,
+.selectyear-footer-buttonbefor,
+.selectlocation-footer-buttonbefor,
+.selectprice-footer-buttonbefor {
+    width: 45%;
+    height: 70%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border-radius: 25px;
+}
+
+.result1-footer-buttonnext,
+.result1-footer-buttonbefor,
+.result1-footer-submit,
+.result2-footer-buttonnext,
+.result2-footer-buttonbefor,
+.result2-footer-submit {
+    width: 30%;
+    height: 70%;
+    margin-left: 1.6%;
+    margin-right: 1.6%;
+    border-radius: 10px;
+    border-radius: 25px;
+}
+
+.result3-footer-submit,
+.result3-footer-buttonbefor {
+    width: 45%;
+    height: 70%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border-radius: 25px;
+}
+
+.onestep {
+    width: 100%;
+    height: 70%;
+    border-radius: 25px;
+}
+
+.twostep {
+    width: 45%;
+    height: 70%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    border-radius: 25px;
+}
+
+.buttonsend {
+    width: 50%;
+    height: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: white;
+    border-radius: 25px;
+}
+
+// class-style
+
+.mobile-header-title,
+.mobile-header-form-label,
+.mobile-header-form-message,
+.ordertype-header-title,
+.selectPropertyTypeUsage-header-title,
+.selectPropertyTypeLanduse-header-title,
+.selectyear-header-label1,
+.selectyear-header-label2,
+.result1-header-title,
+.result1-header-result,
+.selectlocation-header-title,
+.selectlocation-header-label,
+.result2-header-title,
+.result2-header-result,
+.selectprice-header-title,
+.selectprice-header-label,
+.result3-header-title,
+.result3-header-result {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mobile-header-form-input,
+.selectyear-header-input1,
+.selectyear-header-input2,
+.selectLocation-header-form-input,
+.selectprice-header-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 16px;
+    display: block;
+    outline: none;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 2px solid #BDC3C7;
+    text-align: center;
+    font-size: 20px;
+    direction: ltr;
+}
+
+.ordertype-header-form-option,
+.selectPropertyTypeUsage-header-form-option,
+.selectPropertyTypeLanduse-header-form-option {
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+    display: block;
+    outline: none;
+    border: 2px solid #BDC3C7;
+    color: black !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ordertype-header-form-option-select,
+.selectPropertyTypeUsage-header-form-option-select,
+.selectPropertyTypeLanduse-header-form-option-select {
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+    display: block;
+    outline: none;
+    border: 2px solid #BDC3C7;
+    color: white !important;
+    background-color: rgba(0, 0, 255, 0.7) !important;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+//mobile
+.mobile-header-form {
+    margin-top: 100px;
+}
+
+//result
+.result1-header-print,
+.result2-header-print,
+.result3-header-print {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 98%;
+    height: 70%;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 1%;
+    overflow-y: scroll;
+}
+
+.result1-header-print-result,
+.result2-header-print-result,
+.result3-header-print-result {}
+
+// ****************************************************************************
+
+// tag-style
+
+button {
+    border: none;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+span {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}

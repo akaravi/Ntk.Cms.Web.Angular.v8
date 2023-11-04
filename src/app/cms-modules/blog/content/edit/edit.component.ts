@@ -12,7 +12,7 @@ import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel, BlogCategoryModel, BlogContentCategoryModel,
-  BlogContentCategoryService, BlogContentModel, BlogContentOtherInfoModel, BlogContentOtherInfoService, BlogContentService, BlogContentSimilarModel, BlogContentSimilarService, BlogContentTagModel, BlogContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  BlogContentCategoryService, BlogContentModel, BlogContentOtherInfoModel, BlogContentOtherInfoService, BlogContentService, BlogContentSimilarModel, BlogContentSimilarService, BlogContentTagModel, BlogContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -52,7 +52,7 @@ export class BlogContentEditComponent implements OnInit, AfterViewInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   dataModel = new BlogContentModel();
-  dataModelResult: ErrorExceptionResult<BlogContentModel> = new ErrorExceptionResult<BlogContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataContentTagModelResult: ErrorExceptionResult<BlogContentTagModel> = new ErrorExceptionResult<BlogContentTagModel>();
   dataContentSimilarModelResult: ErrorExceptionResult<BlogContentSimilarModel> = new ErrorExceptionResult<BlogContentSimilarModel>();
   dataContentOtherInfoModelResult: ErrorExceptionResult<BlogContentOtherInfoModel> = new ErrorExceptionResult<BlogContentOtherInfoModel>();

@@ -37,7 +37,7 @@
       </mat-error>
     </mat-form-field>
     <!-- ReportFormatFileId Field -->
-    <mat-form-field class="ntk-full-width" *ngIf="this.filterModel.exportFile.fileType==EnumExportFileTypeReport">
+    <mat-form-field class="ntk-full-width" *ngIf="this.filterModel.exportFile.fileType===EnumExportFileTypeReport">
       <mat-label>{{'TITLE.Report_Format' | translate}}</mat-label>
       <mat-select placeholder="{{'TITLE.Report_Format' | translate}}"
         [(ngModel)]="filterModel.exportFile.reportFormatFileId" name="filterModel.exportFile.reportFormatFileId"
@@ -108,7 +108,7 @@
       <button type="button" (click)="onFormCancel()" class="btn btn-light" style="margin: 1px;">
         <i class="ft-x"></i> {{'ACTION.CANCEL' | translate}}
       </button>
-      <button type="submit" (click)="onFormSubmit()" class="btn btn-success" style="margin: 1px;"
+      <button type="submit" mat-raised-button (click)="onFormSubmit()" style="margin: 1px;"
         [disabled]="!vform.form.valid || !formInfo.formSubmitAllow">
         <i class="fa-solid fa-print"></i> {{'ACTION.FILE_CREATION' | translate}}
       </button>

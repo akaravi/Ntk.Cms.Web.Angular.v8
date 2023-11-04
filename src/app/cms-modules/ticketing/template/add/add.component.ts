@@ -113,38 +113,38 @@ export class TicketingTemplateAddComponent implements OnInit {
       }
     );
   }
-  DataEditContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
-    this.formInfo.formError = '';
-    const pName = this.constructor.name + 'main';
-    this.loading.Start(pName);
+  // DataEditContent(): void {
+  //   this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+  //   this.formInfo.formError = '';
+  //   const pName = this.constructor.name + 'main';
+  //   this.loading.Start(pName);
 
 
-    this.ticketingTemplateService.ServiceEdit(this.dataModel).subscribe(
-      (next) => {
-        this.formInfo.formSubmitAllow = true;
-        this.dataModelResult = next;
-        if (next.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
-          this.cmsToastrService.typeSuccessEdit();
-          this.dialogRef.close({ dialogChangedDate: true });
+  //   this.ticketingTemplateService.ServiceEdit(this.dataModel).subscribe(
+  //     (next) => {
+  //       this.formInfo.formSubmitAllow = true;
+  //       this.dataModelResult = next;
+  //       if (next.isSuccess) {
+  //         this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+  //         this.cmsToastrService.typeSuccessEdit();
+  //         this.dialogRef.close({ dialogChangedDate: true });
 
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = next.errorMessage;
-          this.cmsToastrService.typeErrorMessage(next.errorMessage);
-        }
-        this.loading.Stop(pName);
+  //       } else {
+  //         this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+  //         this.formInfo.formError = next.errorMessage;
+  //         this.cmsToastrService.typeErrorMessage(next.errorMessage);
+  //       }
+  //       this.loading.Stop(pName);
 
-      },
-      (error) => {
-        this.formInfo.formSubmitAllow = true;
-        this.cmsToastrService.typeError(error);
-        this.loading.Stop(pName);
+  //     },
+  //     (error) => {
+  //       this.formInfo.formSubmitAllow = true;
+  //       this.cmsToastrService.typeError(error);
+  //       this.loading.Stop(pName);
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
   onActionSelectorSelect(model: TicketingDepartemenModel | null): void {
     if (!model || model.id <= 0) {
       const message = this.translate.instant('MESSAGE.Information_department_is_not_clear');

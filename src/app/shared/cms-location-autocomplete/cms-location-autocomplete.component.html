@@ -9,11 +9,11 @@
       </button>
     </mat-chip>
     <input [placeholder]="optionPlaceholder" #tagInput [matChipInputAddOnBlur]="addOnBlur" [formControl]="tagCtrl"
-      [matAutocomplete]="auto" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      (matChipInputTokenEnd)="add($event)">
+      [ngClass]="optionCssClassInputText" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)">
   </mat-chip-grid>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let item of filteredOptions  | async" [value]="item">
+    <mat-option *ngFor="let item of filteredOptions  | async" [value]="item" [ngClass]="optionCssClassSelectOption">
       {{item.display}}
     </mat-option>
   </mat-autocomplete>

@@ -10,6 +10,7 @@ import {
   CoreEnumService, DataFieldInfoModel,
   DataProviderPlanCategoryModel, DataProviderPlanSourceModel,
   DataProviderPlanSourceService, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -50,7 +51,7 @@ export class DataProviderPlanSourceEditComponent implements OnInit {
   appLanguage = 'fa';
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<DataProviderPlanSourceModel> = new ErrorExceptionResult<DataProviderPlanSourceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: DataProviderPlanSourceModel = new DataProviderPlanSourceModel();
 
   formInfo: FormInfoModel = new FormInfoModel();

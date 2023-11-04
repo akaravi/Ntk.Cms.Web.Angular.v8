@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreSiteCategoryModel, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, WebDesignerEnumService, WebDesignerMainPageDependencyModel, WebDesignerMainPageModel, WebDesignerMainPageService, WebDesignerMainPageTemplateModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
@@ -45,7 +46,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
   fileManagerTree: TreeModel;
   appLanguage = 'fa';
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<WebDesignerMainPageModel> = new ErrorExceptionResult<WebDesignerMainPageModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase;
   dataModel: WebDesignerMainPageModel = new WebDesignerMainPageModel();
   formInfo: FormInfoModel = new FormInfoModel();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
@@ -78,6 +79,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.loading.Start(pName);
     this.webDesignerMainPageService.setAccessLoad();
     this.webDesignerMainPageService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
+    //todo: karavi subscribe
     this.webDesignerMainPageService.ServiceGetOneById(this.requestId).subscribe(
       (next) => {
         this.fieldsInfo = this.publicHelper.fieldInfoConvertor(next.access);
@@ -108,6 +110,7 @@ export class WebDesignerMainPageEditComponent implements OnInit {
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    //todo: karavi subscribe
     this.webDesignerMainPageService.ServiceEdit(this.dataModel).subscribe(
       (next) => {
         this.formInfo.formSubmitAllow = true;

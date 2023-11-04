@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
   CoreEnumService, DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TicketingDepartemenModel, TicketingTemplateModel,
   TicketingTemplateService
 } from 'ntk-cms-api';
@@ -48,7 +49,7 @@ export class TicketingTemplateEditComponent implements OnInit {
   formMatcher = new CmsFormsErrorStateMatcher();
 
   loading = new ProgressSpinnerModel();
-  dataModelResult: ErrorExceptionResult<TicketingTemplateModel> = new ErrorExceptionResult<TicketingTemplateModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModel: TicketingTemplateModel = new TicketingTemplateModel();
   dataFileModel = new Map<number, string>();
 

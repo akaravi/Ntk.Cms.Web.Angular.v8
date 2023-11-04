@@ -44,8 +44,8 @@ export class EstatePropertyTypeUsageListComponent implements OnInit, OnDestroy {
     };
 
     /*filter Sort*/
-    this.filteModelContent.sortColumn = 'Id';
-    this.filteModelContent.sortType = SortTypeEnum.Descending;
+    this.filteModelContent.sortColumn = 'Title';
+    this.filteModelContent.sortType = SortTypeEnum.Ascending;
   }
   comment: string;
   author: string;

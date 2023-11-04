@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import * as Leaflet from 'leaflet';
 import { Map as leafletMap } from 'leaflet';
 import {
-  AccessModel, BiographyCategoryModel, BiographyContentCategoryModel, BiographyContentCategoryService, BiographyContentModel, BiographyContentOtherInfoModel, BiographyContentOtherInfoService, BiographyContentService, BiographyContentSimilarModel, BiographyContentSimilarService, BiographyContentTagModel, BiographyContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  AccessModel, BiographyCategoryModel, BiographyContentCategoryModel, BiographyContentCategoryService, BiographyContentModel, BiographyContentOtherInfoModel, BiographyContentOtherInfoService, BiographyContentService, BiographyContentSimilarModel, BiographyContentSimilarService, BiographyContentTagModel, BiographyContentTagService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -49,7 +49,7 @@ export class BiographyContentEditComponent implements OnInit, AfterViewInit {
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new BiographyContentModel();
-  dataModelResult: ErrorExceptionResult<BiographyContentModel> = new ErrorExceptionResult<BiographyContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataContentTagModelResult: ErrorExceptionResult<BiographyContentTagModel> = new ErrorExceptionResult<BiographyContentTagModel>();
   dataContentSimilarModelResult: ErrorExceptionResult<BiographyContentSimilarModel> =
     new ErrorExceptionResult<BiographyContentSimilarModel>();

@@ -274,11 +274,31 @@ export class PollingContentAddComponent implements OnInit, AfterViewInit {
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
-
           this.formInfo.formSubmitAllow = true;
-          this.dataModelResult = ret;
           if (ret.isSuccess) {
-
+            //**Get One */
+            this.pollingContentService
+              .ServiceGetOneById(this.dataModel.id)
+              .subscribe({
+                next: (ret) => {
+                  this.loading.Stop(pName);
+                  this.formInfo.formSubmitAllow = true;
+                  this.dataModelResult = ret;
+                  if (ret.isSuccess) {
+                    this.dataModel = ret.item;
+                  } else {
+                    this.cmsToastrService.typeErrorEdit(ret.errorMessage);
+                  }
+                  this.loading.Stop(pName);
+                },
+                error: (er) => {
+                  this.loading.Stop(pName);
+                  this.formInfo.formSubmitAllow = true;
+                  this.cmsToastrService.typeError(er);;
+                }
+              }
+              );
+            //**Get One */
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
 

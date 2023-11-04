@@ -13,6 +13,7 @@ import {
   CoreEnumService,
   CoreSiteCategoryModel,
   DataFieldInfoModel, ErrorExceptionResult,
+  ErrorExceptionResultBase,
   FilterDataModel,
   FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
@@ -51,7 +52,7 @@ export class ApplicationSourceEditComponent implements OnInit {
   dataAccessModel: AccessModel;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   dataModel = new ApplicationSourceModel();
-  dataModelResult: ErrorExceptionResult<ApplicationSourceModel> = new ErrorExceptionResult<ApplicationSourceModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataModelEnumOsTypeResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];

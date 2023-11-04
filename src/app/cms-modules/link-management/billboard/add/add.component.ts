@@ -229,11 +229,34 @@ export class LinkManagementBillboardAddComponent implements OnInit, AfterViewIni
       .subscribe({
         next: (ret) => {
           this.loading.Stop(pName);
-
           this.formInfo.formSubmitAllow = true;
-          this.dataModelResult = ret;
+          //this.dataModelResult = ret;
           if (ret.isSuccess) {
+            /**Get One */
+            this.loading.Start(pName);
+            this.linkManagementBillboardService
+              .ServiceGetOneById(this.dataModelResult.item.id)
+              .subscribe({
+                next: (ret) => {
+                  this.loading.Stop(pName);
 
+                  this.formInfo.formSubmitAllow = true;
+                  this.dataModelResult = ret;
+                  if (ret.isSuccess) {
+                    this.dataModel = ret.item;
+                  } else {
+                    this.cmsToastrService.typeErrorEdit(ret.errorMessage);
+                  }
+                  this.loading.Stop(pName);
+                },
+                error: (er) => {
+                  this.loading.Stop(pName);
+                  this.formInfo.formSubmitAllow = true;
+                  this.cmsToastrService.typeError(er);;
+                }
+              }
+              );
+            /**Get One */
             this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
             this.cmsToastrService.typeSuccessEdit();
 

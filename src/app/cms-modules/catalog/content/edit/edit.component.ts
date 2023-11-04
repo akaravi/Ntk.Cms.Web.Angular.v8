@@ -13,7 +13,7 @@ import { Map as leafletMap } from 'leaflet';
 import {
   AccessModel,
 
-  CatalogContentModel, CatalogContentOtherInfoModel, CatalogContentService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel,
+  CatalogContentModel, CatalogContentOtherInfoModel, CatalogContentService, ClauseTypeEnum, CoreEnumService, CoreLocationModel, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, FilterDataModel, FilterModel,
   FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum
 } from 'ntk-cms-api';
 import { NodeInterface, TreeModel } from 'ntk-cms-filemanager';
@@ -48,7 +48,7 @@ export class CatalogContentEditComponent implements OnInit, AfterViewInit {
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
 
   dataModel = new CatalogContentModel();
-  dataModelResult: ErrorExceptionResult<CatalogContentModel> = new ErrorExceptionResult<CatalogContentModel>();
+  dataModelResult: ErrorExceptionResultBase = new ErrorExceptionResultBase();
   dataContentOtherInfoModelResult: ErrorExceptionResult<CatalogContentOtherInfoModel> = new ErrorExceptionResult<CatalogContentOtherInfoModel>();
   dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   dataContentCategoryModel: number[] = [];
