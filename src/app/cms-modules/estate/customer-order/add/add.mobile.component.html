@@ -270,11 +270,25 @@
             {{this.dataModelEstatePropertyResult.totalRowCount}}
           </div>
           <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result1-header-print">
-            <div *ngFor="let state of dataModelEstatePropertyResult.listItems;let number=index"
-              class="result1-header-print-result">
-              {{ state.title }}
-              <hr>
-            </div>
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result1-header-print-table">
+              <tr>
+                <td colspan="3"> {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" style="width:30%">مساحت: </td>
+                <td colspan="1" style="width:40%">ثبت: </td>
+                <td colspan="1" style="width:30%">اتاق: </td>
+              </tr>
+              <tr>
+                <td colspan="3">مبلغ کل قرار داد: </td>
+              </tr>
+              <tr>
+                <td colspan="3">پرداخت در قرار داد: </td>
+              </tr>
+              <tr>
+                <td colspan="3">اقساط: </td>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="result1-footer">
@@ -317,12 +331,28 @@
           <div class="result2-header-result">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
-          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result2-header-print">
-            <div *ngFor="let state of dataModelEstatePropertyResult.listItems;let number=index"
-              class="result2-header-print-result">
-              {{ state.title }}
-              <hr>
-            </div>
+          <div
+            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+            class="result3-header-print">
+            <table *ngFor="let state of dataModelContractTypeResult.listItems" class="result3-header-print-table">
+              <tr>
+                <td colspan="3"> {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" style="width:30%">مساحت:{{state.title}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.title}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.title}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">مبلغ کل قرار داد:{{state.title}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">پرداخت در قرار داد: {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="3">اقساط:{{state.title}} </td>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="result2-footer">
@@ -465,12 +495,28 @@
           <div class="result3-header-result">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
-          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result3-header-print">
-            <div *ngFor="let state of dataModelEstatePropertyResult.listItems;let number=index"
-              class="result3-header-print-result">
-              {{ state.title }}
-              <hr>
-            </div>
+          <div
+            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+            class="result3-header-print">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+              <tr>
+                <td colspan="3"> {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.createdDate}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">مبلغ کل قرار داد:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="3">اقساط:{{state.partition}} </td>
+              </tr>
+            </table>
           </div>
         </div>
         <div class="result3-footer">
