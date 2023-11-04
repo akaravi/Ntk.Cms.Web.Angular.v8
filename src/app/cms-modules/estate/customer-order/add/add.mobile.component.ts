@@ -85,7 +85,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
   optionloadComponent = false;
   LinkPropertyIdsInUse = false;
   regeMobile = new RegExp('09[0-9]{2}[0-9]{3}[0-9]{4}');
-  stepContent = 'result1';
+  stepContent = 'mobile';
   // ** Accardon */
   step = 0;
   hidden = true;
