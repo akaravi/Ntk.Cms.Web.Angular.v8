@@ -54,7 +54,6 @@
 .selectPropertyTypeUsage-header,
 .selectPropertyTypeLanduse-header,
 .selectyear-header,
-.result1-header,
 .selectlocation-header,
 .result2-header,
 .selectprice-header,
@@ -63,6 +62,15 @@
   height: 80%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.result1-header,
+.result2-header,
+.result3-header {
+    width: 100%;
+    height: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .ordertype-header,
@@ -277,9 +285,15 @@
   overflow-y: scroll;
 }
 
-.result1-header-print-result,
-.result2-header-print-result,
-.result3-header-print-result {}
+.result1-header-print-table,
+.result2-header-print-table,
+.result3-header-print-table {
+    color: black;
+    // background-color: rgba(0, 0, 255, 0.7);
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
 
 // ****************************************************************************
 
@@ -301,4 +315,10 @@ input:focus {
 span {
   margin-left: 2.5px;
   margin-right: 2.5px;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
 }

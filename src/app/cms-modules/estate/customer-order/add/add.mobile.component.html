@@ -269,19 +269,36 @@
           <div class="result1-header-result">تعداد ملک انتخابی شما :
             {{this.dataModelEstatePropertyResult.totalRowCount}}
           </div>
-          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result1-header-print">
-            <div *ngFor="let state of dataModelEstatePropertyResult.listItems;let number=index"
-              class="result1-header-print-result">
-              {{ state.title }}
-              <hr>
-            </div>
+          <div
+            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+            class="result3-header-print">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+              <tr>
+                <td colspan="3"> {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.adsExpireDate}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">مبلغ کل قرار داد:{{state.area}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="3">اقساط:{{state.partition}} </td>
+              </tr>
+            </table>
           </div>
         </div>
-        <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
-          {{'ACTION.SEND_TO_CLIENT' | translate}}
-        </mat-slide-toggle>
         <div class="result1-footer">
+          <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+            name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
+            {{'ACTION.SEND_TO_CLIENT' | translate}}
+          </mat-slide-toggle>
+          <br>
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="result1-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -316,19 +333,36 @@
           <div class="result2-header-result">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
-          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result2-header-print">
-            <div *ngFor="let state of dataModelEstatePropertyResult.listItems;let number=index"
-              class="result2-header-print-result">
-              {{ state.title }}
-              <hr>
-            </div>
+          <div
+            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+            class="result3-header-print">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+              <tr>
+                <td colspan="3"> {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.adsExpireDate}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">مبلغ کل قرار داد:{{state.area}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="3">اقساط:{{state.partition}} </td>
+              </tr>
+            </table>
           </div>
         </div>
-        <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
-          {{'ACTION.SEND_TO_CLIENT' | translate}}
-        </mat-slide-toggle>
         <div class="result2-footer">
+          <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+            name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
+            {{'ACTION.SEND_TO_CLIENT' | translate}}
+          </mat-slide-toggle>
+          <br>
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="result2-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -463,19 +497,36 @@
           <div class="result3-header-result">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
-          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="result3-header-print">
-            <div *ngFor="let state of dataModelEstatePropertyResult.listItems;let number=index"
-              class="result3-header-print-result">
-              {{ state.title }}
-              <hr>
-            </div>
+          <div
+            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+            class="result3-header-print">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+              <tr>
+                <td colspan="3"> {{state.title}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
+                <td colspan="1" style="width:40%">ثبت: {{state.adsExpireDate}} </td>
+                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">مبلغ کل قرار داد:{{state.area}} </td>
+              </tr>
+              <tr>
+                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="3">اقساط:{{state.partition}} </td>
+              </tr>
+            </table>
           </div>
         </div>
-        <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
-          {{'ACTION.SEND_TO_CLIENT' | translate}}
-        </mat-slide-toggle>
         <div class="result3-footer">
+          <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+            name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
+            {{'ACTION.SEND_TO_CLIENT' | translate}}
+          </mat-slide-toggle>
+          <br>
           <button (click)="onActoinSelectStepBefor('selectPrice')" class="result3-footer-buttonbefor">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
