@@ -1,23 +1,269 @@
 <div class="box">
-    <ng-container *ngIf="stepContent === 'title'">
-        <div class="title">
-            <div class="title-header">
-                <div class="title-header-form">
-                    <label for="1" class="title-header-form__label">عنوان</label>
-                    <input type="text" id="1" class="title-header-form__input">
-                    <label for="2" class="title-header-form__label">توضیحات</label>
-                    <textarea name="2" id="2" cols="30" rows="10" class="title-header-form__textarea"></textarea>
-                </div>
-            </div>
-            <div class="title-footer">
-                <button class="title-footer__btn">
-                    <span>بعدی</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                      stroke="currentColor" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                    </svg>
-                </button>
-            </div>
+  <ng-container *ngIf="stepContent === 'title'">
+    <div class="title">
+      <div class="title-filter">
+        <div class="title-header">
+          <div class="title-header-form">
+            <label for="1" class="title-header-form__label">عنوان</label>
+            <input type="text" id="1" class="title-header-form__input" />
+            <label for="2" class="title-header-form__label">توضیحات</label>
+            <textarea
+              name="2"
+              id="2"
+              cols="30"
+              rows="10"
+              class="title-header-form__textarea"
+            ></textarea>
+            <label for="3" class="title-header-form__label">توضیحات پنهان</label>
+            <textarea
+              name="3"
+              id="3"
+              cols="30"
+              rows="10"
+              class="title-header-form__textarea"
+            ></textarea>
+          </div>
         </div>
-    </ng-container>
+        <div class="title-footer">
+          <button
+            class="title-footer__btn"
+            (click)="onActoinSelectStepNext('selectDate')"
+          >
+            <span>بعدی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'selectDate'">
+    <div class="selectDate">
+      <div class="selectDate-filter">
+        <div class="selectDate-header">
+          <div class="selectDate-header-form">
+            <label for="1" class="selectDate-header-form__label"
+              >تاریخ قرارداد از</label
+            >
+            <input type="date" class="selectDate-header-form__input" />
+            <label for="2" class="selectDate-header-form__label"
+              >تاریخ قرار ملاقات به</label
+            >
+            <input type="date" class="selectDate-header-form__input" />
+          </div>
+        </div>
+        <div class="selectDate-footer">
+          <button
+            class="selectDate-footer__btn"
+            (click)="onActoinSelectStepBefor('title')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+            <span>قبلی</span>
+          </button>
+          <button class="selectDate-footer__btn">
+            <span>ثبت</span>
+          </button>
+          <button
+            class="selectDate-footer__btn"
+            (click)="onActoinSelectStepNext('grouping')"
+          >
+            <span>بعدی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'grouping'">
+    <div class="grouping">
+      <div class="grouping-filter">
+        <div class="grouping-header">
+          <div class="grouping-header__selection">
+            <button class="grouping-header-selection__option">
+              مشاهده ملک
+            </button>
+            <button class="grouping-header-selection__option">تلفن تماس</button>
+            <button class="grouping-header-selection__option">
+              پیام فرستادن
+            </button>
+            <button class="grouping-header-selection__option">ملاقات</button>
+            <button class="grouping-header-selection__option">
+              اجاره شده است
+            </button>
+            <button class="grouping-header-selection__option">
+              فروخته شده است
+            </button>
+          </div>
+        </div>
+        <div class="grouping-footer">
+          <button
+            class="grouping-footer__btn"
+            (click)="onActoinSelectStepBefor('selectDate')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+            <span>قبلی</span>
+          </button>
+          <button class="grouping-footer__btn">
+            <span>ثبت</span>
+          </button>
+          <button
+            class="grouping-footer__btn"
+            (click)="onActoinSelectStepNext('estate')"
+          >
+            <span>بعدی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'estate'">
+    <div class="estate">
+      <div class="estate-filter">
+        <div class="estate-header"></div>
+        <div class="estate-footer">
+          <button
+            class="estate-footer__btn"
+            (click)="onActoinSelectStepBefor('grouping')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
+            <span>قبلی</span>
+          </button>
+          <button class="estate-footer__btn">
+            <span>ثبت</span>
+          </button>
+          <button
+            class="estate-footer__btn"
+            (click)="onActoinSelectStepNext('estateAgency')"
+          >
+            <span>بعدی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'estateAgency'">
+    <div class="estateAgency">
+      <div class="estateAgency-filter">
+        <div class="estateAgency-header"></div>
+        <div class="estateAgency-footer">
+          <button class="estateAgency-footer__btn" (click)="onActoinSelectStepBefor('estate')">
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+          <span>قبلی</span>
+          </button>
+          <button class="estateAgency-footer__btn">
+            <span>ثبت</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>

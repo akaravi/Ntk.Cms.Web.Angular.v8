@@ -206,4 +206,10 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
   onFormCancel(): void {
     this.dialogRef.close({ dialogChangedDate: false });
   }
+  onActoinSelectStepNext(step: string): void {
+    this.stepContent = step;
+  }
+  onActoinSelectStepBefor(step: string): void {
+    this.stepContent = step;
+  }
 }
