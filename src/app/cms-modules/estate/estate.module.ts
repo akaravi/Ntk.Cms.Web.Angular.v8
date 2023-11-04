@@ -194,6 +194,8 @@ import { EstatePropertyQuickListComponent } from './property/quick-list/quick-li
 import { EstatePropertyQuickViewComponent } from './property/quick-view/quick-view.component';
 import { EstateCustomerOrderAddMobileComponent } from './customer-order/add/add.mobile.component';
 import { EstateCustomerOrderEditMobileComponent } from './customer-order/edit/edit.mobile.component';
+import { EstatePropertyHistoryAddMobileComponent } from './property-history/add/add.mobile.component';
+import { EstatePropertyHistoryEditMobileComponent } from './property-history/edit/edit.mobile.component';
 
 
 @NgModule({
@@ -284,7 +286,9 @@ import { EstateCustomerOrderEditMobileComponent } from './customer-order/edit/ed
     EstatePropertyQuickListComponent,
     /* */
     EstatePropertyHistoryAddComponent,
+    EstatePropertyHistoryAddMobileComponent,
     EstatePropertyHistoryEditComponent,
+    EstatePropertyHistoryEditMobileComponent,
     EstatePropertyHistoryListComponent,
     EstatePropertyHistoryQuickViewComponent,
 

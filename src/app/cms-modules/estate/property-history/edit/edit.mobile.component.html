@@ -1,0 +1,23 @@
+<div class="box">
+    <ng-container *ngIf="stepContent === 'title'">
+        <div class="title">
+            <div class="title-header">
+                <div class="title-header-form">
+                    <label for="1" class="title-header-form__label">عنوان</label>
+                    <input type="text" id="1" class="title-header-form__input">
+                    <label for="2" class="title-header-form__label">توضیحات</label>
+                    <textarea name="2" id="2" cols="30" rows="10" class="title-header-form__textarea"></textarea>
+                </div>
+            </div>
+            <div class="title-footer">
+                <button class="title-footer__btn">
+                    <span>بعدی</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </ng-container>
+</div>
