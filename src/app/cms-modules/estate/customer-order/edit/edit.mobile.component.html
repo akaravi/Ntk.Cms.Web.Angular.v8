@@ -53,7 +53,7 @@
             لطفا درخواست خود را مشخص نمایید.
           </div>
 
-          <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
+          <div *ngIf="dataModelContractTypeResult?.listItems?.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
               [class]="state.id===dataModel.linkContractTypeId ? 'ordertype-header-form-option-select' : 'ordertype-header-form-option'"
               (click)="onActionSelectorContarctType(state)">{{ state.orderTitle }}</button>

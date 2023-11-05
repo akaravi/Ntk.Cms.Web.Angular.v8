@@ -1,144 +1,171 @@
 .box {
-    height: 100%;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #E0E0E0;
+  height: 100%;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E0E0E0;
 }
+
 .title,
 .selectDate,
 .grouping,
 .estate,
-.estateAgency{
-    width: 90%;
-    background-color: #fff;
-    box-shadow: 0 0 10px 0px #212121;
-    height: 70%;
-    border-radius: 10px;
-    margin: 0 auto;
-    position: relative;
+.estateAgency {
+  width: 90%;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0px #212121;
+  height: 70%;
+  border-radius: 10px;
+  margin: 0 auto;
+  position: relative;
 }
+
 .title-filter,
 .selectDate-filter,
 .grouping-filter,
 .estate-filter,
-.estateAgency-filter{
-    height: 100%;
-    width: 90%;
-    position: absolute;
-    padding: 10px;
-    margin-left: 5%;
+.estateAgency-filter {
+  height: 100%;
+  width: 90%;
+  position: absolute;
+  padding: 10px;
+  margin-left: 5%;
 }
+
 .title-header,
 .selectDate-header,
 .grouping-header,
 .estate-header,
-.estateAgency-header{
-    width: 100%;
-    height: 80%;
-    margin-left: auto;
-    margin-right: auto;
+.estateAgency-header {
+  width: 100%;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 .title-header-form,
-.selectDate-header-form{
-    margin-top: 0px;
+.selectDate-header-form {
+  margin-top: 0px;
 }
+
 .title-header-form__label,
-.selectDate-header-form__label{
-    margin-bottom: 24px;
-    margin-top: 15px;
+.selectDate-header-form__label {
+  margin-bottom: 24px;
+  margin-top: 15px;
 }
+
 .title-header-form__input,
-.selectDate-header-form__input{
-    width: 100%;
-    height: 50px;
-    border-radius: 16px;
-    display: block;
-    outline: none;
-    text-align: center;
-    font-size: 20px;
-    border: 2px solid black;
-    position: relative;
+.selectDate-header-form__input {
+  width: 100%;
+  height: 50px;
+  border-radius: 16px;
+  display: block;
+  outline: none;
+  text-align: center;
+  font-size: 20px;
+  border: 2px solid black;
+  position: relative;
 }
-.title-header-form__textarea{
-    width: 100%;
-    height: 90px;
+
+.title-header-form__textarea {
+  width: 100%;
+  height: 90px;
 }
+
 .title-footer,
 .selectDate-footer,
 .grouping-footer,
 .estate-footer,
-.estateAgency-footer{
-    width: 100%;
-    height: 15%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 30px;
+.estateAgency-footer {
+  width: 100%;
+  height: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
 }
-.title-footer__btn{
-    width: 100%;
-    height: 70%;
-    border-radius: 25px;
-    background-color: #ffe500;
+
+.title-footer__btn {
+  width: 100%;
+  height: 70%;
+  border-radius: 25px;
+  background-color: #ffe500;
 }
+
 .selectDate-footer__btn,
 .grouping-footer__btn,
-.estate-footer__btn{
-    width: 30%;
-    height: 70%;
-    margin-left: 1.6%;
-    margin-right: 1.6%;
-    border-radius: 10px;
-    border-radius: 25px;
-    background-color: #ffe500;
+.estate-footer__btn {
+  width: 30%;
+  height: 70%;
+  margin-left: 1.6%;
+  margin-right: 1.6%;
+  border-radius: 10px;
+  border-radius: 25px;
+  background-color: #ffe500;
 }
-.grouping-header__selection{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
+
+.grouping-header__selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
 }
-.grouping-header-selection__option{
-    width: 100%;
-    height: 100%;
-    margin-bottom: 10%;
-    border-radius: 16px;
-    padding: 5%;
+
+.grouping-header-selection__option {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10%;
+  border-radius: 16px;
+  padding: 5%;
 }
-.estateAgency-footer__btn{
-    width: 45%;
-    height: 70%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    border-radius: 25px;
-    background-color: #ffe500;
+
+.grouping-header-selection__option-select {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10%;
+  border-radius: 16px;
+  padding: 5%;
+  color: #E0E0E0;
 }
-.icon{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 13%;
-    gap: 209px;
-    margin-left: 4%;
+
+.estateAgency-footer__btn {
+  width: 45%;
+  height: 70%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  border-radius: 25px;
+  background-color: #ffe500;
 }
-.icon2{
-    position: absolute;
-    top: 37%;
-    margin-left: 77%;
+
+.icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 13%;
+  gap: 209px;
+  margin-left: 4%;
 }
-button{
-    border: none;
+
+.icon2 {
+  position: absolute;
+  top: 37%;
+  margin-left: 77%;
+}
+
+button {
+  border: none;
 
 }
+
 svg {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
+
 span {
-    margin-left: 2.5px;
-    margin-right: 2.5px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
 }

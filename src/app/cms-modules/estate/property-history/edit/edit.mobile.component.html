@@ -5,12 +5,12 @@
         <div class="title-header">
           <div class="title-header-form">
             <!-- Title Field -->
-            <label for="dataModel.title" class="title-header-form__label">عنوان</label>
+            <label for="dataModel.title" class="title-header-form__label">{{fieldsInfo['title']?.fieldTitle}}</label>
             <input [(ngModel)]="dataModel.title" name="dataModel.title" type="text" id="dataModel.title" minlength="3"
               maxlength="100" required class="title-header-form__input" />
             <!-- Description Field -->
             <label *ngIf="fieldsInfo['description']?.accessWatchField" for="dataModel.description"
-              class="title-header-form__label">توضیحات </label>
+              class="title-header-form__label">{{fieldsInfo['description']?.fieldTitle}} </label>
             <textarea *ngIf="fieldsInfo['description']?.accessWatchField" [(ngModel)]="dataModel.description"
               name="dataModel.description" id="dataModel.description" #Description
               disabled="!fieldsInfo['description']?.accessEditField" type="text"
@@ -18,7 +18,7 @@
               class="title-header-form__textarea"></textarea>
             <!-- DescriptionHidden Field -->
             <label *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField" for="dataModel.descriptionHidden"
-              class="title-header-form__label">توضیحات پنهان</label>
+              class="title-header-form__label"> {{fieldsInfo['descriptionHidden']?.fieldTitle}}</label>
             <textarea *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField"
               [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
               id="dataModel.descriptionHidden" #DescriptionHidden
@@ -46,20 +46,29 @@
       <div class="selectDate-filter">
         <div class="selectDate-header">
           <div class="selectDate-header-form">
+            <!-- activityStatus Field -->
+            <div class="grouping-header__selection">
+              <button *ngFor="let item of dataModelEstateActivityStatusEnumResult.listItems;"
+                [class]="item.value===dataModel.activityStatus ? 'grouping-header-selection__option-select' : 'grouping-header-selection__option'"
+                click="dataModel.activityStatus=item.value;">
+                {{ item.description }}
+              </button>
+            </div>
+
             <!-- AppointmentDateFrom Field -->
             <label *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" for="dataModel.appointmentDateFrom"
               class="selectDate-header-form__label">تاریخ قرار از</label>
             <input *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" [matDatepicker]="AppointmentDateFrom"
               [(ngModel)]="dataModel.appointmentDateFrom" [formControl]="date" name="dataModel.appointmentDateFrom"
               id="dataModel.appointmentDateFrom" class="selectDate-header-form__input" />
-              <div class="icon">
-                <mat-icon matSuffix
+            <div class="icon">
+              <mat-icon matSuffix
                 *ngIf="dataModel.appointmentDateFrom && fieldsInfo['appointmentDateFrom']?.accessEditField" matSuffix
                 mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateFrom = null">close</mat-icon>
-                <mat-datepicker-toggle matSuffix [for]="AppointmentDateFrom"></mat-datepicker-toggle>
-                <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
-              </div>
-           
+              <mat-datepicker-toggle matSuffix [for]="AppointmentDateFrom"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
+            </div>
+
 
 
             <br>
@@ -70,8 +79,9 @@
               [(ngModel)]="dataModel.appointmentDateTo" [value]="date.value" name="dataModel.appointmentDateTo"
               id="dataModel.appointmentDateTo" class="selectDate-header-form__input" />
             <div class="icon2">
-              <mat-icon matSuffix *ngIf="dataModel.appointmentDateTo && fieldsInfo['appointmentDateTo']?.accessEditField"
-              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateTo = null">close</mat-icon>
+              <mat-icon matSuffix
+                *ngIf="dataModel.appointmentDateTo && fieldsInfo['appointmentDateTo']?.accessEditField" matSuffix
+                mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateTo = null">close</mat-icon>
               <mat-datepicker-toggle matSuffix [for]="AppointmentDateTo"></mat-datepicker-toggle>
               <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
             </div>
@@ -85,7 +95,7 @@
             </svg>
             <span>قبلی</span>
           </button>
-          <button class="selectDate-footer__btn">
+          <button class="selectDate-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button class="selectDate-footer__btn" (click)="onActoinSelectStepNext('grouping')">
@@ -129,7 +139,7 @@
             </svg>
             <span>قبلی</span>
           </button>
-          <button class="grouping-footer__btn">
+          <button class="grouping-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button class="grouping-footer__btn" (click)="onActoinSelectStepNext('estate')">
@@ -156,7 +166,7 @@
             </svg>
             <span>قبلی</span>
           </button>
-          <button class="estate-footer__btn">
+          <button class="estate-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button class="estate-footer__btn" (click)="onActoinSelectStepNext('estateAgency')">
@@ -183,11 +193,12 @@
             </svg>
             <span>قبلی</span>
           </button>
-          <button class="estateAgency-footer__btn">
+          <button class="estateAgency-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
         </div>
       </div>
     </div>
   </ng-container>
+
 </div>
