@@ -277,7 +277,7 @@
             </div>
           </div>
         </div>
-        <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
           name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
@@ -324,7 +324,7 @@
             </div>
           </div>
         </div>
-        <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
           name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
@@ -471,7 +471,7 @@
             </div>
           </div>
         </div>
-        <mat-slide-toggle [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
           name="dataModelActionSend.actionSendSmsToEstateCustomer" class="buttonsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>

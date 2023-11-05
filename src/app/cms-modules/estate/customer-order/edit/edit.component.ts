@@ -19,13 +19,13 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { environment } from 'src/environments/environment';
 import { EstateAccountAgencyListComponent } from '../../account-agency/list/list.component';
 import { EstateAccountUserListComponent } from '../../account-user/list/list.component';
 import { EstatePropertyHistoryAddComponent } from '../../property-history/add/add.component';
 import { EstatePropertyHistoryListComponent } from '../../property-history/list/list.component';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
 import { EstateCustomerOrderActionComponent } from '../action/action.component';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-estate-customer-order-edit',
@@ -56,6 +56,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
 
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+
     });
   }
   @ViewChild('vform', { static: false }) formGroup: FormGroup;
@@ -65,6 +66,7 @@ export class EstateCustomerOrderEditComponent implements OnInit {
   @ViewChild(EstateAccountAgencyListComponent) estateAccountAgencyListComponent: EstateAccountAgencyListComponent;
   @ViewChild(EstateAccountUserListComponent) estateAccountUserListComponent: EstateAccountUserListComponent;
   @ViewChild(EstatePropertyHistoryListComponent) estatePropertyHistoryListComponent: EstatePropertyHistoryListComponent;
+  allowActionSend = false;
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];

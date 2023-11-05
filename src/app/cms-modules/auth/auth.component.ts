@@ -2,10 +2,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CoreConfigurationService } from 'ntk-cms-api';
-import { getViewPort } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { getViewPort } from 'src/app/_metronic/kt/_utils/DomHelpers';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -23,12 +23,10 @@ export class AuthComponent implements OnInit {
   }
   loading = new ProgressSpinnerModel();
   today: Date = new Date();
-  get innerWidth() {
-    return getViewPort().width
-  };
+
   showSplashModel = true;
   ngOnInit(): void {
-    if (this.innerWidth < 860) {
+    if (getViewPort().width < 860) {
       setTimeout(() => {
         this.showSplashModel = false;
         this.cdr.markForCheck();
