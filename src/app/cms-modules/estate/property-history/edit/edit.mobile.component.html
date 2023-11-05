@@ -4,45 +4,36 @@
       <div class="title-filter">
         <div class="title-header">
           <div class="title-header-form">
-            <label for="1" class="title-header-form__label">عنوان</label>
-            <input type="text" id="1" class="title-header-form__input" />
-            <label for="2" class="title-header-form__label">توضیحات</label>
-            <textarea
-              name="2"
-              id="2"
-              cols="30"
-              rows="10"
-              class="title-header-form__textarea"
-            ></textarea>
-            <label for="3" class="title-header-form__label">توضیحات پنهان</label>
-            <textarea
-              name="3"
-              id="3"
-              cols="30"
-              rows="10"
-              class="title-header-form__textarea"
-            ></textarea>
+            <!-- Title Field -->
+            <label for="dataModel.title" class="title-header-form__label">عنوان</label>
+            <input [(ngModel)]="dataModel.title" name="dataModel.title" type="text" id="dataModel.title" minlength="3"
+              maxlength="100" required class="title-header-form__input" />
+            <!-- Description Field -->
+            <label *ngIf="fieldsInfo['description']?.accessWatchField" for="dataModel.description"
+              class="title-header-form__label">توضیحات </label>
+            <textarea *ngIf="fieldsInfo['description']?.accessWatchField" [(ngModel)]="dataModel.description"
+              name="dataModel.description" id="dataModel.description" #Description
+              disabled="!fieldsInfo['description']?.accessEditField" type="text"
+              placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="0" maxlength="1000" rows=5
+              class="title-header-form__textarea"></textarea>
+            <!-- DescriptionHidden Field -->
+            <label *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField" for="dataModel.descriptionHidden"
+              class="title-header-form__label">توضیحات پنهان</label>
+            <textarea *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField"
+              [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
+              id="dataModel.descriptionHidden" #DescriptionHidden
+              disabled="!fieldsInfo['descriptionHidden']?.accessEditField" type="text"
+              placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="0" maxlength="1000" rows=5
+              class="title-header-form__textarea"></textarea>
           </div>
         </div>
         <div class="title-footer">
-          <button
-            class="title-footer__btn"
-            (click)="onActoinSelectStepNext('selectDate')"
-          >
+          <button class="title-footer__btn" [disabled]="!dataModel.title || dataModel.title.length<3"
+            (click)="onActoinSelectStepNext('selectDate')">
             <span>بعدی</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -55,58 +46,48 @@
       <div class="selectDate-filter">
         <div class="selectDate-header">
           <div class="selectDate-header-form">
-            <label for="1" class="selectDate-header-form__label"
-              >تاریخ قرارداد از</label
-            >
-            <input type="date" class="selectDate-header-form__input" />
-            <label for="2" class="selectDate-header-form__label"
-              >تاریخ قرار ملاقات به</label
-            >
-            <input type="date" class="selectDate-header-form__input" />
+            <!-- AppointmentDateFrom Field -->
+            <label *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" for="dataModel.appointmentDateFrom"
+              class="selectDate-header-form__label">تاریخ قرار از</label>
+            <input *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" [matDatepicker]="AppointmentDateFrom"
+              [(ngModel)]="dataModel.appointmentDateFrom" [formControl]="date" name="dataModel.appointmentDateFrom"
+              id="dataModel.appointmentDateFrom" class="selectDate-header-form__input" />
+            <mat-icon matSuffix
+              *ngIf="dataModel.appointmentDateFrom && fieldsInfo['appointmentDateFrom']?.accessEditField" matSuffix
+              mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateFrom = null">close</mat-icon>
+            <mat-datepicker-toggle matSuffix [for]="AppointmentDateFrom"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
+
+
+            <br>
+            <label *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField" for="dataModel.appointmentDateTo"
+              class="selectDate-header-form__label">تاریخ قرار تا</label>
+            <!-- AppointmentDateTo Field -->
+            <input *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField" [matDatepicker]="AppointmentDateTo"
+              [(ngModel)]="dataModel.appointmentDateTo" [value]="date.value" name="dataModel.appointmentDateTo"
+              id="dataModel.appointmentDateTo" class="selectDate-header-form__input" />
+            <mat-icon matSuffix *ngIf="dataModel.appointmentDateTo && fieldsInfo['appointmentDateTo']?.accessEditField"
+              matSuffix mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateTo = null">close</mat-icon>
+            <mat-datepicker-toggle matSuffix [for]="AppointmentDateTo"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
           </div>
         </div>
         <div class="selectDate-footer">
-          <button
-            class="selectDate-footer__btn"
-            (click)="onActoinSelectStepBefor('title')"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
+          <button class="selectDate-footer__btn" (click)="onActoinSelectStepBefor('title')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>قبلی</span>
           </button>
           <button class="selectDate-footer__btn">
             <span>ثبت</span>
           </button>
-          <button
-            class="selectDate-footer__btn"
-            (click)="onActoinSelectStepNext('grouping')"
-          >
+          <button class="selectDate-footer__btn" (click)="onActoinSelectStepNext('grouping')">
             <span>بعدی</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -136,47 +117,21 @@
           </div>
         </div>
         <div class="grouping-footer">
-          <button
-            class="grouping-footer__btn"
-            (click)="onActoinSelectStepBefor('selectDate')"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
+          <button class="grouping-footer__btn" (click)="onActoinSelectStepBefor('selectDate')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>قبلی</span>
           </button>
           <button class="grouping-footer__btn">
             <span>ثبت</span>
           </button>
-          <button
-            class="grouping-footer__btn"
-            (click)="onActoinSelectStepNext('estate')"
-          >
+          <button class="grouping-footer__btn" (click)="onActoinSelectStepNext('estate')">
             <span>بعدی</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -189,47 +144,21 @@
       <div class="estate-filter">
         <div class="estate-header"></div>
         <div class="estate-footer">
-          <button
-            class="estate-footer__btn"
-            (click)="onActoinSelectStepBefor('grouping')"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-              />
+          <button class="estate-footer__btn" (click)="onActoinSelectStepBefor('grouping')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
             <span>قبلی</span>
           </button>
           <button class="estate-footer__btn">
             <span>ثبت</span>
           </button>
-          <button
-            class="estate-footer__btn"
-            (click)="onActoinSelectStepNext('estateAgency')"
-          >
+          <button class="estate-footer__btn" (click)="onActoinSelectStepNext('estateAgency')">
             <span>بعدی</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
           </button>
         </div>
@@ -243,21 +172,11 @@
         <div class="estateAgency-header"></div>
         <div class="estateAgency-footer">
           <button class="estateAgency-footer__btn" (click)="onActoinSelectStepBefor('estate')">
-            <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-          <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>قبلی</span>
           </button>
           <button class="estateAgency-footer__btn">
             <span>ثبت</span>
