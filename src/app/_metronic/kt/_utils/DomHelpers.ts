@@ -1,9 +1,9 @@
 import { ElementAnimateUtil } from './ElementAnimateUtil'
+import { OffsetModel } from './models/OffsetModel'
+import { ViewPortModel } from './models/ViewPortModel'
 import { DataUtil } from './_DataUtil'
 import { ElementStyleUtil } from './_ElementStyleUtil'
 import { getObjectPropertyValueByKey, toJSON } from './_TypesHelpers'
-import { OffsetModel } from './models/OffsetModel'
-import { ViewPortModel } from './models/ViewPortModel'
 
 function getCSS(el: HTMLElement, styleProp: string) {
   const defaultView = (el.ownerDocument || document).defaultView
@@ -242,6 +242,8 @@ function getElementChild(element: HTMLElement, selector: string): HTMLElement | 
 }
 
 function isMobileDevice(): boolean {
+  if (getViewPort().width < 1000)
+    return true;
   let test = getViewPort().width < +getBreakpoint('lg') ? true : false
 
   if (test === false) {

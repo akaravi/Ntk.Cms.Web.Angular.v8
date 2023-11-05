@@ -53,13 +53,16 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     this.linkParentId = this.activatedRoute.snapshot.paramMap.get('LinkParentId');
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
+      this.allowActionSend = false;
+      if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available)
+        this.allowActionSend = true;
     });
     this.dataModel.partition = 3;
   }
 
 
   @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
-
+  allowActionSend = false;
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
@@ -164,7 +167,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
           this.cmsToastrService.typeSuccessEdit();
           //this.optionReload();
           if (actionSubmit) {
-            if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available)
+            if (this.allowActionSend)
               this.DataSend();
             setTimeout(() => this.router.navigate(['/estate/customer-order/']), 1000);
           } else {
@@ -414,6 +417,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
   DataSend(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
+    this.dataModelActionSend.id=this.dataModel.id;
     this.estateCustomerOrderService.ServiceActionSendSms(this.dataModelActionSend).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {

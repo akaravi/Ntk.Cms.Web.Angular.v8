@@ -25,11 +25,9 @@ export class TokenHelper implements OnDestroy {
   ) {
 
   }
-  get innerWidth() {
-    return getViewPort().width
-  };
+
   get isMobile() {
-    if (this.innerWidth < 1000)
+    if (getViewPort().width < 1000)
       return true;
     if (isMobileDevice())
       return true;
