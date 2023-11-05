@@ -5,37 +5,111 @@
         <div class="title-header">
           <div class="title-header-form">
             <!-- Title Field -->
-            <label for="dataModel.title" class="title-header-form__label">{{fieldsInfo['title']?.fieldTitle}}</label>
-            <input [(ngModel)]="dataModel.title" name="dataModel.title" type="text" id="dataModel.title" minlength="3"
-              maxlength="100" required class="title-header-form__input" />
+            <label for="dataModel.title" class="title-header-form__label">{{
+              fieldsInfo["title"]?.fieldTitle
+            }}</label>
+            <input
+              [(ngModel)]="dataModel.title"
+              name="dataModel.title"
+              type="text"
+              id="dataModel.title"
+              minlength="3"
+              maxlength="100"
+              required
+              class="title-header-form__input"
+            />
             <!-- Description Field -->
-            <label *ngIf="fieldsInfo['description']?.accessWatchField" for="dataModel.description"
-              class="title-header-form__label">{{fieldsInfo['description']?.fieldTitle}} </label>
-            <textarea *ngIf="fieldsInfo['description']?.accessWatchField" [(ngModel)]="dataModel.description"
-              name="dataModel.description" id="dataModel.description" #Description
-              disabled="!fieldsInfo['description']?.accessEditField" type="text"
-              placeholder="{{fieldsInfo['description']?.fieldTitle}}" minlength="0" maxlength="1000" rows=5
-              class="title-header-form__textarea"></textarea>
+            <label
+              *ngIf="fieldsInfo['description']?.accessWatchField"
+              for="dataModel.description"
+              class="title-header-form__label"
+              >{{ fieldsInfo["description"]?.fieldTitle }}
+            </label>
+            <textarea
+              *ngIf="fieldsInfo['description']?.accessWatchField"
+              [(ngModel)]="dataModel.description"
+              name="dataModel.description"
+              id="dataModel.description"
+              #Description
+              [disabled]="!fieldsInfo['description']?.accessEditField"
+              type="text"
+              placeholder="{{ fieldsInfo['description']?.fieldTitle }}"
+              minlength="0"
+              maxlength="1000"
+              rows="5"
+              class="title-header-form__textarea"
+            ></textarea>
             <!-- DescriptionHidden Field -->
-            <label *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField" for="dataModel.descriptionHidden"
-              class="title-header-form__label"> {{fieldsInfo['descriptionHidden']?.fieldTitle}}</label>
-            <textarea *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField"
-              [(ngModel)]="dataModel.descriptionHidden" name="dataModel.descriptionHidden"
-              id="dataModel.descriptionHidden" #DescriptionHidden
-              disabled="!fieldsInfo['descriptionHidden']?.accessEditField" type="text"
-              placeholder="{{fieldsInfo['descriptionHidden']?.fieldTitle}}" minlength="0" maxlength="1000" rows=5
-              class="title-header-form__textarea"></textarea>
+            <label
+              *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField"
+              for="dataModel.descriptionHidden"
+              class="title-header-form__label"
+            >
+              {{ fieldsInfo["descriptionHidden"]?.fieldTitle }}</label
+            >
+
+            <textarea
+              *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField"
+              [(ngModel)]="dataModel.descriptionHidden"
+              name="dataModel.descriptionHidden"
+              id="dataModel.descriptionHidden"
+              #DescriptionHidden
+              [disabled]="!fieldsInfo['descriptionHidden']?.accessEditField"
+              type="text"
+              placeholder="{{ fieldsInfo['descriptionHidden']?.fieldTitle }}"
+              minlength="0"
+              maxlength="1000"
+              rows="5"
+              class="title-header-form__textarea"
+            ></textarea>
           </div>
         </div>
         <div class="title-footer">
-          <button class="title-footer__btn" [disabled]="!dataModel.title || dataModel.title.length<3"
-            (click)="onActoinSelectStepNext('selectDate')">
-            <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          <button
+            class="title-footer__btn"
+            [disabled]="!dataModel.title || dataModel.title.length < 3"
+            (click)="onActoinSelectStepNext('selectDate')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
+            <span>بعدی</span>
           </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'activityStatus'">
+    <div class="activityStatus">
+      <div class="activityStatus-filter">
+        <div class="activityStatus-header">
+          <div class="activityStatus_header-selection">
+            <button
+              *ngFor="
+                let item of dataModelEstateActivityStatusEnumResult.listItems
+              "
+              [class]="
+                item.value === dataModel.activityStatus
+                  ? 'grouping-header-selection__option-select'
+                  : 'grouping-header-selection__option'
+              "
+              click="dataModel.activityStatus=item.value;"
+            >
+              {{ item.description }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -46,63 +120,121 @@
       <div class="selectDate-filter">
         <div class="selectDate-header">
           <div class="selectDate-header-form">
-            <!-- activityStatus Field -->
-            <div class="grouping-header__selection">
-              <button *ngFor="let item of dataModelEstateActivityStatusEnumResult.listItems;"
-                [class]="item.value===dataModel.activityStatus ? 'grouping-header-selection__option-select' : 'grouping-header-selection__option'"
-                click="dataModel.activityStatus=item.value;">
-                {{ item.description }}
-              </button>
-            </div>
-
             <!-- AppointmentDateFrom Field -->
-            <label *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" for="dataModel.appointmentDateFrom"
-              class="selectDate-header-form__label">تاریخ قرار از</label>
-            <input *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" [matDatepicker]="AppointmentDateFrom"
-              [(ngModel)]="dataModel.appointmentDateFrom" [formControl]="date" name="dataModel.appointmentDateFrom"
-              id="dataModel.appointmentDateFrom" class="selectDate-header-form__input" />
+            <label
+              *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
+              for="dataModel.appointmentDateFrom"
+              class="selectDate-header-form__label"
+              >تاریخ قرار از</label
+            >
+            <input
+              *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
+              [matDatepicker]="AppointmentDateFrom"
+              [(ngModel)]="dataModel.appointmentDateFrom"
+              [formControl]="date"
+              name="dataModel.appointmentDateFrom"
+              id="dataModel.appointmentDateFrom"
+              class="selectDate-header-form__input"
+            />
             <div class="icon">
-              <mat-icon matSuffix
-                *ngIf="dataModel.appointmentDateFrom && fieldsInfo['appointmentDateFrom']?.accessEditField" matSuffix
-                mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateFrom = null">close</mat-icon>
-              <mat-datepicker-toggle matSuffix [for]="AppointmentDateFrom"></mat-datepicker-toggle>
+              <mat-icon
+                matSuffix
+                *ngIf="
+                  dataModel.appointmentDateFrom &&
+                  fieldsInfo['appointmentDateFrom']?.accessEditField
+                "
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="dataModel.appointmentDateFrom = null"
+                >close</mat-icon
+              >
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="AppointmentDateFrom"
+              ></mat-datepicker-toggle>
               <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
             </div>
-
-
-
-            <br>
-            <label *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField" for="dataModel.appointmentDateTo"
-              class="selectDate-header-form__label">تاریخ قرار تا</label>
+            <br />
+            <label
+              *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
+              for="dataModel.appointmentDateTo"
+              class="selectDate-header-form__label"
+              >تاریخ قرار تا</label
+            >
             <!-- AppointmentDateTo Field -->
-            <input *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField" [matDatepicker]="AppointmentDateTo"
-              [(ngModel)]="dataModel.appointmentDateTo" [value]="date.value" name="dataModel.appointmentDateTo"
-              id="dataModel.appointmentDateTo" class="selectDate-header-form__input" />
+            <input
+              *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
+              [matDatepicker]="AppointmentDateTo"
+              [(ngModel)]="dataModel.appointmentDateTo"
+              [value]="date.value"
+              name="dataModel.appointmentDateTo"
+              id="dataModel.appointmentDateTo"
+              class="selectDate-header-form__input"
+            />
             <div class="icon2">
-              <mat-icon matSuffix
-                *ngIf="dataModel.appointmentDateTo && fieldsInfo['appointmentDateTo']?.accessEditField" matSuffix
-                mat-icon-button aria-label="Clear" (click)="dataModel.appointmentDateTo = null">close</mat-icon>
-              <mat-datepicker-toggle matSuffix [for]="AppointmentDateTo"></mat-datepicker-toggle>
+              <mat-icon
+                matSuffix
+                *ngIf="
+                  dataModel.appointmentDateTo &&
+                  fieldsInfo['appointmentDateTo']?.accessEditField
+                "
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="dataModel.appointmentDateTo = null"
+                >close</mat-icon
+              >
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="AppointmentDateTo"
+              ></mat-datepicker-toggle>
               <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
             </div>
           </div>
         </div>
         <div class="selectDate-footer">
-          <button class="selectDate-footer__btn" (click)="onActoinSelectStepBefor('title')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            class="selectDate-footer__btn"
+            (click)="onActoinSelectStepNext('grouping')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
-            <span>قبلی</span>
+            <span>بعدی</span>
           </button>
           <button class="selectDate-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
-          <button class="selectDate-footer__btn" (click)="onActoinSelectStepNext('grouping')">
-            <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          <button
+            class="selectDate-footer__btn"
+            (click)="onActoinSelectStepBefor('title')"
+          >
+            <span>قبلی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
           </button>
         </div>
@@ -115,65 +247,163 @@
       <div class="grouping-filter">
         <div class="grouping-header">
           <div class="grouping-header__selection">
-            <button class="grouping-header-selection__option">
-              مشاهده ملک
-            </button>
-            <button class="grouping-header-selection__option">تلفن تماس</button>
-            <button class="grouping-header-selection__option">
-              پیام فرستادن
-            </button>
-            <button class="grouping-header-selection__option">ملاقات</button>
-            <button class="grouping-header-selection__option">
-              اجاره شده است
-            </button>
-            <button class="grouping-header-selection__option">
-              فروخته شده است
-            </button>
+            <div
+              *ngIf="dataModelActivityTypeResult?.listItems?.length > 0"
+              class="ordertype-header-form"
+            >
+              <button
+                *ngFor="let state of dataModelActivityTypeResult.listItems"
+                type="button"
+                mat-raised-button
+                class="selectPropertyTypeUsage-header-form-option"
+                [class]="
+                  state.id === dataModel.linkActivityTypeId
+                    ? 'selectPropertyTypeUsage-header-form-option-select'
+                    : 'selectPropertyTypeUsage-header-form-option'
+                "
+                (click)="dataModel.linkActivityTypeId = state.id"
+              >
+                {{ state.title }}
+              </button>
+            </div>
           </div>
         </div>
         <div class="grouping-footer">
-          <button class="grouping-footer__btn" (click)="onActoinSelectStepBefor('selectDate')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            class="grouping-footer__btn"
+            (click)="onActoinSelectStepNext('estate')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
-            <span>قبلی</span>
+            <span>بعدی</span>
           </button>
           <button class="grouping-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
-          <button class="grouping-footer__btn" (click)="onActoinSelectStepNext('estate')">
-            <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          <button
+            class="grouping-footer__btn"
+            (click)="onActoinSelectStepBefor('selectDate')"
+          >
+            <span>قبلی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
           </button>
         </div>
       </div>
     </div>
   </ng-container>
-
+  <!---->
   <ng-container *ngIf="stepContent === 'estate'">
     <div class="estate">
       <div class="estate-filter">
-        <div class="estate-header"></div>
+        <div class="estate-header">
+          <!-- LinkEstateUserId Field -->
+          <app-estate-account-user-selector
+            (optionChange)="onActionSelectorEstateUser($event)"
+            [(optionLoading)]="loading"
+            *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkEstateUserId"
+            [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+          >
+          </app-estate-account-user-selector>
+
+          <!-- linkEstateAgencyId Field -->
+          <app-estate-account-agency-selector
+            *ngIf="fieldsInfo['linkEstateAgencyId']?.accessWatchField"
+            (optionChange)="onActionSelectorEstateAgency($event)"
+            [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkEstateAgencyId"
+            [optionSelectUserId]="this.tokenInfo.userId"
+            [optionPlaceholder]="
+              this.translate.instant('TITLE.Property_agency')
+            "
+          >
+          </app-estate-account-agency-selector>
+
+          <!-- LinkPropertyId Field -->
+          <app-estate-property-selector
+            (optionChange)="onActionSelectorProperty($event)"
+            [(optionLoading)]="loading"
+            *ngIf="fieldsInfo['linkPropertyId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkPropertyId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+          ></app-estate-property-selector>
+
+          <!-- linkCustomerOrderId Field -->
+          <app-estate-customer-order-selector
+            (optionChange)="onActionSelectorCustomerOrderId($event)"
+            [(optionLoading)]="loading"
+            *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkCustomerOrderId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Customer')"
+          ></app-estate-customer-order-selector>
+        </div>
         <div class="estate-footer">
-          <button class="estate-footer__btn" (click)="onActoinSelectStepBefor('grouping')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <button
+            class="estate-footer__btn"
+            (click)="onActoinSelectStepNext('estateAgency')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+              />
             </svg>
-            <span>قبلی</span>
+            <span>بعدی</span>
           </button>
           <button class="estate-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
-          <button class="estate-footer__btn" (click)="onActoinSelectStepNext('estateAgency')">
-            <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          <button
+            class="estate-footer__btn"
+            (click)="onActoinSelectStepBefor('grouping')"
+          >
+            <span>قبلی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
             </svg>
           </button>
         </div>
@@ -184,21 +414,40 @@
   <ng-container *ngIf="stepContent === 'estateAgency'">
     <div class="estateAgency">
       <div class="estateAgency-filter">
-        <div class="estateAgency-header"></div>
+        <div class="estateAgency-header">
+          <p>{{ "TITLE.List_of_attached_files" | translate }}</p>
+          <app-cms-files-selector
+            [(dataFileModel)]="dataFileModelFiles"
+            [openDirectUploadView]="true"
+          >
+          </app-cms-files-selector>
+        </div>
         <div class="estateAgency-footer">
-          <button class="estateAgency-footer__btn" (click)="onActoinSelectStepBefor('estate')">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>قبلی</span>
-          </button>
           <button class="estateAgency-footer__btn" (click)="onFormSubmit()">
             <span>ثبت</span>
+          </button>
+          <button
+            class="estateAgency-footer__btn"
+            (click)="onActoinSelectStepBefor('estate')"
+          >
+            <span>قبلی</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+              />
+            </svg>
           </button>
         </div>
       </div>
     </div>
   </ng-container>
-
 </div>

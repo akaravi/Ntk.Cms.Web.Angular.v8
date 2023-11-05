@@ -1,13 +1,26 @@
-
-import {
-  ChangeDetectorRef, Component, Inject, OnInit,
-  ViewChild
-} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import {
-  CoreEnumService, DataFieldInfoModel, ErrorExceptionResult, ErrorExceptionResultBase, EstateAccountAgencyModel, EstateAccountUserModel, EstateActivityTypeModel, EstateCustomerOrderModel, EstateEnumService, EstatePropertyHistoryModel, EstatePropertyHistoryService, EstatePropertyModel, FormInfoModel, InfoEnumModel, ManageUserAccessDataTypesEnum, TokenInfoModel
+  CoreEnumService,
+  DataFieldInfoModel,
+  ErrorExceptionResult,
+  ErrorExceptionResultBase,
+  EstateAccountAgencyModel,
+  EstateAccountUserModel,
+  EstateActivityTypeModel,
+  EstateActivityTypeService,
+  EstateCustomerOrderModel,
+  EstateEnumService,
+  EstatePropertyHistoryModel,
+  EstatePropertyHistoryService,
+  EstatePropertyModel,
+  FilterModel,
+  FormInfoModel,
+  InfoEnumModel,
+  ManageUserAccessDataTypesEnum,
+  TokenInfoModel,
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -28,14 +41,18 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
     private dialogRef: MatDialogRef<EstatePropertyHistoryEditComponent>,
     public coreEnumService: CoreEnumService,
     public estatePropertyHistoryService: EstatePropertyHistoryService,
+    public estateActivityTypeService: EstateActivityTypeService,
     private cmsToastrService: CmsToastrService,
     public estateEnumService: EstateEnumService,
     public publicHelper: PublicHelper,
     private cdr: ChangeDetectorRef,
     public tokenHelper: TokenHelper,
-    public translate: TranslateService,
+    public translate: TranslateService
   ) {
-    this.loading.cdr = this.cdr; this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
+    this.loading.cdr = this.cdr;
+    this.loading.message = this.translate.instant(
+      'MESSAGE.Receiving_information'
+    );
     if (data) {
       this.requestId = data.id;
     }
@@ -44,8 +61,11 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
       this.tokenInfo = value;
     });
   }
-  @ViewChild('vform', { static: false }) formGroup: FormGroup;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
+
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<
+    string,
+    DataFieldInfoModel
+  >();
 
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   fileManagerTree: TreeModel;
@@ -56,10 +76,14 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
   dataModel: EstatePropertyHistoryModel = new EstatePropertyHistoryModel();
   dataFileModelFiles = new Map<number, string>();
   formInfo: FormInfoModel = new FormInfoModel();
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> =
+    new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   date = new FormControl(new Date());
-  dataModelEstateActivityStatusEnumResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEstateActivityStatusEnumResult: ErrorExceptionResult<InfoEnumModel> =
+    new ErrorExceptionResult<InfoEnumModel>();
+  dataModelActivityTypeResult: ErrorExceptionResult<EstateActivityTypeModel> =
+    new ErrorExceptionResult<EstateActivityTypeModel>();
   stepContent = 'title';
   step = 0;
   ngOnInit(): void {
@@ -72,62 +96,82 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
     this.DataGetOneContent();
     this.getEnumRecordStatus();
     this.getEstateActivityStatusEnum();
+    this.DataGetAllActivityType();
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult =
+      await this.publicHelper.getEnumRecordStatus();
   }
   getEstateActivityStatusEnum(): void {
-    this.estateEnumService.ServiceEstateActivityStatusEnum().subscribe((next) => {
-      this.dataModelEstateActivityStatusEnumResult = next;
-    });
+    this.estateEnumService
+      .ServiceEstateActivityStatusEnum()
+      .subscribe((next) => {
+        this.dataModelEstateActivityStatusEnumResult = next;
+      });
   }
   DataGetOneContent(): void {
-
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.Receiving_Information_From_The_Server');
+    this.formInfo.formAlert = this.translate.instant(
+      'MESSAGE.Receiving_Information_From_The_Server'
+    );
     this.formInfo.formError = '';
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
 
     this.estatePropertyHistoryService.setAccessLoad();
-    this.estatePropertyHistoryService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
-    this.estatePropertyHistoryService.ServiceGetOneById(this.requestId).subscribe({
-      next: (ret) => {
-        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-
-        this.dataModel = ret.item;
-        if (ret.isSuccess) {
-          this.formInfo.formTitle = this.formInfo.formTitle + ' ' + ret.item.title;
-          this.formInfo.formAlert = '';
-
-          /*
-          * check file attach list
-          */
-          if (this.dataModel.linkFileIds && this.dataModel.linkFileIds.length > 0) {
-            this.dataModel.linkFileIds.split(',').forEach((element, index) => {
-              let link = '';
-              if (this.dataModel.linkFileIdsSrc.length >= this.dataModel.linkFileIdsSrc.length) {
-                link = this.dataModel.linkFileIdsSrc[index];
-              }
-              this.dataFileModelFiles.set(+element, link);
-            });
-          }
-        } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
-          this.formInfo.formError = ret.errorMessage;
-          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-        }
-        this.loading.Stop(pName);
-
-      },
-      error: (er) => {
-        this.cmsToastrService.typeError(er);
-        this.loading.Stop(pName);
-      }
-    }
+    this.estatePropertyHistoryService.setAccessDataType(
+      ManageUserAccessDataTypesEnum.Editor
     );
+    this.estatePropertyHistoryService
+      .ServiceGetOneById(this.requestId)
+      .subscribe({
+        next: (ret) => {
+          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+
+          this.dataModel = ret.item;
+          if (ret.isSuccess) {
+            this.formInfo.formTitle =
+              this.formInfo.formTitle + ' ' + ret.item.title;
+            this.formInfo.formAlert = '';
+
+            /*
+             * check file attach list
+             */
+            if (
+              this.dataModel.linkFileIds &&
+              this.dataModel.linkFileIds.length > 0
+            ) {
+              this.dataModel.linkFileIds
+                .split(',')
+                .forEach((element, index) => {
+                  let link = '';
+                  if (
+                    this.dataModel.linkFileIdsSrc.length >=
+                    this.dataModel.linkFileIdsSrc.length
+                  ) {
+                    link = this.dataModel.linkFileIdsSrc[index];
+                  }
+                  this.dataFileModelFiles.set(+element, link);
+                });
+            }
+          } else {
+            this.formInfo.formAlert = this.translate.instant(
+              'ERRORMESSAGE.MESSAGE.typeError'
+            );
+            this.formInfo.formError = ret.errorMessage;
+            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeError(er);
+          this.loading.Stop(pName);
+        },
+      });
   }
   DataEditContent(): void {
-    this.formInfo.formAlert = this.translate.instant('MESSAGE.sending_information_to_the_server');
+    this.formInfo.formAlert = this.translate.instant(
+      'MESSAGE.sending_information_to_the_server'
+    );
     this.formInfo.formError = '';
 
     if (this.dataFileModelFiles) {
@@ -137,17 +181,24 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
       }
     }
     const pName = this.constructor.name + 'main';
-    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.loading.Start(
+      pName,
+      this.translate.instant('MESSAGE.sending_information_to_the_server')
+    );
 
     this.estatePropertyHistoryService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         this.dataModelResult = ret;
         if (ret.isSuccess) {
-          this.formInfo.formAlert = this.translate.instant('MESSAGE.registration_completed_successfully');
+          this.formInfo.formAlert = this.translate.instant(
+            'MESSAGE.registration_completed_successfully'
+          );
           this.cmsToastrService.typeSuccessEdit();
           this.dialogRef.close({ dialogChangedDate: true });
         } else {
-          this.formInfo.formAlert = this.translate.instant('ERRORMESSAGE.MESSAGE.typeError');
+          this.formInfo.formAlert = this.translate.instant(
+            'ERRORMESSAGE.MESSAGE.typeError'
+          );
           this.formInfo.formError = ret.errorMessage;
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -159,9 +210,27 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
         this.formInfo.formSubmitAllow = true;
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      }
-    }
-    );
+      },
+    });
+  }
+
+  DataGetAllActivityType(): void {
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName);
+    const filterModel = new FilterModel();
+    this.estateActivityTypeService.ServiceGetAll(filterModel).subscribe({
+      next: (ret) => {
+        this.dataModelActivityTypeResult = ret;
+        if (!ret.isSuccess) {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      },
+    });
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
     this.dataModel.linkEstateUserId = null;
@@ -175,7 +244,9 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
       this.dataModel.linkPropertyId = model.id;
     }
   }
-  onActionSelectorCustomerOrderId(model: EstateCustomerOrderModel | null): void {
+  onActionSelectorCustomerOrderId(
+    model: EstateCustomerOrderModel | null
+  ): void {
     this.dataModel.linkCustomerOrderId = null;
     if (model && model.id.length > 0) {
       this.dataModel.linkCustomerOrderId = model.id;
@@ -190,16 +261,15 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
   }
   onActionSelectorSelect(model: EstateActivityTypeModel | null): void {
     if (!model || model.id.length <= 0) {
-      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
+      const message = this.translate.instant(
+        'MESSAGE.category_of_information_is_not_clear'
+      );
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
     this.dataModel.linkActivityTypeId = model.id;
   }
   onFormSubmit(): void {
-    if (!this.formGroup.valid) {
-      return;
-    }
     this.formInfo.formSubmitAllow = false;
     this.DataEditContent();
   }
