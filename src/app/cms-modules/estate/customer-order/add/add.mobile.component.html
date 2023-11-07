@@ -274,24 +274,31 @@
             class="result3-header-print">
             <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
               <tr>
-                <td colspan="3"> {{state.title}}</td>
+                <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
               </tr>
               <tr>
-                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
-                <td colspan="1" style="width:40%">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+                <td colspan="1" *ngIf="state.area">مساحت:{{state.area}} </td>
+                <td colspan="1" *ngIf="state.partition">اتاق:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">نوع ملک:{{state.area}} </td>
+                <td colspan="2" *ngIf="state.createdDate">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
               </tr>
               <tr>
-                <td colspan="3">مبلغ کل قرار داد:{{state.area}} </td>
+                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع ملک:{{state.propertyTypeLanduse.title}}
+                </td>
               </tr>
               <tr>
-                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع معامله:{{state.propertyTypeLanduse.title}}
+                </td>
               </tr>
               <tr>
-                <td colspan="3">اقساط:{{state.partition}} </td>
+                <td colspan="2" *ngIf="state.partition">مبلغ کل قرار داد:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="2" *ngIf="state.partition">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="2" *ngIf="state.partition">اقساط:{{state.partition}} </td>
               </tr>
             </table>
           </div>
@@ -341,24 +348,31 @@
             class="result3-header-print">
             <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
               <tr>
-                <td colspan="3"> {{state.title}}</td>
+                <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
               </tr>
               <tr>
-                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
-                <td colspan="1" style="width:40%">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+                <td colspan="1" *ngIf="state.area">مساحت:{{state.area}} </td>
+                <td colspan="1" *ngIf="state.partition">اتاق:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">نوع ملک:{{state.area}} </td>
+                <td colspan="2" *ngIf="state.createdDate">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
               </tr>
               <tr>
-                <td colspan="3">مبلغ کل قرار داد:{{state.area}} </td>
+                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع ملک:{{state.propertyTypeLanduse.title}}
+                </td>
               </tr>
               <tr>
-                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع معامله:{{state.propertyTypeLanduse.title}}
+                </td>
               </tr>
               <tr>
-                <td colspan="3">اقساط:{{state.partition}} </td>
+                <td colspan="2" *ngIf="state.partition">مبلغ کل قرار داد:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="2" *ngIf="state.partition">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="2" *ngIf="state.partition">اقساط:{{state.partition}} </td>
               </tr>
             </table>
           </div>
@@ -508,24 +522,31 @@
             class="result3-header-print">
             <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
               <tr>
-                <td colspan="3"> {{state.title}}</td>
+                <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
               </tr>
               <tr>
-                <td colspan="1" style="width:30%">مساحت:{{state.area}} </td>
-                <td colspan="1" style="width:40%">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-                <td colspan="1" style="width:30%">اتاق:{{state.partition}} </td>
+                <td colspan="1" *ngIf="state.area">مساحت:{{state.area}} </td>
+                <td colspan="1" *ngIf="state.partition">اتاق:{{state.partition}} </td>
               </tr>
               <tr>
-                <td colspan="3">نوع ملک:{{state.area}} </td>
+                <td colspan="2" *ngIf="state.createdDate">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
               </tr>
               <tr>
-                <td colspan="3">مبلغ کل قرار داد:{{state.area}} </td>
+                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع ملک:{{state.propertyTypeLanduse.title}}
+                </td>
               </tr>
               <tr>
-                <td colspan="3">پرداخت در قرار داد: {{state.partition}}</td>
+                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع معامله:{{state.propertyTypeLanduse.title}}
+                </td>
               </tr>
               <tr>
-                <td colspan="3">اقساط:{{state.partition}} </td>
+                <td colspan="2" *ngIf="state.partition">مبلغ کل قرار داد:{{state.partition}} </td>
+              </tr>
+              <tr>
+                <td colspan="2" *ngIf="state.partition">پرداخت در قرار داد: {{state.partition}}</td>
+              </tr>
+              <tr>
+                <td colspan="2" *ngIf="state.partition">اقساط:{{state.partition}} </td>
               </tr>
             </table>
           </div>
