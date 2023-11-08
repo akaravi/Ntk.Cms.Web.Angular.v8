@@ -53,11 +53,12 @@
           </div>
           <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
-              class="option" [class]="state.id===dataModel.linkContractTypeId ? 'background-blue' : 'background-white'"
+              class="cms-m-form-option"
+              [class]="state.id===dataModel.linkContractTypeId ? 'background-blue' : 'background-white'"
               (click)="onActionSelectorContarctType(state)">{{ state.orderTitle }}</button>
           </div>
         </div>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-top">
           <button (click)="onActoinSelectStepBefor('mobile')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -90,14 +91,14 @@
           </div>
           <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
-              class="option"
+              class="cms-m-form-option"
               [class]="state.id===dataModel.linkPropertyTypeUsageId ? 'background-blue' : 'background-white'"
               (click)="dataModel.linkPropertyTypeUsageId=state.id;this.DataGetAllPropertyTypeLanduse();">{{ state.title
               }}</button>
           </div>
         </div>
 
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-top">
           <button (click)="onActoinSelectStepBefor('orderType')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -130,12 +131,12 @@
           </div>
           <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0" class="ordertype-header-form">
             <button *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems " type="button" mat-raised-button
-              class="option"
+              class="cms-m-form-option"
               [class]="state.id===dataModel.linkPropertyTypeLanduseId ? 'background-blue' : 'background-white'"
               (click)="onActionSelectorSelectLanduse(state)">{{ state.title }}</button>
           </div>
         </div>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-top">
           <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -191,7 +192,7 @@
             [(ngModel)]="dataModel.partition" name="dataModel.partition" class="cms-m-form-input" autocomplete="off" />
         </div>
 
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-top">
           <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -229,7 +230,7 @@
             </app-cms-location-autocomplete>
           </div>
         </div>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-top">
           <button (click)="onActoinSelectStepBefor('selectYear')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -257,13 +258,13 @@
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
           <div class="cms-m-form-label">نتیجه</div>
-          <div class="result1-header-result">تعداد ملک انتخابی شما :
+          <div class="cms-m-form-label">تعداد ملک انتخابی شما :
             {{this.dataModelEstatePropertyResult.totalRowCount}}
           </div>
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
-            class="result">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+            class="cms-form-result">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems">
               <tr>
                 <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
               </tr>
@@ -294,12 +295,11 @@
             </table>
           </div>
         </div>
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
+          {{'ACTION.SEND_TO_CLIENT' | translate}}
+        </mat-slide-toggle>
         <div class="cms-m-container-footer">
-          <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-            name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
-            {{'ACTION.SEND_TO_CLIENT' | translate}}
-          </mat-slide-toggle>
-          <br>
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -331,13 +331,13 @@
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
           <div class="cms-m-form-label">نتیجه</div>
-          <div class="result2-header-result">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
+          <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
-            class="result">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+            class="cms-form-result">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems">
               <tr>
                 <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
               </tr>
@@ -368,12 +368,11 @@
             </table>
           </div>
         </div>
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
+          {{'ACTION.SEND_TO_CLIENT' | translate}}
+        </mat-slide-toggle>
         <div class="cms-m-container-footer">
-          <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-            name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
-            {{'ACTION.SEND_TO_CLIENT' | translate}}
-          </mat-slide-toggle>
-          <br>
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -410,7 +409,7 @@
             <label *ngIf=" contractTypeSelected?.hasSalePrice" for="1"
               class="cms-m-form-label">{{contractTypeSelected.titleSalePriceML}} {{'TITLE.Minimum'
               |translate}}</label>
-            <input *ngIf=" contractTypeSelected?.hasSalePrice" class="selectprice-header-input"
+            <input *ngIf=" contractTypeSelected?.hasSalePrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.salePriceMin" name="dataModel.salePriceMin" #SalePriceMin type="text"
               autocomplete="off" currencyMask />
 
@@ -419,7 +418,7 @@
               class="cms-m-form-label">{{contractTypeSelected.titleRentPriceML}}
               {{'TITLE.Minimum' |
               translate}}</label>
-            <input *ngIf=" contractTypeSelected?.hasRentPrice" class="selectprice-header-input"
+            <input *ngIf=" contractTypeSelected?.hasRentPrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.rentPriceMin" name="dataModel.rentPriceMin" #RentPriceMin type="text"
               autocomplete="off" currencyMask />
 
@@ -428,7 +427,7 @@
               class="cms-m-form-label">{{contractTypeSelected.titleDepositPriceML}}
               {{'TITLE.Minimum' |
               translate}}</label>
-            <input *ngIf="contractTypeSelected?.hasDepositPrice" class="selectprice-header-input"
+            <input *ngIf="contractTypeSelected?.hasDepositPrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.depositPriceMin" name="dataModel.depositPriceMin" #DepositPriceMin type="text"
               autocomplete="off" currencyMask />
             <!-- PeriodPriceMin Field -->
@@ -436,7 +435,7 @@
               class="cms-m-form-label">{{contractTypeSelected.titlePeriodPriceML}}
               {{'TITLE.Minimum' |
               translate}}</label>
-            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="selectprice-header-input"
+            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.periodPriceMin" name="dataModel.periodPriceMin" #PeriodPriceMin type="text"
               autocomplete="off" currencyMask />
 
@@ -445,7 +444,7 @@
               {{contractTypeSelected.titleSalePriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
-            <input *ngIf="contractTypeSelected?.hasSalePrice" class="selectprice-header-input"
+            <input *ngIf="contractTypeSelected?.hasSalePrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.salePriceMax" name="dataModel.salePriceMax" #SalePriceMax type="text"
               autocomplete="off" currencyMask />
 
@@ -454,7 +453,7 @@
               class="cms-m-form-label">{{contractTypeSelected.titleRentPriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
-            <input *ngIf=" contractTypeSelected?.hasRentPrice" class="selectprice-header-input"
+            <input *ngIf=" contractTypeSelected?.hasRentPrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.rentPriceMax" name="dataModel.rentPriceMax" #RentPriceMax type="text"
               autocomplete="off" currencyMask />
 
@@ -463,7 +462,7 @@
               class="cms-m-form-label">{{contractTypeSelected.titleDepositPriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
-            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="selectprice-header-input"
+            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.depositPriceMax" name="dataModel.depositPriceMax" #DepositPriceMax type="text"
               autocomplete="off" currencyMask />
 
@@ -472,12 +471,12 @@
               class="cms-m-form-label">{{contractTypeSelected.titlePeriodPriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
-            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="selectprice-header-input"
+            <input *ngIf=" contractTypeSelected?.hasDepositPrice" class="cms-m-form-input"
               [(ngModel)]="dataModel.periodPriceMax" name="dataModel.periodPriceMax" #PeriodPriceMax type="text"
               autocomplete="off" currencyMask />
           </div>
         </div>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-top">
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -505,13 +504,13 @@
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
           <div class="cms-m-form-label">نتیجه</div>
-          <div class="result3-header-result">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
+          <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
-            class="result">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems" class="result3-header-print-table">
+            class="cms-form-result">
+            <table *ngFor="let state of dataModelEstatePropertyResult.listItems">
               <tr>
                 <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
               </tr>
@@ -542,12 +541,11 @@
             </table>
           </div>
         </div>
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
+          {{'ACTION.SEND_TO_CLIENT' | translate}}
+        </mat-slide-toggle>
         <div class="cms-m-container-footer">
-          <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-            name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
-            {{'ACTION.SEND_TO_CLIENT' | translate}}
-          </mat-slide-toggle>
-          <br>
           <button (click)="onActoinSelectStepBefor('selectPrice')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
