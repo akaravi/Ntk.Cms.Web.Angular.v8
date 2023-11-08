@@ -264,35 +264,42 @@
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
             class="cms-form-result">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems">
-              <tr>
-                <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
-              </tr>
-              <tr>
-                <td colspan="1" *ngIf="state.area">مساحت:{{state.area}} </td>
-                <td colspan="1" *ngIf="state.partition">اتاق:{{state.partition}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.createdDate">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع ملک:{{state.propertyTypeLanduse.title}}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع معامله:{{state.propertyTypeLanduse.title}}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">مبلغ کل قرار داد:{{state.partition}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">پرداخت در قرار داد: {{state.partition}}</td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">اقساط:{{state.partition}} </td>
-              </tr>
-            </table>
+            <div style="width: 100%;" *ngFor="let state of dataModelEstatePropertyResult.listItems">
+              <div style="width: 100%;" *ngFor="let contract of dataModelContractTypeResult.listItems">
+                <table>
+                  <tr *ngIf="state?.title?.length>0">
+                    <td colspan="2"> {{state.title}}</td>
+                  </tr>
+                  <tr *ngIf="state?.area?.length>0||state?.partition?.length>0">
+                    <td colspan="1">مساحت:{{state.area}} </td>
+                    <td colspan="1">اتاق:{{state.partition}} </td>
+                  </tr>
+                  <tr *ngIf="state?.createdDate?.length>0">
+                    <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
+                  </tr>
+                  <tr *ngIf="state?.propertyTypeLanduse?.title?.length>0">
+                    <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="contract?.orderTitle?.length>0">
+                    <td colspan="2">نوع معامله:{{contract.orderTitle}}
+                    </td>
+                  </tr>
+                  <tr *ngIf="contract?.titleSoldItML?.length>0">
+                    <td colspan="2"> وضعیت معامله:{{contract.titleSoldItML}} </td>
+                  </tr>
+                  <tr *ngIf="state?.partition?.length>0">
+                    <td colspan="2">مبلغ کل قرار داد:{{state.partition}} </td>
+                  </tr>
+                  <tr *ngIf="state?.partition?.length>0">
+                    <td colspan="2">پرداخت در قرار داد: {{state.partition}}</td>
+                  </tr>
+                  <tr *ngIf="state?.partition?.length>0">
+                    <td colspan="2">اقساط:{{state.partition}} </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
@@ -337,35 +344,46 @@
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
             class="cms-form-result">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems">
-              <tr>
-                <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
-              </tr>
-              <tr>
-                <td colspan="1" *ngIf="state.area">مساحت:{{state.area}} </td>
-                <td colspan="1" *ngIf="state.partition">اتاق:{{state.partition}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.createdDate">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع ملک:{{state.propertyTypeLanduse.title}}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع معامله:{{state.propertyTypeLanduse.title}}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">مبلغ کل قرار داد:{{state.partition}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">پرداخت در قرار داد: {{state.partition}}</td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">اقساط:{{state.partition}} </td>
-              </tr>
-            </table>
+            <div
+              *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+              class="cms-form-result">
+              <div style="width: 100%;" *ngFor="let state of dataModelEstatePropertyResult.listItems">
+                <div style="width: 100%;" *ngFor="let contract of dataModelContractTypeResult.listItems">
+                  <table>
+                    <tr *ngIf="state?.title?.length>0">
+                      <td colspan="2"> {{state.title}}</td>
+                    </tr>
+                    <tr *ngIf="state?.area?.length>0||state?.partition?.length>0">
+                      <td colspan="1">مساحت:{{state.area}} </td>
+                      <td colspan="1">اتاق:{{state.partition}} </td>
+                    </tr>
+                    <tr *ngIf="state?.createdDate?.length>0">
+                      <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
+                    </tr>
+                    <tr *ngIf="state?.propertyTypeLanduse?.title?.length>0">
+                      <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
+                      </td>
+                    </tr>
+                    <tr *ngIf="contract?.orderTitle?.length>0">
+                      <td colspan="2">نوع معامله:{{contract.orderTitle}}
+                      </td>
+                    </tr>
+                    <tr *ngIf="contract?.titleSoldItML?.length>0">
+                      <td colspan="2"> وضعیت معامله:{{contract.titleSoldItML}} </td>
+                    </tr>
+                    <tr *ngIf="state?.partition?.length>0">
+                      <td colspan="2">مبلغ کل قرار داد:{{state.partition}} </td>
+                    </tr>
+                    <tr *ngIf="state?.partition?.length>0">
+                      <td colspan="2">پرداخت در قرار داد: {{state.partition}}</td>
+                    </tr>
+                    <tr *ngIf="state?.partition?.length>0">
+                      <td colspan="2">اقساط:{{state.partition}} </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
@@ -510,35 +528,46 @@
           <div
             *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
             class="cms-form-result">
-            <table *ngFor="let state of dataModelEstatePropertyResult.listItems">
-              <tr>
-                <td colspan="2" *ngIf="state.title"> {{state.title}}</td>
-              </tr>
-              <tr>
-                <td colspan="1" *ngIf="state.area">مساحت:{{state.area}} </td>
-                <td colspan="1" *ngIf="state.partition">اتاق:{{state.partition}} </td>
-              </tr>
-              <tr *ngIf="state?.createdDate.length>0">
-                <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-              </tr>
-              <tr *ngIf="state?.propertyTypeLanduse?.title.length>0">
-                <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.propertyTypeLanduse.title">نوع معامله:{{state.propertyTypeLanduse.title}}
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">مبلغ کل قرار داد:{{state.partition}} </td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">پرداخت در قرار داد: {{state.partition}}</td>
-              </tr>
-              <tr>
-                <td colspan="2" *ngIf="state.partition">اقساط:{{state.partition}} </td>
-              </tr>
-            </table>
+            <div
+              *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
+              class="cms-form-result">
+              <div style="width: 100%;" *ngFor="let state of dataModelEstatePropertyResult.listItems">
+                <div style="width: 100%;" *ngFor="let contract of dataModelContractTypeResult.listItems">
+                  <table>
+                    <tr *ngIf="state?.title?.length>0">
+                      <td colspan="2"> {{state.title}}</td>
+                    </tr>
+                    <tr *ngIf="state?.area?.length>0||state?.partition?.length>0">
+                      <td colspan="1">مساحت:{{state.area}} </td>
+                      <td colspan="1">اتاق:{{state.partition}} </td>
+                    </tr>
+                    <tr *ngIf="state?.createdDate?.length>0">
+                      <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
+                    </tr>
+                    <tr *ngIf="state?.propertyTypeLanduse?.title?.length>0">
+                      <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
+                      </td>
+                    </tr>
+                    <tr *ngIf="contract?.orderTitle?.length>0">
+                      <td colspan="2">نوع معامله:{{contract.orderTitle}}
+                      </td>
+                    </tr>
+                    <tr *ngIf="contract?.titleSoldItML?.length>0">
+                      <td colspan="2"> وضعیت معامله:{{contract.titleSoldItML}} </td>
+                    </tr>
+                    <tr *ngIf="state?.partition?.length>0">
+                      <td colspan="2">مبلغ کل قرار داد:{{state.partition}} </td>
+                    </tr>
+                    <tr *ngIf="state?.partition?.length>0">
+                      <td colspan="2">پرداخت در قرار داد: {{state.partition}}</td>
+                    </tr>
+                    <tr *ngIf="state?.partition?.length>0">
+                      <td colspan="2">اقساط:{{state.partition}} </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
