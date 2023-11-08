@@ -9,12 +9,12 @@
           <div class="cms-m-form-label">
             برای ثبت سفارش، ابتدا شماره تلفن همراه خود را وارد نمایید.
           </div>
-          <div class="mobile-header-form">
-            <label for="contactMobiles" class="cms-m-form-label"> شماره تلفن همراه </label>
-            <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
-              #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="0912-000-0000"
+          <div>
+            <label for="mobile" class="cms-m-form-label"> شماره تلفن همراه </label>
+            <input type="text" id="mobile" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles"
+              autocomplete="off" #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="0912-000-0000"
               pattern="09[0-9]{2}[0-9]{3}[0-9]{4}" />
-            <div class="mobile-header-form-message"
+            <div class="cms-m-form-label"
               *ngIf="dataModel?.contactMobiles?.length>0 && !regeMobile.test(dataModel.contactMobiles)">
               فرمت شماره همراه صحیح نمی باشد
             </div>
@@ -51,7 +51,7 @@
           <div class="cms-m-form-label">
             لطفا درخواست خود را مشخص نمایید.
           </div>
-          <div *ngIf="dataModelContractTypeResult?.listItems.length>0" class="ordertype-header-form">
+          <div *ngIf="dataModelContractTypeResult?.listItems.length>0">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
               class="cms-m-form-option"
               [class]="state.id===dataModel.linkContractTypeId ? 'background-blue' : 'background-white'"
@@ -89,7 +89,7 @@
           <div class="cms-m-form-label">
             لطفا نوع کاربری ملک خود را مشخص نمایید.
           </div>
-          <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0" class="ordertype-header-form">
+          <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0">
             <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
               class="cms-m-form-option"
               [class]="state.id===dataModel.linkPropertyTypeUsageId ? 'background-blue' : 'background-white'"
@@ -129,7 +129,7 @@
           <div class="cms-m-form-label">
             لطفا نوع ملک خود را مشخص نمایید.
           </div>
-          <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0" class="ordertype-header-form">
+          <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0">
             <button *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems " type="button" mat-raised-button
               class="cms-m-form-option"
               [class]="state.id===dataModel.linkPropertyTypeLanduseId ? 'background-blue' : 'background-white'"
@@ -221,7 +221,7 @@
           <div class="cms-m-form-label">
             لطفا منطقه مورد نظر خود را مشخص کنید.
           </div>
-          <div class="selectlocation-header-form">
+          <div>
             <label for="1" class="cms-m-form-label">{{'TITLE.Geographical_Areas' | translate}} :</label>
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
               [optionSelectForce]="dataModel.linkLocationIds"
@@ -403,7 +403,7 @@
       <div class="cms-m-filter">
         <div class="cms-m-container-header overflow-y">
           <div class="cms-m-form-label">لطفا قیمت ملک خود را وارد نمایید.</div>
-          <div class="selectprice-header-form">
+          <div>
 
             <!-- SalePriceMin Field -->
             <label *ngIf=" contractTypeSelected?.hasSalePrice" for="1"
