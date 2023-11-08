@@ -10,9 +10,9 @@
             برای ثبت سفارش، ابتدا شماره تلفن همراه خود را وارد نمایید.
           </div>
           <div>
-            <label for="mobile" class="cms-m-form-label"> شماره تلفن همراه </label>
-            <input type="text" id="mobile" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles"
-              autocomplete="off" #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="0912-000-0000"
+            <label class="cms-m-form-label"> شماره تلفن همراه </label>
+            <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
+              #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="0912-000-0000"
               pattern="09[0-9]{2}[0-9]{3}[0-9]{4}" />
             <div class="cms-m-form-label"
               *ngIf="dataModel?.contactMobiles?.length>0 && !regeMobile.test(dataModel.contactMobiles)">
@@ -164,14 +164,14 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header overflow-y">
-          <label for="partition" class="cms-m-form-label">متراژ</label>
-          <input type="number" id="area" [(ngModel)]="dataModel.area" name="dataModel.area" class="cms-m-form-input"
+          <label class="cms-m-form-label">متراژ</label>
+          <input type="number" [(ngModel)]="dataModel.area" name="dataModel.area" class="cms-m-form-input"
             autocomplete="off" />
-          <label *ngIf="this.PropertyTypeSelected?.createdYearActive" for="createdYaer" class="cms-m-form-label">سال
+          <label *ngIf="this.PropertyTypeSelected?.createdYearActive" class="cms-m-form-label">سال
             ساخت
           </label>
-          <select *ngIf="this.PropertyTypeSelected?.createdYearActive" id="createdYaer"
-            [(ngModel)]="dataModel.createdYaer" name="dataModel.createdYaer" class="cms-m-form-input">
+          <select *ngIf="this.PropertyTypeSelected?.createdYearActive" [(ngModel)]="dataModel.createdYaer"
+            name="dataModel.createdYaer" class="cms-m-form-input">
             <option value="1402">1402</option>
             <option value="1401">1401</option>
             <option value="1400">1400</option>
@@ -186,10 +186,10 @@
             <option value="1391">1391</option>
             <option value="1390">1390</option>
           </select>
-          <label *ngIf="this.PropertyTypeSelected?.partitionActive" for="partition"
+          <label *ngIf="this.PropertyTypeSelected?.partitionActive"
             class="cms-m-form-label">{{this.PropertyTypeSelected?.titlePartitionML}}</label>
-          <input *ngIf="this.PropertyTypeSelected?.partitionActive" type="number" id="partition"
-            [(ngModel)]="dataModel.partition" name="dataModel.partition" class="cms-m-form-input" autocomplete="off" />
+          <input *ngIf="this.PropertyTypeSelected?.partitionActive" type="number" [(ngModel)]="dataModel.partition"
+            name="dataModel.partition" class="cms-m-form-input" autocomplete="off" />
         </div>
 
         <div class="cms-m-container-footer margin-top">
@@ -222,7 +222,7 @@
             لطفا منطقه مورد نظر خود را مشخص کنید.
           </div>
           <div>
-            <label for="1" class="cms-m-form-label">{{'TITLE.Geographical_Areas' | translate}} :</label>
+            <label class="cms-m-form-label">{{'TITLE.Geographical_Areas' | translate}} :</label>
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
               [optionSelectForce]="dataModel.linkLocationIds"
               [optionPlaceholder]="this.translate.instant('TITLE.Region')"
@@ -406,7 +406,7 @@
           <div>
 
             <!-- SalePriceMin Field -->
-            <label *ngIf=" contractTypeSelected?.hasSalePrice" for="1"
+            <label *ngIf=" contractTypeSelected?.hasSalePrice"
               class="cms-m-form-label">{{contractTypeSelected.titleSalePriceML}} {{'TITLE.Minimum'
               |translate}}</label>
             <input *ngIf=" contractTypeSelected?.hasSalePrice" class="cms-m-form-input"
@@ -414,7 +414,7 @@
               autocomplete="off" currencyMask />
 
             <!-- RentPriceMin Field -->
-            <label *ngIf=" contractTypeSelected?.hasRentPrice" for="1"
+            <label *ngIf=" contractTypeSelected?.hasRentPrice"
               class="cms-m-form-label">{{contractTypeSelected.titleRentPriceML}}
               {{'TITLE.Minimum' |
               translate}}</label>
@@ -423,7 +423,7 @@
               autocomplete="off" currencyMask />
 
             <!-- DepositPriceMin Field -->
-            <label *ngIf="contractTypeSelected?.hasDepositPrice" for="1"
+            <label *ngIf="contractTypeSelected?.hasDepositPrice"
               class="cms-m-form-label">{{contractTypeSelected.titleDepositPriceML}}
               {{'TITLE.Minimum' |
               translate}}</label>
@@ -431,7 +431,7 @@
               [(ngModel)]="dataModel.depositPriceMin" name="dataModel.depositPriceMin" #DepositPriceMin type="text"
               autocomplete="off" currencyMask />
             <!-- PeriodPriceMin Field -->
-            <label *ngIf=" contractTypeSelected?.hasDepositPrice" for="1"
+            <label *ngIf=" contractTypeSelected?.hasDepositPrice"
               class="cms-m-form-label">{{contractTypeSelected.titlePeriodPriceML}}
               {{'TITLE.Minimum' |
               translate}}</label>
@@ -440,7 +440,7 @@
               autocomplete="off" currencyMask />
 
             <!-- SalePriceMax Field -->
-            <label *ngIf="contractTypeSelected?.hasSalePrice" for="1" class="cms-m-form-label">
+            <label *ngIf="contractTypeSelected?.hasSalePrice" class="cms-m-form-label">
               {{contractTypeSelected.titleSalePriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
@@ -449,7 +449,7 @@
               autocomplete="off" currencyMask />
 
             <!-- RentPriceMax Field -->
-            <label *ngIf=" contractTypeSelected?.hasRentPrice" for="1"
+            <label *ngIf=" contractTypeSelected?.hasRentPrice"
               class="cms-m-form-label">{{contractTypeSelected.titleRentPriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
@@ -458,7 +458,7 @@
               autocomplete="off" currencyMask />
 
             <!-- DepositPriceMax Field -->
-            <label *ngIf=" contractTypeSelected?.hasDepositPrice" for="1"
+            <label *ngIf=" contractTypeSelected?.hasDepositPrice"
               class="cms-m-form-label">{{contractTypeSelected.titleDepositPriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
@@ -467,7 +467,7 @@
               autocomplete="off" currencyMask />
 
             <!-- PeriodPriceMax Field -->
-            <label *ngIf=" contractTypeSelected?.hasDepositPrice" for="1"
+            <label *ngIf=" contractTypeSelected?.hasDepositPrice"
               class="cms-m-form-label">{{contractTypeSelected.titlePeriodPriceML}}
               {{'TITLE.Maximum' |
               translate}}</label>
