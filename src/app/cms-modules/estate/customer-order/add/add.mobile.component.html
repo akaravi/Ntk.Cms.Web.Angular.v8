@@ -256,7 +256,7 @@
   <ng-container *ngIf="stepContent === 'result1'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header">
+        <div class="cms-m-container-header" style="height: 70%;">
           <div class="cms-m-form-label">نتیجه</div>
           <div class="cms-m-form-label">تعداد ملک انتخابی شما :
             {{this.dataModelEstatePropertyResult.totalRowCount}}
@@ -296,10 +296,10 @@
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-bottom">
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -329,7 +329,7 @@
   <ng-container *ngIf="stepContent === 'result2'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header">
+        <div class="cms-m-container-header" style="height: 70%;">
           <div class="cms-m-form-label">نتیجه</div>
           <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
@@ -369,10 +369,10 @@
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-bottom">
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -502,7 +502,7 @@
   <ng-container *ngIf="stepContent === 'result3'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header">
+        <div class="cms-m-container-header" style="height: 70%;">
           <div class="cms-m-form-label">نتیجه</div>
           <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
@@ -542,10 +542,10 @@
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-button">
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
-        <div class="cms-m-container-footer">
+        <div class="cms-m-container-footer margin-bottom">
           <button (click)="onActoinSelectStepBefor('selectPrice')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
