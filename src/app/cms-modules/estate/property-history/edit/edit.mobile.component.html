@@ -96,7 +96,8 @@
       <div class="activityStatus-filter">
         <div class="activityStatus-header">
           <div class="activityStatus-header-selection">
-            <button
+            <div class="activityStatus-header-selection-form">
+              <button
               *ngFor="
                 let item of dataModelEstateActivityStatusEnumResult.listItems
               "
@@ -106,9 +107,11 @@
                   : 'grouping-header-selection-option'
               "
               click="dataModel.activityStatus=item.value;"
+              class="activityStatus-header-selection-form-option"
             >
               {{ item.description }}
             </button>
+            </div>
           </div>
         </div>
         <div class="activityStatus-footer">

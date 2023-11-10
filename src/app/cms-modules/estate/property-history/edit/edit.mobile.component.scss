@@ -111,17 +111,22 @@
   border-radius: 25px;
   background-color: #ffe500;
 }
+.activityStatus-header-selection{
+  overflow-y: hidden;
+}
 
 .grouping-header-selection {
   height: 100%;
   overflow-y: scroll;
 }
-.grouping-header-form{
+.grouping-header-form,
+.activityStatus-header-selection-form{
   display: flex;
   flex-direction: column;
   margin-top: 10%;
 }
-.grouping-header-form-option{
+.grouping-header-form-option,
+.activityStatus-header-selection-form-option{
   height: 50px;
   margin-bottom: 70px;
   border-radius: 25px;
