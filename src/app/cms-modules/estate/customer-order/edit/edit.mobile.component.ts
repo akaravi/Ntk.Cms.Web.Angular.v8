@@ -1,42 +1,18 @@
+
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef, Component,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import {
   ClauseTypeEnum,
-  CoreCurrencyModel,
-  CoreEnumService,
-  CoreUserModel,
-  DataFieldInfoModel,
-  ErrorExceptionResult,
-  EstateAccountAgencyModel,
-  EstateAccountUserModel,
-  EstateContractTypeModel,
-  EstateContractTypeService,
-  EstateCustomerCategoryModel,
-  EstateCustomerOrderActionSendSmsDtoModel,
-  EstateCustomerOrderModel,
-  EstateCustomerOrderService,
-  EstatePropertyDetailGroupService,
-  EstatePropertyDetailValueModel,
-  EstatePropertyFilterModel,
-  EstatePropertyModel,
-  EstatePropertyService,
-  EstatePropertyTypeLanduseModel,
+  CoreCurrencyModel, CoreEnumService, CoreUserModel, DataFieldInfoModel, ErrorExceptionResult, EstateAccountAgencyModel, EstateAccountUserModel, EstateContractTypeModel, EstateContractTypeService, EstateCustomerCategoryModel, EstateCustomerOrderActionSendSmsDtoModel, EstateCustomerOrderModel, EstateCustomerOrderService, EstatePropertyDetailGroupService, EstatePropertyDetailValueModel, EstatePropertyFilterModel, EstatePropertyModel, EstatePropertyService, EstatePropertyTypeLanduseModel,
   EstatePropertyTypeLanduseService,
-  EstatePropertyTypeUsageModel,
-  EstatePropertyTypeUsageService,
-  FilterDataModel,
-  FilterDataModelSearchTypesEnum,
-  FilterModel,
-  InfoEnumModel,
-  InputDataTypeEnum,
-  ManageUserAccessDataTypesEnum,
-  ManageUserAccessUserTypesEnum,
-  RecordStatusEnum,
-  SortTypeEnum,
-  TokenInfoModel,
+  EstatePropertyTypeUsageModel, EstatePropertyTypeUsageService, FilterDataModel, FilterDataModelSearchTypesEnum, FilterModel, InfoEnumModel, InputDataTypeEnum, ManageUserAccessDataTypesEnum, ManageUserAccessUserTypesEnum, RecordStatusEnum, SortTypeEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { TreeModel } from 'ntk-cms-filemanager';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -69,39 +45,25 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     public tokenHelper: TokenHelper,
     public http: HttpClient,
     public dialog: MatDialog,
-    public translate: TranslateService
+    public translate: TranslateService,
   ) {
     this.loading.cdr = this.cdr;
-    this.loading.message = this.translate.instant(
-      'MESSAGE.Receiving_information'
-    );
+    this.loading.message = this.translate.instant('MESSAGE.Receiving_information');
     this.requestId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.linkParentId =
-      this.activatedRoute.snapshot.paramMap.get('LinkParentId');
+    this.linkParentId = this.activatedRoute.snapshot.paramMap.get('LinkParentId');
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
       this.allowActionSend = false;
-      if (
-        (this.tokenHelper.CheckIsAdmin() ||
-          this.tokenHelper.CheckIsSupport() ||
-          this.tokenHelper.tokenInfo.userAccessUserType ==
-            ManageUserAccessUserTypesEnum.ResellerCpSite ||
-          this.tokenHelper.tokenInfo.userAccessUserType ==
-            ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) &&
-        this.dataModel.recordStatus == RecordStatusEnum.Available
-      )
+      if ((this.tokenHelper.CheckIsAdmin() || this.tokenHelper.CheckIsSupport() || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerCpSite || this.tokenHelper.tokenInfo.userAccessUserType == ManageUserAccessUserTypesEnum.ResellerEmployeeCpSite) && this.dataModel.recordStatus == RecordStatusEnum.Available)
         this.allowActionSend = true;
     });
     this.dataModel.partition = 3;
   }
 
-  @ViewChild(EstatePropertyListComponent)
-  estatePropertyList: EstatePropertyListComponent;
+
+  @ViewChild(EstatePropertyListComponent) estatePropertyList: EstatePropertyListComponent;
   allowActionSend = false;
-  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<
-    string,
-    DataFieldInfoModel
-  >();
+  fieldsInfo: Map<string, DataFieldInfoModel> = new Map<string, DataFieldInfoModel>();
   numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   selectFileTypeMainImage = ['jpg', 'jpeg', 'png'];
   enumInputDataType = InputDataTypeEnum;
@@ -110,21 +72,15 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
   tokenInfo = new TokenInfoModel();
   linkParentId = '';
   loading = new ProgressSpinnerModel();
-  dataModelContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> =
-    new ErrorExceptionResult<EstateContractTypeModel>();
-  dataModelPropertyTypeUsageResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> =
-    new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
-  dataModelPropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> =
-    new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
-  dataModelEstatePropertyResult: ErrorExceptionResult<EstatePropertyModel> =
-    new ErrorExceptionResult<EstatePropertyModel>();
+  dataModelContractTypeResult: ErrorExceptionResult<EstateContractTypeModel> = new ErrorExceptionResult<EstateContractTypeModel>();
+  dataModelPropertyTypeUsageResult: ErrorExceptionResult<EstatePropertyTypeUsageModel> = new ErrorExceptionResult<EstatePropertyTypeUsageModel>();
+  dataModelPropertyTypeLanduseResult: ErrorExceptionResult<EstatePropertyTypeLanduseModel> = new ErrorExceptionResult<EstatePropertyTypeLanduseModel>();
+  dataModelEstatePropertyResult: ErrorExceptionResult<EstatePropertyModel> = new ErrorExceptionResult<EstatePropertyModel>();
   dataModel: EstateCustomerOrderModel = new EstateCustomerOrderModel();
-  dataModelActionSend: EstateCustomerOrderActionSendSmsDtoModel =
-    new EstateCustomerOrderActionSendSmsDtoModel();
+  dataModelActionSend: EstateCustomerOrderActionSendSmsDtoModel = new EstateCustomerOrderActionSendSmsDtoModel();
   dataModelCorCurrencySelector = new CoreCurrencyModel();
 
-  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> =
-    new ErrorExceptionResult<InfoEnumModel>();
+  dataModelEnumRecordStatusResult: ErrorExceptionResult<InfoEnumModel> = new ErrorExceptionResult<InfoEnumModel>();
   fileManagerOpenForm = false;
   PropertyTypeSelected = new EstatePropertyTypeLanduseModel();
   propertyDetails: Map<string, string> = new Map<string, string>();
@@ -139,6 +95,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
 
   areaAddressView = false;
   ngOnInit(): void {
+
     this.getEnumRecordStatus();
     this.DataGetAccess();
     this.DataGetAccessEstate();
@@ -148,105 +105,114 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     this.dataModel.caseCode = this.publicHelper.StringRandomGenerator(5, true);
     if (this.requestId && this.requestId.length > 0) {
       this.DataGetOneContent();
-    } else if (this.linkParentId && this.linkParentId.length > 0) {
+    }
+    else if (this.linkParentId && this.linkParentId.length > 0) {
       this.dataModel.linkEstateCustomerCategoryId = this.linkParentId;
     }
   }
   async getEnumRecordStatus(): Promise<void> {
-    this.dataModelEnumRecordStatusResult =
-      await this.publicHelper.getEnumRecordStatus();
+    this.dataModelEnumRecordStatusResult = await this.publicHelper.getEnumRecordStatus();
   }
   dataFieldInfoModel: DataFieldInfoModel[];
   DataGetAccess(): void {
     const pName = this.constructor.name + 'DataGetAccess';
     this.loading.Start(pName);
 
-    this.estateCustomerOrderService.ServiceViewModel().subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-        } else {
-          this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+    this.estateCustomerOrderService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+          this.loading.Stop(pName);
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
+          this.loading.Stop(pName);
         }
-        this.loading.Stop(pName);
-      },
-      error: (er) => {
-        this.cmsToastrService.typeErrorGetAccess(er);
-        this.loading.Stop(pName);
-      },
-    });
+      }
+      );
+
   }
   DataGetAccessEstate(): void {
-    this.estatePropertyService.ServiceViewModel().subscribe({
-      next: (ret) => {
-        if (ret.isSuccess) {
-          this.dataFieldInfoModel = ret.access.fieldsInfo;
-        } else {
-          this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+    this.estatePropertyService
+      .ServiceViewModel()
+      .subscribe({
+        next: (ret) => {
+          if (ret.isSuccess) {
+            this.dataFieldInfoModel = ret.access.fieldsInfo;
+          } else {
+            this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
+          }
+        },
+        error: (er) => {
+          this.cmsToastrService.typeErrorGetAccess(er);
         }
-      },
-      error: (er) => {
-        this.cmsToastrService.typeErrorGetAccess(er);
-      },
-    });
+      }
+      );
+
   }
 
   DataEditContent(actionSubmit = false): void {
+
     const pName = this.constructor.name + 'main';
-    this.loading.Start(
-      pName,
-      this.translate.instant('MESSAGE.sending_information_to_the_server')
-    );
-    this.estateCustomerOrderService.setAccessLoad;
+    this.loading.Start(pName, this.translate.instant('MESSAGE.sending_information_to_the_server'));
+    this.estateCustomerOrderService.setAccessLoad
     this.estateCustomerOrderService.ServiceEdit(this.dataModel).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
           this.cmsToastrService.typeSuccessEdit();
           //this.optionReload();
           if (actionSubmit) {
-            if (this.allowActionSend) this.DataSend();
-            setTimeout(
-              () => this.router.navigate(['/estate/customer-order/']),
-              1000
-            );
+            if (this.allowActionSend)
+              this.DataSend();
+            setTimeout(() => this.router.navigate(['/estate/customer-order/']), 1000);
           } else {
-            this.estateCustomerOrderService
-              .ServiceGetOneById(this.requestId)
-              .subscribe({
-                next: (ret) => {
-                  this.fieldsInfo = this.publicHelper.fieldInfoConvertor(
-                    ret.access
-                  );
-                  this.dataModel = ret.item;
-                  if (ret.isSuccess) {
-                    if (this.dataModel.linkPropertyTypeUsageId.length > 0)
-                      this.DataGetAllPropertyTypeLanduse();
 
-                    this.DataGetAllProperty();
-                    this.cdr.detectChanges();
-                  } else {
-                    this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-                  }
-                  this.loading.Stop(pName);
-                },
-                error: (er) => {
-                  this.cmsToastrService.typeError(er);
-                  this.loading.Stop(pName);
-                },
-              });
+            this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
+              next: (ret) => {
+                this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+                this.dataModel = ret.item;
+                if (ret.isSuccess) {
+
+                  if (this.dataModel.linkPropertyTypeUsageId.length > 0)
+                    this.DataGetAllPropertyTypeLanduse();
+
+                  this.DataGetAllProperty();
+                  this.cdr.detectChanges();
+                } else {
+                  this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+                }
+                this.loading.Stop(pName);
+
+              },
+              error: (er) => {
+                this.cmsToastrService.typeError(er);
+                this.loading.Stop(pName);
+              }
+            }
+            );
           }
+
         } else {
+
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
+
       },
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      },
-    });
+      }
+    }
+    );
   }
   DataGetOneContent(): void {
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     // var id = '';
@@ -256,40 +222,35 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     //   id = this.requestId;
     // }
     this.estateCustomerOrderService.setAccessLoad();
-    this.estateCustomerOrderService
-      .ServiceGetOneById(this.requestId)
-      .subscribe({
-        next: (ret) => {
-          this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
+    this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
+      next: (ret) => {
+        this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
 
-          this.dataModel = ret.item;
+        this.dataModel = ret.item;
 
-          if (ret.isSuccess) {
-            if (this.dataModel.linkPropertyTypeUsageId.length > 0)
-              this.DataGetAllPropertyTypeLanduse();
-            if (
-              this.dataModel.linkContractTypeId?.length > 0 &&
-              this.dataModelContractTypeResult?.listItems?.length > 0
-            ) {
-              var index = this.dataModelContractTypeResult.listItems.findIndex(
-                (x) => x.id == this.dataModel.linkContractTypeId
-              );
-              this.onActionSelectorContarctType(
-                this.dataModelContractTypeResult.listItems[index]
-              );
-            }
-          } else {
-            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        if (ret.isSuccess) {
+          if (this.dataModel.linkPropertyTypeUsageId.length > 0)
+            this.DataGetAllPropertyTypeLanduse();
+          if (this.dataModel.linkContractTypeId?.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
+            var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
+            this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
           }
-          this.loading.Stop(pName);
-        },
-        error: (er) => {
-          this.cmsToastrService.typeError(er);
-          this.loading.Stop(pName);
-        },
-      });
+
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
   }
   DataGetAllContractType(): void {
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     const filterModel = new FilterModel();
@@ -297,18 +258,12 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       next: (ret) => {
         this.dataModelContractTypeResult = ret;
         if (ret.isSuccess) {
-          if (
-            this.dataModel.linkContractTypeId?.length > 0 &&
-            this.dataModelContractTypeResult?.listItems?.length > 0
-          ) {
-            var index = this.dataModelContractTypeResult.listItems.findIndex(
-              (x) => x.id == this.dataModel.linkContractTypeId
-            );
-            this.onActionSelectorContarctType(
-              this.dataModelContractTypeResult.listItems[index]
-            );
+          if (this.dataModel.linkContractTypeId?.length > 0 && this.dataModelContractTypeResult?.listItems?.length > 0) {
+            var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
+            this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
           }
-        } else {
+        }
+        else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -316,11 +271,13 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      },
-    });
+      }
+    }
+    );
   }
 
   DataGetAllPropertyTypeUsage(): void {
+
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     const filterModel = new FilterModel();
@@ -335,18 +292,16 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      },
-    });
+      }
+    }
+    );
   }
   DataGetAllPropertyTypeLanduse(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
     const filterModel = new FilterModel();
 
-    if (
-      this.dataModel.linkPropertyTypeUsageId &&
-      this.dataModel.linkPropertyTypeUsageId.length > 0
-    ) {
+    if (this.dataModel.linkPropertyTypeUsageId && this.dataModel.linkPropertyTypeUsageId.length > 0) {
       const filter = new FilterDataModel();
       filter.propertyName = 'PropertyTypes';
       filter.propertyAnyName = 'LinkPropertyTypeUsageId';
@@ -361,16 +316,13 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
         this.dataModelPropertyTypeLanduseResult = ret;
         if (ret.isSuccess) {
           if (this.dataModel.linkPropertyTypeUsageId.length > 0) {
-            var state =
-              this.dataModelPropertyTypeLanduseResult.listItems.findIndex(
-                (x) => x.id == this.dataModel.linkPropertyTypeLanduseId
-              );
+            var state = this.dataModelPropertyTypeLanduseResult.listItems.findIndex(x => x.id == this.dataModel.linkPropertyTypeLanduseId);
             if (state >= 0)
-              this.onActionSelectorSelectLanduse(
-                this.dataModelPropertyTypeLanduseResult.listItems[state]
-              );
+              this.onActionSelectorSelectLanduse(this.dataModelPropertyTypeLanduseResult.listItems[state]);
           }
+
         } else {
+
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
         this.loading.Stop(pName);
@@ -378,8 +330,9 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       error: (er) => {
         this.cmsToastrService.typeError(er);
         this.loading.Stop(pName);
-      },
-    });
+      }
+    }
+    );
   }
   DataGetPropertyDetailGroup(id: string): void {
     const filteModelProperty = new FilterModel();
@@ -389,26 +342,20 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     filteModelProperty.filters.push(filter);
     this.dataModel.propertyDetailGroups = [];
     const pName = this.constructor.name + 'DataGetPropertyDetailGroup';
-    this.loading.Start(
-      pName,
-      this.translate.instant('MESSAGE.Get_detailed_information')
-    );
-    this.estatePropertyDetailGroupService
-      .ServiceGetAll(filteModelProperty)
+    this.loading.Start(pName, this.translate.instant('MESSAGE.Get_detailed_information'));
+    this.estatePropertyDetailGroupService.ServiceGetAll(filteModelProperty)
       .subscribe({
         next: (ret) => {
           if (ret.isSuccess) {
             this.dataModel.propertyDetailGroups = ret.listItems;
             /** load Value */
             if (this.dataModel.propertyDetailGroups)
-              this.dataModel.propertyDetailGroups.forEach((itemGroup) => {
-                itemGroup.propertyDetails.forEach((element) => {
+              this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                itemGroup.propertyDetails.forEach(element => {
                   this.propertyDetails[element.id] = 0;
 
                   if (this.dataModel.propertyDetailValues) {
-                    const value = this.dataModel.propertyDetailValues.find(
-                      (x) => x.linkPropertyDetailId === element.id
-                    );
+                    const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
                     if (value) {
                       this.propertyDetails[element.id] = value.value;
                     }
@@ -424,8 +371,9 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
         error: (er) => {
           this.cmsToastrService.typeErrorGetAccess(er);
           this.loading.Stop(pName);
-        },
-      });
+        }
+      }
+      );
   }
   DataGetAllProperty() {
     if (!this.dataModel || !this.dataModel.id || this.dataModel.id.length == 0)
@@ -433,16 +381,16 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
 
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.dataModelEstatePropertyResult =
-      new ErrorExceptionResult<EstatePropertyModel>();
+    this.dataModelEstatePropertyResult = new ErrorExceptionResult<EstatePropertyModel>();
     const filterModel = new EstatePropertyFilterModel();
     filterModel.countLoad = true;
     // **requestLinkCustomerOrderId*/
-    this.estatePropertyService.setAccessDataType(
-      ManageUserAccessDataTypesEnum.Editor
-    );
+    this.estatePropertyService.setAccessDataType(ManageUserAccessDataTypesEnum.Editor);
     this.estatePropertyService
-      .ServiceGetAllWithCoverCustomerOrderId(this.dataModel.id, filterModel)
+      .ServiceGetAllWithCoverCustomerOrderId(
+        this.dataModel.id,
+        filterModel
+      )
       .subscribe({
         next: (ret) => {
           this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
@@ -459,40 +407,37 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
           this.loading.Stop(pName);
         },
         error: (er) => {
-          this.cmsToastrService.typeError(er);
+          this.cmsToastrService.typeError(er)
           this.loading.Stop(pName);
-        },
-      });
+        }
+      }
+      );
     // **requestLinkCustomerOrderId*/
   }
   DataSend(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.dataModelActionSend.id = this.dataModel.id;
-    this.estateCustomerOrderService
-      .ServiceActionSendSms(this.dataModelActionSend)
-      .subscribe({
-        next: (ret) => {
-          if (ret.isSuccess) {
-            this.cmsToastrService.typeSuccessAdd();
-          } else {
-            this.cmsToastrService.typeErrorMessage(ret.errorMessage);
-          }
-          this.loading.Stop(pName);
-        },
-        error: (er) => {
-          this.cmsToastrService.typeError(er);
-          this.loading.Stop(pName);
-        },
-      });
+    this.dataModelActionSend.id=this.dataModel.id;
+    this.estateCustomerOrderService.ServiceActionSendSms(this.dataModelActionSend).subscribe({
+      next: (ret) => {
+        if (ret.isSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        } else {
+          this.cmsToastrService.typeErrorMessage(ret.errorMessage);
+        }
+        this.loading.Stop(pName);
+      },
+      error: (er) => {
+        this.cmsToastrService.typeError(er);
+        this.loading.Stop(pName);
+      }
+    }
+    );
+
   }
-  onActionSelectorSelectUsage(
-    model: EstatePropertyTypeUsageModel | null
-  ): void {
+  onActionSelectorSelectUsage(model: EstatePropertyTypeUsageModel | null): void {
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant(
-        'MESSAGE.category_of_information_is_not_clear'
-      );
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
@@ -505,21 +450,19 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     }
     this.dataModel.linkEstateAgencyId = model.id;
   }
-  onActionSelectorSelectLanduse(
-    model: EstatePropertyTypeLanduseModel | null
-  ): void {
+  onActionSelectorSelectLanduse(model: EstatePropertyTypeLanduseModel | null): void {
     this.PropertyTypeSelected = null;
     this.dataModel.linkPropertyTypeLanduseId = null;
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant(
-        'MESSAGE.category_of_information_is_not_clear'
-      );
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.PropertyTypeSelected = model;
     this.dataModel.linkPropertyTypeLanduseId = model.id;
     this.DataGetPropertyDetailGroup(model.id);
+
+
   }
   onActionSelectorEstateUser(model: EstateAccountUserModel | null): void {
     this.dataModel.linkEstateUserId = null;
@@ -533,24 +476,21 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     this.contractTypeSelected = null;
     this.dataModel.linkContractTypeId = null;
     if (!model || !model.id || model.id.length <= 0) {
-      const message = this.translate.instant(
-        'MESSAGE.Type_of_property_transaction_is_not_known'
-      );
+      const message = this.translate.instant('MESSAGE.Type_of_property_transaction_is_not_known');
       this.cmsToastrService.typeWarningSelected(message);
       return;
     }
     this.contractTypeSelected = model;
     this.dataModel.linkContractTypeId = model.id;
+
   }
   onActionSelectorLocation(model: number[] | null): void {
+
     this.dataModel.linkLocationIds = model;
   }
   onActionSelectorProperty(model: string[] | null): void {
     this.dataModel.linkPropertyIds = model;
-    if (
-      this.dataModel.linkPropertyIds &&
-      this.dataModel.linkPropertyIds.length > 0
-    ) {
+    if (this.dataModel.linkPropertyIds && this.dataModel.linkPropertyIds.length > 0) {
       this.LinkPropertyIdsInUse = true;
     } else {
       this.LinkPropertyIdsInUse = false;
@@ -558,6 +498,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
   }
   onActionSelectorPropertyIgnored(model: string[] | null): void {
     this.dataModel.linkPropertyIdsIgnored = model;
+
   }
   setStep(index: number): void {
     this.step = index;
@@ -572,11 +513,12 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
   }
   // ** Accardon */
   onActoinSubmit(): void {
+
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
     if (this.dataModel.propertyDetailGroups)
-      this.dataModel.propertyDetailGroups.forEach((itemGroup) => {
-        itemGroup.propertyDetails.forEach((element) => {
+      this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+        itemGroup.propertyDetails.forEach(element => {
           const value = new EstatePropertyDetailValueModel();
           value.linkPropertyDetailId = element.id;
           value.value = this.propertyDetails[element.id];
@@ -585,14 +527,15 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       });
     // ** Save Value */
 
+
     this.DataEditContent(true);
+
+
   }
 
   onActionSelectorSelect(model: EstateCustomerCategoryModel | null): void {
     if (!model || model.id.length <= 0) {
-      const message = this.translate.instant(
-        'MESSAGE.category_of_information_is_not_clear'
-      );
+      const message = this.translate.instant('MESSAGE.category_of_information_is_not_clear');
       this.cmsToastrService.typeErrorSelected(message);
       return;
     }
@@ -628,16 +571,15 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       this.dataModel.resultSortType = SortTypeEnum.Random;
     else if (this.dataModel.resultSortType == SortTypeEnum.Random)
       this.dataModel.resultSortType = SortTypeEnum.Ascending;
-    else this.dataModel.resultSortType = SortTypeEnum.Ascending;
+    else
+      this.dataModel.resultSortType = SortTypeEnum.Ascending;
   }
   onActoinSelectStepNext(step: string): void {
     if (step === 'selectYear') {
-      if (
-        this.PropertyTypeSelected?.createdYearActive ||
-        this.PropertyTypeSelected?.partitionActive
-      ) {
+      if (this.PropertyTypeSelected?.createdYearActive || this.PropertyTypeSelected?.partitionActive) {
         step = 'selectYear';
-      } else {
+      }
+      else {
         step = 'selectLocation';
       }
     }
@@ -645,18 +587,19 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       this.DataEditContent();
     }
     this.stepContent = step;
+
   }
   onActoinSelectStepBefor(step: string): void {
     if (step === 'selectYear') {
-      if (
-        this.PropertyTypeSelected?.createdYearActive ||
-        this.PropertyTypeSelected?.partitionActive
-      ) {
+      if (this.PropertyTypeSelected?.createdYearActive || this.PropertyTypeSelected?.partitionActive) {
         step = 'selectYear';
-      } else {
+      }
+      else {
         step = 'selectLocation';
       }
     }
     this.stepContent = step;
+
   }
+
 }
