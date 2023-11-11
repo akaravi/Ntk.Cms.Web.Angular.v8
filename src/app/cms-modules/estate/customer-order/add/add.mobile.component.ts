@@ -207,12 +207,26 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
             setTimeout(() => this.router.navigate(['/estate/customer-order/']), 1000);
           }
           else {
+            /**ServiceGetOneById */
             this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
               next: (ret) => {
                 this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
                 this.dataModel = ret.item;
                 if (ret.isSuccess) {
-
+                  /** load Value */
+                  if (this.dataModel.propertyDetailGroups)
+                    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                      itemGroup.propertyDetails.forEach(element => {
+                        this.propertyDetails[element.id] = 0;
+                        if (this.dataModel.propertyDetailValues) {
+                          const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                          if (value) {
+                            this.propertyDetails[element.id] = value.value;
+                          }
+                        }
+                      });
+                    });
+                  /** load Value */
                   if (this.dataModel.linkPropertyTypeUsageId.length > 0)
                     this.DataGetAllPropertyTypeLanduse();
 
@@ -230,6 +244,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
               }
             }
             );
+            /**ServiceGetOneById */
           }
         } else {
 
@@ -269,7 +284,20 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
             var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
             this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
           }
-
+          /** load Value */
+          if (this.dataModel.propertyDetailGroups)
+            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+              itemGroup.propertyDetails.forEach(element => {
+                this.propertyDetails[element.id] = 0;
+                if (this.dataModel.propertyDetailValues) {
+                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                  if (value) {
+                    this.propertyDetails[element.id] = value.value;
+                  }
+                }
+              });
+            });
+          /** load Value */
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -546,7 +574,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     this.step--;
   }
   // ** Accardon */
-  onActoinSubmit(): void {
+  onActoinSubmit(actionSubmit: boolean): void {
 
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
@@ -562,10 +590,10 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
     // ** Save Value */
 
     if (this.dataModel?.id?.length > 0) {
-      this.DataEditContent(true);
+      this.DataEditContent(actionSubmit);
     }
     else {
-      this.DataAddContent(true);
+      this.DataAddContent(actionSubmit);
     }
 
   }
@@ -621,13 +649,7 @@ export class EstateCustomerOrderAddMobileComponent implements OnInit {
       }
     }
     if (step === 'result1' || step === 'result2' || step === 'result3') {
-
-      if (this.dataModel?.id?.length > 0) {
-        this.DataEditContent();
-      }
-      else {
-        this.DataAddContent();
-      }
+      this.onActoinSubmit(false);
     }
     this.stepContent = step;
 

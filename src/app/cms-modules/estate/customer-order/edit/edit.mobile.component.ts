@@ -172,13 +172,26 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
               this.DataSend();
             setTimeout(() => this.router.navigate(['/estate/customer-order/']), 1000);
           } else {
-
+            /**ServiceGetOneById */
             this.estateCustomerOrderService.ServiceGetOneById(this.requestId).subscribe({
               next: (ret) => {
                 this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
                 this.dataModel = ret.item;
                 if (ret.isSuccess) {
-
+                  /** load Value */
+                  if (this.dataModel.propertyDetailGroups)
+                    this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+                      itemGroup.propertyDetails.forEach(element => {
+                        this.propertyDetails[element.id] = 0;
+                        if (this.dataModel.propertyDetailValues) {
+                          const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                          if (value) {
+                            this.propertyDetails[element.id] = value.value;
+                          }
+                        }
+                      });
+                    });
+                  /** load Value */
                   if (this.dataModel.linkPropertyTypeUsageId.length > 0)
                     this.DataGetAllPropertyTypeLanduse();
 
@@ -196,6 +209,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
               }
             }
             );
+            /**ServiceGetOneById */
           }
 
         } else {
@@ -236,7 +250,20 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
             var index = this.dataModelContractTypeResult.listItems.findIndex(x => x.id == this.dataModel.linkContractTypeId)
             this.onActionSelectorContarctType(this.dataModelContractTypeResult.listItems[index]);
           }
-
+          /** load Value */
+          if (this.dataModel.propertyDetailGroups)
+            this.dataModel.propertyDetailGroups.forEach(itemGroup => {
+              itemGroup.propertyDetails.forEach(element => {
+                this.propertyDetails[element.id] = 0;
+                if (this.dataModel.propertyDetailValues) {
+                  const value = this.dataModel.propertyDetailValues.find(x => x.linkPropertyDetailId === element.id);
+                  if (value) {
+                    this.propertyDetails[element.id] = value.value;
+                  }
+                }
+              });
+            });
+          /** load Value */
         } else {
           this.cmsToastrService.typeErrorMessage(ret.errorMessage);
         }
@@ -513,7 +540,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     this.step--;
   }
   // ** Accardon */
-  onActoinSubmit(): void {
+  onActoinSubmit(actionSubmit:boolean): void {
 
     // ** Save Value */
     this.dataModel.propertyDetailValues = [];
@@ -529,7 +556,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     // ** Save Value */
 
 
-    this.DataEditContent(true);
+    this.DataEditContent(actionSubmit);
 
 
   }
@@ -585,7 +612,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       }
     }
     if (step === 'result1' || step === 'result2' || step === 'result3') {
-      this.DataEditContent();
+      this.DataEditContent(false);
     }
     this.stepContent = step;
 
