@@ -36,6 +36,8 @@
     height: 80%;
     margin-left: auto;
     margin-right: auto;
+    overflow-y: scroll;
+
 }
 
 .cms-m-container-footer {
@@ -56,6 +58,7 @@
     height: 50px;
     padding: 5px;
     border-radius: 25px;
+    border: none;
 }
 
 .cms-m-actionsend {
@@ -82,6 +85,7 @@
     height: 50px;
     border-radius: 16px;
     display: block;
+    outline: none;
     outline: none;
     //color: white;
     background-color: rgba(255, 255, 255, 0.07);
@@ -114,10 +118,6 @@
     overflow-y: scroll;
 }
 
-.overflow-y {
-    overflow-y: scroll;
-}
-
 .margin-top {
     margin-top: 30px;
 }
@@ -136,17 +136,9 @@
     background-color: rgba(0, 0, 255, 0.7) !important;
 }
 
-button {
-    border: none;
-}
-
 svg {
     width: 20px;
     height: 20px;
-}
-
-input:focus {
-    outline: none;
 }
 
 span {
