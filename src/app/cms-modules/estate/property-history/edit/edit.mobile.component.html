@@ -93,23 +93,21 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
-          <div class="activityStatus-header-selection">
-            <div class="activityStatus-header-selection-form">
-              <button
-                *ngFor="
-                  let item of dataModelEstateActivityStatusEnumResult.listItems
-                "
-                [class]="
-                  item.value === dataModel.activityStatus
-                    ? 'grouping-header-selection-option-select'
-                    : 'grouping-header-selection-option'
-                "
-                click="dataModel.activityStatus=item.value;"
-                class="activityStatus-header-selection-form-option"
-              >
-                {{ item.description }}
-              </button>
-            </div>
+          <div class="activityStatus-header-selection-form">
+            <button
+              *ngFor="
+                let item of dataModelEstateActivityStatusEnumResult.listItems
+              "
+              [class]="
+                item.value === dataModel.activityStatus
+                  ? 'grouping-header-selection-option-select'
+                  : 'grouping-header-selection-option'
+              "
+              click="dataModel.activityStatus=item.value;"
+              class="cms-m-form-option"
+            >
+              {{ item.description }}
+            </button>
           </div>
         </div>
         <div class="cms-m-container-footer">
@@ -133,11 +131,11 @@
             </svg>
             <span>بعدی</span>
           </button>
-          <button class="activityStatus-footer-btn" (click)="onFormSubmit()">
+          <button class="cms-m-button" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button
-            class="activityStatus-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepBefor('title')"
           >
             <span>قبلی</span>
@@ -162,86 +160,84 @@
   </ng-container>
 
   <ng-container *ngIf="stepContent === 'selectDate'">
-    <div class="selectDate">
-      <div class="selectDate-filter">
-        <div class="selectDate-header">
-          <div class="selectDate-header-form">
-            <!-- AppointmentDateFrom Field -->
-            <label
-              *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
-              for="dataModel.appointmentDateFrom"
-              class="selectDate-header-form-label"
-              >تاریخ قرار از</label
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <!-- AppointmentDateFrom Field -->
+          <label
+            *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
+            for="dataModel.appointmentDateFrom"
+            class="selectDate-header-form-label"
+            >تاریخ قرار از</label
+          >
+          <input
+            *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
+            [matDatepicker]="AppointmentDateFrom"
+            [(ngModel)]="dataModel.appointmentDateFrom"
+            [formControl]="date"
+            name="dataModel.appointmentDateFrom"
+            id="dataModel.appointmentDateFrom"
+            class="selectDate-header-form-input"
+          />
+          <div class="icon">
+            <mat-icon
+              matSuffix
+              *ngIf="
+                dataModel.appointmentDateFrom &&
+                fieldsInfo['appointmentDateFrom']?.accessEditField
+              "
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="dataModel.appointmentDateFrom = null"
+              >close</mat-icon
             >
-            <input
-              *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
-              [matDatepicker]="AppointmentDateFrom"
-              [(ngModel)]="dataModel.appointmentDateFrom"
-              [formControl]="date"
-              name="dataModel.appointmentDateFrom"
-              id="dataModel.appointmentDateFrom"
-              class="selectDate-header-form-input"
-            />
-            <div class="icon">
-              <mat-icon
-                matSuffix
-                *ngIf="
-                  dataModel.appointmentDateFrom &&
-                  fieldsInfo['appointmentDateFrom']?.accessEditField
-                "
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="dataModel.appointmentDateFrom = null"
-                >close</mat-icon
-              >
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="AppointmentDateFrom"
-              ></mat-datepicker-toggle>
-              <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
-            </div>
-            <br />
-            <label
-              *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
-              for="dataModel.appointmentDateTo"
-              class="selectDate-header-form-label"
-              >تاریخ قرار تا</label
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="AppointmentDateFrom"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
+          </div>
+          <br />
+          <label
+            *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
+            for="dataModel.appointmentDateTo"
+            class="selectDate-header-form-label"
+            >تاریخ قرار تا</label
+          >
+          <!-- AppointmentDateTo Field -->
+          <input
+            *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
+            [matDatepicker]="AppointmentDateTo"
+            [(ngModel)]="dataModel.appointmentDateTo"
+            [value]="date.value"
+            name="dataModel.appointmentDateTo"
+            id="dataModel.appointmentDateTo"
+            class="selectDate-header-form-input"
+          />
+          <div class="icon2">
+            <mat-icon
+              matSuffix
+              *ngIf="
+                dataModel.appointmentDateTo &&
+                fieldsInfo['appointmentDateTo']?.accessEditField
+              "
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              (click)="dataModel.appointmentDateTo = null"
+              >close</mat-icon
             >
-            <!-- AppointmentDateTo Field -->
-            <input
-              *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
-              [matDatepicker]="AppointmentDateTo"
-              [(ngModel)]="dataModel.appointmentDateTo"
-              [value]="date.value"
-              name="dataModel.appointmentDateTo"
-              id="dataModel.appointmentDateTo"
-              class="selectDate-header-form-input"
-            />
-            <div class="icon2">
-              <mat-icon
-                matSuffix
-                *ngIf="
-                  dataModel.appointmentDateTo &&
-                  fieldsInfo['appointmentDateTo']?.accessEditField
-                "
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="dataModel.appointmentDateTo = null"
-                >close</mat-icon
-              >
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="AppointmentDateTo"
-              ></mat-datepicker-toggle>
-              <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
-            </div>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="AppointmentDateTo"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
           </div>
         </div>
-        <div class="selectDate-footer">
+        <div class="cms-m-container-footer">
           <button
-            class="selectDate-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepNext('grouping')"
           >
             <svg
@@ -260,11 +256,11 @@
             </svg>
             <span>بعدی</span>
           </button>
-          <button class="selectDate-footer-btn" (click)="onFormSubmit()">
+          <button class="cms-m-button" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button
-            class="selectDate-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepBefor('activityStatus')"
           >
             <span>قبلی</span>
@@ -289,9 +285,9 @@
   </ng-container>
 
   <ng-container *ngIf="stepContent === 'grouping'">
-    <div class="grouping">
-      <div class="grouping-filter">
-        <div class="grouping-header">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
           <div class="grouping-header-selection">
             <div
               *ngIf="dataModelActivityTypeResult?.listItems?.length > 0"
@@ -301,7 +297,7 @@
                 *ngFor="let state of dataModelActivityTypeResult.listItems"
                 type="button"
                 mat-raised-button
-                class="grouping-header-form-option"
+                class="cms-m-form-option"
                 [class]="
                   state.id === dataModel.linkActivityTypeId
                     ? 'selectPropertyTypeUsage-header-form-option-select'
@@ -314,9 +310,9 @@
             </div>
           </div>
         </div>
-        <div class="grouping-footer">
+        <div class="cms-m-container-footer">
           <button
-            class="grouping-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepNext('estate')"
           >
             <svg
@@ -335,11 +331,11 @@
             </svg>
             <span>بعدی</span>
           </button>
-          <button class="grouping-footer-btn" (click)="onFormSubmit()">
+          <button class="cms-m-button" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button
-            class="grouping-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepBefor('selectDate')"
           >
             <span>قبلی</span>
@@ -364,9 +360,9 @@
   </ng-container>
   <!---->
   <ng-container *ngIf="stepContent === 'estate'">
-    <div class="estate">
-      <div class="estate-filter">
-        <div class="estate-header">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
           <!-- LinkEstateUserId Field -->
           <app-estate-account-user-selector
             (optionChange)="onActionSelectorEstateUser($event)"
@@ -412,9 +408,9 @@
             class="estate-header-form"
           ></app-estate-customer-order-selector>
         </div>
-        <div class="estate-footer">
+        <div class="cms-m-container-footer">
           <button
-            class="estate-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepNext('chooseFile')"
           >
             <svg
@@ -433,11 +429,11 @@
             </svg>
             <span>بعدی</span>
           </button>
-          <button class="estate-footer-btn" (click)="onFormSubmit()">
+          <button class="cms-m-button" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button
-            class="estate-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepBefor('grouping')"
           >
             <span>قبلی</span>
@@ -462,10 +458,10 @@
   </ng-container>
 
   <ng-container *ngIf="stepContent === 'chooseFile'">
-    <div class="chooseFile">
-      <div class="chooseFile-filter">
-        <div class="chooseFile-header">
-          <p class="chooseFile-header-title">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <p class="cms-m-form-label">
             {{ "TITLE.List_of_attached_files" | translate }}
           </p>
           <app-cms-files-selector
@@ -475,12 +471,12 @@
           >
           </app-cms-files-selector>
         </div>
-        <div class="chooseFile-footer">
-          <button class="chooseFile-footer-btn" (click)="onFormSubmit()">
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" (click)="onFormSubmit()">
             <span>ثبت</span>
           </button>
           <button
-            class="chooseFile-footer-btn"
+            class="cms-m-button"
             (click)="onActoinSelectStepBefor('estate')"
           >
             <span>قبلی</span>
