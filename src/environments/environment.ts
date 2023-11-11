@@ -24,8 +24,6 @@ export const environment = {
     configHubServerPath: 'https://apicms.ir/hub/',
     //configHubServerPath: 'https://localhost:2390/hub/',
     configMvcServerPath: 'https://ntkcms.ir/',
-    //configHtmlBuilderServerPath: 'https://htmlbuilder.ntkcms.ir/',
-    configHtmlBuilderServerPath: 'http://localhost:5000/',
     configFileServerPath: 'https://apifile.ir/api/v2/',
     configQDocServerPath: 'https://qdoc.ir/api/chat',
     configCompanyWebSite: 'https://ntk.ir',

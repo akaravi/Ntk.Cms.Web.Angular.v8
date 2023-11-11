@@ -371,10 +371,8 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    const urlTemplate = environment.cmsServerConfig.configHtmlBuilderServerPath + 'htmlbuilder/?id=' + model.id
-      + '&token=' + encodeURIComponent(this.tokenInfo.token);
-    // this.document.location.href = urlTemplate;
-    window.open(urlTemplate, '_blank');
+    // const urlTemplate = environment.cmsServerConfig.configHtmlBuilderServerPath + 'htmlbuilder/?id=' + model.id + '&token=' + encodeURIComponent(this.tokenInfo.token);
+    window.open(model.htmlBuilderUrl, '_blank');
   }
   onActionbuttonHtmlView(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
