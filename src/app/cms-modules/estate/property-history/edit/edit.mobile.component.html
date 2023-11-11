@@ -93,7 +93,6 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
-          <div class="activityStatus-header-selection-form">
             <button
               *ngFor="
                 let item of dataModelEstateActivityStatusEnumResult.listItems
@@ -108,7 +107,6 @@
             >
               {{ item.description }}
             </button>
-          </div>
         </div>
         <div class="cms-m-container-footer">
           <button
@@ -167,7 +165,7 @@
           <label
             *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
             for="dataModel.appointmentDateFrom"
-            class="selectDate-header-form-label"
+            class="cms-m-form-label"
             >تاریخ قرار از</label
           >
           <input
@@ -177,7 +175,7 @@
             [formControl]="date"
             name="dataModel.appointmentDateFrom"
             id="dataModel.appointmentDateFrom"
-            class="selectDate-header-form-input"
+            class="cms-m-form-input"
           />
           <div class="icon">
             <mat-icon
@@ -202,7 +200,7 @@
           <label
             *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField"
             for="dataModel.appointmentDateTo"
-            class="selectDate-header-form-label"
+            class="cms-m-form-label"
             >تاریخ قرار تا</label
           >
           <!-- AppointmentDateTo Field -->
@@ -213,7 +211,7 @@
             [value]="date.value"
             name="dataModel.appointmentDateTo"
             id="dataModel.appointmentDateTo"
-            class="selectDate-header-form-input"
+            class="cms-m-form-input"
           />
           <div class="icon2">
             <mat-icon
@@ -288,11 +286,8 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
-          <div class="grouping-header-selection">
             <div
-              *ngIf="dataModelActivityTypeResult?.listItems?.length > 0"
-              class="grouping-header-form"
-            >
+              *ngIf="dataModelActivityTypeResult?.listItems?.length > 0">
               <button
                 *ngFor="let state of dataModelActivityTypeResult.listItems"
                 type="button"
@@ -308,7 +303,6 @@
                 {{ state.title }}
               </button>
             </div>
-          </div>
         </div>
         <div class="cms-m-container-footer">
           <button
