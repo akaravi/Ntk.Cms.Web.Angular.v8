@@ -6,7 +6,7 @@
           <div class="title-header">
             <div class="title-header-form">
               <!-- Title Field -->
-              <label for="dataModel.title" class="title-header-form-label">{{
+              <label for="dataModel.title" class="cms-m-form-label">{{
                 fieldsInfo["title"]?.fieldTitle
               }}</label>
               <input
@@ -17,13 +17,13 @@
                 minlength="3"
                 maxlength="100"
                 required
-                class="title-header-form-input"
+                class="cms-m-form-input"
               />
               <!-- Description Field -->
               <label
                 *ngIf="fieldsInfo['description']?.accessWatchField"
                 for="dataModel.description"
-                class="title-header-form-label"
+                class="cms-m-form-label"
                 >{{ fieldsInfo["description"]?.fieldTitle }}
               </label>
               <textarea
@@ -38,13 +38,13 @@
                 minlength="0"
                 maxlength="1000"
                 rows="5"
-                class="title-header-form-textarea"
+                class="cms-m-form-textarea"
               ></textarea>
               <!-- DescriptionHidden Field -->
               <label
                 *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField"
                 for="dataModel.descriptionHidden"
-                class="title-header-form-label"
+                class="cms-m-form-label"
               >
                 {{ fieldsInfo["descriptionHidden"]?.fieldTitle }}</label
               >
@@ -60,7 +60,7 @@
                 minlength="0"
                 maxlength="1000"
                 rows="5"
-                class="title-header-form-textarea"
+                class="cms-m-form-textarea"
               ></textarea>
             </div>
           </div>
