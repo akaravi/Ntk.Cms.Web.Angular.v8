@@ -1,4 +1,4 @@
-<div class="cms-m-body">
+<div class="cms-m-body" style="height:80%; margin-top: 10%;">
   <ng-container *ngIf="stepContent === 'title'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
@@ -7,6 +7,8 @@
           <label for="dataModel.title" class="cms-m-form-label">{{
             fieldsInfo["title"]?.fieldTitle
           }}</label>
+        </div>
+        <div class="cms-m-container-body">
           <input
             [(ngModel)]="dataModel.title"
             name="dataModel.title"
@@ -93,20 +95,25 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
-            <button
-              *ngFor="
-                let item of dataModelEstateActivityStatusEnumResult.listItems
-              "
-              [class]="
-                item.value === dataModel.activityStatus
-                  ? 'grouping-header-selection-option-select'
-                  : 'grouping-header-selection-option'
-              "
-              click="dataModel.activityStatus=item.value;"
-              class="cms-m-form-option"
-            >
-              {{ item.description }}
-            </button>
+          <label class="cms-m-form-label"
+            >لطفا یکی از موارد زیر را انتخاب کنید</label
+          >
+        </div>
+        <div class="cms-m-container-body">
+          <button
+            *ngFor="
+              let item of dataModelEstateActivityStatusEnumResult.listItems
+            "
+            [class]="
+              item.value === dataModel.activityStatus
+                ? 'grouping-header-selection-option-select'
+                : 'grouping-header-selection-option'
+            "
+            click="dataModel.activityStatus=item.value;"
+            class="cms-m-form-option"
+          >
+            {{ item.description }}
+          </button>
         </div>
         <div class="cms-m-container-footer">
           <button
@@ -161,7 +168,10 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
-          <!-- AppointmentDateFrom Field -->
+          <label class="cms-m-form-label">لطفا تاریخ را مشخص نمایید</label>
+        </div>
+        <!-- AppointmentDateFrom Field -->
+        <div class="cms-m-container-body">
           <label
             *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField"
             for="dataModel.appointmentDateFrom"
@@ -177,7 +187,7 @@
             id="dataModel.appointmentDateFrom"
             class="cms-m-form-input"
           />
-          <div class="icon">
+          <div class="cms-m-icon">
             <mat-icon
               matSuffix
               *ngIf="
@@ -213,7 +223,7 @@
             id="dataModel.appointmentDateTo"
             class="cms-m-form-input"
           />
-          <div class="icon2">
+          <div class="cms-m-icon2">
             <mat-icon
               matSuffix
               *ngIf="
@@ -286,24 +296,29 @@
     <div class="cms-m-container">
       <div class="cms-m-filter">
         <div class="cms-m-container-header">
-            <div
-              *ngIf="dataModelActivityTypeResult?.listItems?.length > 0">
-              <button
-                *ngFor="let state of dataModelActivityTypeResult.listItems"
-                type="button"
-                mat-raised-button
-                class="cms-m-form-option"
-                [class]="
-                  state.id === dataModel.linkActivityTypeId
-                    ? 'selectPropertyTypeUsage-header-form-option-select'
-                    : 'selectPropertyTypeUsage-header-form-option'
-                "
-                (click)="dataModel.linkActivityTypeId = state.id"
-              >
-                {{ state.title }}
-              </button>
-            </div>
+          <label class="cms-m-form-label"
+            >لطفا یکی از موارد زیر را انتخاب کنید</label
+          >
         </div>
+        <div class="cms-m-container-body">
+          <div *ngIf="dataModelActivityTypeResult?.listItems?.length > 0">
+            <button
+              *ngFor="let state of dataModelActivityTypeResult.listItems"
+              type="button"
+              mat-raised-button
+              class="cms-m-form-option"
+              [class]="
+                state.id === dataModel.linkActivityTypeId
+                  ? 'selectPropertyTypeUsage-header-form-option-select'
+                  : 'selectPropertyTypeUsage-header-form-option'
+              "
+              (click)="dataModel.linkActivityTypeId = state.id"
+            >
+              {{ state.title }}
+            </button>
+          </div>
+        </div>
+
         <div class="cms-m-container-footer">
           <button
             class="cms-m-button"
@@ -356,15 +371,16 @@
   <ng-container *ngIf="stepContent === 'estate'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header">
-          <!-- LinkEstateUserId Field -->
+        <div class="cms-m-container-header"></div>
+        <!-- LinkEstateUserId Field -->
+        <div class="cms-m-container-body">
           <app-estate-account-user-selector
             (optionChange)="onActionSelectorEstateUser($event)"
             [(optionLoading)]="loading"
             *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField"
             [optionSelectForce]="dataModel.linkEstateUserId"
             [optionPlaceholder]="this.translate.instant('TITLE.USER')"
-            class="estate-header-form"
+            [style.direction]="this.tokenHelper.directionTheme"
           >
           </app-estate-account-user-selector>
           <br />
@@ -378,7 +394,7 @@
             [optionPlaceholder]="
               this.translate.instant('TITLE.Property_agency')
             "
-            class="estate-header-form"
+            [style.direction]="this.tokenHelper.directionTheme"
           >
           </app-estate-account-agency-selector>
           <br />
@@ -389,7 +405,7 @@
             *ngIf="fieldsInfo['linkPropertyId']?.accessWatchField"
             [optionSelectForce]="dataModel.linkPropertyId"
             [optionPlaceholder]="this.translate.instant('TITLE.Property')"
-            class="estate-header-form"
+            [style.direction]="this.tokenHelper.directionTheme"
           ></app-estate-property-selector>
           <br />
           <!-- linkCustomerOrderId Field -->
@@ -399,7 +415,7 @@
             *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField"
             [optionSelectForce]="dataModel.linkCustomerOrderId"
             [optionPlaceholder]="this.translate.instant('TITLE.Customer')"
-            class="estate-header-form"
+            [style.direction]="this.tokenHelper.directionTheme"
           ></app-estate-customer-order-selector>
         </div>
         <div class="cms-m-container-footer">
@@ -458,10 +474,12 @@
           <p class="cms-m-form-label">
             {{ "TITLE.List_of_attached_files" | translate }}
           </p>
+        </div>
+        <div class="cms-m-container-body">
           <app-cms-files-selector
             [(dataFileModel)]="dataFileModelFiles"
             [openDirectUploadView]="true"
-            class="chooseFile-header-form"
+            [style.direction]="this.tokenHelper.directionTheme"
           >
           </app-cms-files-selector>
         </div>

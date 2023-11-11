@@ -60,6 +60,7 @@ export class EstatePropertyHistoryEditMobileComponent implements OnInit {
     this.tokenHelper.getCurrentToken().then((value) => {
       this.tokenInfo = value;
     });
+    
   }
 
   fieldsInfo: Map<string, DataFieldInfoModel> = new Map<
