@@ -20,6 +20,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { EstatePropertyListComponent } from '../../property/list/list.component';
+import { EstatePropertyQuickViewComponent } from '../../property/quick-view/quick-view.component';
 
 @Component({
   selector: 'app-estate-customer-order-edit-mobile',
@@ -417,7 +418,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
   DataSend(): void {
     const pName = this.constructor.name + 'main';
     this.loading.Start(pName);
-    this.dataModelActionSend.id=this.dataModel.id;
+    this.dataModelActionSend.id = this.dataModel.id;
     this.estateCustomerOrderService.ServiceActionSendSms(this.dataModelActionSend).subscribe({
       next: (ret) => {
         if (ret.isSuccess) {
@@ -601,5 +602,34 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
     this.stepContent = step;
 
   }
+  onActionbuttonQuickViewRow(model: EstatePropertyModel): void {
+    if (!model || !model.id || model.id.length === 0) {
+      this.cmsToastrService.typeErrorSelectedRow();
+      return;
+    }
 
+    var nextItem = this.publicHelper.InfoNextRowInList(this.dataModelEstatePropertyResult.listItems, model);
+    var perviousItem = this.publicHelper.InfoPerviousRowInList(this.dataModelEstatePropertyResult.listItems, model);
+    var panelClass = '';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
+    const dialogRef = this.dialog.open(EstatePropertyQuickViewComponent, {
+      height: '90%',
+      panelClass: panelClass,
+      //enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+      //exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+      data: {
+        id: model.id,
+        perviousItem: perviousItem,
+        nextItem: nextItem
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.dialogChangedDate && result.onActionOpenItem && result.onActionOpenItem.id.length > 0) {
+        this.onActionbuttonQuickViewRow(result.onActionOpenItem)
+      }
+    });
+  }
 }

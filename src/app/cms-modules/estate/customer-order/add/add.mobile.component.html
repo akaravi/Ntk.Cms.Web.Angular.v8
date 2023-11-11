@@ -12,7 +12,7 @@
           <div>
             <label class="cms-m-form-label"> شماره تلفن همراه </label>
             <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
-              #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="0912-000-0000"
+              #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="09120000000"
               pattern="09[0-9]{2}[0-9]{3}[0-9]{4}" />
             <div class="cms-m-form-label"
               *ngIf="dataModel?.contactMobiles?.length>0 && !regeMobile.test(dataModel.contactMobiles)">
@@ -261,125 +261,10 @@
           <div class="cms-m-form-label">تعداد ملک انتخابی شما :
             {{this.dataModelEstatePropertyResult.totalRowCount}}
           </div>
-          <div
-            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
-            class="cms-form-result">
-            <div style="width: 100%;" *ngFor="let state of dataModelEstatePropertyResult.listItems">
-              <div style="width: 100%;" *ngFor="let contract of dataModelContractTypeResult.listItems">
-                <table>
-                  <tr *ngIf="state?.title?.length>0">
-                    <td colspan="2"> {{state.title}}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="1">مساحت:{{state.area}} </td>
-                    <td colspan="1">اتاق:{{state.partition}} </td>
-                  </tr>
-                  <tr *ngIf="state?.createdDate?.length>0">
-                    <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-                  </tr>
-                  <tr *ngIf="state?.propertyTypeLanduse?.title?.length>0">
-                    <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
-                    </td>
-                  </tr>
-                  <tr *ngIf="contract?.orderTitle?.length>0">
-                    <td colspan="2">نوع معامله:{{contract.orderTitle}}
-                    </td>
-                  </tr>
-                  <tr *ngIf="contract?.titleSoldItML?.length>0">
-                    <td colspan="2"> وضعیت معامله:{{contract.titleSoldItML}} </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">مبلغ کل قرار داد:{{state.partition}} </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">پرداخت در قرار داد: {{state.partition}}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">اقساط:{{state.partition}} </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
-          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
-          {{'ACTION.SEND_TO_CLIENT' | translate}}
-        </mat-slide-toggle>
-        <div class="cms-m-container-footer margin-bottom">
-          <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-            <span>قبلی</span>
-          </button>
-          <button (click)="onActoinSubmit()" class="cms-m-button">
-            ثبت
-          </button>
-          <button (click)="onActoinSelectStepNext('result2')" class="cms-m-button">
-            <span>بعدی</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-  <!-- result1 -->
-
-
-
-  <!-- result2 -->
-  <ng-container *ngIf="stepContent === 'result2'">
-    <div class="cms-m-container">
-      <div class="cms-m-filter">
-        <div class="cms-m-container-header" style="height: 70%;">
-          <div class="cms-m-form-label">نتیجه</div>
-          <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
-            .totalRowCount}}
-          </div>
-          <div
-            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
-            class="cms-form-result">
-            <div style="width: 100%;" *ngFor="let state of dataModelEstatePropertyResult.listItems">
-              <div style="width: 100%;" *ngFor="let contract of dataModelContractTypeResult.listItems">
-                <table>
-                  <tr *ngIf="state?.title?.length>0">
-                    <td colspan="2"> {{state.title}}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="1">مساحت:{{state.area}} </td>
-                    <td colspan="1">اتاق:{{state.partition}} </td>
-                  </tr>
-                  <tr *ngIf="state?.createdDate?.length>0">
-                    <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-                  </tr>
-                  <tr *ngIf="state?.propertyTypeLanduse?.title?.length>0">
-                    <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
-                    </td>
-                  </tr>
-                  <tr *ngIf="contract?.orderTitle?.length>0">
-                    <td colspan="2">نوع معامله:{{contract.orderTitle}}
-                    </td>
-                  </tr>
-                  <tr *ngIf="contract?.titleSoldItML?.length>0">
-                    <td colspan="2"> وضعیت معامله:{{contract.titleSoldItML}} </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">مبلغ کل قرار داد:{{state.partition}} </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">پرداخت در قرار داد: {{state.partition}}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">اقساط:{{state.partition}} </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
+          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="cms-form-result">
+            <ng-container [ngTemplateOutletContext]="{$implicit: dataModelEstatePropertyResult.listItems}"
+              [ngTemplateOutlet]="estateTemplate">
+            </ng-container>
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
@@ -408,7 +293,7 @@
       </div>
     </div>
   </ng-container>
-  <!-- result2 -->
+  <!-- result1 -->
 
 
   <!-- selectprice -->
@@ -498,7 +383,7 @@
             </svg>
             <span>قبلی</span>
           </button>
-          <button (click)="onActoinSelectStepNext('result3')" class="cms-m-button">
+          <button (click)="onActoinSelectStepNext('result2')" class="cms-m-button">
             <span>بعدی</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -511,6 +396,177 @@
   </ng-container>
   <!-- selectprice -->
 
+  <!-- result2 -->
+  <ng-container *ngIf="stepContent === 'result2'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header" style="height: 70%;">
+          <div class="cms-m-form-label">نتیجه</div>
+          <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
+            .totalRowCount}}
+          </div>
+          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="cms-form-result">
+            <ng-container [ngTemplateOutletContext]="{$implicit: dataModelEstatePropertyResult.listItems}"
+              [ngTemplateOutlet]="estateTemplate">
+            </ng-container>
+          </div>
+        </div>
+        <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
+          name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
+          {{'ACTION.SEND_TO_CLIENT' | translate}}
+        </mat-slide-toggle>
+        <div class="cms-m-container-footer margin-bottom">
+          <button (click)="onActoinSelectStepBefor('selectprice')" class="cms-m-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>قبلی</span>
+          </button>
+          <button (click)="onActoinSubmit()" class="cms-m-button">
+            ثبت
+          </button>
+          <button (click)="onActoinSelectStepNext('detail')" class="cms-m-button">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <!-- result2 -->
+
+
+
+  <!-- detail -->
+  <ng-container *ngIf="stepContent === 'detail'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header overflow-y">
+          <div class="cms-m-form-label">لطفا جزئیات ملک خود را وارد نمایید.</div>
+          <div>
+
+
+            <!-- propertyDetailGroups Field -->
+            <mat-accordion class="example-headers-align">
+              <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
+                [expanded]="step === i" (opened)="setStep(i)">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{itemGroup.title}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{itemGroup.description}}
+                    <mat-icon style="width: 100px;">{{itemGroup.iconFont}}</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- value-->
+                <ng-container *ngFor="let itemDetail of itemGroup.propertyDetails">
+                  <ng-container [ngSwitch]="itemDetail.inputDataType">
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchCase="enumInputDataType.String" class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+                        [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+                        [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+                        [optionDefaultValue]="itemDetail.configValueDefaultValues"
+                        [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title"
+                        style="color:'{{itemDetail.iconColor}}';">
+                      </app-input-string>
+                    </div>
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchCase="enumInputDataType.Int" class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <app-input-int [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                        [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                      </app-input-int>
+                    </div>
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchCase="enumInputDataType.Boolean" class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <app-input-boolean [(model)]="propertyDetails[itemDetail.id]">{{itemDetail.title}}
+                      </app-input-boolean>
+                    </div>
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchCase="enumInputDataType.Float" class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <app-input-float [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required"
+                        [optionTitle]="itemDetail.title" style="color:'{{itemDetail.iconColor}}';">
+                      </app-input-float>
+                    </div>
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchCase="enumInputDataType.Date" class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <label style="color:'{{itemDetail.iconColor}}';">{{itemDetail.title}}</label>
+                      <app-input-date [(model)]="propertyDetails[itemDetail.id]" [optionRequired]="itemDetail.required">
+                      </app-input-date>
+                    </div>
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchCase="enumInputDataType.TextArea" class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <app-input-textarea [(model)]="propertyDetails[itemDetail.id]"
+                        [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title"
+                        style="color:'{{itemDetail.iconColor}}';">
+                      </app-input-textarea>
+                    </div>
+                    <!-- ngSwitchCase-->
+                    <div *ngSwitchDefault class="ntk-full-width">
+                      <i [ngClass]="itemDetail.iconFont" [style.color]="itemDetail.iconColor"
+                        aria-hidden="true"></i>&nbsp;
+                      <app-input-string [(model)]="propertyDetails[itemDetail.id]"
+                        [optionForceUseDefaultValue]="itemDetail.configValueForceUseDefaultValue"
+                        [optionMultipleChoice]="itemDetail.configValueMultipleChoice"
+                        [optionDefaultValue]="itemDetail.configValueDefaultValues"
+                        [optionRequired]="itemDetail.required" [optionTitle]="itemDetail.title"
+                        style="color:'{{itemDetail.iconColor}}';">
+                      </app-input-string>
+                    </div>
+                  </ng-container>
+                </ng-container>
+                <mat-action-row>
+                  <button mat-button type="button" color="warn" *ngIf="i>0" (click)="prevStep()">{{'ACTION.PREVIOUS' |
+                    translate}}</button>
+                  <button mat-button type="button" color="primary" *ngIf="(i+1)<dataModel.propertyDetailGroups.length"
+                    (click)="nextStep()">{{'ACTION.NEXT' | translate}}</button>
+                  <button mat-button type="button" color="primary" *ngIf="(i+1)===dataModel.propertyDetailGroups.length"
+                    (click)="nextStep()">{{'ACTION.END' | translate}}</button>
+
+                </mat-action-row>
+              </mat-expansion-panel>
+              <br>
+
+            </mat-accordion>
+          </div>
+        </div>
+        <div class="cms-m-container-footer margin-top">
+          <button (click)="onActoinSelectStepBefor('detail')" class="cms-m-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+            <span>قبلی</span>
+          </button>
+          <button (click)="onActoinSelectStepNext('result3')" class="cms-m-button">
+            <span>بعدی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <!-- detail -->
 
   <!-- result3 -->
   <ng-container *ngIf="stepContent === 'result3'">
@@ -521,45 +577,10 @@
           <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
-          <div
-            *ngIf="dataModelEstatePropertyResult?.listItems?.length>0||dataModelContractTypeResult?.listItems?.length>0"
-            class="cms-form-result">
-            <div style="width: 100%;" *ngFor="let state of dataModelEstatePropertyResult.listItems">
-              <div style="width: 100%;" *ngFor="let contract of dataModelContractTypeResult.listItems">
-                <table>
-                  <tr *ngIf="state?.title?.length>0">
-                    <td colspan="2"> {{state.title}}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="1">مساحت:{{state.area}} </td>
-                    <td colspan="1">اتاق:{{state.partition}} </td>
-                  </tr>
-                  <tr *ngIf="state?.createdDate?.length>0">
-                    <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(state.createdDate)}} </td>
-                  </tr>
-                  <tr *ngIf="state?.propertyTypeLanduse?.title?.length>0">
-                    <td colspan="2">نوع ملک:{{state.propertyTypeLanduse.title}}
-                    </td>
-                  </tr>
-                  <tr *ngIf="contract?.orderTitle?.length>0">
-                    <td colspan="2">نوع معامله:{{contract.orderTitle}}
-                    </td>
-                  </tr>
-                  <tr *ngIf="contract?.titleSoldItML?.length>0">
-                    <td colspan="2"> وضعیت معامله:{{contract.titleSoldItML}} </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">مبلغ کل قرار داد:{{state.partition}} </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">پرداخت در قرار داد: {{state.partition}}</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">اقساط:{{state.partition}} </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
+          <div *ngIf="dataModelEstatePropertyResult?.listItems?.length>0" class="cms-form-result">
+            <ng-container [ngTemplateOutletContext]="{$implicit: dataModelEstatePropertyResult.listItems}"
+              [ngTemplateOutlet]="estateTemplate">
+            </ng-container>
           </div>
         </div>
         <mat-slide-toggle *ngIf="allowActionSend" [(ngModel)]="dataModelActionSend.actionSendSmsToEstateCustomer"
@@ -567,7 +588,7 @@
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
         <div class="cms-m-container-footer margin-bottom">
-          <button (click)="onActoinSelectStepBefor('selectPrice')" class="cms-m-button">
+          <button (click)="onActoinSelectStepBefor('detail')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -585,3 +606,26 @@
 
 
 </div>
+
+
+
+<ng-template let-listItem #estateTemplate>
+  <div style="width: 100%;" *ngFor="let item of listItem">
+    <table (click)="onActionbuttonQuickViewRow(item)">
+      <tr *ngIf="item?.title?.length>0">
+        <td colspan="2"> {{item.title}}</td>
+      </tr>
+      <tr>
+        <td colspan="1">مساحت:{{item.area}} </td>
+        <td colspan="1">اتاق:{{item.partition}} </td>
+      </tr>
+      <tr *ngIf="item?.createdDate?.length>0">
+        <td colspan="2">ثبت: {{publicHelper.LocaleDateTime(item.createdDate)}} </td>
+      </tr>
+      <tr *ngIf="item?.propertyTypeLanduse?.title?.length>0">
+        <td colspan="2">نوع ملک:{{item.propertyTypeLanduse.title}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-template>
