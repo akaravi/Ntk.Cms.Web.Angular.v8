@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
+import { PageInfoService } from 'src/app/core/services/page-info.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-cms-guide-notice',
@@ -200,16 +200,16 @@ export class CmsGuideNoticeComponent implements OnInit, OnDestroy {
   }
   onActionCopyHeaderKey(keyTemplate: any, event?: MouseEvent): void {
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     if (event?.ctrlKey && event?.altKey) {
       const dialogRef = this.dialog.open(keyTemplate, {
         width: '15%',
         panelClass: panelClass,
-      enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
-      exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
+        enterAnimationDuration: environment.cmsViewConfig.enterAnimationDuration,
+        exitAnimationDuration: environment.cmsViewConfig.exitAnimationDuration,
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.dialogChangedDate) {

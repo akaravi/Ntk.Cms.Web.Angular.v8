@@ -1,6 +1,6 @@
 import { MatDialog } from "@angular/material/dialog";
 import { BaseModuleEntity, IApiCmsServerBase } from "ntk-cms-api";
-import { PageInfoService } from "src/app/_metronic/layout/core/page-info.service";
+import { PageInfoService } from "src/app/core/services/page-info.service";
 import { CmsDataCommentComponent } from "src/app/shared/cms-data-comment/cms-data-comment.component";
 import { CmsDataMemoComponent } from "src/app/shared/cms-data-memo/cms-data-memo.component";
 import { CmsDataPinComponent } from "src/app/shared/cms-data-pin/cms-data-pin.component";
@@ -52,7 +52,7 @@ export class ListBaseComponent<TService extends IApiCmsServerBase, TModel extend
       panelClass = 'dialog-fullscreen';
     else
       panelClass = 'dialog-min';
-    
+
     const dialogRef = this.dialog.open(CmsDataMemoComponent, {
       height: "70%",
       panelClass: panelClass,

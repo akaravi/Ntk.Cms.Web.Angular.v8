@@ -29,7 +29,6 @@ import {
   TokenInfoModel,
 } from 'ntk-cms-api';
 import { Subscription } from 'rxjs';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -37,6 +36,7 @@ import { TokenHelper } from 'src/app/core/helpers/tokenHelper';
 import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
+import { PageInfoService } from 'src/app/core/services/page-info.service';
 import { CmsConfirmationDialogService } from 'src/app/shared/cms-confirmation-dialog/cmsConfirmationDialog.service';
 import { CmsExportEntityComponent } from 'src/app/shared/cms-export-entity/cms-export-entity.component';
 import { CmsExportListComponent } from 'src/app/shared/cms-export-list/cmsExportList.component';
@@ -92,7 +92,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
 
     this.recordStatus =
       RecordStatusEnum[
-        this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''
+      this.activatedRoute.snapshot.paramMap.get('RecordStatus') + ''
       ];
     if (this.recordStatus) {
       this.optionsSearch.data.show = true;
@@ -633,7 +633,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
         title: '',
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
     //open popup
   }
   onActionButtonPrintEntity(model: any = this.tableRowSelected): void {
@@ -665,7 +665,7 @@ export class EstatePropertyHistoryListComponent implements OnInit, OnDestroy {
         title: this.tableRowSelected.title,
       },
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
     //open popup
   }
 

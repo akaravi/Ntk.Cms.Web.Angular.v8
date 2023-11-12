@@ -9,9 +9,9 @@ import { CmsDataMemoComponent } from 'src/app/shared/cms-data-memo/cms-data-memo
 import { CmsDataPinComponent } from 'src/app/shared/cms-data-pin/cms-data-pin.component';
 import { CmsDataTaskComponent } from 'src/app/shared/cms-data-task/cms-data-task.component';
 import { CmsShowKeyComponent } from 'src/app/shared/cms-show-key/cms-show-key.component';
-import { LayoutService } from '../../../core/layout.service';
-import { PageInfoService, PageLink } from '../../../core/page-info.service';
 import { environment } from 'src/environments/environment';
+import { PageInfoService, PageLink } from '../../../../../core/services/page-info.service';
+import { LayoutService } from '../../../core/layout.service';
 
 @Component({
   selector: 'app-page-title',
