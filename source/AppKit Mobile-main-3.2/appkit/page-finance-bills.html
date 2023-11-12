@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>اپکیت</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.rtl.min.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="fonts/css/all.min.css">
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+</head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<div id="page">
+
+    <div class="header header-fixed header-logo-center header-auto-show">
+        <a href="index.html" class="header-title">صورتحساب</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-right"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>امکانات</span></a>
+        <a href="index-pages.html" class="active-nav"><i class="fa fa-file-lines"></i><span>صفحات</span></a>
+        <a href="index.html" class="circle-nav"><i class="fad fa-home"></i><span>خانه</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>پروژه ها</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>منو</span></a>
+    </div>
+
+    <div class="page-title page-title-fixed">
+        <h1>صورتحساب</h1>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
+    </div>
+    <div class="page-title-clear"></div>
+
+    <div class="page-content">
+
+    <div id="tab-group-1">
+        <div class="card card-style bg-theme pb-0">
+            <div class="content mb-0 mx-0 my-0">
+                <div class="tab-controls tabs-small" data-highlight="bg-highlight">
+                    <a href="#" data-active data-bs-toggle="collapse" data-bs-target="#tab-1">انتظار</a>
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#tab-2">پرداخت شده</a>
+                </div>
+            </div>
+        </div>
+        <div data-bs-parent="#tab-group-1" class="collapse show" id="tab-1">
+            <div class="content mt-0">
+                <div class="row mb-0">
+                    <div class="col-6 pe-2 text-center">
+                        <a href="#" data-menu="menu-bill" class="card card-style mx-0 mb-3 px-3 pt-4">
+                            <i class="fab fa-spotify color-green-dark font-40"></i>
+                            <h4 class="pt-3 mb-0">Spotify</h4>
+                            <span class="color-red-dark font-11">2 روز عقب افتاده</span>
+                            <span class="color-theme font-14 opacity-50 pt-3">مجموع: 19,000 تومانءءء</span>
+                            <strong class="color-theme font-10 opacity-30 pt-3">برای مشاهده فاکتور ضربه بزنید</strong>
+                        </a>
+                    </div>
+                    <div class="col-6 ps-2 text-center">
+                        <a href="#" data-menu="menu-bill" class="card card-style mx-0 mb-3 px-3 pt-4">
+                            <i class="fa fa-tint color-blue-dark font-40"></i>
+                            <h4 class="pt-3 mb-0">قبض آب</h4>
+                            <span class="color-green-dark font-11">باید امروز انجام بشود</span>
+                            <span class="color-theme font-14 opacity-50 pt-3">مجموع: 14,000 تومانءءء</span>
+                            <strong class="color-theme font-10 opacity-30 pt-3">برای مشاهده فاکتور ضربه بزنید</strong>
+                        </a>
+                    </div>
+                    <div class="col-6 pe-2 text-center">
+                        <a href="#" data-menu="menu-bill" class="card card-style mx-0 mb-3 px-3 pt-4">
+                            <i class="fa fa-bolt color-yellow-dark font-40"></i>
+                            <h4 class="pt-3 mb-0">قبض برق</h4>
+                            <span class="color-blue-dark font-11">سررسید فردا</span>
+                            <span class="color-theme font-14 opacity-50 pt-3">مجموع: 25,000 تومانءءء</span>
+                            <strong class="color-theme font-10 opacity-30 pt-3">برای مشاهده فاکتور ضربه بزنید</strong>
+                        </a>
+                    </div>
+                    <div class="col-6 ps-1 text-center">
+                        <a href="#" data-menu="menu-bill" class="card card-style mx-0 mb-3 px-3 pt-4">
+                            <i class="fa fa-cloud color-teal-dark font-40"></i>
+                            <h4 class="pt-3 mb-0">فروشگاه ابری</h4>
+                            <span class="color-blue-dark font-11">سررسید فردا</span>
+                            <span class="color-theme font-14 opacity-50 pt-3">مجموع: 25,000 تومانءءء</span>
+                            <strong class="color-theme font-10 opacity-30 pt-3">برای مشاهده فاکتور ضربه بزنید</strong>
+                        </a>
+                    </div>
+                    <div class="col-6 pe-2 text-center">
+                        <a href="#" data-menu="menu-bill" class="card card-style mx-0 mb-3 px-3 pt-4">
+                            <i class="fab fa-google color-red-dark font-40"></i>
+                            <h4 class="pt-3 mb-0">تبلیغات گوگل</h4>
+                            <span class="color-blue-dark font-11">سررسید فردا</span>
+                            <span class="color-theme font-14 opacity-50 pt-3">مجموع: 140,000 تومانءءء</span>
+                            <strong class="color-theme font-10 opacity-30 pt-3">برای مشاهده فاکتور ضربه بزنید</strong>
+                        </a>
+                    </div>
+                    <div class="col-6 ps-1 text-center">
+                        <a href="#" data-menu="menu-bill" class="card card-style mx-0 mb-3 px-3 pt-4">
+                            <i class="fab fa-digital-ocean color-blue-dark font-40"></i>
+                            <h4 class="pt-3 mb-0">اقیانوس دیجیتال</h4>
+                            <span class="color-blue-dark font-11">سررسید فردا</span>
+                            <span class="color-theme font-14 opacity-50 pt-3">مجموع: 150,000 تومانءءء</span>
+                            <strong class="color-theme font-10 opacity-30 pt-3">برای مشاهده فاکتور ضربه بزنید</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-bs-parent="#tab-group-1" class="collapse" id="tab-2">
+            <div class="card card-style p-3">
+                <a href="#" data-menu="menu-invoice" class="d-flex">
+                    <div class="align-self-center">
+                        <span class="icon icon-s gradient-green color-white rounded-sm shadow-xxl"><i class="fab fa-spotify font-20"></i></span>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="ps-3 mb-0 font-15">اسپاتیفای موزیک</h5>
+                        <span class="ps-3 font-11 color-theme opacity-70">اشتراک ماهانه</span>
+                    </div>
+                    <div class="ms-auto text-end align-self-center">
+                        <h5 class="color-theme font-15 font-700 d-block mb-0">19,000 تومانءءء</h5>
+                        <span class="color-green-dark font-11">15 اردیبهشت <i class="fa fa-check-circle"></i></span>
+                    </div>
+                </a>
+                <div class="divider my-3"></div>
+                <a href="#" data-menu="menu-invoice" class="d-flex">
+                    <div class="align-self-center">
+                        <span class="icon icon-s gradient-blue color-white rounded-sm shadow-xxl"><i class="fa fa-tint font-20"></i></span>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="ps-3 mb-0 font-15">قبض آب</h5>
+                        <span class="ps-3 font-11 color-theme opacity-70">صورتحساب: #415-4516-8565</span>
+                    </div>
+                    <div class="ms-auto text-end align-self-center">
+                        <strong class="color-theme font-14 d-block mb-0">$21.25</strong>
+                        <span class="color-green-dark font-11 d-block">15 اردیبهشت <i class="fa fa-check-circle"></i></span>
+                    </div>
+                </a>
+                <div class="divider my-3"></div>
+                <a href="#" data-menu="menu-invoice" class="d-flex">
+                    <div class="align-self-center">
+                        <span class="icon icon-s gradient-yellow color-white rounded-sm shadow-xxl"><i class="fa fa-bolt font-20"></i></span>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="ps-3 mb-0 font-15">قبض برق</h5>
+                        <span class="ps-3 font-11 color-theme opacity-70">صورتحساب: #415-4516-8565</span>
+                    </div>
+                    <div class="ms-auto text-end align-self-center">
+                        <strong class="color-theme font-14 d-block mb-0">$43.52</strong>
+                        <span class="color-green-dark font-11 d-block">15 اردیبهشت <i class="fa fa-check-circle"></i></span>
+                    </div>
+                </a>
+                <div class="divider my-3"></div>
+                <a href="#" data-menu="menu-invoice" class="d-flex">
+                    <div class="align-self-center">
+                        <span class="icon icon-s gradient-teal color-white rounded-sm shadow-xxl"><i class="fa fa-cloud font-20"></i></span>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="ps-3 mb-0 font-15">ذخیره سازی آنلاین</h5>
+                        <span class="ps-3 font-11 color-theme opacity-70">صورتحساب: #415-4516-8565</span>
+                    </div>
+                    <div class="ms-auto text-end align-self-center">
+                        <strong class="color-theme font-14 d-block mb-0">$43.52</strong>
+                        <span class="color-green-dark font-11 d-block">15 اردیبهشت <i class="fa fa-check-circle"></i></span>
+                    </div>
+                </a>
+                <div class="divider my-3"></div>
+                <a href="#" data-menu="menu-invoice" class="d-flex">
+                    <div class="align-self-center">
+                        <span class="icon icon-s gradient-pink color-white rounded-sm shadow-xxl"><i class="fab fa-dribbble font-20"></i></span>
+                    </div>
+                    <div class="align-self-center">
+                        <h5 class="ps-3 mb-0 font-15">دریبل زدن</h5>
+                        <span class="ps-3 font-11 color-theme opacity-70">اشتراک سالانه</span>
+                    </div>
+                    <div class="ms-auto text-end align-self-center">
+                        <strong class="color-theme font-14 d-block mb-0">$35.50</strong>
+                        <span class="color-green-dark font-11 d-block">15 اردیبهشت <i class="fa fa-check-circle"></i></span>
+                    </div>
+                </a>
+                <div class="divider my-3"></div>
+                <p class="text-center font-11 opacity-50 mb-0">برای مشاهده فایل فاکتور، روی هر صورتحساب ضربه بزنید</p>
+            </div>
+        </div>
+    </div>
+
+
+
+        <div data-menu-load="menu-footer.html"></div>
+    </div>
+    <!-- Page content ends here-->
+
+    <!-- Cards Menu-->
+    <div id="menu-bill"
+         class="menu menu-box-bottom rounded-m bg-white"
+         data-menu-height="405">
+        <div class="menu-title">
+            <p class="color-highlight font-600">ثبت پرداخت.</p>
+            <h1 class="font-24">صورتحساب ها و فاکتورها</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="content">
+            <div class="input-style has-borders no-icon input-style-always-active">
+                <label for="form5412" class="color-highlight">یک لایحه را انتخاب کنید</label>
+                <select id="form5412">
+                    <option value="asd2a">اسپاتیفای موزیک</option>
+                    <option value="asd2a">قبض آب</option>
+                    <option value="asd1b">قبض برق</option>
+                    <option value="asd1c">ذخیره سازی آنلاین</option>
+                    <option value="asd1c">دریبل زدن</option>
+                </select>
+                <span><i class="fa fa-chevron-down"></i></span>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <i class="fa fa-check disabled invalid color-red-dark"></i>
+                <em></em>
+            </div>
+
+            <div class="pb-2"></div>
+
+            <div class="input-style has-borders no-icon input-style-always-active validate-field">
+                <input type="number" class="form-control validate-number" id="form1aafee5" placeholder="#12-345-6772">
+                <label for="form1aafee5" class="color-highlight font-12 font-500">شناسه فاکتور</label>
+                <i class="fa fa-times disabled invalid color-red-dark"></i>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <em>(ضروری)</em>
+            </div>
+
+            <div class="pb-2"></div>
+
+            <div class="input-style has-borders no-icon input-style-always-active validate-field">
+                <input type="number" class="form-control validate-number" id="form1aafee51" placeholder="$25.35">
+                <label for="form1aafee51" class="color-highlight font-12 font-500">مبلغ صورتحساب</label>
+                <i class="fa fa-times disabled invalid color-red-dark"></i>
+                <i class="fa fa-check disabled valid color-green-dark"></i>
+                <em>(ضروری)</em>
+            </div>
+
+            <div class="pb-2"></div>
+
+            <a href="#" class="close-menu btn btn-l font-13 font-600 gradient-blue btn-full rounded-s border-0">پرداخت قبض</a>
+        </div>
+    </div>
+
+     <!-- Invoice Menu-->
+    <div id="menu-invoice"
+         class="menu menu-box-bottom rounded-m bg-white"
+         data-menu-height="495">
+        <div class="menu-title">
+            <p class="color-highlight font-600">اشتراک ماهانه.</p>
+            <h1 class="font-24">اسپاتیفای موزیک</h1>
+            <a href="#" class="close-menu"><i class="fa fa-times-circle"></i></a>
+        </div>
+        <div class="content mb-0">
+            <div class="row mb-0">
+                <div class="col-4"><p class="color-theme">ارائه دهنده</p></div>
+                <div class="col-8"><p class="text-end opacity-80">Spotify Music Inc.</p></div>
+
+                <div class="col-12 pt-2"><div class="divider mb-2"></div></div>
+
+                <div class="col-4"><p class="color-theme">فاصله</p></div>
+                <div class="col-8"><p class="text-end opacity-80">115 مهر - 21 دی.</p></div>
+
+                <div class="col-12 pt-2"><div class="divider mb-2"></div></div>
+
+                <div class="col-4"><p class="color-theme">ارزش</p></div>
+                <div class="col-8"><p class="text-end opacity-80">19,000 تومانءءء</p></div>
+
+                <div class="col-12 pt-2"><div class="divider mb-2"></div></div>
+
+                <div class="col-4"><p class="color-theme">وضعیت</p></div>
+                <div class="col-8"><p class="text-end color-green-dark">فاکتور پرداخت شده</p></div>
+
+                <div class="col-12 pt-2"><div class="divider mb-2"></div></div>
+
+                <div class="col-4"><p class="color-theme">تاریخ پرداخت</p></div>
+                <div class="col-8"><p class="text-end opacity-80">16 دی</p></div>
+
+                <div class="col-12 pt-2"><div class="divider mb-2"></div></div>
+
+                <div class="col-4"><p class="color-theme">با استفاده از پرداخت</p></div>
+                <div class="col-8"><p class="text-end opacity-80">کارت اعتباری</p></div>
+
+                <div class="col-12 pt-2"><div class="divider mb-2"></div></div>
+            </div>
+            <p class="font-11 opacity-50 pt-3 mb-4">از اینکه Spotify Music را به عنوان ارائه دهنده موسیقی خود انتخاب کردید متشکریم</p>
+            <a href="#" class="close-menu btn btn-l font-13 font-600 gradient-green btn-full rounded-s border-0">این صورتحساب پرداخت شده است</a>
+        </div>
+    </div>
+
+
+    <!-- Main Menu-->
+    <div id="menu-main" class="menu menu-box-right rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
+
+    <!-- Share Menu-->
+    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>
+
+    <!-- Colors Menu-->
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>
+
+
+</div>
+
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>

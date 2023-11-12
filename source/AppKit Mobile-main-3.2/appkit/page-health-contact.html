@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>اپکیت</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.rtl.min.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="fonts/css/all.min.css">
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+</head>
+
+<body class="theme-light">
+
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+
+<div id="page">
+
+    <div class="header header-fixed header-logo-center">
+        <a href="index.html" class="header-title">در تماس باشید</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-right"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>امکانات</span></a>
+        <a href="index-pages.html" class="active-nav"><i class="fa fa-file-lines"></i><span>صفحات</span></a>
+        <a href="index.html" class="circle-nav"><i class="fad fa-home"></i><span>خانه</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>پروژه ها</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>منو</span></a>
+    </div>
+
+
+    <div class="card card-fixed mb-n5" data-card-height="350">
+        <div class="map-full">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.0288453419375!2d51.412125075508385!3d35.7992251725494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0720fb6ab137%3A0x1d087050b06ea550!2sRtl%20Theme!5e0!3m2!1sen!2s!4v1686202889061!5m2!1sen!2s"></iframe>
+        </div>
+    </div>
+    <div class="card card-clear" data-card-height="350"></div>
+
+
+    <div class="page-content pb-3">
+
+        <div class="card card-full rounded-m pb-4">
+            <div class="drag-line"></div>
+
+            <div class="content">
+                <p class="font-600 mb-0 color-highlight">ما اینجا هستیم</p>
+                <h1>با ما تماس بگیرید</h1>
+                <p>
+                    فرم تماس کاملاً کاربردی، فقط پیام خود را ارسال کنید و در کوتاه ترین زمان ممکن با شما تماس خواهیم گرفت.
+                </p>
+            </div>
+
+            <div class="form-sent disabled">
+                <div class="card card-style">
+                    <div class="shadow-l rounded-m gradient-green ms-n1 mb-0 ">
+                        <h1 class="color-white text-center pt-4"><i class="fa fa-check-circle fa-3x shadow-s scale-box rounded-circle"></i></h1>
+                        <h2 class="color-white bold text-center pt-3">پیام ارسال شد</h2>
+                        <p class="color-white pb-4 text-center mt-n2 mb-0">ما به زودی با شما تماس خواهیم گرفت.</p>
+                    </div>
+                </div>
+
+                <div class="card card-style">
+                    <div class="content text-center">
+                        <h2>در ضمن، بیایید اجتماعی شویم!</h2>
+                        <p class="boxed-text-xl">
+                            در اینجا پلتفرم های رسانه های اجتماعی ما هستند! ما را برای آخرین به روز رسانی ها دنبال کنید یا فقط سلام کنید!
+                        </p>
+                        <a href="#" class="icon icon-xl shadow-xl rounded-xl bg-facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="icon icon-xl shadow-xl rounded-xl bg-instagram ms-3 me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="icon icon-xl shadow-xl rounded-xl bg-twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="validator-name" class="disabled bg-red-dark content rounded-sm shadow-xl text-center line-height-xs py-3 mb-0 font-700">Name is required!</div>
+            <div id="validator-mail1" class="disabled bg-red-dark content rounded-sm shadow-xl text-center line-height-xs py-3 mb-0 font-700">Email Address is required!</div>
+            <div id="validator-mail2" class="disabled bg-red-dark content rounded-sm shadow-xl text-center line-height-xs py-3 mb-0 font-700">Invalid email Address!</div>
+            <div id="validator-text" class="disabled bg-red-dark content rounded-sm shadow-xl text-center line-height-xs py-3 mb-0 font-700">Please enter your message!</div>
+
+            <div class="card contact-form">
+                <div class="content">
+                    <form action="php/contact.php" method="post" class="contactForm" id="contactForm">
+                        <fieldset>
+                            <div class="form-field form-name">
+                                <label class="contactNameField color-theme" for="contactNameField">نام:<span>(ضروری)</span></label>
+                                <input type="text" name="contactNameField" value="" class="round-small" id="contactNameField" />
+                            </div>
+                            <div class="form-field form-email">
+                                <label class="contactEmailField color-theme" for="contactEmailField">ایمیل:<span>(ضروری)</span></label>
+                                <input type="text" name="contactEmailField" value="" class="round-small" id="contactEmailField" />
+                            </div>
+                            <div class="form-field form-text">
+                                <label class="contactMessageTextarea color-theme" for="contactMessageTextarea">پیام:<span>(ضروری)</span></label>
+                                <textarea name="contactMessageTextarea" class="round-small" id="contactMessageTextarea"></textarea>
+                            </div>
+                            <div class="form-button">
+                                <input type="submit" class="btn bg-highlight font-700 btn-m btn-full rounded-sm  shadow-xl contactSubmitButton" value="ارسال" data-formId="contactForm" />
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div class="form-sent disabled">
+                <div class="card card-style ">
+                    <div class="shadow-l rounded-m gradient-green ms-n1 mb-0 ">
+                        <h1 class="color-white text-center pt-4"><i class="fa fa-check-circle fa-3x shadow-s scale-box rounded-circle"></i></h1>
+                        <h2 class="color-white bold text-center pt-3">پیام ارسال شد</h2>
+                        <p class="color-white pb-4 text-center mt-n2 mb-0">ما به زودی با شما تماس خواهیم گرفت.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content mt-0">
+                <div class="divider"></div>
+
+                <h3 class="font-700">اطلاعات پستی</h3>
+                <p class="pb-0 mb-0">شهرکرد، خیابان کاشانی ، نبش کوچه 85</p>
+                <p class="pb-0 mb-0">تبریز، بلوار آزادی، کوی شبنم، پلاک ۲۹</p>
+                <p class="pb-0">تهران، زعفرانیه، خیابان مقدس اردبیلی</p>
+
+                <div class="divider"></div>
+
+                <h3 class="font-700">دفتر مرکزی</h3>
+                <p class="pb-0 mb-0">شهرکرد، خیابان کاشانی ، نبش کوچه 85</p>
+                <p class="pb-0 mb-0">تبریز، بلوار آزادی، کوی شبنم، پلاک ۲۹</p>
+                <p class="pb-0">تبریز، بلوار آزادی، کوی شبنم، پلاک ۲۹</p>
+
+                <div class="list-group list-custom-small">
+                    <a href="tel:+1 234 567 890" class="external-link">
+                        <i class="fa font-14 fa-phone color-phone"></i>
+                        <span>234 567 8900</span>
+                        <span class="badge bg-highlight">تماس</span>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                    <a href="mailto:mail@domain.com" class="external-link">
+                        <i class="fa font-14 fa-envelope color-mail"></i>
+                        <span>mail@domain.com</span>
+                        <span class="badge bg-highlight">ارسال ایمیل</span>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                    <a href="https://www.facebook.com/designesia.labs/" class="external-link">
+                        <i class="fab font-14 fa-facebook color-facebook"></i>
+                        <span>designesia.labs</span>
+                        <i class="fa fa-link"></i>
+                    </a>
+                    <a href="https://twitter.com/iEnabled" class="external-link">
+                        <i class="fab font-14 fa-twitter-square color-twitter"></i>
+                        <span>@designesia</span>
+                        <i class="fa fa-link"></i>
+                    </a>
+                    <a href="#" class="border-0">
+                        <i class="fab font-14 fa-linkedin color-linkedin"></i>
+                        <span>@mddesignesia</span>
+                        <i class="fa fa-link"></i>
+                    </a>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Page content ends here-->
+
+    <!-- Main Menu-->
+    <div id="menu-main" class="menu menu-box-right rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-contact"></div>
+
+    <!-- Share Menu-->
+    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>
+
+    <!-- Colors Menu-->
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>
+
+
+</div>
+
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>

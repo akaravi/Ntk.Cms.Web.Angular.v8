@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>اپکیت</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.rtl.min.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="fonts/css/all.min.css">    
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+</head>
+    
+<body class="theme-light">
+    
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    
+<div id="page">
+    
+    <div class="header header-fixed header-logo-center header-auto-show">
+        <a href="index.html" class="header-title">رزرو</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-right"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>امکانات</span></a>
+        <a href="index-pages.html" class="active-nav"><i class="fa fa-file-lines"></i><span>صفحات</span></a>
+        <a href="index.html" class="circle-nav"><i class="fad fa-home"></i><span>خانه</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>پروژه ها</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>منو</span></a>
+    </div>
+    
+    <div class="page-title page-title-fixed">
+        <h1>رزرو</h1>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
+    </div>
+    <div class="page-title-clear"></div>
+        
+    <div class="page-content">
+		
+		<div class="card card-style">
+			<div class="content">
+				<h4>با ما تماس بگیرید</h4>
+				<p>
+					اگر برای شما راحت تر است، روی دکمه زیر ضربه بزنید تا اکنون با ما تماس بگیرید و ما تمام جزئیات را از طریق یک تماس کوتاه تنظیم می کنیم.
+				</p>
+				<a href="tel:+1 234 567 890" class="default-link btn btn-m rounded-sm font-700 btn-full gradient-green border-0">شماره های تماس</a>
+			</div>
+		</div>
+        
+		<div class="card card-style">
+			<div class="content">
+				<h4>جزئیات</h4>
+				<p>
+					درباره عکاسی خود بیشتر به ما بگویید.
+				</p>
+				<div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
+					<input type="name" class="form-control validate-name" id="form1" placeholder="مهران دانایی">
+					<label for="form1" class="color-highlight">نام</label>
+					<i class="fa fa-times disabled invalid color-red-dark"></i>
+					<i class="fa fa-check disabled valid color-green-dark"></i>
+					<em>(ضروری)</em>
+				</div>
+				
+				<div class="input-style input-style-always-active has-borders np-icon validate-field mb-4">
+					<input type="email" class="form-control validate-email" id="form1" placeholder="johndoe@gmail.com">
+					<label for="form1" class="color-highlight">ایمیل</label>
+					<i class="fa fa-times disabled invalid color-red-dark"></i>
+					<i class="fa fa-check disabled valid color-green-dark"></i>
+					<em>(ضروری)</em>
+				</div>
+				
+				<div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
+					<input type="tel" class="form-control validate-tel" id="form1" placeholder="1 234 567 8901">
+					<label for="form1" class="color-highlight">تلفن</label>
+					<i class="fa fa-times disabled invalid color-red-dark"></i>
+					<i class="fa fa-check disabled valid color-green-dark"></i>
+					<em>(ضروری)</em>
+				</div>
+				
+				<div class="input-style input-style-always-active has-borders no-icon validate-field mb-4">
+					<input type="text" class="form-control validate-text" id="form3" placeholder="ملبورن، ویکتوریا">
+					<label for="form3" class="color-highlight">مکان</label>
+					<i class="fa fa-times disabled invalid color-red-dark"></i>
+					<i class="fa fa-check disabled valid color-green-dark"></i>
+					<em>(ضروری)</em>
+				</div>
+				
+				<div class="input-style input-style-always-active has-borders no-icon mb-4">
+					<input type="text" value="1401-12-12" class="form-control validate-text p-date" id="form6" placeholder="تاریخ رویداد">
+					<label for="form6" class="color-highlight">تاریخ رویداد</label>
+					<i class="fa fa-check disabled valid me-4 pe-3 font-12 color-green-dark"></i>
+					<i class="fa fa-check disabled invalid me-4 pe-3 font-12 color-red-dark"></i>
+					<em>(ضروری)</em>
+				</div>
+				
+				<div class="input-style input-style-always-active has-borders no-icon mb-4">
+					<textarea id="form7" placeholder="من دوست دارم ...."></textarea>
+					<label for="form7" class="color-highlight">رویداد خود را توصیف کنید</label>
+					<em class="mt-n3">(ضروری)</em>
+				</div>
+				
+				<h5 class="font-14 pb-1">عکسبرداری در کجا برگزار می شود؟</h5>
+				<div class="form-check interest-check">
+					  <input class="form-check-input" type="checkbox" value="" id="check1">
+					  <label class="form-check-label shadow-xl rounded-xl" for="check1">داخل</label>
+					  <i class="fa fa-check-circle color-white font-18"></i>
+					  <i class="fa fa-building font-17 color-gray-dark"></i>
+				</div>
+				<div class="form-check interest-check">
+					  <input class="form-check-input" type="checkbox" value="" id="check2">
+					  <label class="form-check-label shadow-xl rounded-xl" for="check2">خارج</label>
+					  <i class="fa fa-check-circle color-white font-18"></i>
+					  <i class="fa fa-image font-17 color-green-dark"></i>
+				</div>
+				
+				<a href="#" class="btn btn-m rounded-sm font-700 btn-full gradient-highlight border-0">ثبت رزرو</a>
+
+			</div>
+		</div>        
+
+
+        <div data-menu-load="menu-footer.html"></div>
+    </div>
+    <!-- Page content ends here-->
+    
+    <!-- Main Menu--> 
+    <div id="menu-main" class="menu menu-box-right rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
+    
+    <!-- Share Menu-->
+    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
+    
+    <!-- Colors Menu-->
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
+     
+    
+</div>
+
+<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="plugins/persiandate/persian-date.js"></script>
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>اپکیت</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.rtl.min.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="fonts/css/all.min.css">    
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+</head>
+    
+<body class="theme-light">
+    
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    
+<div id="page">
+    
+    <div class="header header-fixed header-logo-center">
+        <a href="index.html" class="header-title show-business-opened">خوش آمدید، ما باز هستیم</a>
+        <a href="index.html" class="header-title show-business-closed">متاسفیم، ما بسته ایم</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-right"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html"><i class="fa fa-layer-group"></i><span>امکانات</span></a>
+        <a href="index-pages.html" class="active-nav"><i class="fa fa-file-lines"></i><span>صفحات</span></a>
+        <a href="index.html" class="circle-nav"><i class="fad fa-home"></i><span>خانه</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>پروژه ها</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>منو</span></a>
+    </div>
+    
+        
+    <div class="page-content header-clear-medium">
+        
+        <div class="card card-style">
+            <div class="content">
+                <p class="mb-0 color-highlight font-600">ساعات کاری</p>
+                <h1>ساعات کاری</h1>
+                <p>
+                   برنامه خود را به صورت خودکار نمایش دهید، صفحه ما محتوا را بر اساس شما نشان داده و پنهان می کند برنامه کاری، و همچنین رنگ ها را در صورت جدول زمانی زیر تنظیم می کند.
+                </p>
+            </div>
+        </div>
+        
+        <div class="show-business-opened card card-style bg-16" data-card-height="150">
+            <div class="card-center ps-3">
+                <h1 class="color-white mb-0">ما باز هستیم</h1>
+                <p class="color-white mb-0">
+                    ما باز هستیم و منتظر شما
+                </p>
+            </div>
+            <div class="card-center">
+                <a href="#" class="btn btn-s bg-white color-black rounded-xl float-end me-2 font-600">تماس</a>
+            </div>
+            <div class="card-overlay bg-black opacity-70"></div>
+        </div>
+        
+        <div class="show-business-closed card card-style bg-6" data-card-height="150">
+            <div class="card-center ps-3">
+                <h1 class="color-white mb-0">ما بسته ایم</h1>
+                <p class="color-white mb-0">
+                   فردا می بینمت
+                </p>
+            </div>
+            <div class="card-center">
+                <a href="#" class="btn btn-s bg-white color-black rounded-xl float-end me-2 font-600">ایمیل</a>
+            </div>
+            <div class="card-overlay bg-black opacity-70"></div>
+        </div>
+        
+        <div class="card card-style alert show-business-closed" role="alert">
+            <div class="d-flex py-2">
+                <div>
+                    <i class="fa fa-exclamation-circle me-3 scale-box fa-4x color-red-dark"></i>
+                </div>
+                <div>
+                    <p class="color-highlight mb-0 font-12 font-600">متاسفم!</p>
+                    <h1 class="mb-0">ما بسته ایم</h1>
+                </div>
+                <div class="ms-auto align-self-center">
+                    <div data-bs-dismiss="alert" aria-label="Close"><i class="fa fa-times-circle font-16 color-red-dark"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-style alert show-business-opened" role="alert">
+            <div class="d-flex py-2">
+                <div>
+                    <i class="fa fa-check-circle me-3 scale-box fa-4x color-blue-dark"></i>
+                </div>
+                <div>
+                    <p class="color-highlight mb-0 font-12 font-600">خانه</p>
+                    <h1 class="mb-0">ما باز هستیم</h1>
+                </div>
+                <div class="ms-auto align-self-center">
+                    <div data-bs-dismiss="alert" aria-label="Close"><i class="fa fa-times-circle font-16 color-red-dark"></i></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="card card-style">
+            <div class="card mx-0" data-card-height="120">
+                <div class="card-center">
+                    <a href="tel:+1 234 567 890" class="external-link show-business-opened float-end btn btn-xs rounded-xl font-700 me-3 bg-white color-black">تماس</a>
+                    <a href="page-contact.html" class="show-business-closed float-end btn btn-xs rounded-xl font-700 me-3 bg-white color-black">ایمیل</a>
+                </div>
+                <div class="card-center ms-3 ps-1">
+                    <h1 class="font-20 show-business-opened working-message-above color-white mb-0">ما باز هستیم!</h1>
+                    <p class="show-business-opened working-message-under color-white opacity-90 mb-0">اکنون با ما تماس بگیرید! بیا چت کنیم!</p>
+                    <h1 class="font-20 show-business-closed working-message-above color-white mb-0">ما بسته ایم!</h1>
+                    <p class="show-business-closed working-message-under color-white opacity-90 mb-0">خیلی زود برمیگردیم!</p>
+                </div>
+                <div class="card-overlay rounded-0 show-business-opened bg-green-dark"></div>
+                <div class="card-overlay rounded-0 show-business-closed bg-red-dark"></div>
+            </div>
+            <div class="content mt-n4 mb-0">
+                <!-- To set open and Close Hours Open custom.js and search for "SET OPENING HOURS BELOW" -->
+                <!-- Only setting the code below will not make the system work automatically-->
+                <div data-day="Monday" class="working-hours"><p>دوشنبه</p><p>09:00 صبح</p><p>05:00 ب.ظ</p></div>
+                <div data-day="Tuesday" class="working-hours"><p>سه شنبه</p><p>09:00 صبح</p><p>05:00 ب.ظ</p></div>
+                <div data-day="Wednesday" class="working-hours"><p>چهار شنبه</p><p>09:00 صبح</p><p>05:00 ب.ظ</p></div>
+                <div data-day="Thursday" class="working-hours"><p>پنج شنبه</p><p>09:00 صبح</p><p>05:00 ب.ظ</p></div>
+                <div data-day="Friday" class="working-hours"><p>جمعه</p><p>09:00 صبح</p><p>05:00 ب.ظ</p></div>
+                <div data-day="Saturday" class="working-hours"><p>شنبه</p><p>09:00 صبح</p><p>01:00 ب.ظ</p></div>
+                <div data-day="Sunday" class="working-hours"><p>یکشنبه</p><p class="opacity-00">-</p><p>ما بسته ایم</p></div>
+            </div>
+        </div>
+
+
+        <div data-menu-load="menu-footer.html"></div>
+    </div>
+    <!-- Page content ends here-->
+    
+    <!-- Main Menu--> 
+    <div id="menu-main" class="menu menu-box-right rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-pages"></div>
+    
+    <!-- Share Menu-->
+    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
+    
+    <!-- Colors Menu-->
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
+     
+    
+</div>
+
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>
