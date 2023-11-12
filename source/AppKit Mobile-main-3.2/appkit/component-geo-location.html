@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>اپکیت</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.rtl.min.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="fonts/css/all.min.css">    
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+</head>
+    
+<body class="theme-light">
+    
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    
+<div id="page">
+    
+    <div class="header header-fixed header-logo-center header-auto-show">
+        <a href="index.html" class="header-title">موقعیت جغرافیایی</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-right"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html" class="active-nav"><i class="fa fa-layer-group"></i><span>امکانات</span></a>
+        <a href="index-pages.html"><i class="fa fa-file"></i><span>صفحات</span></a>
+        <a href="index.html" class="circle-nav"><i class="fad fa-home"></i><span>خانه</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>پروژه ها</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>منو</span></a>
+    </div>
+    
+    <div class="page-title page-title-fixed">
+        <h1>موقعیت جغرافیایی</h1>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
+    </div>
+    <div class="page-title-clear"></div>
+        
+    <div class="page-content">
+                        
+        
+        <div class="card card-style">
+            <div class="content mb-0">
+                <h4>دریافت مختصات من</h4>
+                <p class="mb-0 pb-4">شما می توانید مختصات دستگاه خود را درخواست کنید، سپس می توانید آنها را روی نقشه قرار دهید.</p>
+
+                <p class="location-support"></p>      
+                <p class="location-coordinates"></p>
+                
+                <a href="#" class="get-location btn btn-full btn-m bg-red-dark rounded-sm shadow-l font-700 mb-4">دریافت موقعیت مکانی من</a>
+            </div>
+        </div>
+        
+        <div class="card card-style">
+            <div class="content">                
+                <h4 class="pt-2">نمایش مکان روی نقشه</h4>
+                <p class="mb-3">
+                    روی دکمه "دریافت موقعیت مکانی من" در بالا ضربه بزنید و این نقشه به طور خودکار با مکان جدید شما به روز می شود. ساده است.
+                </p>
+            </div>
+            <div class="responsive-iframe add-iframe">
+                <iframe class="location-map" src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.0288453419375!2d51.412125075508385!3d35.7992251725494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0720fb6ab137%3A0x1d087050b06ea550!2sRtl%20Theme!5e0!3m2!1sen!2s!4v1686202889061!5m2!1sen!2s'></iframe>
+            </div>
+            <a href="https://maps.google.com" class="location-button btn btn-full btn-m bg-red-dark rounded-0 shadow-l font-700 disabled">مشاهده در Google Maps</a>
+        </div>
+
+        <div data-menu-load="menu-footer.html"></div>
+    </div>
+    <!-- Page content ends here-->
+    
+    <!-- Main Menu--> 
+    <div id="menu-main" class="menu menu-box-right rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-components"></div>
+    
+    <!-- Share Menu-->
+    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
+    
+    <!-- Colors Menu-->
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
+     
+    
+</div>
+
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>

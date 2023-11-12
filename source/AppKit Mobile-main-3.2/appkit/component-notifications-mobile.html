@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html lang="fa" dir="rtl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>اپکیت</title>
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.rtl.min.css">
+<link rel="stylesheet" type="text/css" href="styles/style.css">
+<link rel="stylesheet" type="text/css" href="fonts/css/all.min.css">    
+<link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+<link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+</head>
+    
+<body class="theme-light">
+    
+<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    
+<div id="page">
+    
+    <div class="header header-fixed header-logo-center header-auto-show">
+        <a href="index.html" class="header-title">نوتیفیکیشن موبایل</a>
+        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-chevron-right"></i></a>
+        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="#" data-toggle-theme class="header-icon header-icon-3 show-on-theme-light"><i class="fas fa-moon"></i></a>
+    </div>
+
+    <div id="footer-bar" class="footer-bar-6">
+        <a href="index-components.html" class="active-nav"><i class="fa fa-layer-group"></i><span>امکانات</span></a>
+        <a href="index-pages.html"><i class="fa fa-file"></i><span>صفحات</span></a>
+        <a href="index.html" class="circle-nav"><i class="fad fa-home"></i><span>خانه</span></a>
+        <a href="index-projects.html"><i class="fa fa-camera"></i><span>پروژه ها</span></a>
+        <a href="#" data-menu="menu-main"><i class="fa fa-bars"></i><span>منو</span></a>
+    </div>
+    
+    <div class="page-title page-title-fixed">
+        <h1>نوتیفیکیشن موبایل</h1>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
+        <a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-main"><i class="fa fa-bars"></i></a>
+    </div>
+    <div class="page-title-clear"></div>
+        
+    <div class="page-content">
+                
+        
+        <div class="card card-style">
+            <div class="content mb-0">
+                <h4>مخصوص موبیال</h4>
+                <p>
+                    اینها به گونه ای طراحی شده اند که از بالای صفحه به پایین بیفتند، از نمادها و پیوندهای چند رنگ پشتیبانی می کنند.
+                </p>
+                
+                <div class="list-group list-custom-small list-icon-0">
+                    <a href="#" data-toast="notification-1">
+                        <i class="fab font-17 fa-apple color-gray-dark"></i>
+                        <span>آیفون</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>        
+                    <a href="#" data-toast="notification-2">
+                        <i class="fab font-17 fa-android color-green-dark"></i>
+                        <span>اندروید 1</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>        
+                    <a href="#" data-toast="notification-3">
+                        <i class="fab font-17 fa-android color-green-dark"></i>
+                        <span>اندروید 2</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>          
+                    <a href="#" data-toast="notification-4">
+                        <i class="fa font-14 fa-bold color-blue-dark"></i>
+                        <span>بوت استرپ - 1</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>           
+                    <a href="#" data-toast="notification-5">
+                        <i class="fa font-14 fa-bold color-blue-dark"></i>
+                        <span>بوت استرپ - 2</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>        
+                    <a href="#" data-toast="notification-6" class="border-0">
+                        <i class="fa font-14 fa-bold color-blue-dark"></i>
+                        <span>بوت استرپ - 3</span>
+                        <i class="fa fa-angle-left"></i>
+                    </a>        
+                </div>
+                
+                <div class="divider"></div>
+                
+                <a href="component-notifications-alerts.html" class="btn btn-m font-700 rounded-s bg-blue-dark btn-full mb-3">اعلان‌ها را بررسی کنید</a>
+                
+                <div class="divider mt-4"></div>
+                
+                <h4>کدنویسی</h4>
+                <p class="mb-3">
+                    ما اعلان‌ها را بر اساس سیستم Bootstrap toast ساخته‌ایم، بنابراین می‌توانید آنها را از طریق یک ضربه یا برنامه‌ریزی ساده با استفاده از کد کلاس Bootstrap فعال کنید..
+                </p>
+                <code>
+                    var toastID = document.getElementById('toast-1'); 
+                </code><br>
+                <code>
+                    toastID = new bootstrap.Toast(toastID);
+                </code><br>
+                <code>
+                    toastID.show();
+                </code>
+                <div class="pb-4"></div>
+            </div>  
+        </div>
+
+            
+        <div data-menu-load="menu-footer.html"></div>
+    </div>
+    <!-- Page content ends here-->
+
+    <div id="notification-1" data-dismiss="notification-1" data-bs-delay="3000" data-bs-autohide="true" class="notification notification-ios bg-dark-dark ms-2 me-2 mt-2 rounded-s">
+        <span class="notification-icon color-white rounded-s">
+            <i class="fa fa-bell"></i>
+            <em>دیزاینسیا</em>
+            <i data-dismiss="notification-1" class="fa fa-times-circle"></i>
+        </span>
+        <h1 class="font-18 color-white mb-n3">All Good</h1>
+        <p class="pt-1">
+            I'm a notification. I show at the top or bottom of the page.
+        </p>
+    </div>  
+
+    <div id="notification-2" data-dismiss="notification-2" data-bs-delay="3000" data-bs-autohide="true" class="notification notification-android bg-dark-dark">
+        <i class="fa fa-check bg-green-dark"></i>
+        <h1 class="font-20 color-white">All Good</h1>
+        <strong>19:24</strong>
+        <p class="pb-0">
+            I'm a notification. I show at the top of the page.
+        </p>
+        <div class="notification-buttons">
+            <div class="row mb-0">
+                <div class="col-6">
+                    <a href="#"><i class="fa fa-info-circle"></i>Find out More</a>
+                </div>
+                <div class="col-6">
+                    <a href="#"><i class="fa fa-download"></i>Download</a>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div id="notification-3" data-dismiss="notification-3" data-bs-delay="3000" data-bs-autohide="true"  class="notification notification-material bg-dark-dark">
+        <span class="notification-icon">
+            <i class="fa fa-comment color-green-light"></i>
+            <em class="color-green1-light">Hangouts</em>
+            <strong>Messenger</strong>
+        </span>
+        <img src="images/pictures/0t.jpg">
+        <h1 class="font-20 color-white">متین ابهام</h1>
+        <p class="pb-1 mt-n1">
+            I'm a notification. I show at the top of the page.
+        </p>
+    </div>
+
+    <div id="notification-4" data-dismiss="notification-4" data-bs-delay="30000" data-bs-autohide="true" class="notification bg-dark-dark shadow-xl">
+        <div class="toast-header  bg-dark-dark">
+            <img src="images/preload-logo.png" width="15" class="rounded me-2" alt="...">
+            <strong class="me-auto color-white">دیزاینسیا</strong>
+            <small class="text-muted">just now</small>
+            <button type="button" class="ms-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span class="color-white" aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body color-white">
+            We always listen to your feedback, so we added Boostrap to our items. Just as fast as before, only now, with code you are familiar with slightly upgraded for maximum performance!
+        </div>
+    </div>
+
+
+    <div id="notification-5" data-dismiss="notification-5" data-bs-delay="3000" data-bs-autohide="true" class="notification bg-blue-dark shadow-xl">
+        <div class="toast-header bg-highlight">
+            <img src="images/preload-logo.png" width="15" class="rounded me-2" alt="...">
+            <strong class="me-auto color-white">دیزاینسیا</strong>
+            <small class="color-white opacity-50 me-2">just now</small>
+            <button type="button" class="ms-2 mb-1 color-white close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body bg-highlight color-white">
+            This notification will adapt to the bg-highlight you select for the page.
+        </div>
+    </div>
+
+
+    <div id="notification-6" data-dismiss="notification-4" data-bs-delay="3000" data-bs-autohide="true" class="notification bg-green-dark shadow-xl opacity-95">
+        <div class="toast-body color-white p-3">
+            <h1 class="ms-0 ps-0 pb-2 mt-0 color-white">All Good</h1>
+            We always listen to your feedback, so we added Boostrap to our items. Just as fast as before, only now, with code you are familiar with slightly upgraded for maximum performance!
+        </div>
+    </div>
+
+    
+    <!-- Main Menu--> 
+    <div id="menu-main" class="menu menu-box-right rounded-0" data-menu-load="menu-main.html" data-menu-width="280" data-menu-active="nav-components"></div>
+    
+    <!-- Share Menu-->
+    <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>  
+    
+    <!-- Colors Menu-->
+    <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div> 
+     
+    
+</div>
+
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+</body>
