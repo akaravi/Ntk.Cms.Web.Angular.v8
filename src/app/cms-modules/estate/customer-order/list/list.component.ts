@@ -334,6 +334,7 @@ export class EstateCustomerOrderListComponent extends ListBaseComponent<EstateCu
       this.cmsToastrService.typeErrorAccessAdd();
       return;
     }
+    
     if (this.categoryModelSelected && this.categoryModelSelected.id && this.categoryModelSelected.id.length > 0) {
       this.router.navigate(['/estate/customer-order/add/LinkParentId', this.categoryModelSelected.id]);
       if (event?.ctrlKey) {

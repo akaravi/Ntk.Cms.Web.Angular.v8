@@ -612,7 +612,7 @@ export class EstateCustomerOrderEditMobileComponent implements OnInit {
       }
     }
     if (step === 'result1' || step === 'result2' || step === 'result3') {
-      this.DataEditContent(false);
+      this.onActoinSubmit(false);
     }
     this.stepContent = step;
 
