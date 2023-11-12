@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResolveEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
-import { LayoutService, LayoutType } from '../../core/layout.service';
+import { filter } from 'rxjs/operators';
+import { PageInfoService } from '../../../../core/services/page-info.service';
 import {
-  ToggleComponent,
-  ScrollTopComponent,
   DrawerComponent,
-  StickyComponent,
   MenuComponent,
   ScrollComponent,
+  ScrollTopComponent,
+  StickyComponent,
+  ToggleComponent,
 } from '../../../kt/components';
-import { PageInfoService } from '../../core/page-info.service';
+import { LayoutService, LayoutType } from '../../core/layout.service';
 
 @Component({
   selector: 'app-scripts-init',

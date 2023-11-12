@@ -17,7 +17,7 @@ export class PromptUpdateService {
             }
           } else {
             // Reload the page to update to the latest version.
-            document.location.reload();
+            //document.location.reload();
           }
         });
   }

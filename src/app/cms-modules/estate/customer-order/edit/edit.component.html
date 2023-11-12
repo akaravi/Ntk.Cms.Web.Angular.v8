@@ -455,6 +455,7 @@
             [optionSelectForce]="dataModel.linkLocationIds"
             [optionPlaceholder]="this.translate.instant('TITLE.Region')">
           </app-cms-location-autocomplete>
+          <!-- propertyDetailGroups Field -->
           <mat-accordion class="example-headers-align">
             <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
               [expanded]="step === i" (opened)="setStep(i)">

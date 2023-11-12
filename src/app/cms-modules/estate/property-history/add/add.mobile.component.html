@@ -1,0 +1,272 @@
+<div class="cms-m-body" style="height:80%; margin-top: 10%;">
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
+
+  <ng-container *ngIf="stepContent === 'title'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <!-- Title Field -->
+          <label for="dataModel.title" class="cms-m-form-label">{{
+            fieldsInfo["title"]?.fieldTitle
+            }}</label>
+        </div>
+        <div class="cms-m-container-body">
+          <input [(ngModel)]="dataModel.title" name="dataModel.title" type="text" id="dataModel.title" minlength="3"
+            maxlength="100" required class="cms-m-form-input" />
+          <!-- Description Field -->
+          <label *ngIf="fieldsInfo['description']?.accessWatchField" for="dataModel.description"
+            class="cms-m-form-label">{{ fieldsInfo["description"]?.fieldTitle }}
+          </label>
+          <textarea *ngIf="fieldsInfo['description']?.accessWatchField" [(ngModel)]="dataModel.description"
+            name="dataModel.description" id="dataModel.description" #Description
+            [disabled]="!fieldsInfo['description']?.accessEditField" type="text"
+            placeholder="{{ fieldsInfo['description']?.fieldTitle }}" minlength="0" maxlength="1000" rows="5"
+            class="cms-m-form-textarea"></textarea>
+          <!-- DescriptionHidden Field -->
+          <label *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField" for="dataModel.descriptionHidden"
+            class="cms-m-form-label">
+            {{ fieldsInfo["descriptionHidden"]?.fieldTitle }}</label>
+
+          <textarea *ngIf="fieldsInfo['descriptionHidden']?.accessWatchField" [(ngModel)]="dataModel.descriptionHidden"
+            name="dataModel.descriptionHidden" id="dataModel.descriptionHidden" #DescriptionHidden
+            [disabled]="!fieldsInfo['descriptionHidden']?.accessEditField" type="text"
+            placeholder="{{ fieldsInfo['descriptionHidden']?.fieldTitle }}" minlength="0" maxlength="1000" rows="5"
+            class="cms-m-form-textarea"></textarea>
+        </div>
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" [disabled]="!dataModel.title || dataModel.title.length < 3"
+            (click)="onActoinSelectStepNext('activityStatus')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'activityStatus'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <label class="cms-m-form-label">لطفا یکی از موارد زیر را انتخاب کنید</label>
+        </div>
+        <div class="cms-m-container-body">
+          <button *ngFor="let item of dataModelEstateActivityStatusEnumResult.listItems" class="cms-m-form-option"
+            [class]="item.value === dataModel.activityStatus ? 'cms-m-form-option-select': 'cms-m-form-option'"
+            (click)="dataModel.activityStatus=item.value">
+            {{ item.description }}
+          </button>
+        </div>
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" (click)="onActoinSelectStepNext('selectDate')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button class="cms-m-button" (click)="onFormSubmit()">
+            <span>ثبت</span>
+          </button>
+          <button class="cms-m-button" (click)="onActoinSelectStepBefor('title')">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'selectDate'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <label class="cms-m-form-label">لطفا تاریخ را مشخص نمایید</label>
+        </div>
+        <!-- AppointmentDateFrom Field -->
+        <div class="cms-m-container-body">
+          <label *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" for="dataModel.appointmentDateFrom"
+            class="cms-m-form-label">تاریخ قرار از</label>
+          <input *ngIf="fieldsInfo['appointmentDateFrom']?.accessWatchField" [matDatepicker]="AppointmentDateFrom"
+            [(ngModel)]="dataModel.appointmentDateFrom" [formControl]="date" name="dataModel.appointmentDateFrom"
+            id="dataModel.appointmentDateFrom" class="cms-m-form-input" />
+          <div class="cms-m-icon">
+            <mat-icon matSuffix *ngIf="
+                dataModel.appointmentDateFrom &&
+                fieldsInfo['appointmentDateFrom']?.accessEditField
+              " matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.appointmentDateFrom = null">close</mat-icon>
+            <mat-datepicker-toggle matSuffix [for]="AppointmentDateFrom"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AppointmentDateFrom></mat-datepicker>
+          </div>
+          <br />
+          <label *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField" for="dataModel.appointmentDateTo"
+            class="cms-m-form-label">تاریخ قرار تا</label>
+          <!-- AppointmentDateTo Field -->
+          <input *ngIf="fieldsInfo['appointmentDateTo']?.accessWatchField" [matDatepicker]="AppointmentDateTo"
+            [(ngModel)]="dataModel.appointmentDateTo" [value]="date.value" name="dataModel.appointmentDateTo"
+            id="dataModel.appointmentDateTo" class="cms-m-form-input" />
+          <div class="cms-m-icon2">
+            <mat-icon matSuffix *ngIf="
+                dataModel.appointmentDateTo &&
+                fieldsInfo['appointmentDateTo']?.accessEditField
+              " matSuffix mat-icon-button aria-label="Clear"
+              (click)="dataModel.appointmentDateTo = null">close</mat-icon>
+            <mat-datepicker-toggle matSuffix [for]="AppointmentDateTo"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #AppointmentDateTo></mat-datepicker>
+          </div>
+        </div>
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" (click)="onActoinSelectStepNext('grouping')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button class="cms-m-button" (click)="onFormSubmit()">
+            <span>ثبت</span>
+          </button>
+          <button class="cms-m-button" (click)="onActoinSelectStepBefor('activityStatus')">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'grouping'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <label class="cms-m-form-label">لطفا یکی از موارد زیر را انتخاب کنید</label>
+        </div>
+        <div class="cms-m-container-body">
+          <div *ngIf="dataModelActivityTypeResult?.listItems?.length > 0">
+            <button *ngFor="let state of dataModelActivityTypeResult.listItems" type="button" mat-raised-button
+              [class]="state.id === dataModel.linkActivityTypeId ? 'cms-m-form-option-select': 'cms-m-form-option'"
+              (click)="dataModel.linkActivityTypeId = state.id">
+              {{ state.title }}
+            </button>
+          </div>
+        </div>
+
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" (click)="onActoinSelectStepNext('estate')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button class="cms-m-button" (click)="onFormSubmit()">
+            <span>ثبت</span>
+          </button>
+          <button class="cms-m-button" (click)="onActoinSelectStepBefor('selectDate')">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <!---->
+  <ng-container *ngIf="stepContent === 'estate'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header"></div>
+        <!-- LinkEstateUserId Field -->
+        <div class="cms-m-container-body">
+          <app-estate-account-user-selector (optionChange)="onActionSelectorEstateUser($event)"
+            [(optionLoading)]="loading" *ngIf="fieldsInfo['linkEstateUserId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkEstateUserId" [optionPlaceholder]="this.translate.instant('TITLE.USER')"
+            [style.direction]="this.tokenHelper.directionTheme">
+          </app-estate-account-user-selector>
+          <br />
+          <!-- linkchooseFileId Field -->
+          <app-estate-account-agency-selector *ngIf="fieldsInfo['linkEstateAgencyId']?.accessWatchField"
+            (optionChange)="onActionSelectorEstateAgency($event)" [(optionLoading)]="loading"
+            [optionSelectForce]="dataModel.linkEstateAgencyId" [optionSelectUserId]="this.tokenInfo.userId"
+            [optionPlaceholder]="
+              this.translate.instant('TITLE.Property_agency')
+            " [style.direction]="this.tokenHelper.directionTheme">
+          </app-estate-account-agency-selector>
+          <br />
+          <!-- LinkPropertyId Field -->
+          <app-estate-property-selector (optionChange)="onActionSelectorProperty($event)" [(optionLoading)]="loading"
+            *ngIf="fieldsInfo['linkPropertyId']?.accessWatchField" [optionSelectForce]="dataModel.linkPropertyId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Property')"
+            [style.direction]="this.tokenHelper.directionTheme"></app-estate-property-selector>
+          <br />
+          <!-- linkCustomerOrderId Field -->
+          <app-estate-customer-order-selector (optionChange)="onActionSelectorCustomerOrderId($event)"
+            [(optionLoading)]="loading" *ngIf="fieldsInfo['linkCustomerOrderId']?.accessWatchField"
+            [optionSelectForce]="dataModel.linkCustomerOrderId"
+            [optionPlaceholder]="this.translate.instant('TITLE.Customer')"
+            [style.direction]="this.tokenHelper.directionTheme"></app-estate-customer-order-selector>
+        </div>
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" (click)="onActoinSelectStepNext('chooseFile')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>بعدی</span>
+          </button>
+          <button class="cms-m-button" (click)="onFormSubmit()">
+            <span>ثبت</span>
+          </button>
+          <button class="cms-m-button" (click)="onActoinSelectStepBefor('grouping')">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="stepContent === 'chooseFile'">
+    <div class="cms-m-container">
+      <div class="cms-m-filter">
+        <div class="cms-m-container-header">
+          <p class="cms-m-form-label">
+            {{ "TITLE.List_of_attached_files" | translate }}
+          </p>
+        </div>
+        <div class="cms-m-container-body">
+          <app-cms-files-selector [(dataFileModel)]="dataFileModelFiles" [openDirectUploadView]="true"
+            [style.direction]="this.tokenHelper.directionTheme">
+          </app-cms-files-selector>
+        </div>
+        <div class="cms-m-container-footer">
+          <button class="cms-m-button" (click)="onFormSubmit()">
+            <span>ثبت</span>
+          </button>
+          <button class="cms-m-button" (click)="onActoinSelectStepBefor('estate')">
+            <span>قبلی</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
