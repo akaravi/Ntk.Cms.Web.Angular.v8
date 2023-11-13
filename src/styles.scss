@@ -817,22 +817,30 @@ table.cms-m-table>tr>td {
   border: 1px solid black;
 }
 
-.cms-m-icon {
+.cms-m-form {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  position: absolute;
-  margin-left: -4%;
-  top: 154px;
+  // position: absolute;
+  // margin-left: -4%;
+  // top: 154px;
   width: 100%;
 }
 
-.cms-m-icontwo {
+.cms-m-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  margin-left: -4%;
-  top: 303px;
-  width: 100%;
+  margin-right: -77%;
 }
+
+// .cms-m-icontwo {
+//   position: absolute;
+//   margin-left: -4%;
+//   top: 303px;
+//   width: 100%;
+// }
 
 
 /*
