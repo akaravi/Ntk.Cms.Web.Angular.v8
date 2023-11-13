@@ -11,7 +11,7 @@ import {
   CoreModuleService, DataFieldInfoModel, ErrorExceptionResult, FilterDataModel, FilterModel, RecordStatusEnum, SortTypeEnum, TokenInfoModel, WebDesignerMainPageDependencyModel,
   WebDesignerMainPageDependencyService
 } from 'ntk-cms-api';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ComponentOptionSearchModel } from 'src/app/core/cmsComponent/base/componentOptionSearchModel';
 import { ComponentOptionStatistModel } from 'src/app/core/cmsComponent/base/componentOptionStatistModel';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -185,10 +185,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAddComponent, {
       height: '90%',
       panelClass: panelClass,
@@ -212,10 +212,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
       return;
     }
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageDependencyAutoAddPageComponent, {
       height: '90%',
       panelClass: panelClass,
@@ -232,22 +232,48 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     });
   }
   onActionbuttonNewRowAutoDependency(): any {
-    return firstValueFrom(this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
-      headers: this.contentService.getHeaders(),
-    }))
-      .then(
-        (ret: any) => {
-          // tslint:disable-next-line: max-line-length
-          const retOut = this.contentService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
-          if (retOut.isSuccess) {
-            this.cmsToastrService.typeSuccessAdd();
-            this.DataGetAll();
-          }
-          else {
-            this.cmsToastrService.typeErrorAccessAdd();
-          }
-          return retOut;
-        });
+    if (
+      this.dataModelResult == null ||
+      this.dataModelResult.access == null ||
+      !this.dataModelResult.access.accessAddRow
+    ) {
+      this.cmsToastrService.typeErrorAccessAdd();
+      return;
+    }
+    //   return firstValueFrom(this.http.get(environment.cmsServerConfig.configMvcServerPath + 'api/v1/HtmlBuilder/AutoAdd', {
+    //     headers: this.contentService.getHeaders(),
+    //   }))
+    //     .then(
+    //       (ret: any) => {
+    //         // tslint:disable-next-line: max-line-length
+    //         const retOut = this.contentService.errorExceptionResultCheck<WebDesignerMainPageDependencyAddComponent>(ret);
+    //         if (retOut.isSuccess) {
+    //           this.cmsToastrService.typeSuccessAdd();
+    //           this.DataGetAll();
+    //         }
+    //         else {
+    //           this.cmsToastrService.typeErrorAccessAdd();
+    //         }
+    //         return retOut;
+    //       });
+
+    const pName = this.constructor.name + 'main';
+    this.loading.Start(pName, this.translate.instant('MESSAGE.get_information_list'));
+    this.filteModelContent.accessLoad = true;
+    const filter = new FilterDataModel();
+    this.contentService.ServiceAutoAdd().subscribe(
+      (next) => {
+        if (next.isSuccess) {
+          this.cmsToastrService.typeSuccessAdd();
+        }
+        this.loading.Stop(pName);
+      },
+      (error) => {
+        this.cmsToastrService.typeError(error);
+        this.loading.Stop(pName);
+      }
+    );
+
   }
   onActionbuttonEditRow(model: WebDesignerMainPageDependencyModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -407,10 +433,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
   onActionbuttonExport(): void {
     //open popup
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
@@ -445,10 +471,10 @@ export class WebDesignerMainPageDependencyListComponent implements OnInit, OnDes
     }
     //open popup
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",

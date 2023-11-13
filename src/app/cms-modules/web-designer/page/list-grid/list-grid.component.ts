@@ -208,10 +208,10 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       return;
     }
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageAddComponent, {
       height: '90%',
       panelClass: panelClass,
@@ -240,10 +240,10 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       return;
     }
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(WebDesignerMainPageEditComponent, {
       height: '90%',
       panelClass: panelClass,
@@ -389,9 +389,7 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    const urlTemplate = environment.cmsServerConfig.configMvcServerPath + 'page/' + model.id + '?RenderViewPageByMaster=true&preview=true';
-    // this.document.location.href = urlTemplate;
-    window.open(urlTemplate, '_blank');
+    window.open(this.dataModelResult.item.htmlPreviewByMasterUrl, '_blank');
   }
   onActionbuttonSiteRouteView(model: WebDesignerMainPageModel = this.tableRowSelected): void {
     if (!model || !model.id || model.id.length === 0) {
@@ -438,17 +436,15 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
       this.cmsToastrService.typeErrorSelected();
       return;
     }
-    const urlTemplate = environment.cmsServerConfig.configMvcServerPath + 'page/' + model.id + '?RenderViewPageByMaster=false&preview=true';
-    // this.document.location.href = urlTemplate;
-    window.open(urlTemplate, '_blank');
+    window.open(this.dataModelResult.item.htmlPreviewUrl, '_blank');
   }
   onActionbuttonExport(): void {
     //open popup
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportListComponent, {
       height: "50%",
       width: "50%",
@@ -483,10 +479,10 @@ export class WebDesignerMainPageListGridComponent implements OnInit, OnDestroy {
     }
     //open popup
     var panelClass = '';
-            if (this.tokenHelper.isMobile)
-              panelClass = 'dialog-fullscreen';
-            else
-              panelClass = 'dialog-min';
+    if (this.tokenHelper.isMobile)
+      panelClass = 'dialog-fullscreen';
+    else
+      panelClass = 'dialog-min';
     const dialogRef = this.dialog.open(CmsExportEntityComponent, {
       height: "50%",
       width: "50%",

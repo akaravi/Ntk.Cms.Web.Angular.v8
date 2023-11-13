@@ -16,10 +16,9 @@ import {
   ErrorExceptionResultBase, InfoEnumModel, TicketStatusEnum, TokenInfoModel
 } from 'ntk-cms-api';
 import { ConfigInterface, DownloadModeEnum, TreeModel } from 'ntk-cms-filemanager';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
+import { PageInfoService } from 'src/app/core/services/page-info.service';
 import { CmsAccessInfoComponent } from 'src/app/shared/cms-access-info/cms-access-info.component';
-import { getViewPort, isMobileDevice } from 'src/app/_metronic/kt/_utils/DomHelpers';
-import { PageInfoService } from 'src/app/_metronic/layout/core/page-info.service';
 import { environment } from 'src/environments/environment';
 import { ComponentLocalStorageModel } from '../models/componentLocalStorageModel';
 import { ConnectionStatusModel } from '../models/connectionStatusModel';
@@ -49,10 +48,10 @@ export class PublicHelper {
   }
 
   get isMobile() {
-    if (getViewPort().width < 1000)
+    if (window.innerWidth < 1000)
       return true;
-    if (isMobileDevice())
-      return true;
+    // if (isMobileDevice())
+    //   return true;
     return false;
   };
 
@@ -522,7 +521,7 @@ export class PublicHelper {
       cloumnAdminAccessDispaly = [];
     }
     var cloumn: string[] = [];
-    if (getViewPort().width < 100 && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
+    if (window.innerWidth < 1000 && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
       cloumn = JSON.parse(JSON.stringify(cloumnMobileDispalySource));
     } else if (cloumnDesktopSource && cloumnDesktopSource.length > 0) {
       cloumn = JSON.parse(JSON.stringify(cloumnDesktopSource));

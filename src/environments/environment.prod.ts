@@ -19,7 +19,6 @@ export const environment = {
     configApiRetry: 1,
     configApiServerPath: 'https://apicms.ir/api/v2/',
     configHubServerPath: 'https://apicms.ir/hub/',
-    configMvcServerPath: 'https://ntkcms.ir/',
     configFileServerPath: 'https://apifile.ir/api/v2/',
     configQDocServerPath: 'https://qdoc.ir/api/chat',
     configCompanyWebSite: 'https://ntk.ir',

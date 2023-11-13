@@ -8,7 +8,6 @@ import {
   TokenInfoModel
 } from 'ntk-cms-api';
 import { Observable, Subscription, firstValueFrom } from 'rxjs';
-import { getViewPort, isMobileDevice } from 'src/app/_metronic/kt/_utils/DomHelpers';
 import { TranslationService } from '../i18n/translation.service';
 import { CmsStoreService } from '../reducers/cmsStore.service';
 
@@ -27,10 +26,10 @@ export class TokenHelper implements OnDestroy {
   }
 
   get isMobile() {
-    if (getViewPort().width < 1000)
+    if (window.innerWidth < 1000)
       return true;
-    if (isMobileDevice())
-      return true;
+    // if (isMobileDevice())
+    //   return true;
     return false;
   };
   tokenInfo: TokenInfoModel = new TokenInfoModel();
