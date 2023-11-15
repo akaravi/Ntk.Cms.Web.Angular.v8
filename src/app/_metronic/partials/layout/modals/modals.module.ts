@@ -1,22 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { InlineSVGModule } from 'ng-inline-svg-2';
-import { InviteUsersModalComponent } from './invite-users-modal/invite-users-modal.component';
-
-
-import { ModalComponent } from './modal/modal.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { InlineSVGModule } from 'ng-inline-svg-2';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
-    InviteUsersModalComponent,
+
     ModalComponent,
   ],
   imports: [CommonModule, InlineSVGModule, RouterModule, NgbModalModule],
   exports: [
-    InviteUsersModalComponent,
+
     ModalComponent,
   ],
 })
-export class ModalsModule {}
+export class ModalsModule { }
