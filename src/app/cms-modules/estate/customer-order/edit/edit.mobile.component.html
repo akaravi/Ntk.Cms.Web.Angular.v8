@@ -1,5 +1,5 @@
 <div class="cms-m-body">
-
+  <app-progress-spinner [options]="loading"> </app-progress-spinner>
 
   <!-- mobile -->
   <ng-container *ngIf="stepContent === 'mobile'">
@@ -9,7 +9,9 @@
           <div class="cms-m-form-label">
             برای ثبت سفارش، ابتدا شماره تلفن همراه خود را وارد نمایید.
           </div>
-          <div>
+        </div>
+        <div class="cms-m-container-body">
+          <div style="margin-top: 100px;">
             <label class="cms-m-form-label"> شماره تلفن همراه </label>
             <input type="text" [(ngModel)]="dataModel.contactMobiles" name="dataModel.contactMobiles" autocomplete="off"
               #contactMobiles class="cms-m-form-input" maxlength="11" placeholder="09120000000"
@@ -47,18 +49,19 @@
   <ng-container *ngIf="stepContent === 'orderType'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">
             لطفا درخواست خود را مشخص نمایید.
           </div>
+        </div>
+        <div class="cms-m-container-body">
           <div *ngIf="dataModelContractTypeResult?.listItems.length>0">
             <button *ngFor="let state of dataModelContractTypeResult.listItems " type="button" mat-raised-button
-              class="cms-m-form-option"
-              [class]="state.id===dataModel.linkContractTypeId ? 'background-blue' : 'background-white'"
+              [class]="state.id===dataModel.linkContractTypeId ? 'cms-m-form-option-select' : 'cms-m-form-option'"
               (click)="onActionSelectorContarctType(state)">{{ state.orderTitle }}</button>
           </div>
         </div>
-        <div class="cms-m-container-footer margin-top">
+        <div class="cms-m-container-footer">
           <button (click)="onActoinSelectStepBefor('mobile')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -85,20 +88,21 @@
   <ng-container *ngIf="stepContent === 'selectPropertyTypeUsage'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">
             لطفا نوع کاربری ملک خود را مشخص نمایید.
           </div>
+        </div>
+        <div class="cms-m-container-body">
           <div *ngIf="dataModelPropertyTypeUsageResult?.listItems.length>0">
             <button *ngFor="let state of dataModelPropertyTypeUsageResult.listItems " type="button" mat-raised-button
-              class="cms-m-form-option"
-              [class]="state.id===dataModel.linkPropertyTypeUsageId ? 'background-blue' : 'background-white'"
+              [class]="state.id===dataModel.linkPropertyTypeUsageId ? 'cms-m-form-option-select' : 'cms-m-form-option'"
               (click)="dataModel.linkPropertyTypeUsageId=state.id;this.DataGetAllPropertyTypeLanduse();">{{ state.title
               }}</button>
           </div>
         </div>
 
-        <div class="cms-m-container-footer margin-top">
+        <div class="cms-m-container-footer">
           <button (click)="onActoinSelectStepBefor('orderType')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -125,18 +129,19 @@
   <ng-container *ngIf="stepContent === 'selectPropertyTypeLanduse'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">
             لطفا نوع ملک خود را مشخص نمایید.
           </div>
+        </div>
+        <div class="cms-m-container-body">
           <div *ngIf="dataModelPropertyTypeLanduseResult?.listItems.length>0">
             <button *ngFor="let state of dataModelPropertyTypeLanduseResult.listItems " type="button" mat-raised-button
-              class="cms-m-form-option"
-              [class]="state.id===dataModel.linkPropertyTypeLanduseId ? 'background-blue' : 'background-white'"
+              [class]="state.id===dataModel.linkPropertyTypeLanduseId ? 'cms-m-form-option-select' : 'cms-m-form-option'"
               (click)="onActionSelectorSelectLanduse(state)">{{ state.title }}</button>
           </div>
         </div>
-        <div class="cms-m-container-footer margin-top">
+        <div class="cms-m-container-footer">
           <button (click)="onActoinSelectStepBefor('selectPropertyTypeUsage')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -163,7 +168,12 @@
   <ng-container *ngIf="stepContent === 'selectYear'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
+          <div class="cms-m-form-label">
+            لطفا مشخصات ملک خود را وارد نمایید.
+          </div>
+        </div>
+        <div class="cms-m-container-body">
           <label class="cms-m-form-label">متراژ</label>
           <input type="number" [(ngModel)]="dataModel.area" name="dataModel.area" class="cms-m-form-input"
             autocomplete="off" />
@@ -192,7 +202,7 @@
             name="dataModel.partition" class="cms-m-form-input" autocomplete="off" />
         </div>
 
-        <div class="cms-m-container-footer margin-top">
+        <div class="cms-m-container-footer">
           <button (click)="onActoinSelectStepBefor('selectPropertyTypeLanduse')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -217,10 +227,12 @@
   <ng-container *ngIf="stepContent === 'selectLocation'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">
             لطفا منطقه مورد نظر خود را مشخص کنید.
           </div>
+        </div>
+        <div class="cms-m-container-body">
           <div>
             <label class="cms-m-form-label">{{'TITLE.Geographical_Areas' | translate}} :</label>
             <app-cms-location-autocomplete (optionChange)="onActionSelectorLocation($event)" [(optionLoading)]="loading"
@@ -230,7 +242,7 @@
             </app-cms-location-autocomplete>
           </div>
         </div>
-        <div class="cms-m-container-footer margin-top">
+        <div class="cms-m-container-footer">
           <button (click)="onActoinSelectStepBefor('selectYear')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -256,8 +268,10 @@
   <ng-container *ngIf="stepContent === 'result1'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header" style="height: 70%;">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">نتیجه</div>
+        </div>
+        <div class="cms-m-container-body" style="height: 60%;">
           <div class="cms-m-form-label">تعداد ملک انتخابی شما :
             {{this.dataModelEstatePropertyResult.totalRowCount}}
           </div>
@@ -271,7 +285,7 @@
           name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
-        <div class="cms-m-container-footer margin-bottom">
+        <div class="cms-m-container-footer" style="height: 30%;">
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -300,10 +314,11 @@
   <ng-container *ngIf="stepContent === 'selectPrice'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">لطفا قیمت ملک خود را وارد نمایید.</div>
+        </div>
+        <div class="cms-m-container-body">
           <div>
-
             <!-- SalePriceMin Field -->
             <label *ngIf=" contractTypeSelected?.hasSalePrice"
               class="cms-m-form-label">{{contractTypeSelected.titleSalePriceML}} {{'TITLE.Minimum'
@@ -375,7 +390,7 @@
               autocomplete="off" currencyMask />
           </div>
         </div>
-        <div class="cms-m-container-footer margin-top">
+        <div class="cms-m-container-footer">
           <button (click)="onActoinSelectStepBefor('selectLocation')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -396,12 +411,15 @@
   </ng-container>
   <!-- selectprice -->
 
+
   <!-- result2 -->
   <ng-container *ngIf="stepContent === 'result2'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header" style="height: 70%;">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">نتیجه</div>
+        </div>
+        <div class="cms-m-container-body" style="height: 60%;">
           <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
@@ -415,7 +433,7 @@
           name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
-        <div class="cms-m-container-footer margin-bottom">
+        <div class="cms-m-container-footer" style="height: 30%;">
           <button (click)="onActoinSelectStepBefor('selectprice')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -440,16 +458,15 @@
   <!-- result2 -->
 
 
-
   <!-- detail -->
   <ng-container *ngIf="stepContent === 'detail'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header overflow-y">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">لطفا جزئیات ملک خود را وارد نمایید.</div>
+        </div>
+        <div class="cms-m-container-body">
           <div>
-
-
             <!-- propertyDetailGroups Field -->
             <mat-accordion class="example-headers-align">
               <mat-expansion-panel *ngFor="let itemGroup of dataModel.propertyDetailGroups ; index as i"
@@ -547,8 +564,8 @@
             </mat-accordion>
           </div>
         </div>
-        <div class="cms-m-container-footer margin-top">
-          <button (click)="onActoinSelectStepBefor('detail')" class="cms-m-button">
+        <div class="cms-m-container-footer">
+          <button (click)="onActoinSelectStepBefor('result2')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -568,12 +585,15 @@
   </ng-container>
   <!-- detail -->
 
+
   <!-- result3 -->
   <ng-container *ngIf="stepContent === 'result3'">
     <div class="cms-m-container">
       <div class="cms-m-filter">
-        <div class="cms-m-container-header" style="height: 70%;">
+        <div class="cms-m-container-header">
           <div class="cms-m-form-label">نتیجه</div>
+        </div>
+        <div class="cms-m-container-body" style="height: 60%;">
           <div class="cms-m-form-label">تعداد ملک انتخابی شما : {{this.dataModelEstatePropertyResult
             .totalRowCount}}
           </div>
@@ -587,7 +607,7 @@
           name="dataModelActionSend.actionSendSmsToEstateCustomer" class="cms-m-actionsend">
           {{'ACTION.SEND_TO_CLIENT' | translate}}
         </mat-slide-toggle>
-        <div class="cms-m-container-footer margin-bottom">
+        <div class="cms-m-container-footer" style="height: 30%;">
           <button (click)="onActoinSelectStepBefor('detail')" class="cms-m-button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
@@ -608,10 +628,9 @@
 </div>
 
 
-
 <ng-template let-listItem #estateTemplate>
   <div style="width: 100%;" *ngFor="let item of listItem">
-    <table (click)="onActionbuttonQuickViewRow(item)">
+    <table class="cms-m-table" (click)="onActionbuttonQuickViewRow(item)">
       <tr *ngIf="item?.title?.length>0">
         <td colspan="2"> {{item.title}}</td>
       </tr>
