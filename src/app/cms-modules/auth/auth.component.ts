@@ -6,6 +6,7 @@ import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ProgressSpinnerModel } from 'src/app/core/models/progressSpinnerModel';
 import { CmsToastrService } from 'src/app/core/services/cmsToastr.service';
 import { getViewPort } from 'src/app/_metronic/kt/_utils/DomHelpers';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -26,7 +27,7 @@ export class AuthComponent implements OnInit {
 
   showSplashModel = true;
   ngOnInit(): void {
-    if (getViewPort().width < 860) {
+    if (window.innerWidth < environment.cmsViewConfig.mobileWindowInnerWidth) {
       setTimeout(() => {
         this.showSplashModel = false;
         this.cdr.markForCheck();

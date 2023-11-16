@@ -16,7 +16,6 @@ import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { CoreAuthService, CoreSiteService, CoreSiteSupportModel, DeviceTypeEnum, ErrorExceptionResult, OperatingSystemTypeEnum, TokenDeviceClientInfoDtoModel, TokenDeviceSetNotificationIdDtoModel } from 'ntk-cms-api';
 import { environment } from 'src/environments/environment';
-import { getViewPort } from './_metronic/kt/_utils/DomHelpers';
 import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { PublicHelper } from './core/helpers/publicHelper';
 import { TokenHelper } from './core/helpers/tokenHelper';
@@ -101,7 +100,7 @@ export class AppComponent implements OnInit {
       });
     }
 
-    console.log('windows innerWidth size:', getViewPort());
+    console.log('windows innerWidth size:', window.innerWidth);
   }
   cmsApiStoreSubscribe: Subscription;
   dataSupportModelResult: ErrorExceptionResult<CoreSiteSupportModel>;

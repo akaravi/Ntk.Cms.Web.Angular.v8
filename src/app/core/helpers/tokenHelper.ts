@@ -10,6 +10,7 @@ import {
 import { Observable, Subscription, firstValueFrom } from 'rxjs';
 import { TranslationService } from '../i18n/translation.service';
 import { CmsStoreService } from '../reducers/cmsStore.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +27,8 @@ export class TokenHelper implements OnDestroy {
   }
 
   get isMobile() {
-    if (window.innerWidth < 1000)
+    if (window.innerWidth < environment.cmsViewConfig.mobileWindowInnerWidth)
       return true;
-    // if (isMobileDevice())
-    //   return true;
     return false;
   };
   tokenInfo: TokenInfoModel = new TokenInfoModel();

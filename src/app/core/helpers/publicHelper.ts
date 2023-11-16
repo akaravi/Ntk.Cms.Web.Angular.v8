@@ -48,10 +48,8 @@ export class PublicHelper {
   }
 
   get isMobile() {
-    if (window.innerWidth < 1000)
+    if (window.innerWidth < environment.cmsViewConfig.mobileWindowInnerWidth)
       return true;
-    // if (isMobileDevice())
-    //   return true;
     return false;
   };
 
@@ -521,7 +519,7 @@ export class PublicHelper {
       cloumnAdminAccessDispaly = [];
     }
     var cloumn: string[] = [];
-    if (window.innerWidth < 1000 && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
+    if (window.innerWidth < environment.cmsViewConfig.mobileWindowInnerWidth && cloumnMobileDispalySource && cloumnMobileDispalySource.length > 0) {
       cloumn = JSON.parse(JSON.stringify(cloumnMobileDispalySource));
     } else if (cloumnDesktopSource && cloumnDesktopSource.length > 0) {
       cloumn = JSON.parse(JSON.stringify(cloumnDesktopSource));
