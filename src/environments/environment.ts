@@ -36,6 +36,7 @@ export const environment = {
     PackageName: '',
   },
   cmsViewConfig: {
+    mobileWindowInnerWidth:1000,
     tableRowMouseEnter: true,
     enterAnimationDuration: '1500ms',
     exitAnimationDuration: '1000ms'

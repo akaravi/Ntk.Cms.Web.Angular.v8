@@ -129,7 +129,7 @@ class SearchComponent {
   // Check if responsive form mode is enabled
   private getResponsiveFormMode = () => {
     const responsive = this.getOption('responsive') as string
-    const width = getViewPort().width
+    const width = window.innerWidth
 
     if (!responsive) {
       return null

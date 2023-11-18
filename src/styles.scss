@@ -653,7 +653,7 @@ table {
  NTK-Cms-mobile
 */
 .cms-m-body {
-  font-weight: bold;
+  font-weight: 900;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -720,6 +720,7 @@ table {
   padding: 5px;
   border-radius: 25px;
   border: none;
+  border: 1px solid #BDC3C7;
 }
 
 .cms-m-actionsend {
@@ -732,6 +733,13 @@ table {
   margin-bottom: -30px;
 }
 
+.cms-m-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .cms-m-form-label {
   font-weight: bold;
   margin-top: 10px;
@@ -741,7 +749,7 @@ table {
 .cms-m-form-input {
   width: 100%;
   height: 50px;
-  border-radius: 16px;
+  border-radius: 25px;
   display: block;
   outline: none;
   outline: none;
@@ -759,28 +767,26 @@ table {
 
 .cms-m-form-option {
   width: 100%;
-  height: 50px;
+  height: 50px !important;
+  border-radius: 25px !important;
   margin-top: 10px;
-  border-radius: 10px;
   display: block;
   outline: none;
   border: 2px solid #BDC3C7;
   text-align: center;
-  font-weight: bold;
   color: black;
   background-color: rgba(255, 255, 255, 0.7);
 }
 
 .cms-m-form-option-select {
   width: 100%;
-  height: 50px;
+  height: 50px !important;
+  border-radius: 25px !important;
   margin-top: 10px;
-  border-radius: 10px;
   display: block;
   outline: none;
   border: 2px solid #BDC3C7;
   text-align: center;
-  font-weight: bold;
   color: white !important;
   background-color: rgba(0, 0, 255, 0.7) !important;
 }
@@ -831,7 +837,6 @@ table.cms-m-table>tr>td {
   position: absolute;
   margin-right: -77%;
 }
-
 
 /*
  NTK-Cms-mobile
