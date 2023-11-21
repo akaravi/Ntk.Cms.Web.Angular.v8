@@ -106,7 +106,7 @@ import { CmsSiteInfoPipe } from '../core/pipe/core/cms-site-info.pipe';
 import { CmsUserInfoPipe } from '../core/pipe/core/cms-user-info.pipe';
 import { EnumsPipe } from '../core/pipe/enums.pipe';
 import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
-import { KeysPipe } from '../core/pipe/keys.pipe';
+import { ListKeysPipe } from '../core/pipe/list-keys.pipe';
 import { PersianDateFull } from '../core/pipe/persian-date/persian-date-full.pipe';
 import { PrettyjsonPipe } from '../core/pipe/prettyjson.pipe';
 import { RecordStatusCellClassPipe } from '../core/pipe/recordStatusCellClass.pipe';
@@ -231,7 +231,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     PersianDateFull,
     /** pipe */
     TruncatePipe,
-    KeysPipe,
+    ListKeysPipe,
     SafeHtmlPipe,
     EnumsPipe,
     CmsTitlePipe,
@@ -375,7 +375,7 @@ import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner.co
     TruncatePipe,
     FirstLetterPipe,
     SafePipe,
-    KeysPipe,
+    ListKeysPipe,
     SafeHtmlPipe,
     EnumsPipe,
     CmsTitlePipe,

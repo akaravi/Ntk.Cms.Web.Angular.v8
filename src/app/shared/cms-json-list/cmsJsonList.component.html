@@ -5,7 +5,7 @@
     <div class="td">{{'TITLE.Values' | translate}}</div>
     <div class="clear"></div>
   </div>
-  <div class="tr" *ngFor="let head of dataModel | keys : optionFields ">
+  <div class="tr" *ngFor="let head of dataModel | listkeys : optionFields ">
     <div class="td">{{(optionFields && optionFields.size>0)? optionFields.get(head): head}}</div>
     <div class="td">{{dataModel[head]}}</div>
     <div style="clear: both;"></div>
@@ -14,12 +14,12 @@
 <!--optionMethod 2-->
 <div class="table" *ngIf="optionMethod===2 && dataModel">
   <div class="th" *ngIf="optionViewHead">
-    <div class="td" *ngFor="let head of dataModel[0] | keys : optionFields" >{{(optionFields && optionFields.size>0)?
+    <div class="td" *ngFor="let head of dataModel[0] | listkeys : optionFields" >{{(optionFields && optionFields.size>0)?
       optionFields.get(head): head}}</div>
     <div class="clear"></div>
   </div>
   <div class="tr" *ngFor="let item of dataModel">
-    <div class="td" *ngFor="let list of item | keys: optionFields">{{item[list]}}</div>
+    <div class="td" *ngFor="let list of item | listkeys: optionFields">{{item[list]}}</div>
     <div style="clear: both;"></div>
   </div>
 </div>
@@ -27,12 +27,12 @@
 <!--optionMethod 3-->
 <div class="table" *ngIf="optionMethod===3 && dataModel">
   <div class="th" *ngIf="optionViewHead">
-    <div class="td" *ngFor="let head of dataModel[0] | keys : optionFields" >{{(optionFields && optionFields.size>0)?
+    <div class="td" *ngFor="let head of dataModel[0] | listkeys : optionFields" >{{(optionFields && optionFields.size>0)?
       optionFields.get(head): head}}</div>
     <div class="clear"></div>
   </div>
   <div class="tr">
-    <div class="td"  *ngFor="let list of dataModel | keys : optionFields">{{dataModel[list]}}</div>
+    <div class="td"  *ngFor="let list of dataModel | listkeys : optionFields">{{dataModel[list]}}</div>
     <div style="clear: both;"></div>
   </div>
 </div>

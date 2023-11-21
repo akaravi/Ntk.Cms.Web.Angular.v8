@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'keys' })
-export class KeysPipe implements PipeTransform {
+@Pipe({ name: 'listkeys' })
+export class ListKeysPipe implements PipeTransform {
   transform(value, optionFields: Map<string, string>): any {
     if (!value) {
       return [];
@@ -17,12 +17,12 @@ export class KeysPipe implements PipeTransform {
 // <table>
 //   <thead>
 //     <tr>
-//       <th *ngFor="let head of items[0] | keys">{{head}}</th>
+//       <th *ngFor="let head of items[0] | listkeys">{{head}}</th>
 //     </tr>
 //   </thead>
 //   <tbody>
 //     <tr *ngFor="let item of items">
-//       <td *ngFor="let list of item | keys">{{item[list]}}</td>
+//       <td *ngFor="let list of item | listkeys">{{item[list]}}</td>
 //     </tr>
 //   </tbody>
 // </table>
@@ -30,12 +30,12 @@ export class KeysPipe implements PipeTransform {
 // <table>
 // <thead>
 //   <tr>
-//     <th *ngFor="let head of dataModel | keys">{{head}}</th>
+//     <th *ngFor="let head of dataModel | listkeys">{{head}}</th>
 //   </tr>
 // </thead>
 // <tbody>
 //   <tr>
-//     <td *ngFor="let list of dataModel | keys">{{dataModel[list]}}</td>
+//     <td *ngFor="let list of dataModel | listkeys">{{dataModel[list]}}</td>
 //   </tr>
 // </tbody>
 // </table>
@@ -52,7 +52,7 @@ export class KeysPipe implements PipeTransform {
 //   </tr>
 // </thead>
 // <tbody>
-//   <tr *ngFor="let head of dataModel | keys">
+//   <tr *ngFor="let head of dataModel | listkeys">
 //     <td>{{head}}</td>
 //     <td>{{dataModel[head]}}</td>
 //   </tr>
