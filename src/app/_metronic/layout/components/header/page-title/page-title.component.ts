@@ -4,13 +4,14 @@ import { IApiCmsServerBase } from 'ntk-cms-api';
 import { Observable, Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
 import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
+import { PageLinkModel } from 'src/app/core/models/pageLinkModel';
 import { CmsDataCommentComponent } from 'src/app/shared/cms-data-comment/cms-data-comment.component';
 import { CmsDataMemoComponent } from 'src/app/shared/cms-data-memo/cms-data-memo.component';
 import { CmsDataPinComponent } from 'src/app/shared/cms-data-pin/cms-data-pin.component';
 import { CmsDataTaskComponent } from 'src/app/shared/cms-data-task/cms-data-task.component';
 import { CmsShowKeyComponent } from 'src/app/shared/cms-show-key/cms-show-key.component';
 import { environment } from 'src/environments/environment';
-import { PageInfoService, PageLink } from '../../../../../core/services/page-info.service';
+import { PageInfoService } from '../../../../../core/services/page-info.service';
 import { LayoutService } from '../../../core/layout.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class PageTitleComponent implements OnInit, OnDestroy {
   showBC: boolean = true;
   title$: Observable<string>;
   description$: Observable<string>;
-  bc$: Observable<Array<PageLink>>;
+  bc$: Observable<Array<PageLinkModel>>;
 
   contentService: IApiCmsServerBase;
   contentInfo: ContentInfoModel;

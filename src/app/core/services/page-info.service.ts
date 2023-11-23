@@ -2,18 +2,9 @@ import { Injectable } from '@angular/core';
 import { IApiCmsServerBase } from 'ntk-cms-api';
 import { BehaviorSubject } from 'rxjs';
 import { ContentInfoModel } from 'src/app/core/models/contentInfoModel';
+import { PageLinkModel } from '../models/pageLinkModel';
 
-export interface PageLink {
-  title: string;
-  path: string;
-  isActive: boolean;
-  isSeparator?: boolean;
-}
 
-export class PageInfo {
-  breadcrumbs: Array<PageLink> = [];
-  title: string = '';
-}
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +14,8 @@ export class PageInfoService {
     'Dashboard'
   );
   public description: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  public breadcrumbs: BehaviorSubject<Array<PageLink>> = new BehaviorSubject<
-    Array<PageLink>
+  public breadcrumbs: BehaviorSubject<Array<PageLinkModel>> = new BehaviorSubject<
+    Array<PageLinkModel>
   >([]);
   public contentService: BehaviorSubject<IApiCmsServerBase> = new BehaviorSubject<IApiCmsServerBase>(null);
   public contentInfo: BehaviorSubject<ContentInfoModel> = new BehaviorSubject<ContentInfoModel>(new ContentInfoModel('', '', false, '',''));
@@ -70,11 +61,11 @@ export class PageInfoService {
     }, 1);
   }
 
-  public setBreadcrumbs(_bs: Array<PageLink>) {
+  public setBreadcrumbs(_bs: Array<PageLinkModel>) {
     this.breadcrumbs.next(_bs);
   }
 
-  public updateBreadcrumbs(_bs: Array<PageLink>) {
+  public updateBreadcrumbs(_bs: Array<PageLinkModel>) {
     setTimeout(() => {
       this.setBreadcrumbs(_bs);
     }, 20);
@@ -124,8 +115,8 @@ export class PageInfoService {
 
   public calculateBreadcrumbsInMenu(
     menuId: string
-  ): Array<PageLink> | undefined {
-    const result: Array<PageLink> = [];
+  ): Array<PageLinkModel> | undefined {
+    const result: Array<PageLinkModel> = [];
     const menu = document.getElementById(menuId);
     if (!menu) {
       return;
