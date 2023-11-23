@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Event, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { IApiCmsServerBase } from 'ntk-cms-api';
 import { Observable, Subscription } from 'rxjs';
 import { PublicHelper } from 'src/app/core/helpers/publicHelper';
@@ -37,8 +38,23 @@ export class PageTitleComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private publicHelper: PublicHelper,
+    private router: Router
   ) {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        //do something on start activity
 
+      }
+      if (event instanceof NavigationError) {
+        // Handle error
+        console.error(event.error);
+      }
+
+      if (event instanceof NavigationEnd) {
+        //do something on end activity
+        this.contentService = null;
+      }
+    });
   }
 
   ngOnInit(): void {
