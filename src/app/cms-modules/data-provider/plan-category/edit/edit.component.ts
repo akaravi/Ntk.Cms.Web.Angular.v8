@@ -148,6 +148,9 @@ export class DataProviderPlanCategoryEditComponent implements OnInit {
     }
     );
   }
+  onIconPickerSelect(model: any): void {
+    this.dataModel.fontIcon = model;
+  }
   onFormSubmit(): void {
     if (!this.formGroup.valid) {
       return;

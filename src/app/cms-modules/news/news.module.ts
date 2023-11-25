@@ -42,6 +42,7 @@ import { NewsContentEditComponent } from './content/edit/edit.component';
 import { NewsContentHeaderComponent } from './content/header/header.component';
 import { NewsContentListComponent } from './content/list/list.component';
 import { NewsContentSelectorComponent } from './content/selector/selector.component';
+import { IconPickerModule } from 'ngx-icon-picker';
 @NgModule({
   declarations: [
     NewsComponent,
@@ -67,7 +68,7 @@ import { NewsContentSelectorComponent } from './content/selector/selector.compon
     ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     SharedModule.forRoot(),
     AngularEditorModule,
-
+    IconPickerModule,
     CmsFileManagerModule,
     InlineSVGModule,
   ],
