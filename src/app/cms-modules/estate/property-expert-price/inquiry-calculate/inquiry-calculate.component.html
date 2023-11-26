@@ -56,7 +56,7 @@
         <app-estate-property-type-landuse-selector (optionChange)="onActionSelectorSelectLanduse($event)"
             [(optionLoading)]="loading" [optionDisabled]="false" [optionTypeView]="1" [(optionLoading)]="loading"
             [optionSelectForce]="dataModel.linkPropertyTypeLanduseId"
-            [optionPlaceholder]="this.translate.instant('TITLE.Property_type')">
+            [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')">
 
             <mat-icon matSuffix
                 *ngIf="dataModel.linkPropertyTypeLanduseId && dataModel.linkPropertyTypeLanduseId?.length>0" matSuffix

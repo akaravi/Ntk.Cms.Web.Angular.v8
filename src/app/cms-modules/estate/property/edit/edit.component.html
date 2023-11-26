@@ -39,7 +39,7 @@
           *ngIf="dataModel.linkPropertyTypeUsageId && dataModel.linkPropertyTypeUsageId.length>0"
           [optionDisabled]="!fieldsInfo['linkPropertyTypeLanduseId']?.accessEditField" [optionTypeView]="2"
           [optionSelectForce]="dataModel.linkPropertyTypeLanduseId" [(optionLoading)]="loading"
-          [optionPlaceholder]="this.translate.instant('TITLE.Property_type')"
+          [optionPlaceholder]="this.translate.instant('TITLE.Property_Type')"
           [optionTypeUsageId]="dataModel.linkPropertyTypeUsageId">
         </app-estate-property-type-landuse-selector>
         <br>

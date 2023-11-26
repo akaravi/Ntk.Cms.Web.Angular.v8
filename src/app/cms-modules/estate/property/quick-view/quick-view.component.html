@@ -29,13 +29,12 @@
         <td><b>{{dataModel.caseCode}}</b></td>
       </tr>
       <tr>
-        <td>{{'TITLE.Property_type' | translate}}:</td>
+        <td>{{'TITLE.Property_Type' | translate}}:</td>
         <td>{{propertyTypeLanduse}}</td>
       </tr>
       <tr>
         <td>{{fieldsInfo['recordStatus']?.fieldTitle}}:</td>
-        <td><i
-            [ngClass]="dataModel.recordStatus|statusIconClass"></i></td>
+        <td><i [ngClass]="dataModel.recordStatus|statusIconClass"></i></td>
       </tr>
       <tr>
         <td>{{fieldsInfo['title']?.fieldTitle}}:</td>
