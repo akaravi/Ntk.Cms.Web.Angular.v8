@@ -1,181 +1,239 @@
 <form (ngSubmit)="onFormSubmit()" #vform="ngForm">
-    <div class="ntk-cms-html-card-header">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
-        {{ formInfo.formTitle }}
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
-    </div>
-    <div class="ntk-cms-html-card-body">
-        <app-progress-spinner [options]="loading"> </app-progress-spinner>
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
-        <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
-            <mat-step label="{{'TITLE.Config_Module' | translate}}" state="main">
-                <p>{{'TITLE.Settings_that_the_module_applies_to_the_site' | translate}}</p>
-                <!-- StatusRenderUser Field -->
-                <div class="ntk-full-width">
-                    <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.statusRenderUser" name="dataConfigSiteValuesModel.statusRenderUser">
-                        StatusRenderUser
-                    </mat-slide-toggle>
-                </div>
-                <!-- UseDataDefaulteSite -->
-                <div class="ntk-full-width">
-                    <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.useDataDefaulteSite" name="dataConfigSiteValuesModel.useDataDefaulteSite">
-                        {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
-                    </mat-slide-toggle>
-                </div>
-                <!-- autoArchiveDataDay Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'TITLE.ARCHIEVE'|translate}}</mat-label>
-                    <input matInput [(ngModel)]="dataConfigSiteValuesModel.autoArchiveDataDay" name="dataConfigSiteValuesModel.autoArchiveDataDay" #autoArchiveDataDay type="number" placeholder="60" />
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.autoArchiveDataDay" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.autoArchiveDataDay = 0">close</mat-icon>
-                    <mat-icon matTooltip="{{'TITLE.AUTO_ARCHIEVE' | translate}}" matSuffix>info</mat-icon>
-
-                </mat-form-field>
-                <!-- aboutAgentMobiles Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'TITLE.TITLE.LIST_ESTATE_PHONE' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutAgentMobiles" name="dataConfigSiteValuesModel.aboutAgentMobiles" #aboutAgentMobiles type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutAgentMobiles" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutAgentMobiles = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ aboutAgentMobiles.value.length }} / 500</mat-hint>
-                </mat-form-field>
-                <!-- aboutAgentTels Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'TITLE.TITLE.LIST_ESTATE_PHONE' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutAgentTels" name="dataConfigSiteValuesModel.aboutAgentTels" #aboutAgentTels type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutAgentTels" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutAgentTels = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ aboutAgentTels.value.length }} / 500</mat-hint>
-                </mat-form-field>
-                <!-- aboutCustomerMobiles Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'TITLE.LIST_CUSTOMER_PHONE_MOBILE' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutCustomerMobiles" name="dataConfigSiteValuesModel.aboutCustomerMobiles" #aboutCustomerMobiles type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutCustomerMobiles" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutCustomerMobiles = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ aboutCustomerMobiles.value.length }} / 500</mat-hint>
-                </mat-form-field>
-
-                <!-- aboutCustomerTels Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'TITLE.LIST_CUSTOMER_PHONE' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutCustomerTels" name="dataConfigSiteValuesModel.aboutCustomerTels" #aboutCustomerTels type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutCustomerTels" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutCustomerTels = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ aboutCustomerTels.value.length }} / 500</mat-hint>
-                </mat-form-field>
-                <hr>
-                <!-- customerOrderActionSendSmsToAgencyAreaWorkMessage Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'متن ارسالی سفارش مشتری به آژانس های منطقه' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage" name="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage" #customerOrderActionSendSmsToAgencyAreaWorkMessage type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ customerOrderActionSendSmsToAgencyAreaWorkMessage.value.length }} / 500</mat-hint>
-                </mat-form-field>
-
-                <!-- customerOrderActionSendSmsToAgentAreaWorkMessage Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'متن ارسالی سفارش مشتری به کارشناسان منطقه' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage" name="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage" #customerOrderActionSendSmsToAgentAreaWorkMessage type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ customerOrderActionSendSmsToAgentAreaWorkMessage.value.length }} / 500</mat-hint>
-                </mat-form-field>
+  <div class="ntk-cms-html-card-header">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-header-->
+    {{ formInfo.formTitle }}
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-header-->
+  </div>
+  <div class="ntk-cms-html-card-body">
+    <app-progress-spinner [options]="loading"> </app-progress-spinner>
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-body-->
+    <mat-horizontal-stepper (selectionChange)="onStepClick($event,stepper)" #stepper>
+      <mat-step label="{{'TITLE.Config_Module' | translate}}" state="main">
+        <p>{{'TITLE.Settings_that_the_module_applies_to_the_site' | translate}}</p>
+        <!-- StatusRenderUser Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.statusRenderUser"
+            name="dataConfigSiteValuesModel.statusRenderUser">
+            StatusRenderUser
+          </mat-slide-toggle>
+        </div>
+        <!-- UseDataDefaulteSite -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataConfigSiteValuesModel.useDataDefaulteSite"
+            name="dataConfigSiteValuesModel.useDataDefaulteSite">
+            {{'TITLE.Display_the_default_site_information_on_the_site' | translate}}
+          </mat-slide-toggle>
+        </div>
 
 
-                <!-- estateActionSendSmsToAgencyAreaWorkMessage Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'متن ارسالی ملک به آژانس های منطقه' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage" name="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage" #estateActionSendSmsToAgencyAreaWorkMessage type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ estateActionSendSmsToAgencyAreaWorkMessage.value.length }} / 500</mat-hint>
-                </mat-form-field>
+        <!-- autoContractByCallDataDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.Contract_ARCHIEVE'|translate}}</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesModel.autoContractByCallDataDay"
+            name="dataConfigSiteValuesModel.autoContractByCallDataDay" #autoContractByCallDataDay type="number"
+            placeholder="60" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.autoContractByCallDataDay" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.autoContractByCallDataDay = 0">close</mat-icon>
+          <mat-icon matTooltip="{{'TITLE.AUTO_ARCHIEVE' | translate}}" matSuffix>info</mat-icon>
 
-                <!-- estateActionSendSmsToAgentAreaWorkMessage Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>{{'متن ارسالی ملک به کارشناسان منطقه' | translate}}</mat-label>
-                    <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage" name="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage" #estateActionSendSmsToAgentAreaWorkMessage type="text" placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
-                    <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage = ''">close</mat-icon>
-                    <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
-                    <mat-hint align="end">{{ estateActionSendSmsToAgentAreaWorkMessage.value.length }} / 500</mat-hint>
-                </mat-form-field>
+        </mat-form-field>
 
-                <hr>
-                <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-                    <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
+        <!-- autoArchiveDataDay Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.SELF_ARCHIEVE'|translate}}</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteValuesModel.autoArchiveDataDay"
+            name="dataConfigSiteValuesModel.autoArchiveDataDay" #autoArchiveDataDay type="number" placeholder="60" />
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.autoArchiveDataDay" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.autoArchiveDataDay = 0">close</mat-icon>
+          <mat-icon matTooltip="{{'TITLE.AUTO_ARCHIEVE' | translate}}" matSuffix>info</mat-icon>
 
-                </div>
+        </mat-form-field>
+        <!-- aboutAgentMobiles Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.TITLE.LIST_ESTATE_PHONE' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutAgentMobiles"
+            name="dataConfigSiteValuesModel.aboutAgentMobiles" #aboutAgentMobiles type="text" placeholder="09123456"
+            minlength="0" maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutAgentMobiles" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutAgentMobiles = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ aboutAgentMobiles.value.length }} / 500</mat-hint>
+        </mat-form-field>
+        <!-- aboutAgentTels Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.TITLE.LIST_ESTATE_PHONE' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutAgentTels"
+            name="dataConfigSiteValuesModel.aboutAgentTels" #aboutAgentTels type="text" placeholder="09123456"
+            minlength="0" maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutAgentTels" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutAgentTels = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ aboutAgentTels.value.length }} / 500</mat-hint>
+        </mat-form-field>
+        <!-- aboutCustomerMobiles Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.LIST_CUSTOMER_PHONE_MOBILE' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutCustomerMobiles"
+            name="dataConfigSiteValuesModel.aboutCustomerMobiles" #aboutCustomerMobiles type="text"
+            placeholder="09123456" minlength="0" maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutCustomerMobiles" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutCustomerMobiles = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ aboutCustomerMobiles.value.length }} / 500</mat-hint>
+        </mat-form-field>
 
-                <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
-                    <button type="button" mat-raised-button (click)="onActionBackToParent()">
-                        {{'ACTION.BACK' | translate}}
-                    </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-                        {{'ACTION.NEXT' | translate}}
-                    </button>
-                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-                        {{'ACTION.SAVE' | translate}}
-                    </button>
-                </div>
-            </mat-step>
+        <!-- aboutCustomerTels Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'TITLE.LIST_CUSTOMER_PHONE' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.aboutCustomerTels"
+            name="dataConfigSiteValuesModel.aboutCustomerTels" #aboutCustomerTels type="text" placeholder="09123456"
+            minlength="0" maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.aboutCustomerTels" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteValuesModel.aboutCustomerTels = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ aboutCustomerTels.value.length }} / 500</mat-hint>
+        </mat-form-field>
+        <hr>
+        <!-- customerOrderActionSendSmsToAgencyAreaWorkMessage Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'متن ارسالی سفارش مشتری به آژانس های منطقه' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage"
+            name="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage"
+            #customerOrderActionSendSmsToAgencyAreaWorkMessage type="text" placeholder="09123456" minlength="0"
+            maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage"
+            matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgencyAreaWorkMessage = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ customerOrderActionSendSmsToAgencyAreaWorkMessage.value.length }} / 500</mat-hint>
+        </mat-form-field>
 
-            <mat-step label="{{'TITLE.Saved_Value' | translate}}" state="main">
-                <p>{{'TITLE.Values_saved_by_the_system' | translate}}</p>
-                <!-- RowCount Field -->
-                <div class="ntk-full-width">
-                    <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.rowCount" name="dataSiteStorageModel.rowCount">
-                        RowCount
-                    </mat-slide-toggle>
-                </div>
-                <!-- MainDataContentRowCount Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>MainDataContentRowCount</mat-label>
-                    <input matInput [(ngModel)]="dataSiteStorageModel.mainDataContentRowCount" name="dataSiteStorageModel.mainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount type="number" placeholder="0" />
-                    <mat-icon matSuffix *ngIf="dataSiteStorageModel.mainDataContentRowCount" matSuffix mat-icon-button aria-label="Clear" (click)="dataSiteStorageModel.mainDataContentRowCount = null">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-
-                </mat-form-field>
-                <!-- UpdatedContent Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>UpdatedContent</mat-label>
-                    <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent" [(ngModel)]="dataSiteStorageModel.updatedContent" name="dataSiteStorageModel.updatedContent" />
-                    <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedContent " matSuffix mat-icon-button aria-label="Clear" (click)="dataSiteStorageModel.updatedContent = null">close</mat-icon>
-                    <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedContent"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi #dataSiteStorageModel_UpdatedContent></mat-datepicker>
-                </mat-form-field>
+        <!-- customerOrderActionSendSmsToAgentAreaWorkMessage Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'متن ارسالی سفارش مشتری به کارشناسان منطقه' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage"
+            name="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage"
+            #customerOrderActionSendSmsToAgentAreaWorkMessage type="text" placeholder="09123456" minlength="0"
+            maxlength="500" rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage"
+            matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteValuesModel.customerOrderActionSendSmsToAgentAreaWorkMessage = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ customerOrderActionSendSmsToAgentAreaWorkMessage.value.length }} / 500</mat-hint>
+        </mat-form-field>
 
 
-                <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-                    <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
-                </div>
-                <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
-                    <button type="button" mat-raised-button color="accent" matStepperPrevious>
-                        {{'ACTION.BEFOR' | translate}}
-                    </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-                        {{'ACTION.NEXT' | translate}}
-                    </button>
-                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-                        {{'ACTION.SAVE' | translate}}
-                    </button>
-                </div>
-            </mat-step>
-            <mat-step label="{{'TITLE.Accessibility' | translate}}" state="main">
-                <p>{{'TITLE.This_website_accesses_this_module' | translate}}</p>
-                <!-- MainDataContentRowCount Field -->
-                <mat-form-field class="ntk-full-width">
-                    <mat-label>MainDataContentRowCount</mat-label>
-                    <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.mainDataContentRowCount" name="dataConfigSiteAccessValuesModel.mainDataContentRowCount" #dataConfigSiteAccessValuesModel_MainDataContentRowCount type="number" placeholder="0" required />
-                    <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.mainDataContentRowCount" matSuffix mat-icon-button aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.mainDataContentRowCount = null">close</mat-icon>
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                    <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
-                        MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>
-                    </mat-error>
-                </mat-form-field>
+        <!-- estateActionSendSmsToAgencyAreaWorkMessage Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'متن ارسالی ملک به آژانس های منطقه' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage"
+            name="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage"
+            #estateActionSendSmsToAgencyAreaWorkMessage type="text" placeholder="09123456" minlength="0" maxlength="500"
+            rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteValuesModel.estateActionSendSmsToAgencyAreaWorkMessage = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ estateActionSendSmsToAgencyAreaWorkMessage.value.length }} / 500</mat-hint>
+        </mat-form-field>
 
-                <!-- UseDataDefaulteSiteId Field -->
-                <!-- <mat-form-field class="ntk-full-width">
+        <!-- estateActionSendSmsToAgentAreaWorkMessage Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>{{'متن ارسالی ملک به کارشناسان منطقه' | translate}}</mat-label>
+          <textarea matInput [(ngModel)]="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage"
+            name="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage"
+            #estateActionSendSmsToAgentAreaWorkMessage type="text" placeholder="09123456" minlength="0" maxlength="500"
+            rows="5"></textarea>
+          <mat-icon matSuffix *ngIf="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage" matSuffix
+            mat-icon-button aria-label="Clear"
+            (click)="dataConfigSiteValuesModel.estateActionSendSmsToAgentAreaWorkMessage = ''">close</mat-icon>
+          <mat-icon matTooltip="{{'MESSAGE.LIST_DISPLAYED' | translate}}" matSuffix>info</mat-icon>
+          <mat-hint align="end">{{ estateActionSendSmsToAgentAreaWorkMessage.value.length }} / 500</mat-hint>
+        </mat-form-field>
+
+        <hr>
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigSiteValuesModel | prettyjson"></div>
+
+        </div>
+
+        <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+          <button type="button" mat-raised-button (click)="onActionBackToParent()">
+            {{'ACTION.BACK' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+
+      <mat-step label="{{'TITLE.Saved_Value' | translate}}" state="main">
+        <p>{{'TITLE.Values_saved_by_the_system' | translate}}</p>
+        <!-- RowCount Field -->
+        <div class="ntk-full-width">
+          <mat-slide-toggle [(ngModel)]="dataSiteStorageModel.rowCount" name="dataSiteStorageModel.rowCount">
+            RowCount
+          </mat-slide-toggle>
+        </div>
+        <!-- MainDataContentRowCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MainDataContentRowCount</mat-label>
+          <input matInput [(ngModel)]="dataSiteStorageModel.mainDataContentRowCount"
+            name="dataSiteStorageModel.mainDataContentRowCount" #dataSiteStorageModel_MainDataContentRowCount
+            type="number" placeholder="0" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.mainDataContentRowCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataSiteStorageModel.mainDataContentRowCount = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+
+        </mat-form-field>
+        <!-- UpdatedContent Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>UpdatedContent</mat-label>
+          <input matInput [matDatepicker]="dataSiteStorageModel_UpdatedContent"
+            [(ngModel)]="dataSiteStorageModel.updatedContent" name="dataSiteStorageModel.updatedContent" />
+          <mat-icon matSuffix *ngIf="dataSiteStorageModel.updatedContent " matSuffix mat-icon-button aria-label="Clear"
+            (click)="dataSiteStorageModel.updatedContent = null">close</mat-icon>
+          <mat-datepicker-toggle matSuffix [for]="dataSiteStorageModel_UpdatedContent"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #dataSiteStorageModel_UpdatedContent></mat-datepicker>
+        </mat-form-field>
+
+
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataSiteStorageModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
+      <mat-step label="{{'TITLE.Accessibility' | translate}}" state="main">
+        <p>{{'TITLE.This_website_accesses_this_module' | translate}}</p>
+        <!-- MainDataContentRowCount Field -->
+        <mat-form-field class="ntk-full-width">
+          <mat-label>MainDataContentRowCount</mat-label>
+          <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
+            name="dataConfigSiteAccessValuesModel.mainDataContentRowCount"
+            #dataConfigSiteAccessValuesModel_MainDataContentRowCount type="number" placeholder="0" required />
+          <mat-icon matSuffix *ngIf="dataConfigSiteAccessValuesModel.mainDataContentRowCount" matSuffix mat-icon-button
+            aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.mainDataContentRowCount = null">close</mat-icon>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+          <mat-error *ngIf="dataConfigSiteAccessValuesModel_MainDataContentRowCount.errors?.required">
+            MainDataContentRowCount is <strong>{{'MESSAGE.required' | translate}}</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- UseDataDefaulteSiteId Field -->
+        <!-- <mat-form-field class="ntk-full-width">
           <mat-label>{{'TITLE.Default_information_site_ID' | translate}}</mat-label>
           <input matInput [(ngModel)]="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
             name="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId"
@@ -184,34 +242,34 @@
             aria-label="Clear" (click)="dataConfigSiteAccessValuesModel.useDataDefaulteSiteId = 0">close</mat-icon>
           <mat-icon matSuffix>mode_edit</mat-icon>
         </mat-form-field> -->
-                <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
-                    <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
-                </div>
-                <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
-                    <button type="button" mat-raised-button color="accent" matStepperPrevious>
-                        {{'ACTION.BEFOR' | translate}}
-                    </button>
-                    <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
-                        {{'ACTION.NEXT' | translate}}
-                    </button>
-                    <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
-                        {{'ACTION.SAVE' | translate}}
-                    </button>
-                </div>
-            </mat-step>
+        <div *ngIf="tokenInfo.userAccessAdminAllowToProfessionalData">
+          <div [innerHTML]="dataConfigSiteAccessValuesModel | prettyjson"></div>
+        </div>
+        <div *ngIf="formInfo.formSubmitAllow  && !loading?.display" class="ntk-button-row">
+          <button type="button" mat-raised-button color="accent" matStepperPrevious>
+            {{'ACTION.BEFOR' | translate}}
+          </button>
+          <button type="button" mat-raised-button color="primary" [disabled]="!vform.form.valid" matStepperNext>
+            {{'ACTION.NEXT' | translate}}
+          </button>
+          <button type="submit" mat-raised-button color="success" [disabled]="!vform.form.valid">
+            {{'ACTION.SAVE' | translate}}
+          </button>
+        </div>
+      </mat-step>
 
-        </mat-horizontal-stepper>
+    </mat-horizontal-stepper>
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
-    </div>
-    <div class="ntk-cms-html-card-message">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-body-->
+  </div>
+  <div class="ntk-cms-html-card-message">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-message-->
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
-    </div>
-    <div class="ntk-cms-html-card-footer">
-        <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-message-->
+  </div>
+  <div class="ntk-cms-html-card-footer">
+    <!--begin:::::::::::::::::::::::::::::::::::::::::cms-footer-->
 
-        <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
-    </div>
+    <!--end:::::::::::::::::::::::::::::::::::::::::cms-footer-->
+  </div>
 </form>

@@ -25,6 +25,6 @@
   "search.useGlobalIgnoreFiles": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   }
 }
