@@ -70,8 +70,8 @@ export class EstateAdsTypeAddComponent implements OnInit {
           if (ret.isSuccess) {
             // this.dataAccessModel = next.access;
             this.fieldsInfo = this.publicHelper.fieldInfoConvertor(ret.access);
-            this.dataModel.viewLevelDescription = ret.item.viewLevelDescription;
-            this.dataModel.stationLevelDescription = ret.item.stationLevelDescription;
+            // this.dataModel.viewLevelDescription = ret.item.viewLevelDescription;
+            // this.dataModel.stationLevelDescription = ret.item.stationLevelDescription;
           } else {
             this.cmsToastrService.typeErrorGetAccess(ret.errorMessage);
           }
